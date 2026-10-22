@@ -446,6 +446,16 @@ void Achievements_CheckAll(void)
     SyncMirror();
 }
 
+// Title shown on the Trainer Card, or NULL
+const u8 *Achievements_GetEquippedTitle(void)
+{
+    u32 title = gSaveBlock3Ptr->achievementTitle;
+
+    if (title == 0 || title > ACH_COUNT || !Achievement_IsClaimed(title - 1))
+        return NULL;
+    return gAchievements[title - 1].rewardTitle;
+}
+
 //// Notification ////
 
 static const struct WindowTemplate sNotificationWindowTemplate =
@@ -976,12 +986,26 @@ static void TryClaimReward(u8 taskId, u32 id)
     const struct Achievement *a = &gAchievements[id];
     u8 windowId = gTasks[taskId].tDescWindowId;
 
-    if (!Achievement_IsUnlocked(id) || Achievement_IsClaimed(id))
+    if (!Achievement_IsUnlocked(id))
         return;
+
+    // A claimed title can be equipped again
+    if (Achievement_IsClaimed(id))
+    {
+        if (a->rewardTitle == NULL)
+            return;
+        gSaveBlock3Ptr->achievementTitle = id + 1;
+        PlaySE(SE_SELECT);
+        StringCopy(gStringVar4, COMPOUND_STRING("Título equipado en tu Ficha:\n"));
+        StringAppend(gStringVar4, a->rewardTitle);
+        PrintDescLines(windowId, gStringVar4, NULL);
+        return;
+    }
 
     if (a->rewardTitle != NULL)
     {
-        StringCopy(gStringVar4, COMPOUND_STRING("¡Título obtenido!\n"));
+        gSaveBlock3Ptr->achievementTitle = id + 1;
+        StringCopy(gStringVar4, COMPOUND_STRING("¡Título obtenido y equipado!\n"));
         StringAppend(gStringVar4, a->rewardTitle);
     }
     else if (AddBagItem(a->rewardItem, a->rewardQuantity))

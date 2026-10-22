@@ -283,6 +283,7 @@ struct SaveBlock3
     u16 achievementCounters[ACH_COUNTER_COUNT];
     u32 achievementBallKinds; // one bit per Poké Ball used for a capture
     u8 achievementGimmicks;   // one bit per gimmick used: Mega, Tera, Dynamax, Z-Move
+    u16 achievementTitle;     // equipped title: achievement id + 1, 0 for none
 #if APRICORN_TREE_COUNT > 0
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif

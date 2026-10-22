@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "scanline_effect.h"
 #include "palette.h"
 #include "task.h"
@@ -1171,6 +1172,13 @@ static void PrintProfilePhraseOnCard(void)
         AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, GetStringWidth(FONT_NORMAL, sData->easyChatProfile[0], 0) + 14, yOffsetsLine1[sData->isHoenn], sTrainerCardTextColors, TEXT_SKIP_DRAW, sData->easyChatProfile[1]);
         AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 8, yOffsetsLine2[sData->isHoenn], sTrainerCardTextColors, TEXT_SKIP_DRAW, sData->easyChatProfile[2]);
         AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, GetStringWidth(FONT_NORMAL, sData->easyChatProfile[2], 0) + 14, yOffsetsLine2[sData->isHoenn], sTrainerCardTextColors, TEXT_SKIP_DRAW, sData->easyChatProfile[3]);
+    }
+    else if (Achievements_GetEquippedTitle() != NULL)
+    {
+        // Rojo Fuego+: the player's own card shows the equipped achievement title
+        StringCopy(gStringVar4, COMPOUND_STRING("TÍTULO: "));
+        StringAppend(gStringVar4, Achievements_GetEquippedTitle());
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 8, yOffsetsLine1[sData->isHoenn], sTrainerCardTextColors, TEXT_SKIP_DRAW, gStringVar4);
     }
 }
 

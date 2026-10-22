@@ -64,6 +64,7 @@ void Achievement_SetCounterMax(enum AchievementCounter counter, u32 value);
 u32 Achievement_GetCounter(enum AchievementCounter counter);
 void Achievements_HideNotification(void);
 void Achievements_OpenMenu(void);
+const u8 *Achievements_GetEquippedTitle(void);
 
 // Hooks called from game code
 void Achievements_OnBattleEnd(void);
