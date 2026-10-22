@@ -2444,6 +2444,29 @@
 #define FLAG_POKE_RIDER             FLAG_UNUSED_0x4AB
 #define FLAG_DOWSING                FLAG_UNUSED_0x4AC
 
+#if IS_FRLG
+// Rojo Fuego+ content (FRLG only). FLAG_0x0B0-0x153 are never referenced by the FRLG maps or code;
+// keep new content flags in that block.
+#define FLAG_RF_Z_TRIAL_00          FLAG_0x0B0 // Z-Crystal trials, in tools/rojo_fuego/content.py order
+#define FLAG_RF_Z_TRIAL_01          FLAG_0x0B1
+#define FLAG_RF_Z_TRIAL_02          FLAG_0x0B2
+#define FLAG_RF_Z_TRIAL_03          FLAG_0x0B3
+#define FLAG_RF_Z_TRIAL_04          FLAG_0x0B4
+#define FLAG_RF_Z_TRIAL_05          FLAG_0x0B5
+#define FLAG_RF_Z_TRIAL_06          FLAG_0x0B6
+#define FLAG_RF_Z_TRIAL_07          FLAG_0x0B7
+#define FLAG_RF_Z_TRIAL_08          FLAG_0x0B8
+#define FLAG_RF_Z_TRIAL_09          FLAG_0x0B9
+#define FLAG_RF_Z_TRIAL_10          FLAG_0x0BA
+#define FLAG_RF_Z_TRIAL_11          FLAG_0x0BB
+#define FLAG_RF_Z_TRIAL_12          FLAG_0x0BC
+#define FLAG_RF_Z_TRIAL_13          FLAG_0x0BD
+#define FLAG_RF_Z_TRIAL_14          FLAG_0x0BE
+#define FLAG_RF_Z_TRIAL_15          FLAG_0x0BF
+#define FLAG_RF_Z_TRIAL_16          FLAG_0x0C0
+#define FLAG_RF_Z_TRIAL_17          FLAG_0x0C1
+#endif
+
 #if TESTING
 #define TESTING_FLAGS_START                     0x5000
 #define TESTING_FLAG_SLEEP_CLAUSE               (TESTING_FLAGS_START + 0x0)

@@ -131,7 +131,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARMIE)",
       "x": 32,
       "y": 19,
       "elevation": 3,
@@ -140,7 +140,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FourIsland_EventScript_ItemStardust",
+      "script": "RF_EventScript_Guardian_FourIsland_Stardust",
       "flag": "FLAG_HIDE_FOUR_ISLAND_STARDUST"
     },
     {
@@ -169,7 +169,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FourIsland_EventScript_FatMan",
+      "script": "RF_EventScript_ZTrial_FourIsland_FatMan",
       "flag": "0"
     },
     {
@@ -245,9 +245,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

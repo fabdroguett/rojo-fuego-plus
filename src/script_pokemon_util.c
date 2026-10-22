@@ -1,4 +1,5 @@
 #include "global.h"
+#include "omni_ring.h"
 #include "battle.h"
 #include "battle_gfx_sfx_util.h"
 #include "berry.h"
@@ -46,6 +47,9 @@ void HealPlayerParty(void)
     // Recharge Tera Orb, if possible.
     if (!IsTeraOrbCharged() && CheckBagHasItem(ITEM_TERA_ORB, 1))
         FlagSet(B_FLAG_TERA_ORB_CHARGED);
+
+    // Rojo Fuego+: healing at a Pokémon Center also refills the Omni Ring
+    OmniRing_Recharge();
 }
 
 static void HealPlayerBoxes(void)

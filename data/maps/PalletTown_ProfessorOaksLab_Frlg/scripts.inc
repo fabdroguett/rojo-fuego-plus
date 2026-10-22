@@ -658,6 +658,8 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese
 	giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5
+	msgbox PalletTown_ProfessorOaksLab_Text_OakOmniRing
+	giveitem ITEM_OMNI_RING
 	msgbox PalletTown_ProfessorOaksLab_Text_OakExplainCatching
 	famechecker FAMECHECKER_OAK, 1
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCompleteMonGuideWasMyDream
@@ -1655,3 +1657,12 @@ PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex::
 	.string "ONE ISLAND first…\p"
 	.string "Anyways, I'm outta here!$"
 
+
+@ Rojo Fuego+: Oak hands over the Omni Ring with the Pokédex
+PalletTown_ProfessorOaksLab_Text_OakOmniRing::
+	.string "OAK: ¡Y una cosa más!\p"
+	.string "Esto es el OMNI RING. Por ahora\n"
+	.string "no tiene ningún poder…\p"
+	.string "Pero dicen que por todo Kanto hay\n"
+	.string "módulos que despiertan fuerzas de\l"
+	.string "otras regiones. ¡Búscalos!$"

@@ -416,7 +416,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HOUNDOOM)",
       "x": 18,
       "y": 114,
       "elevation": 4,
@@ -425,7 +425,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "OneIsland_KindleRoad_EventScript_ItemCarbos",
+      "script": "RF_EventScript_Guardian_OneIsland_KindleRoad_Carbos",
       "flag": "FLAG_HIDE_ONE_ISLAND_KINDLE_ROAD_CARBOS"
     }
   ],
@@ -452,9 +452,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

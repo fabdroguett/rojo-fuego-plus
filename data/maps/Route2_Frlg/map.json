@@ -85,7 +85,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIDGEOTTO)",
       "x": 17,
       "y": 54,
       "elevation": 3,
@@ -94,7 +94,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route2_EventScript_ItemEther",
+      "script": "RF_EventScript_Guardian_Route2_Ether",
       "flag": "FLAG_HIDE_ROUTE2_ETHER"
     },
     {
@@ -192,9 +192,7 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

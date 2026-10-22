@@ -30,6 +30,7 @@
 #include "menu.h"
 #include "menu_helpers.h"
 #include "metatile_behavior.h"
+#include "omni_ring.h"
 #include "oras_dowse.h"
 #include "overworld.h"
 #include "palette.h"
@@ -270,6 +271,44 @@ void ItemUseOutOfBattle_ExpShare(u8 taskId)
 #else
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 #endif
+}
+
+// Rojo Fuego+ Omni Ring: shows which modules are installed and the charges left
+void ItemUseOutOfBattle_OmniRing(u8 taskId)
+{
+    OmniRing_GetStatusString(gStringVar4);
+    PlaySE(SE_SELECT);
+    if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+        DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
+}
+
+// Rojo Fuego+ Omni Ring modules and cells: installing one uses it up
+void ItemUseOutOfBattle_OmniUpgrade(u8 taskId)
+{
+    const u8 *message;
+
+    if (!CheckBagHasItem(ITEM_OMNI_RING, 1))
+    {
+        PlaySE(SE_FAILURE);
+        message = COMPOUND_STRING("Necesitas el Omni Ring\npara instalarlo.{PAUSE_UNTIL_PRESS}");
+    }
+    else if (!OmniRing_TryInstallItem(gSpecialVar_ItemId))
+    {
+        PlaySE(SE_FAILURE);
+        message = COMPOUND_STRING("El Omni Ring ya no puede\nmejorar más con esto.{PAUSE_UNTIL_PRESS}");
+    }
+    else
+    {
+        PlaySE(SE_EXP_MAX);
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        UpdatePocketItemList(GetItemPocket(gSpecialVar_ItemId));
+        UpdatePocketListPosition(GetItemPocket(gSpecialVar_ItemId));
+        OmniRing_GetStatusString(gStringVar4);
+        message = gStringVar4;
+    }
+    DisplayItemMessage(taskId, FONT_NORMAL, message, CloseItemMessage);
 }
 
 void ItemUseOutOfBattle_Bike(u8 taskId)

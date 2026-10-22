@@ -74,7 +74,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HAUNTER)",
       "x": 8,
       "y": 11,
       "elevation": 3,
@@ -83,7 +83,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PokemonTower_4F_EventScript_ItemAwakening",
+      "script": "RF_EventScript_Guardian_PokemonTower_4F_Awakening",
       "flag": "FLAG_HIDE_POKEMON_TOWER_4F_AWAKENING"
     },
     {

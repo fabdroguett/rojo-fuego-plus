@@ -1,4 +1,5 @@
 #include "global.h"
+#include "omni_ring.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
@@ -23,12 +24,14 @@ void ActivateTera(enum BattlerId battler)
     SetActiveGimmick(battler, GIMMICK_TERA);
     SetGimmickAsActivated(battler, GIMMICK_TERA);
 
-    // Remove Tera Orb charge.
-    if (IsTeraOrbCharged()
-        && IsOnPlayerSide(battler)
+    // Remove Tera Orb charge, or an Omni Ring charge (Rojo Fuego+).
+    if (IsOnPlayerSide(battler)
         && !(IsDoubleBattle() && !IsPartnerMonFromSameTrainer(battler)))
     {
-        FlagClear(B_FLAG_TERA_ORB_CHARGED);
+        if (OmniRing_HasMechanic(OMNI_TERA))
+            OmniRing_UseCharge();
+        else if (IsTeraOrbCharged())
+            FlagClear(B_FLAG_TERA_ORB_CHARGED);
     }
 
     // Execute battle script.
@@ -80,6 +83,12 @@ bool32 CanTerastallize(enum BattlerId battler)
     if (TESTING || !IsOnPlayerSide(battler))
     {
         // Skip all other checks in this block, go to HasTrainerUsedGimmick
+    }
+    else if (OmniRing_HasMechanic(OMNI_TERA))
+    {
+        // Rojo Fuego+: the Omni Ring replaces the Tera Orb and uses its own charges
+        if (!OmniRing_HasCharge())
+            return FALSE;
     }
     else if (!CheckBagHasItem(ITEM_TERA_ORB, 1))
     {

@@ -1026,6 +1026,10 @@ gStdScripts_End::
 	.include "data/scripts/fame_checker_frlg.inc"
 	.include "data/text/fame_checker_frlg.inc"
 	.include "data/scripts/item_ball_scripts_frlg.inc"
+#if IS_FRLG
+	.include "data/scripts/rojo_fuego_guardians.inc"
+	.include "data/scripts/rojo_fuego_ztrials.inc"
+#endif
 	.include "data/scripts/silphco_doors.inc"
 	.include "data/scripts/move_tutors_frlg.inc"
 	.include "data/scripts/cable_club_frlg.inc"

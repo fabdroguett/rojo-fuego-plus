@@ -1,4 +1,5 @@
 #include "global.h"
+#include "omni_ring.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
@@ -83,10 +84,19 @@ bool32 CanDynamax(enum BattlerId battler)
     if (!TESTING && (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT
         || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT)))
     {
-        if (!CheckBagHasItem(ITEM_DYNAMAX_BAND, 1))
-            return FALSE;
-        if (B_FLAG_DYNAMAX_BATTLE == 0 || (B_FLAG_DYNAMAX_BATTLE != 0 && !FlagGet(B_FLAG_DYNAMAX_BATTLE)))
-            return FALSE;
+        // Rojo Fuego+: an Omni Ring with the Dynamax module works in any battle while it has charge
+        if (OmniRing_HasMechanic(OMNI_DYNAMAX))
+        {
+            if (!OmniRing_HasCharge())
+                return FALSE;
+        }
+        else
+        {
+            if (!CheckBagHasItem(ITEM_DYNAMAX_BAND, 1))
+                return FALSE;
+            if (B_FLAG_DYNAMAX_BATTLE == 0 || (B_FLAG_DYNAMAX_BATTLE != 0 && !FlagGet(B_FLAG_DYNAMAX_BATTLE)))
+                return FALSE;
+        }
     }
 
     // Check if species isn't allowed to Dynamax.
@@ -172,6 +182,11 @@ void ActivateDynamax(enum BattlerId battler)
     SetActiveGimmick(battler, GIMMICK_DYNAMAX);
     SetGimmickAsActivated(battler, GIMMICK_DYNAMAX);
     gBattleStruct->dynamax.dynamaxTurns[battler] = DYNAMAX_TURNS_COUNT;
+
+    // Rojo Fuego+: Dynamaxing through the Omni Ring spends one of its charges
+    if (IsOnPlayerSide(battler) && !(IsDoubleBattle() && !IsPartnerMonFromSameTrainer(battler))
+        && OmniRing_HasMechanic(OMNI_DYNAMAX))
+        OmniRing_UseCharge();
 
     // Substitute is removed upon Dynamaxing.
     gBattleMons[battler].volatiles.substitute = FALSE;

@@ -46,7 +46,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KANGASKHAN)",
       "x": 16,
       "y": 27,
       "elevation": 3,
@@ -55,7 +55,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SafariZone_West_EventScript_ItemMaxPotion",
+      "script": "RF_EventScript_Guardian_SafariZone_West_MaxPotion",
       "flag": "FLAG_HIDE_SAFARI_ZONE_WEST_MAX_POTION"
     },
     {
@@ -152,9 +152,7 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

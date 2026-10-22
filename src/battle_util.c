@@ -1,4 +1,5 @@
 #include "global.h"
+#include "omni_ring.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_anim_scripts.h"
@@ -8561,7 +8562,7 @@ bool32 CanMegaEvolve(enum BattlerId battler)
     // Check if Player has a Mega Ring.
     if (!TESTING
         && (position == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && position == B_POSITION_PLAYER_RIGHT))
-        && !CheckBagHasItem(ITEM_MEGA_RING, 1))
+        && !CheckBagHasItem(ITEM_MEGA_RING, 1) && !OmniRing_HasMechanic(OMNI_MEGA))
         return FALSE;
 
     // Check if Trainer has already Mega Evolved.
@@ -8602,7 +8603,7 @@ bool32 CanUltraBurst(enum BattlerId battler)
     // Check if Player has a Z-Ring
     if (!TESTING && (position == B_POSITION_PLAYER_LEFT
         || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && position == B_POSITION_PLAYER_RIGHT))
-        && !CheckBagHasItem(ITEM_Z_POWER_RING, 1))
+        && !CheckBagHasItem(ITEM_Z_POWER_RING, 1) && !OmniRing_HasMechanic(OMNI_Z_MOVE))
         return FALSE;
 
     // Check if Trainer has already Ultra Bursted.

@@ -32,7 +32,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ALAKAZAM)",
       "x": 11,
       "y": 16,
       "elevation": 3,
@@ -41,7 +41,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CeruleanCave_1F_EventScript_ItemFullRestore",
+      "script": "RF_EventScript_Guardian_CeruleanCave_1F_FullRestore",
       "flag": "FLAG_HIDE_CERULEAN_CAVE_1F_FULL_RESTORE"
     },
     {
@@ -201,9 +201,7 @@
       "dest_warp_id": "5"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "hidden_item",

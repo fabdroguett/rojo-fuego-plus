@@ -79,7 +79,7 @@ SSAnne_B1F_Room2_EventScript_ItemTM44::
 	end
 
 SSAnne_B1F_Room3_EventScript_ItemEther::
-	finditem ITEM_ETHER
+	finditem ITEM_OMNI_MODULE_Z
 	end
 
 SSAnne_B1F_Room5_EventScript_ItemSuperPotion::
@@ -103,7 +103,7 @@ RocketHideout_B1F_EventScript_ItemHyperPotion::
 	end
 
 RocketHideout_B2F_EventScript_ItemXSpeed::
-	finditem ITEM_X_SPEED
+	finditem ITEM_OMNI_CELL
 	end
 
 RocketHideout_B2F_EventScript_ItemMoonStone::
@@ -139,7 +139,7 @@ RocketHideout_B4F_EventScript_ItemCalcium::
 	end
 
 PokemonTower_3F_EventScript_ItemEscapeRope::
-	finditem ITEM_ESCAPE_ROPE
+	finditem ITEM_OMNI_CELL
 	end
 
 PokemonTower_4F_EventScript_ItemElixir::
@@ -183,7 +183,7 @@ SafariZone_Center_EventScript_ItemNugget::
 	end
 
 SafariZone_East_EventScript_ItemMaxPotion::
-	finditem ITEM_MAX_POTION
+	finditem ITEM_OMNI_CELL
 	end
 
 SafariZone_East_EventScript_ItemFullRestore::
@@ -231,7 +231,7 @@ SilphCo_4F_EventScript_ItemMaxRevive::
 	end
 
 SilphCo_4F_EventScript_ItemEscapeRope::
-	finditem ITEM_ESCAPE_ROPE
+	finditem ITEM_OMNI_MODULE_DYNAMAX
 	end
 
 SilphCo_4F_EventScript_ItemFullHeal::
@@ -295,7 +295,7 @@ PowerPlant_EventScript_ItemThunderStone::
 	end
 
 PowerPlant_EventScript_ItemElixir::
-	finditem ITEM_ELIXIR
+	finditem ITEM_OMNI_CELL
 	end
 
 PokemonMansion_1F_EventScript_ItemCarbos::
@@ -303,7 +303,7 @@ PokemonMansion_1F_EventScript_ItemCarbos::
 	end
 
 PokemonMansion_1F_EventScript_ItemEscapeRope::
-	finditem ITEM_ESCAPE_ROPE
+	finditem ITEM_OMNI_MODULE_TERA
 	end
 
 PokemonMansion_2F_EventScript_ItemCalcium::
@@ -343,7 +343,7 @@ VictoryRoad_1F_EventScript_ItemTM02::
 	end
 
 VictoryRoad_2F_EventScript_ItemGuardSpec::
-	finditem ITEM_GUARD_SPEC
+	finditem ITEM_OMNI_CELL
 	end
 
 VictoryRoad_2F_EventScript_ItemTM07::
@@ -415,7 +415,7 @@ ViridianForest_EventScript_ItemPotion2::
 	end
 
 MtMoon_B2F_EventScript_ItemRevive::
-	finditem ITEM_REVIVE
+	finditem ITEM_OMNI_MODULE_MEGA
 	end
 
 MtMoon_B2F_EventScript_ItemAntidote::
@@ -439,7 +439,7 @@ RockTunnel_1F_EventScript_ItemPearl::
 	end
 
 RockTunnel_1F_EventScript_ItemEscapeRope::
-	finditem ITEM_ESCAPE_ROPE
+	finditem ITEM_OMNI_CELL
 	end
 
 RockTunnel_B1F_EventScript_ItemRevive::
@@ -527,7 +527,7 @@ FourIsland_EventScript_ItemStardust::
 	end
 
 OneIsland_KindleRoad_EventScript_ItemEther::
-	finditem ITEM_ETHER
+	finditem ITEM_OMNI_CELL
 	end
 
 OneIsland_KindleRoad_EventScript_ItemMaxRepel::
@@ -579,7 +579,7 @@ SevenIsland_SevaultCanyon_EventScript_ItemKingsRock::
 	end
 
 SevenIsland_SevaultCanyon_EventScript_ItemMaxElixir::
-	finditem ITEM_MAX_ELIXIR
+	finditem ITEM_OMNI_CELL
 	end
 
 SevenIsland_SevaultCanyon_EventScript_ItemNugget::

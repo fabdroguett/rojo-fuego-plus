@@ -47,7 +47,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "TwoIsland_EventScript_Woman",
+      "script": "RF_EventScript_ZTrial_TwoIsland_Woman",
       "flag": "FLAG_HIDE_TWO_ISLAND_WOMAN"
     },
     {
@@ -179,9 +179,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

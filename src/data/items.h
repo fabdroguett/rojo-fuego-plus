@@ -7307,6 +7307,103 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Glimmoranite,
     },
 
+// Rojo Fuego+ Omni Ring and its upgrades
+    [ITEM_OMNI_RING] =
+    {
+        .name = ITEM_NAME("Omni Ring"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Un anillo con\n"
+            "huecos para los\n"
+            "módulos Omni."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_OmniRing,
+        .iconPic = gItemIcon_MegaRing,
+        .iconPalette = gItemIconPalette_MegaRing,
+    },
+
+    [ITEM_OMNI_MODULE_MEGA] =
+    {
+        .name = ITEM_NAME("Módulo Mega"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Instálalo en el\n"
+            "Omni Ring para\n"
+            "megaevolucionar."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_OmniUpgrade,
+        .iconPic = gItemIcon_MegaRing,
+        .iconPalette = gItemIconPalette_MegaRing,
+    },
+
+    [ITEM_OMNI_MODULE_Z] =
+    {
+        .name = ITEM_NAME("Módulo Z"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Instálalo en el\n"
+            "Omni Ring para usar\n"
+            "movimientos Z."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_OmniUpgrade,
+        .iconPic = gItemIcon_ZPowerRing,
+        .iconPalette = gItemIconPalette_ZPowerRing,
+    },
+
+    [ITEM_OMNI_MODULE_DYNAMAX] =
+    {
+        .name = ITEM_NAME("Módulo Dinamax"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Instálalo en el\n"
+            "Omni Ring para\n"
+            "usar el Dinamax."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_OmniUpgrade,
+        .iconPic = gItemIcon_DynamaxBand,
+        .iconPalette = gItemIconPalette_DynamaxBand,
+    },
+
+    [ITEM_OMNI_MODULE_TERA] =
+    {
+        .name = ITEM_NAME("Módulo Tera"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Instálalo en el\n"
+            "Omni Ring para\n"
+            "teracristalizar."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_OmniUpgrade,
+        .iconPic = gItemIcon_TeraOrb,
+        .iconPalette = gItemIconPalette_TeraOrb,
+    },
+
+    [ITEM_OMNI_CELL] =
+    {
+        .name = ITEM_NAME("Célula Omni"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Da al Omni Ring\n"
+            "una carga más de\n"
+            "Tera y Dinamax."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_OmniUpgrade,
+        .iconPic = gItemIcon_CellBattery,
+        .iconPalette = gItemIconPalette_CellBattery,
+    },
+
 // Gems
 #if I_PRICE >= GEN_9
     #define GEM_PRICE 15000
