@@ -97,6 +97,13 @@ NPC_SCRIPTS = {
     "CeladonCity_DepartmentStore_5F_EventScript_Sailor": "RF_EventScript_HyperTrainer",
     "PalletTown_ProfessorOaksLab_EventScript_Aide3": "RF_EventScript_DexRewards",
     "TwoIsland_EventScript_SuperNerd": "RF_EventScript_WonderTrade",
+    "PewterCity_Gym_EventScript_Brock": "RF_EventScript_Rematch_Brock",
+    "CeruleanCity_Gym_EventScript_Misty": "RF_EventScript_Rematch_Misty",
+    "VermilionCity_Gym_EventScript_LtSurge": "RF_EventScript_Rematch_LtSurge",
+    "CeladonCity_Gym_EventScript_Erika": "RF_EventScript_Rematch_Erika",
+    "FuchsiaCity_Gym_EventScript_Koga": "RF_EventScript_Rematch_Koga",
+    "SaffronCity_Gym_EventScript_Sabrina": "RF_EventScript_Rematch_Sabrina",
+    "CinnabarIsland_Gym_EventScript_Blaine": "RF_EventScript_Rematch_Blaine",
 }
 
 

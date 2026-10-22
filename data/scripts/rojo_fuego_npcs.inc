@@ -214,3 +214,56 @@ RF_Text_WonderTrade_Egg:
 
 RF_Text_WonderTrade_Bye:
 	.string "¡Cuando quieras!$"
+
+@ Gym Leader rematches: once the player is Champion, each Kanto Gym Leader (except Giovanni, who
+@ leaves his Gym) offers a rematch with a stronger team. Before that, the Leader's own script runs.
+	.macro rf_leader_rematch leader:req, trainer:req, original:req
+	.global RF_EventScript_Rematch_\leader
+RF_EventScript_Rematch_\leader\():
+	goto_if_unset FLAG_IS_CHAMPION, \original
+	lock
+	faceplayer
+	msgbox RF_Text_Rematch_Offer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RF_EventScript_Rematch_Decline
+	cleartrainerflag \trainer
+	trainerbattle_single \trainer, RF_Text_Rematch_Intro, RF_Text_Rematch_Defeat, RF_EventScript_Rematch_Won
+	release
+	end
+	.endm
+
+	rf_leader_rematch Brock, TRAINER_RF_REMATCH_BROCK, PewterCity_Gym_EventScript_Brock
+	rf_leader_rematch Misty, TRAINER_RF_REMATCH_MISTY, CeruleanCity_Gym_EventScript_Misty
+	rf_leader_rematch LtSurge, TRAINER_RF_REMATCH_LT_SURGE, VermilionCity_Gym_EventScript_LtSurge
+	rf_leader_rematch Erika, TRAINER_RF_REMATCH_ERIKA, CeladonCity_Gym_EventScript_Erika
+	rf_leader_rematch Koga, TRAINER_RF_REMATCH_KOGA, FuchsiaCity_Gym_EventScript_Koga
+	rf_leader_rematch Sabrina, TRAINER_RF_REMATCH_SABRINA, SaffronCity_Gym_EventScript_Sabrina
+	rf_leader_rematch Blaine, TRAINER_RF_REMATCH_BLAINE, CinnabarIsland_Gym_EventScript_Blaine
+
+RF_EventScript_Rematch_Won::
+	msgbox RF_Text_Rematch_Won
+	release
+	end
+
+RF_EventScript_Rematch_Decline::
+	msgbox RF_Text_Rematch_Decline
+	release
+	end
+
+RF_Text_Rematch_Offer:
+	.string "¡El CAMPEÓN de KANTO en persona!\p"
+	.string "He entrenado con Pokémon de todas\n"
+	.string "las regiones. ¿Aceptas una revancha?$"
+
+RF_Text_Rematch_Intro:
+	.string "¡Esta vez no me contendré!$"
+
+RF_Text_Rematch_Defeat:
+	.string "Increíble… Sigues siendo\n"
+	.string "el más fuerte.$"
+
+RF_Text_Rematch_Won:
+	.string "Vuelve cuando quieras. ¡La próxima\n"
+	.string "vez estaré todavía más preparado!$"
+
+RF_Text_Rematch_Decline:
+	.string "Aquí te espero.$"
