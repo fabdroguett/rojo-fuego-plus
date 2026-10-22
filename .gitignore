@@ -66,3 +66,7 @@ tools/aif2pcm/aif2pcm
 *.smolTM
 __pycache__
 .map_version
+
+# Rojo Fuego+: local test captures and ROM copies never go to Git
+build_artifacts/
+.map_version
