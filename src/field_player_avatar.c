@@ -1,4 +1,5 @@
 #include "global.h"
+#include "key_system.h"
 #include "main.h"
 #include "bike.h"
 #include "event_data.h"
@@ -908,8 +909,13 @@ static void PlayerNotOnBikeMoving(enum Direction direction, u16 heldKeys)
         return;
     }
 
+    // Rojo Fuego+ Key System autorun: B walks instead of running; DexNav searches always walk
+    bool32 wantsToRun = (heldKeys & B_BUTTON) != 0;
+    if (KeySystem_IsOn(KEY_AUTORUN) && !FlagGet(DN_FLAG_SEARCHING))
+        wantsToRun = !wantsToRun;
+
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER)
-     && (heldKeys & B_BUTTON)
+     && wantsToRun
      && FlagGet(FLAG_SYS_B_DASH)
      && IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior) == 0
      && !FollowerNPCComingThroughDoor()
@@ -1627,6 +1633,9 @@ bool8 PartyHasMonWithSurf(void)
             if (MonKnowsMove(&gParties[B_TRAINER_PLAYER][i], MOVE_SURF))
                 return TRUE;
         }
+        // Rojo Fuego+ Key System: HM-free field moves
+        if (KeySystem_GetFieldMoveUser(MOVE_SURF) != PARTY_SIZE)
+            return TRUE;
     }
     return FALSE;
 }

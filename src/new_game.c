@@ -239,7 +239,6 @@ void NewGameInitData(void)
     FlagSet(FLAG_DEXNAV_GET);
     FlagSet(FLAG_DEXNAV_DETECTOR_MODE);
     FlagSet(FLAG_POKE_RIDER);
-    FlagSet(FLAG_DOWSING);
 }
 
 static void ResetMiniGamesRecords(void)

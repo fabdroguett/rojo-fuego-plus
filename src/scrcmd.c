@@ -1,4 +1,5 @@
 #include "global.h"
+#include "key_system.h"
 #include "frontier_util.h"
 #include "battle_setup.h"
 #include "battle_util.h"
@@ -2314,6 +2315,17 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
             gSpecialVar_Result = i;
             gSpecialVar_0x8004 = species;
             break;
+        }
+    }
+
+    // Rojo Fuego+ Key System: HM-free field moves
+    if (gSpecialVar_Result == PARTY_SIZE)
+    {
+        s32 user = KeySystem_GetFieldMoveUser(move);
+        if (user != PARTY_SIZE)
+        {
+            gSpecialVar_Result = user;
+            gSpecialVar_0x8004 = GetMonData(&gParties[B_TRAINER_PLAYER][user], MON_DATA_SPECIES);
         }
     }
 

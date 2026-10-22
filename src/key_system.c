@@ -1,10 +1,12 @@
 #include "global.h"
 #include "event_data.h"
 #include "event_object_lock.h"
+#include "item.h"
 #include "key_system.h"
 #include "list_menu.h"
 #include "main.h"
 #include "menu.h"
+#include "pokemon.h"
 #include "script.h"
 #include "sound.h"
 #include "string_util.h"
@@ -49,6 +51,10 @@ static const u8 sText_Followers[] = _("Pokémon que te sigue");
 static const u8 sText_FollowersDesc[] = _("El primero del equipo camina\ndetrás de ti.");
 static const u8 sText_OwEncounters[] = _("Salvajes visibles");
 static const u8 sText_OwEncountersDesc[] = _("Los salvajes aparecen en el mapa.\nApagado: encuentros clásicos.");
+static const u8 sText_HmFree[] = _("MOs sin enseñar");
+static const u8 sText_HmFreeDesc[] = _("Con la medalla y la MO en la mochila\nno hace falta que nadie la sepa.");
+static const u8 sText_Autorun[] = _("Correr siempre");
+static const u8 sText_AutorunDesc[] = _("Corres sin mantener B.\nMantén B para caminar.");
 static const u8 sText_Difficulty[] = _("Dificultad");
 static const u8 sText_DifficultyDesc[] = _("Fácil baja y Reto sube el nivel\nde los Pokémon de entrenadores.");
 
@@ -71,6 +77,8 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_ABILITY_WEATHER_TURNS]  = {sText_Weather,      sText_WeatherDesc},
     [KEY_FOLLOWERS]              = {sText_Followers,    sText_FollowersDesc},
     [KEY_OW_ENCOUNTERS]          = {sText_OwEncounters, sText_OwEncountersDesc},
+    [KEY_HM_FREE]                = {sText_HmFree,       sText_HmFreeDesc},
+    [KEY_AUTORUN]                = {sText_Autorun,      sText_AutorunDesc},
     [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
 };
 
@@ -152,6 +160,46 @@ u32 KeySystem_ScaleTrainerLevel(u32 level)
     default:
         return level;
     }
+}
+
+// HM-free field moves: the badge check stays in the scripts; here the player needs the HM itself
+bool32 KeySystem_CanUseFieldMoveWithoutMon(enum Move move)
+{
+    enum Item item;
+
+    if (!KeySystem_IsOn(KEY_HM_FREE))
+        return FALSE;
+    for (item = ITEM_HM01; item <= ITEM_HM08; item++)
+    {
+        if (GetItemTMHMMoveId(item) == move && CheckBagHasItem(item, 1))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+// Party slot shown using an HM-free field move: the first Pokémon that could learn it, else the
+// first one that is not an Egg. Returns PARTY_SIZE when nobody can stand in.
+s32 KeySystem_GetFieldMoveUser(enum Move move)
+{
+    s32 i, fallback = PARTY_SIZE;
+
+    if (!KeySystem_CanUseFieldMoveWithoutMon(move))
+        return PARTY_SIZE;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+        enum Species species = GetMonData(mon, MON_DATA_SPECIES);
+
+        if (species == SPECIES_NONE)
+            break;
+        if (GetMonData(mon, MON_DATA_IS_EGG))
+            continue;
+        if (CanLearnTeachableMove(species, move))
+            return i;
+        if (fallback == PARTY_SIZE)
+            fallback = i;
+    }
+    return fallback;
 }
 
 static u8 KeySystem_DescWindowId(void)

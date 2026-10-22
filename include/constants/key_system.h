@@ -15,6 +15,8 @@ enum KeySystemKey
     KEY_ABILITY_WEATHER_TURNS,
     KEY_FOLLOWERS,
     KEY_OW_ENCOUNTERS,
+    KEY_HM_FREE,
+    KEY_AUTORUN,
     KEY_DIFFICULTY, // Not an on/off key: cycles through enum KeyDifficulty
     KEY_COUNT
 };
