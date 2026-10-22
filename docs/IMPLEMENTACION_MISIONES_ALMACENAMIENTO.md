@@ -1,8 +1,8 @@
 # Misiones, almacenamiento y formas alternativas
 
 Estado de esta tanda: código implementado; verificación por pruebas nativas y enlace ELF.
-No se genera ni publica una ROM. La prueba de menús, gráficos y partidas en emulador queda
-pendiente de la autorización para generar el `.gba`.
+El usuario autorizó generar la ROM tras completar la quinta tanda. El archivo queda local,
+con respaldo de la versión anterior; las pruebas completas de menús y partidas siguen pendientes.
 
 ## Misiones
 
@@ -94,10 +94,10 @@ falla si aparece o cambia una. No ejecutar `make`, `make firered` ni el destino 
 esta verificación. Docker sirve para disponer del compilador Linux desde Windows.
 
 
-Resultado del enlace de esta tanda: EWRAM 230208 B (87,82 %), IWRAM 28648 B (87,43 %),
+Resultado del enlace de esta tanda: EWRAM 230220 B (87,82 %), IWRAM 28648 B (87,43 %),
 región ROM del ELF aproximadamente 27,12 MB (80,84 % de 32 MiB). El símbolo de SaveBlock3
-mide 1524 bytes de los 1624 disponibles. Estos tamaños corresponden al ELF; no se extrajo
-un archivo `.gba`.
+mide 1524 bytes de los 1624 disponibles. Estos tamaños corresponden al ELF. Tras la autorización más reciente se extrajo la ROM;
+ver el registro de entrega en `ROM_2026_10_22.md`.
 
 
 Segunda tanda: mantener **R** acelera la escritura de diálogos donde se permite acelerar
@@ -166,4 +166,25 @@ La descripción de la clave muestra el saldo actual.
 Las pruebas adicionales ejecutan el código real de migración y de reserva con ASan/UBSan:
 valores iniciales, interruptores persistentes, claves inválidas, tope por medallas, desactivación
 del límite, conservación de EXP, saturación y mochila llena. Sigue pendiente la prueba completa
-de combate, barras de experiencia, menús y partidas en emulador, sin generar ROM en esta fase.
+de combate, barras de experiencia, menús y partidas en emulador. La entrega actual sí incluye
+una ROM autorizada con prueba básica de arranque.
+
+
+## Quinta tanda: colección del DexNav
+
+**START** en la pantalla del DexNav muestra el resumen en su panel derecho. **L/R** cambia
+entre mañana, día, tarde, noche y la unión del día completo. **START** o **B** regresa a la
+información del Pokémon; mientras se ve el resumen no inicia búsquedas accidentalmente.
+La clave **Colección por zona** empieza activa y permite desactivar esta vista.
+
+Incluye hierba, Surf, Golpe Roca, pesca con las tres cañas y encuentros ocultos. Cuenta especies
+únicas según su número de Pokédex Nacional, sin duplicar slots, formas ni métodos en el total.
+El numerador refleja las capturas ya registradas en la Pokédex, aunque se obtuvieran en otra
+zona. No exige recapturar cada especie en cada lugar. Se utiliza la tabla de encuentros del
+mapa y el fallback horario configurado; una tabla ausente o sin encuentros no inventa especies.
+No pretende cubrir regalos, encuentros de scripts, errantes ni otros eventos ajenos a esas tablas.
+
+El resumen se calcula al abrirlo/cambiar horario. No agrega campos al guardado ni altera las
+especies, tasas o niveles de los encuentros. Las pruebas cubren formas, duplicados, cinco métodos,
+unión de horarios, fallback, horarios desactivados, mapas vacíos y números de especie inválidos.
+Esta tanda pasa nueve pruebas nativas y el enlace de todo el juego.

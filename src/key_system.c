@@ -113,6 +113,7 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
     [KEY_DARK_MODE]              = {sText_DarkMode,     sText_DarkModeDesc},
     [KEY_SHINY_ODDS]             = {sText_ShinyOdds,    sText_ShinyOddsDesc},
+    [KEY_DEXNAV_COLLECTION]      = {COMPOUND_STRING("Coleccion por zona"), COMPOUND_STRING("START en DexNav abre el resumen.\nIncluye horarios, pesca y rocas.")},
     [KEY_EXP_RESERVE]            = {COMPOUND_STRING("Reserva de EXP"), COMPOUND_STRING("La EXP bloqueada se hace caramelos\nal abrir la mochila desde START.")},
     [KEY_R_TEXT_FAST]            = {COMPOUND_STRING("Texto rapido con R"), COMPOUND_STRING("Mantener R acelera la escritura.\nNo confirma respuestas ni paginas.")},
     [KEY_WILD_LOOT]              = {COMPOUND_STRING("Botin de salvajes"), COMPOUND_STRING("25% de recoger su objeto al vencer.\nSin espacio: queda en reserva.")},

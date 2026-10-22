@@ -28,6 +28,7 @@ enum KeySystemKey
     KEY_WILD_LOOT, // Optional wild held-item drops.
     KEY_EXP_RESERVE,
     KEY_R_TEXT_FAST,
+    KEY_DEXNAV_COLLECTION,
     KEY_COUNT
 };
 

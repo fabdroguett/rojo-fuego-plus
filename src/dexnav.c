@@ -7,6 +7,7 @@
 #include "daycare.h"
 #include "decompress.h"
 #include "dexnav.h"
+#include "rf_collection.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
@@ -152,6 +153,9 @@ EWRAM_DATA enum Species gDexNavSpecies = SPECIES_NONE;
 //GUI
 static void Task_DexNavWaitFadeIn(u8 taskId);
 static void Task_DexNavMain(u8 taskId);
+static void PrintCollectionSummary(void);
+static EWRAM_DATA bool8 sCollectionOpen = FALSE;
+static EWRAM_DATA u8 sCollectionTime = 0;
 static void PrintCurrentSpeciesInfo(void);
 // SEARCH
 static bool8 TryStartHiddenMonFieldEffect(enum EncounterType environment, u8 xSize, u8 ySize, bool8 smallScan);
@@ -2225,6 +2229,7 @@ static void DexNavLoadCapturedAllSymbols(void)
 //#define WIN_DETAILS_TILE        0x3a3
 static void DexNav_InitWindows(void)
 {
+    sCollectionOpen = FALSE;
     InitWindows(sDexNavGuiWindowTemplates);
     DeactivateAllTextPrinters();
     ScheduleBgCopyTilemapToVram(0);
@@ -2494,6 +2499,44 @@ static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
     SetSpriteInvisibility(spriteArrayId, FALSE);
 }
 
+static void PrintCollectionSummary(void)
+{
+    static const u8 *const methods[] =
+    {
+        COMPOUND_STRING("Hierba "), COMPOUND_STRING("Surf "), COMPOUND_STRING("Rocas "),
+        COMPOUND_STRING("Pesca "), COMPOUND_STRING("Ocultos "), COMPOUND_STRING("Total "),
+    };
+    static const u8 *const times[] =
+    {
+        COMPOUND_STRING("Manana"), COMPOUND_STRING("Dia"), COMPOUND_STRING("Tarde"),
+        COMPOUND_STRING("Noche"), COMPOUND_STRING("Todo el dia"),
+    };
+    struct RFCollectionSummary summary;
+    u32 i;
+    u16 header = GetCurrentMapWildMonHeaderId();
+    RFCollection_Count(header == HEADER_NONE ? NULL : &gWildMonHeaders[header], sCollectionTime, &summary);
+    for (i = 0; i < 2; i++)
+        if (sDexNavUiDataPtr->typeIconSpriteIds[i] < MAX_SPRITES)
+            SetSpriteInvisibility(i, TRUE);
+    // Opaque pixels also cover the fixed labels in the underlying DexNav background.
+    FillWindowPixelBuffer(WINDOW_INFO, PIXEL_FILL(TEXT_COLOR_WHITE));
+    AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, COMPOUND_STRING("Coleccion"));
+    AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, 12, sFontColor_Black, TEXT_SKIP_DRAW, times[sCollectionTime]);
+    for (i = 0; i <= RF_COLLECTION_METHODS; i++)
+    {
+        const struct RFCollectionCount *count = i == RF_COLLECTION_METHODS ? &summary.total : &summary.methods[i];
+        StringCopy(gStringVar4, methods[i]);
+        ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), count->caught, STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringAppend(gStringVar4, COMPOUND_STRING("/"));
+        ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), count->total, STR_CONV_MODE_LEFT_ALIGN, 3);
+        AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, 24 + i * 12, sFontColor_Black, TEXT_SKIP_DRAW, gStringVar4);
+    }
+    AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, 96, sFontColor_Black, TEXT_SKIP_DRAW, COMPOUND_STRING("L/R: horario"));
+    AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, 108, sFontColor_Black, TEXT_SKIP_DRAW, COMPOUND_STRING("START: volver"));
+    CopyWindowToVram(WINDOW_INFO, COPYWIN_FULL);
+    PutWindowTilemap(WINDOW_INFO);
+}
+
 static void PrintCurrentSpeciesInfo(void)
 {
     enum Species species = DexNavGetSpecies();
@@ -2608,7 +2651,7 @@ static void PrintSearchableSpecies(enum Species species)
     }
     else if (species == SPECIES_NONE)
     {
-        AddTextPrinterParameterized3(WINDOW_REGISTERED, FONT_NORMAL, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, sText_DexNav_PressRToRegister);
+        AddTextPrinterParameterized3(WINDOW_REGISTERED, FONT_NORMAL, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, KeySystem_IsOn(KEY_DEXNAV_COLLECTION) ? COMPOUND_STRING("R: registrar  START: coleccion") : sText_DexNav_PressRToRegister);
     }
     else
     {
@@ -2907,6 +2950,31 @@ static void Task_DexNavMain(u8 taskId)
 
     if (IsSEPlaying())
         return;
+
+    if (sCollectionOpen)
+    {
+        if (JOY_NEW(START_BUTTON | B_BUTTON))
+        {
+            sCollectionOpen = FALSE;
+            PrintCurrentSpeciesInfo();
+            PlaySE(SE_SELECT);
+        }
+        else if (JOY_NEW(L_BUTTON | R_BUTTON))
+        {
+            sCollectionTime = (sCollectionTime + (JOY_NEW(R_BUTTON) ? 1 : TIMES_OF_DAY_COUNT)) % (TIMES_OF_DAY_COUNT + 1);
+            PrintCollectionSummary();
+            PlaySE(SE_SELECT);
+        }
+        return;
+    }
+    if (JOY_NEW(START_BUTTON) && KeySystem_IsOn(KEY_DEXNAV_COLLECTION))
+    {
+        sCollectionOpen = TRUE;
+        sCollectionTime = GetTimeOfDay();
+        PrintCollectionSummary();
+        PlaySE(SE_SELECT);
+        return;
+    }
 
     if (JOY_NEW(B_BUTTON))
     {

@@ -2,9 +2,9 @@
 
 ## Actualización de trabajo: misiones y almacenamiento (22-10-2026)
 
-La instrucción vigente es **verificar código con Docker, incluidos objetos y enlace ELF, sin
-crear ni publicar un `.gba`**. Sustituye las indicaciones anteriores de compilar una ROM tras
-cada cambio. Al terminar se apaga Docker Desktop y se sube únicamente el código a GitHub.
+La instrucción más reciente autoriza **completar el resumen de colección del DexNav y generar
+la ROM ahora**. El inicio programado para las 12:30 fue cancelado por esa nueva instrucción.
+La ROM queda local; se sube el código a GitHub y se apaga Docker al terminar.
 
 Las tandas implementadas suman 30 misiones reales con espacio persistente para 500 (meta de contenido:
 350), mochila de objetos de 60 espacios, ordenación y protección del PC, cuatro objetos y
@@ -13,6 +13,7 @@ Castform de arena. Alcance, controles, restricciones de guardado y validación e
 También se implementó botín de salvajes opcional con reserva persistente y aviso en combate.
 Cuarta tanda: interruptores activos por defecto, migración persistente y reserva de EXP.
 El límite por medallas ya se aplica realmente y se puede apagar desde su clave.
+Quinta tanda: resumen del DexNav por método y horario, disponible con START y desactivable.
 La investigación y el contenido pendiente están en [IDEAS_OTROS_HACKS.md](IDEAS_OTROS_HACKS.md).
 No se considera completado el plan de 350 misiones ni la ampliación de cajas de Pokémon.
 

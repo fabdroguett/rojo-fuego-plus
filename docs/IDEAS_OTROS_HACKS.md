@@ -19,7 +19,9 @@ abajo. Las propuestas restantes siguen pendientes; esta lista no significa que e
 - Cuarta tanda: todos los interruptores activos por defecto, con desactivación persistente
   desde el Key System; reserva de EXP bloqueada, conversión a caramelos y saldo visible.
   Se habilita el límite por medallas en FRLG, controlado por su clave, también para caramelos.
-- Pendientes prioritarios: progreso del DexNav, grutas y
+- Quinta tanda: resumen de colección del DexNav por método y horario, con unión diaria
+  de especies únicas y clave propia activa por defecto.
+- Pendientes prioritarios: grutas y
   retos diarios. No se modifican equipos ni dificultad como parte de estas tandas.
 
 
