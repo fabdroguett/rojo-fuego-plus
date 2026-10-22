@@ -467,8 +467,8 @@ static const struct WindowTemplate sNotificationWindowTemplate =
     .width = 28,
     .height = 2,
     .paletteNum = 15,
-    // Clear of the map name popup (0x107), the DexNav windows (up to 380) and the frame tiles (0x200)
-    .baseBlock = 0x180,
+    // Past the message box (0x194-0x1FF), the frame tiles (0x200-0x23A) and the map preview (0x259-0x284)
+    .baseBlock = 0x2A0,
 };
 
 void Achievements_HideNotification(void)
@@ -492,14 +492,13 @@ static void ShowNextNotification(void)
 
     LoadMessageBoxAndBorderGfx();
     sNotificationWindowId = AddWindow(&sNotificationWindowTemplate);
-    FillWindowPixelBuffer(sNotificationWindowId, PIXEL_FILL(1));
+    // The frame call clears the window, so it goes before the text
+    DrawStdWindowFrame(sNotificationWindowId, FALSE);
     StringCopy(gStringVar4, COMPOUND_STRING("¡LOGRO! "));
     StringAppend(gStringVar4, gAchievements[id].name);
     StringAppend(gStringVar4, COMPOUND_STRING(" · "));
     StringAppend(gStringVar4, sTierNames[gAchievements[id].tier]);
     AddTextPrinterParameterized(sNotificationWindowId, FONT_NORMAL, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);
-    PutWindowTilemap(sNotificationWindowId);
-    DrawStdWindowFrame(sNotificationWindowId, FALSE);
     CopyWindowToVram(sNotificationWindowId, COPYWIN_FULL);
     PlaySE(SE_EXP_MAX);
     sNotificationShown = TRUE;

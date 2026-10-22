@@ -840,10 +840,10 @@ static void DexNavOpenDetails(void)
 
     SetWindowTemplateFields(&template, 0, 1, y, SEARCH_WINDOW_WIDTH_DETAILS, DETAILS_WINDOW_HEIGHT, 14, 100);
     sDexNavSearchDataPtr->detailsWindowId = AddWindow(&template);
-    PutWindowTilemap(sDexNavSearchDataPtr->detailsWindowId);
+    // The frame call clears the window, so it goes before the text
+    DrawStdFrameWithCustomTileAndPalette(sDexNavSearchDataPtr->detailsWindowId, FALSE, 0x214, 14);
     DexNavShowDetailsPage(1);
     CopyWindowToVram(sDexNavSearchDataPtr->detailsWindowId, COPYWIN_FULL);
-    DrawStdFrameWithCustomTileAndPalette(sDexNavSearchDataPtr->detailsWindowId, TRUE, 0x214, 14);
 }
 
 void DexNav_CloseDetailsPanel(void)
