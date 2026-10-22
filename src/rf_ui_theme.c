@@ -6,6 +6,7 @@
 #include "text.h"
 #include "string_util.h"
 #include "menu.h"
+#include "bg.h"
 
 void RFUI_LoadPalette(u32 bank, bool32 dark)
 {
@@ -25,6 +26,37 @@ void RFUI_LoadPalette(u32 bank, bool32 dark)
     };
     if (bank < 16)
         LoadPalette(dark ? night : day, BG_PLTT_ID(bank), PLTT_SIZE_4BPP);
+}
+
+// Full-screen field menus (quests, Key System): the map layers are hidden and the backdrop takes
+// the theme's ground, so the gaps between framed panels read as the page, not as map slivers.
+static EWRAM_DATA u16 sSavedBackdrop = 0;
+static EWRAM_DATA bool8 sFieldOverlayActive = FALSE;
+
+void RFUI_BeginFieldOverlay(void)
+{
+    u16 ground = KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_GROUND : RGB(23, 28, 25);
+
+    if (!sFieldOverlayActive)
+    {
+        sSavedBackdrop = gPlttBufferUnfaded[0];
+        HideBg(1);
+        HideBg(2);
+        HideBg(3);
+        sFieldOverlayActive = TRUE;
+    }
+    gPlttBufferUnfaded[0] = gPlttBufferFaded[0] = ground;
+}
+
+void RFUI_EndFieldOverlay(void)
+{
+    if (!sFieldOverlayActive)
+        return;
+    gPlttBufferUnfaded[0] = gPlttBufferFaded[0] = sSavedBackdrop;
+    ShowBg(1);
+    ShowBg(2);
+    ShowBg(3);
+    sFieldOverlayActive = FALSE;
 }
 
 // Three-tone, two-pixel stepped corners. All dimensions are native pixels.

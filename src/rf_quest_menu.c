@@ -192,6 +192,7 @@ static void Task_QuestMenu(u8 taskId)
             ClearStdWindowAndFrame(sQuestWindowIds[i], TRUE);
             RemoveWindow(sQuestWindowIds[i]);
         }
+        RFUI_EndFieldOverlay();
         ScheduleBgCopyTilemapToVram(0);
         sQuestMenuOpen = FALSE;
         ScriptUnfreezeObjectEvents();
@@ -284,6 +285,7 @@ void RFQuests_OpenMenu(void)
         }
         DrawStdWindowFrame(sQuestWindowIds[i], FALSE);
     }
+    RFUI_BeginFieldOverlay();
     sQuestMenuOpen = TRUE;
     BuildQuestList();
     CreateTask(Task_QuestMenu, 80);

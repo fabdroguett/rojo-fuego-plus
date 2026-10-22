@@ -7,6 +7,7 @@
 #include "fieldmap.h"
 #include "item.h"
 #include "key_system.h"
+#include "rf_ui_theme.h"
 #include "list_menu.h"
 #include "main.h"
 #include "menu.h"
@@ -435,6 +436,7 @@ void KeySystem_OpenMenu(void)
     }
     DrawStdWindowFrame(gTasks[taskId].tListWindowId, FALSE);
     DrawStdWindowFrame(gTasks[taskId].tDescWindowId, FALSE);
+    RFUI_BeginFieldOverlay();
 
     template.items = sKeyListItems;
     template.moveCursorFunc = KeySystem_MoveCursor;
@@ -465,6 +467,7 @@ static void KeySystem_CloseMenu(u8 taskId)
     ClearStdWindowAndFrame(gTasks[taskId].tDescWindowId, TRUE);
     RemoveWindow(gTasks[taskId].tListWindowId);
     RemoveWindow(gTasks[taskId].tDescWindowId);
+    RFUI_EndFieldOverlay();
     ScriptUnfreezeObjectEvents();
     UnlockPlayerFieldControls();
     DestroyTask(taskId);
@@ -492,7 +495,10 @@ static void Task_KeySystemMenu(u8 taskId)
         else
             KeySystem_Set(input, !KeySystem_IsOn(input));
         if (input == KEY_DARK_MODE)
+        {
             LoadMessageBoxAndBorderGfx();
+            RFUI_BeginFieldOverlay(); // repaint the ground for the new theme
+        }
         RedrawListMenu(gTasks[taskId].tListTaskId);
         break;
     }
