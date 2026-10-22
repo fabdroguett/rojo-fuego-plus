@@ -94,22 +94,22 @@ falla si aparece o cambia una. No ejecutar `make`, `make firered` ni el destino 
 esta verificación. Docker sirve para disponer del compilador Linux desde Windows.
 
 
-Resultado del enlace de esta tanda: EWRAM 230180 B (87,81 %), IWRAM 28648 B (87,43 %),
-región ROM del ELF aproximadamente 27,12 MB (80,83 % de 32 MiB). El símbolo de SaveBlock3
-mide 1512 bytes de los 1624 disponibles. Estos tamaños corresponden al ELF; no se extrajo
+Resultado del enlace de esta tanda: EWRAM 230208 B (87,82 %), IWRAM 28648 B (87,43 %),
+región ROM del ELF aproximadamente 27,12 MB (80,84 % de 32 MiB). El símbolo de SaveBlock3
+mide 1524 bytes de los 1624 disponibles. Estos tamaños corresponden al ELF; no se extrajo
 un archivo `.gba`.
 
 
 Segunda tanda: mantener **R** acelera la escritura de diálogos donde se permite acelerar
 con A/B. No confirma páginas, no elige respuestas y no cambia la velocidad guardada en opciones.
-Se amplió la prueba del catálogo para detectar ciclos de requisitos y capítulos inválidos,
+La aceleración con R también puede apagarse con su clave. Se amplió la prueba del catálogo para detectar ciclos de requisitos y capítulos inválidos,
 y se verifican cantidades y estabilidad de la ordenación de objetos del PC.
 
 
 ## Tercera tanda: botín de salvajes
 
-La clave **Botín de salvajes** se activa desde el Key System y empieza apagada, tanto en
-partidas nuevas como en partidas anteriores. Solo tras ganar un combate salvaje normal,
+La clave **Botín de salvajes** empieza activa y puede apagarse desde el Key System.
+La cuarta tanda migra una vez los valores anteriores y conserva las desactivaciones posteriores. Solo tras ganar un combate salvaje normal,
 cada rival debilitado que participó tiene un 25 % de probabilidad de entregar el objeto
 que todavía conserva, si coincide con su objeto original. No se inventa un objeto cuando
 el salvaje no llevaba ninguno. Se excluyen objetos importantes, robados, pendientes de
@@ -129,3 +129,41 @@ Con la reserva llena no se realizan nuevas tiradas hasta recuperar espacio. No e
 almacén ilimitado. Las pruebas cubren migración, filtros, dobles salvajes, probabilidad
 determinista, propiedad de objetos, restauración, reclamaciones repetidas y falta de espacio.
 La comprobación en emulador de mensajes y combate completo sigue pendiente.
+
+
+## Cuarta tanda: valores por defecto y reserva de EXP
+
+Por instrucción del usuario, todos los **interruptores booleanos** del Key System comienzan
+activos. Incluye botín, combates rápidos, modo oscuro, emisor repelente, reserva de EXP y
+aceleración de texto con R. Las funciones que requieren un objeto, una medalla o un módulo
+siguen requiriéndolos; activar la clave no los entrega automáticamente. Dificultad y probabilidad
+shiny son selectores de valores y mantienen su selección normal.
+
+La migración, marcada por una versión propia en SaveBlock3, cambia una sola vez las cuatro
+claves que antes empezaban apagadas. No se repite al cargar y no borra las personalizaciones
+de las otras claves. EXP All mantiene su flag existente, activado en partidas nuevas.
+Cada interruptor puede apagarse en su menú y la elección queda guardada.
+
+El límite por medallas estaba configurado como `EXP_CAP_NONE` pese a existir la clave. En
+FRLG ahora utiliza el límite duro por medallas. Desactivar **Límite de nivel** devuelve el tope
+normal de 100; desactivar **Reserva de EXP** deja de guardar nueva EXP bloqueada. Los caramelos
+respetan el mismo límite para no saltárselo desde la mochila. El saldo ya acumulado se conserva
+si se apaga la reserva y puede seguir convirtiéndose.
+
+La reserva guarda exclusivamente la diferencia entre la recompensa calculada y la EXP que
+cabe hasta el límite, después de los multiplicadores. También recoge la recompensa elegible
+que perdería un Pokémon al nivel 100. Excluye miembros que no tienen derecho a recibir EXP,
+huevos y miembros no aptos, siguiendo la lógica de reparto del combate. No acredita otra vez
+la EXP que sí recibe el Pokémon.
+
+Al abrir la mochila desde START se convierte el saldo en caramelos existentes: XL (30000),
+L (10000), M (3000), S (800) y XS (100), intentando primero los grandes. Cada lote se descuenta
+solo después de que el inventario lo acepte. El resto inferior a 100 se mantiene; la mochila
+llena conserva el saldo. Hay cinco intentos acotados por apertura, sin bucles por cada punto
+de EXP. El máximo de reserva es **9 999 999 EXP**; al llenarse no acumula más hasta liberar saldo.
+La descripción de la clave muestra el saldo actual.
+
+Las pruebas adicionales ejecutan el código real de migración y de reserva con ASan/UBSan:
+valores iniciales, interruptores persistentes, claves inválidas, tope por medallas, desactivación
+del límite, conservación de EXP, saturación y mochila llena. Sigue pendiente la prueba completa
+de combate, barras de experiencia, menús y partidas en emulador, sin generar ROM en esta fase.

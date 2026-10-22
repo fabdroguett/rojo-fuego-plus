@@ -298,6 +298,9 @@ struct SaveBlock3
     struct { u16 itemId; u16 quantity; } rfBagExtraItems[RF_BAG_EXTRA_ITEMS_COUNT];
     u32 rfLootSaveMagic;
     u16 rfPendingLoot[8]; // One unit per slot; append-only save extension.
+    u32 rfKeyDefaultsMagic;
+    u32 rfExpReserveMagic;
+    u32 rfExpReserve;
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

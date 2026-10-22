@@ -13,10 +13,13 @@ abajo. Las propuestas restantes siguen pendientes; esta lista no significa que e
   consulta anticipada de premios con START; ordenación de objetos del PC con R; aceleración
   de escritura manteniendo R inspirada en la comodidad propuesta para Imperium, preservando
   la confirmación de páginas y decisiones con A/B.
-- Tercera tanda: botín configurable de salvajes, desactivado inicialmente; usa objetos equipados
+- Tercera tanda: botín configurable de salvajes, activo por defecto; usa objetos equipados
   restantes, probabilidad del 25 %, aviso en combate y reserva persistente de ocho unidades
   cuando no cabe en la mochila. Recuperación al abrirla desde START o en una victoria posterior.
-- Pendientes prioritarios: reserva de EXP, progreso del DexNav, grutas y
+- Cuarta tanda: todos los interruptores activos por defecto, con desactivación persistente
+  desde el Key System; reserva de EXP bloqueada, conversión a caramelos y saldo visible.
+  Se habilita el límite por medallas en FRLG, controlado por su clave, también para caramelos.
+- Pendientes prioritarios: progreso del DexNav, grutas y
   retos diarios. No se modifican equipos ni dificultad como parte de estas tandas.
 
 

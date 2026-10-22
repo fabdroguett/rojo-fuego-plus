@@ -1,4 +1,5 @@
 #include "global.h"
+#include "key_system.h"
 #include "battle.h"
 #include "blit.h"
 #include "dynamic_placeholder_text_util.h"
@@ -1336,7 +1337,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
     {
     case RENDER_STATE_HANDLE_CHAR:
         // R accelerates printing only; page/choice acknowledgement still uses A/B.
-        if ((IS_FRLG && gTextFlags.canABSpeedUpPrint && JOY_HELD(R_BUTTON))
+        if ((IS_FRLG && gTextFlags.canABSpeedUpPrint && JOY_HELD(R_BUTTON) && KeySystem_IsOn(KEY_R_TEXT_FAST))
          || (JOY_HELD(A_BUTTON | B_BUTTON) && textPrinter->hasPrintBeenSpedUp) || IsPlayerTextSpeedInstant())
             textPrinter->delayCounter = 0;
 

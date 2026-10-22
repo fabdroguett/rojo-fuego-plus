@@ -11,6 +11,8 @@ Las tandas implementadas suman 30 misiones reales con espacio persistente para 5
 Castform de arena. Alcance, controles, restricciones de guardado y validación en
 [IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md](IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md).
 También se implementó botín de salvajes opcional con reserva persistente y aviso en combate.
+Cuarta tanda: interruptores activos por defecto, migración persistente y reserva de EXP.
+El límite por medallas ya se aplica realmente y se puede apagar desde su clave.
 La investigación y el contenido pendiente están en [IDEAS_OTROS_HACKS.md](IDEAS_OTROS_HACKS.md).
 No se considera completado el plan de 350 misiones ni la ampliación de cajas de Pokémon.
 

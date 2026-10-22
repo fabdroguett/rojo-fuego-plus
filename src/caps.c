@@ -83,6 +83,9 @@ u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)
     }
     else if (B_EXP_CAP_TYPE == EXP_CAP_HARD)
     {
+        // The hard-cap stage banks the exact excess after reward multipliers.
+        if (IS_FRLG && KeySystem_IsOn(KEY_EXP_RESERVE))
+            return expValue;
         return 0;
     }
     else if (B_EXP_CAP_TYPE == EXP_CAP_SOFT)

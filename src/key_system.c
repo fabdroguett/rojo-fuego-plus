@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_exp_reserve.h"
 #include "achievements.h"
 #include "event_data.h"
 #include "event_object_lock.h"
@@ -112,6 +113,8 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
     [KEY_DARK_MODE]              = {sText_DarkMode,     sText_DarkModeDesc},
     [KEY_SHINY_ODDS]             = {sText_ShinyOdds,    sText_ShinyOddsDesc},
+    [KEY_EXP_RESERVE]            = {COMPOUND_STRING("Reserva de EXP"), COMPOUND_STRING("La EXP bloqueada se hace caramelos\nal abrir la mochila desde START.")},
+    [KEY_R_TEXT_FAST]            = {COMPOUND_STRING("Texto rapido con R"), COMPOUND_STRING("Mantener R acelera la escritura.\nNo confirma respuestas ni paginas.")},
     [KEY_WILD_LOOT]              = {COMPOUND_STRING("Botin de salvajes"), COMPOUND_STRING("25% de recoger su objeto al vencer.\nSin espacio: queda en reserva.")},
     [KEY_INFINITE_REPEL]         = {COMPOUND_STRING("Repelente infinito"), COMPOUND_STRING("Con el Emisor Repel en la mochila,\nevita salvajes de menor nivel.")},
 };
@@ -151,16 +154,31 @@ static void Task_KeySystemMenu(u8 taskId);
 static void KeySystem_PrintValue(u8 windowId, u32 key, u8 y);
 static void KeySystem_MoveCursor(s32 key, bool8 onInit, struct ListMenu *list);
 
-// Keys that start switched off. A set bit in keySystemOff means "changed from the default".
+// All boolean defaults are enabled. Migrate the old off-default keys once;
+// later player overrides must survive every load and menu opening.
+static void EnsureKeyDefaults(void)
+{
+    if (gSaveBlock3Ptr->rfKeyDefaultsMagic != 0x4B445431)
+    {
+        gSaveBlock3Ptr->keySystemOff &= ~((1u << KEY_BATTLE_SPEED) | (1u << KEY_DARK_MODE)
+            | (1u << KEY_INFINITE_REPEL) | (1u << KEY_WILD_LOOT));
+        gSaveBlock3Ptr->rfKeyDefaultsMagic = 0x4B445431;
+    }
+}
+
 static bool32 KeySystem_IsOnByDefault(enum KeySystemKey key)
 {
-    return key != KEY_BATTLE_SPEED && key != KEY_DARK_MODE && key != KEY_INFINITE_REPEL && key != KEY_WILD_LOOT;
+    (void)key;
+    return TRUE;
 }
 
 bool32 KeySystem_IsOn(enum KeySystemKey key)
 {
     bool32 changed;
 
+    if ((u32)key >= KEY_COUNT)
+        return FALSE;
+    EnsureKeyDefaults();
     if (key == KEY_EXP_ALL)
         return FlagGet(FLAG_EXP_ALL);
     changed = (gSaveBlock3Ptr->keySystemOff & (1u << key)) != 0;
@@ -169,6 +187,9 @@ bool32 KeySystem_IsOn(enum KeySystemKey key)
 
 void KeySystem_Set(enum KeySystemKey key, bool32 on)
 {
+    if ((u32)key >= KEY_COUNT)
+        return;
+    EnsureKeyDefaults();
     if (key == KEY_EXP_ALL)
     {
         if (on)
@@ -334,7 +355,15 @@ static void KeySystem_MoveCursor(s32 key, bool8 onInit, struct ListMenu *list)
         return;
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    AddTextPrinterParameterized(windowId, FONT_NORMAL, sKeyInfo[key].description, 0, 1, TEXT_SKIP_DRAW, NULL);
+    if (key == KEY_EXP_RESERVE)
+    {
+        StringCopy(gStringVar4, COMPOUND_STRING("Reserva EXP: "));
+        ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), RFExpReserve_GetBalance(), STR_CONV_MODE_LEFT_ALIGN, 8);
+        StringAppend(gStringVar4, COMPOUND_STRING("\nAbre la mochila para convertirla."));
+        AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);
+    }
+    else
+        AddTextPrinterParameterized(windowId, FONT_NORMAL, sKeyInfo[key].description, 0, 1, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(windowId, COPYWIN_GFX);
 }
 

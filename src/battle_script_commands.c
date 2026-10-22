@@ -1,5 +1,6 @@
 #include "global.h"
 #include "rf_wild_loot.h"
+#include "rf_exp_reserve.h"
 #include "achievements.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
@@ -2285,6 +2286,16 @@ static void Cmd_getexp(void)
             }
             else if (GetMonData(&gParties[B_TRAINER_PLAYER][*expMonId], MON_DATA_LEVEL) == MAX_LEVEL)
             {
+                if (IS_FRLG && KeySystem_IsOn(KEY_EXP_RESERVE) && IsValidForBattle(&gParties[B_TRAINER_PLAYER][*expMonId]))
+                {
+                    s32 reserve = wasSentOut ? gBattleStruct->expValue : 0;
+                    if ((holdEffect == HOLD_EFFECT_EXP_SHARE || IsGen6ExpShareEnabled())
+                     && (B_SPLIT_EXP < GEN_6 || reserve == 0))
+                        reserve += gBattleStruct->expShareExpValue;
+                    ApplyExperienceMultipliers(&reserve, *expMonId, gBattlerFainted);
+                    if (reserve > 0)
+                        RFExpReserve_Store(reserve);
+                }
                 gBattleScripting.getexpState = 5;
                 gBattleStruct->battlerExpReward = 0;
                 if (B_MAX_LEVEL_EV_GAINS >= GEN_5)
@@ -2325,10 +2336,8 @@ static void Cmd_getexp(void)
                         u32 currentExp = GetMonData(&gParties[B_TRAINER_PLAYER][*expMonId], MON_DATA_EXP);
                         u32 levelCap = GetCurrentLevelCap();
 
-                        if (GetMonData(&gParties[B_TRAINER_PLAYER][*expMonId], MON_DATA_LEVEL) >= levelCap)
-                            gBattleStruct->battlerExpReward = 0;
-                        else if (gExperienceTables[growthRate][levelCap] < currentExp + gBattleStruct->battlerExpReward)
-                            gBattleStruct->battlerExpReward = gExperienceTables[growthRate][levelCap] - currentExp;
+                        gBattleStruct->battlerExpReward = RFExpReserve_ApplyCap(currentExp,
+                            gExperienceTables[growthRate][levelCap], gBattleStruct->battlerExpReward);
                     }
 
                     if (IsTradedMon(&gParties[B_TRAINER_PLAYER][*expMonId]))
