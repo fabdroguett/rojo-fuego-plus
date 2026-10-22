@@ -17,6 +17,7 @@ enum KeySystemKey
     KEY_OW_ENCOUNTERS,
     KEY_HM_FREE,
     KEY_AUTORUN,
+    KEY_AUTOSAVE,
     KEY_DIFFICULTY, // Not an on/off key: cycles through enum KeyDifficulty
     KEY_COUNT
 };

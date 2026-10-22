@@ -55,6 +55,8 @@ static const u8 sText_HmFree[] = _("MOs sin enseñar");
 static const u8 sText_HmFreeDesc[] = _("Con la medalla y la MO en la mochila\nno hace falta que nadie la sepa.");
 static const u8 sText_Autorun[] = _("Correr siempre");
 static const u8 sText_AutorunDesc[] = _("Corres sin mantener B.\nMantén B para caminar.");
+static const u8 sText_Autosave[] = _("Autoguardado");
+static const u8 sText_AutosaveDesc[] = _("Guarda la partida sola cada vez\nque curas en un Centro Pokémon.");
 static const u8 sText_Difficulty[] = _("Dificultad");
 static const u8 sText_DifficultyDesc[] = _("Fácil baja y Reto sube el nivel\nde los Pokémon de entrenadores.");
 
@@ -79,6 +81,7 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_OW_ENCOUNTERS]          = {sText_OwEncounters, sText_OwEncountersDesc},
     [KEY_HM_FREE]                = {sText_HmFree,       sText_HmFreeDesc},
     [KEY_AUTORUN]                = {sText_Autorun,      sText_AutorunDesc},
+    [KEY_AUTOSAVE]               = {sText_Autosave,     sText_AutosaveDesc},
     [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
 };
 

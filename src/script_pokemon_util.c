@@ -1,4 +1,6 @@
 #include "global.h"
+#include "key_system.h"
+#include "save.h"
 #include "omni_ring.h"
 #include "battle.h"
 #include "battle_gfx_sfx_util.h"
@@ -473,6 +475,13 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
 }
 
 #undef PARSE_FLAG
+
+// Rojo Fuego+ Key System autosave, run by the Pokémon Center nurse after healing
+void Script_TryAutosave(void)
+{
+    if (KeySystem_IsOn(KEY_AUTOSAVE))
+        TrySavingData(SAVE_NORMAL);
+}
 
 // Rojo Fuego+ Hyper Training NPC: VAR_0x8004 = party slot, VAR_0x8005 = stat (NUM_STATS = all).
 // Sets VAR_RESULT to FALSE when there was nothing to train.

@@ -49,6 +49,7 @@ EventScript_PkmnCenterNurse_TakeAndHealPkmn::
 	waitmovement 0
 	special HealPlayerParty
 	callnative UpdateFollowingPokemon
+	callnative Script_TryAutosave  @ Rojo Fuego+ Key System
 	return
 
 EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom::
