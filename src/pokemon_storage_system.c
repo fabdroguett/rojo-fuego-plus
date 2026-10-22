@@ -110,6 +110,9 @@ enum {
     MSG_ITEM_IS_HELD,
     MSG_CHANGED_TO_ITEM,
     MSG_CANT_STORE_MAIL,
+    MSG_RELEASE_BOX,  // Rojo Fuego+ mass release
+    MSG_BOX_RELEASED,
+    MSG_BOX_IS_EMPTY,
 };
 
 // IDs for how to resolve variables in the above messages
@@ -166,6 +169,7 @@ enum {
     MENU_MACHINE,
     MENU_SIMPLE,
     MENU_SELECT,
+    MENU_RELEASE_BOX, // Rojo Fuego+
 };
 #define MENU_WALLPAPER_SETS_START MENU_SCENERY_1
 #define MENU_WALLPAPERS_START MENU_FOREST
@@ -584,6 +588,7 @@ static void Task_TakeItemForMoving(u8);
 static void Task_ShowMarkMenu(u8);
 static void Task_ShowMonSummary(u8);
 static void Task_ReleaseMon(u8);
+static void Task_ReleaseBox(u8);
 static void Task_ReshowPokeStorage(u8);
 static void Task_PokeStorageMain(u8);
 static void Task_JumpBox(u8);
@@ -637,6 +642,7 @@ static void SetMovingMonPriority(u8);
 static void SpriteCB_HeldMon(struct Sprite *);
 static struct Sprite *CreateMonIconSprite(enum Species species, u32 personality, s16 x, s16 y, u8 oamPriority, u8 subpriority, bool32 isEgg);
 static void DestroyBoxMonIcon(struct Sprite *);
+static void DestroyBoxMonIconAtPosition(u8 boxPosition);
 
 // Pokémon data
 static void MoveMon(void);
@@ -1059,6 +1065,9 @@ static const struct StorageMessage sMessages[] =
     [MSG_WAS_DEPOSITED]        = {COMPOUND_STRING("{DYNAMIC 0} was deposited."), MSG_VAR_MON_NAME_1},
     [MSG_BOX_IS_FULL]          = {COMPOUND_STRING("The BOX is full."),           MSG_VAR_NONE},
     [MSG_RELEASE_POKE]         = {COMPOUND_STRING("Release this POKéMON?"),      MSG_VAR_NONE},
+    [MSG_RELEASE_BOX]          = {COMPOUND_STRING("¿Liberar toda la caja?"),     MSG_VAR_NONE},
+    [MSG_BOX_RELEASED]         = {COMPOUND_STRING("¡Pokémon liberados! Adiós…"), MSG_VAR_NONE},
+    [MSG_BOX_IS_EMPTY]         = {COMPOUND_STRING("La caja está vacía."),        MSG_VAR_NONE},
     [MSG_WAS_RELEASED]         = {COMPOUND_STRING("{DYNAMIC 0} was released."),  MSG_VAR_RELEASE_MON_1},
     [MSG_BYE_BYE]              = {COMPOUND_STRING("Bye-bye, {DYNAMIC 0}!"),      MSG_VAR_RELEASE_MON_3},
     [MSG_MARK_POKE]            = {COMPOUND_STRING("Mark your POKéMON."),         MSG_VAR_NONE},
@@ -3409,6 +3418,87 @@ static void Task_HandleBoxOptions(u8 taskId)
             ClearBottomWindow();
             SetPokeStorageTask(Task_JumpBox);
             break;
+        case MENU_RELEASE_BOX:
+            PlaySE(SE_SELECT);
+            ClearBottomWindow();
+            SetPokeStorageTask(Task_ReleaseBox);
+            break;
+        }
+        break;
+    }
+}
+
+// Rojo Fuego+ (from Pokémon SoulGold): releases every Pokémon and Egg in the current box at once.
+// Pokémon holding Mail stay; other held items go back to the bag when there is room.
+static u32 ReleaseCurrentBox(void)
+{
+    u32 i, released = 0;
+    u8 box = StorageGetCurrentBox();
+
+    for (i = 0; i < IN_BOX_COUNT; i++)
+    {
+        struct BoxPokemon *mon = GetBoxedMonPtr(box, i);
+        enum Item item;
+
+        if (!GetBoxMonData(mon, MON_DATA_SANITY_HAS_SPECIES))
+            continue;
+        item = GetBoxMonData(mon, MON_DATA_HELD_ITEM);
+        if (ItemIsMail(item))
+            continue;
+        if (item != ITEM_NONE)
+            AddBagItem(item, 1);
+        DestroyBoxMonIconAtPosition(i);
+        ZeroBoxMonAt(box, i);
+        released++;
+    }
+    Achievement_AddToCounter(ACH_COUNTER_RELEASES, released);
+    return released;
+}
+
+static void Task_ReleaseBox(u8 taskId)
+{
+    switch (sStorage->state)
+    {
+    case 0:
+        if (CountMonsInBox(StorageGetCurrentBox()) == 0)
+        {
+            PlaySE(SE_FAILURE);
+            PrintMessage(MSG_BOX_IS_EMPTY);
+            sStorage->state = 3;
+            break;
+        }
+        PrintMessage(MSG_RELEASE_BOX);
+        ShowYesNoWindow(1);
+        sStorage->state++;
+        // fallthrough
+    case 1:
+        switch (Menu_ProcessInputNoWrapClearOnChoose())
+        {
+        case MENU_B_PRESSED:
+        case 1: // No
+            ClearBottomWindow();
+            AnimateBoxScrollArrows(TRUE);
+            SetPokeStorageTask(Task_PokeStorageMain);
+            break;
+        case 0: // Yes
+            ClearBottomWindow();
+            sStorage->state++;
+            break;
+        }
+        break;
+    case 2:
+        if (ReleaseCurrentBox() != 0)
+            PlaySE(SE_BALL_OPEN);
+        TryRefreshDisplayMon();
+        PrintMessage(MSG_BOX_RELEASED);
+        sStorage->state++;
+        break;
+    case 3:
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
+        {
+            ClearBottomWindow();
+            AnimateBoxScrollArrows(TRUE);
+            SetPokeStorageTask(Task_PokeStorageMain);
         }
         break;
     }
@@ -7745,6 +7835,7 @@ static void AddBoxOptionsMenu(void)
     SetMenuText(MENU_JUMP);
     SetMenuText(MENU_WALLPAPER);
     SetMenuText(MENU_NAME);
+    SetMenuText(MENU_RELEASE_BOX);
     SetMenuText(MENU_CANCEL);
 }
 
@@ -8070,6 +8161,7 @@ static const u8 gPCText_Give[] = _("GIVE");
 static const u8 *const sMenuTexts[] =
 {
     [MENU_CANCEL]     = COMPOUND_STRING("CANCEL"),
+    [MENU_RELEASE_BOX] = COMPOUND_STRING("LIBERAR CAJA"),
     [MENU_STORE]      = COMPOUND_STRING("STORE"),
     [MENU_WITHDRAW]   = COMPOUND_STRING("WITHDRAW"),
     [MENU_MOVE]       = COMPOUND_STRING("MOVE"),

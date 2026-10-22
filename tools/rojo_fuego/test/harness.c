@@ -8,6 +8,7 @@
 //   w8/w16/w32 ADDR V  write memory (hex)
 //   r8/r16/r32 ADDR    print memory (hex)
 //   dump ADDR LEN FILE write memory to a file
+//   copy SRC DST LEN   copy memory (hex)
 //   save FILE / load FILE   savestate
 #include <mgba/core/core.h>
 #include <mgba/core/log.h>
@@ -95,6 +96,10 @@ int main(int argc, char **argv)
         else if (!strcmp(cmd, "r8")) printf("%s = %02X\n", a, core->busRead8(core, strtoul(a, 0, 16)));
         else if (!strcmp(cmd, "r16")) printf("%s = %04X\n", a, core->busRead16(core, strtoul(a, 0, 16)));
         else if (!strcmp(cmd, "r32")) printf("%s = %08X\n", a, core->busRead32(core, strtoul(a, 0, 16)));
+        else if (!strcmp(cmd, "copy")) {
+            unsigned src = strtoul(a, 0, 16), dst = strtoul(b, 0, 16), len = strtoul(c, 0, 16);
+            for (unsigned i = 0; i < len; i++) core->busWrite8(core, dst + i, core->busRead8(core, src + i));
+        }
         else if (!strcmp(cmd, "dump")) {
             unsigned addr = strtoul(a, 0, 16), len = strtoul(b, 0, 16);
             FILE *f = fopen(c, "wb");
