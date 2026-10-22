@@ -48,6 +48,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "key_system.h"
 #include "player_pc.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
@@ -899,6 +900,44 @@ static bool8 AllocPartyMenuBg(void)
     return TRUE;
 }
 
+// Rojo Fuego+ dark mode (Key System, from Pokémon SoulGold): dark background and empty slots,
+// and dark message and menu boxes with light text
+struct DarkModeColor
+{
+    u8 index;
+    u16 color;
+};
+
+static const struct DarkModeColor sPartyMenuBgDarkColors[] =
+{
+    {16 * 1 + 3, RGB(7, 8, 10)},
+    {16 * 1 + 4, RGB(5, 6, 8)},
+    {16 * 1 + 5, RGB(4, 5, 6)},
+    {16 * 2 + 3, RGB(7, 8, 10)},
+    {16 * 2 + 4, RGB(5, 6, 8)},
+    {16 * 2 + 5, RGB(4, 5, 6)},
+};
+
+static const struct DarkModeColor sPartyMenuTextDarkColors[] =
+{
+    {16 * 14 + 1, RGB(5, 6, 8)},
+    {16 * 14 + 2, RGB(29, 29, 29)},
+    {16 * 14 + 3, RGB(11, 12, 14)},
+    {16 * 15 + 1, RGB(5, 6, 8)},
+    {16 * 15 + 2, RGB(29, 29, 29)},
+    {16 * 15 + 3, RGB(11, 12, 14)},
+};
+
+static void LoadPartyMenuDarkModeColors(const struct DarkModeColor *colors, u32 count)
+{
+    u32 i;
+
+    if (!KeySystem_IsOn(KEY_DARK_MODE))
+        return;
+    for (i = 0; i < count; i++)
+        LoadPalette(&colors[i].color, BG_PLTT_ID(0) + colors[i].index, PLTT_SIZEOF(1));
+}
+
 static bool8 AllocPartyMenuBgGfx(void)
 {
     u32 sizeout;
@@ -919,6 +958,7 @@ static bool8 AllocPartyMenuBgGfx(void)
         break;
     case 2:
         LoadPalette(gPartyMenuBg_Pal, BG_PLTT_ID(0), 11 * PLTT_SIZE_4BPP);
+        LoadPartyMenuDarkModeColors(sPartyMenuBgDarkColors, ARRAY_COUNT(sPartyMenuBgDarkColors));
         CpuCopy16(gPlttBufferUnfaded, sPartyMenuInternal->palBuffer, 11 * PLTT_SIZE_4BPP);
         sPartyMenuInternal->data[0]++;
         break;
@@ -2393,6 +2433,7 @@ static void LoadPartyMenuWindows(void)
     LoadUserWindowBorderGfx(0, 0x4F, BG_PLTT_ID(13));
     LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(14), PLTT_SIZE_4BPP);
     LoadPalette(gStandardMenuPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+    LoadPartyMenuDarkModeColors(sPartyMenuTextDarkColors, ARRAY_COUNT(sPartyMenuTextDarkColors));
 }
 
 static void CreateCancelConfirmWindows(bool8 chooseHalf)

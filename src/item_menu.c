@@ -1,5 +1,6 @@
 #include "global.h"
 #include "item_menu.h"
+#include "key_system.h"
 #include "registered_items.h"
 #include "battle.h"
 #include "battle_controllers.h"
@@ -846,6 +847,28 @@ static void BagMenu_InitBGs(void)
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
 }
 
+// Rojo Fuego+ dark mode (Key System, from Pokémon SoulGold): dark item list and description box
+static const struct { u8 index; u16 color; } sBagDarkModeColors[] =
+{
+    {1,       RGB(5, 6, 8)},    // description box and other white panels
+    {9,       RGB(5, 6, 8)},    // item list background
+    {10,      RGB(12, 10, 5)},  // item list frame
+    {16 + 10, RGB(5, 6, 8)},    // item list background (windows)
+    {16 + 2,  RGB(5, 6, 8)},    // description background
+    {16 + 1,  RGB(29, 29, 29)}, // text
+    {16 + 3,  RGB(11, 12, 14)}, // text shadow
+};
+
+static void LoadBagDarkModeColors(void)
+{
+    u32 i;
+
+    if (!KeySystem_IsOn(KEY_DARK_MODE))
+        return;
+    for (i = 0; i < ARRAY_COUNT(sBagDarkModeColors); i++)
+        LoadPalette(&sBagDarkModeColors[i].color, BG_PLTT_ID(0) + sBagDarkModeColors[i].index, PLTT_SIZEOF(1));
+}
+
 static bool8 LoadBagMenu_Graphics(void)
 {
     switch (gBagMenu->graphicsLoadState)
@@ -867,6 +890,7 @@ static bool8 LoadBagMenu_Graphics(void)
             LoadPalette(gBagScreenFemale_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
         else
             LoadPalette(gBagScreenMale_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
+        LoadBagDarkModeColors();
         gBagMenu->graphicsLoadState++;
         break;
     case 3:
