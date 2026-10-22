@@ -1,0 +1,2864 @@
+[
+ {
+  "id": "H01",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "El viaje comienza",
+  "desc": "Recibe tu primer Pokémon.",
+  "reward": "Poke Ball ×5"
+ },
+ {
+  "id": "H02",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rival a la vista",
+  "desc": "Vence a tu rival en el laboratorio de Oak.",
+  "reward": "Potion ×3"
+ },
+ {
+  "id": "H03",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Medalla Roca",
+  "desc": "Vence a Brock.",
+  "reward": "Exp Candy S ×5"
+ },
+ {
+  "id": "H04",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Medalla Cascada",
+  "desc": "Vence a Misty.",
+  "reward": "Exp Candy S ×5"
+ },
+ {
+  "id": "H05",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Medalla Trueno",
+  "desc": "Vence al Teniente Surge.",
+  "reward": "Exp Candy M ×3"
+ },
+ {
+  "id": "H06",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Medalla Arcoíris",
+  "desc": "Vence a Erika.",
+  "reward": "Exp Candy M ×3"
+ },
+ {
+  "id": "H07",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Medalla Alma",
+  "desc": "Vence a Koga.",
+  "reward": "Exp Candy L ×2"
+ },
+ {
+  "id": "H08",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Medalla Pantano",
+  "desc": "Vence a Sabrina.",
+  "reward": "Exp Candy L ×2"
+ },
+ {
+  "id": "H09",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Medalla Volcán",
+  "desc": "Vence a Blaine.",
+  "reward": "Exp Candy Xl ×1"
+ },
+ {
+  "id": "H10",
+  "cat": "H",
+  "tier": "G",
+  "hidden": false,
+  "name": "Medalla Tierra",
+  "desc": "Vence a Giovanni en su gimnasio.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "H11",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Scope Silph",
+  "desc": "Consigue el Scope Silph.",
+  "reward": "Nugget ×1"
+ },
+ {
+  "id": "H12",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Silph liberada",
+  "desc": "Expulsa al Team Rocket de Silph S.A.",
+  "reward": "Ability Capsule ×1"
+ },
+ {
+  "id": "H13",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "La flauta del Sr. Fuji",
+  "desc": "Rescata al Sr. Fuji en la Torre Pokémon.",
+  "reward": "Hyper Potion ×3"
+ },
+ {
+  "id": "H14",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Despierta, dormilón",
+  "desc": "Despierta al Snorlax de la Ruta 12.",
+  "reward": "Leftovers ×1"
+ },
+ {
+  "id": "H15",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Todos a bordo",
+  "desc": "Consigue el billete del S.S. Anne.",
+  "reward": "Revive ×3"
+ },
+ {
+  "id": "H16",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Ayuda a Bill",
+  "desc": "Ayuda a Bill en su cabaña.",
+  "reward": "Great Ball ×5"
+ },
+ {
+  "id": "H17",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "¿Hélix o Domo?",
+  "desc": "Elige un fósil en el Monte Moon.",
+  "reward": "Great Ball ×5"
+ },
+ {
+  "id": "H18",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "La Élite: Lorelei",
+  "desc": "Vence a Lorelei.",
+  "reward": "Never Melt Ice ×1"
+ },
+ {
+  "id": "H19",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "La Élite: Bruno",
+  "desc": "Vence a Bruno.",
+  "reward": "Black Belt ×1"
+ },
+ {
+  "id": "H20",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "La Élite: Agatha",
+  "desc": "Vence a Agatha.",
+  "reward": "Spell Tag ×1"
+ },
+ {
+  "id": "H21",
+  "cat": "H",
+  "tier": "G",
+  "hidden": false,
+  "name": "La Élite: Lance",
+  "desc": "Vence a Lance.",
+  "reward": "Dragon Fang ×1"
+ },
+ {
+  "id": "H22",
+  "cat": "H",
+  "tier": "G",
+  "hidden": false,
+  "name": "Campeón de Kanto",
+  "desc": "Gana la Liga Pokémon.",
+  "reward": "Título “Campeón”"
+ },
+ {
+  "id": "H23",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Más allá del mar",
+  "desc": "Llega a Isla Prima.",
+  "reward": "Great Ball ×10"
+ },
+ {
+  "id": "H24",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "El Rubí",
+  "desc": "Encuentra el Rubí en el Monte Ascuas.",
+  "reward": "Ultra Ball ×5"
+ },
+ {
+  "id": "H25",
+  "cat": "H",
+  "tier": "G",
+  "hidden": false,
+  "name": "El Zafiro",
+  "desc": "Recupera el Zafiro.",
+  "reward": "Oval Charm ×1"
+ },
+ {
+  "id": "H26",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Almacén limpio",
+  "desc": "Echa al Team Rocket del almacén de Isla Quinta.",
+  "reward": "Ultra Ball ×10"
+ },
+ {
+  "id": "H27",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Perdida en el bosque",
+  "desc": "Rescata a Lostelle en el Bosque Baya.",
+  "reward": "Sitrus Berry ×3"
+ },
+ {
+  "id": "H28",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Pokédex Nacional",
+  "desc": "Consigue la Pokédex Nacional.",
+  "reward": "Ultra Ball ×5"
+ },
+ {
+  "id": "H29",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Ruinas Tanoby",
+  "desc": "Abre las Ruinas Tanoby.",
+  "reward": "White Herb ×1"
+ },
+ {
+  "id": "H30",
+  "cat": "H",
+  "tier": "G",
+  "hidden": false,
+  "name": "Ronda de revanchas",
+  "desc": "Vence la revancha de los siete líderes.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "H31",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Primera revancha",
+  "desc": "Vence la revancha de un líder.",
+  "reward": "Pp Up ×1"
+ },
+ {
+  "id": "H32",
+  "cat": "H",
+  "tier": "G",
+  "hidden": false,
+  "name": "Diez veces campeón",
+  "desc": "Entra en el Salón de la Fama 10 veces.",
+  "reward": "Título “Decacampeón”"
+ },
+ {
+  "id": "H33",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Bicicleta",
+  "desc": "Consigue la bicicleta.",
+  "reward": "Max Repel ×5"
+ },
+ {
+  "id": "H34",
+  "cat": "H",
+  "tier": "B",
+  "hidden": false,
+  "name": "Caña de pescar",
+  "desc": "Consigue la Caña Vieja.",
+  "reward": "Net Ball ×5"
+ },
+ {
+  "id": "H35",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Supercaña",
+  "desc": "Consigue la Supercaña.",
+  "reward": "Dive Ball ×10"
+ },
+ {
+  "id": "D01",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "10 especies",
+  "desc": "Captura 10 especies distintas.",
+  "reward": "Great Ball ×5"
+ },
+ {
+  "id": "D02",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "25 especies",
+  "desc": "Captura 25 especies distintas.",
+  "reward": "Great Ball ×10"
+ },
+ {
+  "id": "D03",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "50 especies",
+  "desc": "Captura 50 especies distintas.",
+  "reward": "Ultra Ball ×10"
+ },
+ {
+  "id": "D04",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "100 especies",
+  "desc": "Captura 100 especies distintas.",
+  "reward": "Rare Candy ×3"
+ },
+ {
+  "id": "D05",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "151 especies",
+  "desc": "Captura 151 especies distintas.",
+  "reward": "Master Ball ×1"
+ },
+ {
+  "id": "D06",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "200 especies",
+  "desc": "Captura 200 especies distintas.",
+  "reward": "Rare Candy ×5"
+ },
+ {
+  "id": "D07",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "251 especies",
+  "desc": "Captura 251 especies distintas.",
+  "reward": "Bottle Cap ×3"
+ },
+ {
+  "id": "D08",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "300 especies",
+  "desc": "Captura 300 especies distintas.",
+  "reward": "Rare Candy ×10"
+ },
+ {
+  "id": "D09",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "386 especies",
+  "desc": "Captura 386 especies distintas.",
+  "reward": "Ability Patch ×1"
+ },
+ {
+  "id": "D10",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "450 especies",
+  "desc": "Captura 450 especies distintas.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "D11",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "500 especies",
+  "desc": "Captura 500 especies distintas.",
+  "reward": "Master Ball ×2"
+ },
+ {
+  "id": "D12",
+  "cat": "D",
+  "tier": "P",
+  "hidden": false,
+  "name": "550 especies",
+  "desc": "Captura 550 especies distintas.",
+  "reward": "Título “Maestro Pokémon”"
+ },
+ {
+  "id": "D13",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Ojo de lince",
+  "desc": "Ve 300 especies distintas.",
+  "reward": "Bottle Cap ×1"
+ },
+ {
+  "id": "D14",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Visto todo",
+  "desc": "Ve 600 especies distintas.",
+  "reward": "Bottle Cap ×3"
+ },
+ {
+  "id": "D15",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Aves legendarias",
+  "desc": "Captura a Articuno, Zapdos y Moltres.",
+  "reward": "Master Ball ×1"
+ },
+ {
+  "id": "D16",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "El clon",
+  "desc": "Captura a Mewtwo.",
+  "reward": "Lonely Mint ×1"
+ },
+ {
+  "id": "D17",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Bestias errantes",
+  "desc": "Captura a Raikou, Entei y Suicune.",
+  "reward": "Ultra Ball ×20"
+ },
+ {
+  "id": "D18",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Vida del pasado",
+  "desc": "Captura a Omanyte, Kabuto y Aerodactyl.",
+  "reward": "Big Nugget ×1"
+ },
+ {
+  "id": "D19",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Familia Eevee",
+  "desc": "Captura todas las evoluciones de Eevee.",
+  "reward": "Rare Candy ×5"
+ },
+ {
+  "id": "D20",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Iniciales de Kanto",
+  "desc": "Captura a Bulbasaur, Charmander y Squirtle.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "D21",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Iniciales de Johto",
+  "desc": "Captura a Chikorita, Cyndaquil y Totodile.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "D22",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Iniciales de Hoenn",
+  "desc": "Captura a Treecko, Torchic y Mudkip.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "D23",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Iniciales de Sinnoh",
+  "desc": "Captura a Turtwig, Chimchar y Piplup.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "D24",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Iniciales de Teselia",
+  "desc": "Captura a Snivy, Tepig y Oshawott.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "D25",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Iniciales de Kalos",
+  "desc": "Captura a Chespin, Fennekin y Froakie.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "D26",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Iniciales de Alola",
+  "desc": "Captura a Rowlet, Litten y Popplio.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "D27",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Iniciales de Galar",
+  "desc": "Captura a Grookey, Scorbunny y Sobble.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "D28",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Iniciales de Paldea",
+  "desc": "Captura a Sprigatito, Fuecoco y Quaxly.",
+  "reward": "Exp Candy Xl ×2"
+ },
+ {
+  "id": "D29",
+  "cat": "D",
+  "tier": "P",
+  "hidden": false,
+  "name": "Todos los iniciales",
+  "desc": "Captura los 27 iniciales de las nueve regiones.",
+  "reward": "Título “Profesor”"
+ },
+ {
+  "id": "D30",
+  "cat": "D",
+  "tier": "G",
+  "hidden": false,
+  "name": "Pseudolegendarios",
+  "desc": "Captura a Dratini, Larvitar, Bagon, Beldum, Gible, Deino, Goomy, Jangmo-o, Dreepy y Frigibax.",
+  "reward": "Dragon Scale ×1"
+ },
+ {
+  "id": "D31",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Normal",
+  "desc": "Captura 30 especies de tipo Normal.",
+  "reward": "Silk Scarf ×1"
+ },
+ {
+  "id": "D32",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Fuego",
+  "desc": "Captura 30 especies de tipo Fuego.",
+  "reward": "Charcoal ×1"
+ },
+ {
+  "id": "D33",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Agua",
+  "desc": "Captura 30 especies de tipo Agua.",
+  "reward": "Mystic Water ×1"
+ },
+ {
+  "id": "D34",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Planta",
+  "desc": "Captura 30 especies de tipo Planta.",
+  "reward": "Miracle Seed ×1"
+ },
+ {
+  "id": "D35",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Eléctrico",
+  "desc": "Captura 30 especies de tipo Eléctrico.",
+  "reward": "Magnet ×1"
+ },
+ {
+  "id": "D36",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Hielo",
+  "desc": "Captura 30 especies de tipo Hielo.",
+  "reward": "Never Melt Ice ×1"
+ },
+ {
+  "id": "D37",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Lucha",
+  "desc": "Captura 30 especies de tipo Lucha.",
+  "reward": "Black Belt ×1"
+ },
+ {
+  "id": "D38",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Veneno",
+  "desc": "Captura 30 especies de tipo Veneno.",
+  "reward": "Poison Barb ×1"
+ },
+ {
+  "id": "D39",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Tierra",
+  "desc": "Captura 30 especies de tipo Tierra.",
+  "reward": "Soft Sand ×1"
+ },
+ {
+  "id": "D40",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Volador",
+  "desc": "Captura 30 especies de tipo Volador.",
+  "reward": "Sharp Beak ×1"
+ },
+ {
+  "id": "D41",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Psíquico",
+  "desc": "Captura 30 especies de tipo Psíquico.",
+  "reward": "Twisted Spoon ×1"
+ },
+ {
+  "id": "D42",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Bicho",
+  "desc": "Captura 30 especies de tipo Bicho.",
+  "reward": "Silver Powder ×1"
+ },
+ {
+  "id": "D43",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Roca",
+  "desc": "Captura 30 especies de tipo Roca.",
+  "reward": "Hard Stone ×1"
+ },
+ {
+  "id": "D44",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Fantasma",
+  "desc": "Captura 30 especies de tipo Fantasma.",
+  "reward": "Spell Tag ×1"
+ },
+ {
+  "id": "D45",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Dragón",
+  "desc": "Captura 30 especies de tipo Dragón.",
+  "reward": "Dragon Fang ×1"
+ },
+ {
+  "id": "D46",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Siniestro",
+  "desc": "Captura 30 especies de tipo Siniestro.",
+  "reward": "Black Glasses ×1"
+ },
+ {
+  "id": "D47",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Acero",
+  "desc": "Captura 30 especies de tipo Acero.",
+  "reward": "Metal Coat ×1"
+ },
+ {
+  "id": "D48",
+  "cat": "D",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista Hada",
+  "desc": "Captura 30 especies de tipo Hada.",
+  "reward": "Fairy Feather ×1"
+ },
+ {
+  "id": "D49",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Normal",
+  "desc": "Captura 10 especies de tipo Normal.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D50",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Fuego",
+  "desc": "Captura 10 especies de tipo Fuego.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D51",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Agua",
+  "desc": "Captura 10 especies de tipo Agua.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D52",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Planta",
+  "desc": "Captura 10 especies de tipo Planta.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D53",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Eléctrico",
+  "desc": "Captura 10 especies de tipo Eléctrico.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D54",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Hielo",
+  "desc": "Captura 10 especies de tipo Hielo.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D55",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Lucha",
+  "desc": "Captura 10 especies de tipo Lucha.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D56",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Veneno",
+  "desc": "Captura 10 especies de tipo Veneno.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D57",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Tierra",
+  "desc": "Captura 10 especies de tipo Tierra.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D58",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Volador",
+  "desc": "Captura 10 especies de tipo Volador.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D59",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Psíquico",
+  "desc": "Captura 10 especies de tipo Psíquico.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D60",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Bicho",
+  "desc": "Captura 10 especies de tipo Bicho.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D61",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Roca",
+  "desc": "Captura 10 especies de tipo Roca.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D62",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Fantasma",
+  "desc": "Captura 10 especies de tipo Fantasma.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D63",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Dragón",
+  "desc": "Captura 10 especies de tipo Dragón.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D64",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Siniestro",
+  "desc": "Captura 10 especies de tipo Siniestro.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D65",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Acero",
+  "desc": "Captura 10 especies de tipo Acero.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "D66",
+  "cat": "D",
+  "tier": "B",
+  "hidden": false,
+  "name": "Aprendiz Hada",
+  "desc": "Captura 10 especies de tipo Hada.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "C01",
+  "cat": "C",
+  "tier": "B",
+  "hidden": false,
+  "name": "¡Te tengo!",
+  "desc": "Captura tu primer Pokémon.",
+  "reward": "Poke Ball ×10"
+ },
+ {
+  "id": "C02",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Cien en la caja",
+  "desc": "Captura 100 Pokémon.",
+  "reward": "Ultra Ball ×10"
+ },
+ {
+  "id": "C03",
+  "cat": "C",
+  "tier": "G",
+  "hidden": false,
+  "name": "Quinientos",
+  "desc": "Captura 500 Pokémon.",
+  "reward": "Rare Candy ×10"
+ },
+ {
+  "id": "C04",
+  "cat": "C",
+  "tier": "P",
+  "hidden": false,
+  "name": "Mil capturas",
+  "desc": "Captura 1000 Pokémon.",
+  "reward": "Master Ball ×1"
+ },
+ {
+  "id": "C05",
+  "cat": "C",
+  "tier": "B",
+  "hidden": false,
+  "name": "Probando balls",
+  "desc": "Captura con 5 tipos de Poké Ball distintos.",
+  "reward": "Luxury Ball ×5"
+ },
+ {
+  "id": "C06",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Maestro de las balls",
+  "desc": "Captura con 15 tipos de Poké Ball distintos.",
+  "reward": "Quick Ball ×10"
+ },
+ {
+  "id": "C07",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "A la primera",
+  "desc": "Captura 50 Pokémon al primer lanzamiento.",
+  "reward": "Quick Ball ×5"
+ },
+ {
+  "id": "C08",
+  "cat": "C",
+  "tier": "B",
+  "hidden": false,
+  "name": "¡Captura crítica!",
+  "desc": "Consigue una captura crítica.",
+  "reward": "Ultra Ball ×5"
+ },
+ {
+  "id": "C09",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Críticas en serie",
+  "desc": "Consigue 25 capturas críticas.",
+  "reward": "Ultra Ball ×15"
+ },
+ {
+  "id": "C10",
+  "cat": "C",
+  "tier": "G",
+  "hidden": false,
+  "name": "¡Brilla!",
+  "desc": "Captura tu primer Pokémon variocolor.",
+  "reward": "Luxury Ball ×10"
+ },
+ {
+  "id": "C11",
+  "cat": "C",
+  "tier": "P",
+  "hidden": false,
+  "name": "Cazashiny",
+  "desc": "Captura 10 Pokémon variocolor.",
+  "reward": "Título “Cazashiny”"
+ },
+ {
+  "id": "C12",
+  "cat": "C",
+  "tier": "B",
+  "hidden": false,
+  "name": "Pesca de domingo",
+  "desc": "Captura 10 Pokémon pescando.",
+  "reward": "Lure Ball ×5"
+ },
+ {
+  "id": "C13",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Lobo de mar",
+  "desc": "Captura 100 Pokémon pescando.",
+  "reward": "Dive Ball ×10"
+ },
+ {
+  "id": "C14",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Marea de Pokémon",
+  "desc": "Captura 10 Pokémon de apariciones masivas.",
+  "reward": "Repeat Ball ×5"
+ },
+ {
+  "id": "C15",
+  "cat": "C",
+  "tier": "B",
+  "hidden": false,
+  "name": "Cazador nocturno",
+  "desc": "Captura 10 Pokémon de noche.",
+  "reward": "Dusk Ball ×10"
+ },
+ {
+  "id": "C16",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Ave nocturna",
+  "desc": "Captura 100 Pokémon de noche.",
+  "reward": "Dusk Ball ×20"
+ },
+ {
+  "id": "C17",
+  "cat": "C",
+  "tier": "B",
+  "hidden": false,
+  "name": "Safari",
+  "desc": "Captura 10 Pokémon en la Zona Safari.",
+  "reward": "Safari Ball ×30"
+ },
+ {
+  "id": "C18",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Cazador de leyendas",
+  "desc": "Captura 5 Pokémon legendarios o singulares.",
+  "reward": "Master Ball ×1"
+ },
+ {
+  "id": "C19",
+  "cat": "C",
+  "tier": "G",
+  "hidden": false,
+  "name": "Leyenda viva",
+  "desc": "Captura 15 Pokémon legendarios o singulares.",
+  "reward": "Master Ball ×2"
+ },
+ {
+  "id": "C20",
+  "cat": "C",
+  "tier": "B",
+  "hidden": false,
+  "name": "Escondido en la hierba",
+  "desc": "Captura un Pokémon encontrado con el DexNav.",
+  "reward": "Wide Lens ×1"
+ },
+ {
+  "id": "C21",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Rastreador",
+  "desc": "Captura 50 Pokémon encontrados con el DexNav.",
+  "reward": "Ultra Ball ×10"
+ },
+ {
+  "id": "C22",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Racha DexNav",
+  "desc": "Llega a una cadena de 25 con el DexNav.",
+  "reward": "Bottle Cap ×1"
+ },
+ {
+  "id": "C23",
+  "cat": "C",
+  "tier": "G",
+  "hidden": false,
+  "name": "Racha perfecta",
+  "desc": "Llega a una cadena de 100 con el DexNav.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "C24",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Habilidad rara",
+  "desc": "Ten un Pokémon con habilidad oculta en el equipo.",
+  "reward": "Ability Patch ×1"
+ },
+ {
+  "id": "C25",
+  "cat": "C",
+  "tier": "B",
+  "hidden": false,
+  "name": "Salvajes",
+  "desc": "Gana o captura en 50 combates salvajes.",
+  "reward": "Repel ×10"
+ },
+ {
+  "id": "C26",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Explorador salvaje",
+  "desc": "Participa en 500 combates salvajes.",
+  "reward": "Max Repel ×10"
+ },
+ {
+  "id": "C27",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Doscientos cincuenta",
+  "desc": "Captura 250 Pokémon.",
+  "reward": "Ultra Ball ×15"
+ },
+ {
+  "id": "C28",
+  "cat": "C",
+  "tier": "S",
+  "hidden": false,
+  "name": "Trío brillante",
+  "desc": "Captura 3 Pokémon variocolor.",
+  "reward": "Luxury Ball ×5"
+ },
+ {
+  "id": "C29",
+  "cat": "C",
+  "tier": "P",
+  "hidden": false,
+  "name": "Coleccionista de brillos",
+  "desc": "Captura 25 Pokémon variocolor.",
+  "reward": "Master Ball ×2"
+ },
+ {
+  "id": "C30",
+  "cat": "C",
+  "tier": "G",
+  "hidden": false,
+  "name": "Todas las balls",
+  "desc": "Captura con 25 tipos de Poké Ball distintos.",
+  "reward": "Beast Ball ×5"
+ },
+ {
+  "id": "B01",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "Primera victoria",
+  "desc": "Vence a tu primer entrenador.",
+  "reward": "Potion ×5"
+ },
+ {
+  "id": "B02",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "Cazaentrenadores",
+  "desc": "Vence a 50 entrenadores.",
+  "reward": "Nugget ×1"
+ },
+ {
+  "id": "B03",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Terror de las rutas",
+  "desc": "Vence a 200 entrenadores.",
+  "reward": "Big Nugget ×1"
+ },
+ {
+  "id": "B04",
+  "cat": "B",
+  "tier": "G",
+  "hidden": false,
+  "name": "Leyenda de los caminos",
+  "desc": "Vence a 500 entrenadores.",
+  "reward": "Título “Barredor”"
+ },
+ {
+  "id": "B05",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "Cien combates",
+  "desc": "Combate 100 veces.",
+  "reward": "Pp Up ×1"
+ },
+ {
+  "id": "B06",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Mil combates",
+  "desc": "Combate 1000 veces.",
+  "reward": "Pp Max ×3"
+ },
+ {
+  "id": "B07",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "¡Es muy eficaz!",
+  "desc": "Usa 100 ataques superefectivos.",
+  "reward": "Hyper Potion ×5"
+ },
+ {
+  "id": "B08",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Maestro de tipos",
+  "desc": "Usa 1000 ataques superefectivos.",
+  "reward": "Expert Belt ×1"
+ },
+ {
+  "id": "B09",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "De un golpe",
+  "desc": "Debilita a 50 Pokémon de un solo ataque.",
+  "reward": "Choice Band ×1"
+ },
+ {
+  "id": "B10",
+  "cat": "B",
+  "tier": "G",
+  "hidden": false,
+  "name": "Golpe certero",
+  "desc": "Debilita a 500 Pokémon de un solo ataque.",
+  "reward": "Life Orb ×1"
+ },
+ {
+  "id": "B11",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "¡Golpe crítico!",
+  "desc": "Asesta 100 golpes críticos.",
+  "reward": "Scope Lens ×1"
+ },
+ {
+  "id": "B12",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Críticos sin fin",
+  "desc": "Asesta 500 golpes críticos.",
+  "reward": "Razor Claw ×1"
+ },
+ {
+  "id": "B13",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "Chispazo",
+  "desc": "Paraliza a 50 Pokémon.",
+  "reward": "Cheri Berry ×5"
+ },
+ {
+  "id": "B14",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "Quemadura",
+  "desc": "Quema a 50 Pokémon.",
+  "reward": "Rawst Berry ×5"
+ },
+ {
+  "id": "B15",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "Canción de cuna",
+  "desc": "Duerme a 50 Pokémon.",
+  "reward": "Chesto Berry ×5"
+ },
+ {
+  "id": "B16",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Congelado",
+  "desc": "Congela a 10 Pokémon.",
+  "reward": "Aspear Berry ×5"
+ },
+ {
+  "id": "B17",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "Tóxico",
+  "desc": "Envenena a 50 Pokémon.",
+  "reward": "Pecha Berry ×5"
+ },
+ {
+  "id": "B18",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Megaevolución",
+  "desc": "Megaevoluciona por primera vez.",
+  "reward": "Omni Cell ×1"
+ },
+ {
+  "id": "B19",
+  "cat": "B",
+  "tier": "G",
+  "hidden": false,
+  "name": "Megaexperto",
+  "desc": "Megaevoluciona 50 veces.",
+  "reward": "Título “Mega”"
+ },
+ {
+  "id": "B20",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Teracristal",
+  "desc": "Teracristaliza por primera vez.",
+  "reward": "Rare Candy ×3"
+ },
+ {
+  "id": "B21",
+  "cat": "B",
+  "tier": "G",
+  "hidden": false,
+  "name": "Teraexperto",
+  "desc": "Teracristaliza 50 veces.",
+  "reward": "Omni Cell ×1"
+ },
+ {
+  "id": "B22",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Gigante",
+  "desc": "Usa el Dinamax por primera vez.",
+  "reward": "Rare Candy ×3"
+ },
+ {
+  "id": "B23",
+  "cat": "B",
+  "tier": "G",
+  "hidden": false,
+  "name": "Dinaexperto",
+  "desc": "Usa el Dinamax 50 veces.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "B24",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Poder Z",
+  "desc": "Usa un movimiento Z por primera vez.",
+  "reward": "Rare Candy ×3"
+ },
+ {
+  "id": "B25",
+  "cat": "B",
+  "tier": "G",
+  "hidden": false,
+  "name": "Experto Z",
+  "desc": "Usa 50 movimientos Z.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "B26",
+  "cat": "B",
+  "tier": "G",
+  "hidden": false,
+  "name": "Las cuatro mecánicas",
+  "desc": "Usa megaevolución, Tera, Dinamax y movimiento Z.",
+  "reward": "Título “Estratega”"
+ },
+ {
+  "id": "B27",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "Cambio de planes",
+  "desc": "Cambia de Pokémon 100 veces en combate.",
+  "reward": "Eject Button ×1"
+ },
+ {
+  "id": "B28",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Racha de diez",
+  "desc": "Gana 10 combates de entrenador seguidos.",
+  "reward": "Pp Up ×3"
+ },
+ {
+  "id": "B29",
+  "cat": "B",
+  "tier": "G",
+  "hidden": false,
+  "name": "Racha de cincuenta",
+  "desc": "Gana 50 combates de entrenador seguidos.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "B30",
+  "cat": "B",
+  "tier": "P",
+  "hidden": false,
+  "name": "Invicto",
+  "desc": "Gana 100 combates de entrenador seguidos.",
+  "reward": "Título “Invicto”"
+ },
+ {
+  "id": "B31",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Contra las cuerdas",
+  "desc": "Gana un combate con tu último Pokémon por debajo del 10 % de PS.",
+  "reward": "Sitrus Berry ×5"
+ },
+ {
+  "id": "B32",
+  "cat": "B",
+  "tier": "B",
+  "hidden": false,
+  "name": "Cien caídos",
+  "desc": "Debilita a 100 Pokémon rivales.",
+  "reward": "Exp Candy M ×3"
+ },
+ {
+  "id": "B33",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Mil caídos",
+  "desc": "Debilita a 1000 Pokémon rivales.",
+  "reward": "Exp Candy Xl ×3"
+ },
+ {
+  "id": "B34",
+  "cat": "B",
+  "tier": "G",
+  "hidden": false,
+  "name": "Sin bajas",
+  "desc": "Gana la Liga sin que se debilite ningún Pokémon tuyo.",
+  "reward": "Life Orb ×1"
+ },
+ {
+  "id": "B35",
+  "cat": "B",
+  "tier": "P",
+  "hidden": false,
+  "name": "Mil victorias",
+  "desc": "Vence a 1000 entrenadores.",
+  "reward": "Título “Leyenda viviente”"
+ },
+ {
+  "id": "B36",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Megaaficionado",
+  "desc": "Megaevoluciona 10 veces.",
+  "reward": "Rare Candy ×3"
+ },
+ {
+  "id": "B37",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Teraaficionado",
+  "desc": "Teracristaliza 10 veces.",
+  "reward": "Rare Candy ×3"
+ },
+ {
+  "id": "B38",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Dinaaficionado",
+  "desc": "Usa el Dinamax 10 veces.",
+  "reward": "Rare Candy ×3"
+ },
+ {
+  "id": "B39",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Aficionado Z",
+  "desc": "Usa 10 movimientos Z.",
+  "reward": "Rare Candy ×3"
+ },
+ {
+  "id": "B40",
+  "cat": "B",
+  "tier": "S",
+  "hidden": false,
+  "name": "Estados alterados",
+  "desc": "Paraliza, quema, duerme o envenena a 500 Pokémon en total.",
+  "reward": "Toxic Orb ×1"
+ },
+ {
+  "id": "T01",
+  "cat": "T",
+  "tier": "B",
+  "hidden": false,
+  "name": "Creciendo",
+  "desc": "Sube un Pokémon a nivel 25.",
+  "reward": "Exp Candy S ×5"
+ },
+ {
+  "id": "T02",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Veterano",
+  "desc": "Sube un Pokémon a nivel 50.",
+  "reward": "Exp Candy M ×5"
+ },
+ {
+  "id": "T03",
+  "cat": "T",
+  "tier": "G",
+  "hidden": false,
+  "name": "Nivel máximo",
+  "desc": "Sube un Pokémon a nivel 100.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "T04",
+  "cat": "T",
+  "tier": "P",
+  "hidden": false,
+  "name": "Equipo de leyenda",
+  "desc": "Ten 6 Pokémon de nivel 100 en el equipo.",
+  "reward": "Título “Entrenador de élite”"
+ },
+ {
+  "id": "T05",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Equipo sólido",
+  "desc": "Ten 6 Pokémon de nivel 50 o más en el equipo.",
+  "reward": "Exp Candy L ×3"
+ },
+ {
+  "id": "T06",
+  "cat": "T",
+  "tier": "B",
+  "hidden": false,
+  "name": "¡Está evolucionando!",
+  "desc": "Evoluciona un Pokémon.",
+  "reward": "Rare Candy ×1"
+ },
+ {
+  "id": "T07",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Evolucionista",
+  "desc": "Evoluciona 50 Pokémon.",
+  "reward": "Shiny Stone ×1"
+ },
+ {
+  "id": "T08",
+  "cat": "T",
+  "tier": "G",
+  "hidden": false,
+  "name": "Teoría de la evolución",
+  "desc": "Evoluciona 150 Pokémon.",
+  "reward": "Rare Candy ×10"
+ },
+ {
+  "id": "T09",
+  "cat": "T",
+  "tier": "B",
+  "hidden": false,
+  "name": "Frescor mentolado",
+  "desc": "Usa una menta.",
+  "reward": "Jolly Mint ×1"
+ },
+ {
+  "id": "T10",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Esfuerzo total",
+  "desc": "Ten en el equipo un Pokémon con 510 EV.",
+  "reward": "Power Weight ×1"
+ },
+ {
+  "id": "T11",
+  "cat": "T",
+  "tier": "G",
+  "hidden": false,
+  "name": "Perfección",
+  "desc": "Ten en el equipo un Pokémon con los 6 IV a 31.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "T12",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Mejores amigos",
+  "desc": "Lleva a un Pokémon a la amistad máxima.",
+  "reward": "Soothe Bell ×1"
+ },
+ {
+  "id": "T13",
+  "cat": "T",
+  "tier": "G",
+  "hidden": false,
+  "name": "Amistad total",
+  "desc": "Ten 6 Pokémon con amistad máxima en el equipo.",
+  "reward": "Luxury Ball ×10"
+ },
+ {
+  "id": "T14",
+  "cat": "T",
+  "tier": "B",
+  "hidden": false,
+  "name": "Otra habilidad",
+  "desc": "Usa una Cápsula o un Parche Habilidad.",
+  "reward": "Ability Capsule ×1"
+ },
+ {
+  "id": "T15",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Goloso",
+  "desc": "Usa 100 Caramelos EXP.",
+  "reward": "Exp Candy Xl ×3"
+ },
+ {
+  "id": "T16",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Atajo",
+  "desc": "Usa 50 Caramelos raros.",
+  "reward": "Rare Candy ×10"
+ },
+ {
+  "id": "T17",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Vitaminas",
+  "desc": "Usa 50 vitaminas.",
+  "reward": "Rare Candy ×5"
+ },
+ {
+  "id": "T18",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Entrenamiento extremo",
+  "desc": "Usa el Entrenamiento extremo.",
+  "reward": "Bottle Cap ×2"
+ },
+ {
+  "id": "T19",
+  "cat": "T",
+  "tier": "G",
+  "hidden": false,
+  "name": "Más allá del límite",
+  "desc": "Usa el Entrenamiento extremo 20 veces.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "T20",
+  "cat": "T",
+  "tier": "B",
+  "hidden": false,
+  "name": "Virus amistoso",
+  "desc": "Ten un Pokémon con Pokérus en el equipo.",
+  "reward": "Pp Up ×1"
+ },
+ {
+  "id": "T21",
+  "cat": "T",
+  "tier": "S",
+  "hidden": false,
+  "name": "Especialista en EV",
+  "desc": "Ten un Pokémon con 252 EV en una estadística.",
+  "reward": "Power Bracer ×1"
+ },
+ {
+  "id": "E01",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Bosque Verde",
+  "desc": "Visita Bosque Verde.",
+  "reward": "Potion ×5"
+ },
+ {
+  "id": "E02",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Monte Moon",
+  "desc": "Visita Monte Moon.",
+  "reward": "Moon Stone ×1"
+ },
+ {
+  "id": "E03",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Cueva Diglett",
+  "desc": "Visita Cueva Diglett.",
+  "reward": "Soft Sand ×1"
+ },
+ {
+  "id": "E04",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Túnel Roca",
+  "desc": "Visita Túnel Roca.",
+  "reward": "Hard Stone ×1"
+ },
+ {
+  "id": "E05",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Torre Pokémon",
+  "desc": "Visita Torre Pokémon.",
+  "reward": "Cleanse Tag ×1"
+ },
+ {
+  "id": "E06",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Central de Energía",
+  "desc": "Visita Central de Energía.",
+  "reward": "Magnet ×1"
+ },
+ {
+  "id": "E07",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Zona Safari",
+  "desc": "Visita Zona Safari.",
+  "reward": "Safari Ball ×30"
+ },
+ {
+  "id": "E08",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Islas Espuma",
+  "desc": "Visita Islas Espuma.",
+  "reward": "Never Melt Ice ×1"
+ },
+ {
+  "id": "E09",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Mansión Pokémon",
+  "desc": "Visita Mansión Pokémon.",
+  "reward": "Fire Stone ×1"
+ },
+ {
+  "id": "E10",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Calle Victoria",
+  "desc": "Visita Calle Victoria.",
+  "reward": "Max Revive ×2"
+ },
+ {
+  "id": "E11",
+  "cat": "E",
+  "tier": "G",
+  "hidden": false,
+  "name": "Cueva Celeste",
+  "desc": "Visita Cueva Celeste.",
+  "reward": "Ultra Ball ×10"
+ },
+ {
+  "id": "E12",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Monte Ascuas",
+  "desc": "Visita Monte Ascuas.",
+  "reward": "Charcoal ×1"
+ },
+ {
+  "id": "E13",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Bosque Baya",
+  "desc": "Visita Bosque Baya.",
+  "reward": "Sitrus Berry ×3"
+ },
+ {
+  "id": "E14",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Cueva Helada",
+  "desc": "Visita Cueva Helada.",
+  "reward": "Ice Stone ×1"
+ },
+ {
+  "id": "E15",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Cueva Perdida",
+  "desc": "Visita Cueva Perdida.",
+  "reward": "Spell Tag ×1"
+ },
+ {
+  "id": "E16",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Arbusto Patrón",
+  "desc": "Visita Arbusto Patrón.",
+  "reward": "Silver Powder ×1"
+ },
+ {
+  "id": "E17",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Cueva Cambiante",
+  "desc": "Visita Cueva Cambiante.",
+  "reward": "Ultra Ball ×5"
+ },
+ {
+  "id": "E18",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Torre Entrenador",
+  "desc": "Visita Torre Entrenador.",
+  "reward": "Pp Up ×2"
+ },
+ {
+  "id": "E19",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Viajero de Kanto",
+  "desc": "Visita todas las ciudades y pueblos de Kanto.",
+  "reward": "Max Repel ×10"
+ },
+ {
+  "id": "E20",
+  "cat": "E",
+  "tier": "G",
+  "hidden": false,
+  "name": "Las Islas Sete",
+  "desc": "Visita las siete Islas Sete.",
+  "reward": "Exp Charm ×1"
+ },
+ {
+  "id": "E21",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Buen paso",
+  "desc": "Camina 10.000 pasos.",
+  "reward": "Nugget ×1"
+ },
+ {
+  "id": "E22",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Maratón",
+  "desc": "Camina 50.000 pasos.",
+  "reward": "Big Nugget ×1"
+ },
+ {
+  "id": "E23",
+  "cat": "E",
+  "tier": "G",
+  "hidden": false,
+  "name": "La vuelta al mundo",
+  "desc": "Camina 200.000 pasos.",
+  "reward": "Big Nugget ×5"
+ },
+ {
+  "id": "E24",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Buen olfato",
+  "desc": "Encuentra 10 objetos ocultos.",
+  "reward": "Nugget ×1"
+ },
+ {
+  "id": "E25",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Detector humano",
+  "desc": "Encuentra 60 objetos ocultos.",
+  "reward": "Iron Ball ×1"
+ },
+ {
+  "id": "E26",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Saltarín",
+  "desc": "Salta 100 bordillos.",
+  "reward": "Quick Claw ×1"
+ },
+ {
+  "id": "E27",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Cortador",
+  "desc": "Usa Corte 50 veces.",
+  "reward": "Sharp Beak ×1"
+ },
+ {
+  "id": "E28",
+  "cat": "E",
+  "tier": "S",
+  "hidden": false,
+  "name": "Rompedor",
+  "desc": "Usa Golpe Roca 50 veces.",
+  "reward": "Hard Stone ×1"
+ },
+ {
+  "id": "E29",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Pueblo Paleta",
+  "desc": "Visita Pueblo Paleta.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E30",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Ciudad Verde",
+  "desc": "Visita Ciudad Verde.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E31",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Ciudad Plateada",
+  "desc": "Visita Ciudad Plateada.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E32",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Ciudad Celeste",
+  "desc": "Visita Ciudad Celeste.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E33",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Ciudad Carmín",
+  "desc": "Visita Ciudad Carmín.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E34",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Pueblo Lavanda",
+  "desc": "Visita Pueblo Lavanda.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E35",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Ciudad Azulona",
+  "desc": "Visita Ciudad Azulona.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E36",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Ciudad Fucsia",
+  "desc": "Visita Ciudad Fucsia.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E37",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Ciudad Azafrán",
+  "desc": "Visita Ciudad Azafrán.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E38",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Isla Canela",
+  "desc": "Visita Isla Canela.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E39",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Meseta Añil",
+  "desc": "Visita Meseta Añil.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E40",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Isla Prima",
+  "desc": "Visita Isla Prima.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E41",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Isla Secunda",
+  "desc": "Visita Isla Secunda.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E42",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Isla Tera",
+  "desc": "Visita Isla Tera.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E43",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Isla Cuarta",
+  "desc": "Visita Isla Cuarta.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E44",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Isla Quinta",
+  "desc": "Visita Isla Quinta.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E45",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Isla Sexta",
+  "desc": "Visita Isla Sexta.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E46",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Rumbo a Isla Séptima",
+  "desc": "Visita Isla Séptima.",
+  "reward": "Potion ×2"
+ },
+ {
+  "id": "E47",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a Túnel Norte-Sur",
+  "desc": "Visita el Túnel Norte-Sur.",
+  "reward": "Repel ×3"
+ },
+ {
+  "id": "E48",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a Túnel Este-Oeste",
+  "desc": "Visita el Túnel Este-Oeste.",
+  "reward": "Repel ×3"
+ },
+ {
+  "id": "E49",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a S.S. Anne",
+  "desc": "Visita el S.S. Anne.",
+  "reward": "Great Ball ×3"
+ },
+ {
+  "id": "E50",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a Escondite Rocket",
+  "desc": "Visita el Escondite Rocket.",
+  "reward": "Black Glasses ×1"
+ },
+ {
+  "id": "E51",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a Silph S.A.",
+  "desc": "Visita Silph S.A..",
+  "reward": "Ultra Ball ×3"
+ },
+ {
+  "id": "E52",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a la Liga Pokémon",
+  "desc": "Visita la Liga Pokémon.",
+  "reward": "Full Restore ×2"
+ },
+ {
+  "id": "E53",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a Almacén Rocket",
+  "desc": "Visita el Almacén Rocket.",
+  "reward": "Ultra Ball ×3"
+ },
+ {
+  "id": "E54",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a Hoyo Punteado",
+  "desc": "Visita el Hoyo Punteado.",
+  "reward": "Pp Up ×1"
+ },
+ {
+  "id": "E55",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a Túnel Dunsparce",
+  "desc": "Visita el Túnel Dunsparce.",
+  "reward": "Nugget ×1"
+ },
+ {
+  "id": "E56",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a la Cámara Monean",
+  "desc": "Visita la Cámara Monean.",
+  "reward": "Ultra Ball ×3"
+ },
+ {
+  "id": "E57",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a Cañón Sevault",
+  "desc": "Visita el Cañón Sevault.",
+  "reward": "Nugget ×1"
+ },
+ {
+  "id": "E58",
+  "cat": "E",
+  "tier": "B",
+  "hidden": false,
+  "name": "Visita a Centro de la Ruta 10",
+  "desc": "Visita el Centro de la Ruta 10.",
+  "reward": "Potion ×3"
+ },
+ {
+  "id": "E59",
+  "cat": "E",
+  "tier": "P",
+  "hidden": false,
+  "name": "Medio millón de pasos",
+  "desc": "Camina 500.000 pasos.",
+  "reward": "Título “Trotamundos”"
+ },
+ {
+  "id": "K01",
+  "cat": "K",
+  "tier": "B",
+  "hidden": false,
+  "name": "¡Un huevo!",
+  "desc": "Eclosiona tu primer huevo.",
+  "reward": "Lucky Egg ×1"
+ },
+ {
+  "id": "K02",
+  "cat": "K",
+  "tier": "S",
+  "hidden": false,
+  "name": "Criador",
+  "desc": "Eclosiona 50 huevos.",
+  "reward": "Oval Charm ×1"
+ },
+ {
+  "id": "K03",
+  "cat": "K",
+  "tier": "S",
+  "hidden": false,
+  "name": "Cien huevos",
+  "desc": "Eclosiona 100 huevos.",
+  "reward": "Destiny Knot ×1"
+ },
+ {
+  "id": "K04",
+  "cat": "K",
+  "tier": "G",
+  "hidden": false,
+  "name": "Granja Pokémon",
+  "desc": "Eclosiona 500 huevos.",
+  "reward": "Título “Criador experto”"
+ },
+ {
+  "id": "K05",
+  "cat": "K",
+  "tier": "B",
+  "hidden": false,
+  "name": "Guardería abierta",
+  "desc": "Usa la Guardería.",
+  "reward": "Everstone ×1"
+ },
+ {
+  "id": "K06",
+  "cat": "K",
+  "tier": "S",
+  "hidden": false,
+  "name": "Clientela fija",
+  "desc": "Usa la Guardería 20 veces.",
+  "reward": "Power Anklet ×1"
+ },
+ {
+  "id": "O01",
+  "cat": "O",
+  "tier": "B",
+  "hidden": false,
+  "name": "Ahorros",
+  "desc": "Ten 10.000 ¥.",
+  "reward": "Nugget ×1"
+ },
+ {
+  "id": "O02",
+  "cat": "O",
+  "tier": "S",
+  "hidden": false,
+  "name": "Rico",
+  "desc": "Ten 100.000 ¥.",
+  "reward": "Amulet Coin ×1"
+ },
+ {
+  "id": "O03",
+  "cat": "O",
+  "tier": "G",
+  "hidden": false,
+  "name": "Millonario",
+  "desc": "Ten 999.999 ¥.",
+  "reward": "Título “Magnate”"
+ },
+ {
+  "id": "O04",
+  "cat": "O",
+  "tier": "B",
+  "hidden": false,
+  "name": "De compras",
+  "desc": "Compra en tiendas 20 veces.",
+  "reward": "Premier Ball ×10"
+ },
+ {
+  "id": "O05",
+  "cat": "O",
+  "tier": "S",
+  "hidden": false,
+  "name": "Buen cliente",
+  "desc": "Compra en tiendas 200 veces.",
+  "reward": "Big Nugget ×1"
+ },
+ {
+  "id": "O06",
+  "cat": "O",
+  "tier": "B",
+  "hidden": false,
+  "name": "Primera megapiedra",
+  "desc": "Consigue una megapiedra de un guardián.",
+  "reward": "Omni Cell ×1"
+ },
+ {
+  "id": "O07",
+  "cat": "O",
+  "tier": "S",
+  "hidden": false,
+  "name": "Coleccionista mega",
+  "desc": "Consigue 12 megapiedras de guardianes.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "O08",
+  "cat": "O",
+  "tier": "G",
+  "hidden": false,
+  "name": "Megacolección",
+  "desc": "Consigue las 24 megapiedras de los guardianes.",
+  "reward": "Título “Guardián de las piedras”"
+ },
+ {
+  "id": "O09",
+  "cat": "O",
+  "tier": "B",
+  "hidden": false,
+  "name": "Primer cristal",
+  "desc": "Consigue un cristal Z de un desafío.",
+  "reward": "Rare Candy ×2"
+ },
+ {
+  "id": "O10",
+  "cat": "O",
+  "tier": "S",
+  "hidden": false,
+  "name": "Medio camino Z",
+  "desc": "Supera 9 desafíos Z.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "O11",
+  "cat": "O",
+  "tier": "G",
+  "hidden": false,
+  "name": "Coleccionista Z",
+  "desc": "Supera los 18 desafíos Z.",
+  "reward": "Título “Gran capitán”"
+ },
+ {
+  "id": "O12",
+  "cat": "O",
+  "tier": "S",
+  "hidden": false,
+  "name": "Herbolario",
+  "desc": "Usa 10 mentas.",
+  "reward": "Bottle Cap ×2"
+ },
+ {
+  "id": "O13",
+  "cat": "O",
+  "tier": "G",
+  "hidden": false,
+  "name": "Piedras preciosas",
+  "desc": "Ten las diez piedras evolutivas a la vez.",
+  "reward": "Big Nugget ×2"
+ },
+ {
+  "id": "O14",
+  "cat": "O",
+  "tier": "S",
+  "hidden": false,
+  "name": "Amuletos",
+  "desc": "Consigue el Amuleto Oval, el Amuleto Captura y el Amuleto EXP.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "O15",
+  "cat": "O",
+  "tier": "P",
+  "hidden": false,
+  "name": "Amuleto Iris",
+  "desc": "Consigue el Amuleto Iris.",
+  "reward": "Título “Coleccionista”"
+ },
+ {
+  "id": "X01",
+  "cat": "X",
+  "tier": "B",
+  "hidden": false,
+  "name": "Anillo despierto",
+  "desc": "Instala tu primer módulo en el Omni Ring.",
+  "reward": "Rare Candy ×1"
+ },
+ {
+  "id": "X02",
+  "cat": "X",
+  "tier": "G",
+  "hidden": false,
+  "name": "Anillo completo",
+  "desc": "Instala los cuatro módulos en el Omni Ring.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "X03",
+  "cat": "X",
+  "tier": "S",
+  "hidden": false,
+  "name": "Batería llena",
+  "desc": "Lleva el Omni Ring a 9 cargas.",
+  "reward": "Max Elixir ×3"
+ },
+ {
+  "id": "X04",
+  "cat": "X",
+  "tier": "B",
+  "hidden": false,
+  "name": "Intercambio Prodigio",
+  "desc": "Haz tu primer Intercambio Prodigio.",
+  "reward": "Rare Candy ×1"
+ },
+ {
+  "id": "X05",
+  "cat": "X",
+  "tier": "S",
+  "hidden": false,
+  "name": "Caja sorpresa",
+  "desc": "Haz 30 Intercambios Prodigio.",
+  "reward": "Bottle Cap ×2"
+ },
+ {
+  "id": "X06",
+  "cat": "X",
+  "tier": "G",
+  "hidden": false,
+  "name": "Prodigio brillante",
+  "desc": "Recibe un variocolor en un Intercambio Prodigio.",
+  "reward": "Luxury Ball ×10"
+ },
+ {
+  "id": "X07",
+  "cat": "X",
+  "tier": "B",
+  "hidden": false,
+  "name": "Botiquín",
+  "desc": "Usa el Botiquín 20 veces.",
+  "reward": "Full Restore ×3"
+ },
+ {
+  "id": "X08",
+  "cat": "X",
+  "tier": "B",
+  "hidden": false,
+  "name": "Llave maestra",
+  "desc": "Cambia una clave del Key System.",
+  "reward": "Potion ×3"
+ },
+ {
+  "id": "X09",
+  "cat": "X",
+  "tier": "S",
+  "hidden": false,
+  "name": "Retador",
+  "desc": "Juega en dificultad Reto.",
+  "reward": "Pp Max ×1"
+ },
+ {
+  "id": "X10",
+  "cat": "X",
+  "tier": "B",
+  "hidden": false,
+  "name": "Búsqueda",
+  "desc": "Busca 10 Pokémon con el DexNav.",
+  "reward": "Great Ball ×5"
+ },
+ {
+  "id": "X11",
+  "cat": "X",
+  "tier": "S",
+  "hidden": false,
+  "name": "Investigador de campo",
+  "desc": "Busca 200 Pokémon con el DexNav.",
+  "reward": "Ultra Ball ×10"
+ },
+ {
+  "id": "X12",
+  "cat": "X",
+  "tier": "G",
+  "hidden": false,
+  "name": "Experto en una especie",
+  "desc": "Llega a nivel de búsqueda 100 con una especie.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "X13",
+  "cat": "X",
+  "tier": "S",
+  "hidden": false,
+  "name": "Premios de Oak",
+  "desc": "Recibe 4 premios de la Pokédex.",
+  "reward": "Ultra Ball ×10"
+ },
+ {
+  "id": "X14",
+  "cat": "X",
+  "tier": "G",
+  "hidden": false,
+  "name": "Todos los premios de Oak",
+  "desc": "Recibe los 8 premios de la Pokédex.",
+  "reward": "Título “Ayudante de Oak”"
+ },
+ {
+  "id": "R01",
+  "cat": "R",
+  "tier": "P",
+  "hidden": false,
+  "name": "Modo Reto",
+  "desc": "Entra en el Salón de la Fama en dificultad Reto.",
+  "reward": "Título “Retador”"
+ },
+ {
+  "id": "R02",
+  "cat": "R",
+  "tier": "P",
+  "hidden": false,
+  "name": "El elegido",
+  "desc": "Entra en el Salón de la Fama con un solo Pokémon.",
+  "reward": "Título “Solitario”"
+ },
+ {
+  "id": "R03",
+  "cat": "R",
+  "tier": "P",
+  "hidden": false,
+  "name": "Contrarreloj",
+  "desc": "Entra en el Salón de la Fama en menos de 8 horas.",
+  "reward": "Título “Speedrunner”"
+ },
+ {
+  "id": "R04",
+  "cat": "R",
+  "tier": "P",
+  "hidden": false,
+  "name": "Rayo humano",
+  "desc": "Entra en el Salón de la Fama en menos de 4 horas.",
+  "reward": "Título “Relámpago”"
+ },
+ {
+  "id": "R05",
+  "cat": "R",
+  "tier": "G",
+  "hidden": false,
+  "name": "Monotipo",
+  "desc": "Entra en el Salón de la Fama con un equipo que comparte un tipo.",
+  "reward": "Título “Especialista”"
+ },
+ {
+  "id": "R06",
+  "cat": "R",
+  "tier": "P",
+  "hidden": false,
+  "name": "Bajo nivel",
+  "desc": "Entra en el Salón de la Fama sin Pokémon por encima del nivel 55.",
+  "reward": "Título “Minimalista”"
+ },
+ {
+  "id": "R07",
+  "cat": "R",
+  "tier": "P",
+  "hidden": false,
+  "name": "Sin evolucionar",
+  "desc": "Entra en el Salón de la Fama sin haber evolucionado ningún Pokémon.",
+  "reward": "Eviolite ×1"
+ },
+ {
+  "id": "R08",
+  "cat": "R",
+  "tier": "P",
+  "hidden": false,
+  "name": "Pocas capturas",
+  "desc": "Entra en el Salón de la Fama habiendo capturado 6 Pokémon o menos.",
+  "reward": "Título “Austero”"
+ },
+ {
+  "id": "R09",
+  "cat": "R",
+  "tier": "G",
+  "hidden": false,
+  "name": "Seis gemelos",
+  "desc": "Entra en el Salón de la Fama con 6 Pokémon de la misma especie.",
+  "reward": "Título “Gemelos”"
+ },
+ {
+  "id": "R10",
+  "cat": "R",
+  "tier": "G",
+  "hidden": false,
+  "name": "Generación nueva",
+  "desc": "Entra en el Salón de la Fama solo con Pokémon de la Gen 5 en adelante.",
+  "reward": "Título “Moderno”"
+ },
+ {
+  "id": "R11",
+  "cat": "R",
+  "tier": "P",
+  "hidden": false,
+  "name": "Sin Centros",
+  "desc": "Entra en el Salón de la Fama sin haber curado en un Centro Pokémon.",
+  "reward": "Título “Superviviente”"
+ },
+ {
+  "id": "R12",
+  "cat": "R",
+  "tier": "G",
+  "hidden": false,
+  "name": "Contra todo pronóstico",
+  "desc": "Entra en el Salón de la Fama con un Magikarp en el equipo.",
+  "reward": "Título “Salpicador”"
+ },
+ {
+  "id": "Z01",
+  "cat": "Z",
+  "tier": "B",
+  "hidden": true,
+  "name": "¡Salpicadura!",
+  "desc": "Usa Salpicadura 100 veces.",
+  "reward": "Rare Candy ×1"
+ },
+ {
+  "id": "Z02",
+  "cat": "Z",
+  "tier": "B",
+  "hidden": true,
+  "name": "Último recurso",
+  "desc": "Usa Forcejeo 20 veces.",
+  "reward": "Leppa Berry ×5"
+ },
+ {
+  "id": "Z03",
+  "cat": "Z",
+  "tier": "B",
+  "hidden": true,
+  "name": "Retirada estratégica",
+  "desc": "Huye de 100 combates.",
+  "reward": "Smoke Ball ×1"
+ },
+ {
+  "id": "Z04",
+  "cat": "Z",
+  "tier": "B",
+  "hidden": true,
+  "name": "¡Bonk!",
+  "desc": "Choca contra una pared 500 veces.",
+  "reward": "Rocky Helmet ×1"
+ },
+ {
+  "id": "Z05",
+  "cat": "Z",
+  "tier": "S",
+  "hidden": true,
+  "name": "Despedidas",
+  "desc": "Libera a 50 Pokémon.",
+  "reward": "Luxury Ball ×5"
+ },
+ {
+  "id": "Z06",
+  "cat": "Z",
+  "tier": "S",
+  "hidden": true,
+  "name": "¡Siete, siete, siete!",
+  "desc": "Saca el premio gordo en las tragaperras.",
+  "reward": "Big Nugget ×1"
+ },
+ {
+  "id": "Z07",
+  "cat": "Z",
+  "tier": "B",
+  "hidden": true,
+  "name": "Lector empedernido",
+  "desc": "Mira la Pokédex 200 veces.",
+  "reward": "Great Ball ×5"
+ },
+ {
+  "id": "Z08",
+  "cat": "Z",
+  "tier": "B",
+  "hidden": true,
+  "name": "Ahorrador",
+  "desc": "Guarda la partida 100 veces.",
+  "reward": "Nugget ×1"
+ },
+ {
+  "id": "Z09",
+  "cat": "Z",
+  "tier": "S",
+  "hidden": true,
+  "name": "Cliente del Centro",
+  "desc": "Cura en un Centro Pokémon 100 veces.",
+  "reward": "Full Restore ×3"
+ },
+ {
+  "id": "Z10",
+  "cat": "Z",
+  "tier": "G",
+  "hidden": true,
+  "name": "Prodigio legendario",
+  "desc": "Recibe un legendario en un Intercambio Prodigio.",
+  "reward": "Master Ball ×1"
+ },
+ {
+  "id": "Z11",
+  "cat": "Z",
+  "tier": "S",
+  "hidden": true,
+  "name": "El récord del Magikarp",
+  "desc": "Consigue el Magikarp récord.",
+  "reward": "Dragon Scale ×1"
+ },
+ {
+  "id": "Z12",
+  "cat": "Z",
+  "tier": "G",
+  "hidden": true,
+  "name": "Fiel a sí mismo",
+  "desc": "Ten un Magikarp de nivel 100.",
+  "reward": "Mystic Water ×1"
+ },
+ {
+  "id": "M01",
+  "cat": "M",
+  "tier": "B",
+  "hidden": false,
+  "name": "Primeros pasos",
+  "desc": "Desbloquea el 10 % de los logros.",
+  "reward": "Great Ball ×10"
+ },
+ {
+  "id": "M02",
+  "cat": "M",
+  "tier": "S",
+  "hidden": false,
+  "name": "Un cuarto",
+  "desc": "Desbloquea el 25 % de los logros.",
+  "reward": "Rare Candy ×5"
+ },
+ {
+  "id": "M03",
+  "cat": "M",
+  "tier": "G",
+  "hidden": false,
+  "name": "La mitad",
+  "desc": "Desbloquea el 50 % de los logros.",
+  "reward": "Gold Bottle Cap ×1"
+ },
+ {
+  "id": "M04",
+  "cat": "M",
+  "tier": "G",
+  "hidden": false,
+  "name": "Tres cuartos",
+  "desc": "Desbloquea el 75 % de los logros.",
+  "reward": "Master Ball ×2"
+ },
+ {
+  "id": "M05",
+  "cat": "M",
+  "tier": "P",
+  "hidden": false,
+  "name": "Casi perfecto",
+  "desc": "Desbloquea el 90 % de los logros.",
+  "reward": "Gold Bottle Cap ×3"
+ },
+ {
+  "id": "M06",
+  "cat": "M",
+  "tier": "G",
+  "hidden": false,
+  "name": "Todo el bronce",
+  "desc": "Desbloquea todos los logros de bronce.",
+  "reward": "Big Nugget ×3"
+ },
+ {
+  "id": "M07",
+  "cat": "M",
+  "tier": "G",
+  "hidden": false,
+  "name": "Sin secretos",
+  "desc": "Desbloquea todos los logros ocultos.",
+  "reward": "Título “Detective”"
+ },
+ {
+  "id": "M08",
+  "cat": "M",
+  "tier": "P",
+  "hidden": false,
+  "name": "Maestro de logros",
+  "desc": "Desbloquea todos los demás logros.",
+  "reward": "Título “Maestro de logros”"
+ }
+]

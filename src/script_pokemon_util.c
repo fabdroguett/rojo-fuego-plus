@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "key_system.h"
 #include "save.h"
 #include "omni_ring.h"
@@ -538,6 +539,10 @@ void Script_DoWonderTrade(void)
     u32 level = GetMonData(mon, MON_DATA_LEVEL);
     enum Species species;
 
+    // 1% of trades bring a legendary or Mythical Pokémon
+    bool32 allowLegendary = (Random() % 100) == 0;
+    bool32 isLegendary = FALSE;
+
     gSpecialVar_Result = FALSE;
     if (GetMonData(mon, MON_DATA_IS_EGG))
         return;
@@ -547,8 +552,9 @@ void Script_DoWonderTrade(void)
         const struct SpeciesInfo *info;
         species = 1 + Random() % (NUM_SPECIES - 1);
         info = &gSpeciesInfo[species];
-        if (!IsSpeciesEnabled(species) || info->isSubLegendary || info->isRestrictedLegendary || info->isMythical
-         || info->isUltraBeast || info->isParadox || info->isMegaEvolution || info->isGigantamax || info->isTotem
+        isLegendary = info->isSubLegendary || info->isRestrictedLegendary || info->isMythical || info->isUltraBeast;
+        if (!IsSpeciesEnabled(species) || (isLegendary != allowLegendary)
+         || info->isParadox || info->isMegaEvolution || info->isGigantamax || info->isTotem
          || info->isPrimalReversion || info->isUltraBurst || info->isTeraForm)
             species = SPECIES_NONE;
         // Only base forms and regional forms; other forms only exist in battle or are cosmetic
@@ -560,6 +566,11 @@ void Script_DoWonderTrade(void)
     CreateMon(mon, species, level, Random32(), OTID_STRUCT_PLAYER_ID);
     GiveMonInitialMoveset(mon);
     StringCopy(gStringVar1, GetSpeciesName(species));
+    Achievement_AddToCounter(ACH_COUNTER_WONDER_TRADES, 1);
+    if (GetMonData(mon, MON_DATA_IS_SHINY))
+        Achievement_AddToCounter(ACH_COUNTER_WONDER_SHINY, 1);
+    if (isLegendary)
+        Achievement_AddToCounter(ACH_COUNTER_WONDER_LEGEND, 1);
     gSpecialVar_Result = TRUE;
 }
 #endif
@@ -588,7 +599,10 @@ void Script_HyperTrainChosenMon(void)
         trained = TRUE;
     }
     if (trained)
+    {
         CalculateMonStats(mon);
+        Achievement_AddToCounter(ACH_COUNTER_HYPER_TRAININGS, 1);
+    }
     gSpecialVar_Result = trained;
 }
 

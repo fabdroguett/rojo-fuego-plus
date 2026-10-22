@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "agb_flash.h"
 #include "gba/flash_internal.h"
 #include "fieldmap.h"
@@ -726,6 +727,7 @@ u8 HandleSavingData(u8 saveType)
             EraseFlashSector(i);
         // fallthrough
     case SAVE_HALL_OF_FAME:
+        Achievements_OnHallOfFame(); // Rojo Fuego+: before the party and flags are written
         if (GetGameStat(GAME_STAT_ENTERED_HOF) < 999)
             IncrementGameStat(GAME_STAT_ENTERED_HOF);
 

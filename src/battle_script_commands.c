@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_message.h"
@@ -1271,6 +1272,8 @@ static void Cmd_critmessage(void)
 
             TryInitializeTrainerSlideEnemyLandsFirstCriticalHit(gBattlerTarget);
             TryInitializeTrainerSlidePlayerLandsFirstCriticalHit(gBattlerTarget);
+            if (IsOnPlayerSide(gBattlerAttacker) && !IsOnPlayerSide(gBattlerTarget))
+                Achievement_AddToCounter(ACH_COUNTER_CRITS, 1); // Rojo Fuego+
         }
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
@@ -1369,7 +1372,11 @@ static void Cmd_resultmessage(void)
             if (stringId == STRINGID_SUPEREFFECTIVE
                  || stringId == STRINGID_SUPEREFFECTIVEONDEF
                  || stringId == STRINGID_SUPEREFFECTIVETWOFOES)
+            {
                 TryInitializeTrainerSlideLandsFirstSuperEffectiveHit(gBattlerTarget, gBattlerAttacker);
+                if (IsOnPlayerSide(gBattlerAttacker) && !IsOnPlayerSide(gBattlerTarget))
+                    Achievement_AddToCounter(ACH_COUNTER_SUPER_EFFECTIVE, 1); // Rojo Fuego+
+            }
             if (stringId == STRINGID_SUPEREFFECTIVETWOFOES || stringId == STRINGID_SUPEREFFECTIVEONDEF)
                 TryInitializeTrainerSlideLandsFirstSuperEffectiveHit(GetPartnerBattler(gBattlerTarget),gBattlerAttacker);
             break;
@@ -1694,6 +1701,22 @@ void SetNonVolatileStatus(enum BattlerId battlerAtk, enum BattlerId effectBattle
         CancelMultiTurnMoves(effectBattler);
 
     BattleScriptPush(battleScript);
+
+    // Rojo Fuego+ achievements: statuses the player's Pokémon inflict on foes
+    if (IsOnPlayerSide(battlerAtk) && !IsOnPlayerSide(effectBattler))
+    {
+        switch (effect)
+        {
+        case MOVE_EFFECT_SLEEP:     Achievement_AddToCounter(ACH_COUNTER_SLEPT, 1); break;
+        case MOVE_EFFECT_POISON:
+        case MOVE_EFFECT_TOXIC:     Achievement_AddToCounter(ACH_COUNTER_POISONED, 1); break;
+        case MOVE_EFFECT_BURN:      Achievement_AddToCounter(ACH_COUNTER_BURNED, 1); break;
+        case MOVE_EFFECT_FREEZE:
+        case MOVE_EFFECT_FROSTBITE: Achievement_AddToCounter(ACH_COUNTER_FROZEN, 1); break;
+        case MOVE_EFFECT_PARALYSIS: Achievement_AddToCounter(ACH_COUNTER_PARALYZED, 1); break;
+        default: break;
+        }
+    }
 
     switch (effect)
     {
@@ -7799,6 +7822,8 @@ static void FinalizeCapture(void)
         gBattleSpritesDataPtr->animationData->isCriticalCapture = TRUE;
         gBattleSpritesDataPtr->animationData->criticalCaptureSuccess = TRUE;
     }
+    if (gBattleSpritesDataPtr->animationData->isCriticalCapture)
+        Achievement_AddToCounter(ACH_COUNTER_CRIT_CAPTURES, 1); // Rojo Fuego+
 
     BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER, BALL_3_SHAKES_SUCCESS);
     MarkBattlerForControllerExec(gBattlerAttacker);

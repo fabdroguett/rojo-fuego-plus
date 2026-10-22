@@ -1060,6 +1060,7 @@ enum __attribute__((packed)) Item
     ITEM_OMNI_MODULE_TERA = 878,
     ITEM_OMNI_CELL = 879,
     ITEM_POKE_VIAL = 880, // Rojo Fuego+ portable heal
+    ITEM_ACHIEVEMENT_LOG = 881, // Rojo Fuego+ achievements menu
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,

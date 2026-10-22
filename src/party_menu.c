@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "malloc.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -4914,6 +4915,14 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     else
     {
         gPartyMenuUseExitCallback = TRUE;
+        switch (item) // Rojo Fuego+ achievements
+        {
+        case ITEM_HP_UP: case ITEM_PROTEIN: case ITEM_IRON: case ITEM_CALCIUM: case ITEM_ZINC: case ITEM_CARBOS:
+            Achievement_AddToCounter(ACH_COUNTER_VITAMINS, 1);
+            break;
+        default:
+            break;
+        }
         if (!IsItemFlute(item))
         {
             PlaySE(SE_USE_ITEM);
@@ -5023,6 +5032,7 @@ void Task_AbilityCapsule(u8 taskId)
     case 5:
         SetMonData(&gParties[B_TRAINER_PLAYER][tMonId], MON_DATA_ABILITY_NUM, &tAbilityNum);
         RemoveBagItem(gSpecialVar_ItemId, 1);
+        Achievement_AddToCounter(ACH_COUNTER_CAPSULES, 1); // Rojo Fuego+
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
     }
@@ -5108,6 +5118,7 @@ void Task_AbilityPatch(u8 taskId)
     case 5:
         SetMonData(&gParties[B_TRAINER_PLAYER][tMonId], MON_DATA_ABILITY_NUM, &tAbilityNum);
         RemoveBagItem(gSpecialVar_ItemId, 1);
+        Achievement_AddToCounter(ACH_COUNTER_CAPSULES, 1); // Rojo Fuego+
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
     }
@@ -5209,6 +5220,7 @@ void Task_Mint(u8 taskId)
         SetMonData(&gParties[B_TRAINER_PLAYER][tMonId], MON_DATA_HIDDEN_NATURE, &tNewNature);
         CalculateMonStats(&gParties[B_TRAINER_PLAYER][tMonId]);
         RemoveBagItem(gSpecialVar_ItemId, 1);
+        Achievement_AddToCounter(ACH_COUNTER_MINTS, 1); // Rojo Fuego+
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
     }
@@ -5837,6 +5849,8 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         cannotUseEffect = TRUE;
     }
     PlaySE(SE_SELECT);
+    if (!cannotUseEffect) // Rojo Fuego+ achievements
+        Achievement_AddToCounter(*itemPtr == ITEM_RARE_CANDY ? ACH_COUNTER_RARE_CANDIES : ACH_COUNTER_EXP_CANDIES, 1);
     if (cannotUseEffect)
     {
         enum Species targetSpecies = SPECIES_NONE;

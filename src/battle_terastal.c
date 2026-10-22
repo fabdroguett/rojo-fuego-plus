@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "omni_ring.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -28,6 +29,7 @@ void ActivateTera(enum BattlerId battler)
     if (IsOnPlayerSide(battler)
         && !(IsDoubleBattle() && !IsPartnerMonFromSameTrainer(battler)))
     {
+        Achievements_OnGimmickUsed(ACH_COUNTER_TERA);
         if (OmniRing_HasMechanic(OMNI_TERA))
             OmniRing_UseCharge();
         else if (IsTeraOrbCharged())

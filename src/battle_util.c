@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "omni_ring.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -8634,6 +8635,8 @@ void ActivateMegaEvolution(enum BattlerId battler)
     gLastUsedItem = gBattleMons[battler].item;
     SetActiveGimmick(battler, GIMMICK_MEGA);
     SetGimmickAsActivated(battler, GIMMICK_MEGA);
+    if (IsOnPlayerSide(battler))
+        Achievements_OnGimmickUsed(ACH_COUNTER_MEGA); // Rojo Fuego+
 
     if (TryBattleFormChange(battler, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE, ability))
     {

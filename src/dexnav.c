@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle_main.h"
 #include "battle_setup.h"
 #include "bg.h"
@@ -1586,6 +1587,8 @@ static void CreateDexNavWildMon(enum Species species, u8 potential, u8 level, u8
 {
     struct Pokemon *mon = &gParties[B_TRAINER_OPPONENT_A][0];
     u32 isShiny = sDexNavSearchDataPtr->isShiny;
+
+    gRfDexNavBattle = TRUE; // Rojo Fuego+ achievements
 
     // Rojo Fuego+: build the exact individual that the details panel showed
     ZeroEnemyPartyMons();

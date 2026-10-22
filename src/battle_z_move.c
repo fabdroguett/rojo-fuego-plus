@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "omni_ring.h"
 #include "malloc.h"
 #include "battle.h"
@@ -163,6 +164,8 @@ enum Move GetUsableZMove(enum BattlerId battler, enum Move move)
 void ActivateZMove(enum BattlerId battler)
 {
     SetActiveGimmick(battler, GIMMICK_Z_MOVE);
+    if (IsOnPlayerSide(battler))
+        Achievements_OnGimmickUsed(ACH_COUNTER_ZMOVE); // Rojo Fuego+
 }
 
 bool32 IsViableZMove(enum BattlerId battler, enum Move move)

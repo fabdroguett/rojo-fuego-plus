@@ -7420,6 +7420,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_MaxPotion,
     },
 
+    [ITEM_ACHIEVEMENT_LOG] =
+    {
+        .name = ITEM_NAME("Logros"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Registra tus logros\n"
+            "y guarda sus\n"
+            "recompensas."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_AchievementLog,
+        .iconPic = gItemIcon_FameChecker,
+        .iconPalette = gItemIconPalette_FameChecker,
+    },
+
 // Gems
 #if I_PRICE >= GEN_9
     #define GEM_PRICE 15000

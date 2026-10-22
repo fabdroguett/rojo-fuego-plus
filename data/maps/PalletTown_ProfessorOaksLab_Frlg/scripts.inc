@@ -662,6 +662,7 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	giveitem ITEM_OMNI_RING
 	giveitem ITEM_POKE_VIAL
 	giveitem ITEM_POKEMON_BOX_LINK
+	giveitem ITEM_ACHIEVEMENT_LOG
 	msgbox PalletTown_ProfessorOaksLab_Text_OakExplainCatching
 	famechecker FAMECHECKER_OAK, 1
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCompleteMonGuideWasMyDream

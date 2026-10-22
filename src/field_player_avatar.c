@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "key_system.h"
 #include "main.h"
 #include "bike.h"
@@ -1466,6 +1467,7 @@ static void PlayCollisionSoundIfNotFacingWarp(enum Direction direction)
                 return;
         }
         PlaySE(SE_WALL_HIT);
+        Achievement_AddToCounter(ACH_COUNTER_WALL_BUMPS, 1); // Rojo Fuego+
     }
 }
 

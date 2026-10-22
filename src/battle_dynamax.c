@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "omni_ring.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -184,9 +185,12 @@ void ActivateDynamax(enum BattlerId battler)
     gBattleStruct->dynamax.dynamaxTurns[battler] = DYNAMAX_TURNS_COUNT;
 
     // Rojo Fuego+: Dynamaxing through the Omni Ring spends one of its charges
-    if (IsOnPlayerSide(battler) && !(IsDoubleBattle() && !IsPartnerMonFromSameTrainer(battler))
-        && OmniRing_HasMechanic(OMNI_DYNAMAX))
-        OmniRing_UseCharge();
+    if (IsOnPlayerSide(battler) && !(IsDoubleBattle() && !IsPartnerMonFromSameTrainer(battler)))
+    {
+        Achievements_OnGimmickUsed(ACH_COUNTER_DYNAMAX);
+        if (OmniRing_HasMechanic(OMNI_DYNAMAX))
+            OmniRing_UseCharge();
+    }
 
     // Substitute is removed upon Dynamaxing.
     gBattleMons[battler].volatiles.substitute = FALSE;

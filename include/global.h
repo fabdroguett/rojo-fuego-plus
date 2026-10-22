@@ -23,6 +23,7 @@
 #include "constants/easy_chat.h"
 #include "constants/trainer_hill.h"
 #include "constants/trainer_tower.h"
+#include "constants/rf_achievements.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "config/save.h"
@@ -275,6 +276,12 @@ struct SaveBlock3
     u8 omniRingMaxCharges;
     u8 omniRingCharges;
     u8 pokeVialCharges; // Rojo Fuego+ Botiquín uses left; refilled at Pokémon Centers
+    // Rojo Fuego+ achievements (src/achievements.c)
+    u8 achievementsUnlocked[ACH_BYTES];
+    u8 achievementsClaimed[ACH_BYTES];
+    u16 achievementCounters[ACH_COUNTER_COUNT];
+    u32 achievementBallKinds; // one bit per Poké Ball used for a capture
+    u8 achievementGimmicks;   // one bit per gimmick used: Mega, Tera, Dynamax, Z-Move
 #if APRICORN_TREE_COUNT > 0
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "malloc.h"
 #include "bg.h"
 #include "data.h"
@@ -6555,6 +6556,7 @@ static void ReleaseMon(void)
     enum Item item = ITEM_NONE;
 
     DestroyReleaseMonIcon();
+    Achievement_AddToCounter(ACH_COUNTER_RELEASES, 1); // Rojo Fuego+
     if (sIsMonBeingMoved)
     {
         sIsMonBeingMoved = FALSE;

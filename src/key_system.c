@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "event_data.h"
 #include "event_object_lock.h"
 #include "item.h"
@@ -258,6 +259,8 @@ void KeySystem_OpenMenu(void)
     u8 taskId = CreateTask(Task_KeySystemMenu, 80);
     u32 i;
 
+    Achievements_HideNotification(); // it uses the same part of the screen
+
     for (i = 0; i < KEY_COUNT; i++)
     {
         sKeyListItems[i].name = sKeyInfo[i].name;
@@ -318,6 +321,7 @@ static void Task_KeySystemMenu(u8 taskId)
         break;
     default:
         PlaySE(SE_SELECT);
+        Achievement_AddToCounter(ACH_COUNTER_KEYS_CHANGED, 1);
         if (input == KEY_DIFFICULTY)
             gSaveBlock3Ptr->keySystemDifficulty = (KeySystem_GetDifficulty() + 1) % KEY_DIFFICULTY_COUNT;
         else

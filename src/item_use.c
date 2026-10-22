@@ -1,5 +1,6 @@
 #include "global.h"
 #include "item_use.h"
+#include "achievements.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_stat_change.h"
@@ -312,6 +313,30 @@ void ItemUseOutOfBattle_OmniUpgrade(u8 taskId)
     DisplayItemMessage(taskId, FONT_NORMAL, message, CloseItemMessage);
 }
 
+// Rojo Fuego+ Logros: opens the achievements menu on the field, like the Town Map
+static void ItemUseOnFieldCB_AchievementLog(u8 taskId)
+{
+    LockPlayerFieldControls();
+    FreezeObjectEvents();
+    Achievements_OpenMenu();
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_AchievementLog(u8 taskId)
+{
+    if (!gTasks[taskId].tUsingRegisteredKeyItem)
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_AchievementLog;
+        gFieldCallback = FieldCB_UseItemOnField;
+        gBagMenu->newScreenCallback = CB2_ReturnToField;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
+    else
+    {
+        gTasks[taskId].func = ItemUseOnFieldCB_AchievementLog;
+    }
+}
+
 // Rojo Fuego+ Botiquín: heals the party a few times between Pokémon Center visits
 void ItemUseOutOfBattle_PokeVial(u8 taskId)
 {
@@ -329,6 +354,7 @@ void ItemUseOutOfBattle_PokeVial(u8 taskId)
         HealPlayerParty();
         // HealPlayerParty refills both like a Pokémon Center would; the Botiquín must not
         gSaveBlock3Ptr->pokeVialCharges = vialCharges - 1;
+        Achievement_AddToCounter(ACH_COUNTER_VIAL_USES, 1);
         gSaveBlock3Ptr->omniRingCharges = omniCharges;
         StringCopy(gStringVar4, COMPOUND_STRING("¡Tu equipo se ha recuperado!\nUsos restantes: "));
         ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), vialCharges - 1, STR_CONV_MODE_LEFT_ALIGN, 1);
