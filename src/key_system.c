@@ -2,18 +2,23 @@
 #include "achievements.h"
 #include "event_data.h"
 #include "event_object_lock.h"
+#include "field_effect.h"
+#include "fieldmap.h"
 #include "item.h"
 #include "key_system.h"
 #include "list_menu.h"
 #include "main.h"
 #include "menu.h"
 #include "pokemon.h"
+#include "random.h"
 #include "script.h"
 #include "sound.h"
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
 #include "window.h"
+#include "constants/event_bg.h"
+#include "constants/field_effects.h"
 #include "constants/songs.h"
 
 // Rojo Fuego+ Key System: a menu reached from the Start menu that turns game settings on and off.
@@ -60,6 +65,8 @@ static const u8 sText_Autosave[] = _("Autoguardado");
 static const u8 sText_AutosaveDesc[] = _("Guarda la partida sola cada vez\nque curas en un Centro Pokémon.");
 static const u8 sText_BattleSpeed[] = _("Combates rápidos");
 static const u8 sText_BattleSpeedDesc[] = _("Animaciones y textos de combate\nvan al doble de velocidad.");
+static const u8 sText_HiddenSparkle[] = _("Objetos ocultos brillan");
+static const u8 sText_HiddenSparkleDesc[] = _("Los objetos ocultos cercanos\nbrillan de vez en cuando.");
 static const u8 sText_Difficulty[] = _("Dificultad");
 static const u8 sText_DifficultyDesc[] = _("Fácil baja y Reto sube el nivel\nde los Pokémon de entrenadores.");
 
@@ -86,6 +93,7 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_AUTORUN]                = {sText_Autorun,      sText_AutorunDesc},
     [KEY_AUTOSAVE]               = {sText_Autosave,     sText_AutosaveDesc},
     [KEY_BATTLE_SPEED]           = {sText_BattleSpeed,  sText_BattleSpeedDesc},
+    [KEY_HIDDEN_SPARKLE]         = {sText_HiddenSparkle, sText_HiddenSparkleDesc},
     [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
 };
 
@@ -176,6 +184,44 @@ u32 KeySystem_ScaleTrainerLevel(u32 level)
     default:
         return level;
     }
+}
+
+#define SPARKLE_INTERVAL_FRAMES 100
+#define SPARKLE_RANGE_X 7
+#define SPARKLE_RANGE_Y 5
+
+// Rojo Fuego+ hidden item sparkle: every few seconds one hidden item near the player, not picked up
+// yet, sparkles on its tile. Called every overworld frame.
+void KeySystem_UpdateHiddenItemSparkle(void)
+{
+    static EWRAM_DATA u8 sTimer = 0;
+    const struct MapEvents *events = gMapHeader.events;
+    u32 i, candidates = 0, chosen = 0;
+
+    if (!KeySystem_IsOn(KEY_HIDDEN_SPARKLE) || ArePlayerFieldControlsLocked() || ++sTimer < SPARKLE_INTERVAL_FRAMES)
+        return;
+    sTimer = 0;
+    if (events == NULL)
+        return;
+
+    // Pick one nearby hidden item at random in a single pass
+    for (i = 0; i < events->bgEventCount; i++)
+    {
+        const struct BgEvent *bg = &events->bgEvents[i];
+        if (bg->kind != BG_EVENT_HIDDEN_ITEM || FlagGet(FLAG_HIDDEN_ITEMS_START + bg->bgUnion.hiddenItem.hiddenItemId))
+            continue;
+        if (abs(bg->x - gSaveBlock1Ptr->pos.x) > SPARKLE_RANGE_X || abs(bg->y - gSaveBlock1Ptr->pos.y) > SPARKLE_RANGE_Y)
+            continue;
+        if (Random() % ++candidates == 0)
+            chosen = i;
+    }
+    if (candidates == 0)
+        return;
+
+    gFieldEffectArguments[0] = events->bgEvents[chosen].x;
+    gFieldEffectArguments[1] = events->bgEvents[chosen].y;
+    gFieldEffectArguments[2] = 1;
+    FieldEffectStart(FLDEFF_SPARKLE);
 }
 
 // HM-free field moves: the badge check stays in the scripts; here the player needs the HM itself

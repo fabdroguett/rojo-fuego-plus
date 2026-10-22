@@ -10,5 +10,6 @@ bool32 KeySystem_CanUseFieldMoveWithoutMon(enum Move move);
 s32 KeySystem_GetFieldMoveUser(enum Move move);
 u32 KeySystem_ScaleTrainerLevel(u32 level);
 void KeySystem_OpenMenu(void);
+void KeySystem_UpdateHiddenItemSparkle(void);
 
 #endif // GUARD_KEY_SYSTEM_H

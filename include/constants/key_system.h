@@ -20,6 +20,7 @@ enum KeySystemKey
     KEY_AUTORUN,
     KEY_AUTOSAVE,
     KEY_BATTLE_SPEED,
+    KEY_HIDDEN_SPARKLE,
     KEY_DIFFICULTY, // Not an on/off key: cycles through enum KeyDifficulty
     KEY_COUNT
 };

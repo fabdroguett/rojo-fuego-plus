@@ -1,5 +1,6 @@
 #include "global.h"
 #include "achievements.h"
+#include "key_system.h"
 #include "overworld.h"
 #include "battle_pyramid.h"
 #include "battle_setup.h"
@@ -1684,6 +1685,7 @@ void CB1_Overworld(void)
     {
         DoCB1_Overworld(gMain.newKeys, gMain.heldKeys);
         Achievements_OverworldUpdate(); // Rojo Fuego+
+        KeySystem_UpdateHiddenItemSparkle();
     }
 }
 
