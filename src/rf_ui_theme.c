@@ -24,7 +24,7 @@ void RFUI_LoadPalette(u32 bank, bool32 dark)
 }
 
 // Standard text windows share indices 1 (paper), 2 (ink), 3 (shadow).
-// Keep the remaining indices: scripts use them for coloured words and borders.
+// Preserve coloured words (4..9); border indices (10..15) share the night surfaces.
 void RFUI_LoadWindowPalette(const u16 *palette, u32 offset)
 {
     u16 colors[16];
@@ -36,6 +36,14 @@ void RFUI_LoadWindowPalette(const u16 *palette, u32 offset)
         colors[1] = RF_UI_NIGHT_PANEL;
         colors[2] = RF_UI_NIGHT_TEXT;
         colors[3] = RF_UI_NIGHT_SHADOW;
+        // Border-only indices: avoid white rails and fluorescent message-box trim.
+        // Keep ink (2) and the script's semantic word colours (4..9) intact.
+        colors[10] = RF_UI_NIGHT_EDGE;
+        colors[11] = RF_UI_NIGHT_PANEL;
+        colors[12] = RF_UI_NIGHT_EDGE;
+        colors[13] = RF_UI_NIGHT_EDGE;
+        colors[14] = RF_UI_NIGHT_EDGE;
+        colors[15] = RF_UI_NIGHT_SHADOW;
     }
     LoadPalette(colors, offset, sizeof(colors));
 }

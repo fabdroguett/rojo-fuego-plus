@@ -55,6 +55,8 @@ cases = {
 
 selected = sys.argv[1:] or list(cases)
 cases["party-slow"] = cases["party"]
+cases["voiceover"] = ("Tutorial", "run 500\nhold A 1\nrun 240\n"
+                      + callback("RFUiFixture_Voiceover") + "run 240\n" + shot("voiceover"))
 cases["faint"] = ("Faint", "run 500\nhold A 1\nrun 240\nhold A 1\nrun 60\nhold A 1\nrun 600\n" + shot("faint-prompt")
                   + "mash A 120\nrun 240\n" + shot("faint-party")
                   + "hold B 1\nrun 30\nhold D 1\nrun 10\nhold A 1\nrun 30\n" + shot("faint-action")

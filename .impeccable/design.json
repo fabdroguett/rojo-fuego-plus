@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-22T17:40:00.232906+00:00",
+  "generatedAt": "2026-10-22T17:54:50.462457+00:00",
   "title": "Design System: Rojo Fuego Plus",
   "extensions": {
     "colorMeta": {
@@ -113,7 +113,7 @@
       "previewPolicy": "HTML snippets are schematic documentation only. No browser controls, hover behavior, inferred typography or synthesized tonal ramps are native design tokens.",
       "verification": {
         "disposition": "ship",
-        "captures": 44,
+        "captures": 46,
         "directory": ".impeccable/review",
         "captureSize": [
           480,
@@ -134,12 +134,41 @@
           "quests",
           "keys",
           "PC",
-          "party opening/cancellation/switching"
+          "party opening/cancellation/switching",
+          "Oak voiceover dialogue"
         ],
-        "persistence": "pass",
-        "fidelity": "match",
-        "materialFindings": [],
-        "limits": "Bounded review; not every game interface redesigned or verified. mGBA fast-mode party opening/cancellation/switching passes after defensive battle fix; original reported freeze not reproduced."
+        "limits": "Bounded review; not every game interface redesigned or verified. mGBA fast-mode party opening/cancellation/switching passes after defensive battle fix; original reported freeze not reproduced. Voiceover captures are synthetic fixture evidence. Final disposition covers the bounded 46-capture review and documentation correction.",
+        "priorReview": {
+          "captures": 44,
+          "disposition": "ship",
+          "persistence": "pass",
+          "fidelity": "match",
+          "materialFindings": []
+        },
+        "borderReview": "Dark Oak dialogue border and bright text confirmed. Final bounded review: sole scored documentation persistence fix resolved; no outstanding scored fixes.",
+        "outstandingScoredFixes": []
+      },
+      "windowPaletteMapping": {
+        "dark": {
+          "1": "night-panel",
+          "2": "night-text",
+          "3": "night-shadow",
+          "10": "night-edge",
+          "11": "night-panel",
+          "12": "night-edge",
+          "13": "night-edge",
+          "14": "night-edge",
+          "15": "night-shadow"
+        },
+        "preservedSemanticWordIndices": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "day": "unchanged"
       }
     }
   },
@@ -182,7 +211,7 @@
   ],
   "narrative": {
     "northStar": "Kanto field instrument",
-    "overview": "A compact field instrument for Kanto: dense, readable native screens with ink surfaces, warm text, restrained FireRed selection accents and unchanged Pokémon imagery. The visual system belongs to a 240 × 160 Game Boy Advance framebuffer, not a browser.\n\nThis is a source-derived record of the implemented design. DexNav receives a new full-canvas composition; other principal interfaces receive targeted palette mappings. The bounded finish review accepted all 44 required dark/light native captures in `.impeccable/review` with a ship disposition, persistence pass, fidelity match and no remaining material findings. These 480 × 320 captures display the fixed 240 × 160 framebuffer at integer 2× scale. Dark mode is the product default with persistent Key System opt-out. This does not establish that every game interface was redesigned or verified.",
+    "overview": "A compact field instrument for Kanto: dense, readable native screens with ink surfaces, warm text, restrained FireRed selection accents and unchanged Pokémon imagery. The visual system belongs to a 240 × 160 Game Boy Advance framebuffer, not a browser.\n\nThis is a source-derived record of the implemented design. DexNav receives a new full-canvas composition; other principal interfaces receive targeted palette mappings. The earlier bounded finish review accepted 44 required dark/light native captures with a ship disposition, persistence pass and fidelity match. After the user requested darker Oak dialogue borders, `.impeccable/review` now contains 46 valid captures including dark/light voiceover. The fresh bounded review confirms the dark border and bright text meet that request and records a ship disposition: the sole scored documentation persistence fix is resolved, with no outstanding scored fixes. The voiceover captures are synthetic fixture evidence; this verdict does not certify every interface or reproduce the original freeze. These 480 × 320 captures display the fixed 240 × 160 framebuffer at integer 2× scale. Dark mode is the product default with persistent Key System opt-out. This does not establish that every game interface was redesigned or verified.",
     "keyCharacteristics": [
       "Native bitmap type and indexed palettes.",
       "Selection and actions remain explicit at 240 × 160.",

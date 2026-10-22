@@ -8,11 +8,13 @@ For a disposable build in the running `rojo-fuego-check` Docker container:
 
 1. Copy `ui_fixture.c` into `/work/src/rf_ui_fixture.c`.
 2. Link `pokefirered.gba` with normal `LDFLAGS` plus `-u RFUiFixture_<name>` for
-   `Wild Faint DexNav DexNavLight DexNavEmpty DexNavUnknown Summary Bag Quests Keys PC Day Slow`.
+   `Wild Faint Tutorial Voiceover DexNav DexNavLight DexNavEmpty DexNavUnknown Summary Bag Quests Keys PC Day Slow`.
    Keep the normal map, memory-usage and garbage-collection flags.
 3. Build `harness.c` against libmgba as `/tmp/rf-mgba-harness`.
 4. Run `python tools/rojo_fuego/test/capture_ui.py`, then explicitly
    `python tools/rojo_fuego/test/capture_ui.py party-slow faint`.
+   `python tools/rojo_fuego/test/capture_ui.py voiceover` exercises the same Oak tutorial frame
+   and text path as the user's white-border screenshot, with synthetic battle data.
 
 Captures, scripts and memory-read logs go into ignored `build_artifacts/ui/`.
 The scripts resolve addresses from the current ELF. Never reuse savestates after rebuilding.

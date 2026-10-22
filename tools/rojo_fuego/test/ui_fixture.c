@@ -18,6 +18,23 @@
 #include "rf_quests.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "battle.h"
+#include "battle_controllers.h"
+#include "battle_message.h"
+#include "battle_main.h"
+#include "text_window.h"
+#include "palette.h"
+#include "bg.h"
+
+void RFUiFixture_Voiceover(void)
+{
+    SetMainCallback1(NULL);
+    LoadMessageBoxGfx(0, 0x30, BG_PLTT_ID(7));
+    BtlCtrl_DrawVoiceoverMessageFrame();
+    BattlePutTextOnWindow(COMPOUND_STRING("You've never had a POKEMON battle\nbefore, have you?"), B_WIN_OAK_OLD_MAN);
+    CopyBgTilemapBufferToVram(0);
+    SetMainCallback2(BattleMainCB2);
+}
 
 void RFUiFixture_Day(void)
 {
@@ -40,6 +57,12 @@ void RFUiFixture_Wild(void)
     CreateWildMon(SPECIES_PIDGEY, 5);
     SetMainCallback2(CB2_Overworld);
     BattleSetup_StartWildBattle();
+}
+
+void RFUiFixture_Tutorial(void)
+{
+    RFUiFixture_Wild();
+    gBattleTypeFlags |= BATTLE_TYPE_FIRST_BATTLE;
 }
 
 void RFUiFixture_Faint(void)

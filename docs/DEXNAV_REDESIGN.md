@@ -9,6 +9,8 @@ THESIS: a compact field instrument for Kanto; preserve Pokémon sprites and nati
 replacing the striped, label-heavy backdrop and overlapping route/control header.
 OWN-WORLD: ink surfaces, warm white text, restrained FireRed accent, mint capture marks; light mode
 uses pale slate surfaces with dark ink. Native bitmap type, no glow or gradients.
+User refinement: dark dialogue frames use muted charcoal edges, without white rails or fluorescent trim;
+the user's Oak tutorial screenshot is the reference for this correction. Keep the text bright.
 STORY: locate encounter group, choose Pokémon, read search readiness and search; collection is one
 START press away, with time navigation visible in that view.
 FIRST VIEWPORT: 240x160; title/route at top, encounters on the left, data on the right, a continuous
@@ -26,10 +28,14 @@ must be absent from the delivered ROM. Existing asset sprites retain project pro
 
 ## Result
 
-Independent finish review: `ship`, no material findings, 44 native captures in both themes.
+Initial finish review: `ship` over 44 native captures in both themes. Following the user's
+white-border feedback, the fresh review checked 46 captures including both tutorial frames;
+the visual result passed, and the subsequent verdict scored the sole documentation fix resolved
+with disposition `ship`. This verdict covers that bounded review and its scored fix.
 The fixed GBA viewport is captured at integer 2x scale (480x320). The scope covers DexNav and
 its collection/registration/filter/empty/unseen states, summary pages, bag, quests, Key System,
-PC and party flows. This is not a claim that every minigame or menu was rebuilt.
+PC, party and the synthetic Oak tutorial frame/text path. The tutorial fixture uses Pidgey/Bulbasaur
+without reading the user's save. This is not a claim that every minigame or menu was rebuilt.
 Additional runtime checks pass opening/cancelling/switching at normal and fast speed and replacing
 a fainted Pokémon in both themes. The active party index is checked after each switch.
 The original user's freeze did not reproduce; the callback guard prevents an identified unsafe

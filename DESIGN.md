@@ -45,7 +45,7 @@ components:
 
 A compact field instrument for Kanto: dense, readable native screens with ink surfaces, warm text, restrained FireRed selection accents and unchanged Pokémon imagery. The visual system belongs to a 240 × 160 Game Boy Advance framebuffer, not a browser.
 
-This is a source-derived record of the implemented design. DexNav receives a new full-canvas composition; other principal interfaces receive targeted palette mappings. The bounded finish review accepted all 44 required dark/light native captures in `.impeccable/review` with a ship disposition, persistence pass, fidelity match and no remaining material findings. These 480 × 320 captures display the fixed 240 × 160 framebuffer at integer 2× scale. Dark mode is the product default with persistent Key System opt-out. This does not establish that every game interface was redesigned or verified.
+This is a source-derived record of the implemented design. DexNav receives a new full-canvas composition; other principal interfaces receive targeted palette mappings. The earlier bounded finish review accepted 44 required dark/light native captures with a ship disposition, persistence pass and fidelity match. After the user requested darker Oak dialogue borders, `.impeccable/review` now contains 46 valid captures including dark/light voiceover. The fresh bounded review confirms the dark border and bright text meet that request and records a ship disposition: the sole scored documentation persistence fix is resolved, with no outstanding scored fixes. The voiceover captures are synthetic fixture evidence; this verdict does not certify every interface or reproduce the original freeze. These 480 × 320 captures display the fixed 240 × 160 framebuffer at integer 2× scale. Dark mode is the product default with persistent Key System opt-out. This does not establish that every game interface was redesigned or verified.
 
 **Key Characteristics:**
 - Native bitmap type and indexed palettes.
@@ -66,7 +66,7 @@ The frontmatter hex values are documentation previews of the canonical `RGB(r,g,
 
 **The Semantic Palette Rule.** Change UI surfaces through known indexed entries; preserve sprite, type, HP and status palettes.
 
-`RFUI_LoadWindowPalette` copies the incumbent palette and, only in dark mode, replaces indices 1, 2 and 3 with panel, text and shadow. It preserves other entries used for colored words and frames. Battle, bag, party, storage, summary and shop use dedicated indexed mappings, not a universal full-palette replacement.
+`RFUI_LoadWindowPalette` copies the incumbent palette and, only in dark mode, replaces indices 1, 2 and 3 with panel, text and shadow. It preserves semantic word colors at indices 4..9. Border entries 10, 12, 13 and 14 become edge, 11 becomes panel, and 15 becomes shadow, removing bright dialogue rails while retaining readable ink. Day palettes are unchanged. Battle, bag, party, storage, summary and shop use dedicated indexed mappings, not a universal full-palette replacement.
 
 ## Typography
 
@@ -102,7 +102,7 @@ Header identifies DexNav or roamer mode and right-aligns the route. The footer e
 
 ### Shared text windows and menus
 
-Message, standard, sign and selected user frames use the shared palette loader. Battle text/action menus, bag, party, storage, summary and shop contain targeted night mappings. Party mappings also handle palette entries copied when the cursor moves. These changes share material and contrast roles while retaining each interface's established structure. Reviewed native captures cover DexNav, collection, empty/unseen species, registration/filter, summary/stats/moves, bag, quests, keys, PC and party opening/cancellation/switching in dark and light modes. Schematic HTML previews in the sidecar remain documentation aids; the native captures are the visual evidence. The defensive battle handoff fix passes mGBA party opening/cancellation/switching checks with fast mode, but the original user-reported freeze was not reproduced, so it is not proven resolved by reproduction.
+Message, standard, sign and selected user frames use the shared palette loader. Battle text/action menus, bag, party, storage, summary and shop contain targeted night mappings. Party mappings also handle palette entries copied when the cursor moves. These changes share material and contrast roles while retaining each interface's established structure. Reviewed native captures cover DexNav, collection, empty/unseen species, registration/filter, summary/stats/moves, bag, quests, keys, PC, party opening/cancellation/switching and Oak voiceover dialogue in dark and light modes. Schematic HTML previews in the sidecar remain documentation aids; the native captures are the visual evidence. The defensive battle handoff fix passes mGBA party opening/cancellation/switching checks with fast mode, but the original user-reported freeze was not reproduced, so it is not proven resolved by reproduction.
 
 ## Do's and Don'ts
 

@@ -58,7 +58,7 @@ static void HideRoamerIcons(void)
         return;
     for (i = 0; i < ROAMER_COUNT; i++)
     {
-        if (sFieldRegionMapHandler->roamerIconSpriteIds[i] != SPRITE_NONE)
+        if (sFieldRegionMapHandler->roamerIconSpriteIds[i] < MAX_SPRITES)
             FreeAndDestroyMonIconSprite(&gSprites[sFieldRegionMapHandler->roamerIconSpriteIds[i]]);
         sFieldRegionMapHandler->roamerIconSpriteIds[i] = SPRITE_NONE;
     }
@@ -90,7 +90,10 @@ static void ToggleRoamerIcons(void)
         GetRoamerLocation(i, &mapGroup, &mapNum);
         GetRegionMapSecScreenPos(Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->regionMapSectionId, &x, &y);
         sFieldRegionMapHandler->roamerIconSpriteIds[i] = CreateMonIcon(roamer->species, SpriteCB_MonIcon, x, y - 4, 0, roamer->personality);
-        shown++;
+        if (sFieldRegionMapHandler->roamerIconSpriteIds[i] < MAX_SPRITES)
+            shown++;
+        else
+            sFieldRegionMapHandler->roamerIconSpriteIds[i] = SPRITE_NONE;
     }
     sFieldRegionMapHandler->roamerIconsShown = TRUE;
     if (shown == 0)
