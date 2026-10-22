@@ -1030,6 +1030,57 @@ u16 GetLocalWaterMon(void)
     return SPECIES_NONE;
 }
 
+// Rojo Fuego+ DexNav: chance (in %) that a land or water encounter on the current map is this species
+u32 GetCurrentMapWildMonEncounterPercent(enum Species species, enum WildPokemonArea area)
+{
+    static const u8 sLandSlotEnds[NUM_LAND_MONS_ENCOUNTER_SLOTS] =
+    {
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_0, ENCOUNTER_CHANCE_LAND_MONS_SLOT_1, ENCOUNTER_CHANCE_LAND_MONS_SLOT_2,
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_3, ENCOUNTER_CHANCE_LAND_MONS_SLOT_4, ENCOUNTER_CHANCE_LAND_MONS_SLOT_5,
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_6, ENCOUNTER_CHANCE_LAND_MONS_SLOT_7, ENCOUNTER_CHANCE_LAND_MONS_SLOT_8,
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_9, ENCOUNTER_CHANCE_LAND_MONS_SLOT_10, ENCOUNTER_CHANCE_LAND_MONS_SLOT_11,
+    };
+    static const u8 sWaterSlotEnds[NUM_WATER_MONS_ENCOUNTER_SLOTS] =
+    {
+        ENCOUNTER_CHANCE_WATER_MONS_SLOT_0, ENCOUNTER_CHANCE_WATER_MONS_SLOT_1, ENCOUNTER_CHANCE_WATER_MONS_SLOT_2,
+        ENCOUNTER_CHANCE_WATER_MONS_SLOT_3, ENCOUNTER_CHANCE_WATER_MONS_SLOT_4,
+    };
+    u32 headerId = GetCurrentMapWildMonHeaderId();
+    const struct WildPokemonInfo *info;
+    const u8 *slotEnds;
+    u32 i, slots, total, chance = 0;
+    enum TimeOfDay timeOfDay;
+
+    if (headerId == HEADER_NONE || (area != WILD_AREA_LAND && area != WILD_AREA_WATER))
+        return 0;
+
+    timeOfDay = GetTimeOfDayForEncounters(headerId, area);
+    if (area == WILD_AREA_LAND)
+    {
+        info = gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo;
+        slotEnds = sLandSlotEnds;
+        slots = NUM_LAND_MONS_ENCOUNTER_SLOTS;
+        total = ENCOUNTER_CHANCE_LAND_MONS_TOTAL;
+    }
+    else
+    {
+        info = gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo;
+        slotEnds = sWaterSlotEnds;
+        slots = NUM_WATER_MONS_ENCOUNTER_SLOTS;
+        total = ENCOUNTER_CHANCE_WATER_MONS_TOTAL;
+    }
+
+    if (info == NULL)
+        return 0;
+
+    for (i = 0; i < slots; i++)
+    {
+        if (info->wildPokemon[i].species == species)
+            chance += slotEnds[i] - (i == 0 ? 0 : slotEnds[i - 1]);
+    }
+    return chance * 100 / total;
+}
+
 bool8 UpdateRepelCounter(void)
 {
     u16 repelLureVar = VarGet(VAR_REPEL_STEP_COUNT);

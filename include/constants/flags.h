@@ -2436,6 +2436,14 @@
 
 #endif
 
+// Rojo Fuego+ mods. These unused slots exist in both the FRLG and Emerald flag lists.
+#define FLAG_EXP_ALL                FLAG_UNUSED_0x4A7
+#define FLAG_DEXNAV_GET             FLAG_UNUSED_0x4A8
+#define FLAG_DEXNAV_SEARCHING       FLAG_UNUSED_0x4A9
+#define FLAG_DEXNAV_DETECTOR_MODE   FLAG_UNUSED_0x4AA
+#define FLAG_POKE_RIDER             FLAG_UNUSED_0x4AB
+#define FLAG_DOWSING                FLAG_UNUSED_0x4AC
+
 #if TESTING
 #define TESTING_FLAGS_START                     0x5000
 #define TESTING_FLAG_SLEEP_CLAUSE               (TESTING_FLAGS_START + 0x0)

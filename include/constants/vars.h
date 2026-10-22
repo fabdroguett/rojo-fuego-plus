@@ -338,4 +338,15 @@
 #define TESTING_VAR_UNUSED_7                (TESTING_VARS_START + 0x7)
 #endif // TESTING
 
+// Rojo Fuego+ mods
+#if IS_FRLG
+#define VAR_DEXNAV_SPECIES          VAR_0x4029
+#define VAR_DEXNAV_STEP_COUNTER     VAR_0x402A
+#define VAR_DEXNAV_FILTER           VAR_0x402B
+#else
+#define VAR_DEXNAV_SPECIES          VAR_UNUSED_0x4083
+#define VAR_DEXNAV_STEP_COUNTER     VAR_UNUSED_0x408B
+#define VAR_DEXNAV_FILTER           VAR_UNUSED_0x4091
+#endif
+
 #endif // GUARD_CONSTANTS_VARS_H

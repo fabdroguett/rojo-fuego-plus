@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "event_data.h"
 #include "caps.h"
+#include "key_system.h"
 #include "pokemon.h"
 
 
@@ -9,6 +10,18 @@ u32 GetCurrentLevelCap(void)
 {
     static const u32 sLevelCapFlagMap[][2] =
     {
+#if IS_FRLG
+        // Ace levels of the Kanto Gym Leaders and the Champion
+        {FLAG_BADGE01_GET, 14},
+        {FLAG_BADGE02_GET, 21},
+        {FLAG_BADGE03_GET, 24},
+        {FLAG_BADGE04_GET, 29},
+        {FLAG_BADGE05_GET, 43},
+        {FLAG_BADGE06_GET, 43},
+        {FLAG_BADGE07_GET, 47},
+        {FLAG_BADGE08_GET, 50},
+        {FLAG_IS_CHAMPION, 63},
+#else
         {FLAG_BADGE01_GET, 15},
         {FLAG_BADGE02_GET, 19},
         {FLAG_BADGE03_GET, 24},
@@ -18,9 +31,13 @@ u32 GetCurrentLevelCap(void)
         {FLAG_BADGE07_GET, 42},
         {FLAG_BADGE08_GET, 46},
         {FLAG_IS_CHAMPION, 58},
+#endif
     };
 
     u32 i;
+
+    if (!KeySystem_IsOn(KEY_LEVEL_CAP))
+        return MAX_LEVEL;
 
     if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
     {

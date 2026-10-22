@@ -45,3 +45,11 @@ sText_LostSignal:
 
 sText_TooDark:
 	.string "It's too dark to search\nfor a Pokémon!$"
+
+EventScript_DexNavFilterNoMatch::
+	msgbox sText_DexNavFilterNoMatch, MSGBOX_SIGN
+	end
+
+sText_DexNavFilterNoMatch:
+	.string "El Pokémon de la zona no cumple\n"
+	.string "el filtro. ¡Vuelve a buscar!$"

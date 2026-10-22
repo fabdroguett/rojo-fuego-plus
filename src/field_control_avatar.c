@@ -1,4 +1,5 @@
 #include "global.h"
+#include "key_system.h"
 #include "battle_setup.h"
 #include "bike.h"
 #include "coord_event_weather.h"
@@ -232,6 +233,10 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     }
 
     if (input->tookStep && TryFindHiddenPokemon())
+        return TRUE;
+
+    // Rojo Fuego+: SELECT shows the DexNav details panel while a search is running
+    if (input->pressedSelectButton && DexNav_TryToggleDetails())
         return TRUE;
 
     if (input->pressedSelectButton && UseRegisteredKeyItemOnField() == TRUE)
@@ -894,10 +899,13 @@ void RestartWildEncounterImmunitySteps(void)
 
 static bool32 ShouldDisableRandomEncounters(void)
 {
+    // Rojo Fuego+: while the overworld encounters key is on, wild Pokémon only appear on the map
+    bool32 vanillaRandom = WE_VANILLA_RANDOM && !(WE_OW_ENCOUNTERS && KeySystem_IsOn(KEY_OW_ENCOUNTERS));
+
     if (FlagGet(WE_FLAG_NO_ENCOUNTER))
         return TRUE;
 
-    if (!WE_VANILLA_RANDOM && WE_OW_ENCOUNTERS)
+    if (!vanillaRandom && WE_OW_ENCOUNTERS)
     {
         if (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && !WE_OWE_BATTLE_PIKE)
             return FALSE;
@@ -906,7 +914,7 @@ static bool32 ShouldDisableRandomEncounters(void)
             return FALSE;
     }
 
-    return !WE_VANILLA_RANDOM;
+    return !vanillaRandom;
 }
 
 static bool8 CheckStandardWildEncounter(u16 metatileBehavior)

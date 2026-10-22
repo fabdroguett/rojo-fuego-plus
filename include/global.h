@@ -266,9 +266,10 @@ struct SaveBlock3
     u8 itemFlags[ITEM_FLAGS_COUNT];
 #endif
 #if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    u8 dexNavSearchLevels[NUM_SPECIES];
+    u8 dexNavSearchLevels[NATIONAL_DEX_COUNT + 1]; // Rojo Fuego+: indexed by National Dex number so it fits
 #endif
     u8 dexNavChain;
+    u32 keySystemOff; // Rojo Fuego+ Key System: one bit per key that the player turned off
 #if APRICORN_TREE_COUNT > 0
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif

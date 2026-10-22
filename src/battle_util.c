@@ -9086,7 +9086,7 @@ enum DamageCategory GetBattleMoveCategory(enum Move move)
     if (GetMoveCategory(move) == DAMAGE_CATEGORY_STATUS)
         return DAMAGE_CATEGORY_STATUS;
 
-    if (B_PHYSICAL_SPECIAL_SPLIT < GEN_4)
+    if (GetConfig(B_PHYSICAL_SPECIAL_SPLIT) < GEN_4)
     {
         if (inBattle)
             return gTypesInfo[GetBattleMoveType(move)].damageCategory;

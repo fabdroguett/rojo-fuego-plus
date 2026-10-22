@@ -52,6 +52,16 @@ enum EncounterType
 
 #define MON_LEVEL_NONEXISTENT   255 // If mon not in area GetEncounterLevel returns this to exit the search
 
+// Rojo Fuego+ hunter mode filters, stored in VAR_DEXNAV_FILTER
+enum DexNavFilter
+{
+    DEXNAV_FILTER_NONE,
+    DEXNAV_FILTER_SHINY,
+    DEXNAV_FILTER_HIDDEN_ABILITY,
+    DEXNAV_FILTER_THREE_STARS,
+    DEXNAV_FILTER_COUNT
+};
+
 // GUI tags
 #define ICON_PAL_TAG            56000
 #define ICON_GFX_TAG            55130
@@ -78,6 +88,7 @@ bool32 TryFindHiddenPokemon(void);
 u32 CalculateDexNavShinyRolls(void);
 void IncrementDexNavChain(void);
 bool32 OnStep_DexNavSearch(void);
+bool32 DexNav_TryToggleDetails(void);
 
 extern enum Species gDexNavSpecies;
 

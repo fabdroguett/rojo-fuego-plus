@@ -28,14 +28,17 @@
 #include "metatile_behavior.h"
 #include "move.h"
 #include "overworld.h"
+#include "ow_abilities.h"
 #include "palette.h"
 #include "party_menu.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "pokemon_storage_system.h"
 #include "pokemon_summary_screen.h"
 #include "random.h"
 #include "region_map.h"
+#include "roamer.h"
 #include "rtc.h"
 #include "scanline_effect.h"
 #include "script.h"
@@ -110,8 +113,14 @@ struct DexNavSearch
     u32 startingTime;
     u8 hiddenSearch:1;
     u8 isHiddenMon:1;
-    u8 unk:6;
+    u8 isShiny:1;
+    u8 unk:5;
     u16 palBuffer[16];
+    // Rojo Fuego+: the individual is decided when the search starts so the details panel can show it
+    u32 personality;
+    u8 ivs[NUM_STATS];
+    u8 detailsWindowId;
+    u8 detailsPage; // 0: closed, 1: this individual, 2: species, capture odds and your best one
 };
 
 struct DexNavGUI
@@ -521,8 +530,341 @@ static void DrawSearchWindow(enum Species species, u8 potential, bool8 hidden)
 
 #undef SEARCH_WINDOW_WIDTH
 
+//// Rojo Fuego+ details panel (SELECT while searching) ////
+#define SEARCH_WINDOW_WIDTH_DETAILS 28
+#define DETAILS_WINDOW_HEIGHT 10
+#define DETAILS_LINE(n)       ((n) * 13)
+
+static const u8 sText_Details_Shiny[] = _("¡VARIOCOLOR!");
+static const u8 sText_Details_NotShiny[] = _("No es variocolor");
+static const u8 sText_Details_ShinyOdds[] = _("Prob. shiny: 1/{STR_VAR_1}");
+static const u8 sText_Details_Nature[] = _("Naturaleza: {STR_VAR_1}");
+static const u8 sText_Details_HiddenPower[] = _("P. Oculto: {STR_VAR_1}");
+static const u8 sText_Details_Ability[] = _("Habilidad: {STR_VAR_1}");
+static const u8 sText_Details_HiddenAbility[] = _("Habilidad: {STR_VAR_1} (oculta)");
+static const u8 sText_Details_Male[] = _("♂");
+static const u8 sText_Details_Female[] = _("♀");
+static const u8 sText_Details_IVs[] = _("IV");
+static const u8 *const sText_Details_StatNames[NUM_STATS] =
+{
+    [STAT_HP]    = COMPOUND_STRING("PS"),
+    [STAT_ATK]   = COMPOUND_STRING("At"),
+    [STAT_DEF]   = COMPOUND_STRING("Df"),
+    [STAT_SPEED] = COMPOUND_STRING("Ve"),
+    [STAT_SPATK] = COMPOUND_STRING("AE"),
+    [STAT_SPDEF] = COMPOUND_STRING("DE"),
+};
+static const u8 sDetailsShinyFontColor[3] = {0, 2, 13};
+
+// Approximate odds shown to the player: base odds split across every reroll the game will make.
+// The 4% random DexNav bonus is left out since it is rolled per encounter.
+static u32 DexNavGetShinyOddsDenominator(void)
+{
+    u32 rolls = 1;
+    u8 chain = gSaveBlock3Ptr->dexNavChain;
+
+    if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+        rolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
+    if (LURE_STEP_COUNT != 0)
+        rolls += 1;
+    rolls += (chain >= 100) ? 10 : (chain >= 50) ? 5 : 0;
+
+    return (65536 / SHINY_ODDS) / rolls;
+}
+
+static enum Type DexNavGetHiddenPowerType(void)
+{
+    const u8 *ivs = sDexNavSearchDataPtr->ivs;
+    u32 typeBits = ((ivs[STAT_HP] & 1) << 0)
+                 | ((ivs[STAT_ATK] & 1) << 1)
+                 | ((ivs[STAT_DEF] & 1) << 2)
+                 | ((ivs[STAT_SPEED] & 1) << 3)
+                 | ((ivs[STAT_SPATK] & 1) << 4)
+                 | ((ivs[STAT_SPDEF] & 1) << 5);
+    u32 hpTypes[NUMBER_OF_MON_TYPES] = {0};
+    u32 i, hpTypeCount = 0;
+
+    for (i = 0; i < NUMBER_OF_MON_TYPES; i++)
+    {
+        if (gTypesInfo[i].isHiddenPowerType)
+            hpTypes[hpTypeCount++] = i;
+    }
+    return hpTypes[((hpTypeCount - 1) * typeBits) / 63];
+}
+
+static void DexNavPrintDetailsText(u8 windowId)
+{
+    enum Species species = sDexNavSearchDataPtr->species;
+    u32 personality = sDexNavSearchDataPtr->personality;
+    u32 i, x;
+    u8 gender;
+
+    // Line 0: shiny or not, and the current odds
+    if (sDexNavSearchDataPtr->isShiny)
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(0), sDetailsShinyFontColor, TEXT_SKIP_DRAW, sText_Details_Shiny);
+    else
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(0), sSearchFontColor, TEXT_SKIP_DRAW, sText_Details_NotShiny);
+    ConvertIntToDecimalStringN(gStringVar1, DexNavGetShinyOddsDenominator(), STR_CONV_MODE_LEFT_ALIGN, 5);
+    StringExpandPlaceholders(gStringVar4, sText_Details_ShinyOdds);
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 112, DETAILS_LINE(0), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+
+    // Line 1: nature, gender and Hidden Power type
+    StringCopy(gStringVar1, gNaturesInfo[GetNatureFromPersonality(personality)].name);
+    StringExpandPlaceholders(gStringVar4, sText_Details_Nature);
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(1), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+    gender = GetGenderFromSpeciesAndPersonality(species, personality);
+    if (gender == MON_MALE)
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, 92, DETAILS_LINE(1), sSearchFontColor, TEXT_SKIP_DRAW, sText_Details_Male);
+    else if (gender == MON_FEMALE)
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, 92, DETAILS_LINE(1), sSearchFontColor, TEXT_SKIP_DRAW, sText_Details_Female);
+    StringCopy(gStringVar1, gTypesInfo[DexNavGetHiddenPowerType()].name);
+    StringExpandPlaceholders(gStringVar4, sText_Details_HiddenPower);
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 112, DETAILS_LINE(1), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+
+    // Line 2: ability, marking the hidden one
+    StringCopy(gStringVar1, gAbilitiesInfo[GetAbilityBySpecies(species, sDexNavSearchDataPtr->abilityNum)].name);
+    StringExpandPlaceholders(gStringVar4, (sDexNavSearchDataPtr->abilityNum == 2) ? sText_Details_HiddenAbility : sText_Details_Ability);
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(2), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+
+    // Line 3: IVs, perfect ones in the shiny color
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(3), sSearchFontColor, TEXT_SKIP_DRAW, sText_Details_IVs);
+    for (i = 0, x = 16; i < NUM_STATS; i++, x += 34)
+    {
+        const u8 *color = (sDexNavSearchDataPtr->ivs[i] == MAX_PER_STAT_IVS) ? sDetailsShinyFontColor : sSearchFontColor;
+
+        StringCopy(gStringVar4, sText_Details_StatNames[i]);
+        ConvertIntToDecimalStringN(gStringVar1, sDexNavSearchDataPtr->ivs[i], STR_CONV_MODE_LEADING_ZEROS, 2);
+        StringAppend(gStringVar4, gStringVar1);
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, x, DETAILS_LINE(3), color, TEXT_SKIP_DRAW, gStringVar4);
+    }
+
+    // Lines 4-5: the four moves
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (sDexNavSearchDataPtr->moves[i] == MOVE_NONE)
+            continue;
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, (i % 2) * 104, DETAILS_LINE(4 + i / 2), sSearchFontColor, TEXT_SKIP_DRAW,
+                                     GetMoveName(sDexNavSearchDataPtr->moves[i]));
+    }
+}
+
+static const u8 sText_Details_Types[] = _("Tipo: {STR_VAR_1}");
+static const u8 sText_Details_Appears[] = _("Aparece: {STR_VAR_1}%");
+static const u8 sText_Details_AppearsHidden[] = _("Aparece: oculto");
+static const u8 sText_Details_Base[] = _("Base");
+static const u8 sText_Details_EvYield[] = _("Da EV:");
+static const u8 sText_Details_CatchRate[] = _("Ratio captura: {STR_VAR_1}");
+static const u8 sText_Details_CatchHeader[] = _("Captura aprox. (PS llenos / PS bajos):");
+static const u8 sText_Details_NoneOwned[] = _("No tienes ninguno de esta especie.");
+static const u8 sText_Details_BestOwned[] = _("Tu mejor: suma IV {STR_VAR_1} · Este: {STR_VAR_2}");
+static const u8 sText_Details_SearchLevel[] = _("Nv. búsqueda {STR_VAR_1}");
+static const u8 *const sText_Details_Balls[] =
+{
+    COMPOUND_STRING("Poké"),
+    COMPOUND_STRING("Super"),
+    COMPOUND_STRING("Ultra"),
+};
+// Ball multipliers in tenths for Poké Ball, Great Ball and Ultra Ball
+static const u8 sDetailsBallMultipliers[] = {10, 15, 20};
+
+// Gen 3-style odds without status or special-case modifiers: a = rate * ball * (3M - 2H) / 3M,
+// and the chance of a capture is about a / 255.
+static u32 DexNavCatchPercent(u32 catchRate, u32 ballTenths, bool32 lowHp)
+{
+    u32 a = catchRate * ballTenths / (lowHp ? 10 : 30);
+    return min(100, a * 100 / 255);
+}
+
+static u32 DexNavIvTotal(const u8 *ivs)
+{
+    u32 i, total = 0;
+    for (i = 0; i < NUM_STATS; i++)
+        total += ivs[i];
+    return total;
+}
+
+// Highest IV total among the player's party and boxes for this species, or -1 if none is owned
+static s32 DexNavGetBestOwnedIvTotal(enum Species species)
+{
+    s32 best = -1;
+    u32 i, j, stat, total;
+
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES) != species || GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG))
+            continue;
+        for (stat = 0, total = 0; stat < NUM_STATS; stat++)
+            total += GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HP_IV + stat);
+        best = max(best, (s32)total);
+    }
+    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
+    {
+        for (j = 0; j < IN_BOX_COUNT; j++)
+        {
+            if (GetBoxMonDataAt(i, j, MON_DATA_SPECIES) != species || GetBoxMonDataAt(i, j, MON_DATA_IS_EGG))
+                continue;
+            for (stat = 0, total = 0; stat < NUM_STATS; stat++)
+                total += GetBoxMonDataAt(i, j, MON_DATA_HP_IV + stat);
+            best = max(best, (s32)total);
+        }
+    }
+    return best;
+}
+
+static void DexNavPrintSpeciesPageText(u8 windowId)
+{
+    enum Species species = sDexNavSearchDataPtr->species;
+    const struct SpeciesInfo *info = &gSpeciesInfo[species];
+    const u8 baseStats[NUM_STATS] =
+    {
+        [STAT_HP] = info->baseHP, [STAT_ATK] = info->baseAttack, [STAT_DEF] = info->baseDefense,
+        [STAT_SPEED] = info->baseSpeed, [STAT_SPATK] = info->baseSpAttack, [STAT_SPDEF] = info->baseSpDefense,
+    };
+    const u8 evYield[NUM_STATS] =
+    {
+        [STAT_HP] = info->evYield_HP, [STAT_ATK] = info->evYield_Attack, [STAT_DEF] = info->evYield_Defense,
+        [STAT_SPEED] = info->evYield_Speed, [STAT_SPATK] = info->evYield_SpAttack, [STAT_SPDEF] = info->evYield_SpDefense,
+    };
+    u32 i, x;
+    s32 bestOwned;
+
+    // Line 0: types and how often it appears here
+    StringCopy(gStringVar1, gTypesInfo[info->types[0]].name);
+    if (info->types[1] != info->types[0])
+    {
+        StringAppend(gStringVar1, COMPOUND_STRING("/"));
+        StringAppend(gStringVar1, gTypesInfo[info->types[1]].name);
+    }
+    StringExpandPlaceholders(gStringVar4, sText_Details_Types);
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(0), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+    if (sDexNavSearchDataPtr->isHiddenMon)
+    {
+        StringCopy(gStringVar4, sText_Details_AppearsHidden);
+    }
+    else
+    {
+        enum WildPokemonArea area = (sDexNavSearchDataPtr->environment == ENCOUNTER_TYPE_WATER) ? WILD_AREA_WATER : WILD_AREA_LAND;
+        ConvertIntToDecimalStringN(gStringVar1, GetCurrentMapWildMonEncounterPercent(species, area), STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(gStringVar4, sText_Details_Appears);
+    }
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 140, DETAILS_LINE(0), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+
+    // Line 1: base stats
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(1), sSearchFontColor, TEXT_SKIP_DRAW, sText_Details_Base);
+    for (i = 0, x = 24; i < NUM_STATS; i++, x += 33)
+    {
+        StringCopy(gStringVar4, sText_Details_StatNames[i]);
+        ConvertIntToDecimalStringN(gStringVar1, baseStats[i], STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringAppend(gStringVar4, gStringVar1);
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, x, DETAILS_LINE(1), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+    }
+
+    // Line 2: EV yield and catch rate
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(2), sSearchFontColor, TEXT_SKIP_DRAW, sText_Details_EvYield);
+    for (i = 0, x = 30; i < NUM_STATS; i++)
+    {
+        if (evYield[i] == 0)
+            continue;
+        StringCopy(gStringVar4, COMPOUND_STRING("+"));
+        ConvertIntToDecimalStringN(gStringVar1, evYield[i], STR_CONV_MODE_LEFT_ALIGN, 1);
+        StringAppend(gStringVar4, gStringVar1);
+        StringAppend(gStringVar4, sText_Details_StatNames[i]);
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, x, DETAILS_LINE(2), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+        x += 30;
+    }
+    ConvertIntToDecimalStringN(gStringVar1, info->catchRate, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, sText_Details_CatchRate);
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 140, DETAILS_LINE(2), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+
+    // Lines 3-4: approximate capture odds with the basic balls
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(3), sSearchFontColor, TEXT_SKIP_DRAW, sText_Details_CatchHeader);
+    for (i = 0; i < ARRAY_COUNT(sDetailsBallMultipliers); i++)
+    {
+        StringCopy(gStringVar4, sText_Details_Balls[i]);
+        StringAppend(gStringVar4, COMPOUND_STRING(" "));
+        ConvertIntToDecimalStringN(gStringVar1, DexNavCatchPercent(info->catchRate, sDetailsBallMultipliers[i], FALSE), STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringAppend(gStringVar4, gStringVar1);
+        StringAppend(gStringVar4, COMPOUND_STRING("/"));
+        ConvertIntToDecimalStringN(gStringVar1, DexNavCatchPercent(info->catchRate, sDetailsBallMultipliers[i], TRUE), STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringAppend(gStringVar4, gStringVar1);
+        StringAppend(gStringVar4, COMPOUND_STRING("%"));
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, i * 72, DETAILS_LINE(4), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+    }
+
+    // Line 5: your best one of this species, and the search level
+    bestOwned = DexNavGetBestOwnedIvTotal(species);
+    if (bestOwned < 0)
+    {
+        StringCopy(gStringVar4, sText_Details_NoneOwned);
+    }
+    else
+    {
+        ConvertIntToDecimalStringN(gStringVar1, bestOwned, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(gStringVar2, DexNavIvTotal(sDexNavSearchDataPtr->ivs), STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(gStringVar4, sText_Details_BestOwned);
+    }
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, DETAILS_LINE(5), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+    ConvertIntToDecimalStringN(gStringVar1, sDexNavSearchDataPtr->searchLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, sText_Details_SearchLevel);
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 160, DETAILS_LINE(5), sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+}
+
+static void DexNavCloseDetails(void)
+{
+    sDexNavSearchDataPtr->detailsPage = 0;
+    if (sDexNavSearchDataPtr->detailsWindowId == WINDOW_NONE)
+        return;
+    ClearStdWindowAndFrameToTransparent(sDexNavSearchDataPtr->detailsWindowId, FALSE);
+    CopyWindowToVram(sDexNavSearchDataPtr->detailsWindowId, COPYWIN_FULL);
+    RemoveWindow(sDexNavSearchDataPtr->detailsWindowId);
+    sDexNavSearchDataPtr->detailsWindowId = WINDOW_NONE;
+}
+
+static void DexNavShowDetailsPage(u8 page)
+{
+    FillWindowPixelBuffer(sDexNavSearchDataPtr->detailsWindowId, PIXEL_FILL(1));
+    if (page == 1)
+        DexNavPrintDetailsText(sDexNavSearchDataPtr->detailsWindowId);
+    else
+        DexNavPrintSpeciesPageText(sDexNavSearchDataPtr->detailsWindowId);
+    CopyWindowToVram(sDexNavSearchDataPtr->detailsWindowId, COPYWIN_GFX);
+    sDexNavSearchDataPtr->detailsPage = page;
+}
+
+static void DexNavOpenDetails(void)
+{
+    struct WindowTemplate template;
+    // Sits on the opposite half of the screen from the search window
+    u8 y = (GetWindowAttribute(sDexNavSearchDataPtr->windowId, WINDOW_TILEMAP_TOP) == 1) ? 7 : 1;
+
+    SetWindowTemplateFields(&template, 0, 1, y, SEARCH_WINDOW_WIDTH_DETAILS, DETAILS_WINDOW_HEIGHT, 14, 100);
+    sDexNavSearchDataPtr->detailsWindowId = AddWindow(&template);
+    PutWindowTilemap(sDexNavSearchDataPtr->detailsWindowId);
+    DexNavShowDetailsPage(1);
+    CopyWindowToVram(sDexNavSearchDataPtr->detailsWindowId, COPYWIN_FULL);
+    DrawStdFrameWithCustomTileAndPalette(sDexNavSearchDataPtr->detailsWindowId, TRUE, 0x214, 14);
+}
+
+// Called from the field input handler. Returns TRUE when it used the SELECT press.
+bool32 DexNav_TryToggleDetails(void)
+{
+    if (!FlagGet(DN_FLAG_SEARCHING) || sDexNavSearchDataPtr == NULL || sDexNavSearchDataPtr->hiddenSearch)
+        return FALSE;
+
+    PlaySE(SE_SELECT);
+    if (sDexNavSearchDataPtr->detailsWindowId == WINDOW_NONE)
+        DexNavOpenDetails();
+    else if (sDexNavSearchDataPtr->detailsPage == 1)
+        DexNavShowDetailsPage(2);
+    else
+        DexNavCloseDetails();
+    return TRUE;
+}
+
 static void RemoveDexNavWindowAndGfx(void)
 {
+    DexNavCloseDetails();
+
     // try remove sprites
     if (sDexNavSearchDataPtr->iconSpriteId != MAX_SPRITES)
         DestroySprite(&gSprites[sDexNavSearchDataPtr->iconSpriteId]);
@@ -781,11 +1123,63 @@ static u8 GetSearchLevel(enum Species species)
 {
     u8 searchLevel;
 #if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    searchLevel = gSaveBlock3Ptr->dexNavSearchLevels[species];
+    searchLevel = gSaveBlock3Ptr->dexNavSearchLevels[SpeciesToNationalPokedexNum(species)];
 #else
     searchLevel = 0;
 #endif
     return searchLevel;
+}
+
+// Rojo Fuego+: rolls nature, gender, IVs and shininess up front with the same rules as a normal
+// wild encounter, so the details panel can show them before the battle.
+static void DexNavRollIndividual(void)
+{
+    enum Species species = sDexNavSearchDataPtr->species;
+    u32 i, numPerfect = min(3, sDexNavSearchDataPtr->potential); // Will not exceed 3 Perfect IVs
+    u32 ivRandom = Random32();
+    u8 stats[NUM_STATS];
+
+    sDexNavSearchDataPtr->personality = GetMonPersonality(species,
+                                                          GetSynchronizedGender(WILDMON_ORIGIN, species),
+                                                          GetSynchronizedNature(WILDMON_ORIGIN, species),
+                                                          RANDOM_UNOWN_LETTER);
+
+    // The DexNav chain bonus only counts while gDexNavSpecies is set
+    gDexNavSpecies = species;
+    sDexNavSearchDataPtr->isShiny = ComputePlayerShinyOdds(sDexNavSearchDataPtr->personality, READ_OTID_FROM_SAVE);
+    gDexNavSpecies = SPECIES_NONE;
+
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        sDexNavSearchDataPtr->ivs[i] = (ivRandom >> (i * 5)) & MAX_IV_MASK;
+        stats[i] = i;
+    }
+    Shuffle(stats, NUM_STATS, sizeof(stats[0]));
+    for (i = 0; i < numPerfect; i++)
+        sDexNavSearchDataPtr->ivs[stats[i]] = MAX_PER_STAT_IVS;
+}
+
+static const u8 *const sText_DexNavFilterNames[DEXNAV_FILTER_COUNT] =
+{
+    [DEXNAV_FILTER_NONE]           = COMPOUND_STRING("Todo"),
+    [DEXNAV_FILTER_SHINY]          = COMPOUND_STRING("Shiny"),
+    [DEXNAV_FILTER_HIDDEN_ABILITY] = COMPOUND_STRING("H.Oculta"),
+    [DEXNAV_FILTER_THREE_STARS]    = COMPOUND_STRING("3 estr."),
+};
+
+static bool32 DexNavMatchesFilter(void)
+{
+    switch (VarGet(VAR_DEXNAV_FILTER))
+    {
+    case DEXNAV_FILTER_SHINY:
+        return sDexNavSearchDataPtr->isShiny;
+    case DEXNAV_FILTER_HIDDEN_ABILITY:
+        return sDexNavSearchDataPtr->abilityNum == 2;
+    case DEXNAV_FILTER_THREE_STARS:
+        return sDexNavSearchDataPtr->potential >= 3;
+    default:
+        return TRUE;
+    }
 }
 
 static void SetUpDexNavSearch(void)
@@ -808,6 +1202,8 @@ static void SetUpDexNavSearch(void)
     sDexNavSearchDataPtr->heldItem = DexNavGenerateHeldItem(species, searchLevel);
     sDexNavSearchDataPtr->abilityNum = DexNavGetAbilityNum(species, searchLevel);
     sDexNavSearchDataPtr->potential = DexNavGeneratePotential(searchLevel);
+    DexNavRollIndividual();
+    sDexNavSearchDataPtr->detailsWindowId = WINDOW_NONE;
     DexNavProximityUpdate();
 
     LoadSearchIconData();
@@ -865,6 +1261,15 @@ static bool8 InitDexNavSearch(enum Species species, u32 environment)
 
     sDexNavSearchDataPtr->hiddenSearch = FALSE;
     SetUpDexNavSearch();
+
+    // Rojo Fuego+ hunter mode: a Pokémon that does not match the filter is not worth chasing.
+    // The chain is kept, the player just has to search again.
+    if (!DexNavMatchesFilter())
+    {
+        EndDexNavSearch();
+        ScriptContext_SetupScript(EventScript_DexNavFilterNoMatch);
+        return TRUE;
+    }
     return FALSE;
 }
 
@@ -1180,9 +1585,15 @@ static void DexNavUpdateSearchWindow(u8 proximity, u8 searchLevel)
 static void CreateDexNavWildMon(enum Species species, u8 potential, u8 level, u8 abilityNum, enum Item item, enum Move *moves)
 {
     struct Pokemon *mon = &gParties[B_TRAINER_OPPONENT_A][0];
+    u32 isShiny = sDexNavSearchDataPtr->isShiny;
 
-    CreateWildMon(species, level);  // shiny rate bonus handled in CreateBoxMon
-    SetBoxMonPerfectIVs(&mon->box, min(3, potential)); // Will not exceed 3 Perfect IVs
+    // Rojo Fuego+: build the exact individual that the details panel showed
+    ZeroEnemyPartyMons();
+    CreateMonWithIVs(mon, species, level, sDexNavSearchDataPtr->personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
+    GiveMonInitialMoveset(mon);
+    for (u32 i = 0; i < NUM_STATS; i++)
+        SetMonData(mon, MON_DATA_HP_IV + i, &sDexNavSearchDataPtr->ivs[i]);
+    SetMonData(mon, MON_DATA_IS_SHINY, &isShiny);
 
     //Set ability
     SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
@@ -2117,6 +2528,15 @@ static void PrintCurrentSpeciesInfo(void)
     {
         ConvertIntToDecimalStringN(gStringVar4, GetSearchLevel(species), 0, 4);
         AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, SEARCH_LEVEL_Y, sFontColor_Black, 0, gStringVar4);
+
+        // Rojo Fuego+: how often it appears on this map
+        if (sDexNavUiDataPtr->cursorRow != ROW_HIDDEN)
+        {
+            enum WildPokemonArea area = (sDexNavUiDataPtr->cursorRow == ROW_WATER) ? WILD_AREA_WATER : WILD_AREA_LAND;
+            ConvertIntToDecimalStringN(gStringVar4, GetCurrentMapWildMonEncounterPercent(species, area), STR_CONV_MODE_LEFT_ALIGN, 3);
+            StringAppend(gStringVar4, COMPOUND_STRING("%"));
+            AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 40, SEARCH_LEVEL_Y, sFontColor_Black, 0, gStringVar4);
+        }
     }
 
     //hidden ability
@@ -2140,6 +2560,10 @@ static void PrintCurrentSpeciesInfo(void)
     ConvertIntToDecimalStringN(gStringVar1, gSaveBlock3Ptr->dexNavChain, STR_CONV_MODE_LEFT_ALIGN, 3);
     AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, CHAIN_BONUS_Y, sFontColor_Black, 0, gStringVar1);
 
+    // Rojo Fuego+: active hunter mode filter (SELECT changes it)
+    AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 24, CHAIN_BONUS_Y, sFontColor_Black, 0,
+                                 sText_DexNavFilterNames[VarGet(VAR_DEXNAV_FILTER) % DEXNAV_FILTER_COUNT]);
+
     CopyWindowToVram(WINDOW_INFO, 3);
     PutWindowTilemap(WINDOW_INFO);
 }
@@ -2153,11 +2577,26 @@ static void PrintMapName(void)
     CopyWindowToVram(WINDOW_REGISTERED, 3);
 }
 
+static bool32 DexNavIsRoamerOnMap(void)
+{
+    for (u32 i = 0; i < ROAMER_COUNT; i++)
+    {
+        if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
+            return TRUE;
+    }
+    return FALSE;
+}
+
 static void PrintSearchableSpecies(enum Species species)
 {
     FillWindowPixelBuffer(WINDOW_REGISTERED, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
     PutWindowTilemap(WINDOW_REGISTERED);
-    if (species == SPECIES_NONE)
+    if (DexNavIsRoamerOnMap())
+    {
+        // Rojo Fuego+: a roaming legendary is on this map right now
+        AddTextPrinterParameterized3(WINDOW_REGISTERED, FONT_NORMAL, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, COMPOUND_STRING("¡Legendario errante!"));
+    }
+    else if (species == SPECIES_NONE)
     {
         AddTextPrinterParameterized3(WINDOW_REGISTERED, FONT_NORMAL, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, sText_DexNav_PressRToRegister);
     }
@@ -2425,6 +2864,13 @@ static void Task_DexNavMain(u8 taskId)
         PlaySE(SE_RG_BAG_CURSOR);
         UpdateCursorPosition();
     }
+    else if (JOY_NEW(SELECT_BUTTON))
+    {
+        // Rojo Fuego+ hunter mode: cycle through the search filters
+        VarSet(VAR_DEXNAV_FILTER, (VarGet(VAR_DEXNAV_FILTER) + 1) % DEXNAV_FILTER_COUNT);
+        PlaySE(SE_SELECT);
+        PrintCurrentSpeciesInfo();
+    }
     else if (JOY_NEW(R_BUTTON))
     {
         // check selection is valid. Play sound if invalid
@@ -2470,8 +2916,9 @@ bool32 TryFindHiddenPokemon(void)
 {
     u16 *stepPtr = GetVarPointer(DN_VAR_STEP_COUNTER);
 
+    // Rojo Fuego+: was "== NULL", which made detector mode never trigger outside of a search
     if (DEXNAV_ENABLED == 0
-            || sDexNavSearchDataPtr == NULL
+            || sDexNavSearchDataPtr != NULL
             || !FlagGet(DN_FLAG_DETECTOR_MODE)
             || FlagGet(DN_FLAG_SEARCHING)
             || GetFlashLevel() > 0)
@@ -2589,6 +3036,9 @@ bool32 TryFindHiddenPokemon(void)
 
         PlayCry_Script(species, 0);
         SetUpDexNavSearch();
+        // Rojo Fuego+: shiny alert for Pokémon found while walking
+        if (sDexNavSearchDataPtr->isShiny)
+            PlaySE(SE_SHINY);
         HideMapNamePopUpWindow();
         ChangeBgY_ScreenOff(0, 0, 0);
         return FALSE;   // we dont actually want to enable the script context or the game will freeze
@@ -2652,8 +3102,9 @@ u32 CalculateDexNavShinyRolls(void)
 void TryIncrementSpeciesSearchLevel()
 {
 #if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gSaveBlock3Ptr->dexNavSearchLevels[gDexNavSpecies] < 255)
-        gSaveBlock3Ptr->dexNavSearchLevels[gDexNavSpecies]++;
+    u32 dexNum = SpeciesToNationalPokedexNum(gDexNavSpecies);
+    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gSaveBlock3Ptr->dexNavSearchLevels[dexNum] < 255)
+        gSaveBlock3Ptr->dexNavSearchLevels[dexNum]++;
 #endif
 }
 

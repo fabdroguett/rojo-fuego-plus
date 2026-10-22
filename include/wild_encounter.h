@@ -60,6 +60,7 @@ bool8 DoesCurrentMapHaveFishingMons(void);
 void FishingWildEncounter(u8 rod);
 u16 GetLocalWildMon(bool8 *isWaterMon);
 u16 GetLocalWaterMon(void);
+u32 GetCurrentMapWildMonEncounterPercent(enum Species species, enum WildPokemonArea area);
 bool8 UpdateRepelCounter(void);
 bool8 IsWildLevelAllowedByRepel(u8 wildLevel);
 bool8 IsAbilityAllowingEncounter(u8 level);

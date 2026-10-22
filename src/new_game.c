@@ -234,6 +234,12 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();
+    // Rojo Fuego+ features available from the start (the Key System can turn them off)
+    FlagSet(FLAG_EXP_ALL);
+    FlagSet(FLAG_DEXNAV_GET);
+    FlagSet(FLAG_DEXNAV_DETECTOR_MODE);
+    FlagSet(FLAG_POKE_RIDER);
+    FlagSet(FLAG_DOWSING);
 }
 
 static void ResetMiniGamesRecords(void)
