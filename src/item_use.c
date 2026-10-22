@@ -38,6 +38,7 @@
 #include "pokeblock.h"
 #include "pokemon.h"
 #include "script.h"
+#include "script_pokemon_util.h"
 #include "sound.h"
 #include "strings.h"
 #include "string_util.h"
@@ -309,6 +310,34 @@ void ItemUseOutOfBattle_OmniUpgrade(u8 taskId)
         message = gStringVar4;
     }
     DisplayItemMessage(taskId, FONT_NORMAL, message, CloseItemMessage);
+}
+
+// Rojo Fuego+ Botiquín: heals the party a few times between Pokémon Center visits
+void ItemUseOutOfBattle_PokeVial(u8 taskId)
+{
+    u8 vialCharges = gSaveBlock3Ptr->pokeVialCharges;
+    u8 omniCharges = gSaveBlock3Ptr->omniRingCharges;
+
+    if (vialCharges == 0)
+    {
+        PlaySE(SE_FAILURE);
+        StringCopy(gStringVar4, COMPOUND_STRING("El Botiquín está vacío. Recárgalo\nen un Centro Pokémon.{PAUSE_UNTIL_PRESS}"));
+    }
+    else
+    {
+        PlaySE(SE_USE_ITEM);
+        HealPlayerParty();
+        // HealPlayerParty refills both like a Pokémon Center would; the Botiquín must not
+        gSaveBlock3Ptr->pokeVialCharges = vialCharges - 1;
+        gSaveBlock3Ptr->omniRingCharges = omniCharges;
+        StringCopy(gStringVar4, COMPOUND_STRING("¡Tu equipo se ha recuperado!\nUsos restantes: "));
+        ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), vialCharges - 1, STR_CONV_MODE_LEFT_ALIGN, 1);
+        StringAppend(gStringVar4, COMPOUND_STRING(".{PAUSE_UNTIL_PRESS}"));
+    }
+    if (!gTasks[taskId].tUsingRegisteredKeyItem)
+        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
+    else
+        DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
 }
 
 void ItemUseOutOfBattle_Bike(u8 taskId)

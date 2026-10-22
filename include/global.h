@@ -274,6 +274,7 @@ struct SaveBlock3
     u8 omniRingMechanics; // Rojo Fuego+ Omni Ring: one bit per unlocked mechanic (enum OmniMechanic)
     u8 omniRingMaxCharges;
     u8 omniRingCharges;
+    u8 pokeVialCharges; // Rojo Fuego+ Botiquín uses left; refilled at Pokémon Centers
 #if APRICORN_TREE_COUNT > 0
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif

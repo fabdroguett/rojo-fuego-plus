@@ -6,6 +6,7 @@
 // Omni Cells add charges. Tera and Dynamax spend a charge, which a Pokémon Center refills.
 
 #define OMNI_RING_MAX_CHARGES 9
+#define POKE_VIAL_MAX_CHARGES 3 // Rojo Fuego+ Botiquín, kept here with the other key item charges
 
 enum OmniMechanic
 {

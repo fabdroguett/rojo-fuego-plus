@@ -1059,6 +1059,7 @@ enum __attribute__((packed)) Item
     ITEM_OMNI_MODULE_DYNAMAX = 877,
     ITEM_OMNI_MODULE_TERA = 878,
     ITEM_OMNI_CELL = 879,
+    ITEM_POKE_VIAL = 880, // Rojo Fuego+ portable heal
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,

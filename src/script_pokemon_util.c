@@ -48,8 +48,9 @@ void HealPlayerParty(void)
     if (!IsTeraOrbCharged() && CheckBagHasItem(ITEM_TERA_ORB, 1))
         FlagSet(B_FLAG_TERA_ORB_CHARGED);
 
-    // Rojo Fuego+: healing at a Pokémon Center also refills the Omni Ring
+    // Rojo Fuego+: healing at a Pokémon Center also refills the Omni Ring and the Botiquín
     OmniRing_Recharge();
+    gSaveBlock3Ptr->pokeVialCharges = POKE_VIAL_MAX_CHARGES;
 }
 
 static void HealPlayerBoxes(void)

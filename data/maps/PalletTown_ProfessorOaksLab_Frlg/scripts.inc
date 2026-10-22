@@ -660,6 +660,8 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5
 	msgbox PalletTown_ProfessorOaksLab_Text_OakOmniRing
 	giveitem ITEM_OMNI_RING
+	giveitem ITEM_POKE_VIAL
+	giveitem ITEM_POKEMON_BOX_LINK
 	msgbox PalletTown_ProfessorOaksLab_Text_OakExplainCatching
 	famechecker FAMECHECKER_OAK, 1
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCompleteMonGuideWasMyDream

@@ -7404,6 +7404,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_CellBattery,
     },
 
+    [ITEM_POKE_VIAL] =
+    {
+        .name = ITEM_NAME("Botiquín"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Cura al equipo unas\n"
+            "pocas veces. Se carga\n"
+            "en el Centro."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_PokeVial,
+        .iconPic = gItemIcon_Potion,
+        .iconPalette = gItemIconPalette_MaxPotion,
+    },
+
 // Gems
 #if I_PRICE >= GEN_9
     #define GEM_PRICE 15000
