@@ -442,6 +442,39 @@ Si se elige hack como base, cambiar la Fase 1 para clonar ese repo en vez de `pr
     TIERRA y OCULTOS. Se dibuja directo en tiles de BG1 que `dexnav_gui.py` deja únicos (cabecera
     generada `src/data/dexnav_counter_tiles.h`), con la fuente de píxeles de los títulos
     (`DrawAreaCounters` en `dexnav.c`). Sin especies en la zona no se dibuja nada.
+- **12 mejoras sacadas de Pokémon SoulGold** (elegidas por el usuario, todas hechas):
+  1. **Prob. variocolor** (Key System, `KEY_SHINY_ODDS`, `keySystemShinyOdds` en SaveBlock3): 1/4096,
+     1/1024, 1/512, 1/256; `ComputePlayerShinyOdds` usa `KeySystem_GetShinyThreshold`.
+  2. **Padres variocolor**: +2 tiradas por padre shiny (`gRfExtraShinyRolls`, `daycare.c`).
+  3. **Mensajes de stats juntos**: `TryCombineStatChanges` en `battle_stat_change.c` (hasta 3 stats
+     con el mismo cambio; bajadas solo si son propias). Tests en `test/battle/rojo_fuego/`
+     (`make check BUILD=firered TESTS='Rojo Fuego'`, 5/5 pasan).
+  4. **Música continua tras combates**: `SaveMapMusicForResume`/`TryResumeMapMusic` en `sound.c`.
+  5. **Marco dorado variocolor**: `UpdateHealthboxShinyFrame` (`battle_interface.c`).
+  6. **Modo oscuro** (`KEY_DARK_MODE`, apagado por defecto): caja/menús de combate (`battle_bg.c`),
+     mochila (`item_menu.c`) y equipo (`party_menu.c`).
+  7. **Pesca de objetos** (15%, tabla por caña, `fishing.c`) y **plumas que suben IV** (+1,
+     `ItemUseCB_Feather`).
+  8. **Pokédex**: ya era la HGSS (stats, EV, grupos huevo, evoluciones); se añadió "Su guardián espera
+     en: <zona>" en la forma mega (`rf_mega_guardians.h`, `content.py --guardian-table`) y la etiqueta
+     KANTO (`dex_region_label.py`).
+  9. **PC: LIBERAR CAJA** en el menú del título de la caja (sí/no, por defecto No; los de Carta se
+     quedan, objetos a la mochila).
+  10. **Rastreador de errantes**: SELECT en el Mapa del Pueblo (`field_region_map.c`).
+  11. **Defensa del título**: tras el Campeón en revanchas, 50% un líder (equipo de revancha) reta;
+      premio Chapa Dorada (`RF_EventScript_TitleDefense`).
+  12. **Claros ocultos diarios**: 8 objetos ocultos de rutas 3/6/8/9/12/14/17/25 convertidos
+      (`tools/rojo_fuego/grottos.py`); flags diarios 0x398-0x39F; Pokémon raro con habilidad oculta
+      (60%) u objeto (40%); brillan con el Key System.
+  - DexNav: contador capturados/total en las pestañas; aviso "No hay Pokémon aquí.".
+  - Verificado en emulador: shiny frame, modo oscuro, música, PC, rastreador, claro (Eevee en Ruta 3),
+    Pokédex KANTO. Sin verificar en emulador: pesca, defensa del título, línea del guardián.
+- **Ojo**: el menú de depuración (R+START) está activo en la ROM normal (`DEBUG_OVERWORLD_MENU
+  DISABLED_ON_RELEASE`); se quita compilando con `RELEASE=1`. Útil para pruebas del harness
+  (llenar PC, acceder al PC).
+- **Truco de pruebas**: teletransporte escribiendo `gSaveBlock1Ptr->location` (+4: grupo, mapa, warp
+  FF; +8/+10 x,y) y `pos` (+0/+2), luego `gMain.callback2 = CB2_LoadMap|1`. Offsets de structs con
+  el "off.c" compilado con los flags del Makefile (ojo: comentarios de offsets en global.h no fiables).
 - **No hecho**: traducción del juego al español (no pedida; proyecto grande).
 
 ### GitHub (HECHO 2026-10-22)
