@@ -9,6 +9,8 @@
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
+#include "pokemon_icon.h"
+#include "roamer.h"
 #include "region_map.h"
 #include "sound.h"
 #include "strings.h"
@@ -43,7 +45,64 @@ static EWRAM_DATA struct {
     u32 unused;
     struct RegionMap regionMap;
     u16 state;
+    u8 roamerIconSpriteIds[ROAMER_COUNT];
+    bool8 roamerIconsShown;
 } *sFieldRegionMapHandler = NULL;
+
+// Rojo Fuego+ (from Pokémon SoulGold): SELECT shows where the roaming legendaries are right now
+static void HideRoamerIcons(void)
+{
+    u32 i;
+
+    if (!sFieldRegionMapHandler->roamerIconsShown)
+        return;
+    for (i = 0; i < ROAMER_COUNT; i++)
+    {
+        if (sFieldRegionMapHandler->roamerIconSpriteIds[i] != SPRITE_NONE)
+            FreeAndDestroyMonIconSprite(&gSprites[sFieldRegionMapHandler->roamerIconSpriteIds[i]]);
+        sFieldRegionMapHandler->roamerIconSpriteIds[i] = SPRITE_NONE;
+    }
+    FreeMonIconPalettes();
+    sFieldRegionMapHandler->roamerIconsShown = FALSE;
+}
+
+static void ToggleRoamerIcons(void)
+{
+    u32 i, shown = 0;
+
+    if (sFieldRegionMapHandler->roamerIconsShown)
+    {
+        PlaySE(SE_SELECT);
+        HideRoamerIcons();
+        return;
+    }
+
+    LoadMonIconPalettes();
+    for (i = 0; i < ROAMER_COUNT; i++)
+    {
+        struct Roamer *roamer = &gSaveBlock1Ptr->roamer[i];
+        u8 mapGroup, mapNum;
+        s16 x, y;
+
+        sFieldRegionMapHandler->roamerIconSpriteIds[i] = SPRITE_NONE;
+        if (!roamer->active)
+            continue;
+        GetRoamerLocation(i, &mapGroup, &mapNum);
+        GetRegionMapSecScreenPos(Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->regionMapSectionId, &x, &y);
+        sFieldRegionMapHandler->roamerIconSpriteIds[i] = CreateMonIcon(roamer->species, SpriteCB_MonIcon, x, y - 4, 0, roamer->personality);
+        shown++;
+    }
+    sFieldRegionMapHandler->roamerIconsShown = TRUE;
+    if (shown == 0)
+    {
+        PlaySE(SE_FAILURE); // No roaming legendary right now
+        HideRoamerIcons();
+    }
+    else
+    {
+        PlaySE(SE_SELECT);
+    }
+}
 
 static void MCB2_InitRegionMapRegisters(void);
 static void VBCB_FieldUpdateRegionMap(void);
@@ -100,6 +159,7 @@ void FieldInitRegionMap(MainCallback callback)
     SetVBlankCallback(NULL);
     sFieldRegionMapHandler = Alloc(sizeof(*sFieldRegionMapHandler));
     sFieldRegionMapHandler->state = 0;
+    sFieldRegionMapHandler->roamerIconsShown = FALSE;
     sFieldRegionMapHandler->callback = callback;
     SetMainCallback2(MCB2_InitRegionMapRegisters);
 }
@@ -176,6 +236,11 @@ static void FieldUpdateRegionMap(void)
         }
         break;
     case 4:
+        if (JOY_NEW(SELECT_BUTTON))
+        {
+            ToggleRoamerIcons();
+            break;
+        }
         switch (DoRegionMapInputCallback())
         {
         case MAP_INPUT_MOVE_END:
@@ -204,6 +269,7 @@ static void FieldUpdateRegionMap(void)
     case 6:
         if (!gPaletteFade.active)
         {
+            HideRoamerIcons();
             FreeRegionMapIconResources();
             SetMainCallback2(sFieldRegionMapHandler->callback);
             TRY_FREE_AND_SET_NULL(sFieldRegionMapHandler);
