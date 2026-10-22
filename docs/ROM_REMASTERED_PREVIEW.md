@@ -21,22 +21,33 @@ del tema de Pokédex, ajustes y ficha de entrenador) y añade estas correcciones
 - **Logros en tema oscuro:** mismos paneles y trofeos sobre superficies nocturnas; el
   trofeo bloqueado se ve como contorno.
 
+- **Combate a fondo (tema oscuro):** la acción o el movimiento seleccionado es una celda
+  dorada; el tipo del movimiento se muestra como insignia de color junto al icono de
+  categoría; los PP usan colores legibles (claro, amarillo, naranja, rojo); la ventana de
+  la última Poké Ball (R) y los avisos de habilidad/objeto siguen el tema, con el nombre
+  de la habilidad en dorado.
+- **Tienda:** la lista de compra es oscura con franjas sutiles y borde turquesa.
+- **Ficha Pokémon:** títulos de sección con contorno dorado, legibles sobre las barras.
+- **Misiones y Claves:** páginas completas sobre el suelo del tema; ya no se ve el mapa
+  entre los paneles, y el mapa se restaura al cerrar.
+- **Mapa de vuelo:** «FLY to where?» en un panel con borde.
+
 Prueba de regresión nueva: `tools/rojo_fuego/tests/test_new_game_vars.py`. Fixtures y
 capturas nuevas: nombre, mapa, vuelo, logros, objetos registrados, tienda, recordador,
 evolución y menús de combate.
 
 Archivo para abrir en mGBA: `pokefirered.gba`, en la raíz del repositorio.
 
-Validación: doce pruebas automáticas correctas; 104 capturas de todas las pantallas del
+Validación: doce pruebas automáticas correctas; 156 capturas de todas las pantallas del
 harness en tema oscuro y claro, sin pantallas de error, y con cambios de miembro del equipo
 correctos en los cuatro escenarios. La ficha se probó con partida nueva, valores dañados y
 especies válidas (incluida una Unown en formato de correo). Arranque, entrada al mapa y
 apertura del menú comprobados. Tamaño 32 MiB, código BPRE y checksum de cabecera correctos.
 Ningún símbolo RFUiFixture en el ELF de entrega. Guardado sin cambios. La ROM anterior
 quedó respaldada junto con capturas y validación en
-`build_artifacts/ui-battle-achievements-20261022-170914`.
+`build_artifacts/ui-battle-op-20261022-175446`.
 
-SHA256: `2cc9e5ca76d47ea70938e5f9d5f0d4726a9f43cca0cb558dd824279f7fec23dd`.
+SHA256: `1396081769f8bc1182bb514b20ca0efb10a686f309df8ef1f78419eeb4f87926`.
 
 Cerrar y reabrir la ROM en mGBA para cargar el archivo actualizado. Guardar la partida
 antes de cerrar el juego. No reutilizar estados rápidos creados con otra compilación.
