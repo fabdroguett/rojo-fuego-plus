@@ -2634,6 +2634,137 @@ static void CreateTypeIconSprites(void)
     }
 }
 
+// Rojo Fuego+: "caught/total" on each tab, drawn straight into BG1 tiles reserved for it
+// (tools/rojo_fuego/dexnav_gui.py), in the same pixel font as the tab labels
+enum
+{
+    COUNTER_WATER,
+    COUNTER_LAND,
+    COUNTER_HIDDEN,
+};
+
+struct DexNavCounterArea
+{
+    u8 textY;
+    u16 tiles[8];
+};
+
+#include "data/dexnav_counter_tiles.h"
+
+#define COUNTER_AREA_W      (DEXNAV_COUNTER_WIDTH * 8)
+#define COUNTER_AREA_H      (DEXNAV_COUNTER_HEIGHT * 8)
+#define COUNTER_COLOR       1 // white
+#define COUNTER_SHADOW      7
+#define COUNTER_SLASH       10
+
+// 4x7 glyphs, one row per byte, bit 3 is the leftmost pixel
+static const u8 sCounterGlyphs[11][7] =
+{
+    {0x6, 0x9, 0x9, 0x9, 0x9, 0x9, 0x6}, // 0
+    {0x2, 0x6, 0x2, 0x2, 0x2, 0x2, 0x7}, // 1
+    {0x6, 0x9, 0x1, 0x2, 0x4, 0x8, 0xF}, // 2
+    {0xE, 0x1, 0x1, 0x6, 0x1, 0x1, 0xE}, // 3
+    {0x2, 0x6, 0xA, 0xA, 0xF, 0x2, 0x2}, // 4
+    {0xF, 0x8, 0xE, 0x1, 0x1, 0x9, 0x6}, // 5
+    {0x6, 0x8, 0x8, 0xE, 0x9, 0x9, 0x6}, // 6
+    {0xF, 0x1, 0x1, 0x2, 0x2, 0x4, 0x4}, // 7
+    {0x6, 0x9, 0x9, 0x6, 0x9, 0x9, 0x6}, // 8
+    {0x6, 0x9, 0x9, 0x7, 0x1, 0x1, 0x6}, // 9
+    {0x1, 0x1, 0x2, 0x2, 0x4, 0x4, 0x8}, // /
+};
+
+static u8 *GetCounterPixel(u8 *tiles, u32 x, u32 y)
+{
+    // tiles holds the area's tiles one after another, 32 bytes each, 4 bits per pixel
+    u32 tile = (y / 8) * DEXNAV_COUNTER_WIDTH + (x / 8);
+    return &tiles[tile * 32 + (y % 8) * 4 + (x % 8) / 2];
+}
+
+static u32 GetCounterPixelColor(u8 *tiles, u32 x, u32 y)
+{
+    u8 *byte = GetCounterPixel(tiles, x, y);
+    return (x & 1) ? (*byte >> 4) : (*byte & 0xF);
+}
+
+static void SetCounterPixel(u8 *tiles, u32 x, u32 y, u32 color)
+{
+    u8 *byte = GetCounterPixel(tiles, x, y);
+
+    if (x >= COUNTER_AREA_W || y >= COUNTER_AREA_H)
+        return;
+    if (x & 1)
+        *byte = (*byte & 0x0F) | (color << 4);
+    else
+        *byte = (*byte & 0xF0) | color;
+}
+
+static void DrawCounterGlyph(u8 *tiles, u32 glyph, u32 left, u32 top)
+{
+    u32 x, y;
+
+    for (y = 0; y < 7; y++)
+    {
+        for (x = 0; x < 4; x++)
+        {
+            if (!(sCounterGlyphs[glyph][y] & (8 >> x)))
+                continue;
+            SetCounterPixel(tiles, left + x, top + y, COUNTER_COLOR);
+            // Shadow to the right and below, like the tab labels
+            if (left + x + 1 < COUNTER_AREA_W && GetCounterPixelColor(tiles, left + x + 1, top + y) != COUNTER_COLOR)
+                SetCounterPixel(tiles, left + x + 1, top + y, COUNTER_SHADOW);
+            if (top + y + 1 < COUNTER_AREA_H && GetCounterPixelColor(tiles, left + x, top + y + 1) != COUNTER_COLOR)
+                SetCounterPixel(tiles, left + x, top + y + 1, COUNTER_SHADOW);
+        }
+    }
+}
+
+static void DrawAreaCounter(u32 area, const enum Species *species, u32 slots)
+{
+    const struct DexNavCounterArea *counter = &sDexNavCounterAreas[area];
+    u8 tiles[DEXNAV_COUNTER_WIDTH * DEXNAV_COUNTER_HEIGHT * 32];
+    u8 *vram = (u8 *)BG_CHAR_ADDR(3);
+    u8 glyphs[8];
+    u32 i, caught = 0, total = 0, count = 0, x;
+
+    for (i = 0; i < slots; i++)
+    {
+        if (species[i] == SPECIES_NONE)
+            continue;
+        total++;
+        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species[i]), FLAG_GET_CAUGHT))
+            caught++;
+    }
+    if (total == 0)
+        return;
+
+    // Digits of "caught/total"
+    if (caught >= 10)
+        glyphs[count++] = caught / 10;
+    glyphs[count++] = caught % 10;
+    glyphs[count++] = COUNTER_SLASH;
+    if (total >= 10)
+        glyphs[count++] = total / 10;
+    glyphs[count++] = total % 10;
+
+    for (i = 0; i < DEXNAV_COUNTER_WIDTH * DEXNAV_COUNTER_HEIGHT; i++)
+        CpuCopy16(vram + counter->tiles[i] * 32, tiles + i * 32, 32);
+
+    // Right-aligned, glyphs 4 wide with 1 pixel between them and room for the shadow
+    x = COUNTER_AREA_W - 2 - (count * 5 - 1);
+    for (i = 0; i < count; i++, x += 5)
+        DrawCounterGlyph(tiles, glyphs[i], x, counter->textY);
+
+    for (i = 0; i < DEXNAV_COUNTER_WIDTH * DEXNAV_COUNTER_HEIGHT; i++)
+        CpuCopy16(tiles + i * 32, vram + counter->tiles[i] * 32, 32);
+}
+
+static void DrawAreaCounters(void)
+{
+    DrawAreaCounter(COUNTER_WATER, sDexNavUiDataPtr->waterSpecies, NUM_WATER_MONS_ENCOUNTER_SLOTS);
+    DrawAreaCounter(COUNTER_LAND, sDexNavUiDataPtr->landSpecies, NUM_LAND_MONS_ENCOUNTER_SLOTS);
+    DrawAreaCounter(COUNTER_HIDDEN, sDexNavUiDataPtr->hiddenSpecies, NUM_HIDDEN_MONS_ENCOUNTER_SLOTS);
+}
+
 #define tSpecies            data[2]
 #define tEnvironment        data[3]
 
@@ -2688,6 +2819,7 @@ static bool8 DexNav_DoGfxSetup(void)
     case 7:
         PrintSearchableSpecies(VarGet(DN_VAR_SPECIES) & DEXNAV_MASK_SPECIES);
         DexNavLoadEncounterData();
+        DrawAreaCounters();
         gMain.state++;
         break;
     case 8:
