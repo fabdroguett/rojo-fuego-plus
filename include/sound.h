@@ -6,6 +6,7 @@
 void InitMapMusic(void);
 void MapMusicMain(void);
 void ResetMapMusic(void);
+void SaveMapMusicForResume(void);
 u16 GetCurrentMapMusic(void);
 void PlayNewMapMusic(u16 songNum);
 void StopMapMusic(void);

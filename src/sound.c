@@ -59,6 +59,60 @@ static const struct Fanfare sFanfares[] = {
     [FANFARE_REGISTER_MATCH_CALL] = { MUS_REGISTER_MATCH_CALL, 135 },
 };
 
+// Rojo Fuego+ (from Pokémon SoulGold): after a battle the map music picks up where it left off.
+// The BGM player and its tracks are copied when the battle music starts and copied back when the
+// same map music would start again from the beginning.
+#define MAX_SAVED_BGM_TRACKS 16
+#define BGM_PLAYER 0 // gMPlayTable index of gMPlayInfo_BGM
+
+static EWRAM_DATA struct MusicPlayerInfo sSavedBGMInfo = {0};
+static EWRAM_DATA struct MusicPlayerTrack sSavedBGMTracks[MAX_SAVED_BGM_TRACKS] = {0};
+static EWRAM_DATA u16 sSavedBGMSong = 0;
+
+void SaveMapMusicForResume(void)
+{
+    const struct MusicPlayer *player = &gMPlayTable[BGM_PLAYER];
+    u16 song = sCurrentMapMusic;
+
+    sSavedBGMSong = 0;
+    if (song == 0 || song == MUS_DUMMY || player->numTracks > MAX_SAVED_BGM_TRACKS
+     || gMPlayInfo_BGM.songHeader != gSongTable[song].header
+     || (gMPlayInfo_BGM.status & MUSICPLAYER_STATUS_PAUSE))
+        return;
+
+    sSavedBGMInfo = gMPlayInfo_BGM;
+    memcpy(sSavedBGMTracks, player->track, player->numTracks * sizeof(struct MusicPlayerTrack));
+    sSavedBGMSong = song;
+}
+
+static bool32 TryResumeMapMusic(u16 song)
+{
+    const struct MusicPlayer *player = &gMPlayTable[BGM_PLAYER];
+    u32 i;
+
+    // The battle music itself goes through here too, so another song leaves the copy alone
+    if (song == 0 || song != sSavedBGMSong)
+        return FALSE;
+    sSavedBGMSong = 0;
+
+    m4aMPlayStop(&gMPlayInfo_BGM);
+    // Locked like the m4a functions do, so the sound interrupt skips the player while it is copied
+    gMPlayInfo_BGM.ident++;
+    sSavedBGMInfo.ident = gMPlayInfo_BGM.ident;
+    gMPlayInfo_BGM = sSavedBGMInfo;
+    memcpy(player->track, sSavedBGMTracks, player->numTracks * sizeof(struct MusicPlayerTrack));
+    for (i = 0; i < player->numTracks; i++)
+    {
+        // The battle music took the sound channels; the tracks get new ones on their next notes
+        player->track[i].chan = NULL;
+        if (player->track[i].flags & MPT_FLG_EXIST)
+            player->track[i].flags |= MPT_FLG_VOLCHG | MPT_FLG_PITCHG;
+    }
+    gMPlayInfo_BGM.status &= ~MUSICPLAYER_STATUS_PAUSE;
+    gMPlayInfo_BGM.ident = ID_NUMBER;
+    return TRUE;
+}
+
 void InitMapMusic(void)
 {
     gDisableMusic = FALSE;
@@ -73,7 +127,8 @@ void MapMusicMain(void)
         break;
     case 1:
         sMapMusicState = 2;
-        PlayBGM(sCurrentMapMusic);
+        if (!TryResumeMapMusic(sCurrentMapMusic))
+            PlayBGM(sCurrentMapMusic);
         break;
     case 2:
     case 3:

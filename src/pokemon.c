@@ -5192,6 +5192,7 @@ void PlayBattleBGM(void)
 
 void PlayMapChosenOrBattleBGM(u16 songId)
 {
+    SaveMapMusicForResume(); // Rojo Fuego+
     ResetMapMusic();
     m4aMPlayAllStop();
     if (songId)
