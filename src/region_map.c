@@ -1732,6 +1732,13 @@ static void UNUSED ClearUnkCursorSpriteData(void)
     sRegionMap->cursorSprite->data[3] = FALSE;
 }
 
+// Rojo Fuego+: screen position of the middle of a map section on the unzoomed region map
+void GetRegionMapSecScreenPos(u16 mapSecId, s16 *x, s16 *y)
+{
+    *x = (gRegionMapEntries[mapSecId].x + MAPCURSOR_X_MIN) * 8 + gRegionMapEntries[mapSecId].width * 4;
+    *y = (gRegionMapEntries[mapSecId].y + MAPCURSOR_Y_MIN) * 8 + gRegionMapEntries[mapSecId].height * 4;
+}
+
 void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
 {
     u8 spriteId;
