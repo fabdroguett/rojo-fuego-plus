@@ -611,3 +611,10 @@ Si se elige hack como base, cambiar la Fase 1 para clonar ese repo en vez de `pr
 - https://github.com/mstan/FireRedLeafGreenRecomp (recomp, NO sirve para editar features)
 - https://github.com/gradenGnostic/pokeemerald-multiplatform (precedente de port SDL multiplataforma)
 - https://github.com/morluto/rea (análisis puntual con Ghidra si hace falta)
+
+## Nota de coordinación (22-10-2026, tarde)
+Otra sesión (otro clon, misma cuenta) subió 5 commits a `rojo-fuego` mientras esta sesión hacía las
+mejoras de SoulGold. Se integraron con `git rebase` (sin conflictos de texto), compilación limpia,
+6 pruebas Python de esa sesión y 5 pruebas de combate `Rojo Fuego` en verde. Antes de trabajar:
+`git fetch rojofuego && git status` para no divergir. Los guiones del harness (`tools-test/base_*.txt`)
+quedaron desfasados por la nueva pantalla de controles de la intro.
