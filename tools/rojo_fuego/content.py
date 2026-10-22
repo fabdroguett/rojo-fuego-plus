@@ -92,6 +92,26 @@ Z_TRIALS = {
 }
 
 
+# NPCs that run a hand-written script from data/scripts/rojo_fuego_npcs.inc: NPC script -> new script
+NPC_SCRIPTS = {
+    "CeladonCity_DepartmentStore_5F_EventScript_Sailor": "RF_EventScript_HyperTrainer",
+}
+
+
+def apply_npc_scripts():
+    for npc_script, new_script in NPC_SCRIPTS.items():
+        for map_json in MAPS.glob("*_Frlg/map.json"):
+            data = json.loads(map_json.read_text(encoding="utf-8"))
+            objects = [o for o in data.get("object_events", []) if o.get("script") in (npc_script, new_script)]
+            if objects:
+                for obj in objects:
+                    obj["script"] = new_script
+                map_json.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+                break
+        else:
+            raise SystemExit(f"no map object runs {npc_script}")
+
+
 def z_trial_label(npc_script):
     return "RF_EventScript_ZTrial_" + npc_script.replace("_EventScript_", "_")
 
@@ -278,4 +298,5 @@ if __name__ == "__main__":
     apply_upgrades()
     apply_guardians()
     apply_z_trials()
+    apply_npc_scripts()
     print(f"{len(UPGRADES)} upgrades, {len(GUARDIANS)} guardians, {len(Z_TRIALS)} Z trials")

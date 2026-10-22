@@ -473,6 +473,27 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
 
 #undef PARSE_FLAG
 
+// Rojo Fuego+ Hyper Training NPC: VAR_0x8004 = party slot, VAR_0x8005 = stat (NUM_STATS = all).
+// Sets VAR_RESULT to FALSE when there was nothing to train.
+void Script_HyperTrainChosenMon(void)
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004];
+    u32 stat, trained = FALSE, on = TRUE;
+
+    for (stat = 0; stat < NUM_STATS; stat++)
+    {
+        if (gSpecialVar_0x8005 != NUM_STATS && gSpecialVar_0x8005 != stat)
+            continue;
+        if (GetMonData(mon, MON_DATA_HYPER_TRAINED_HP + stat) || GetMonData(mon, MON_DATA_HP_IV + stat) == MAX_PER_STAT_IVS)
+            continue;
+        SetMonData(mon, MON_DATA_HYPER_TRAINED_HP + stat, &on);
+        trained = TRUE;
+    }
+    if (trained)
+        CalculateMonStats(mon);
+    gSpecialVar_Result = trained;
+}
+
 void Script_GetChosenMonOffensiveEVs(void)
 {
     ConvertIntToDecimalStringN(gStringVar1, GetMonData(&gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004], MON_DATA_ATK_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
