@@ -1423,12 +1423,12 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Health Feather"),
         .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = COMPOUND_STRING(
-            "Raises the base HP\n"
-            "of one Pokémon."),
+            "Sube en 1 el IV de\n"
+            "PS de un Pokémon."),
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_FEATHER,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .fieldUseFunc = ItemUseOutOfBattle_Feather, // Rojo Fuego+: raises IVs (from Pokémon SoulGold)
         .effect = gItemEffect_HpFeather,
         .flingPower = 20,
         .iconPic = gItemIcon_EVFeather,
@@ -1440,13 +1440,12 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Muscle Feather"),
         .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Attack stat of one\n"
-            "Pokémon."),
+            "Sube en 1 el IV de\n"
+            "Ataque de un Pokémon."),
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_FEATHER,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .fieldUseFunc = ItemUseOutOfBattle_Feather, // Rojo Fuego+: raises IVs (from Pokémon SoulGold)
         .effect = gItemEffect_AtkFeather,
         .flingPower = 20,
         .iconPic = gItemIcon_EVFeather,
@@ -1458,13 +1457,12 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Resist Feather"),
         .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Defense stat of\n"
-            "one Pokémon."),
+            "Sube en 1 el IV de\n"
+            "Defensa de un Pokémon."),
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_FEATHER,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .fieldUseFunc = ItemUseOutOfBattle_Feather, // Rojo Fuego+: raises IVs (from Pokémon SoulGold)
         .effect = gItemEffect_DefFeather,
         .flingPower = 20,
         .iconPic = gItemIcon_EVFeather,
@@ -1476,13 +1474,12 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Genius Feather"),
         .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Sp. Atk stat of one\n"
-            "Pokémon."),
+            "Sube en 1 el IV de\n"
+            "At. Esp. de un Pokémon."),
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_FEATHER,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .fieldUseFunc = ItemUseOutOfBattle_Feather, // Rojo Fuego+: raises IVs (from Pokémon SoulGold)
         .effect = gItemEffect_SpatkFeather,
         .flingPower = 20,
         .iconPic = gItemIcon_EVFeather,
@@ -1494,13 +1491,12 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Clever Feather"),
         .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Sp. Def stat of one\n"
-            "Pokémon."),
+            "Sube en 1 el IV de\n"
+            "Def. Esp. de un Pokémon."),
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_FEATHER,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .fieldUseFunc = ItemUseOutOfBattle_Feather, // Rojo Fuego+: raises IVs (from Pokémon SoulGold)
         .effect = gItemEffect_SpdefFeather,
         .flingPower = 20,
         .iconPic = gItemIcon_EVFeather,
@@ -1512,13 +1508,12 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Swift Feather"),
         .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = COMPOUND_STRING(
-            "Raises the base\n"
-            "Speed stat of one\n"
-            "Pokémon."),
+            "Sube en 1 el IV de\n"
+            "Velocidad de un Pokémon."),
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_FEATHER,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .fieldUseFunc = ItemUseOutOfBattle_Feather, // Rojo Fuego+: raises IVs (from Pokémon SoulGold)
         .effect = gItemEffect_SpeedFeather,
         .flingPower = 20,
         .iconPic = gItemIcon_EVFeather,

@@ -2,6 +2,10 @@
 #include "main.h"
 #include "event_object_movement.h"
 #include "fieldmap.h"
+#include "item.h"
+#include "sound.h"
+#include "string_util.h"
+#include "constants/songs.h"
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
 #include "menu.h"
@@ -361,9 +365,69 @@ static bool32 Fishing_CheckMoreDots(struct Task *task)
     return FALSE;
 }
 
+// Rojo Fuego+ (from Pokémon SoulGold): sometimes the rod reels in an item instead of a Pokémon.
+// Feathers raise IVs in this game (ItemUseCB_Feather).
+#define FISH_ITEM_CHANCE 15 // percent
+
+static const u16 sFishItemsOldRod[] =
+{
+    ITEM_PEARL, ITEM_PEARL, ITEM_HEART_SCALE, ITEM_SHOAL_SALT, ITEM_SHOAL_SHELL,
+    ITEM_HEALTH_FEATHER, ITEM_SWIFT_FEATHER,
+};
+
+static const u16 sFishItemsGoodRod[] =
+{
+    ITEM_PEARL, ITEM_BIG_PEARL, ITEM_HEART_SCALE, ITEM_NET_BALL, ITEM_DIVE_BALL,
+    ITEM_HEALTH_FEATHER, ITEM_MUSCLE_FEATHER, ITEM_RESIST_FEATHER,
+    ITEM_GENIUS_FEATHER, ITEM_CLEVER_FEATHER, ITEM_SWIFT_FEATHER,
+};
+
+static const u16 sFishItemsSuperRod[] =
+{
+    ITEM_BIG_PEARL, ITEM_PEARL_STRING, ITEM_STAR_PIECE, ITEM_HEART_SCALE, ITEM_WATER_STONE, ITEM_BOTTLE_CAP,
+    ITEM_HEALTH_FEATHER, ITEM_MUSCLE_FEATHER, ITEM_RESIST_FEATHER,
+    ITEM_GENIUS_FEATHER, ITEM_CLEVER_FEATHER, ITEM_SWIFT_FEATHER,
+};
+
+static bool32 TryReelInItem(struct Task *task)
+{
+    enum Item item;
+
+    if (Random() % 100 >= FISH_ITEM_CHANCE)
+        return FALSE;
+
+    switch (task->tFishingRod)
+    {
+    case OLD_ROD:
+        item = sFishItemsOldRod[Random() % ARRAY_COUNT(sFishItemsOldRod)];
+        break;
+    case GOOD_ROD:
+        item = sFishItemsGoodRod[Random() % ARRAY_COUNT(sFishItemsGoodRod)];
+        break;
+    default:
+        item = sFishItemsSuperRod[Random() % ARRAY_COUNT(sFishItemsSuperRod)];
+        break;
+    }
+
+    CopyItemName(item, gStringVar1);
+    if (AddBagItem(item, 1))
+        StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("¡Algo picó el anzuelo!\n¡Pescaste: {STR_VAR_1}!{PAUSE_UNTIL_PRESS}"));
+    else
+        StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("¡Pescaste: {STR_VAR_1}!\nPero no cabe en la mochila…{PAUSE_UNTIL_PRESS}"));
+
+    StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
+    AddTextPrinterParameterized2(0, FONT_NORMAL, gStringVar4, 1, 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    PlayFanfare(MUS_OBTAIN_ITEM);
+    task->tStep = FISHING_NO_MON;
+    return TRUE;
+}
+
 static bool32 Fishing_MonOnHook(struct Task *task)
 {
     AlignFishingAnimationFrames();
+    if (TryReelInItem(task))
+        return TRUE;
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized2(0, FONT_NORMAL, sText_PokemonOnHook, 1, 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
     task->tStep = FISHING_START_ENCOUNTER;

@@ -5312,6 +5312,58 @@ static void Task_ClosePartyMenuAfterText(u8 taskId)
     }
 }
 
+// Rojo Fuego+ (from Pokémon SoulGold): feathers raise one IV by 1 instead of EVs
+void ItemUseCB_Feather(u8 taskId, TaskFunc task)
+{
+    static const u8 *const sIvNames[NUM_STATS] =
+    {
+        [STAT_HP]    = COMPOUND_STRING("PS"),
+        [STAT_ATK]   = COMPOUND_STRING("Ataque"),
+        [STAT_DEF]   = COMPOUND_STRING("Defensa"),
+        [STAT_SPEED] = COMPOUND_STRING("Velocidad"),
+        [STAT_SPATK] = COMPOUND_STRING("At. Esp."),
+        [STAT_SPDEF] = COMPOUND_STRING("Def. Esp."),
+    };
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
+    enum Item item = gSpecialVar_ItemId;
+    enum Stat stat;
+    u32 iv;
+
+    switch (item)
+    {
+    case ITEM_MUSCLE_FEATHER: stat = STAT_ATK;   break;
+    case ITEM_RESIST_FEATHER: stat = STAT_DEF;   break;
+    case ITEM_GENIUS_FEATHER: stat = STAT_SPATK; break;
+    case ITEM_CLEVER_FEATHER: stat = STAT_SPDEF; break;
+    case ITEM_SWIFT_FEATHER:  stat = STAT_SPEED; break;
+    default:                  stat = STAT_HP;    break;
+    }
+
+    iv = GetMonData(mon, MON_DATA_HP_IV + stat);
+    gTasks[taskId].func = task;
+    if (iv >= MAX_PER_STAT_IVS || GetMonData(mon, MON_DATA_IS_EGG))
+    {
+        gPartyMenuUseExitCallback = FALSE;
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        return;
+    }
+
+    iv++;
+    SetMonData(mon, MON_DATA_HP_IV + stat, &iv);
+    CalculateMonStats(mon);
+    gPartyMenuUseExitCallback = TRUE;
+    PlaySE(SE_USE_ITEM);
+    RemoveBagItem(item, 1);
+    GetMonNickname(mon, gStringVar1);
+    StringCopy(gStringVar2, sIvNames[stat]);
+    ConvertIntToDecimalStringN(gStringVar3, iv, STR_CONV_MODE_LEFT_ALIGN, 2);
+    StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("¡El IV de {STR_VAR_2} de {STR_VAR_1}\nsubió a {STR_VAR_3}!{PAUSE_UNTIL_PRESS}"));
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+}
+
 void ItemUseCB_ResetEVs(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
