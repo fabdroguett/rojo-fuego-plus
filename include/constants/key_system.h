@@ -15,7 +15,16 @@ enum KeySystemKey
     KEY_ABILITY_WEATHER_TURNS,
     KEY_FOLLOWERS,
     KEY_OW_ENCOUNTERS,
+    KEY_DIFFICULTY, // Not an on/off key: cycles through enum KeyDifficulty
     KEY_COUNT
+};
+
+enum KeyDifficulty
+{
+    KEY_DIFFICULTY_NORMAL, // 0 so that older saves and new games start on Normal
+    KEY_DIFFICULTY_EASY,
+    KEY_DIFFICULTY_CHALLENGE,
+    KEY_DIFFICULTY_COUNT
 };
 
 #endif // GUARD_CONSTANTS_KEY_SYSTEM_H

@@ -18,6 +18,7 @@ void FakeRtc_Reset(void)
     gSaveBlock3Ptr->fakeRTC.month = gGen3Epoch.month;
     gSaveBlock3Ptr->fakeRTC.day = gGen3Epoch.day;
     gSaveBlock3Ptr->fakeRTC.dayOfWeek = gGen3Epoch.dayOfWeek;
+    gSaveBlock3Ptr->fakeRTC.hour = 10; // Rojo Fuego+: a new game starts in the morning, not at midnight
 #endif
 }
 

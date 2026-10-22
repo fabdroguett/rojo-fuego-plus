@@ -1,4 +1,5 @@
 #include "global.h"
+#include "key_system.h"
 #include "main.h"
 #include "data.h"
 #include "move.h"
@@ -135,7 +136,7 @@ void GenerateMonFromTrainerMon(struct Pokemon *mon, const struct TrainerMon *tra
         errorf("Unkwown trainer mon gender value %d", trainerMon->gender);
     personality |= genderValue;
     ModifyPersonalityForNature(&personality, trainerMon->nature);
-    CreateMon(mon, trainerMon->species, trainerMon->lvl, personality, trainer->otID);
+    CreateMon(mon, trainerMon->species, KeySystem_ScaleTrainerLevel(trainerMon->lvl), personality, trainer->otID); // Rojo Fuego+ difficulty
     if (trainerMon->nickname != NULL)
         SetMonData(mon, MON_DATA_NICKNAME, trainerMon->nickname);
     if (trainerMon->ev) //ev in struct TrainerMon are stored in Showdown order not vanilla Emerald order

@@ -16,6 +16,7 @@ struct MassOutbreak
 
 void PrepareTvShowForRandomOutbreak(TVShow *show);
 void UpdateMassOutbreakDaysLeft(u16 days);
+void TryStartKantoOutbreak(void);
 bool32 IsMassOutbreakActive(void);
 bool8 SetUpMassOutbreakEncounter(u8 flags);
 bool8 DoMassOutbreakEncounterTest(void);

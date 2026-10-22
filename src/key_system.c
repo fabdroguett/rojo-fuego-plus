@@ -49,6 +49,15 @@ static const u8 sText_Followers[] = _("Pokémon que te sigue");
 static const u8 sText_FollowersDesc[] = _("El primero del equipo camina\ndetrás de ti.");
 static const u8 sText_OwEncounters[] = _("Salvajes visibles");
 static const u8 sText_OwEncountersDesc[] = _("Los salvajes aparecen en el mapa.\nApagado: encuentros clásicos.");
+static const u8 sText_Difficulty[] = _("Dificultad");
+static const u8 sText_DifficultyDesc[] = _("Fácil baja y Reto sube el nivel\nde los Pokémon de entrenadores.");
+
+static const u8 *const sText_DifficultyNames[KEY_DIFFICULTY_COUNT] =
+{
+    [KEY_DIFFICULTY_NORMAL]    = COMPOUND_STRING("NORMAL"),
+    [KEY_DIFFICULTY_EASY]      = COMPOUND_STRING("FÁCIL"),
+    [KEY_DIFFICULTY_CHALLENGE] = COMPOUND_STRING("RETO"),
+};
 
 static const struct KeyInfo sKeyInfo[KEY_COUNT] =
 {
@@ -62,6 +71,7 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_ABILITY_WEATHER_TURNS]  = {sText_Weather,      sText_WeatherDesc},
     [KEY_FOLLOWERS]              = {sText_Followers,    sText_FollowersDesc},
     [KEY_OW_ENCOUNTERS]          = {sText_OwEncounters, sText_OwEncountersDesc},
+    [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
 };
 
 static const u8 sText_On[] = _("SÍ");
@@ -125,6 +135,25 @@ void KeySystem_Set(enum KeySystemKey key, bool32 on)
     }
 }
 
+enum KeyDifficulty KeySystem_GetDifficulty(void)
+{
+    return gSaveBlock3Ptr->keySystemDifficulty % KEY_DIFFICULTY_COUNT;
+}
+
+// Easy takes 10% off trainer Pokémon levels (at least 1), Challenge adds 10% (at least 2)
+u32 KeySystem_ScaleTrainerLevel(u32 level)
+{
+    switch (KeySystem_GetDifficulty())
+    {
+    case KEY_DIFFICULTY_EASY:
+        return max(1, (s32)level - (s32)max(1, level / 10));
+    case KEY_DIFFICULTY_CHALLENGE:
+        return min(MAX_LEVEL, level + max(2, level / 10));
+    default:
+        return level;
+    }
+}
+
 static u8 KeySystem_DescWindowId(void)
 {
     u8 taskId = FindTaskIdByFunc(Task_KeySystemMenu);
@@ -134,8 +163,14 @@ static u8 KeySystem_DescWindowId(void)
 // Called by the list menu for every row it draws: prints SÍ/NO aligned to the right edge.
 static void KeySystem_PrintValue(u8 windowId, u32 key, u8 y)
 {
-    const u8 *value = KeySystem_IsOn(key) ? sText_On : sText_Off;
-    u32 x = KEY_LIST_WIDTH * 8 - GetStringWidth(FONT_NORMAL, value, 0) - 8;
+    const u8 *value;
+    u32 x;
+
+    if (key == KEY_DIFFICULTY)
+        value = sText_DifficultyNames[KeySystem_GetDifficulty()];
+    else
+        value = KeySystem_IsOn(key) ? sText_On : sText_Off;
+    x = KEY_LIST_WIDTH * 8 - GetStringWidth(FONT_NORMAL, value, 0) - 8;
 
     AddTextPrinterParameterized(windowId, FONT_NORMAL, value, x, y, TEXT_SKIP_DRAW, NULL);
 }
@@ -220,7 +255,10 @@ static void Task_KeySystemMenu(u8 taskId)
         break;
     default:
         PlaySE(SE_SELECT);
-        KeySystem_Set(input, !KeySystem_IsOn(input));
+        if (input == KEY_DIFFICULTY)
+            gSaveBlock3Ptr->keySystemDifficulty = (KeySystem_GetDifficulty() + 1) % KEY_DIFFICULTY_COUNT;
+        else
+            KeySystem_Set(input, !KeySystem_IsOn(input));
         RedrawListMenu(gTasks[taskId].tListTaskId);
         break;
     }

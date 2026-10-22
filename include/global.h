@@ -270,6 +270,7 @@ struct SaveBlock3
 #endif
     u8 dexNavChain;
     u32 keySystemOff; // Rojo Fuego+ Key System: one bit per key that the player turned off
+    u8 keySystemDifficulty; // Rojo Fuego+ Key System: enum KeyDifficulty
     u8 omniRingMechanics; // Rojo Fuego+ Omni Ring: one bit per unlocked mechanic (enum OmniMechanic)
     u8 omniRingMaxCharges;
     u8 omniRingCharges;

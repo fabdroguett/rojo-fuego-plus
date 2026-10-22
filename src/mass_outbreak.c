@@ -123,14 +123,96 @@ bool32 IsMassOutbreakActive(void)
     return (gSaveBlock1Ptr->outbreakDaysLeft > 0);
 }
 
+#if IS_FRLG
+// Rojo Fuego+: one Kanto outbreak a day, each bringing a Pokémon from a later generation.
+// Only areas the player has reached (required flag set) are picked.
+struct KantoOutbreak
+{
+    u16 map;
+    enum Species species;
+    u8 level;
+    u16 requiredFlag;
+};
+
+static const struct KantoOutbreak sKantoOutbreaks[] =
+{
+    {MAP_ROUTE1,                      SPECIES_SKWOVET,     4, FLAG_SYS_POKEDEX_GET},
+    {MAP_ROUTE22,                     SPECIES_BIDOOF,      5, FLAG_SYS_POKEDEX_GET},
+    {MAP_ROUTE2,                      SPECIES_LECHONK,     6, FLAG_SYS_POKEDEX_GET},
+    {MAP_VIRIDIAN_FOREST,             SPECIES_BLIPBUG,     6, FLAG_SYS_POKEDEX_GET},
+    {MAP_ROUTE3,                      SPECIES_STARLY,      9, FLAG_BADGE01_GET},
+    {MAP_MT_MOON_1F,                  SPECIES_BRONZOR,    12, FLAG_BADGE01_GET},
+    {MAP_ROUTE4,                      SPECIES_ROOKIDEE,   10, FLAG_BADGE01_GET},
+    {MAP_ROUTE24,                     SPECIES_FLABEBE,    13, FLAG_BADGE01_GET},
+    {MAP_ROUTE25,                     SPECIES_FLETCHLING, 13, FLAG_BADGE01_GET},
+    {MAP_ROUTE5,                      SPECIES_YAMPER,     16, FLAG_BADGE02_GET},
+    {MAP_ROUTE6,                      SPECIES_SHINX,      16, FLAG_BADGE02_GET},
+    {MAP_ROUTE9,                      SPECIES_NICKIT,     18, FLAG_BADGE03_GET},
+    {MAP_ROUTE10,                     SPECIES_PAWMI,      20, FLAG_BADGE03_GET},
+    {MAP_ROCK_TUNNEL_1F,              SPECIES_ROLYCOLY,   20, FLAG_BADGE03_GET},
+    {MAP_ROUTE8,                      SPECIES_PURRLOIN,   22, FLAG_BADGE03_GET},
+    {MAP_ROUTE7,                      SPECIES_FIDOUGH,    22, FLAG_BADGE03_GET},
+    {MAP_ROUTE11,                     SPECIES_TANDEMAUS,  22, FLAG_BADGE03_GET},
+    {MAP_ROUTE12,                     SPECIES_SMOLIV,     25, FLAG_BADGE04_GET},
+    {MAP_ROUTE13,                     SPECIES_BUNEARY,    25, FLAG_BADGE04_GET},
+    {MAP_SAFARI_ZONE_CENTER,          SPECIES_DEERLING,   25, FLAG_BADGE04_GET},
+    {MAP_ROUTE14,                     SPECIES_NYMBLE,     27, FLAG_BADGE04_GET},
+    {MAP_ROUTE15,                     SPECIES_TINKATINK,  28, FLAG_BADGE04_GET},
+    {MAP_ROUTE16,                     SPECIES_NOCTOWL,    28, FLAG_BADGE04_GET},
+    {MAP_ROUTE18,                     SPECIES_WINGULL,    28, FLAG_BADGE04_GET},
+    {MAP_ROUTE21_NORTH,               SPECIES_SANDYGAST,  30, FLAG_BADGE06_GET},
+    {MAP_ONE_ISLAND_KINDLE_ROAD,      SPECIES_LITLEO,     33, FLAG_BADGE07_GET},
+    {MAP_THREE_ISLAND_BERRY_FOREST,   SPECIES_PETILIL,    35, FLAG_BADGE07_GET},
+    {MAP_ROUTE23,                     SPECIES_RIOLU,      40, FLAG_BADGE08_GET},
+    {MAP_FIVE_ISLAND_MEADOW,          SPECIES_ELECTRIKE,  35, FLAG_IS_CHAMPION},
+    {MAP_SIX_ISLAND_WATER_PATH,       SPECIES_ZORUA,      38, FLAG_IS_CHAMPION},
+    {MAP_SEVEN_ISLAND_SEVAULT_CANYON, SPECIES_AXEW,       40, FLAG_IS_CHAMPION},
+};
+
+void TryStartKantoOutbreak(void)
+{
+    u32 i, count = 0;
+    const struct KantoOutbreak *picked = NULL;
+
+    if (IsMassOutbreakActive())
+        return;
+
+    // Pick uniformly among the unlocked entries in a single pass
+    for (i = 0; i < ARRAY_COUNT(sKantoOutbreaks); i++)
+    {
+        if (!FlagGet(sKantoOutbreaks[i].requiredFlag))
+            continue;
+        if (Random() % ++count == 0)
+            picked = &sKantoOutbreaks[i];
+    }
+    if (picked == NULL)
+        return;
+
+    struct MassOutbreak outbreak =
+    {
+        .species = picked->species,
+        .moves = {MOVE_NONE}, // keep the level-up moveset
+        .level = picked->level,
+        .probability = 50,
+        .duration = 1,
+        .location = picked->map,
+    };
+    StartMassOutbreak(outbreak);
+}
+#endif
+
 bool8 SetUpMassOutbreakEncounter(u8 flags)
 {
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(gSaveBlock1Ptr->outbreakPokemonLevel))
         return FALSE;
 
     CreateWildMon(gSaveBlock1Ptr->outbreakPokemonSpecies, gSaveBlock1Ptr->outbreakPokemonLevel);
-    for (u32 i = 0; i < MAX_MON_MOVES; i++)
-        SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], gSaveBlock1Ptr->outbreakPokemonMoves[i], i);
+    // Rojo Fuego+: outbreaks without a fixed moveset keep the one CreateWildMon gave
+    if (gSaveBlock1Ptr->outbreakPokemonMoves[0] != MOVE_NONE)
+    {
+        for (u32 i = 0; i < MAX_MON_MOVES; i++)
+            SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], gSaveBlock1Ptr->outbreakPokemonMoves[i], i);
+    }
 
     return TRUE;
 }
