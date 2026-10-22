@@ -395,6 +395,15 @@ Si se elige hack como base, cambiar la Fase 1 para clonar ese repo en vez de `pr
   abrir el menú Start (0x139+). Mapa de baseBlocks BG0 en el campo: búsqueda DexNav 8-92, panel DexNav
   100-380, cartel de mapa 0x107-0x124, menú Start 0x139+, aviso 0x180-0x1B7, marcos 0x200+; Key System
   1-449, menú de logros 1-448 y lista de Select 1-88 solo con controles bloqueados.
+- **Arreglo (reportado por el usuario: "se ganan pero no se ve el texto")**: `DrawStdWindowFrame` y
+  `DrawStdFrameWithCustomTileAndPalette` rellenan la ventana, así que llamarlas después de imprimir borraba
+  el texto. Afectaba al aviso de logros y al panel de detalles del DexNav. Ahora el marco va antes del
+  texto. El aviso pasó a baseBlock 0x2A0 (la caja de mensajes FRLG usa 0x194-0x1FF y el preview de mapa
+  0x259-0x284). Verificado con capturas en el emulador.
+- **Pruebas automáticas sin ventana**: `tools/rojo_fuego/test/harness.c` (libmgba, `apt install
+  libmgba-dev` en WSL; `gcc -O2 -o harness harness.c -lmgba`). Script con `run/hold/mash/shot/w8/r8/dump/
+  save/load`; `ppm2png.py` convierte las capturas. Para direcciones de variables estáticas:
+  `arm-none-eabi-nm pokefirered.elf`. Los savestates solo sirven con la misma ROM.
 - **No hecho**: traducción del juego al español (no pedida; proyecto grande).
 
 ### GitHub (HECHO 2026-10-22)
