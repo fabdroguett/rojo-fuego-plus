@@ -51,6 +51,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "data/rf_mega_guardians.h"
 #include "config/pokedex_plus_hgss.h"
 
 // static .rodata strings
@@ -3359,6 +3360,22 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, enum Species preSpecies, e
     }
 
     PrintInfoScreenTextSmall(gStringVar3, FONT_SMALL, base_x, base_y + base_y_offset*base_i); //evolution mon name
+
+    // Rojo Fuego+ (from Pokémon SoulGold): where the Mega Stone's guardian waits
+    if (sPokedexView->sEvoScreenData.isMega)
+    {
+        enum Item stone = GetSpeciesFormChanges(species)->param1;
+
+        for (u32 i = 0; i < ARRAY_COUNT(sRfMegaGuardians); i++)
+        {
+            if (sRfMegaGuardians[i].stone != stone)
+                continue;
+            GetMapName(gStringVar2, sRfMegaGuardians[i].mapsec, 0);
+            StringExpandPlaceholders(gStringVar3, COMPOUND_STRING("Su guardián espera en: {STR_VAR_2}"));
+            PrintInfoScreenTextSmall(gStringVar3, FONT_SMALL, base_x, base_y + base_y_offset * (base_i + 2));
+            break;
+        }
+    }
 
     if (base_i < 3)
     {
