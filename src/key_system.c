@@ -251,6 +251,23 @@ u32 KeySystem_ScaleTrainerLevel(u32 level)
 
 // Rojo Fuego+ hidden item sparkle: every few seconds one hidden item near the player, not picked up
 // yet, sparkles on its tile. Called every overworld frame.
+#include "data/rf_grottos.h"
+
+// Hidden grottos that still hold something today sparkle like hidden items
+static bool32 IsUnusedGrotto(const struct BgEvent *bg)
+{
+    u32 i;
+
+    if (bg->kind == BG_EVENT_HIDDEN_ITEM)
+        return FALSE;
+    for (i = 0; i < ARRAY_COUNT(sRfGrottos); i++)
+    {
+        if (bg->bgUnion.script == sRfGrottos[i].script)
+            return !FlagGet(sRfGrottos[i].flag);
+    }
+    return FALSE;
+}
+
 void KeySystem_UpdateHiddenItemSparkle(void)
 {
     static EWRAM_DATA u8 sTimer = 0;
@@ -267,7 +284,8 @@ void KeySystem_UpdateHiddenItemSparkle(void)
     for (i = 0; i < events->bgEventCount; i++)
     {
         const struct BgEvent *bg = &events->bgEvents[i];
-        if (bg->kind != BG_EVENT_HIDDEN_ITEM || FlagGet(FLAG_HIDDEN_ITEMS_START + bg->bgUnion.hiddenItem.hiddenItemId))
+        if (!IsUnusedGrotto(bg)
+         && (bg->kind != BG_EVENT_HIDDEN_ITEM || FlagGet(FLAG_HIDDEN_ITEMS_START + bg->bgUnion.hiddenItem.hiddenItemId)))
             continue;
         if (abs(bg->x - gSaveBlock1Ptr->pos.x) > SPARKLE_RANGE_X || abs(bg->y - gSaveBlock1Ptr->pos.y) > SPARKLE_RANGE_Y)
             continue;

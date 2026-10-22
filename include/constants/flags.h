@@ -2474,6 +2474,15 @@
 #define FLAG_RF_DEX_REWARD_6        FLAG_0x0C8
 #define FLAG_RF_DEX_REWARD_7        FLAG_0x0C9
 #define FLAG_RF_DAILY_WONDER_TRADE  FLAG_0x390 // first FRLG daily flag, cleared every day by ClearDailyFlags
+// Hidden grottos (tools/rojo_fuego/grottos.py): daily flags, so they refill every day
+#define FLAG_RF_GROTTO_0            FLAG_0x398
+#define FLAG_RF_GROTTO_1            FLAG_0x399
+#define FLAG_RF_GROTTO_2            FLAG_0x39A
+#define FLAG_RF_GROTTO_3            FLAG_0x39B
+#define FLAG_RF_GROTTO_4            FLAG_0x39C
+#define FLAG_RF_GROTTO_5            FLAG_0x39D
+#define FLAG_RF_GROTTO_6            FLAG_0x39E
+#define FLAG_RF_GROTTO_7            FLAG_0x39F
 #endif
 
 #if TESTING

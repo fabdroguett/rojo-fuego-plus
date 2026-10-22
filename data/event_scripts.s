@@ -1028,6 +1028,7 @@ gStdScripts_End::
 	.include "data/scripts/item_ball_scripts_frlg.inc"
 #if IS_FRLG
 	.include "data/scripts/rojo_fuego_guardians.inc"
+	.include "data/scripts/rojo_fuego_grottos.inc"
 	.include "data/scripts/rojo_fuego_ztrials.inc"
 	.include "data/scripts/rojo_fuego_npcs.inc"
 #endif

@@ -533,6 +533,13 @@ void Script_GetNextDexReward(void)
 #if IS_FRLG
 // Rojo Fuego+ Wonder Trade: swaps the party Pokémon in VAR_0x8004 for a random non-legendary one
 // of the same level. VAR_RESULT = FALSE when the chosen slot holds an Egg.
+// Rojo Fuego+ hidden grottos: the Pokémon set up by setwildbattle gets its hidden ability
+void Script_SetWildMonHiddenAbility(void)
+{
+    u8 abilityNum = 2;
+    SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_ABILITY_NUM, &abilityNum);
+}
+
 void Script_DoWonderTrade(void)
 {
     struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004];
