@@ -2063,11 +2063,52 @@ static void UpdateLeftNoOfBallsTextOnHealthbox(u8 healthboxSpriteId)
     gSprites[healthboxSpriteId2].data[1] = savedValue2;
 }
 
+// Rojo Fuego+ (from Pokémon SoulGold): a shiny Pokémon's healthbox gets a gold frame. All shiny
+// healthboxes share one tinted copy of the healthbox palette; the text colors are left as they are.
+static const u8 sShinyFrameColors[] = {3, 4, 5, 6, 7, 8};
+
+void UpdateHealthboxShinyFrame(enum BattlerId battler, struct Pokemon *mon)
+{
+    u8 healthboxSpriteId = gHealthboxSpriteIds[battler];
+    u8 otherHalfSpriteId = gSprites[healthboxSpriteId].oam.affineParam;
+    u32 paletteNum = IndexOfSpritePaletteTag(TAG_HEALTHBOX_PAL);
+
+    if (GetMonData(mon, MON_DATA_IS_SHINY))
+    {
+        u32 shinyPaletteNum = IndexOfSpritePaletteTag(TAG_HEALTHBOX_SHINY_PAL);
+
+        if (shinyPaletteNum == 0xFF)
+        {
+            u32 i;
+
+            shinyPaletteNum = AllocSpritePalette(TAG_HEALTHBOX_SHINY_PAL);
+            if (shinyPaletteNum == 0xFF)
+                return; // No free palette: keep the normal frame
+            LoadPalette(&gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], OBJ_PLTT_ID(shinyPaletteNum), PLTT_SIZE_4BPP);
+            for (i = 0; i < ARRAY_COUNT(sShinyFrameColors); i++)
+            {
+                u16 color = gPlttBufferUnfaded[OBJ_PLTT_ID(shinyPaletteNum) + sShinyFrameColors[i]];
+                s32 r = GET_R(color), g = GET_G(color), b = GET_B(color);
+
+                // Three quarters of the way to gold
+                color = RGB(r + (31 - r) * 3 / 4, g + (24 - g) * 3 / 4, b + (2 - b) * 3 / 4);
+                LoadPalette(&color, OBJ_PLTT_ID(shinyPaletteNum) + sShinyFrameColors[i], PLTT_SIZEOF(1));
+            }
+        }
+        paletteNum = shinyPaletteNum;
+    }
+    gSprites[healthboxSpriteId].oam.paletteNum = paletteNum;
+    gSprites[otherHalfSpriteId].oam.paletteNum = paletteNum;
+}
+
 void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elementId)
 {
     enum BattlerId battler = gSprites[healthboxSpriteId].hMain_Battler;
     s32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
     s32 currHp = GetMonData(mon, MON_DATA_HP);
+
+    if (elementId == HEALTHBOX_ALL)
+        UpdateHealthboxShinyFrame(battler, mon);
 
     if (IsOnPlayerSide(battler))
     {

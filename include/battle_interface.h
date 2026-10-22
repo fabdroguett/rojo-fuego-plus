@@ -52,6 +52,7 @@ enum
 #define TAG_STATUS_SUMMARY_BALLS_PAL    0xD712
 
 #define TAG_STATUS_SUMMARY_BALLS_TILE   0xD714
+#define TAG_HEALTHBOX_SHINY_PAL         0xD715 // Rojo Fuego+: gold frame for shiny Pokémon
 
 #define TAG_HEALTHBAR_PAL               TAG_HEALTHBAR_PLAYER1_TILE
 #define TAG_HEALTHBOX_PAL               TAG_HEALTHBOX_PLAYER1_TILE
@@ -122,6 +123,7 @@ void UpdateHpTextInHealthbox(u32 healthboxSpriteId, u32 maxOrCurrent, s16 currHp
 void SwapHpBarsWithHpText(void);
 u8 CreatePartyStatusSummarySprites(enum BattlerId battler, struct HpAndStatus *partyInfo, bool8 skipPlayer, bool8 isBattleStart);
 void Task_HidePartyStatusSummary(u8 taskId);
+void UpdateHealthboxShinyFrame(enum BattlerId battler, struct Pokemon *mon);
 void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elementId);
 s32 MoveBattleBar(enum BattlerId battler, u8 healthboxSpriteId, u8 whichBar, u8 unused);
 u8 GetScaledHPFraction(s16 hp, s16 maxhp, u8 scale);

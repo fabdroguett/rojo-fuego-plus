@@ -536,6 +536,7 @@ void FreeHealthboxPalsForLevelUp(enum BattlerId battler)
     gSprites[healthBoxSpriteId].oam.paletteNum = paletteId1;
     gSprites[spriteId1].oam.paletteNum = paletteId1;
     gSprites[spriteId2].oam.paletteNum = paletteId2;
+    UpdateHealthboxShinyFrame(battler, GetBattlerMon(battler)); // Rojo Fuego+: keep the gold frame
 }
 
 void AnimTask_FreeHealthboxPalsForLevelUp(u8 taskId)
