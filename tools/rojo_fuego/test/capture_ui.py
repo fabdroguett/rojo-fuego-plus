@@ -60,6 +60,19 @@ cases = {
     "quests": ("Quests", "run 60\n" + shot("quests") + "hold B 1\nrun 30\n" + shot("quests-closed")),
     "keys": ("Keys", "run 60\n" + shot("keys") + "hold B 1\nrun 30\n" + shot("keys-closed")),
     "pc": ("PC", "run 60\n" + shot("pc-menu") + "hold D 1\nrun 10\nhold D 1\nrun 10\nhold A 1\nrun 240\n" + shot("pc")),
+    "naming": ("Naming", "run 240\n" + shot("naming") + "hold R 1\nrun 40\n" + shot("naming-page")),
+    "townmap": ("TownMap", "run 240\n" + shot("townmap") + "hold > 1\nrun 30\n" + shot("townmap-move")),
+    "flymap": ("FlyMap", "run 240\n" + shot("flymap")),
+    "achievements": ("Achievements", "run 240\n" + shot("achievements") + "hold D 1\nrun 30\n" + shot("achievements-row")),
+    "registered": ("Registered", "run 60\n" + shot("registered")),
+    "mart": ("Mart", "run 120\n" + shot("mart-menu") + "hold A 1\nrun 240\n" + shot("mart-buy")
+             + "hold A 1\nrun 60\n" + shot("mart-quantity")),
+    "relearner": ("Relearner", "run 300\n" + shot("relearner") + "hold D 1\nrun 30\n" + shot("relearner-row")),
+    "evolution": ("Evolution", "run 300\n" + shot("evolution-start") + "run 900\n" + shot("evolution-mid")
+                  + "mash A 600\n" + shot("evolution-end")),
+    "battle": ("Wild", "run 500\nhold A 1\nrun 240\n" + shot("battle-actions")
+               + "hold A 1\nrun 60\n" + shot("battle-moves")
+               + "hold > 1\nrun 20\n" + shot("battle-moves-focus")),
     "party": ("Wild", "run 500\nhold A 1\nrun 240\nhold D 1\nrun 6\nhold A 1\nrun 240\n" + shot("party")
               + "hold D 1\nrun 10\n" + shot("party-move")
               + "hold B 1\nrun 180\n" + shot("party-cancel")

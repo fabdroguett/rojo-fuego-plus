@@ -34,6 +34,8 @@
 #include "constants/songs.h"
 #include "constants/items.h"
 #include "caps.h"
+#include "key_system.h"
+#include "rf_ui_theme.h"
 
 #define HEALTHBOX_BG_INDEX 2
 
@@ -2952,6 +2954,7 @@ static const struct SpriteTemplate sSpriteTemplate_LastUsedBallWindow =
 };
 
 #define MOVE_INFO_WINDOW_TAG 0xE722
+#define MOVE_INFO_NIGHT_PAL_TAG 0xE723 // Rojo Fuego+: the pop-up palette's white is also name ink
 
 static const struct OamData sOamData_MoveInfoWindow =
 {
@@ -3121,6 +3124,24 @@ void TryToAddMoveInfoWindow(void)
     {
         gBattleStruct->moveInfoSpriteId = CreateSprite(&sSpriteTemplate_MoveInfoWindow, LAST_BALL_WIN_X_0, LAST_USED_WIN_Y + 32, 6);
         gSprites[gBattleStruct->moveInfoSpriteId].sHide = FALSE;
+        if (KeySystem_IsOn(KEY_DARK_MODE))
+        {
+            // move_info_window: 13 fill, 10/14 rims, 11 outline, 5 label, 7 L key cap
+            u16 colors[16];
+            struct SpritePalette night = {colors, MOVE_INFO_NIGHT_PAL_TAG};
+            u32 paletteNum;
+
+            CpuCopy16(sAbilityPopUpPalette, colors, sizeof(colors));
+            colors[5] = RF_UI_NIGHT_TEXT;
+            colors[7] = RF_UI_GOLD;
+            colors[10] = RF_UI_NIGHT_PANEL;
+            colors[11] = RF_UI_NIGHT_SHADOW;
+            colors[13] = RF_UI_NIGHT_PANEL;
+            colors[14] = RF_UI_NIGHT_EDGE;
+            paletteNum = LoadSpritePalette(&night);
+            if (paletteNum != 0xFF)
+                gSprites[gBattleStruct->moveInfoSpriteId].oam.paletteNum = paletteNum;
+        }
     }
 }
 
@@ -3132,6 +3153,7 @@ void TryToHideMoveInfoWindow(void)
 static void DestroyMoveInfoWinGfx(struct Sprite *sprite)
 {
     FreeSpriteTilesByTag(MOVE_INFO_WINDOW_TAG);
+    FreeSpritePaletteByTag(MOVE_INFO_NIGHT_PAL_TAG);
     if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF)
         FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
     DestroySprite(sprite);

@@ -9,6 +9,7 @@
 #include "window.h"
 #include "malloc.h"
 #include "link.h"
+#include "mail.h"
 #include "bg.h"
 #include "sound.h"
 #include "frontier_pass.h"
@@ -36,6 +37,8 @@
 #include "constants/rgb.h"
 #include "constants/trainers.h"
 #include "constants/union_room.h"
+
+#define RF_MAX_BRAG_STATE 4 // Rojo Fuego+: one sticker palette per FRLG brag state
 
 enum {
     WIN_MSG,
@@ -765,6 +768,26 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
         trainerCard->monSpecies[3] = VarGet(VAR_TRAINER_CARD_MON_ICON_4);
         trainerCard->monSpecies[4] = VarGet(VAR_TRAINER_CARD_MON_ICON_5);
         trainerCard->monSpecies[5] = VarGet(VAR_TRAINER_CARD_MON_ICON_6);
+
+        // Rojo Fuego+: saves started before the new game fix hold Emerald's Seedot record
+        // and lottery number in these vars; drop anything the card cannot draw.
+        for (i = 0; i < TRAINER_CARD_STICKER_TYPES; i++)
+        {
+            if (trainerCard->stickers[i] > RF_MAX_BRAG_STATE)
+                trainerCard->stickers[i] = 0;
+        }
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            u16 letter = 0;
+            enum Species species = MailSpeciesToSpecies(trainerCard->monSpecies[i], &letter);
+
+            // The Hall of Fame stores Unown as a mail species; draw its letter's form.
+            if (species == SPECIES_UNOWN && letter != 0)
+                species = SPECIES_UNOWN_B + letter - 1;
+            if (species > NUM_SPECIES || !IsSpeciesEnabled(species))
+                species = SPECIES_NONE;
+            trainerCard->monSpecies[i] = species;
+        }
         break;
     }
 }
@@ -1473,7 +1496,7 @@ static u8 SetCardBgsAndPals(void)
                 RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
                 RF_UI_NIGHT_EDGE, RF_UI_GOLD, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_MUTED,
                 RF_UI_GOLD, RGB(8,20,14), RF_UI_SELECTED, RF_UI_SELECTED,
-                RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
+                RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND, // 15: badge strip, unlike slot edges (3) and label (14)
             };
             LoadPalette(frame, BG_PLTT_ID(0), sizeof(frame));
         }

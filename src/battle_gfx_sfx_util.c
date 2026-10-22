@@ -30,6 +30,7 @@
 #include "constants/battle_palace.h"
 #include "constants/battle_move_effects.h"
 #include "constants/event_objects.h" // only for SHADOW_SIZE constants
+#include "rf_ui_theme.h"
 
 // this file's functions
 static u8 GetBattlePalaceMoveGroup(enum BattlerId battler, enum Move move);
@@ -714,6 +715,7 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
     if (state == 1)
     {
         LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
+        RFUI_ThemeHealthboxPalette(IndexOfSpritePaletteTag(TAG_HEALTHBOX_PAL));
         LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
         CategoryIcons_LoadSpritesGfx();
     }

@@ -67,6 +67,23 @@ void RFUI_PrintFitted(u8 window, const u8 *text, u32 x, u32 y, u32 width, const 
     AddTextPrinterParameterized3(window, font, x, y, colors, TEXT_SKIP_DRAW, text);
 }
 
+// Battle healthbox frame (ball_status_bar.pal): 1 ink, 2 paper, 3 shading and ink shadow,
+// 4 EXP strip, 6 rim, 8 rim shadow. HP/EXP bars, gender and status colours keep their slots.
+void RFUI_ThemeHealthboxPalette(u32 paletteNum)
+{
+    static const u8 slots[] = {1, 2, 3, 4, 6, 8};
+    static const u16 night[] = {
+        RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_SHADOW,
+        RF_UI_SELECTED, RF_UI_NIGHT_EDGE, RF_UI_SELECTED,
+    };
+    u32 i;
+
+    if (paletteNum >= 16 || !KeySystem_IsOn(KEY_DARK_MODE))
+        return;
+    for (i = 0; i < ARRAY_COUNT(slots); i++)
+        LoadPalette(&night[i], OBJ_PLTT_ID(paletteNum) + slots[i], PLTT_SIZEOF(1));
+}
+
 // Standard text windows share indices 1 (paper), 2 (ink), 3 (shadow).
 // Preserve coloured words (4..9); border indices (10..15) share the night surfaces.
 void RFUI_LoadWindowPalette(const u16 *palette, u32 offset)

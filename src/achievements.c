@@ -23,6 +23,7 @@
 #include "palette.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "rf_ui_theme.h"
 #include "rtc.h"
 #include "scanline_effect.h"
 #include "script.h"
@@ -786,6 +787,32 @@ struct AchScreen
     u16 bg1Tilemap[32 * 32];
 };
 
+// Rojo Fuego+ dark theme: same layout, night surfaces. Trophy colours (7..14) are kept;
+// the locked trophy (3 body, 15 rim) becomes an outline.
+static void LoadAchScreenNightPalettes(void)
+{
+    static const u16 bg[12] =
+    {
+        RF_UI_NIGHT_GROUND, RGB(2, 7, 8), RF_UI_SELECTED, RF_UI_NIGHT_SHADOW,
+        RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_SHADOW,
+        RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_MUTED, RGB(2, 7, 8),
+    };
+    static const u16 shadow = RF_UI_NIGHT_SHADOW, row = RF_UI_SELECTED;
+    static const u16 green = RGB(12, 28, 14), locked = RGB(12, 17, 16);
+
+    LoadPalette(bg, BG_PLTT_ID(0), sizeof(bg));
+    LoadPalette(&shadow, BG_PLTT_ID(1) + COL_SHADOW, PLTT_SIZEOF(1));
+    LoadPalette(&row, BG_PLTT_ID(1) + COL_SELECTED, PLTT_SIZEOF(1));
+    LoadPalette(&green, BG_PLTT_ID(1) + COL_GREEN, PLTT_SIZEOF(1));
+    LoadPalette(&locked, BG_PLTT_ID(1) + COL_LOCKED, PLTT_SIZEOF(1));
+}
+
+// COL_DARK also draws the L/R button glyphs, so night rows use COL_WHITE as ink instead.
+static u32 AchInk(void)
+{
+    return KeySystem_IsOn(KEY_DARK_MODE) ? COL_WHITE : COL_DARK;
+}
+
 static EWRAM_DATA struct AchScreen *sAchScreen = NULL;
 static EWRAM_DATA u8 sLastCategory = 0;
 
@@ -895,12 +922,12 @@ static void DrawRow(u32 row)
     const u8 *name = IsShownAsHidden(id) ? COMPOUND_STRING("???") : gAchievements[id].name;
     u32 font = (GetStringWidth(FONT_NORMAL, name, 0) > LIST_WIDTH * 8 - NAME_X) ? FONT_NARROW : FONT_NORMAL;
     const u8 *status;
-    u32 statusColor = COL_DARK, statusFont = FONT_NORMAL;
+    u32 statusColor = AchInk(), statusFont = FONT_NORMAL;
 
     FillWindowPixelRect(WIN_LIST, PIXEL_FILL(bg), 0, y, LIST_WIDTH * 8, ROW_HEIGHT);
     FillWindowPixelRect(WIN_STATUS, PIXEL_FILL(bg), 0, y, STATUS_WIDTH * 8, ROW_HEIGHT);
     BlitBitmapToWindow(WIN_LIST, sAchTrophyIcons[icon], 1, y, 16, 16);
-    PrintColored(WIN_LIST, font, name, NAME_X, y + 1, bg, COL_DARK, COL_SHADOW);
+    PrintColored(WIN_LIST, font, name, NAME_X, y + 1, bg, AchInk(), COL_SHADOW);
 
     if (Achievement_IsClaimed(id))
     {
@@ -922,7 +949,7 @@ static void DrawRow(u32 row)
         }
         statusColor = COL_LOCKED;
         if (status == gStringVar1)
-            statusColor = COL_DARK;
+            statusColor = AchInk();
     }
     PrintColored(WIN_STATUS, statusFont, status, STATUS_WIDTH * 8 - 3 - GetStringWidth(statusFont, status, 0),
                  y + (statusFont == FONT_SMALL ? 3 : 1), bg, statusColor, COL_SHADOW);
@@ -1161,6 +1188,8 @@ static void CB2_AchScreenSetup(void)
         DeactivateAllTextPrinters();
         LoadPalette(sAchScreenBgPal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
         LoadPalette(sAchScreenTextPal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+        if (KeySystem_IsOn(KEY_DARK_MODE))
+            LoadAchScreenNightPalettes();
         gMain.state++;
         break;
     case 3:

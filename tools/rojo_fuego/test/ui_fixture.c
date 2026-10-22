@@ -29,6 +29,14 @@
 #include "party_menu.h"
 #include "option_menu.h"
 #include "trainer_card.h"
+#include "naming_screen.h"
+#include "fieldmap.h"
+#include "region_map.h"
+#include "achievements.h"
+#include "registered_items.h"
+#include "shop.h"
+#include "move_relearner.h"
+#include "evolution_scene.h"
 
 void RFUiFixture_Pokedex(void)
 {
@@ -216,4 +224,71 @@ void RFUiFixture_Trainer(void)
 {
     SetMainCallback1(NULL);
     ShowPlayerTrainerCard(CB2_ReturnToField);
+}
+
+void RFUiFixture_Naming(void)
+{
+    SetMainCallback1(NULL);
+    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToField);
+}
+
+void RFUiFixture_TownMap(void)
+{
+    SetMainCallback1(NULL);
+    FieldInitRegionMap(CB2_ReturnToField);
+}
+
+void RFUiFixture_FlyMap(void)
+{
+    SetMainCallback1(NULL);
+    gMain.state = 0;
+    SetMainCallback2(CB2_OpenFlyMap);
+}
+
+void RFUiFixture_Achievements(void)
+{
+    SetMainCallback1(NULL);
+    Achievements_OpenScreen(CB2_ReturnToField);
+}
+
+void RFUiFixture_Registered(void)
+{
+    AddBagItem(ITEM_BICYCLE, 1);
+    AddBagItem(ITEM_TOWN_MAP, 1);
+    if (!IsItemRegistered(ITEM_BICYCLE))
+        ToggleRegisteredItem(ITEM_BICYCLE);
+    if (!IsItemRegistered(ITEM_TOWN_MAP))
+        ToggleRegisteredItem(ITEM_TOWN_MAP);
+    SetMainCallback1(NULL);
+    SetMainCallback2(CB2_Overworld);
+    RegisteredItems_OpenMenu();
+}
+
+void RFUiFixture_Mart(void)
+{
+    static const u16 items[] = {ITEM_POKE_BALL, ITEM_POTION, ITEM_ANTIDOTE, ITEM_REPEL, ITEM_ESCAPE_ROPE, ITEM_NONE};
+    SetMainCallback1(NULL);
+    SetMainCallback2(CB2_Overworld);
+    CreatePokemartMenu(items);
+}
+
+void RFUiFixture_Relearner(void)
+{
+    ZeroPlayerPartyMons();
+    CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_IVYSAUR, 30, 31);
+    CalculatePlayerPartyCount();
+    gSpecialVar_0x8004 = 0;
+    SetMainCallback1(NULL);
+    gMain.savedCallback = CB2_ReturnToField;
+    SetMainCallback2(CB2_InitLearnMove);
+}
+
+void RFUiFixture_Evolution(void)
+{
+    ZeroPlayerPartyMons();
+    CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_BULBASAUR, 16, 31);
+    CalculatePlayerPartyCount();
+    SetMainCallback1(NULL);
+    gMain.savedCallback = CB2_ReturnToField;
+    BeginEvolutionScene(&gParties[B_TRAINER_PLAYER][0], SPECIES_IVYSAUR, TRUE, 0);
 }

@@ -194,7 +194,10 @@ void NewGameInitData(void)
     ResetGameStats();
     ClearAllContestWinnerPics();
     ClearPlayerLinkBattleRecords();
-    InitSeedotSizeRecord();
+    // Rojo Fuego+: Emerald's Seedot record and Lottery Corner vars share IDs with
+    // VAR_TRAINER_CARD_MON_ICON_5 and VAR_LINK_WIN_BRAG_STATE on FRLG.
+    if (!IS_FRLG)
+        InitSeedotSizeRecord();
     InitLotadSizeRecord();
     gPartiesCount[B_TRAINER_PLAYER] = 0;
     ZeroPlayerPartyMons();
@@ -209,7 +212,8 @@ void NewGameInitData(void)
     SetMauvilleOldMan();
     InitDewfordTrend();
     ResetFanClub();
-    ResetLotteryCorner();
+    if (!IS_FRLG)
+        ResetLotteryCorner();
     UpdateDailySeed();
     WarpToTruck();
     if (IS_FRLG)

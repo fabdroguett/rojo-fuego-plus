@@ -13,6 +13,7 @@
 #define RF_UI_GOLD RGB(31, 25, 6)
 void RFUI_LoadPalette(u32 bank, bool32 dark);
 void RFUI_LoadWindowPalette(const u16 *palette, u32 offset);
+void RFUI_ThemeHealthboxPalette(u32 paletteNum);
 void RFUI_DrawPanel(u8 window, u32 x, u32 y, u32 width, u32 height, u8 fill, u8 edge);
 void RFUI_PrintFitted(u8 window, const u8 *text, u32 x, u32 y, u32 width, const u8 *colors);
 
