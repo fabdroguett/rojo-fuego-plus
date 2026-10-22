@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+# Rebuilds the DexNav screen background with Spanish labels.
+#   python3 tools/rojo_fuego/dexnav_gui.py render   -> writes the current screen as dexnav_screen.png (for reference)
+#   python3 tools/rojo_fuego/dexnav_gui.py build    -> repaints the labels and rewrites gui_tiles.png + gui_tilemap.bin
+# The original English sheet is kept as graphics/dexnav/gui_tiles_en.png / gui_tilemap_en.bin.
+import os, shutil, struct, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import pngutil
+
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
+GFX = os.path.join(ROOT, 'graphics', 'dexnav')
+TILES, TILEMAP = os.path.join(GFX, 'gui_tiles.png'), os.path.join(GFX, 'gui_tilemap.bin')
+TILES_EN, TILEMAP_EN = os.path.join(GFX, 'gui_tiles_en.png'), os.path.join(GFX, 'gui_tilemap_en.bin')
+W, H = 240, 160
+
+def render():
+    w, h, pal, px = pngutil.read_png(TILES_EN)
+    tiles_per_row = w // 8
+    tilemap = struct.unpack('<1024H', open(TILEMAP_EN, 'rb').read())
+    img = [[0] * W for _ in range(H)]
+    for ty in range(H // 8):
+        for tx in range(W // 8):
+            e = tilemap[ty * 32 + tx]
+            t, hf, vf = e & 0x3FF, (e >> 10) & 1, (e >> 11) & 1
+            sx, sy = (t % tiles_per_row) * 8, (t // tiles_per_row) * 8
+            for y in range(8):
+                for x in range(8):
+                    yy, xx = (7 - y) if vf else y, (7 - x) if hf else x
+                    img[ty * 8 + y][tx * 8 + x] = px[sy + yy][sx + xx]
+    return pal, img
+
+def retile(pal, img):
+    tiles, index, tilemap = [], {}, [0] * 1024
+    for ty in range(H // 8):
+        for tx in range(W // 8):
+            key = tuple(tuple(img[ty * 8 + y][tx * 8:tx * 8 + 8]) for y in range(8))
+            if key not in index:
+                index[key] = len(tiles)
+                tiles.append(key)
+            tilemap[ty * 32 + tx] = index[key]
+    per_row = 16
+    rows = (len(tiles) + per_row - 1) // per_row
+    sheet = [[0] * (per_row * 8) for _ in range(rows * 8)]
+    for i, t in enumerate(tiles):
+        ox, oy = (i % per_row) * 8, (i // per_row) * 8
+        for y in range(8):
+            sheet[oy + y][ox:ox + 8] = list(t[y])
+    pngutil.write_png(TILES, pal, sheet)
+    open(TILEMAP, 'wb').write(struct.pack('<1024H', *tilemap))
+    return len(tiles)
+
+# 7-pixel-tall label font, close to the original's
+FONT = {
+    'A': ['.11.', '1..1', '1..1', '1111', '1..1', '1..1', '1..1'],
+    'B': ['111.', '1..1', '1..1', '111.', '1..1', '1..1', '111.'],
+    'C': ['.111', '1...', '1...', '1...', '1...', '1...', '.111'],
+    'D': ['111.', '1..1', '1..1', '1..1', '1..1', '1..1', '111.'],
+    'E': ['1111', '1...', '1...', '111.', '1...', '1...', '1111'],
+    'G': ['.111', '1...', '1...', '1.11', '1..1', '1..1', '.111'],
+    'H': ['1..1', '1..1', '1..1', '1111', '1..1', '1..1', '1..1'],
+    'I': ['111', '.1.', '.1.', '.1.', '.1.', '.1.', '111'],
+    'L': ['1...', '1...', '1...', '1...', '1...', '1...', '1111'],
+    'N': ['1..1', '11.1', '11.1', '1.11', '1.11', '1..1', '1..1'],
+    'O': ['.11.', '1..1', '1..1', '1..1', '1..1', '1..1', '.11.'],
+    'P': ['111.', '1..1', '1..1', '111.', '1...', '1...', '1...'],
+    'Q': ['.11.', '1..1', '1..1', '1..1', '1..1', '1.1.', '.1.1'],
+    'R': ['111.', '1..1', '1..1', '111.', '1.1.', '1..1', '1..1'],
+    'S': ['.111', '1...', '1...', '.11.', '...1', '...1', '111.'],
+    'T': ['11111', '..1..', '..1..', '..1..', '..1..', '..1..', '..1..'],
+    'U': ['1..1', '1..1', '1..1', '1..1', '1..1', '1..1', '.11.'],
+    'Ú': ['1..1', '1..1', '1..1', '1..1', '1..1', '1..1', '.11.'],
+    'V': ['1..1', '1..1', '1..1', '1..1', '1..1', '.11.', '.11.'],
+    '.': ['.', '.', '.', '.', '.', '.', '1'],
+    ' ': ['..', '..', '..', '..', '..', '..', '..'],
+}
+
+# Bold 8-pixel-tall font for the SEARCH button
+BOLD = {
+    'B': ['111110', '111111', '110011', '111110', '111110', '110011', '111111', '111110'],
+    'U': ['110011', '110011', '110011', '110011', '110011', '110011', '111111', '011110'],
+    'S': ['011111', '111111', '110000', '111110', '011111', '000011', '111111', '111110'],
+    'C': ['011111', '111111', '110000', '110000', '110000', '110000', '111111', '011111'],
+    'A': ['011110', '111111', '110011', '110011', '111111', '111111', '110011', '110011'],
+    'R': ['111110', '111111', '110011', '110011', '111110', '111111', '110011', '110011'],
+}
+
+def draw_text(img, text, x, y, color, shadow=None, font=FONT):
+    for ch in text:
+        glyph = font[ch]
+        if ch == 'Ú':  # the accent sits in the row above the letter
+            img[y - 1][x + 2] = color
+        for gy, row in enumerate(glyph):
+            for gx, bit in enumerate(row):
+                if bit == '1':
+                    img[y + gy][x + gx] = color
+                    if shadow is not None:
+                        for dx, dy in ((1, 0), (0, 1), (1, 1)):
+                            nx, ny = gx + dx, gy + dy
+                            inside = ny < len(glyph) and nx < len(row) and glyph[ny][nx] == '1'
+                            if not inside and img[y + ny][x + nx] != color:
+                                img[y + ny][x + nx] = shadow
+        x += len(glyph[0]) + 1
+
+def erase_patterned(img, x0, y0, x1, y1, offset=40):
+    # The tab bars repeat every 8 or 10 pixels, so copy a clean stretch from further right
+    for y in range(y0, y1):
+        for x in range(x0, x1):
+            img[y][x] = img[y][x + offset]
+
+def fill(img, x0, y0, x1, y1, color):
+    for y in range(y0, y1):
+        for x in range(x0, x1):
+            img[y][x] = color
+
+def build(img):
+    # Panel tabs: white letters with a dark shadow
+    erase_patterned(img, 9, 14, 42, 22)
+    draw_text(img, 'AGUA', 10, 14, 1, 7)
+    erase_patterned(img, 2, 55, 30, 63)
+    draw_text(img, 'TIERRA', 3, 55, 1, 7)
+    erase_patterned(img, 35, 120, 72, 128)
+    draw_text(img, 'OCULTOS', 36, 120, 1, 7)
+    # Info labels: white on the red bars
+    for top, label in ((36, 'ESPECIE'), (60, 'TIPO'), (84, 'NV. BÚSQUEDA'), (108, 'HAB. OCULTA'), (132, 'CADENA ACTUAL')):
+        fill(img, 162, top + 1, 236, top + 8, 2)
+        draw_text(img, label, 164, top + 1, 1)
+    # SEARCH button
+    fill(img, 168, 19, 219, 27, 6)
+    draw_text(img, 'BUSCAR', 173, 19, 1, font=BOLD)
+
+if __name__ == '__main__':
+    if not os.path.exists(TILES_EN):
+        shutil.copy(TILES, TILES_EN)
+        shutil.copy(TILEMAP, TILEMAP_EN)
+    pal, img = render()
+    if sys.argv[1:] == ['render']:
+        pngutil.write_png(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dexnav_screen.png'), pal, img)
+        pngutil.write_rgb_png(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dexnav_screen_x3.png'), pal, img, 3)
+        print('palette:', pal)
+    elif sys.argv[1:] == ['build']:
+        build(img)
+        here = os.path.dirname(os.path.abspath(__file__))
+        pngutil.write_rgb_png(os.path.join(here, 'dexnav_screen_es_x3.png'), pal, img, 3)
+        print('tiles:', retile(pal, img))

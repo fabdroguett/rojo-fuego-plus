@@ -472,8 +472,45 @@ static void ShowPyramidFloorWindow(void)
     CopyWindowToVram(sBattlePyramidFloorWindowId, COPYWIN_GFX);
 }
 
+// Rojo Fuego+: told when the DexNav is chosen on a map without wild Pokémon
+static EWRAM_DATA bool8 sDexNavNoticeShown = FALSE;
+static EWRAM_DATA u8 sDexNavNoticeWindowId = 0;
+
+static const struct WindowTemplate sWindowTemplate_DexNavNotice = {
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 15,
+    .width = 18,
+    .height = 2,
+    .paletteNum = 15,
+    .baseBlock = 0x2A0,
+};
+
+static void HideDexNavNotice(void)
+{
+    if (!sDexNavNoticeShown)
+        return;
+    ClearStdWindowAndFrameToTransparent(sDexNavNoticeWindowId, FALSE);
+    CopyWindowToVram(sDexNavNoticeWindowId, COPYWIN_FULL);
+    RemoveWindow(sDexNavNoticeWindowId);
+    sDexNavNoticeShown = FALSE;
+}
+
+static void ShowDexNavNotice(void)
+{
+    if (sDexNavNoticeShown)
+        return;
+    sDexNavNoticeWindowId = AddWindow(&sWindowTemplate_DexNavNotice);
+    // The frame call clears the window, so it goes before the text
+    DrawStdWindowFrame(sDexNavNoticeWindowId, FALSE);
+    AddTextPrinterParameterized(sDexNavNoticeWindowId, FONT_NORMAL, COMPOUND_STRING("No hay Pokémon aquí."), 0, 1, TEXT_SKIP_DRAW, NULL);
+    CopyWindowToVram(sDexNavNoticeWindowId, COPYWIN_FULL);
+    sDexNavNoticeShown = TRUE;
+}
+
 static void RemoveExtraStartMenuWindows(void)
 {
+    HideDexNavNotice();
     if (GetSafariZoneFlag())
     {
         ClearStdWindowAndFrameToTransparent(sSafariBallsWindowId, FALSE);
@@ -634,6 +671,9 @@ void ShowStartMenu(void)
 
 static bool8 HandleStartMenuInput(void)
 {
+    if (JOY_NEW(DPAD_UP | DPAD_DOWN | A_BUTTON))
+        HideDexNavNotice();
+
     if (JOY_NEW(DPAD_UP))
     {
         PlaySE(SE_SELECT);
@@ -656,7 +696,11 @@ static bool8 HandleStartMenuInput(void)
         }
         if (sCurrentStartMenuActions[sStartMenuCursorPos] == MENU_ACTION_DEXNAV
           && MapHasNoEncounterData())
+        {
+            PlaySE(SE_FAILURE);
+            ShowDexNavNotice();
             return FALSE;
+        }
 
         gMenuCallback = sStartMenuItems[sCurrentStartMenuActions[sStartMenuCursorPos]].func.u8_void;
 

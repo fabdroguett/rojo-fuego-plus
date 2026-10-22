@@ -2,15 +2,21 @@
 #include "achievements.h"
 #include "battle.h"
 #include "battle_setup.h"
+#include "bg.h"
 #include "data.h"
 #include "dexnav.h"
 #include "event_data.h"
 #include "event_object_lock.h"
+#include "field_screen_effect.h"
+#include "field_weather.h"
+#include "gpu_regs.h"
 #include "item.h"
 #include "key_system.h"
 #include "list_menu.h"
 #include "main.h"
+#include "malloc.h"
 #include "menu.h"
+#include "menu_helpers.h"
 #include "money.h"
 #include "omni_ring.h"
 #include "overworld.h"
@@ -18,8 +24,10 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "rtc.h"
+#include "scanline_effect.h"
 #include "script.h"
 #include "sound.h"
+#include "sprite.h"
 #include "string_util.h"
 #include "strings.h"
 #include "task.h"
@@ -27,6 +35,7 @@
 #include "window.h"
 #include "wild_encounter.h"
 #include "constants/opponents.h"
+#include "constants/rgb.h"
 #include "constants/songs.h"
 
 // Rojo Fuego+ achievements engine.
@@ -705,129 +714,90 @@ void Achievements_OnHallOfFame(void)
         Achievement_Unlock(ACH_B34);
 }
 
-//// Menu ////
+//// Achievements screen ////
+// Full-screen list styled after the trophy screen in Pokémon SoulGold: a header with the category
+// (L/R or left/right to change it), the achievements with a trophy in their tier's color and their
+// status, and a box at the bottom with the description and the reward.
 
-#define MENU_WIDTH       28
-#define MENU_LIST_ROWS   5
-#define MENU_DESC_HEIGHT 6
+#include "data/rf_achievements_gfx.h"
+
+#define SCREEN_ROWS       5
+#define ROW_HEIGHT        16
+#define LIST_WIDTH        18
+#define STATUS_WIDTH      7
+#define NAME_X            19
+#define TAG_SCROLL_ARROWS 0x5A10
 
 enum
 {
-    MENU_CATEGORIES,
-    MENU_ACHIEVEMENTS,
+    WIN_HEADER,
+    WIN_LIST,
+    WIN_STATUS,
+    WIN_DESC,
 };
 
-static const struct WindowTemplate sMenuListWindowTemplate =
+// Text palette slots (sAchScreenTextPal)
+#define COL_TRANSPARENT 0
+#define COL_WHITE       1
+#define COL_DARK        2
+#define COL_SHADOW      3
+#define COL_DARK_SHADOW 4
+#define COL_SELECTED    5
+#define COL_GREEN       6
+#define COL_GOLD        11
+#define COL_LOCKED      15
+
+static const struct BgTemplate sAchScreenBgTemplates[] =
 {
-    .bg = 0,
-    .tilemapLeft = 1,
-    .tilemapTop = 1,
-    .width = MENU_WIDTH,
-    .height = MENU_LIST_ROWS * 2,
-    .paletteNum = 15,
-    .baseBlock = 1,
+    {
+        .bg = 0,
+        .charBaseIndex = 0,
+        .mapBaseIndex = 31,
+        .priority = 0,
+    },
+    {
+        .bg = 1,
+        .charBaseIndex = 3,
+        .mapBaseIndex = 30,
+        .priority = 1,
+    },
 };
 
-static const struct WindowTemplate sMenuDescWindowTemplate =
+static const struct WindowTemplate sAchScreenWindowTemplates[] =
 {
-    .bg = 0,
-    .tilemapLeft = 1,
-    .tilemapTop = 13,
-    .width = MENU_WIDTH,
-    .height = MENU_DESC_HEIGHT,
-    .paletteNum = 15,
-    .baseBlock = 1 + MENU_WIDTH * MENU_LIST_ROWS * 2,
+    [WIN_HEADER] = {.bg = 0, .tilemapLeft = 0,  .tilemapTop = 0,  .width = 30,           .height = 2,  .paletteNum = 1, .baseBlock = 1},
+    [WIN_LIST]   = {.bg = 0, .tilemapLeft = 2,  .tilemapTop = 3,  .width = LIST_WIDTH,   .height = 10, .paletteNum = 1, .baseBlock = 61},
+    [WIN_STATUS] = {.bg = 0, .tilemapLeft = 22, .tilemapTop = 3,  .width = STATUS_WIDTH, .height = 10, .paletteNum = 1, .baseBlock = 241},
+    [WIN_DESC]   = {.bg = 0, .tilemapLeft = 1,  .tilemapTop = 14, .width = 28,           .height = 6,  .paletteNum = 1, .baseBlock = 311},
+    DUMMY_WIN_TEMPLATE,
 };
 
-static EWRAM_DATA struct ListMenuItem sMenuItems[ACH_COUNT] = {0};
-static EWRAM_DATA u8 sMenuState = 0;
-static EWRAM_DATA u8 sMenuCategory = 0;
-static EWRAM_DATA u16 sMenuCategoryRow = 0;
+struct AchScreen
+{
+    MainCallback exitCallback;
+    u16 ids[ACH_COUNT];
+    u16 count;
+    u16 scroll;
+    u16 cursor;
+    u8 category;
+    u8 arrowsTaskId;
+    bool8 showingMessage;
+    struct CheckCache cache;
+    u16 bg1Tilemap[32 * 32];
+};
 
-#define tListTaskId   data[0]
-#define tListWindowId data[1]
-#define tDescWindowId data[2]
-
-static void Task_AchievementsMenu(u8 taskId);
+static EWRAM_DATA struct AchScreen *sAchScreen = NULL;
+static EWRAM_DATA u8 sLastCategory = 0;
 
 static bool32 IsShownAsHidden(u32 id)
 {
     return gAchievements[id].hidden && !Achievement_IsUnlocked(id);
 }
 
-static u8 GetMenuDescWindowId(void)
+static void PrintColored(u32 windowId, u32 font, const u8 *text, u32 x, u32 y, u32 bg, u32 fg, u32 shadow)
 {
-    u8 taskId = FindTaskIdByFunc(Task_AchievementsMenu);
-    return (taskId == TASK_NONE) ? WINDOW_NONE : gTasks[taskId].tDescWindowId;
-}
-
-static void PrintRightAligned(u8 windowId, const u8 *text, u8 y)
-{
-    u32 x = MENU_WIDTH * 8 - GetStringWidth(FONT_NORMAL, text, 0) - 8;
-    AddTextPrinterParameterized(windowId, FONT_NORMAL, text, x, y, TEXT_SKIP_DRAW, NULL);
-}
-
-static void PrintCategoryRow(u8 windowId, u32 category, u8 y)
-{
-    u32 id, unlocked = 0, total = 0;
-
-    for (id = 0; id < ACH_COUNT; id++)
-    {
-        if (gAchievements[id].category != category)
-            continue;
-        total++;
-        unlocked += Achievement_IsUnlocked(id) ? 1 : 0;
-    }
-    ConvertIntToDecimalStringN(gStringVar1, unlocked, STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringAppend(gStringVar1, COMPOUND_STRING("/"));
-    ConvertIntToDecimalStringN(gStringVar1 + StringLength(gStringVar1), total, STR_CONV_MODE_LEFT_ALIGN, 3);
-    PrintRightAligned(windowId, gStringVar1, y);
-}
-
-static void PrintAchievementRow(u8 windowId, u32 id, u8 y)
-{
-    u32 type = gAchievements[id].condType;
-
-    if (Achievement_IsClaimed(id))
-    {
-        PrintRightAligned(windowId, COMPOUND_STRING("HECHO"), y);
-    }
-    else if (Achievement_IsUnlocked(id))
-    {
-        PrintRightAligned(windowId, COMPOUND_STRING("¡PREMIO!"), y);
-    }
-    else if (IsShownAsHidden(id) || type == ACH_COND_EVENT || type == ACH_COND_TIER_ALL
-          || type == ACH_COND_HIDDEN_ALL || GetGoal(id) == 1)
-    {
-        PrintRightAligned(windowId, COMPOUND_STRING("-"), y);
-    }
-    else
-    {
-        struct CheckCache cache = {0};
-        u32 progress = min(GetProgress(id, &cache), GetGoal(id));
-
-        ConvertIntToDecimalStringN(gStringVar1, progress, STR_CONV_MODE_LEFT_ALIGN, 6);
-        StringAppend(gStringVar1, COMPOUND_STRING("/"));
-        ConvertIntToDecimalStringN(gStringVar1 + StringLength(gStringVar1), GetGoal(id), STR_CONV_MODE_LEFT_ALIGN, 6);
-        PrintRightAligned(windowId, gStringVar1, y);
-    }
-}
-
-static void AchMenu_PrintRow(u8 windowId, u32 itemId, u8 y)
-{
-    if (sMenuState == MENU_CATEGORIES)
-        PrintCategoryRow(windowId, itemId, y);
-    else
-        PrintAchievementRow(windowId, itemId, y);
-}
-
-static void PrintDescLines(u8 windowId, const u8 *lines, const u8 *lastLine)
-{
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    AddTextPrinterParameterized(windowId, FONT_NORMAL, lines, 0, 1, TEXT_SKIP_DRAW, NULL);
-    if (lastLine != NULL)
-        AddTextPrinterParameterized(windowId, FONT_NORMAL, lastLine, 0, 33, TEXT_SKIP_DRAW, NULL);
-    CopyWindowToVram(windowId, COPYWIN_GFX);
+    const u8 colors[3] = {bg, fg, shadow};
+    AddTextPrinterParameterized4(windowId, font, x, y, 0, 0, colors, TEXT_SKIP_DRAW, text);
 }
 
 static void BufferRewardText(u8 *dest, u32 id)
@@ -855,142 +825,203 @@ static void BufferRewardText(u8 *dest, u32 id)
     }
 }
 
-static void PrintSummary(u8 windowId)
+// "x/y" for counted achievements, a percentage when that does not fit, NULL when there is no count to show
+static const u8 *BufferProgress(u32 id)
 {
-    u32 id, unlocked = 0, points = 0, pending = 0;
+    u32 type = gAchievements[id].condType;
+    u32 goal = GetGoal(id);
+    u32 progress;
 
+    if (IsShownAsHidden(id) || type == ACH_COND_EVENT || type == ACH_COND_TIER_ALL
+     || type == ACH_COND_HIDDEN_ALL || goal <= 1)
+        return NULL;
+
+    progress = min(GetProgress(id, &sAchScreen->cache), goal);
+    ConvertIntToDecimalStringN(gStringVar1, progress, STR_CONV_MODE_LEFT_ALIGN, 7);
+    StringAppend(gStringVar1, COMPOUND_STRING("/"));
+    ConvertIntToDecimalStringN(gStringVar1 + StringLength(gStringVar1), goal, STR_CONV_MODE_LEFT_ALIGN, 7);
+    if (GetStringWidth(FONT_SMALL, gStringVar1, 0) > STATUS_WIDTH * 8 - 4)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, progress * 100 / goal, STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringAppend(gStringVar1, COMPOUND_STRING("%"));
+    }
+    return gStringVar1;
+}
+
+static void BuildCategoryList(void)
+{
+    u32 id;
+
+    sAchScreen->count = 0;
     for (id = 0; id < ACH_COUNT; id++)
     {
-        if (!Achievement_IsUnlocked(id))
-            continue;
-        unlocked++;
-        points += sTierPoints[gAchievements[id].tier];
-        pending += Achievement_IsClaimed(id) ? 0 : 1;
+        if (gAchievements[id].category == sAchScreen->category)
+            sAchScreen->ids[sAchScreen->count++] = id;
     }
-    StringCopy(gStringVar4, COMPOUND_STRING("Logros: "));
-    ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), unlocked, STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringAppend(gStringVar4, COMPOUND_STRING("/"));
-    ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), ACH_COUNT, STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringAppend(gStringVar4, COMPOUND_STRING(" · Puntos: "));
-    ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), points, STR_CONV_MODE_LEFT_ALIGN, 5);
-    StringAppend(gStringVar4, COMPOUND_STRING("\nPremios por reclamar: "));
-    ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), pending, STR_CONV_MODE_LEFT_ALIGN, 3);
-    PrintDescLines(windowId, gStringVar4, COMPOUND_STRING("A: abrir · B: salir"));
+    sAchScreen->cursor = 0;
+    sAchScreen->scroll = 0;
 }
 
-static void PrintAchievementDesc(u8 windowId, u32 id)
+static void DrawHeader(void)
 {
+    u32 i, unlocked = 0, x;
+
+    for (i = 0; i < sAchScreen->count; i++)
+        unlocked += Achievement_IsUnlocked(sAchScreen->ids[i]) ? 1 : 0;
+
+    FillWindowPixelBuffer(WIN_HEADER, PIXEL_FILL(COL_TRANSPARENT));
+    PrintColored(WIN_HEADER, FONT_NORMAL, COMPOUND_STRING("LOGROS"), 6, 1, COL_TRANSPARENT, COL_WHITE, COL_DARK_SHADOW);
+
+    StringCopy(gStringVar4, COMPOUND_STRING("{L_BUTTON} "));
+    StringAppend(gStringVar4, sAchCategoryNames[sAchScreen->category]);
+    StringAppend(gStringVar4, COMPOUND_STRING(" {R_BUTTON}"));
+    x = (240 - GetStringWidth(FONT_NORMAL, gStringVar4, 0)) / 2;
+    PrintColored(WIN_HEADER, FONT_NORMAL, gStringVar4, x, 1, COL_TRANSPARENT, COL_WHITE, COL_DARK_SHADOW);
+
+    ConvertIntToDecimalStringN(gStringVar1, unlocked, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringAppend(gStringVar1, COMPOUND_STRING("/"));
+    ConvertIntToDecimalStringN(gStringVar1 + StringLength(gStringVar1), sAchScreen->count, STR_CONV_MODE_LEFT_ALIGN, 3);
+    x = 240 - 6 - GetStringWidth(FONT_NORMAL, gStringVar1, 0);
+    PrintColored(WIN_HEADER, FONT_NORMAL, gStringVar1, x, 1, COL_TRANSPARENT, COL_WHITE, COL_DARK_SHADOW);
+    CopyWindowToVram(WIN_HEADER, COPYWIN_GFX);
+}
+
+static void DrawRow(u32 row)
+{
+    u32 id = sAchScreen->ids[sAchScreen->scroll + row];
+    u32 y = row * ROW_HEIGHT;
+    u32 bg = (sAchScreen->scroll + row == sAchScreen->cursor) ? COL_SELECTED : COL_TRANSPARENT;
+    u32 icon = Achievement_IsUnlocked(id) ? gAchievements[id].tier : ACH_TIER_COUNT;
+    const u8 *name = IsShownAsHidden(id) ? COMPOUND_STRING("???") : gAchievements[id].name;
+    u32 font = (GetStringWidth(FONT_NORMAL, name, 0) > LIST_WIDTH * 8 - NAME_X) ? FONT_NARROW : FONT_NORMAL;
+    const u8 *status;
+    u32 statusColor = COL_DARK, statusFont = FONT_NORMAL;
+
+    FillWindowPixelRect(WIN_LIST, PIXEL_FILL(bg), 0, y, LIST_WIDTH * 8, ROW_HEIGHT);
+    FillWindowPixelRect(WIN_STATUS, PIXEL_FILL(bg), 0, y, STATUS_WIDTH * 8, ROW_HEIGHT);
+    BlitBitmapToWindow(WIN_LIST, sAchTrophyIcons[icon], 1, y, 16, 16);
+    PrintColored(WIN_LIST, font, name, NAME_X, y + 1, bg, COL_DARK, COL_SHADOW);
+
+    if (Achievement_IsClaimed(id))
+    {
+        status = COMPOUND_STRING("Hecho");
+    }
+    else if (Achievement_IsUnlocked(id))
+    {
+        status = COMPOUND_STRING("¡Premio!");
+        statusColor = COL_GREEN;
+    }
+    else
+    {
+        status = BufferProgress(id);
+        statusFont = FONT_SMALL;
+        if (status == NULL)
+        {
+            status = COMPOUND_STRING("Bloq.");
+            statusFont = FONT_NORMAL;
+        }
+        statusColor = COL_LOCKED;
+        if (status == gStringVar1)
+            statusColor = COL_DARK;
+    }
+    PrintColored(WIN_STATUS, statusFont, status, STATUS_WIDTH * 8 - 3 - GetStringWidth(statusFont, status, 0),
+                 y + (statusFont == FONT_SMALL ? 3 : 1), bg, statusColor, COL_SHADOW);
+}
+
+static void DrawList(void)
+{
+    u32 row;
+
+    FillWindowPixelBuffer(WIN_LIST, PIXEL_FILL(COL_TRANSPARENT));
+    FillWindowPixelBuffer(WIN_STATUS, PIXEL_FILL(COL_TRANSPARENT));
+    for (row = 0; row < SCREEN_ROWS && sAchScreen->scroll + row < sAchScreen->count; row++)
+        DrawRow(row);
+    CopyWindowToVram(WIN_LIST, COPYWIN_GFX);
+    CopyWindowToVram(WIN_STATUS, COPYWIN_GFX);
+}
+
+static void DrawDescription(const u8 *text, const u8 *lastLine)
+{
+    FillWindowPixelBuffer(WIN_DESC, PIXEL_FILL(COL_TRANSPARENT));
+    PrintColored(WIN_DESC, FONT_NORMAL, text, 2, 3, COL_TRANSPARENT, COL_WHITE, COL_DARK_SHADOW);
+    if (lastLine != NULL)
+        PrintColored(WIN_DESC, FONT_NORMAL, lastLine, 2, 33, COL_TRANSPARENT, COL_GOLD, COL_DARK_SHADOW);
+    CopyWindowToVram(WIN_DESC, COPYWIN_GFX);
+}
+
+static void DrawSelectedDescription(void)
+{
+    u32 id = sAchScreen->ids[sAchScreen->cursor];
+
+    sAchScreen->showingMessage = FALSE;
     BufferRewardText(gStringVar3, id);
     if (IsShownAsHidden(id))
-        PrintDescLines(windowId, COMPOUND_STRING("Logro oculto. Sigue jugando\npara descubrirlo."), gStringVar3);
+        DrawDescription(COMPOUND_STRING("Logro oculto. Sigue jugando\npara descubrirlo."), gStringVar3);
     else
-        PrintDescLines(windowId, gAchievements[id].description, gStringVar3);
+        DrawDescription(gAchievements[id].description, gStringVar3);
 }
 
-static void AchMenu_MoveCursor(s32 itemId, bool8 onInit, struct ListMenu *list)
+static void CreateScrollArrows(void)
 {
-    u8 windowId = GetMenuDescWindowId();
+    struct ScrollArrowsTemplate template =
+    {
+        .firstArrowType = SCROLL_ARROW_UP,
+        .firstX = 86,
+        .firstY = 20,
+        .secondArrowType = SCROLL_ARROW_DOWN,
+        .secondX = 86,
+        .secondY = 108,
+        .fullyUpThreshold = 0,
+        .tileTag = TAG_SCROLL_ARROWS,
+        .palTag = TAG_SCROLL_ARROWS,
+        .palNum = 0,
+    };
 
-    if (!onInit)
-        PlaySE(SE_SELECT);
-    if (windowId == WINDOW_NONE)
+    if (sAchScreen->arrowsTaskId != TASK_NONE)
+        RemoveScrollIndicatorArrowPair(sAchScreen->arrowsTaskId);
+    sAchScreen->arrowsTaskId = TASK_NONE;
+    if (sAchScreen->count <= SCREEN_ROWS)
         return;
-    if (sMenuState == MENU_CATEGORIES)
-        PrintSummary(windowId);
-    else
-        PrintAchievementDesc(windowId, itemId);
+    template.fullyDownThreshold = sAchScreen->count - SCREEN_ROWS;
+    sAchScreen->arrowsTaskId = AddScrollIndicatorArrowPair(&template, &sAchScreen->scroll);
 }
 
-static u8 InitMenuList(u8 taskId, u16 selectedRow)
+static void ShowCategory(u32 category)
 {
-    struct ListMenuTemplate template = {0};
-    u32 id, count = 0;
-
-    if (sMenuState == MENU_CATEGORIES)
-    {
-        for (id = 0; id < ACH_CAT_COUNT; id++)
-        {
-            sMenuItems[count].name = sAchCategoryNames[id];
-            sMenuItems[count].id = id;
-            count++;
-        }
-    }
-    else
-    {
-        for (id = 0; id < ACH_COUNT; id++)
-        {
-            if (gAchievements[id].category != sMenuCategory)
-                continue;
-            sMenuItems[count].name = IsShownAsHidden(id) ? COMPOUND_STRING("???") : gAchievements[id].name;
-            sMenuItems[count].id = id;
-            count++;
-        }
-    }
-
-    FillWindowPixelBuffer(gTasks[taskId].tListWindowId, PIXEL_FILL(1));
-    template.items = sMenuItems;
-    template.moveCursorFunc = AchMenu_MoveCursor;
-    template.itemPrintFunc = AchMenu_PrintRow;
-    template.totalItems = count;
-    template.maxShowed = MENU_LIST_ROWS;
-    template.windowId = gTasks[taskId].tListWindowId;
-    template.item_X = 8;
-    template.upText_Y = 1;
-    template.cursorPal = 2;
-    template.fillValue = 1;
-    template.cursorShadowPal = 3;
-    template.lettersSpacing = 1;
-    template.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD;
-    template.fontId = FONT_NORMAL;
-    return ListMenuInit(&template, 0, min(selectedRow, count - 1));
+    sAchScreen->category = category;
+    sLastCategory = category;
+    BuildCategoryList();
+    DrawHeader();
+    DrawList();
+    DrawSelectedDescription();
+    CreateScrollArrows();
 }
 
-void Achievements_OpenMenu(void)
+static void MoveCursor(s32 delta)
 {
-    u8 taskId;
+    s32 cursor = sAchScreen->cursor + delta;
 
-    Achievements_HideNotification();
-    Achievements_CheckAll();
-    taskId = CreateTask(Task_AchievementsMenu, 80);
-    sMenuState = MENU_CATEGORIES;
-    LoadMessageBoxAndBorderGfx();
-    gTasks[taskId].tListWindowId = AddWindow(&sMenuListWindowTemplate);
-    gTasks[taskId].tDescWindowId = AddWindow(&sMenuDescWindowTemplate);
-    DrawStdWindowFrame(gTasks[taskId].tListWindowId, FALSE);
-    DrawStdWindowFrame(gTasks[taskId].tDescWindowId, FALSE);
-    gTasks[taskId].tListTaskId = InitMenuList(taskId, sMenuCategoryRow);
-    CopyWindowToVram(gTasks[taskId].tListWindowId, COPYWIN_FULL);
-    CopyWindowToVram(gTasks[taskId].tDescWindowId, COPYWIN_FULL);
-    ScheduleBgCopyTilemapToVram(0);
+    if (cursor < 0 || cursor >= sAchScreen->count)
+        return;
+    PlaySE(SE_SELECT);
+    sAchScreen->cursor = cursor;
+    if (cursor < sAchScreen->scroll)
+        sAchScreen->scroll = cursor;
+    else if (cursor >= sAchScreen->scroll + SCREEN_ROWS)
+        sAchScreen->scroll = cursor - SCREEN_ROWS + 1;
+    DrawList();
+    DrawSelectedDescription();
 }
 
-static void CloseMenu(u8 taskId)
-{
-    DestroyListMenuTask(gTasks[taskId].tListTaskId, NULL, NULL);
-    ClearStdWindowAndFrame(gTasks[taskId].tListWindowId, TRUE);
-    ClearStdWindowAndFrame(gTasks[taskId].tDescWindowId, TRUE);
-    RemoveWindow(gTasks[taskId].tListWindowId);
-    RemoveWindow(gTasks[taskId].tDescWindowId);
-    ScriptUnfreezeObjectEvents();
-    UnlockPlayerFieldControls();
-    DestroyTask(taskId);
-}
-
-static void SwitchList(u8 taskId, u8 state, u16 selectedRow)
-{
-    DestroyListMenuTask(gTasks[taskId].tListTaskId, NULL, NULL);
-    sMenuState = state;
-    gTasks[taskId].tListTaskId = InitMenuList(taskId, selectedRow);
-    CopyWindowToVram(gTasks[taskId].tListWindowId, COPYWIN_GFX);
-}
-
-static void TryClaimReward(u8 taskId, u32 id)
+static void TryClaimReward(u32 id)
 {
     const struct Achievement *a = &gAchievements[id];
-    u8 windowId = gTasks[taskId].tDescWindowId;
 
     if (!Achievement_IsUnlocked(id))
+    {
+        PlaySE(SE_FAILURE);
         return;
+    }
 
     // A claimed title can be equipped again
     if (Achievement_IsClaimed(id))
@@ -1001,7 +1032,8 @@ static void TryClaimReward(u8 taskId, u32 id)
         PlaySE(SE_SELECT);
         StringCopy(gStringVar4, COMPOUND_STRING("Título equipado en tu Ficha:\n"));
         StringAppend(gStringVar4, a->rewardTitle);
-        PrintDescLines(windowId, gStringVar4, NULL);
+        DrawDescription(gStringVar4, NULL);
+        sAchScreen->showingMessage = TRUE;
         return;
     }
 
@@ -1022,42 +1054,176 @@ static void TryClaimReward(u8 taskId, u32 id)
     else
     {
         PlaySE(SE_FAILURE);
-        PrintDescLines(windowId, COMPOUND_STRING("No hay espacio en la mochila.\nHaz sitio y vuelve a intentarlo."), NULL);
+        DrawDescription(COMPOUND_STRING("No hay espacio en la mochila.\nHaz sitio y vuelve a intentarlo."), NULL);
+        sAchScreen->showingMessage = TRUE;
         return;
     }
     SetBit(gSaveBlock3Ptr->achievementsClaimed, id);
     PlaySE(SE_EXP_MAX);
-    PrintDescLines(windowId, gStringVar4, NULL);
-    RedrawListMenu(gTasks[taskId].tListTaskId);
+    DrawList();
+    DrawDescription(gStringVar4, NULL);
+    sAchScreen->showingMessage = TRUE;
 }
 
-static void Task_AchievementsMenu(u8 taskId)
+static void AchScreen_VBlankCB(void)
 {
-    s32 input = ListMenu_ProcessInput(gTasks[taskId].tListTaskId);
+    LoadOam();
+    ProcessSpriteCopyRequests();
+    TransferPlttBuffer();
+}
 
-    switch (input)
+static void AchScreen_MainCB(void)
+{
+    RunTasks();
+    AnimateSprites();
+    BuildOamBuffer();
+    DoScheduledBgTilemapCopiesToVram();
+    UpdatePaletteFade();
+}
+
+static void Task_AchScreenExit(u8 taskId)
+{
+    if (gPaletteFade.active)
+        return;
+    SetMainCallback2(sAchScreen->exitCallback);
+    if (sAchScreen->arrowsTaskId != TASK_NONE)
+        RemoveScrollIndicatorArrowPair(sAchScreen->arrowsTaskId);
+    FreeAllWindowBuffers();
+    FREE_AND_SET_NULL(sAchScreen);
+    DestroyTask(taskId);
+}
+
+static void Task_AchScreenInput(u8 taskId)
+{
+    if (gPaletteFade.active)
+        return;
+
+    if (JOY_REPEAT(DPAD_UP))
     {
-    case LIST_NOTHING_CHOSEN:
-        break;
-    case LIST_CANCEL:
+        MoveCursor(-1);
+    }
+    else if (JOY_REPEAT(DPAD_DOWN))
+    {
+        MoveCursor(1);
+    }
+    else if (JOY_NEW(DPAD_LEFT | L_BUTTON))
+    {
         PlaySE(SE_SELECT);
-        if (sMenuState == MENU_ACHIEVEMENTS)
-            SwitchList(taskId, MENU_CATEGORIES, sMenuCategory);
+        ShowCategory(sAchScreen->category == 0 ? ACH_CAT_COUNT - 1 : sAchScreen->category - 1);
+    }
+    else if (JOY_NEW(DPAD_RIGHT | R_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        ShowCategory(sAchScreen->category == ACH_CAT_COUNT - 1 ? 0 : sAchScreen->category + 1);
+    }
+    else if (JOY_NEW(A_BUTTON))
+    {
+        if (sAchScreen->showingMessage)
+            DrawSelectedDescription();
         else
-            CloseMenu(taskId);
+            TryClaimReward(sAchScreen->ids[sAchScreen->cursor]);
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        gTasks[taskId].func = Task_AchScreenExit;
+    }
+}
+
+static void CB2_AchScreenSetup(void)
+{
+    switch (gMain.state)
+    {
+    case 0:
+        SetVBlankHBlankCallbacksToNull();
+        ClearScheduledBgCopiesToVram();
+        ScanlineEffect_Stop();
+        FreeAllSpritePalettes();
+        ResetPaletteFade();
+        ResetSpriteData();
+        ResetTasks();
+        gMain.state++;
+        break;
+    case 1:
+        ResetVramOamAndBgCntRegs();
+        ResetAllBgsCoordinates();
+        ResetBgsAndClearDma3BusyFlags(0);
+        InitBgsFromTemplates(0, sAchScreenBgTemplates, NELEMS(sAchScreenBgTemplates));
+        memcpy(sAchScreen->bg1Tilemap, sAchScreenTilemap, sizeof(sAchScreenTilemap));
+        SetBgTilemapBuffer(1, sAchScreen->bg1Tilemap);
+        LoadBgTiles(1, sAchScreenTiles, sizeof(sAchScreenTiles), 0);
+        ScheduleBgCopyTilemapToVram(1);
+        gMain.state++;
+        break;
+    case 2:
+        InitWindows(sAchScreenWindowTemplates);
+        DeactivateAllTextPrinters();
+        LoadPalette(sAchScreenBgPal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+        LoadPalette(sAchScreenTextPal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+        gMain.state++;
+        break;
+    case 3:
+        PutWindowTilemap(WIN_HEADER);
+        PutWindowTilemap(WIN_LIST);
+        PutWindowTilemap(WIN_STATUS);
+        PutWindowTilemap(WIN_DESC);
+        ShowCategory(sLastCategory);
+        ScheduleBgCopyTilemapToVram(0);
+        gMain.state++;
         break;
     default:
-        if (sMenuState == MENU_CATEGORIES)
-        {
-            PlaySE(SE_SELECT);
-            sMenuCategory = input;
-            sMenuCategoryRow = input;
-            SwitchList(taskId, MENU_ACHIEVEMENTS, 0);
-        }
-        else
-        {
-            TryClaimReward(taskId, input);
-        }
+        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
+        SetGpuReg(REG_OFFSET_BLDCNT, 0);
+        ShowBg(0);
+        ShowBg(1);
+        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+        CreateTask(Task_AchScreenInput, 0);
+        SetVBlankCallback(AchScreen_VBlankCB);
+        SetMainCallback2(AchScreen_MainCB);
         break;
     }
+}
+
+// Opens the screen; exitCallback runs when it closes
+void Achievements_OpenScreen(MainCallback exitCallback)
+{
+    Achievements_HideNotification();
+    Achievements_CheckAll();
+    sAchScreen = AllocZeroed(sizeof(*sAchScreen));
+    if (sAchScreen == NULL)
+    {
+        SetMainCallback2(exitCallback);
+        return;
+    }
+    sAchScreen->exitCallback = exitCallback;
+    sAchScreen->arrowsTaskId = TASK_NONE;
+    gMain.state = 0;
+    SetMainCallback2(CB2_AchScreenSetup);
+}
+
+// From the bag
+void CB2_OpenAchievementsScreenFromBag(void)
+{
+    gFieldCallback = FieldCB_ReturnToFieldNoScript;
+    Achievements_OpenScreen(CB2_ReturnToField);
+}
+
+static void Task_OpenAchievementsScreenFromField(u8 taskId)
+{
+    if (gPaletteFade.active)
+        return;
+    CleanupOverworldWindowsAndTilemaps();
+    gFieldCallback = FieldCB_ReturnToFieldNoScript;
+    Achievements_OpenScreen(CB2_ReturnToField);
+    DestroyTask(taskId);
+}
+
+// From the field (registered item): fades out first
+void Achievements_OpenMenu(void)
+{
+    Achievements_HideNotification();
+    FadeScreen(FADE_TO_BLACK, 0);
+    CreateTask(Task_OpenAchievementsScreenFromField, 10);
 }

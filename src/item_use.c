@@ -313,11 +313,10 @@ void ItemUseOutOfBattle_OmniUpgrade(u8 taskId)
     DisplayItemMessage(taskId, FONT_NORMAL, message, CloseItemMessage);
 }
 
-// Rojo Fuego+ Logros: opens the achievements menu on the field, like the Town Map
+// Rojo Fuego+ Logros: opens the achievements screen (from Select it fades out the field first)
 static void ItemUseOnFieldCB_AchievementLog(u8 taskId)
 {
     LockPlayerFieldControls();
-    FreezeObjectEvents();
     Achievements_OpenMenu();
     DestroyTask(taskId);
 }
@@ -326,9 +325,7 @@ void ItemUseOutOfBattle_AchievementLog(u8 taskId)
 {
     if (!gTasks[taskId].tUsingRegisteredKeyItem)
     {
-        sItemUseOnFieldCB = ItemUseOnFieldCB_AchievementLog;
-        gFieldCallback = FieldCB_UseItemOnField;
-        gBagMenu->newScreenCallback = CB2_ReturnToField;
+        gBagMenu->newScreenCallback = CB2_OpenAchievementsScreenFromBag;
         Task_FadeAndCloseBagMenu(taskId);
     }
     else
