@@ -89,6 +89,7 @@ u32 CalculateDexNavShinyRolls(void);
 void IncrementDexNavChain(void);
 bool32 OnStep_DexNavSearch(void);
 bool32 DexNav_TryToggleDetails(void);
+void DexNav_CloseDetailsPanel(void);
 
 extern enum Species gDexNavSpecies;
 

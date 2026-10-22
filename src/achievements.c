@@ -3,6 +3,7 @@
 #include "battle.h"
 #include "battle_setup.h"
 #include "data.h"
+#include "dexnav.h"
 #include "event_data.h"
 #include "event_object_lock.h"
 #include "item.h"
@@ -466,7 +467,8 @@ static const struct WindowTemplate sNotificationWindowTemplate =
     .width = 28,
     .height = 2,
     .paletteNum = 15,
-    .baseBlock = 0x100,
+    // Clear of the map name popup (0x107), the DexNav windows (up to 380) and the frame tiles (0x200)
+    .baseBlock = 0x180,
 };
 
 void Achievements_HideNotification(void)
@@ -507,7 +509,9 @@ static void ShowNextNotification(void)
 // Called every overworld frame from CB1_Overworld
 void Achievements_OverworldUpdate(void)
 {
-    bool32 playerIsFree = !ArePlayerFieldControlsLocked() && !gPaletteFade.active;
+    // The map name popup and the DexNav search windows share that part of the screen
+    bool32 playerIsFree = !ArePlayerFieldControlsLocked() && !gPaletteFade.active
+                       && GetMapNamePopUpWindowId() == WINDOW_NONE && !FlagGet(DN_FLAG_SEARCHING);
 
     if (gRfAchievementMirror[ACH_BYTES] != MIRROR_SYNCED)
         SyncMirror();

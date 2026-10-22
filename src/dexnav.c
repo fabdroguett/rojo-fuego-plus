@@ -846,6 +846,12 @@ static void DexNavOpenDetails(void)
     DrawStdFrameWithCustomTileAndPalette(sDexNavSearchDataPtr->detailsWindowId, TRUE, 0x214, 14);
 }
 
+void DexNav_CloseDetailsPanel(void)
+{
+    if (FlagGet(DN_FLAG_SEARCHING) && sDexNavSearchDataPtr != NULL)
+        DexNavCloseDetails();
+}
+
 // Called from the field input handler. Returns TRUE when it used the SELECT press.
 bool32 DexNav_TryToggleDetails(void)
 {

@@ -621,6 +621,7 @@ void Task_ShowStartMenu(u8 taskId)
 
 void ShowStartMenu(void)
 {
+    DexNav_CloseDetailsPanel(); // Rojo Fuego+: its window tiles overlap the Start menu's
     if (!IsOverworldLinkActive())
     {
         FreezeObjectEvents();
