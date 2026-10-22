@@ -725,6 +725,8 @@ enum StringID
     STRINGID_S,
     STRINGID_LOSTSOMEOFITSHP,
     STRINGID_BELCHCANTUSE,
+    STRINGID_STAT_LIST_COMMA, // Rojo Fuego+: joins combined stat changes
+    STRINGID_STAT_LIST_AND,
     STRINGID_COUNT
 };
 

@@ -239,6 +239,68 @@ bool32 CanAnyStatChange(struct BattleCalcValues *cv, struct StatChange *st)
     return canAnyStatChange;
 }
 
+// Rojo Fuego+ (from Pokémon SoulGold): when a move changes several stats by the same amount, the
+// next ones in the queue join the first stat's message ("Attack, Defense and Speed rose!").
+// Only stats that change in full are joined, so the shared "sharply"/"harshly" stays right.
+#define MAX_COMBINED_STATS 3
+
+static void TryCombineStatChanges(struct BattleCalcValues *cv, struct StatChange *st, u32 index)
+{
+    enum Stat stats[MAX_COMBINED_STATS];
+    s32 stage = st->stage;
+    u32 i, j, pos, count = 1;
+    bool32 raising = stage > 0;
+
+    if (st->onlyChecking || cv->move == MOVE_NONE
+     || gBattleCommunication[MULTISTRING_CHOOSER] != B_MSG_STAT_CHANGED
+     || cv->moveEffect == EFFECT_STOCKPILE || cv->moveEffect == EFFECT_BELLY_DRUM)
+        return;
+    // A stat drop on someone else can be blocked stat by stat (abilities, Mist...)
+    if (!raising && cv->battlerAtk != cv->battlerDef)
+        return;
+
+    stats[0] = st->stat;
+    for (j = index + 1; j < st->statStageAmount && count < MAX_COMBINED_STATS; j++)
+    {
+        enum Stat stat = st->statStageQueue[j].stat;
+        s32 next = st->statStageQueue[j].stage;
+        s32 current = gBattleMons[cv->battlerDef].statStages[stat];
+
+        if (st->statStageQueue[j].done || next != stage)
+            break;
+        if (raising ? (current + next > MAX_STAT_STAGE) : (current + next < MIN_STAT_STAGE))
+            break;
+
+        st->stat = stat;
+        st->stage = next;
+        st->statStageQueue[j].done = TRUE;
+        if (raising)
+            IncreaseStat(cv, st);
+        else
+            DecreaseStat(cv, st);
+        stats[count++] = stat;
+    }
+    if (count == 1)
+        return;
+    if (j >= st->statStageAmount)
+        st->nextBattler = TRUE;
+
+    gBattleTextBuff1[0] = B_BUFF_PLACEHOLDER_BEGIN;
+    for (i = 0, pos = 1; i < count; i++)
+    {
+        if (i != 0)
+        {
+            u32 joiner = (i == count - 1) ? STRINGID_STAT_LIST_AND : STRINGID_STAT_LIST_COMMA;
+            gBattleTextBuff1[pos++] = B_BUFF_STRING;
+            gBattleTextBuff1[pos++] = joiner & 0xFF;
+            gBattleTextBuff1[pos++] = joiner >> 8;
+        }
+        gBattleTextBuff1[pos++] = B_BUFF_STAT;
+        gBattleTextBuff1[pos++] = stats[i];
+    }
+    gBattleTextBuff1[pos] = B_BUFF_EOS;
+}
+
 enum StatChangeResult TryStatChange(struct BattleCalcValues *cv, struct StatChange *st)
 {
     if (CheckSpecificMoveCondition(cv, st) || IsSubstituteBlocked(cv, st))
@@ -275,12 +337,14 @@ enum StatChangeResult TryStatChange(struct BattleCalcValues *cv, struct StatChan
 
             if (DecreaseStat(cv, st) == STAT_CHANGE_WORKED)
             {
+                TryCombineStatChanges(cv, st, i);
                 result = STAT_CHANGE_WORKED;
                 break;
             }
         }
         else if (IncreaseStat(cv, st) == STAT_CHANGE_WORKED)
         {
+            TryCombineStatChanges(cv, st, i);
             result = STAT_CHANGE_WORKED;
             break;
         }
