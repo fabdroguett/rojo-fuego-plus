@@ -94,9 +94,9 @@ falla si aparece o cambia una. No ejecutar `make`, `make firered` ni el destino 
 esta verificación. Docker sirve para disponer del compilador Linux desde Windows.
 
 
-Resultado del enlace de esta tanda: EWRAM 230152 B (87,80 %), IWRAM 28648 B (87,43 %),
+Resultado del enlace de esta tanda: EWRAM 230180 B (87,81 %), IWRAM 28648 B (87,43 %),
 región ROM del ELF aproximadamente 27,12 MB (80,83 % de 32 MiB). El símbolo de SaveBlock3
-mide 1492 bytes de los 1624 disponibles. Estos tamaños corresponden al ELF; no se extrajo
+mide 1512 bytes de los 1624 disponibles. Estos tamaños corresponden al ELF; no se extrajo
 un archivo `.gba`.
 
 
@@ -104,3 +104,28 @@ Segunda tanda: mantener **R** acelera la escritura de diálogos donde se permite
 con A/B. No confirma páginas, no elige respuestas y no cambia la velocidad guardada en opciones.
 Se amplió la prueba del catálogo para detectar ciclos de requisitos y capítulos inválidos,
 y se verifican cantidades y estabilidad de la ordenación de objetos del PC.
+
+
+## Tercera tanda: botín de salvajes
+
+La clave **Botín de salvajes** se activa desde el Key System y empieza apagada, tanto en
+partidas nuevas como en partidas anteriores. Solo tras ganar un combate salvaje normal,
+cada rival debilitado que participó tiene un 25 % de probabilidad de entregar el objeto
+que todavía conserva, si coincide con su objeto original. No se inventa un objeto cuando
+el salvaje no llevaba ninguno. Se excluyen objetos importantes, robados, pendientes de
+restauración por otra mecánica y objetos usados durante el combate.
+
+No se aplica a capturas, huidas, derrotas, entrenadores, Safari, tutoriales, instalaciones,
+combates grabados, enlaces ni encuentros con compañero. Una victoria con dos salvajes
+puede entregar un objeto por cada rival elegible. No modifica niveles, IA ni equipos.
+
+El combate avisa cuando se recoge botín. Si falta espacio, guarda cada unidad en una
+**reserva persistente de ocho unidades**, añadida al final del guardado sin mover campos
+anteriores. Se reclama automáticamente al abrir la mochila desde START o al ganar otro
+combate salvaje normal, incluso si se apagó la clave después de obtenerlo. Cada unidad
+se elimina de la reserva solo después de que la mochila acepte el objeto.
+
+Con la reserva llena no se realizan nuevas tiradas hasta recuperar espacio. No es un
+almacén ilimitado. Las pruebas cubren migración, filtros, dobles salvajes, probabilidad
+determinista, propiedad de objetos, restauración, reclamaciones repetidas y falta de espacio.
+La comprobación en emulador de mensajes y combate completo sigue pendiente.

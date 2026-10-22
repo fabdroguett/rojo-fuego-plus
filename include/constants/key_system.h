@@ -25,6 +25,7 @@ enum KeySystemKey
     KEY_DARK_MODE,
     KEY_SHINY_ODDS, // Not an on/off key: cycles through enum KeyShinyOdds
     KEY_INFINITE_REPEL,
+    KEY_WILD_LOOT, // Optional wild held-item drops, off by default.
     KEY_COUNT
 };
 

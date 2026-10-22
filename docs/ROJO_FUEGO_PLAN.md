@@ -10,6 +10,7 @@ Las tandas implementadas suman 30 misiones reales con espacio persistente para 5
 350), mochila de objetos de 60 espacios, ordenación y protección del PC, cuatro objetos y
 Castform de arena. Alcance, controles, restricciones de guardado y validación en
 [IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md](IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md).
+También se implementó botín de salvajes opcional con reserva persistente y aviso en combate.
 La investigación y el contenido pendiente están en [IDEAS_OTROS_HACKS.md](IDEAS_OTROS_HACKS.md).
 No se considera completado el plan de 350 misiones ni la ampliación de cajas de Pokémon.
 

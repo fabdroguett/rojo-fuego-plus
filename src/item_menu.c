@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_wild_loot.h"
 #include "item_menu.h"
 #include "key_system.h"
 #include "registered_items.h"
@@ -595,6 +596,7 @@ void ResetBagScrollPositions(void)
 
 void CB2_BagMenuFromStartMenu(void)
 {
+    RFWildLoot_TryClaim();
     GoToBagMenu(ITEMMENULOCATION_FIELD, POCKETS_COUNT, CB2_ReturnToFieldWithOpenMenu);
 }
 

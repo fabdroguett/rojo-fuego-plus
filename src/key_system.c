@@ -90,6 +90,8 @@ static const u8 *const sText_DifficultyNames[KEY_DIFFICULTY_COUNT] =
     [KEY_DIFFICULTY_CHALLENGE] = COMPOUND_STRING("RETO"),
 };
 
+STATIC_ASSERT(KEY_COUNT <= 32, KeySystemSaveBitCapacity);
+
 static const struct KeyInfo sKeyInfo[KEY_COUNT] =
 {
     [KEY_CAPTURE_EXP]            = {sText_CaptureExp,   sText_CaptureExpDesc},
@@ -110,6 +112,7 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
     [KEY_DARK_MODE]              = {sText_DarkMode,     sText_DarkModeDesc},
     [KEY_SHINY_ODDS]             = {sText_ShinyOdds,    sText_ShinyOddsDesc},
+    [KEY_WILD_LOOT]              = {COMPOUND_STRING("Botin de salvajes"), COMPOUND_STRING("25% de recoger su objeto al vencer.\nSin espacio: queda en reserva.")},
     [KEY_INFINITE_REPEL]         = {COMPOUND_STRING("Repelente infinito"), COMPOUND_STRING("Con el Emisor Repel en la mochila,\nevita salvajes de menor nivel.")},
 };
 
@@ -151,7 +154,7 @@ static void KeySystem_MoveCursor(s32 key, bool8 onInit, struct ListMenu *list);
 // Keys that start switched off. A set bit in keySystemOff means "changed from the default".
 static bool32 KeySystem_IsOnByDefault(enum KeySystemKey key)
 {
-    return key != KEY_BATTLE_SPEED && key != KEY_DARK_MODE && key != KEY_INFINITE_REPEL;
+    return key != KEY_BATTLE_SPEED && key != KEY_DARK_MODE && key != KEY_INFINITE_REPEL && key != KEY_WILD_LOOT;
 }
 
 bool32 KeySystem_IsOn(enum KeySystemKey key)

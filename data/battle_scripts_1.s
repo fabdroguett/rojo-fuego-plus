@@ -6454,3 +6454,13 @@ BattleScript_BelchFails::
 	printstring STRINGID_BELCHCANTSELECT
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
+
+BattleScript_RFLootFound::
+	printstring STRINGID_RF_LOOT_FOUND
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_RFLootPending::
+	printstring STRINGID_RF_LOOT_PENDING
+	waitmessage B_WAIT_TIME_LONG
+	return

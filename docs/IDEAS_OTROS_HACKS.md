@@ -13,7 +13,10 @@ abajo. Las propuestas restantes siguen pendientes; esta lista no significa que e
   consulta anticipada de premios con START; ordenación de objetos del PC con R; aceleración
   de escritura manteniendo R inspirada en la comodidad propuesta para Imperium, preservando
   la confirmación de páginas y decisiones con A/B.
-- Pendientes prioritarios: reserva de EXP, botín configurable, progreso del DexNav, grutas y
+- Tercera tanda: botín configurable de salvajes, desactivado inicialmente; usa objetos equipados
+  restantes, probabilidad del 25 %, aviso en combate y reserva persistente de ocho unidades
+  cuando no cabe en la mochila. Recuperación al abrirla desde START o en una victoria posterior.
+- Pendientes prioritarios: reserva de EXP, progreso del DexNav, grutas y
   retos diarios. No se modifican equipos ni dificultad como parte de estas tandas.
 
 

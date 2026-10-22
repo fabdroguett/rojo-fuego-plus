@@ -296,6 +296,8 @@ struct SaveBlock3
     u32 rfBagSaveMagic;
     // Plain quantities: kept outside the original encrypted bag layout.
     struct { u16 itemId; u16 quantity; } rfBagExtraItems[RF_BAG_EXTRA_ITEMS_COUNT];
+    u32 rfLootSaveMagic;
+    u16 rfPendingLoot[8]; // One unit per slot; append-only save extension.
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

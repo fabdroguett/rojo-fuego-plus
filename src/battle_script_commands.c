@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_wild_loot.h"
 #include "achievements.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
@@ -7625,6 +7626,16 @@ static void Cmd_pickup(void)
                 heldItem = ITEM_BERRY_JUICE;
                 SetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM, &heldItem);
             }
+        }
+    }
+
+    {
+        enum RFLootResult loot = RFWildLoot_Collect();
+        if (loot != RF_LOOT_NONE)
+        {
+            BattleScriptPush(cmd->nextInstr);
+            gBattlescriptCurrInstr = loot == RF_LOOT_PENDING ? BattleScript_RFLootPending : BattleScript_RFLootFound;
+            return;
         }
     }
 
