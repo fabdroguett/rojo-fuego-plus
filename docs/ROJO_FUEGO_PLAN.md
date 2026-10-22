@@ -624,3 +624,4 @@ quedaron desfasados por la nueva pantalla de controles de la intro.
 - Nunca usar `git add -f` ni `git add -A` sin revisar `git status`. `build_artifacts/` está en `.gitignore`.
 - Copia de seguridad local: rama `backup/pre-rom-purge` (no subir nunca) y `decomps/repo_untracked_backup/`.
 - Cualquier sesión con un clon antiguo debe hacer `git fetch rojofuego && git reset --hard rojofuego/rojo-fuego` (tras guardar sus cambios), no `git pull`, o reintroduce las ROMs.
+- ROM del escritorio actualizada el 2026-10-22 con la versión limpia (`29d6fd09`, tema oscuro incluido); la anterior queda como `Rojo Fuego Plus (anterior).gba`. Solo se probó el arranque.
