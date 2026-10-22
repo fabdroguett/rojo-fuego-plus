@@ -2420,7 +2420,7 @@ static void PrintCollectionSummary(void)
     static const u8 *const times[] =
     {
         COMPOUND_STRING("Manana"), COMPOUND_STRING("Dia"), COMPOUND_STRING("Tarde"),
-        COMPOUND_STRING("Noche"), COMPOUND_STRING("Todo el dia"),
+        COMPOUND_STRING("Noche"), COMPOUND_STRING("Todo el día"),
     };
     struct RFCollectionSummary summary;
     u32 i;
@@ -2480,7 +2480,7 @@ static void PrintCurrentSpeciesInfo(void)
     PrintDexNavDetail(0,
         species == SPECIES_NONE ? (unknown ? COMPOUND_STRING("Sin avistar") : COMPOUND_STRING("Sin datos")) : GetSpeciesName(species));
     PrintDexNavDetail(12,
-        species == SPECIES_NONE ? (unknown ? COMPOUND_STRING("Aun no visto") : COMPOUND_STRING("Sin encuentro")) :
+        species == SPECIES_NONE ? (unknown ? COMPOUND_STRING("Aún no visto") : COMPOUND_STRING("Sin encuentro")) :
         ((VarGet(DN_VAR_SPECIES) & DEXNAV_MASK_SPECIES) == species ? COMPOUND_STRING("Fijado con R") :
         caught ? COMPOUND_STRING("Capturado") : COMPOUND_STRING("Avistado")));
     type1 = species == SPECIES_NONE ? TYPE_MYSTERY : GetSpeciesType(species, 0);
@@ -2490,7 +2490,7 @@ static void PrintCurrentSpeciesInfo(void)
         SetSpriteInvisibility(1, TRUE);
     else
         SetTypeIconPosAndPal(type2, 201, 52, 1);
-    StringCopy(gStringVar4, COMPOUND_STRING("Busqueda "));
+    StringCopy(gStringVar4, COMPOUND_STRING("Búsqueda "));
     if (species != SPECIES_NONE)
         ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), GetSearchLevel(species), STR_CONV_MODE_LEFT_ALIGN, 3);
     else
