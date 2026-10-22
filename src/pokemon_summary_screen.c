@@ -1471,7 +1471,7 @@ static bool8 DecompressGraphics(void)
         {
             static const u16 surfaces[] = {
                 RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
-                RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND, RF_UI_NIGHT_MUTED,
+                RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND, RF_UI_GOLD, // 6: section heading letters
                 RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL,
                 RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
                 RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND,
