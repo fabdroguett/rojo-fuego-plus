@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_ui_theme.h"
 #include "main.h"
 #include "text.h"
 #include "menu.h"
@@ -2014,8 +2015,9 @@ void CB2_OpenFlyMap(void)
     case 7:
         LoadPalette(sRegionMapFramePal, BG_PLTT_ID(1), sizeof(sRegionMapFramePal));
         PutWindowTilemap(WIN_FLY_TO_WHERE);
-        FillWindowPixelBuffer(WIN_FLY_TO_WHERE, PIXEL_FILL(0));
-        AddTextPrinterParameterized(WIN_FLY_TO_WHERE, FONT_NORMAL, gText_FlyToWhere, 0, 1, 0, NULL);
+        // Rojo Fuego+: a filled panel (paper 1, rim 12) instead of glyphs on the bare map
+        RFUI_DrawPanel(WIN_FLY_TO_WHERE, 0, 0, 14 * 8, 2 * 8, 1, 12);
+        AddTextPrinterParameterized(WIN_FLY_TO_WHERE, FONT_NORMAL, gText_FlyToWhere, 6, 1, 0, NULL);
         ScheduleBgCopyTilemapToVram(0);
         gMain.state++;
         break;
