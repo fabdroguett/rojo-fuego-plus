@@ -404,6 +404,24 @@ Si se elige hack como base, cambiar la Fase 1 para clonar ese repo en vez de `pr
   libmgba-dev` en WSL; `gcc -O2 -o harness harness.c -lmgba`). Script con `run/hold/mash/shot/w8/r8/dump/
   save/load`; `ppm2png.py` convierte las capturas. Para direcciones de variables estáticas:
   `arm-none-eabi-nm pokefirered.elf`. Los savestates solo sirven con la misma ROM.
+- **Pantallas al estilo Pokémon SoulGold** (pedido del usuario, referencia
+  https://pokemonheartsoul.com/pokemon-soulgold/; SoulGold es un hack GBA sobre pokeemerald-expansion sin
+  código público, así que se copió el diseño de su pantalla de Trofeos a partir de capturas):
+  - **Logros a pantalla completa** (`src/achievements.c`, sección "Achievements screen"): cabecera con
+    categoría (L/R o ←/→) y conteo, 5 filas con trofeo del color del nivel (bronce/plata/oro/platino,
+    silueta apagada si está bloqueado), nombre y estado ("Bloq.", progreso x/y o %, "¡Premio!", "Hecho"),
+    flechas de scroll y caja inferior con descripción y premio. A reclama/equipa título, B sale.
+    Gráficos generados por `tools/rojo_fuego/achievements_gfx.py` → `src/data/rf_achievements_gfx.h`
+    (fondo BG1 + paleta de texto + íconos 16x16). Se abre desde la mochila (CB2 directo) o con Select
+    (fundido desde el campo); vuelve con `FieldCB_ReturnToFieldNoScript`.
+  - **DexNav en español**: la pantalla ya existía (menú Start → DEXNAV, solo en mapas con salvajes). Los
+    títulos dibujados se repintaron con `tools/rojo_fuego/dexnav_gui.py build` (reconstruye la pantalla de
+    tiles+tilemap, borra los títulos, dibuja AGUA/TIERRA/OCULTOS/ESPECIE/TIPO/NV. BÚSQUEDA/HAB. OCULTA/
+    CADENA ACTUAL/BUSCAR con una fuente de píxeles y vuelve a cortar en tiles). Originales en
+    `gui_tiles_en.png`/`gui_tilemap_en.bin`. Textos y mensajes de búsqueda traducidos.
+  - Elegir DEXNAV en un mapa sin salvajes muestra "No hay Pokémon aquí." (antes no hacía nada).
+  - Pendiente posible: contador de capturados por zona (SoulGold lo tiene) — no hay hueco en la
+    pantalla sin rediseñarla.
 - **No hecho**: traducción del juego al español (no pedida; proyecto grande).
 
 ### GitHub (HECHO 2026-10-22)
