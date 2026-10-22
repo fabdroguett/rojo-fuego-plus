@@ -2465,6 +2465,14 @@
 #define FLAG_RF_Z_TRIAL_15          FLAG_0x0BF
 #define FLAG_RF_Z_TRIAL_16          FLAG_0x0C0
 #define FLAG_RF_Z_TRIAL_17          FLAG_0x0C1
+#define FLAG_RF_DEX_REWARD_0        FLAG_0x0C2 // Pokédex rewards from Oak's aide (Script_GetNextDexReward)
+#define FLAG_RF_DEX_REWARD_1        FLAG_0x0C3
+#define FLAG_RF_DEX_REWARD_2        FLAG_0x0C4
+#define FLAG_RF_DEX_REWARD_3        FLAG_0x0C5
+#define FLAG_RF_DEX_REWARD_4        FLAG_0x0C6
+#define FLAG_RF_DEX_REWARD_5        FLAG_0x0C7
+#define FLAG_RF_DEX_REWARD_6        FLAG_0x0C8
+#define FLAG_RF_DEX_REWARD_7        FLAG_0x0C9
 #endif
 
 #if TESTING

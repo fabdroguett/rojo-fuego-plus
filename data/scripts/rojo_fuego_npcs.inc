@@ -116,3 +116,44 @@ RF_Text_Stat_SpDef:
 	.string "Def. Esp.$"
 RF_Text_Stat_All:
 	.string "Todas$"
+
+@ Pokédex rewards: Oak's third aide in his lab hands out a prize at each milestone
+RF_EventScript_DexRewards::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_POKEDEX_GET, RF_EventScript_DexRewards_NoDex
+	callnative Script_GetNextDexReward
+	goto_if_eq VAR_RESULT, TRUE, RF_EventScript_DexRewards_Give
+	goto_if_eq VAR_0x8005, 0, RF_EventScript_DexRewards_AllGiven
+	msgbox RF_Text_DexRewards_Next
+	release
+	end
+
+RF_EventScript_DexRewards_Give::
+	msgbox RF_Text_DexRewards_Give
+	giveitem VAR_0x8005, VAR_0x8006
+	release
+	end
+
+RF_EventScript_DexRewards_AllGiven::
+	msgbox RF_Text_DexRewards_AllGiven
+	release
+	end
+
+RF_EventScript_DexRewards_NoDex::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakIsAuthorityOnMons
+	release
+	end
+
+RF_Text_DexRewards_Next:
+	.string "Llevas {STR_VAR_1} especies capturadas.\p"
+	.string "Cuando llegues a {STR_VAR_2}, el\n"
+	.string "PROF. OAK me pidió darte un premio.$"
+
+RF_Text_DexRewards_Give:
+	.string "¡Llevas {STR_VAR_1} especies capturadas!\n"
+	.string "El PROF. OAK quiere que tengas esto.$"
+
+RF_Text_DexRewards_AllGiven:
+	.string "¡Ya te di todos los premios! El\n"
+	.string "PROF. OAK está muy orgulloso.$"

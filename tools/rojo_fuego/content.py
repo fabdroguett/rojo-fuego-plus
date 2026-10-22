@@ -95,6 +95,7 @@ Z_TRIALS = {
 # NPCs that run a hand-written script from data/scripts/rojo_fuego_npcs.inc: NPC script -> new script
 NPC_SCRIPTS = {
     "CeladonCity_DepartmentStore_5F_EventScript_Sailor": "RF_EventScript_HyperTrainer",
+    "PalletTown_ProfessorOaksLab_EventScript_Aide3": "RF_EventScript_DexRewards",
 }
 
 

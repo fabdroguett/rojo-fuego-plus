@@ -476,6 +476,59 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
 
 #undef PARSE_FLAG
 
+#if IS_FRLG
+// Rojo Fuego+ Pokédex rewards from Oak's aide, by species caught in the National Pokédex
+struct DexReward
+{
+    u16 caught;
+    enum Item item;
+    u8 quantity;
+    u16 flag;
+};
+
+static const struct DexReward sDexRewards[] =
+{
+    { 50, ITEM_RARE_CANDY,     3, FLAG_RF_DEX_REWARD_0},
+    {100, ITEM_OVAL_CHARM,     1, FLAG_RF_DEX_REWARD_1},
+    {150, ITEM_GOLD_BOTTLE_CAP, 1, FLAG_RF_DEX_REWARD_2},
+    {200, ITEM_CATCHING_CHARM, 1, FLAG_RF_DEX_REWARD_3},
+    {250, ITEM_ABILITY_PATCH,  1, FLAG_RF_DEX_REWARD_4},
+    {300, ITEM_EXP_CHARM,      1, FLAG_RF_DEX_REWARD_5},
+    {400, ITEM_MASTER_BALL,    1, FLAG_RF_DEX_REWARD_6},
+    {500, ITEM_SHINY_CHARM,    1, FLAG_RF_DEX_REWARD_7},
+};
+
+// VAR_RESULT = TRUE and VAR_0x8005/0x8006 = item/quantity when a reward is ready (its flag is set
+// here). Otherwise VAR_RESULT = FALSE and VAR_0x8005 = caught count needed for the next one (0 if
+// all were given). STR_VAR_1 always holds the current caught count.
+void Script_GetNextDexReward(void)
+{
+    u32 i, caught = GetNationalPokedexCount(FLAG_GET_CAUGHT);
+
+    ConvertIntToDecimalStringN(gStringVar1, caught, STR_CONV_MODE_LEFT_ALIGN, 4);
+    gSpecialVar_Result = FALSE;
+    gSpecialVar_0x8005 = 0;
+    for (i = 0; i < ARRAY_COUNT(sDexRewards); i++)
+    {
+        if (FlagGet(sDexRewards[i].flag))
+            continue;
+        if (caught >= sDexRewards[i].caught)
+        {
+            FlagSet(sDexRewards[i].flag);
+            gSpecialVar_Result = TRUE;
+            gSpecialVar_0x8005 = sDexRewards[i].item;
+            gSpecialVar_0x8006 = sDexRewards[i].quantity;
+        }
+        else
+        {
+            gSpecialVar_0x8005 = sDexRewards[i].caught;
+            ConvertIntToDecimalStringN(gStringVar2, sDexRewards[i].caught, STR_CONV_MODE_LEFT_ALIGN, 4);
+        }
+        return;
+    }
+}
+#endif
+
 // Rojo Fuego+ Key System autosave, run by the Pokémon Center nurse after healing
 void Script_TryAutosave(void)
 {
