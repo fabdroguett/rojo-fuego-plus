@@ -1739,6 +1739,7 @@ void BattleMainCB2(void)
     // Rojo Fuego+ Key System: fast battles run the battle a second time each frame. Buttons are
     // only read in the first pass so no press counts twice.
     if (KeySystem_IsOn(KEY_BATTLE_SPEED) && gMain.callback1 == BattleMainCB1
+     && gMain.callback2 == BattleMainCB2 && !gPaletteFade.active
      && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
     {
         u16 newKeys = gMain.newKeys;
@@ -1747,10 +1748,15 @@ void BattleMainCB2(void)
         gMain.newKeys = 0;
         gMain.newAndRepeatedKeys = 0;
         BattleMainCB1();
-        AnimateSprites();
-        RunTextPrinters();
-        UpdatePaletteFade();
-        RunTasks();
+        // A controller can hand ownership to party/bag/summary screens during this tick.
+        // Do not touch their tasks or palette state from the outgoing battle callback.
+        if (gMain.callback2 == BattleMainCB2 && gMain.callback1 == BattleMainCB1)
+        {
+            AnimateSprites();
+            RunTextPrinters();
+            UpdatePaletteFade();
+            RunTasks();
+        }
         gMain.newKeys = newKeys;
         gMain.newAndRepeatedKeys = newAndRepeatedKeys;
     }

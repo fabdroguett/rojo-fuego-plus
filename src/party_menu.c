@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_ui_theme.h"
 #include "achievements.h"
 #include "malloc.h"
 #include "battle.h"
@@ -910,22 +911,35 @@ struct DarkModeColor
 
 static const struct DarkModeColor sPartyMenuBgDarkColors[] =
 {
-    {16 * 1 + 3, RGB(7, 8, 10)},
-    {16 * 1 + 4, RGB(5, 6, 8)},
-    {16 * 1 + 5, RGB(4, 5, 6)},
-    {16 * 2 + 3, RGB(7, 8, 10)},
-    {16 * 2 + 4, RGB(5, 6, 8)},
-    {16 * 2 + 5, RGB(4, 5, 6)},
+    // These source entries are copied into each slot when the cursor moves.
+    {116, RGB(10, 10, 11)}, {117, RGB(10, 10, 11)}, {118, RF_UI_NIGHT_EDGE},
+    {97, RF_UI_NIGHT_PANEL}, {103, RGB(30, 12, 10)}, {104, RGB(30, 12, 10)},
+    {16 * 3 + 4, RF_UI_NIGHT_PANEL},
+    {16 * 3 + 5, RF_UI_NIGHT_PANEL},
+    {16 * 3 + 6, RF_UI_NIGHT_EDGE},
+    {16 * 3 + 7, RF_UI_NIGHT_PANEL},
+    {16 * 3 + 8, RF_UI_NIGHT_EDGE},
+    {16 * 9 + 4, RGB(10, 10, 11)},
+    {16 * 9 + 5, RGB(10, 10, 11)},
+    {16 * 9 + 6, RF_UI_NIGHT_EDGE},
+    {16 * 9 + 7, RGB(30, 12, 10)},
+    {16 * 9 + 8, RGB(30, 12, 10)},
+    {16 * 1 + 3, RF_UI_NIGHT_GROUND},
+    {16 * 1 + 4, RF_UI_NIGHT_GROUND},
+    {16 * 1 + 5, RF_UI_NIGHT_GROUND},
+    {16 * 2 + 3, RF_UI_NIGHT_GROUND},
+    {16 * 2 + 4, RF_UI_NIGHT_GROUND},
+    {16 * 2 + 5, RF_UI_NIGHT_GROUND},
 };
 
 static const struct DarkModeColor sPartyMenuTextDarkColors[] =
 {
-    {16 * 14 + 1, RGB(5, 6, 8)},
-    {16 * 14 + 2, RGB(29, 29, 29)},
-    {16 * 14 + 3, RGB(11, 12, 14)},
-    {16 * 15 + 1, RGB(5, 6, 8)},
-    {16 * 15 + 2, RGB(29, 29, 29)},
-    {16 * 15 + 3, RGB(11, 12, 14)},
+    {16 * 14 + 1, RF_UI_NIGHT_PANEL},
+    {16 * 14 + 2, RF_UI_NIGHT_TEXT},
+    {16 * 14 + 3, RF_UI_NIGHT_SHADOW},
+    {16 * 15 + 1, RF_UI_NIGHT_PANEL},
+    {16 * 15 + 2, RF_UI_NIGHT_TEXT},
+    {16 * 15 + 3, RF_UI_NIGHT_SHADOW},
 };
 
 static void LoadPartyMenuDarkModeColors(const struct DarkModeColor *colors, u32 count)

@@ -1,4 +1,6 @@
 #include "global.h"
+#include "rf_ui_theme.h"
+#include "key_system.h"
 #include "main.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -1465,6 +1467,24 @@ static bool8 DecompressGraphics(void)
     case 6:
         LoadPalette(gSummaryScreen_Pal, BG_PLTT_ID(0), 8 * PLTT_SIZE_4BPP);
         LoadPalette(&gPPTextPalette, BG_PLTT_ID(8) + 1, PLTT_SIZEOF(16 - 1));
+        if (KeySystem_IsOn(KEY_DARK_MODE))
+        {
+            static const u16 surfaces[] = {
+                RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
+                RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND, RF_UI_NIGHT_MUTED,
+                RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL,
+                RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
+                RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND,
+            };
+            static const u16 text[] = {
+                RF_UI_NIGHT_TEXT, RF_UI_NIGHT_SHADOW, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_TEXT,
+            };
+            u32 bank;
+            for (bank = 0; bank < 6; bank++)
+                LoadPalette(surfaces, BG_PLTT_ID(bank) + 1, sizeof(surfaces));
+            for (bank = 6; bank < 8; bank++)
+                LoadPalette(text, BG_PLTT_ID(bank) + 1, sizeof(text));
+        }
         sMonSummaryScreen->switchCounter++;
         break;
     case 7:

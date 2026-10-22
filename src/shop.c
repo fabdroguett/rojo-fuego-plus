@@ -1,4 +1,6 @@
 #include "global.h"
+#include "rf_ui_theme.h"
+#include "key_system.h"
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
@@ -762,6 +764,14 @@ static void BuyMenuDecompressBgGraphics(void)
     DecompressAndCopyTileDataToVram(1, gShopMenu_Gfx, 0x3A0, 0x3E3, 0);
     DecompressDataWithHeaderWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
     LoadPalette(gShopMenu_Pal, BG_PLTT_ID(SHOP_MENU_PALETTE_ID), PLTT_SIZE_4BPP);
+    if (KeySystem_IsOn(KEY_DARK_MODE))
+    {
+        static const u16 surfaces[] = {
+            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_EDGE,
+            RF_UI_NIGHT_GROUND, RF_UI_NIGHT_MUTED, RF_UI_NIGHT_TEXT,
+        };
+        LoadPalette(surfaces, BG_PLTT_ID(SHOP_MENU_PALETTE_ID) + 1, sizeof(surfaces));
+    }
 }
 
 static void BuyMenuInitWindows(void)

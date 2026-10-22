@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_ui_theme.h"
 #include "battle.h"
 #include "key_system.h"
 #include "battle_anim.h"
@@ -973,22 +974,22 @@ void InitBattleBgsVideo(void)
 // colors. Only the box and frame colors change; the text keeps its own colors.
 static const struct { u8 index; u16 color; } sDarkModeTextboxColors[] =
 {
-    {15, RGB(4, 5, 7)},    // message box
-    {13, RGB(9, 10, 13)},  // frame
-    {12, RGB(12, 13, 16)}, // frame light
-    {14, RGB(7, 8, 10)},   // frame shadow
+    {15, RF_UI_NIGHT_PANEL},    // message box
+    {13, RF_UI_NIGHT_EDGE},  // frame
+    {12, RF_UI_NIGHT_EDGE}, // frame light
+    {14, RF_UI_NIGHT_GROUND},   // frame shadow
 };
 
 // Action and move menus: window border palette (1) and menu text palette (5)
 static const struct { u8 index; u16 color; } sDarkModeMenuColors[] =
 {
-    {16 * 1 + 14, RGB(5, 6, 8)},    // window background
-    {16 * 1 + 2,  RGB(29, 29, 29)}, // text
-    {16 * 1 + 8,  RGB(10, 11, 14)}, // text shadow
-    {16 * 5 + 14, RGB(5, 6, 8)},    // menu background
-    {16 * 5 + 12, RGB(29, 29, 29)}, // menu text
-    {16 * 5 + 13, RGB(29, 29, 29)}, // menu text
-    {16 * 5 + 15, RGB(10, 11, 14)}, // menu text shadow
+    {16 * 1 + 14, RF_UI_NIGHT_PANEL},    // window background
+    {16 * 1 + 2,  RF_UI_NIGHT_TEXT}, // text
+    {16 * 1 + 8,  RF_UI_NIGHT_SHADOW}, // text shadow
+    {16 * 5 + 14, RF_UI_NIGHT_PANEL},    // menu background
+    {16 * 5 + 12, RF_UI_NIGHT_TEXT}, // menu text
+    {16 * 5 + 13, RF_UI_NIGHT_TEXT}, // menu text
+    {16 * 5 + 15, RF_UI_NIGHT_SHADOW}, // menu text shadow
 };
 
 void LoadBattleMenuWindowGfx(void)

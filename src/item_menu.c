@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_ui_theme.h"
 #include "rf_wild_loot.h"
 #include "rf_exp_reserve.h"
 #include "item_menu.h"
@@ -855,13 +856,19 @@ static void BagMenu_InitBGs(void)
 // Rojo Fuego+ dark mode (Key System, from Pokémon SoulGold): dark item list and description box
 static const struct { u8 index; u16 color; } sBagDarkModeColors[] =
 {
-    {1,       RGB(5, 6, 8)},    // description box and other white panels
-    {9,       RGB(5, 6, 8)},    // item list background
-    {10,      RGB(12, 10, 5)},  // item list frame
-    {16 + 10, RGB(5, 6, 8)},    // item list background (windows)
-    {16 + 2,  RGB(5, 6, 8)},    // description background
-    {16 + 1,  RGB(29, 29, 29)}, // text
-    {16 + 3,  RGB(11, 12, 14)}, // text shadow
+    {1,       RF_UI_NIGHT_PANEL},    // description box and other white panels
+    {9,       RF_UI_NIGHT_PANEL},    // item list background
+    {10,      RF_UI_NIGHT_EDGE},  // item list frame
+    {7,       RF_UI_NIGHT_PANEL},
+    {8,       RF_UI_NIGHT_EDGE},
+    {12,      RF_UI_NIGHT_PANEL}, // striped canvas
+    {13,      RF_UI_NIGHT_GROUND},
+    {16 + 12, RF_UI_NIGHT_PANEL},
+    {16 + 13, RF_UI_NIGHT_GROUND},
+    {16 + 10, RF_UI_NIGHT_PANEL},    // item list background (windows)
+    {16 + 2,  RF_UI_NIGHT_PANEL},    // description background
+    {16 + 1,  RF_UI_NIGHT_TEXT}, // text
+    {16 + 3,  RF_UI_NIGHT_SHADOW}, // text shadow
 };
 
 static void LoadBagDarkModeColors(void)

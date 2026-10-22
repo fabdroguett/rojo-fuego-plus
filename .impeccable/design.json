@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T17:40:00.232906+00:00",
+  "title": "Design System: Rojo Fuego Plus",
+  "extensions": {
+    "colorMeta": {
+      "fire-accent": {
+        "role": "primary",
+        "displayName": "Fire Accent",
+        "canonical": "RGB(30, 12, 10)"
+      },
+      "night-ground": {
+        "role": "neutral",
+        "displayName": "Night Ground",
+        "canonical": "RGB(3, 3, 4)"
+      },
+      "night-panel": {
+        "role": "neutral",
+        "displayName": "Night Panel",
+        "canonical": "RGB(5, 5, 6)"
+      },
+      "night-edge": {
+        "role": "neutral",
+        "displayName": "Night Edge",
+        "canonical": "RGB(9, 9, 10)"
+      },
+      "night-text": {
+        "role": "neutral",
+        "displayName": "Night Text",
+        "canonical": "RGB(30, 29, 27)"
+      },
+      "night-muted": {
+        "role": "neutral",
+        "displayName": "Night Muted",
+        "canonical": "RGB(22, 22, 21)"
+      },
+      "night-shadow": {
+        "role": "neutral",
+        "displayName": "Night Shadow",
+        "canonical": "RGB(2, 2, 3)"
+      },
+      "capture-mint": {
+        "role": "secondary",
+        "displayName": "Capture Mint",
+        "canonical": "RGB(14, 27, 21)"
+      },
+      "warm-indicator": {
+        "role": "secondary",
+        "displayName": "Warm Indicator",
+        "canonical": "RGB(30, 24, 13)"
+      },
+      "day-ground": {
+        "role": "neutral",
+        "displayName": "Day Ground",
+        "canonical": "RGB(28, 29, 28)"
+      },
+      "day-panel": {
+        "role": "neutral",
+        "displayName": "Day Panel",
+        "canonical": "RGB(31, 31, 30)"
+      },
+      "day-text": {
+        "role": "neutral",
+        "displayName": "Day Text",
+        "canonical": "RGB(4, 5, 6)"
+      },
+      "day-shadow": {
+        "role": "neutral",
+        "displayName": "Day Shadow",
+        "canonical": "RGB(27, 28, 27)"
+      },
+      "day-muted": {
+        "role": "neutral",
+        "displayName": "Day Muted",
+        "canonical": "RGB(11, 12, 13)"
+      },
+      "day-edge": {
+        "role": "neutral",
+        "displayName": "Day Edge",
+        "canonical": "RGB(20, 21, 21)"
+      },
+      "day-capture": {
+        "role": "secondary",
+        "displayName": "Day Capture",
+        "canonical": "RGB(4, 15, 10)"
+      },
+      "day-accent": {
+        "role": "secondary",
+        "displayName": "Day Accent",
+        "canonical": "RGB(23, 5, 4)"
+      },
+      "day-indicator": {
+        "role": "secondary",
+        "displayName": "Day Indicator",
+        "canonical": "RGB(17, 11, 2)"
+      }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [],
+    "native": {
+      "platform": "Game Boy Advance",
+      "canvas": [
+        240,
+        160
+      ],
+      "paletteChannels": "5-bit RGB; C definitions are authoritative",
+      "sources": [
+        "include/rf_ui_theme.h",
+        "src/rf_ui_theme.c",
+        "src/dexnav.c"
+      ],
+      "previewPolicy": "HTML snippets are schematic documentation only. No browser controls, hover behavior, inferred typography or synthesized tonal ramps are native design tokens.",
+      "verification": {
+        "disposition": "ship",
+        "captures": 44,
+        "directory": ".impeccable/review",
+        "captureSize": [
+          480,
+          320
+        ],
+        "integerScale": 2,
+        "themes": [
+          "dark",
+          "light"
+        ],
+        "scope": [
+          "DexNav",
+          "collection",
+          "empty/unseen species",
+          "registration/filter",
+          "summary/stats/moves",
+          "bag",
+          "quests",
+          "keys",
+          "PC",
+          "party opening/cancellation/switching"
+        ],
+        "persistence": "pass",
+        "fidelity": "match",
+        "materialFindings": [],
+        "limits": "Bounded review; not every game interface redesigned or verified. mGBA fast-mode party opening/cancellation/switching passes after defensive battle fix; original reported freeze not reproduced."
+      }
+    }
+  },
+  "components": [
+    {
+      "name": "Encounter group",
+      "kind": "custom",
+      "description": "Schematic documentation preview; native bitmap glyphs and gameplay assets are not reproduced.",
+      "html": "<div class=\"ds-native\">TIERRA   2/5</div>",
+      "css": ".ds-native { background:#4a4a52; color:#f7efde; font:10px monospace; padding:4px; border-radius:0; width:232px; }"
+    },
+    {
+      "name": "Detail panel",
+      "kind": "card",
+      "description": "Schematic documentation preview; native bitmap glyphs and gameplay assets are not reproduced.",
+      "html": "<div class=\"ds-native\">DexNav · Información</div>",
+      "css": ".ds-native { background:#292931; color:#f7efde; font:10px monospace; padding:4px; border-radius:0; width:232px; }"
+    },
+    {
+      "name": "Control footer",
+      "kind": "nav",
+      "description": "Schematic documentation preview; native bitmap glyphs and gameplay assets are not reproduced.",
+      "html": "<div class=\"ds-native\">A Buscar  R Fijar  SEL Filtro  START Zona  B Salir</div>",
+      "css": ".ds-native { background:#191921; color:#f7efde; font:10px monospace; padding:4px; border-radius:0; width:232px; }"
+    },
+    {
+      "name": "Text window",
+      "kind": "custom",
+      "description": "Schematic documentation preview; native bitmap glyphs and gameplay assets are not reproduced.",
+      "html": "<div class=\"ds-native\">Ventana de texto</div>",
+      "css": ".ds-native { background:#292931; color:#f7efde; font:10px monospace; padding:4px; border-radius:0; width:232px; }"
+    },
+    {
+      "name": "Header",
+      "kind": "custom",
+      "description": "Schematic documentation preview; native bitmap glyphs and gameplay assets are not reproduced.",
+      "html": "<div class=\"ds-native\">DEXNAV                  Ruta</div>",
+      "css": ".ds-native { background:#191921; color:#f7efde; font:10px monospace; padding:4px; border-radius:0; width:232px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Kanto field instrument",
+    "overview": "A compact field instrument for Kanto: dense, readable native screens with ink surfaces, warm text, restrained FireRed selection accents and unchanged Pokémon imagery. The visual system belongs to a 240 × 160 Game Boy Advance framebuffer, not a browser.\n\nThis is a source-derived record of the implemented design. DexNav receives a new full-canvas composition; other principal interfaces receive targeted palette mappings. The bounded finish review accepted all 44 required dark/light native captures in `.impeccable/review` with a ship disposition, persistence pass, fidelity match and no remaining material findings. These 480 × 320 captures display the fixed 240 × 160 framebuffer at integer 2× scale. Dark mode is the product default with persistent Key System opt-out. This does not establish that every game interface was redesigned or verified.",
+    "keyCharacteristics": [
+      "Native bitmap type and indexed palettes.",
+      "Selection and actions remain explicit at 240 × 160.",
+      "Existing sprite, type, HP and status semantics survive theme changes."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Palette Rule",
+        "body": "Change UI surfaces through known indexed entries; preserve sprite, type, HP and status palettes.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do use shared night tokens for UI surfaces and text.",
+      "Do measure strings with the engine font helpers and check actual native frames.",
+      "Do distinguish no encounters, unseen species and known species.",
+      "Do retain search, registration, filters, collection, visibility rules and save behavior."
+    ],
+    "donts": [
+      "Don't recolor Pokémon sprites, type icons, HP bars or status meanings with surface tokens.",
+      "Don't introduce browser layout, scalable fonts, hover-only actions or touch controls.",
+      "Don't claim every screen has been redesigned or visually verified.",
+      "Don't create new generated raster assets for this theme."
+    ]
+  }
+}

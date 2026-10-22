@@ -371,8 +371,23 @@ static void KeySystem_MoveCursor(s32 key, bool8 onInit, struct ListMenu *list)
 void KeySystem_OpenMenu(void)
 {
     struct ListMenuTemplate template = {0};
-    u8 taskId = CreateTask(Task_KeySystemMenu, 80);
+    u8 taskId;
     u32 i;
+    u32 freeTasks = 0;
+
+    if (FuncIsActiveTask(Task_KeySystemMenu))
+        return;
+    // The controller and list each need a task; failed CreateTask returns slot 0.
+    for (i = 0; i < NUM_TASKS; i++)
+        if (!gTasks[i].isActive)
+            freeTasks++;
+    if (freeTasks < 2)
+    {
+        ScriptUnfreezeObjectEvents();
+        UnlockPlayerFieldControls();
+        return;
+    }
+    taskId = CreateTask(Task_KeySystemMenu, 80);
 
     Achievements_HideNotification(); // it uses the same part of the screen
 
@@ -384,7 +399,22 @@ void KeySystem_OpenMenu(void)
 
     LoadMessageBoxAndBorderGfx();
     gTasks[taskId].tListWindowId = AddWindow(&sKeyListWindowTemplate);
+    if (gTasks[taskId].tListWindowId == WINDOW_NONE)
+    {
+        ScriptUnfreezeObjectEvents();
+        UnlockPlayerFieldControls();
+        DestroyTask(taskId);
+        return;
+    }
     gTasks[taskId].tDescWindowId = AddWindow(&sKeyDescWindowTemplate);
+    if (gTasks[taskId].tDescWindowId == WINDOW_NONE)
+    {
+        RemoveWindow(gTasks[taskId].tListWindowId);
+        ScriptUnfreezeObjectEvents();
+        UnlockPlayerFieldControls();
+        DestroyTask(taskId);
+        return;
+    }
     DrawStdWindowFrame(gTasks[taskId].tListWindowId, FALSE);
     DrawStdWindowFrame(gTasks[taskId].tDescWindowId, FALSE);
 
@@ -443,6 +473,8 @@ static void Task_KeySystemMenu(u8 taskId)
             gSaveBlock3Ptr->keySystemShinyOdds = (KeySystem_GetShinyOdds() + 1) % KEY_SHINY_ODDS_COUNT;
         else
             KeySystem_Set(input, !KeySystem_IsOn(input));
+        if (input == KEY_DARK_MODE)
+            LoadMessageBoxAndBorderGfx();
         RedrawListMenu(gTasks[taskId].tListTaskId);
         break;
     }

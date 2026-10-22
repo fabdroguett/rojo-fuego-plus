@@ -1,4 +1,6 @@
 #include "global.h"
+#include "rf_ui_theme.h"
+#include "key_system.h"
 #include "achievements.h"
 #include "malloc.h"
 #include "bg.h"
@@ -4093,11 +4095,29 @@ static void InitPalettesAndSprites(void)
 {
     LoadPalette(sInterface_Pal, BG_PLTT_ID(0), sizeof(sInterface_Pal));
     LoadPalette(sPkmnDataGray_Pal, BG_PLTT_ID(2), sizeof(sPkmnDataGray_Pal));
-    LoadPalette(sTextWindows_Pal, BG_PLTT_ID(15), sizeof(sTextWindows_Pal));
+    RFUI_LoadWindowPalette(sTextWindows_Pal, BG_PLTT_ID(15));
     if (sStorage->boxOption != OPTION_MOVE_ITEMS)
         LoadPalette(sScrollingBg_Pal, BG_PLTT_ID(3), sizeof(sScrollingBg_Pal));
     else
         LoadPalette(sScrollingBgMoveItems_Pal, BG_PLTT_ID(3), sizeof(sScrollingBgMoveItems_Pal));
+
+    if (KeySystem_IsOn(KEY_DARK_MODE))
+    {
+        static const u16 frame[] = {
+            RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND,
+            RF_UI_NIGHT_PANEL, RGB(30,24,13), RF_UI_NIGHT_EDGE, RF_UI_NIGHT_TEXT,
+            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RGB(30,24,13), RF_UI_NIGHT_EDGE,
+            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_TEXT, RGB(14,27,21),
+        };
+        static const u16 backdrop[] = {
+            RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND,
+            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
+            RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND, 0,0,0,0,0,
+        };
+        LoadPalette(frame, BG_PLTT_ID(0), sizeof(frame));
+        LoadPalette(frame, BG_PLTT_ID(2), sizeof(frame));
+        LoadPalette(backdrop, BG_PLTT_ID(3), sizeof(backdrop));
+    }
 
     SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1) | BGCNT_CHARBASE(1) | BGCNT_16COLOR | BGCNT_SCREENBASE(30));
     CreateDisplayMonSprite();
