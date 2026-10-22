@@ -8,9 +8,10 @@ pendiente de la autorización para generar el `.gba`.
 
 - Diario accesible con **START → R**, después de recibir la Pokédex, o mediante el objeto
   **Diario**. Un ayudante del laboratorio de Oak entrega el objeto, también en el postgame.
-- **15 misiones** implementadas en tres capítulos: museo y fósiles, reliquias de Sete e
-  investigación de Oak. El plan de contenido sigue siendo 350 misiones; no están todas hechas.
-- **A** acepta o reclama; **SELECT** sigue una misión; **L/R** cambia de capítulo; **B** sale.
+- **30 misiones** implementadas en seis capítulos: museo y fósiles, reliquias de Sete,
+  investigación de Oak, refugios de Kanto, vida y hábitats, cuidado y evolución. El plan de contenido sigue siendo 350 misiones; no están todas hechas.
+- **A** acepta o reclama; **SELECT** sigue una misión; **L/R** cambia de capítulo; **START** muestra el premio; **B** sale.
+  La cabecera muestra las misiones reclamadas y el total del capítulo.
   El seguimiento abre el capítulo y la fila correspondientes al regresar al diario.
 - Estados persistentes: disponible, aceptada, objetivo cumplido y premio reclamado.
   Se reservan 500 identificadores estables en 125 bytes; los ID publicados no deben reordenarse.
@@ -29,7 +30,9 @@ para partidas anteriores. La rotación de la clave de cifrado no atraviesa los l
 Se corrigen la retirada excesiva de objetos repartidos en varias pilas, los accesos fuera de
 capacidad y los fallos de asignación en las operaciones modificadas. La retirada de la última
 unidad del PC compacta sus huecos; las cantidades inválidas no desbordan el contador.
-El depósito de objetos del PC conserva sus **50 espacios**.
+El depósito de objetos del PC conserva sus **50 espacios**. **R** ordena por identificador de
+objeto, dejando huecos al final y conservando cantidades y pilas; **SELECT** permite moverlos
+manualmente. El control R se aplica en la lista normal, sin interferir con el movimiento manual.
 
 El PC de Pokémon incorpora **ordenar caja por Pokédex**. La ordenación es estable, deja huecos
 al final y mueve registros completos, conservando datos, marcas y objetos. Exige soltar primero
@@ -91,7 +94,13 @@ falla si aparece o cambia una. No ejecutar `make`, `make firered` ni el destino 
 esta verificación. Docker sirve para disponer del compilador Linux desde Windows.
 
 
-Resultado del enlace de esta tanda: EWRAM 230036 B (87,75 %), IWRAM 28648 B (87,43 %),
-región ROM del ELF aproximadamente 27,12 MB (80,82 % de 32 MiB). El símbolo de SaveBlock3
+Resultado del enlace de esta tanda: EWRAM 230152 B (87,80 %), IWRAM 28648 B (87,43 %),
+región ROM del ELF aproximadamente 27,12 MB (80,83 % de 32 MiB). El símbolo de SaveBlock3
 mide 1492 bytes de los 1624 disponibles. Estos tamaños corresponden al ELF; no se extrajo
 un archivo `.gba`.
+
+
+Segunda tanda: mantener **R** acelera la escritura de diálogos donde se permite acelerar
+con A/B. No confirma páginas, no elige respuestas y no cambia la velocidad guardada en opciones.
+Se amplió la prueba del catálogo para detectar ciclos de requisitos y capítulos inválidos,
+y se verifican cantidades y estabilidad de la ordenación de objetos del PC.

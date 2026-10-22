@@ -549,6 +549,27 @@ void CompactPCItems(void)
     BagPocket_CompactItems(&dummyPocket);
 }
 
+// Sort complete item records without allocating or merging stacks.
+void SortPCItems(void)
+{
+    u32 i, j;
+    struct BagPocket pocket = DUMMY_PC_BAG_POCKET;
+    for (i = 1; i < pocket.capacity; i++)
+    {
+        struct ItemSlot value = BagPocket_GetSlotData(&pocket, i);
+        u32 order = value.itemId == ITEM_NONE ? 0xFFFF : value.itemId;
+        for (j = i; j > 0; j--)
+        {
+            struct ItemSlot previous = BagPocket_GetSlotData(&pocket, j - 1);
+            u32 previousOrder = previous.itemId == ITEM_NONE ? 0xFFFF : previous.itemId;
+            if (previousOrder <= order)
+                break;
+            BagPocket_SetSlotData(&pocket, j, previous);
+        }
+        BagPocket_SetSlotData(&pocket, j, value);
+    }
+}
+
 void SwapRegisteredBike(void)
 {
     switch (gSaveBlock1Ptr->registeredItem)

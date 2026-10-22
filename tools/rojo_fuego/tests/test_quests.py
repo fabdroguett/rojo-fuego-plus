@@ -136,6 +136,33 @@ int main(void)
     gParties[0][0] = (struct Pokemon){10000, FALSE};
     RFQuests_Refresh();
     assert(RFQuests_GetState(RF_QUEST_UNOWN) == RF_QUEST_READY);
+    // New chapters are independently accessible and preserve old completion states.
+    assert(RFQuests_IsUnlocked(RF_QUEST_ROCK_SURVEY));
+    assert(!RFQuests_IsUnlocked(RF_QUEST_TOWER_SURVEY));
+    assert(RFQuests_Accept(RF_QUEST_ROCK_SURVEY));
+    Visit(MAP_ROCK_TUNNEL_B1F);
+    assert(RFQuests_Claim(RF_QUEST_ROCK_SURVEY));
+    assert(RFQuests_IsUnlocked(RF_QUEST_TOWER_SURVEY));
+    assert(RFQuests_IsUnlocked(RF_QUEST_GROWTH_FISH));
+    assert(RFQuests_Accept(RF_QUEST_GROWTH_FISH));
+    gParties[0][0] = (struct Pokemon){SPECIES_MILOTIC, TRUE};
+    RFQuests_Refresh();
+    assert(RFQuests_GetState(RF_QUEST_GROWTH_FISH) == RF_QUEST_ACTIVE);
+    gParties[0][0].egg = FALSE;
+    RFQuests_Refresh();
+    assert(RFQuests_Claim(RF_QUEST_GROWTH_FISH));
+    assert(RFQuests_GetState(RF_QUEST_MUSEUM) == RF_QUEST_CLAIMED);
+    for (u32 i = 0; i < RF_QUEST_COUNT; i++) {
+        const struct RFQuest *quest = &sRFQuests[i];
+        assert(quest->chapter < RF_QUEST_CHAPTER_COUNT);
+        assert(quest->rewardItem != ITEM_NONE && quest->rewardCount > 0);
+        u32 ancestor = quest->prerequisite, steps = 0;
+        while (ancestor != RF_QUEST_NONE) {
+            assert(ancestor < RF_QUEST_COUNT && ++steps < RF_QUEST_COUNT);
+            assert(ancestor != i);
+            ancestor = sRFQuests[ancestor].prerequisite;
+        }
+    }
     struct SaveBlock3 snapshot = save;
     RFQuests_Refresh();
     assert(memcmp(&snapshot, &save, sizeof(save)) == 0);

@@ -1,6 +1,21 @@
 # Ideas de otros hacks para Rojo Fuego Plus
 
-Evaluación: 2026-10-22. Son propuestas, no funciones implementadas ni autorización para cambiar el juego. Esfuerzo relativo estimado; falta auditar cada integración y el espacio real de ROM y guardado.
+Evaluación: 2026-10-22. Las propuestas se implementan por tandas autorizadas por el usuario; consultar el avance siguiente. Esfuerzo relativo estimado; falta auditar cada integración y el espacio real de ROM y guardado.
+
+## Avance de implementación
+
+La instrucción del usuario de implementar el plan y estas ideas autoriza las tandas descritas
+abajo. Las propuestas restantes siguen pendientes; esta lista no significa que estén todas hechas.
+
+- Primera tanda: diario de 15 misiones, favoritos/protecciones y ordenación del PC de Pokémon,
+  mochila de 60 espacios y objetos de comodidad. Castform de arena como forma de especie existente.
+- Segunda tanda: **30 misiones en total**, tres capítulos nuevos de refugios, hábitats y evolución;
+  consulta anticipada de premios con START; ordenación de objetos del PC con R; aceleración
+  de escritura manteniendo R inspirada en la comodidad propuesta para Imperium, preservando
+  la confirmación de páginas y decisiones con A/B.
+- Pendientes prioritarios: reserva de EXP, botín configurable, progreso del DexNav, grutas y
+  retos diarios. No se modifican equipos ni dificultad como parte de estas tandas.
+
 
 ## Fuentes y límites
 
@@ -64,7 +79,7 @@ Antes de implementar: verificar solapes de flags/vars de FRLG, guardado, presupu
 
 ## Sistema extenso de misiones (consulta del usuario)
 
-Alcance solicitado por el usuario: ampliar a 240-350 o 500. Objetivo de diseño adoptado: **350 misiones**, ampliables a 500, además de encargos repetibles separados. Cantidad actualizada por pedido del usuario; no están implementadas.
+Alcance solicitado por el usuario: ampliar a 240-350 o 500. Objetivo de diseño adoptado: **350 misiones**, ampliables a 500, además de encargos repetibles separados. Cantidad objetivo solicitada por el usuario; actualmente hay 30 implementadas.
 
 | Tipo | Cantidad |
 |---|---:|

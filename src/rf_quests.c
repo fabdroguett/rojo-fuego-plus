@@ -5,8 +5,6 @@
 #include "rf_quests.h"
 
 #define QUEST_SAVE_MAGIC 0x51535431
-#define QUEST_CHAPTERS 3
-#define QUEST_ROWS 4
 
 #include "data/rf_quests.h"
 

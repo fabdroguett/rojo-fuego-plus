@@ -16,7 +16,7 @@
 #include "window.h"
 #include "constants/songs.h"
 
-#define QUEST_CHAPTERS 3
+#define QUEST_CHAPTERS RF_QUEST_CHAPTER_COUNT
 #define QUEST_ROWS 4
 #define sRFQuests RFQuests_GetCatalog()
 
@@ -34,12 +34,16 @@ static const u8 *const sChapterNames[] =
     COMPOUND_STRING("MUSEO Y FOSILES"),
     COMPOUND_STRING("RELIQUIAS DE SETE"),
     COMPOUND_STRING("INVESTIGACION DE OAK"),
+    COMPOUND_STRING("REFUGIOS DE KANTO"),
+    COMPOUND_STRING("VIDA Y HABITATS"),
+    COMPOUND_STRING("CUIDADO Y EVOLUCION"),
 };
+STATIC_ASSERT(ARRAY_COUNT(sChapterNames) == QUEST_CHAPTERS, RFQuestChapterNames);
 static const u8 *const sStatusNames[] =
 {
-    COMPOUND_STRING("A: aceptar   SELECT: seguir"),
-    COMPOUND_STRING("En curso     SELECT: seguir"),
-    COMPOUND_STRING("A: reclamar  SELECT: seguir"),
+    COMPOUND_STRING("A: aceptar   START: premio"),
+    COMPOUND_STRING("En curso     START: premio"),
+    COMPOUND_STRING("A: reclamar  START: premio"),
     COMPOUND_STRING("Completada   B: salir"),
 };
 static EWRAM_DATA struct ListMenuItem sQuestList[RF_QUEST_COUNT] = {0};
@@ -88,6 +92,23 @@ static void QuestPrintState(u8 window, u32 id, u8 y)
     AddTextPrinterParameterized(window, FONT_SMALL, mark, 203, y, TEXT_SKIP_DRAW, NULL);
 }
 
+static void DrawChapterHeader(void)
+{
+    u32 i, completed = 0;
+    u8 window = sQuestWindowIds[0];
+    for (i = 0; i < sQuestListCount; i++)
+        if (RFQuests_GetState(sQuestList[i].id) == RF_QUEST_CLAIMED)
+            completed++;
+    ConvertIntToDecimalStringN(gStringVar1, completed, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringAppend(gStringVar1, COMPOUND_STRING("/"));
+    ConvertIntToDecimalStringN(gStringVar1 + StringLength(gStringVar1), sQuestListCount, STR_CONV_MODE_LEFT_ALIGN, 3);
+    FillWindowPixelBuffer(window, PIXEL_FILL(1));
+    AddTextPrinterParameterized(window, FONT_SMALL, sChapterNames[sQuestChapter], 0, 0, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(window, FONT_SMALL, gStringVar1, 155, 0, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(window, FONT_SMALL, COMPOUND_STRING("L/R"), 200, 0, TEXT_SKIP_DRAW, NULL);
+    CopyWindowToVram(window, COPYWIN_FULL);
+}
+
 static void BuildQuestList(void)
 {
     struct ListMenuTemplate template = {0};
@@ -105,10 +126,7 @@ static void BuildQuestList(void)
             sQuestList[sQuestListCount++].id = i;
         }
     }
-    FillWindowPixelBuffer(sQuestWindowIds[0], PIXEL_FILL(1));
-    AddTextPrinterParameterized(sQuestWindowIds[0], FONT_SMALL, sChapterNames[sQuestChapter], 0, 0, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized(sQuestWindowIds[0], FONT_SMALL, COMPOUND_STRING("L/R"), 200, 0, TEXT_SKIP_DRAW, NULL);
-    CopyWindowToVram(sQuestWindowIds[0], COPYWIN_FULL);
+    DrawChapterHeader();
     FillWindowPixelBuffer(sQuestWindowIds[1], PIXEL_FILL(1));
     template.items = sQuestList;
     template.moveCursorFunc = QuestMoveCursor;
@@ -138,6 +156,18 @@ static void Task_QuestMenu(u8 taskId)
         sQuestChapter = (sQuestChapter + (JOY_NEW(R_BUTTON) ? 1 : QUEST_CHAPTERS - 1)) % QUEST_CHAPTERS;
         PlaySE(SE_SELECT);
         BuildQuestList();
+        return;
+    }
+    if (JOY_NEW(START_BUTTON) && RFQuests_IsUnlocked(sQuestSelected))
+    {
+        const struct RFQuest *quest = &sRFQuests[sQuestSelected];
+        StringCopy(gStringVar4, COMPOUND_STRING("Premio: "));
+        CopyItemName(quest->rewardItem, gStringVar4 + StringLength(gStringVar4));
+        StringAppend(gStringVar4, COMPOUND_STRING(" x"));
+        ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), quest->rewardCount, STR_CONV_MODE_LEFT_ALIGN, 2);
+        StringAppend(gStringVar4, COMPOUND_STRING("\nSe entrega una sola vez.\nSELECT: seguir este encargo."));
+        DrawQuestDetails(gStringVar4);
+        PlaySE(SE_SELECT);
         return;
     }
     if (JOY_NEW(SELECT_BUTTON) && RFQuests_IsUnlocked(sQuestSelected)
@@ -195,6 +225,7 @@ static void Task_QuestMenu(u8 taskId)
                 }
             }
             RedrawListMenu(sQuestListTask);
+            DrawChapterHeader();
             StringCopy(gStringVar4, COMPOUND_STRING("Premio: "));
             CopyItemName(quest->rewardItem, gStringVar4 + StringLength(gStringVar4));
             StringAppend(gStringVar4, COMPOUND_STRING(" x"));

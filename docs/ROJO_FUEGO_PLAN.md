@@ -6,7 +6,7 @@ La instrucción vigente es **verificar código con Docker, incluidos objetos y e
 crear ni publicar un `.gba`**. Sustituye las indicaciones anteriores de compilar una ROM tras
 cada cambio. Al terminar se apaga Docker Desktop y se sube únicamente el código a GitHub.
 
-Esta tanda agrega 15 misiones reales con espacio persistente para 500 (meta de contenido:
+Las tandas implementadas suman 30 misiones reales con espacio persistente para 500 (meta de contenido:
 350), mochila de objetos de 60 espacios, ordenación y protección del PC, cuatro objetos y
 Castform de arena. Alcance, controles, restricciones de guardado y validación en
 [IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md](IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md).

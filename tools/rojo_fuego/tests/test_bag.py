@@ -18,6 +18,7 @@ class BagTests(unittest.TestCase):
         remove = source[source.index("static bool32 NONNULL BagPocket_RemoveItem"):
                         source.index("bool32 RemoveBagItem(")]
         pc_remove = source[source.index("void RemovePCItem("):source.index("void CompactPCItems(")]
+        pc_sort = source[source.index("void SortPCItems("):source.index("void SwapRegisteredBike(")]
         slot_remove = source[source.index("void RemoveBagItemFromSlot("):source.index("static u8 NONNULL BagPocket_CountUsedItemSlots(")]
         header = r'''
 #include <stdint.h>
@@ -136,6 +137,17 @@ int main(void)
     RemovePCItem(0, 2);
     assert(pcSlots[0].itemId == 2 && pcSlots[0].quantity == 7);
     assert(pcSlots[1].itemId == ITEM_NONE);
+    pcSlots[1] = (struct ItemSlot){1, 999};
+    pcSlots[3] = (struct ItemSlot){1, 3};
+    SortPCItems();
+    assert(pcSlots[0].itemId == 1 && pcSlots[0].quantity == 999);
+    assert(pcSlots[1].itemId == 1 && pcSlots[1].quantity == 3);
+    assert(pcSlots[2].itemId == 2 && pcSlots[2].quantity == 7);
+    for (u32 i = 3; i < 50; i++) assert(pcSlots[i].itemId == ITEM_NONE);
+    struct ItemSlot sortedPC[50];
+    memcpy(sortedPC, pcSlots, sizeof(sortedPC));
+    SortPCItems();
+    assert(memcmp(sortedPC, pcSlots, sizeof(sortedPC)) == 0);
     struct ItemSlot first = BagPocket_GetSlotData(p, 0);
     RemoveBagItemFromSlot(p, 0, first.quantity + 1);
     assert(BagPocket_GetSlotData(p, 0).quantity == first.quantity);
@@ -148,7 +160,7 @@ int main(void)
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
             test = work / "bag.c"
-            test.write_text(header + accessors + helper + add + remove + pc_remove + slot_remove + harness, encoding="utf-8")
+            test.write_text(header + accessors + helper + add + remove + pc_remove + pc_sort + slot_remove + harness, encoding="utf-8")
             binary = work / "test-bag"
             command = [compiler, "-std=c11", "-Wall", "-Wextra", "-Werror", "-fsanitize=address,undefined",
                        str(test), "-o", str(binary)]

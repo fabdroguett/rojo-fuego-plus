@@ -1053,7 +1053,7 @@ static void ItemStorage_PrintDescription(s32 id)
     if (id != LIST_CANCEL)
         description = (u8 *)GetItemDescription(gSaveBlock1Ptr->pcItems[id].itemId);
     else
-        description = gText_GoBackPrevMenu;
+        description = COMPOUND_STRING("R: ordenar\nSELECT: mover\nB: volver");
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     AddTextPrinterParameterized(windowId, FONT_NORMAL, description, 0, 1, 0, NULL);
@@ -1173,6 +1173,21 @@ static void ItemStorage_PrintMessage(const u8 *string)
 static void ItemStorage_ProcessInput(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    if (JOY_NEW(R_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        DestroyListMenuTask(tListTaskId, NULL, NULL);
+        ItemStorage_RemoveScrollIndicator();
+        SortPCItems();
+        gPlayerPCItemPageInfo.itemsAbove = 0;
+        gPlayerPCItemPageInfo.cursorPos = 0;
+        ItemStorage_CompactList();
+        ItemStorage_RefreshListMenu();
+        tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
+        ItemStorage_AddScrollIndicator();
+        ScheduleBgCopyTilemapToVram(0);
+        return;
+    }
     if (JOY_NEW(SELECT_BUTTON))
     {
         // 'Select' starts input for swapping items if not on Cancel
