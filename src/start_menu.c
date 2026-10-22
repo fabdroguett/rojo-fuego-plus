@@ -244,15 +244,15 @@ static const u8 *RemasteredActionHelp(u32 action)
 {
     switch (action)
     {
-    case MENU_ACTION_POKEDEX: return COMPOUND_STRING("Especies, habitat y capturas.");
+    case MENU_ACTION_POKEDEX: return COMPOUND_STRING("Especies, hábitat y capturas.");
     case MENU_ACTION_POKEMON: return COMPOUND_STRING("Revisa y organiza tu equipo.");
     case MENU_ACTION_BAG: return COMPOUND_STRING("Objetos, bolsillos y herramientas.");
     case MENU_ACTION_PLAYER: return COMPOUND_STRING("Tu ficha y las medallas de Kanto.");
     case MENU_ACTION_SAVE: return COMPOUND_STRING("Guarda el progreso de tu aventura.");
     case MENU_ACTION_OPTION: return COMPOUND_STRING("Texto, sonido y controles.");
     case MENU_ACTION_KEY_SYSTEM: return COMPOUND_STRING("Personaliza las mejoras del juego.");
-    case MENU_ACTION_DEXNAV: return COMPOUND_STRING("Busca Pokemon y completa la zona.");
-    case MENU_ACTION_QUESTS: return COMPOUND_STRING("Capitulos, objetivos y recompensas.");
+    case MENU_ACTION_DEXNAV: return COMPOUND_STRING("Busca Pokémon y completa la zona.");
+    case MENU_ACTION_QUESTS: return COMPOUND_STRING("Capítulos, objetivos y recompensas.");
     default: return COMPOUND_STRING("Abre la herramienta seleccionada.");
     }
 }
@@ -305,7 +305,7 @@ static void DrawRemasteredMenu(void)
     AddTextPrinterParameterized3(window, FONT_SMALL, 9, 115, ink, TEXT_SKIP_DRAW,
         sDexNavNoticeShown ? COMPOUND_STRING("No hay encuentros en esta zona.") : RemasteredActionHelp(sCurrentStartMenuActions[sStartMenuCursorPos]));
     AddTextPrinterParameterized3(window, FONT_SMALL, 8, 130, ink, TEXT_SKIP_DRAW,
-        FlagGet(FLAG_SYS_POKEDEX_GET) ? COMPOUND_STRING("A Entrar   B Atras   R Misiones") : COMPOUND_STRING("A Entrar   B Atras"));
+        FlagGet(FLAG_SYS_POKEDEX_GET) ? COMPOUND_STRING("A Entrar   B Atrás   R Misiones") : COMPOUND_STRING("A Entrar   B Atrás"));
     PutWindowTilemap(window);
     CopyWindowToVram(window, COPYWIN_FULL);
 }

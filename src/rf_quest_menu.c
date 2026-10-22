@@ -32,12 +32,12 @@ static const struct WindowTemplate sQuestWindows[] =
 
 static const u8 *const sChapterNames[] =
 {
-    COMPOUND_STRING("MUSEO Y FOSILES"),
+    COMPOUND_STRING("MUSEO Y FÓSILES"),
     COMPOUND_STRING("RELIQUIAS DE SETE"),
-    COMPOUND_STRING("INVESTIGACION DE OAK"),
+    COMPOUND_STRING("INVESTIGACIÓN DE OAK"),
     COMPOUND_STRING("REFUGIOS DE KANTO"),
-    COMPOUND_STRING("VIDA Y HABITATS"),
-    COMPOUND_STRING("CUIDADO Y EVOLUCION"),
+    COMPOUND_STRING("VIDA Y HÁBITATS"),
+    COMPOUND_STRING("CUIDADO Y EVOLUCIÓN"),
 };
 STATIC_ASSERT(ARRAY_COUNT(sChapterNames) == QUEST_CHAPTERS, RFQuestChapterNames);
 static const u8 *const sStatusNames[] =
@@ -60,13 +60,13 @@ static void DrawQuestDetails(const u8 *message)
     u8 window = sQuestWindowIds[2];
     bool32 unlocked = RFQuests_IsUnlocked(sQuestSelected);
     enum RFQuestState state = RFQuests_GetState(sQuestSelected);
-    const u8 *status = unlocked ? sStatusNames[state] : COMPOUND_STRING("Completa la mision anterior.");
+    const u8 *status = unlocked ? sStatusNames[state] : COMPOUND_STRING("Completa la misión anterior.");
 
     FillWindowPixelBuffer(window, PIXEL_FILL(1));
     AddTextPrinterParameterized(window, FONT_SMALL, status, 0, 0, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized(window, FONT_SMALL,
         message != NULL ? message : unlocked ? sRFQuests[sQuestSelected].description
-                                              : COMPOUND_STRING("Sigue investigando para descubrir\nesta mision. L/R cambia de capitulo."),
+                                              : COMPOUND_STRING("Sigue investigando para descubrir\nesta misión. L/R cambia de capítulo."),
         0, 12, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(window, COPYWIN_GFX);
 }
@@ -217,7 +217,7 @@ static void Task_QuestMenu(u8 taskId)
             if (!RFQuests_Claim(input))
             {
                 PlaySE(SE_FAILURE);
-                DrawQuestDetails(COMPOUND_STRING("No hay espacio en la mochila.\nHaz sitio y reclama el premio aqui."));
+                DrawQuestDetails(COMPOUND_STRING("No hay espacio en la mochila.\nHaz sitio y reclama el premio aquí."));
                 return;
             }
             // Claiming a prerequisite can reveal another row without reopening the menu.

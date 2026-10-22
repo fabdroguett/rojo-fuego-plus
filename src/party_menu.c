@@ -2605,7 +2605,7 @@ static void CreateCancelConfirmWindows(bool8 chooseHalf)
 
         // Branches are functionally identical. Second branch is never reached, Spin Trade wasnt fully implemented
         if (sRFPartyLayout)
-            AddTextPrinterParameterized3(cancelWindowId, FONT_SMALL, 1, 1, sFontColorTable[0], TEXT_SKIP_DRAW, COMPOUND_STRING("B Atras   A Elegir"));
+            AddTextPrinterParameterized3(cancelWindowId, FONT_SMALL, 1, 1, sFontColorTable[0], TEXT_SKIP_DRAW, COMPOUND_STRING("B Atrás   A Elegir"));
         else if (gPartyMenu.menuType != PARTY_MENU_TYPE_SPIN_TRADE)
         {
             mainOffset = GetStringCenterAlignXOffset(FONT_SMALL, gText_Cancel, 48);

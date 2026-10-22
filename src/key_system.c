@@ -117,12 +117,12 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_DEXNAV_COLLECTION]      = {COMPOUND_STRING("Coleccion por zona"), COMPOUND_STRING("START en DexNav abre el resumen.\nIncluye horarios, pesca y rocas.")},
     [KEY_EXP_RESERVE]            = {COMPOUND_STRING("Reserva de EXP"), COMPOUND_STRING("La EXP bloqueada se hace caramelos\nal abrir la mochila desde START.")},
     [KEY_R_TEXT_FAST]            = {COMPOUND_STRING("Texto rapido con R"), COMPOUND_STRING("Mantener R acelera la escritura.\nNo confirma respuestas ni paginas.")},
-    [KEY_WILD_LOOT]              = {COMPOUND_STRING("Botin de salvajes"), COMPOUND_STRING("25% de recoger su objeto al vencer.\nSin espacio: queda en reserva.")},
+    [KEY_WILD_LOOT]              = {COMPOUND_STRING("Botín de salvajes"), COMPOUND_STRING("25% de recoger su objeto al vencer.\nSin espacio: queda en reserva.")},
     [KEY_INFINITE_REPEL]         = {COMPOUND_STRING("Repelente infinito"), COMPOUND_STRING("Con el Emisor Repel en la mochila,\nevita salvajes de menor nivel.")},
 };
 
-static const u8 sText_On[] = _("SÍ");
-static const u8 sText_Off[] = _("NO");
+static const u8 sText_On[] = _("Sí");
+static const u8 sText_Off[] = _("No");
 
 static const struct WindowTemplate sKeyListWindowTemplate =
 {
