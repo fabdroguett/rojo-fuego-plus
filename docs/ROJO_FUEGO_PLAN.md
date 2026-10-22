@@ -420,8 +420,10 @@ Si se elige hack como base, cambiar la Fase 1 para clonar ese repo en vez de `pr
     CADENA ACTUAL/BUSCAR con una fuente de píxeles y vuelve a cortar en tiles). Originales en
     `gui_tiles_en.png`/`gui_tilemap_en.bin`. Textos y mensajes de búsqueda traducidos.
   - Elegir DEXNAV en un mapa sin salvajes muestra "No hay Pokémon aquí." (antes no hacía nada).
-  - Pendiente posible: contador de capturados por zona (SoulGold lo tiene) — no hay hueco en la
-    pantalla sin rediseñarla.
+  - **Contador de capturados por zona** (como SoulGold): "capturados/total" en las pestañas AGUA,
+    TIERRA y OCULTOS. Se dibuja directo en tiles de BG1 que `dexnav_gui.py` deja únicos (cabecera
+    generada `src/data/dexnav_counter_tiles.h`), con la fuente de píxeles de los títulos
+    (`DrawAreaCounters` en `dexnav.c`). Sin especies en la zona no se dibuja nada.
 - **No hecho**: traducción del juego al español (no pedida; proyecto grande).
 
 ### GitHub (HECHO 2026-10-22)
