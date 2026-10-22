@@ -618,3 +618,9 @@ mejoras de SoulGold. Se integraron con `git rebase` (sin conflictos de texto), c
 6 pruebas Python de esa sesión y 5 pruebas de combate `Rojo Fuego` en verde. Antes de trabajar:
 `git fetch rojofuego && git status` para no divergir. Los guiones del harness (`tools-test/base_*.txt`)
 quedaron desfasados por la nueva pantalla de controles de la intro.
+
+## Regla: nada de ROMs ni compilados en Git (2026-10-22)
+- El 2026-10-22 otra sesión subió ROMs (`pokefirered.gba`, `.sav`, `build_artifacts/*.gba`), `build/` y binarios de `tools/` con `git add -f`. Se purgó el historial con `git filter-branch` y se forzó el push (`ffe9f60e` + commit de `.gitignore`).
+- Nunca usar `git add -f` ni `git add -A` sin revisar `git status`. `build_artifacts/` está en `.gitignore`.
+- Copia de seguridad local: rama `backup/pre-rom-purge` (no subir nunca) y `decomps/repo_untracked_backup/`.
+- Cualquier sesión con un clon antiguo debe hacer `git fetch rojofuego && git reset --hard rojofuego/rojo-fuego` (tras guardar sus cambios), no `git pull`, o reintroduce las ROMs.
