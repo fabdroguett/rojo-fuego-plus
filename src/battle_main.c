@@ -1,4 +1,5 @@
 #include "global.h"
+#include "key_system.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_ai_main.h"
@@ -1734,6 +1735,25 @@ void BattleMainCB2(void)
     RunTextPrinters();
     UpdatePaletteFade();
     RunTasks();
+
+    // Rojo Fuego+ Key System: fast battles run the battle a second time each frame. Buttons are
+    // only read in the first pass so no press counts twice.
+    if (KeySystem_IsOn(KEY_BATTLE_SPEED) && gMain.callback1 == BattleMainCB1
+     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
+    {
+        u16 newKeys = gMain.newKeys;
+        u16 newAndRepeatedKeys = gMain.newAndRepeatedKeys;
+
+        gMain.newKeys = 0;
+        gMain.newAndRepeatedKeys = 0;
+        BattleMainCB1();
+        AnimateSprites();
+        RunTextPrinters();
+        UpdatePaletteFade();
+        RunTasks();
+        gMain.newKeys = newKeys;
+        gMain.newAndRepeatedKeys = newAndRepeatedKeys;
+    }
 
     if (JOY_HELD(B_BUTTON) && gBattleTypeFlags & BATTLE_TYPE_RECORDED && RecordedBattle_CanStopPlayback())
     {

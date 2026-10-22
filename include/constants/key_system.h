@@ -2,7 +2,8 @@
 #define GUARD_CONSTANTS_KEY_SYSTEM_H
 
 // Rojo Fuego+ Key System: game settings the player can switch on and off in game.
-// Every key is on by default; the order here is the order of the in-game menu.
+// Keys are on by default except the ones listed in KeySystem_IsOnByDefault (src/key_system.c);
+// the order here is the order of the in-game menu.
 enum KeySystemKey
 {
     KEY_CAPTURE_EXP,
@@ -18,6 +19,7 @@ enum KeySystemKey
     KEY_HM_FREE,
     KEY_AUTORUN,
     KEY_AUTOSAVE,
+    KEY_BATTLE_SPEED,
     KEY_DIFFICULTY, // Not an on/off key: cycles through enum KeyDifficulty
     KEY_COUNT
 };

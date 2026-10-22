@@ -269,7 +269,7 @@ struct SaveBlock3
     u8 dexNavSearchLevels[NATIONAL_DEX_COUNT + 1]; // Rojo Fuego+: indexed by National Dex number so it fits
 #endif
     u8 dexNavChain;
-    u32 keySystemOff; // Rojo Fuego+ Key System: one bit per key that the player turned off
+    u32 keySystemOff; // Rojo Fuego+ Key System: one bit per key the player changed from its default
     u8 keySystemDifficulty; // Rojo Fuego+ Key System: enum KeyDifficulty
     u8 omniRingMechanics; // Rojo Fuego+ Omni Ring: one bit per unlocked mechanic (enum OmniMechanic)
     u8 omniRingMaxCharges;

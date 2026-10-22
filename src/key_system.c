@@ -57,6 +57,8 @@ static const u8 sText_Autorun[] = _("Correr siempre");
 static const u8 sText_AutorunDesc[] = _("Corres sin mantener B.\nMantén B para caminar.");
 static const u8 sText_Autosave[] = _("Autoguardado");
 static const u8 sText_AutosaveDesc[] = _("Guarda la partida sola cada vez\nque curas en un Centro Pokémon.");
+static const u8 sText_BattleSpeed[] = _("Combates rápidos");
+static const u8 sText_BattleSpeedDesc[] = _("Animaciones y textos de combate\nvan al doble de velocidad.");
 static const u8 sText_Difficulty[] = _("Dificultad");
 static const u8 sText_DifficultyDesc[] = _("Fácil baja y Reto sube el nivel\nde los Pokémon de entrenadores.");
 
@@ -82,6 +84,7 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_HM_FREE]                = {sText_HmFree,       sText_HmFreeDesc},
     [KEY_AUTORUN]                = {sText_Autorun,      sText_AutorunDesc},
     [KEY_AUTOSAVE]               = {sText_Autosave,     sText_AutosaveDesc},
+    [KEY_BATTLE_SPEED]           = {sText_BattleSpeed,  sText_BattleSpeedDesc},
     [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
 };
 
@@ -120,11 +123,20 @@ static void Task_KeySystemMenu(u8 taskId);
 static void KeySystem_PrintValue(u8 windowId, u32 key, u8 y);
 static void KeySystem_MoveCursor(s32 key, bool8 onInit, struct ListMenu *list);
 
+// Keys that start switched off. A set bit in keySystemOff means "changed from the default".
+static bool32 KeySystem_IsOnByDefault(enum KeySystemKey key)
+{
+    return key != KEY_BATTLE_SPEED;
+}
+
 bool32 KeySystem_IsOn(enum KeySystemKey key)
 {
+    bool32 changed;
+
     if (key == KEY_EXP_ALL)
         return FlagGet(FLAG_EXP_ALL);
-    return !(gSaveBlock3Ptr->keySystemOff & (1u << key));
+    changed = (gSaveBlock3Ptr->keySystemOff & (1u << key)) != 0;
+    return KeySystem_IsOnByDefault(key) != changed;
 }
 
 void KeySystem_Set(enum KeySystemKey key, bool32 on)
@@ -136,7 +148,7 @@ void KeySystem_Set(enum KeySystemKey key, bool32 on)
         else
             FlagClear(FLAG_EXP_ALL);
     }
-    else if (on)
+    else if (!on == !KeySystem_IsOnByDefault(key))
     {
         gSaveBlock3Ptr->keySystemOff &= ~(1u << key);
     }
