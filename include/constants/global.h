@@ -111,6 +111,9 @@ enum Language
 
 // Bag constants
 #define BAG_ITEMS_COUNT 30
+// Keep the original SaveBlock1 layout; FRLG gets appended overflow storage in SaveBlock3.
+#define RF_BAG_EXTRA_ITEMS_COUNT 30
+#define RF_BAG_ITEMS_COUNT (BAG_ITEMS_COUNT + (IS_FRLG ? RF_BAG_EXTRA_ITEMS_COUNT : 0))
 #define BAG_KEYITEMS_COUNT 30
 #define BAG_POKEBALLS_COUNT 16
 #define BAG_TMHM_COUNT 64

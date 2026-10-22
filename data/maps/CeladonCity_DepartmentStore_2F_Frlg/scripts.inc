@@ -34,6 +34,11 @@ CeladonCity_DepartmentStore_2F_Items::
 	.2byte ITEM_BURN_HEAL
 	.2byte ITEM_ICE_HEAL
 	.2byte ITEM_SUPER_REPEL
+	.2byte ITEM_VIAL_REFILL
+	.2byte ITEM_OMNI_BATTERY
+	.2byte ITEM_REPEL_EMITTER
+	.2byte ITEM_ETHER
+	.2byte ITEM_ELIXIR
 	.2byte ITEM_NONE
 	release
 	end

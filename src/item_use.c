@@ -1,6 +1,8 @@
 #include "global.h"
 #include "item_use.h"
 #include "achievements.h"
+#include "key_system.h"
+#include "rf_quests.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_stat_change.h"
@@ -361,6 +363,59 @@ void ItemUseOutOfBattle_PokeVial(u8 taskId)
         DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
     else
         DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
+}
+
+static void ItemUseOnFieldCB_ResearchJournal(u8 taskId)
+{
+    LockPlayerFieldControls();
+    RFQuests_OpenMenu();
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_ResearchJournal(u8 taskId)
+{
+    sItemUseOnFieldCB = ItemUseOnFieldCB_ResearchJournal;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+void ItemUseOutOfBattle_RFRefill(u8 taskId)
+{
+    const u8 *message;
+    bool32 vial = gSpecialVar_ItemId == ITEM_VIAL_REFILL;
+    u8 *charges = vial ? &gSaveBlock3Ptr->pokeVialCharges : &gSaveBlock3Ptr->omniRingCharges;
+    u8 maximum = vial ? POKE_VIAL_MAX_CHARGES : gSaveBlock3Ptr->omniRingMaxCharges;
+
+    if (!CheckBagHasItem(vial ? ITEM_POKE_VIAL : ITEM_OMNI_RING, 1))
+        message = COMPOUND_STRING("Necesitas el Botiquin o el Omni Ring\ncorrespondiente para esta recarga.");
+    else if (maximum == 0 || *charges >= maximum)
+        message = COMPOUND_STRING("No necesita recargarse.\nEl objeto no se ha consumido.");
+    else if (!RemoveBagItem(gSpecialVar_ItemId, 1))
+        message = COMPOUND_STRING("No se pudo usar la recarga.");
+    else
+    {
+        *charges = maximum;
+        PlaySE(SE_USE_ITEM);
+        UpdatePocketItemList(GetItemPocket(gSpecialVar_ItemId));
+        UpdatePocketListPosition(GetItemPocket(gSpecialVar_ItemId));
+        message = vial ? COMPOUND_STRING("Botiquin recargado.\nYa puedes volver a utilizarlo.")
+                       : COMPOUND_STRING("Omni Ring recargado.\nSus modulos no han cambiado.");
+    }
+    DisplayItemMessage(taskId, FONT_NORMAL, message, CloseItemMessage);
+}
+
+void ItemUseOutOfBattle_RepelEmitter(u8 taskId)
+{
+    const u8 *message;
+    bool32 on = !KeySystem_IsOn(KEY_INFINITE_REPEL);
+
+    KeySystem_Set(KEY_INFINITE_REPEL, on);
+    PlaySE(SE_SELECT);
+    message = on ? COMPOUND_STRING("Emisor activado: evita encuentros\ncon salvajes de menor nivel.")
+                 : COMPOUND_STRING("Emisor desactivado.");
+    if (gTasks[taskId].tUsingRegisteredKeyItem)
+        DisplayItemMessageOnField(taskId, message, Task_CloseCantUseKeyItemMessage);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, message, CloseItemMessage);
 }
 
 void ItemUseOutOfBattle_Bike(u8 taskId)

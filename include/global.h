@@ -24,6 +24,7 @@
 #include "constants/trainer_hill.h"
 #include "constants/trainer_tower.h"
 #include "constants/rf_achievements.h"
+#include "constants/rf_quests.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "config/save.h"
@@ -288,6 +289,13 @@ struct SaveBlock3
 #if APRICORN_TREE_COUNT > 0
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif
+    // Append only: retain the offsets of existing saves and achievement mirrors.
+    u32 rfQuestSaveMagic;
+    u8 rfQuestStates[RF_QUEST_STATE_BYTES]; // two bits per mission, up to 500
+    u16 rfQuestTracked; // ID + 1, zero for none
+    u32 rfBagSaveMagic;
+    // Plain quantities: kept outside the original encrypted bag layout.
+    struct { u16 itemId; u16 quantity; } rfBagExtraItems[RF_BAG_EXTRA_ITEMS_COUNT];
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

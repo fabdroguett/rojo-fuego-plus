@@ -1,5 +1,19 @@
 # PLAN — Pokémon Rojo Fuego: modificaciones + ruta a PC/Android
 
+## Actualización de trabajo: misiones y almacenamiento (22-10-2026)
+
+La instrucción vigente es **verificar código con Docker, incluidos objetos y enlace ELF, sin
+crear ni publicar un `.gba`**. Sustituye las indicaciones anteriores de compilar una ROM tras
+cada cambio. Al terminar se apaga Docker Desktop y se sube únicamente el código a GitHub.
+
+Esta tanda agrega 15 misiones reales con espacio persistente para 500 (meta de contenido:
+350), mochila de objetos de 60 espacios, ordenación y protección del PC, cuatro objetos y
+Castform de arena. Alcance, controles, restricciones de guardado y validación en
+[IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md](IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md).
+La investigación y el contenido pendiente están en [IDEAS_OTROS_HACKS.md](IDEAS_OTROS_HACKS.md).
+No se considera completado el plan de 350 misiones ni la ampliación de cajas de Pokémon.
+
+
 > Documento de continuidad. Si se agotan los tokens de la sesión, leer este archivo y seguir
 > desde la sección "ESTADO ACTUAL" (cerca del final). Fecha de última actualización: 2026-10-22.
 

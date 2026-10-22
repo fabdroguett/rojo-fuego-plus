@@ -7431,6 +7431,55 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_FameChecker,
     },
 
+    [ITEM_VIAL_REFILL] =
+    {
+        .name = ITEM_NAME("Recarga medica"),
+        .price = 3000,
+        .description = COMPOUND_STRING("Recarga los tres\nusos del Botiquin.\nSe gasta al usarla."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_FIELD_USE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RFRefill,
+        .iconPic = gItemIcon_Potion,
+        .iconPalette = gItemIconPalette_MaxPotion,
+    },
+    [ITEM_OMNI_BATTERY] =
+    {
+        .name = ITEM_NAME("Bateria Omni"),
+        .price = 5000,
+        .description = COMPOUND_STRING("Recupera las cargas\ndel Omni Ring. No\ninstala modulos."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_FIELD_USE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RFRefill,
+        .iconPic = gItemIcon_CellBattery,
+        .iconPalette = gItemIconPalette_CellBattery,
+    },
+    [ITEM_RESEARCH_JOURNAL] =
+    {
+        .name = ITEM_NAME("Diario"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING("Encargos, pistas\ny recompensas de\ntus investigaciones."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_ResearchJournal,
+        .iconPic = gItemIcon_FameChecker,
+        .iconPalette = gItemIconPalette_FameChecker,
+    },
+    [ITEM_REPEL_EMITTER] =
+    {
+        .name = ITEM_NAME("Emisor Repel"),
+        .price = 15000,
+        .importance = 1,
+        .description = COMPOUND_STRING("Evita salvajes de\nmenor nivel. Se\nenciende y apaga."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_RepelEmitter,
+        .iconPic = gItemIcon_Repel,
+        .iconPalette = gItemIconPalette_MaxRepel,
+    },
+
 // Gems
 #if I_PRICE >= GEN_9
     #define GEM_PRICE 15000

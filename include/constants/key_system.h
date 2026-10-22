@@ -24,6 +24,7 @@ enum KeySystemKey
     KEY_DIFFICULTY, // Not an on/off key: cycles through enum KeyDifficulty
     KEY_DARK_MODE,
     KEY_SHINY_ODDS, // Not an on/off key: cycles through enum KeyShinyOdds
+    KEY_INFINITE_REPEL,
     KEY_COUNT
 };
 

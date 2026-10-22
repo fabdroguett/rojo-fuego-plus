@@ -138,3 +138,12 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 - [Data Files](https://www.pokecommunity.com/showthread.php?t=417909)
 - [Complete FireRed Upgrade](https://github.com/Skeli789/Complete-Fire-Red-Upgrade)
 - [pokeemerald](https://github.com/pret/pokeemerald/)
+
+
+## Rojo Fuego+: forma de arena de Castform
+
+Arte de **Mikitari**, variante `CASTFORM_4` de [Free Fakemon Pack](https://eeveeexpo.com/resources/1517/),
+[publicación y permiso](https://eeveeexpo.com/threads/8174/): “Feel free to use in any project.”
+Se adaptaron escala, lienzo y paletas al formato GBA. Se importó solamente una forma de
+Castform existente, sin incorporar las especies originales del paquete.
+Procedencia y hashes: `graphics/pokemon/castform/sandy/source.json`.

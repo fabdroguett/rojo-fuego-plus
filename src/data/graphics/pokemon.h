@@ -12989,6 +12989,11 @@ const u32 gObjectEventPic_Substitute[] = INCGFX_COMP("graphics/pokemon/question_
 
     const u8 gMonIcon_CastformSunny[] = INCGFX_U8("graphics/pokemon/castform/sunny/icon.png", ".4bpp");
     const u8 gMonIcon_CastformRainy[] = INCGFX_U8("graphics/pokemon/castform/rainy/icon.png", ".4bpp");
+    // Sandstorm fan form: artwork by Mikitari (see CREDITS.md).
+    const u32 gMonFrontPic_CastformSandy[] = INCGFX_U32("graphics/pokemon/castform/sandy/front.png", ".4bpp.smol");
+    const u32 gMonBackPic_CastformSandy[] = INCGFX_U32("graphics/pokemon/castform/sandy/back.png", ".4bpp.smol");
+    const u16 gMonPalette_CastformSandy[] = INCGFX_U16("graphics/pokemon/castform/sandy/normal.pal", ".gbapal");
+    const u16 gMonShinyPalette_CastformSandy[] = INCGFX_U16("graphics/pokemon/castform/sandy/shiny.pal", ".gbapal");
     const u8 gMonIcon_CastformSnowy[] = INCGFX_U8("graphics/pokemon/castform/snowy/icon.png", ".4bpp");
 
 #if OW_POKEMON_OBJECT_EVENTS

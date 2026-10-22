@@ -1247,11 +1247,33 @@ PalletTown_ProfessorOaksLab_EventScript_Aide1::
 	lock
 	faceplayer
 	goto_if_set FLAG_SYS_GAME_CLEAR, PalletTown_ProfessorOaksLab_EventScript_Aide1GameClear
+	goto_if_set FLAG_SYS_POKEDEX_GET, RF_EventScript_ResearchJournalIntro
 	msgbox PalletTown_ProfessorOaksLab_Text_StudyAsOaksAide
 	release
 	end
 
+RF_EventScript_ResearchJournalIntro::
+	checkitem ITEM_RESEARCH_JOURNAL
+	goto_if_eq VAR_RESULT, TRUE, RF_EventScript_ResearchJournalExplain
+	giveitem ITEM_RESEARCH_JOURNAL
+RF_EventScript_ResearchJournalExplain::
+	msgbox RF_Text_ResearchJournalIntro
+	release
+	end
+
+RF_Text_ResearchJournalIntro:
+	.string "OAK y el museo de PLATEADA buscan\n"
+	.string "ayuda para sus investigaciones.\p"
+	.string "Abre el menu START y pulsa R\n"
+	.string "para consultar tus MISIONES.\p"
+	.string "Acepta un encargo con A. Cuando\n"
+	.string "lo completes, reclama alli tu premio.\p"
+	.string "SELECT marca una mision para\n"
+	.string "seguirla; L y R cambian de capitulo.$"
+
 PalletTown_ProfessorOaksLab_EventScript_Aide1GameClear::
+	checkitem ITEM_RESEARCH_JOURNAL
+	goto_if_eq VAR_RESULT, FALSE, RF_EventScript_ResearchJournalIntro
 	famechecker FAMECHECKER_OAK, 5
 	msgbox PalletTown_ProfessorOaksLab_Text_OakIsGoingToHaveRadioShow
 	release

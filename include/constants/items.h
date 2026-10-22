@@ -1061,6 +1061,10 @@ enum __attribute__((packed)) Item
     ITEM_OMNI_CELL = 879,
     ITEM_POKE_VIAL = 880, // Rojo Fuego+ portable heal
     ITEM_ACHIEVEMENT_LOG = 881, // Rojo Fuego+ achievements menu
+    ITEM_VIAL_REFILL = 882,
+    ITEM_OMNI_BATTERY = 883,
+    ITEM_RESEARCH_JOURNAL = 884,
+    ITEM_REPEL_EMITTER = 885,
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,

@@ -1,0 +1,12 @@
+{
+  "artist": "Mikitari",
+  "resource": "https://eeveeexpo.com/resources/1517/",
+  "permission": "Feel free to use in any project.",
+  "source_files_sha256": {
+    "Front": "82d7894999cc33671de56e041a49c0ac3be777be614d1559efc3566ff091dd89",
+    "Front shiny": "039fac70260f2409577fc4baf50c2015e9eb0599f970f3c13882f67fa5440d98",
+    "Back": "871fcf46ffd52fedd5973ec2978ebf6db02da5216040e5d3ed38d5201b028b9e",
+    "Back shiny": "03b988a00574ef2f40de1bb4e9d0df33dee0d28c93e40cbebf10541412db570c"
+  },
+  "conversion": "nearest-neighbor fit to 64x64; shared normal/shiny palette; original menu icon reused"
+}

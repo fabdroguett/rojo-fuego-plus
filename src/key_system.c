@@ -110,6 +110,7 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
     [KEY_DARK_MODE]              = {sText_DarkMode,     sText_DarkModeDesc},
     [KEY_SHINY_ODDS]             = {sText_ShinyOdds,    sText_ShinyOddsDesc},
+    [KEY_INFINITE_REPEL]         = {COMPOUND_STRING("Repelente infinito"), COMPOUND_STRING("Con el Emisor Repel en la mochila,\nevita salvajes de menor nivel.")},
 };
 
 static const u8 sText_On[] = _("SÍ");
@@ -150,7 +151,7 @@ static void KeySystem_MoveCursor(s32 key, bool8 onInit, struct ListMenu *list);
 // Keys that start switched off. A set bit in keySystemOff means "changed from the default".
 static bool32 KeySystem_IsOnByDefault(enum KeySystemKey key)
 {
-    return key != KEY_BATTLE_SPEED && key != KEY_DARK_MODE;
+    return key != KEY_BATTLE_SPEED && key != KEY_DARK_MODE && key != KEY_INFINITE_REPEL;
 }
 
 bool32 KeySystem_IsOn(enum KeySystemKey key)

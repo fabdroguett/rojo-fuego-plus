@@ -1,4 +1,5 @@
 #include "global.h"
+#include "key_system.h"
 #include "battle_setup.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
@@ -1122,7 +1123,8 @@ bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 {
     u8 i;
 
-    if (!REPEL_STEP_COUNT)
+    if (!REPEL_STEP_COUNT
+     && !(KeySystem_IsOn(KEY_INFINITE_REPEL) && CheckBagHasItem(ITEM_REPEL_EMITTER, 1)))
         return TRUE;
 
     for (i = 0; i < PARTY_SIZE; i++)

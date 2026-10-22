@@ -1,0 +1,26 @@
+#ifndef GUARD_CONSTANTS_RF_QUESTS_H
+#define GUARD_CONSTANTS_RF_QUESTS_H
+
+// Stable save slots. Never reorder IDs or reuse a shipped slot.
+#define RF_QUEST_CAPACITY 500
+#define RF_QUEST_STATE_BYTES ((RF_QUEST_CAPACITY + 3) / 4)
+#define RF_QUEST_NONE 0xFFFF
+
+#define RF_QUEST_MUSEUM 0
+#define RF_QUEST_MT_MOON 1
+#define RF_QUEST_CLEFAIRY 2
+#define RF_QUEST_MOON_STONE 3
+#define RF_QUEST_FOSSIL 4
+#define RF_QUEST_LAB 5
+#define RF_QUEST_REVIVAL 6
+#define RF_QUEST_AMBER 7
+#define RF_QUEST_TANOBY 8
+#define RF_QUEST_UNOWN 9
+#define RF_QUEST_MONEAN 10
+#define RF_QUEST_VIAPOIS 11
+#define RF_QUEST_NEIGHBORS 12
+#define RF_QUEST_FOREST 13
+#define RF_QUEST_POWER_PLANT 14
+#define RF_QUEST_COUNT 15
+
+#endif

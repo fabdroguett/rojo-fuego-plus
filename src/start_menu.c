@@ -47,6 +47,7 @@
 #include "union_room.h"
 #include "dexnav.h"
 #include "key_system.h"
+#include "rf_quests.h"
 #include "wild_encounter.h"
 #include "constants/battle_frontier.h"
 #include "constants/rgb.h"
@@ -671,6 +672,19 @@ void ShowStartMenu(void)
 
 static bool8 HandleStartMenuInput(void)
 {
+    // A shortcut avoids adding a tenth row outside the GBA screen.
+    if (IS_FRLG && JOY_NEW(R_BUTTON) && FlagGet(FLAG_SYS_POKEDEX_GET)
+     && !IsOverworldLinkActive() && !InUnionRoom() && !GetSafariZoneFlag()
+     && !InBattlePike() && CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE
+     && !InMultiPartnerRoom())
+    {
+        PlaySE(SE_SELECT);
+        HideDexNavNotice();
+        RemoveExtraStartMenuWindows();
+        HideStartMenuDebug();
+        RFQuests_OpenMenu();
+        return TRUE;
+    }
     if (JOY_NEW(DPAD_UP | DPAD_DOWN | A_BUTTON))
         HideDexNavNotice();
 
