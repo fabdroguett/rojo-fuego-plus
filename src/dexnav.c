@@ -19,6 +19,7 @@
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "item.h"
+#include "key_system.h"
 #include "international_string_util.h"
 #include "m4a.h"
 #include "map_name_popup.h"
@@ -570,7 +571,7 @@ static u32 DexNavGetShinyOddsDenominator(void)
         rolls += 1;
     rolls += (chain >= 100) ? 10 : (chain >= 50) ? 5 : 0;
 
-    return (65536 / SHINY_ODDS) / rolls;
+    return (65536 / KeySystem_GetShinyThreshold()) / rolls;
 }
 
 static enum Type DexNavGetHiddenPowerType(void)

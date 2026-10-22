@@ -22,6 +22,8 @@ enum KeySystemKey
     KEY_BATTLE_SPEED,
     KEY_HIDDEN_SPARKLE,
     KEY_DIFFICULTY, // Not an on/off key: cycles through enum KeyDifficulty
+    KEY_DARK_MODE,
+    KEY_SHINY_ODDS, // Not an on/off key: cycles through enum KeyShinyOdds
     KEY_COUNT
 };
 
@@ -31,6 +33,15 @@ enum KeyDifficulty
     KEY_DIFFICULTY_EASY,
     KEY_DIFFICULTY_CHALLENGE,
     KEY_DIFFICULTY_COUNT
+};
+
+enum KeyShinyOdds
+{
+    KEY_SHINY_ODDS_NORMAL, // 1/4096
+    KEY_SHINY_ODDS_1024,
+    KEY_SHINY_ODDS_512,
+    KEY_SHINY_ODDS_256,
+    KEY_SHINY_ODDS_COUNT
 };
 
 #endif // GUARD_CONSTANTS_KEY_SYSTEM_H

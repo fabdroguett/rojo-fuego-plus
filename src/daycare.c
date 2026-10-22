@@ -1052,7 +1052,14 @@ static void SetInitialEggData(struct Pokemon *mon, enum Species species, struct 
     u8 language;
 
     personality = GetMonPersonality(species, MON_GENDER_RANDOM, GetChildNature(daycare), RANDOM_UNOWN_LETTER);
+    // Rojo Fuego+: each shiny parent gives the egg two more shiny rolls
+    for (u32 i = 0; i < DAYCARE_MON_COUNT; i++)
+    {
+        if (GetBoxMonData(&daycare->mons[i].mon, MON_DATA_IS_SHINY))
+            gRfExtraShinyRolls += 2;
+    }
     CreateMonWithIVs(mon, species, EGG_HATCH_LEVEL, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
+    gRfExtraShinyRolls = 0;
     metLevel = 0;
     language = LANGUAGE_JAPANESE;
     SetMonData(mon, MON_DATA_NICKNAME, sJapaneseEggNickname);

@@ -70,6 +70,19 @@ static const u8 sText_HiddenSparkleDesc[] = _("Los objetos ocultos cercanos\nbri
 static const u8 sText_Difficulty[] = _("Dificultad");
 static const u8 sText_DifficultyDesc[] = _("Fácil baja y Reto sube el nivel\nde los Pokémon de entrenadores.");
 
+static const u8 sText_DarkMode[] = _("Modo oscuro");
+static const u8 sText_DarkModeDesc[] = _("Cajas de texto de combate, mochila\ny equipo en colores oscuros.");
+static const u8 sText_ShinyOdds[] = _("Prob. variocolor");
+static const u8 sText_ShinyOddsDesc[] = _("Probabilidad de que un Pokémon\nsalga variocolor.");
+
+static const u8 *const sText_ShinyOddsNames[KEY_SHINY_ODDS_COUNT] =
+{
+    [KEY_SHINY_ODDS_NORMAL] = COMPOUND_STRING("1/4096"),
+    [KEY_SHINY_ODDS_1024]   = COMPOUND_STRING("1/1024"),
+    [KEY_SHINY_ODDS_512]    = COMPOUND_STRING("1/512"),
+    [KEY_SHINY_ODDS_256]    = COMPOUND_STRING("1/256"),
+};
+
 static const u8 *const sText_DifficultyNames[KEY_DIFFICULTY_COUNT] =
 {
     [KEY_DIFFICULTY_NORMAL]    = COMPOUND_STRING("NORMAL"),
@@ -95,6 +108,8 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_BATTLE_SPEED]           = {sText_BattleSpeed,  sText_BattleSpeedDesc},
     [KEY_HIDDEN_SPARKLE]         = {sText_HiddenSparkle, sText_HiddenSparkleDesc},
     [KEY_DIFFICULTY]             = {sText_Difficulty,   sText_DifficultyDesc},
+    [KEY_DARK_MODE]              = {sText_DarkMode,     sText_DarkModeDesc},
+    [KEY_SHINY_ODDS]             = {sText_ShinyOdds,    sText_ShinyOddsDesc},
 };
 
 static const u8 sText_On[] = _("SÍ");
@@ -135,7 +150,7 @@ static void KeySystem_MoveCursor(s32 key, bool8 onInit, struct ListMenu *list);
 // Keys that start switched off. A set bit in keySystemOff means "changed from the default".
 static bool32 KeySystem_IsOnByDefault(enum KeySystemKey key)
 {
-    return key != KEY_BATTLE_SPEED;
+    return key != KEY_BATTLE_SPEED && key != KEY_DARK_MODE;
 }
 
 bool32 KeySystem_IsOn(enum KeySystemKey key)
@@ -170,6 +185,24 @@ void KeySystem_Set(enum KeySystemKey key, bool32 on)
 enum KeyDifficulty KeySystem_GetDifficulty(void)
 {
     return gSaveBlock3Ptr->keySystemDifficulty % KEY_DIFFICULTY_COUNT;
+}
+
+enum KeyShinyOdds KeySystem_GetShinyOdds(void)
+{
+    return gSaveBlock3Ptr->keySystemShinyOdds % KEY_SHINY_ODDS_COUNT;
+}
+
+// Shiny value a Pokémon has to be under (out of 65536) to be shiny with the chosen odds
+u32 KeySystem_GetShinyThreshold(void)
+{
+    static const u16 sThresholds[KEY_SHINY_ODDS_COUNT] =
+    {
+        [KEY_SHINY_ODDS_NORMAL] = SHINY_ODDS,
+        [KEY_SHINY_ODDS_1024]   = 65536 / 1024,
+        [KEY_SHINY_ODDS_512]    = 65536 / 512,
+        [KEY_SHINY_ODDS_256]    = 65536 / 256,
+    };
+    return sThresholds[KeySystem_GetShinyOdds()];
 }
 
 // Easy takes 10% off trainer Pokémon levels (at least 1), Challenge adds 10% (at least 2)
@@ -278,6 +311,8 @@ static void KeySystem_PrintValue(u8 windowId, u32 key, u8 y)
 
     if (key == KEY_DIFFICULTY)
         value = sText_DifficultyNames[KeySystem_GetDifficulty()];
+    else if (key == KEY_SHINY_ODDS)
+        value = sText_ShinyOddsNames[KeySystem_GetShinyOdds()];
     else
         value = KeySystem_IsOn(key) ? sText_On : sText_Off;
     x = KEY_LIST_WIDTH * 8 - GetStringWidth(FONT_NORMAL, value, 0) - 8;
@@ -370,6 +405,8 @@ static void Task_KeySystemMenu(u8 taskId)
         Achievement_AddToCounter(ACH_COUNTER_KEYS_CHANGED, 1);
         if (input == KEY_DIFFICULTY)
             gSaveBlock3Ptr->keySystemDifficulty = (KeySystem_GetDifficulty() + 1) % KEY_DIFFICULTY_COUNT;
+        else if (input == KEY_SHINY_ODDS)
+            gSaveBlock3Ptr->keySystemShinyOdds = (KeySystem_GetShinyOdds() + 1) % KEY_SHINY_ODDS_COUNT;
         else
             KeySystem_Set(input, !KeySystem_IsOn(input));
         RedrawListMenu(gTasks[taskId].tListTaskId);

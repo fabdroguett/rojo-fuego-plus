@@ -26,6 +26,7 @@
 #include "frontier_util.h"
 #include "graphics.h"
 #include "item.h"
+#include "key_system.h"
 #include "link.h"
 #include "m4a.h"
 #include "main.h"
@@ -866,8 +867,14 @@ void CreateMonWithIVs(struct Pokemon *mon, enum Species species, u8 level, u32 p
     CalculateMonStats(mon);
 }
 
+// Rojo Fuego+: extra shiny rolls for the next Pokémon created (the Day Care sets it for shiny parents)
+EWRAM_DATA u8 gRfExtraShinyRolls = 0;
+
 bool32 ComputePlayerShinyOdds(u32 personality, u32 value)
 {
+    // Rojo Fuego+: odds chosen in the Key System
+    u32 threshold = KeySystem_GetShinyThreshold();
+
     if (FlagGet(P_FLAG_FORCE_NO_SHINY))
         return FALSE;
 
@@ -893,13 +900,15 @@ bool32 ComputePlayerShinyOdds(u32 personality, u32 value)
     if (gDexNavSpecies)
         totalRerolls += CalculateDexNavShinyRolls();
 
-    while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS && totalRerolls > 0)
+    totalRerolls += gRfExtraShinyRolls;
+
+    while (GET_SHINY_VALUE(value, personality) >= threshold && totalRerolls > 0)
     {
         personality = Random32();
         totalRerolls--;
     }
 
-    return GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
+    return GET_SHINY_VALUE(value, personality) < threshold;
 }
 
 void SetBoxMonIVs(struct BoxPokemon *mon, u8 fixedIV)
