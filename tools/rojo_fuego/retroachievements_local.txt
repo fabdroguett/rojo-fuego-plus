@@ -1,0 +1,320 @@
+1.0
+Pokemon Rojo Fuego+
+111000001:"d0xH008030=165_d0xM008008=0_0xM008008=1":"El viaje comienza":"Recibe tu primer Pokémon."::::Rojo Fuego+:2:::::00000
+111000002:"d0xH008030=165_d0xN008008=0_0xN008008=1":"Rival a la vista":"Vence a tu rival en el laboratorio de Oak."::::Rojo Fuego+:2:::::00000
+111000003:"d0xH008030=165_d0xO008008=0_0xO008008=1":"Medalla Roca":"Vence a Brock."::::Rojo Fuego+:2:::::00000
+111000004:"d0xH008030=165_d0xP008008=0_0xP008008=1":"Medalla Cascada":"Vence a Misty."::::Rojo Fuego+:2:::::00000
+111000005:"d0xH008030=165_d0xQ008008=0_0xQ008008=1":"Medalla Trueno":"Vence al Teniente Surge."::::Rojo Fuego+:2:::::00000
+111000006:"d0xH008030=165_d0xR008008=0_0xR008008=1":"Medalla Arcoíris":"Vence a Erika."::::Rojo Fuego+:5:::::00000
+111000007:"d0xH008030=165_d0xS008008=0_0xS008008=1":"Medalla Alma":"Vence a Koga."::::Rojo Fuego+:5:::::00000
+111000008:"d0xH008030=165_d0xT008008=0_0xT008008=1":"Medalla Pantano":"Vence a Sabrina."::::Rojo Fuego+:5:::::00000
+111000009:"d0xH008030=165_d0xM008009=0_0xM008009=1":"Medalla Volcán":"Vence a Blaine."::::Rojo Fuego+:5:::::00000
+111000010:"d0xH008030=165_d0xN008009=0_0xN008009=1":"Medalla Tierra":"Vence a Giovanni en su gimnasio."::::Rojo Fuego+:10:::::00000
+111000011:"d0xH008030=165_d0xO008009=0_0xO008009=1":"Scope Silph":"Consigue el Scope Silph."::::Rojo Fuego+:5:::::00000
+111000012:"d0xH008030=165_d0xP008009=0_0xP008009=1":"Silph liberada":"Expulsa al Team Rocket de Silph S.A."::::Rojo Fuego+:5:::::00000
+111000013:"d0xH008030=165_d0xQ008009=0_0xQ008009=1":"La flauta del Sr. Fuji":"Rescata al Sr. Fuji en la Torre Pokémon."::::Rojo Fuego+:2:::::00000
+111000014:"d0xH008030=165_d0xR008009=0_0xR008009=1":"Despierta, dormilón":"Despierta al Snorlax de la Ruta 12."::::Rojo Fuego+:2:::::00000
+111000015:"d0xH008030=165_d0xS008009=0_0xS008009=1":"Todos a bordo":"Consigue el billete del S.S. Anne."::::Rojo Fuego+:2:::::00000
+111000016:"d0xH008030=165_d0xT008009=0_0xT008009=1":"Ayuda a Bill":"Ayuda a Bill en su cabaña."::::Rojo Fuego+:2:::::00000
+111000017:"d0xH008030=165_d0xM00800a=0_0xM00800a=1":"¿Hélix o Domo?":"Elige un fósil en el Monte Moon."::::Rojo Fuego+:2:::::00000
+111000018:"d0xH008030=165_d0xN00800a=0_0xN00800a=1":"La Élite: Lorelei":"Vence a Lorelei."::::Rojo Fuego+:5:::::00000
+111000019:"d0xH008030=165_d0xO00800a=0_0xO00800a=1":"La Élite: Bruno":"Vence a Bruno."::::Rojo Fuego+:5:::::00000
+111000020:"d0xH008030=165_d0xP00800a=0_0xP00800a=1":"La Élite: Agatha":"Vence a Agatha."::::Rojo Fuego+:5:::::00000
+111000021:"d0xH008030=165_d0xQ00800a=0_0xQ00800a=1":"La Élite: Lance":"Vence a Lance."::::Rojo Fuego+:10:::::00000
+111000022:"d0xH008030=165_d0xR00800a=0_0xR00800a=1":"Campeón de Kanto":"Gana la Liga Pokémon."::::Rojo Fuego+:10:::::00000
+111000023:"d0xH008030=165_d0xS00800a=0_0xS00800a=1":"Más allá del mar":"Llega a Isla Prima."::::Rojo Fuego+:2:::::00000
+111000024:"d0xH008030=165_d0xT00800a=0_0xT00800a=1":"El Rubí":"Encuentra el Rubí en el Monte Ascuas."::::Rojo Fuego+:5:::::00000
+111000025:"d0xH008030=165_d0xM00800b=0_0xM00800b=1":"El Zafiro":"Recupera el Zafiro."::::Rojo Fuego+:10:::::00000
+111000026:"d0xH008030=165_d0xN00800b=0_0xN00800b=1":"Almacén limpio":"Echa al Team Rocket del almacén de Isla Quinta."::::Rojo Fuego+:5:::::00000
+111000027:"d0xH008030=165_d0xO00800b=0_0xO00800b=1":"Perdida en el bosque":"Rescata a Lostelle en el Bosque Baya."::::Rojo Fuego+:2:::::00000
+111000028:"d0xH008030=165_d0xP00800b=0_0xP00800b=1":"Pokédex Nacional":"Consigue la Pokédex Nacional."::::Rojo Fuego+:5:::::00000
+111000029:"d0xH008030=165_d0xQ00800b=0_0xQ00800b=1":"Ruinas Tanoby":"Abre las Ruinas Tanoby."::::Rojo Fuego+:5:::::00000
+111000030:"d0xH008030=165_d0xR00800b=0_0xR00800b=1":"Ronda de revanchas":"Vence la revancha de los siete líderes."::::Rojo Fuego+:10:::::00000
+111000031:"d0xH008030=165_d0xS00800b=0_0xS00800b=1":"Primera revancha":"Vence la revancha de un líder."::::Rojo Fuego+:2:::::00000
+111000032:"d0xH008030=165_d0xT00800b=0_0xT00800b=1":"Diez veces campeón":"Entra en el Salón de la Fama 10 veces."::::Rojo Fuego+:10:::::00000
+111000033:"d0xH008030=165_d0xM00800c=0_0xM00800c=1":"Bicicleta":"Consigue la bicicleta."::::Rojo Fuego+:5:::::00000
+111000034:"d0xH008030=165_d0xN00800c=0_0xN00800c=1":"Caña de pescar":"Consigue la Caña Vieja."::::Rojo Fuego+:2:::::00000
+111000035:"d0xH008030=165_d0xO00800c=0_0xO00800c=1":"Supercaña":"Consigue la Supercaña."::::Rojo Fuego+:5:::::00000
+111000036:"d0xH008030=165_d0xP00800c=0_0xP00800c=1":"10 especies":"Captura 10 especies distintas."::::Rojo Fuego+:2:::::00000
+111000037:"d0xH008030=165_d0xQ00800c=0_0xQ00800c=1":"25 especies":"Captura 25 especies distintas."::::Rojo Fuego+:2:::::00000
+111000038:"d0xH008030=165_d0xR00800c=0_0xR00800c=1":"50 especies":"Captura 50 especies distintas."::::Rojo Fuego+:5:::::00000
+111000039:"d0xH008030=165_d0xS00800c=0_0xS00800c=1":"100 especies":"Captura 100 especies distintas."::::Rojo Fuego+:5:::::00000
+111000040:"d0xH008030=165_d0xT00800c=0_0xT00800c=1":"151 especies":"Captura 151 especies distintas."::::Rojo Fuego+:10:::::00000
+111000041:"d0xH008030=165_d0xM00800d=0_0xM00800d=1":"200 especies":"Captura 200 especies distintas."::::Rojo Fuego+:5:::::00000
+111000042:"d0xH008030=165_d0xN00800d=0_0xN00800d=1":"251 especies":"Captura 251 especies distintas."::::Rojo Fuego+:10:::::00000
+111000043:"d0xH008030=165_d0xO00800d=0_0xO00800d=1":"300 especies":"Captura 300 especies distintas."::::Rojo Fuego+:10:::::00000
+111000044:"d0xH008030=165_d0xP00800d=0_0xP00800d=1":"386 especies":"Captura 386 especies distintas."::::Rojo Fuego+:10:::::00000
+111000045:"d0xH008030=165_d0xQ00800d=0_0xQ00800d=1":"450 especies":"Captura 450 especies distintas."::::Rojo Fuego+:10:::::00000
+111000046:"d0xH008030=165_d0xR00800d=0_0xR00800d=1":"500 especies":"Captura 500 especies distintas."::::Rojo Fuego+:10:::::00000
+111000047:"d0xH008030=165_d0xS00800d=0_0xS00800d=1":"550 especies":"Captura 550 especies distintas."::::Rojo Fuego+:20:::::00000
+111000048:"d0xH008030=165_d0xT00800d=0_0xT00800d=1":"Ojo de lince":"Ve 300 especies distintas."::::Rojo Fuego+:5:::::00000
+111000049:"d0xH008030=165_d0xM00800e=0_0xM00800e=1":"Visto todo":"Ve 600 especies distintas."::::Rojo Fuego+:10:::::00000
+111000050:"d0xH008030=165_d0xN00800e=0_0xN00800e=1":"Aves legendarias":"Captura a Articuno, Zapdos y Moltres."::::Rojo Fuego+:10:::::00000
+111000051:"d0xH008030=165_d0xO00800e=0_0xO00800e=1":"El clon":"Captura a Mewtwo."::::Rojo Fuego+:10:::::00000
+111000052:"d0xH008030=165_d0xP00800e=0_0xP00800e=1":"Bestias errantes":"Captura a Raikou, Entei y Suicune."::::Rojo Fuego+:5:::::00000
+111000053:"d0xH008030=165_d0xQ00800e=0_0xQ00800e=1":"Vida del pasado":"Captura a Omanyte, Kabuto y Aerodactyl."::::Rojo Fuego+:5:::::00000
+111000054:"d0xH008030=165_d0xR00800e=0_0xR00800e=1":"Familia Eevee":"Captura todas las evoluciones de Eevee."::::Rojo Fuego+:5:::::00000
+111000055:"d0xH008030=165_d0xS00800e=0_0xS00800e=1":"Iniciales de Kanto":"Captura a Bulbasaur, Charmander y Squirtle."::::Rojo Fuego+:10:::::00000
+111000056:"d0xH008030=165_d0xT00800e=0_0xT00800e=1":"Iniciales de Johto":"Captura a Chikorita, Cyndaquil y Totodile."::::Rojo Fuego+:10:::::00000
+111000057:"d0xH008030=165_d0xM00800f=0_0xM00800f=1":"Iniciales de Hoenn":"Captura a Treecko, Torchic y Mudkip."::::Rojo Fuego+:10:::::00000
+111000058:"d0xH008030=165_d0xN00800f=0_0xN00800f=1":"Iniciales de Sinnoh":"Captura a Turtwig, Chimchar y Piplup."::::Rojo Fuego+:10:::::00000
+111000059:"d0xH008030=165_d0xO00800f=0_0xO00800f=1":"Iniciales de Teselia":"Captura a Snivy, Tepig y Oshawott."::::Rojo Fuego+:10:::::00000
+111000060:"d0xH008030=165_d0xP00800f=0_0xP00800f=1":"Iniciales de Kalos":"Captura a Chespin, Fennekin y Froakie."::::Rojo Fuego+:10:::::00000
+111000061:"d0xH008030=165_d0xQ00800f=0_0xQ00800f=1":"Iniciales de Alola":"Captura a Rowlet, Litten y Popplio."::::Rojo Fuego+:10:::::00000
+111000062:"d0xH008030=165_d0xR00800f=0_0xR00800f=1":"Iniciales de Galar":"Captura a Grookey, Scorbunny y Sobble."::::Rojo Fuego+:10:::::00000
+111000063:"d0xH008030=165_d0xS00800f=0_0xS00800f=1":"Iniciales de Paldea":"Captura a Sprigatito, Fuecoco y Quaxly."::::Rojo Fuego+:10:::::00000
+111000064:"d0xH008030=165_d0xT00800f=0_0xT00800f=1":"Todos los iniciales":"Captura los 27 iniciales de las nueve regiones."::::Rojo Fuego+:20:::::00000
+111000065:"d0xH008030=165_d0xM008010=0_0xM008010=1":"Pseudolegendarios":"Captura a Dratini, Larvitar, Bagon, Beldum, Gible, Deino, Goomy, Jangmo-o, Dreepy y Frigibax."::::Rojo Fuego+:10:::::00000
+111000066:"d0xH008030=165_d0xN008010=0_0xN008010=1":"Especialista Normal":"Captura 30 especies de tipo Normal."::::Rojo Fuego+:5:::::00000
+111000067:"d0xH008030=165_d0xO008010=0_0xO008010=1":"Especialista Fuego":"Captura 30 especies de tipo Fuego."::::Rojo Fuego+:5:::::00000
+111000068:"d0xH008030=165_d0xP008010=0_0xP008010=1":"Especialista Agua":"Captura 30 especies de tipo Agua."::::Rojo Fuego+:5:::::00000
+111000069:"d0xH008030=165_d0xQ008010=0_0xQ008010=1":"Especialista Planta":"Captura 30 especies de tipo Planta."::::Rojo Fuego+:5:::::00000
+111000070:"d0xH008030=165_d0xR008010=0_0xR008010=1":"Especialista Eléctrico":"Captura 30 especies de tipo Eléctrico."::::Rojo Fuego+:5:::::00000
+111000071:"d0xH008030=165_d0xS008010=0_0xS008010=1":"Especialista Hielo":"Captura 30 especies de tipo Hielo."::::Rojo Fuego+:5:::::00000
+111000072:"d0xH008030=165_d0xT008010=0_0xT008010=1":"Especialista Lucha":"Captura 30 especies de tipo Lucha."::::Rojo Fuego+:5:::::00000
+111000073:"d0xH008030=165_d0xM008011=0_0xM008011=1":"Especialista Veneno":"Captura 30 especies de tipo Veneno."::::Rojo Fuego+:5:::::00000
+111000074:"d0xH008030=165_d0xN008011=0_0xN008011=1":"Especialista Tierra":"Captura 30 especies de tipo Tierra."::::Rojo Fuego+:5:::::00000
+111000075:"d0xH008030=165_d0xO008011=0_0xO008011=1":"Especialista Volador":"Captura 30 especies de tipo Volador."::::Rojo Fuego+:5:::::00000
+111000076:"d0xH008030=165_d0xP008011=0_0xP008011=1":"Especialista Psíquico":"Captura 30 especies de tipo Psíquico."::::Rojo Fuego+:5:::::00000
+111000077:"d0xH008030=165_d0xQ008011=0_0xQ008011=1":"Especialista Bicho":"Captura 30 especies de tipo Bicho."::::Rojo Fuego+:5:::::00000
+111000078:"d0xH008030=165_d0xR008011=0_0xR008011=1":"Especialista Roca":"Captura 30 especies de tipo Roca."::::Rojo Fuego+:5:::::00000
+111000079:"d0xH008030=165_d0xS008011=0_0xS008011=1":"Especialista Fantasma":"Captura 30 especies de tipo Fantasma."::::Rojo Fuego+:5:::::00000
+111000080:"d0xH008030=165_d0xT008011=0_0xT008011=1":"Especialista Dragón":"Captura 30 especies de tipo Dragón."::::Rojo Fuego+:5:::::00000
+111000081:"d0xH008030=165_d0xM008012=0_0xM008012=1":"Especialista Siniestro":"Captura 30 especies de tipo Siniestro."::::Rojo Fuego+:5:::::00000
+111000082:"d0xH008030=165_d0xN008012=0_0xN008012=1":"Especialista Acero":"Captura 30 especies de tipo Acero."::::Rojo Fuego+:5:::::00000
+111000083:"d0xH008030=165_d0xO008012=0_0xO008012=1":"Especialista Hada":"Captura 30 especies de tipo Hada."::::Rojo Fuego+:5:::::00000
+111000084:"d0xH008030=165_d0xP008012=0_0xP008012=1":"Aprendiz Normal":"Captura 10 especies de tipo Normal."::::Rojo Fuego+:2:::::00000
+111000085:"d0xH008030=165_d0xQ008012=0_0xQ008012=1":"Aprendiz Fuego":"Captura 10 especies de tipo Fuego."::::Rojo Fuego+:2:::::00000
+111000086:"d0xH008030=165_d0xR008012=0_0xR008012=1":"Aprendiz Agua":"Captura 10 especies de tipo Agua."::::Rojo Fuego+:2:::::00000
+111000087:"d0xH008030=165_d0xS008012=0_0xS008012=1":"Aprendiz Planta":"Captura 10 especies de tipo Planta."::::Rojo Fuego+:2:::::00000
+111000088:"d0xH008030=165_d0xT008012=0_0xT008012=1":"Aprendiz Eléctrico":"Captura 10 especies de tipo Eléctrico."::::Rojo Fuego+:2:::::00000
+111000089:"d0xH008030=165_d0xM008013=0_0xM008013=1":"Aprendiz Hielo":"Captura 10 especies de tipo Hielo."::::Rojo Fuego+:2:::::00000
+111000090:"d0xH008030=165_d0xN008013=0_0xN008013=1":"Aprendiz Lucha":"Captura 10 especies de tipo Lucha."::::Rojo Fuego+:2:::::00000
+111000091:"d0xH008030=165_d0xO008013=0_0xO008013=1":"Aprendiz Veneno":"Captura 10 especies de tipo Veneno."::::Rojo Fuego+:2:::::00000
+111000092:"d0xH008030=165_d0xP008013=0_0xP008013=1":"Aprendiz Tierra":"Captura 10 especies de tipo Tierra."::::Rojo Fuego+:2:::::00000
+111000093:"d0xH008030=165_d0xQ008013=0_0xQ008013=1":"Aprendiz Volador":"Captura 10 especies de tipo Volador."::::Rojo Fuego+:2:::::00000
+111000094:"d0xH008030=165_d0xR008013=0_0xR008013=1":"Aprendiz Psíquico":"Captura 10 especies de tipo Psíquico."::::Rojo Fuego+:2:::::00000
+111000095:"d0xH008030=165_d0xS008013=0_0xS008013=1":"Aprendiz Bicho":"Captura 10 especies de tipo Bicho."::::Rojo Fuego+:2:::::00000
+111000096:"d0xH008030=165_d0xT008013=0_0xT008013=1":"Aprendiz Roca":"Captura 10 especies de tipo Roca."::::Rojo Fuego+:2:::::00000
+111000097:"d0xH008030=165_d0xM008014=0_0xM008014=1":"Aprendiz Fantasma":"Captura 10 especies de tipo Fantasma."::::Rojo Fuego+:2:::::00000
+111000098:"d0xH008030=165_d0xN008014=0_0xN008014=1":"Aprendiz Dragón":"Captura 10 especies de tipo Dragón."::::Rojo Fuego+:2:::::00000
+111000099:"d0xH008030=165_d0xO008014=0_0xO008014=1":"Aprendiz Siniestro":"Captura 10 especies de tipo Siniestro."::::Rojo Fuego+:2:::::00000
+111000100:"d0xH008030=165_d0xP008014=0_0xP008014=1":"Aprendiz Acero":"Captura 10 especies de tipo Acero."::::Rojo Fuego+:2:::::00000
+111000101:"d0xH008030=165_d0xQ008014=0_0xQ008014=1":"Aprendiz Hada":"Captura 10 especies de tipo Hada."::::Rojo Fuego+:2:::::00000
+111000102:"d0xH008030=165_d0xR008014=0_0xR008014=1":"¡Te tengo!":"Captura tu primer Pokémon."::::Rojo Fuego+:2:::::00000
+111000103:"d0xH008030=165_d0xS008014=0_0xS008014=1":"Cien en la caja":"Captura 100 Pokémon."::::Rojo Fuego+:5:::::00000
+111000104:"d0xH008030=165_d0xT008014=0_0xT008014=1":"Quinientos":"Captura 500 Pokémon."::::Rojo Fuego+:10:::::00000
+111000105:"d0xH008030=165_d0xM008015=0_0xM008015=1":"Mil capturas":"Captura 1000 Pokémon."::::Rojo Fuego+:20:::::00000
+111000106:"d0xH008030=165_d0xN008015=0_0xN008015=1":"Probando balls":"Captura con 5 tipos de Poké Ball distintos."::::Rojo Fuego+:2:::::00000
+111000107:"d0xH008030=165_d0xO008015=0_0xO008015=1":"Maestro de las balls":"Captura con 15 tipos de Poké Ball distintos."::::Rojo Fuego+:5:::::00000
+111000108:"d0xH008030=165_d0xP008015=0_0xP008015=1":"A la primera":"Captura 50 Pokémon al primer lanzamiento."::::Rojo Fuego+:5:::::00000
+111000109:"d0xH008030=165_d0xQ008015=0_0xQ008015=1":"¡Captura crítica!":"Consigue una captura crítica."::::Rojo Fuego+:2:::::00000
+111000110:"d0xH008030=165_d0xR008015=0_0xR008015=1":"Críticas en serie":"Consigue 25 capturas críticas."::::Rojo Fuego+:5:::::00000
+111000111:"d0xH008030=165_d0xS008015=0_0xS008015=1":"¡Brilla!":"Captura tu primer Pokémon variocolor."::::Rojo Fuego+:10:::::00000
+111000112:"d0xH008030=165_d0xT008015=0_0xT008015=1":"Cazashiny":"Captura 10 Pokémon variocolor."::::Rojo Fuego+:20:::::00000
+111000113:"d0xH008030=165_d0xM008016=0_0xM008016=1":"Pesca de domingo":"Captura 10 Pokémon pescando."::::Rojo Fuego+:2:::::00000
+111000114:"d0xH008030=165_d0xN008016=0_0xN008016=1":"Lobo de mar":"Captura 100 Pokémon pescando."::::Rojo Fuego+:5:::::00000
+111000115:"d0xH008030=165_d0xO008016=0_0xO008016=1":"Marea de Pokémon":"Captura 10 Pokémon de apariciones masivas."::::Rojo Fuego+:5:::::00000
+111000116:"d0xH008030=165_d0xP008016=0_0xP008016=1":"Cazador nocturno":"Captura 10 Pokémon de noche."::::Rojo Fuego+:2:::::00000
+111000117:"d0xH008030=165_d0xQ008016=0_0xQ008016=1":"Ave nocturna":"Captura 100 Pokémon de noche."::::Rojo Fuego+:5:::::00000
+111000118:"d0xH008030=165_d0xR008016=0_0xR008016=1":"Safari":"Captura 10 Pokémon en la Zona Safari."::::Rojo Fuego+:2:::::00000
+111000119:"d0xH008030=165_d0xS008016=0_0xS008016=1":"Cazador de leyendas":"Captura 5 Pokémon legendarios o singulares."::::Rojo Fuego+:5:::::00000
+111000120:"d0xH008030=165_d0xT008016=0_0xT008016=1":"Leyenda viva":"Captura 15 Pokémon legendarios o singulares."::::Rojo Fuego+:10:::::00000
+111000121:"d0xH008030=165_d0xM008017=0_0xM008017=1":"Escondido en la hierba":"Captura un Pokémon encontrado con el DexNav."::::Rojo Fuego+:2:::::00000
+111000122:"d0xH008030=165_d0xN008017=0_0xN008017=1":"Rastreador":"Captura 50 Pokémon encontrados con el DexNav."::::Rojo Fuego+:5:::::00000
+111000123:"d0xH008030=165_d0xO008017=0_0xO008017=1":"Racha DexNav":"Llega a una cadena de 25 con el DexNav."::::Rojo Fuego+:5:::::00000
+111000124:"d0xH008030=165_d0xP008017=0_0xP008017=1":"Racha perfecta":"Llega a una cadena de 100 con el DexNav."::::Rojo Fuego+:10:::::00000
+111000125:"d0xH008030=165_d0xQ008017=0_0xQ008017=1":"Habilidad rara":"Ten un Pokémon con habilidad oculta en el equipo."::::Rojo Fuego+:5:::::00000
+111000126:"d0xH008030=165_d0xR008017=0_0xR008017=1":"Salvajes":"Gana o captura en 50 combates salvajes."::::Rojo Fuego+:2:::::00000
+111000127:"d0xH008030=165_d0xS008017=0_0xS008017=1":"Explorador salvaje":"Participa en 500 combates salvajes."::::Rojo Fuego+:5:::::00000
+111000128:"d0xH008030=165_d0xT008017=0_0xT008017=1":"Doscientos cincuenta":"Captura 250 Pokémon."::::Rojo Fuego+:5:::::00000
+111000129:"d0xH008030=165_d0xM008018=0_0xM008018=1":"Trío brillante":"Captura 3 Pokémon variocolor."::::Rojo Fuego+:5:::::00000
+111000130:"d0xH008030=165_d0xN008018=0_0xN008018=1":"Coleccionista de brillos":"Captura 25 Pokémon variocolor."::::Rojo Fuego+:20:::::00000
+111000131:"d0xH008030=165_d0xO008018=0_0xO008018=1":"Todas las balls":"Captura con 25 tipos de Poké Ball distintos."::::Rojo Fuego+:10:::::00000
+111000132:"d0xH008030=165_d0xP008018=0_0xP008018=1":"Primera victoria":"Vence a tu primer entrenador."::::Rojo Fuego+:2:::::00000
+111000133:"d0xH008030=165_d0xQ008018=0_0xQ008018=1":"Cazaentrenadores":"Vence a 50 entrenadores."::::Rojo Fuego+:2:::::00000
+111000134:"d0xH008030=165_d0xR008018=0_0xR008018=1":"Terror de las rutas":"Vence a 200 entrenadores."::::Rojo Fuego+:5:::::00000
+111000135:"d0xH008030=165_d0xS008018=0_0xS008018=1":"Leyenda de los caminos":"Vence a 500 entrenadores."::::Rojo Fuego+:10:::::00000
+111000136:"d0xH008030=165_d0xT008018=0_0xT008018=1":"Cien combates":"Combate 100 veces."::::Rojo Fuego+:2:::::00000
+111000137:"d0xH008030=165_d0xM008019=0_0xM008019=1":"Mil combates":"Combate 1000 veces."::::Rojo Fuego+:5:::::00000
+111000138:"d0xH008030=165_d0xN008019=0_0xN008019=1":"¡Es muy eficaz!":"Usa 100 ataques superefectivos."::::Rojo Fuego+:2:::::00000
+111000139:"d0xH008030=165_d0xO008019=0_0xO008019=1":"Maestro de tipos":"Usa 1000 ataques superefectivos."::::Rojo Fuego+:5:::::00000
+111000140:"d0xH008030=165_d0xP008019=0_0xP008019=1":"De un golpe":"Debilita a 50 Pokémon de un solo ataque."::::Rojo Fuego+:5:::::00000
+111000141:"d0xH008030=165_d0xQ008019=0_0xQ008019=1":"Golpe certero":"Debilita a 500 Pokémon de un solo ataque."::::Rojo Fuego+:10:::::00000
+111000142:"d0xH008030=165_d0xR008019=0_0xR008019=1":"¡Golpe crítico!":"Asesta 100 golpes críticos."::::Rojo Fuego+:2:::::00000
+111000143:"d0xH008030=165_d0xS008019=0_0xS008019=1":"Críticos sin fin":"Asesta 500 golpes críticos."::::Rojo Fuego+:5:::::00000
+111000144:"d0xH008030=165_d0xT008019=0_0xT008019=1":"Chispazo":"Paraliza a 50 Pokémon."::::Rojo Fuego+:2:::::00000
+111000145:"d0xH008030=165_d0xM00801a=0_0xM00801a=1":"Quemadura":"Quema a 50 Pokémon."::::Rojo Fuego+:2:::::00000
+111000146:"d0xH008030=165_d0xN00801a=0_0xN00801a=1":"Canción de cuna":"Duerme a 50 Pokémon."::::Rojo Fuego+:2:::::00000
+111000147:"d0xH008030=165_d0xO00801a=0_0xO00801a=1":"Congelado":"Congela a 10 Pokémon."::::Rojo Fuego+:5:::::00000
+111000148:"d0xH008030=165_d0xP00801a=0_0xP00801a=1":"Tóxico":"Envenena a 50 Pokémon."::::Rojo Fuego+:2:::::00000
+111000149:"d0xH008030=165_d0xQ00801a=0_0xQ00801a=1":"Megaevolución":"Megaevoluciona por primera vez."::::Rojo Fuego+:5:::::00000
+111000150:"d0xH008030=165_d0xR00801a=0_0xR00801a=1":"Megaexperto":"Megaevoluciona 50 veces."::::Rojo Fuego+:10:::::00000
+111000151:"d0xH008030=165_d0xS00801a=0_0xS00801a=1":"Teracristal":"Teracristaliza por primera vez."::::Rojo Fuego+:5:::::00000
+111000152:"d0xH008030=165_d0xT00801a=0_0xT00801a=1":"Teraexperto":"Teracristaliza 50 veces."::::Rojo Fuego+:10:::::00000
+111000153:"d0xH008030=165_d0xM00801b=0_0xM00801b=1":"Gigante":"Usa el Dinamax por primera vez."::::Rojo Fuego+:5:::::00000
+111000154:"d0xH008030=165_d0xN00801b=0_0xN00801b=1":"Dinaexperto":"Usa el Dinamax 50 veces."::::Rojo Fuego+:10:::::00000
+111000155:"d0xH008030=165_d0xO00801b=0_0xO00801b=1":"Poder Z":"Usa un movimiento Z por primera vez."::::Rojo Fuego+:5:::::00000
+111000156:"d0xH008030=165_d0xP00801b=0_0xP00801b=1":"Experto Z":"Usa 50 movimientos Z."::::Rojo Fuego+:10:::::00000
+111000157:"d0xH008030=165_d0xQ00801b=0_0xQ00801b=1":"Las cuatro mecánicas":"Usa megaevolución, Tera, Dinamax y movimiento Z."::::Rojo Fuego+:10:::::00000
+111000158:"d0xH008030=165_d0xR00801b=0_0xR00801b=1":"Cambio de planes":"Cambia de Pokémon 100 veces en combate."::::Rojo Fuego+:2:::::00000
+111000159:"d0xH008030=165_d0xS00801b=0_0xS00801b=1":"Racha de diez":"Gana 10 combates de entrenador seguidos."::::Rojo Fuego+:5:::::00000
+111000160:"d0xH008030=165_d0xT00801b=0_0xT00801b=1":"Racha de cincuenta":"Gana 50 combates de entrenador seguidos."::::Rojo Fuego+:10:::::00000
+111000161:"d0xH008030=165_d0xM00801c=0_0xM00801c=1":"Invicto":"Gana 100 combates de entrenador seguidos."::::Rojo Fuego+:20:::::00000
+111000162:"d0xH008030=165_d0xN00801c=0_0xN00801c=1":"Contra las cuerdas":"Gana un combate con tu último Pokémon por debajo del 10 % de PS."::::Rojo Fuego+:5:::::00000
+111000163:"d0xH008030=165_d0xO00801c=0_0xO00801c=1":"Cien caídos":"Debilita a 100 Pokémon rivales."::::Rojo Fuego+:2:::::00000
+111000164:"d0xH008030=165_d0xP00801c=0_0xP00801c=1":"Mil caídos":"Debilita a 1000 Pokémon rivales."::::Rojo Fuego+:5:::::00000
+111000165:"d0xH008030=165_d0xQ00801c=0_0xQ00801c=1":"Sin bajas":"Gana la Liga sin que se debilite ningún Pokémon tuyo."::::Rojo Fuego+:10:::::00000
+111000166:"d0xH008030=165_d0xR00801c=0_0xR00801c=1":"Mil victorias":"Vence a 1000 entrenadores."::::Rojo Fuego+:20:::::00000
+111000167:"d0xH008030=165_d0xS00801c=0_0xS00801c=1":"Megaaficionado":"Megaevoluciona 10 veces."::::Rojo Fuego+:5:::::00000
+111000168:"d0xH008030=165_d0xT00801c=0_0xT00801c=1":"Teraaficionado":"Teracristaliza 10 veces."::::Rojo Fuego+:5:::::00000
+111000169:"d0xH008030=165_d0xM00801d=0_0xM00801d=1":"Dinaaficionado":"Usa el Dinamax 10 veces."::::Rojo Fuego+:5:::::00000
+111000170:"d0xH008030=165_d0xN00801d=0_0xN00801d=1":"Aficionado Z":"Usa 10 movimientos Z."::::Rojo Fuego+:5:::::00000
+111000171:"d0xH008030=165_d0xO00801d=0_0xO00801d=1":"Estados alterados":"Paraliza, quema, duerme o envenena a 500 Pokémon en total."::::Rojo Fuego+:5:::::00000
+111000172:"d0xH008030=165_d0xP00801d=0_0xP00801d=1":"Creciendo":"Sube un Pokémon a nivel 25."::::Rojo Fuego+:2:::::00000
+111000173:"d0xH008030=165_d0xQ00801d=0_0xQ00801d=1":"Veterano":"Sube un Pokémon a nivel 50."::::Rojo Fuego+:5:::::00000
+111000174:"d0xH008030=165_d0xR00801d=0_0xR00801d=1":"Nivel máximo":"Sube un Pokémon a nivel 100."::::Rojo Fuego+:10:::::00000
+111000175:"d0xH008030=165_d0xS00801d=0_0xS00801d=1":"Equipo de leyenda":"Ten 6 Pokémon de nivel 100 en el equipo."::::Rojo Fuego+:20:::::00000
+111000176:"d0xH008030=165_d0xT00801d=0_0xT00801d=1":"Equipo sólido":"Ten 6 Pokémon de nivel 50 o más en el equipo."::::Rojo Fuego+:5:::::00000
+111000177:"d0xH008030=165_d0xM00801e=0_0xM00801e=1":"¡Está evolucionando!":"Evoluciona un Pokémon."::::Rojo Fuego+:2:::::00000
+111000178:"d0xH008030=165_d0xN00801e=0_0xN00801e=1":"Evolucionista":"Evoluciona 50 Pokémon."::::Rojo Fuego+:5:::::00000
+111000179:"d0xH008030=165_d0xO00801e=0_0xO00801e=1":"Teoría de la evolución":"Evoluciona 150 Pokémon."::::Rojo Fuego+:10:::::00000
+111000180:"d0xH008030=165_d0xP00801e=0_0xP00801e=1":"Frescor mentolado":"Usa una menta."::::Rojo Fuego+:2:::::00000
+111000181:"d0xH008030=165_d0xQ00801e=0_0xQ00801e=1":"Esfuerzo total":"Ten en el equipo un Pokémon con 510 EV."::::Rojo Fuego+:5:::::00000
+111000182:"d0xH008030=165_d0xR00801e=0_0xR00801e=1":"Perfección":"Ten en el equipo un Pokémon con los 6 IV a 31."::::Rojo Fuego+:10:::::00000
+111000183:"d0xH008030=165_d0xS00801e=0_0xS00801e=1":"Mejores amigos":"Lleva a un Pokémon a la amistad máxima."::::Rojo Fuego+:5:::::00000
+111000184:"d0xH008030=165_d0xT00801e=0_0xT00801e=1":"Amistad total":"Ten 6 Pokémon con amistad máxima en el equipo."::::Rojo Fuego+:10:::::00000
+111000185:"d0xH008030=165_d0xM00801f=0_0xM00801f=1":"Otra habilidad":"Usa una Cápsula o un Parche Habilidad."::::Rojo Fuego+:2:::::00000
+111000186:"d0xH008030=165_d0xN00801f=0_0xN00801f=1":"Goloso":"Usa 100 Caramelos EXP."::::Rojo Fuego+:5:::::00000
+111000187:"d0xH008030=165_d0xO00801f=0_0xO00801f=1":"Atajo":"Usa 50 Caramelos raros."::::Rojo Fuego+:5:::::00000
+111000188:"d0xH008030=165_d0xP00801f=0_0xP00801f=1":"Vitaminas":"Usa 50 vitaminas."::::Rojo Fuego+:5:::::00000
+111000189:"d0xH008030=165_d0xQ00801f=0_0xQ00801f=1":"Entrenamiento extremo":"Usa el Entrenamiento extremo."::::Rojo Fuego+:5:::::00000
+111000190:"d0xH008030=165_d0xR00801f=0_0xR00801f=1":"Más allá del límite":"Usa el Entrenamiento extremo 20 veces."::::Rojo Fuego+:10:::::00000
+111000191:"d0xH008030=165_d0xS00801f=0_0xS00801f=1":"Virus amistoso":"Ten un Pokémon con Pokérus en el equipo."::::Rojo Fuego+:2:::::00000
+111000192:"d0xH008030=165_d0xT00801f=0_0xT00801f=1":"Especialista en EV":"Ten un Pokémon con 252 EV en una estadística."::::Rojo Fuego+:5:::::00000
+111000193:"d0xH008030=165_d0xM008020=0_0xM008020=1":"Bosque Verde":"Visita Bosque Verde."::::Rojo Fuego+:2:::::00000
+111000194:"d0xH008030=165_d0xN008020=0_0xN008020=1":"Monte Moon":"Visita Monte Moon."::::Rojo Fuego+:2:::::00000
+111000195:"d0xH008030=165_d0xO008020=0_0xO008020=1":"Cueva Diglett":"Visita Cueva Diglett."::::Rojo Fuego+:2:::::00000
+111000196:"d0xH008030=165_d0xP008020=0_0xP008020=1":"Túnel Roca":"Visita Túnel Roca."::::Rojo Fuego+:2:::::00000
+111000197:"d0xH008030=165_d0xQ008020=0_0xQ008020=1":"Torre Pokémon":"Visita Torre Pokémon."::::Rojo Fuego+:2:::::00000
+111000198:"d0xH008030=165_d0xR008020=0_0xR008020=1":"Central de Energía":"Visita Central de Energía."::::Rojo Fuego+:5:::::00000
+111000199:"d0xH008030=165_d0xS008020=0_0xS008020=1":"Zona Safari":"Visita Zona Safari."::::Rojo Fuego+:2:::::00000
+111000200:"d0xH008030=165_d0xT008020=0_0xT008020=1":"Islas Espuma":"Visita Islas Espuma."::::Rojo Fuego+:5:::::00000
+111000201:"d0xH008030=165_d0xM008021=0_0xM008021=1":"Mansión Pokémon":"Visita Mansión Pokémon."::::Rojo Fuego+:5:::::00000
+111000202:"d0xH008030=165_d0xN008021=0_0xN008021=1":"Calle Victoria":"Visita Calle Victoria."::::Rojo Fuego+:5:::::00000
+111000203:"d0xH008030=165_d0xO008021=0_0xO008021=1":"Cueva Celeste":"Visita Cueva Celeste."::::Rojo Fuego+:10:::::00000
+111000204:"d0xH008030=165_d0xP008021=0_0xP008021=1":"Monte Ascuas":"Visita Monte Ascuas."::::Rojo Fuego+:5:::::00000
+111000205:"d0xH008030=165_d0xQ008021=0_0xQ008021=1":"Bosque Baya":"Visita Bosque Baya."::::Rojo Fuego+:5:::::00000
+111000206:"d0xH008030=165_d0xR008021=0_0xR008021=1":"Cueva Helada":"Visita Cueva Helada."::::Rojo Fuego+:5:::::00000
+111000207:"d0xH008030=165_d0xS008021=0_0xS008021=1":"Cueva Perdida":"Visita Cueva Perdida."::::Rojo Fuego+:5:::::00000
+111000208:"d0xH008030=165_d0xT008021=0_0xT008021=1":"Arbusto Patrón":"Visita Arbusto Patrón."::::Rojo Fuego+:2:::::00000
+111000209:"d0xH008030=165_d0xM008022=0_0xM008022=1":"Cueva Cambiante":"Visita Cueva Cambiante."::::Rojo Fuego+:5:::::00000
+111000210:"d0xH008030=165_d0xN008022=0_0xN008022=1":"Torre Entrenador":"Visita Torre Entrenador."::::Rojo Fuego+:5:::::00000
+111000211:"d0xH008030=165_d0xO008022=0_0xO008022=1":"Viajero de Kanto":"Visita todas las ciudades y pueblos de Kanto."::::Rojo Fuego+:5:::::00000
+111000212:"d0xH008030=165_d0xP008022=0_0xP008022=1":"Las Islas Sete":"Visita las siete Islas Sete."::::Rojo Fuego+:10:::::00000
+111000213:"d0xH008030=165_d0xQ008022=0_0xQ008022=1":"Buen paso":"Camina 10.000 pasos."::::Rojo Fuego+:2:::::00000
+111000214:"d0xH008030=165_d0xR008022=0_0xR008022=1":"Maratón":"Camina 50.000 pasos."::::Rojo Fuego+:5:::::00000
+111000215:"d0xH008030=165_d0xS008022=0_0xS008022=1":"La vuelta al mundo":"Camina 200.000 pasos."::::Rojo Fuego+:10:::::00000
+111000216:"d0xH008030=165_d0xT008022=0_0xT008022=1":"Buen olfato":"Encuentra 10 objetos ocultos."::::Rojo Fuego+:2:::::00000
+111000217:"d0xH008030=165_d0xM008023=0_0xM008023=1":"Detector humano":"Encuentra 60 objetos ocultos."::::Rojo Fuego+:5:::::00000
+111000218:"d0xH008030=165_d0xN008023=0_0xN008023=1":"Saltarín":"Salta 100 bordillos."::::Rojo Fuego+:2:::::00000
+111000219:"d0xH008030=165_d0xO008023=0_0xO008023=1":"Cortador":"Usa Corte 50 veces."::::Rojo Fuego+:5:::::00000
+111000220:"d0xH008030=165_d0xP008023=0_0xP008023=1":"Rompedor":"Usa Golpe Roca 50 veces."::::Rojo Fuego+:5:::::00000
+111000221:"d0xH008030=165_d0xQ008023=0_0xQ008023=1":"Rumbo a Pueblo Paleta":"Visita Pueblo Paleta."::::Rojo Fuego+:2:::::00000
+111000222:"d0xH008030=165_d0xR008023=0_0xR008023=1":"Rumbo a Ciudad Verde":"Visita Ciudad Verde."::::Rojo Fuego+:2:::::00000
+111000223:"d0xH008030=165_d0xS008023=0_0xS008023=1":"Rumbo a Ciudad Plateada":"Visita Ciudad Plateada."::::Rojo Fuego+:2:::::00000
+111000224:"d0xH008030=165_d0xT008023=0_0xT008023=1":"Rumbo a Ciudad Celeste":"Visita Ciudad Celeste."::::Rojo Fuego+:2:::::00000
+111000225:"d0xH008030=165_d0xM008024=0_0xM008024=1":"Rumbo a Ciudad Carmín":"Visita Ciudad Carmín."::::Rojo Fuego+:2:::::00000
+111000226:"d0xH008030=165_d0xN008024=0_0xN008024=1":"Rumbo a Pueblo Lavanda":"Visita Pueblo Lavanda."::::Rojo Fuego+:2:::::00000
+111000227:"d0xH008030=165_d0xO008024=0_0xO008024=1":"Rumbo a Ciudad Azulona":"Visita Ciudad Azulona."::::Rojo Fuego+:2:::::00000
+111000228:"d0xH008030=165_d0xP008024=0_0xP008024=1":"Rumbo a Ciudad Fucsia":"Visita Ciudad Fucsia."::::Rojo Fuego+:2:::::00000
+111000229:"d0xH008030=165_d0xQ008024=0_0xQ008024=1":"Rumbo a Ciudad Azafrán":"Visita Ciudad Azafrán."::::Rojo Fuego+:2:::::00000
+111000230:"d0xH008030=165_d0xR008024=0_0xR008024=1":"Rumbo a Isla Canela":"Visita Isla Canela."::::Rojo Fuego+:2:::::00000
+111000231:"d0xH008030=165_d0xS008024=0_0xS008024=1":"Rumbo a Meseta Añil":"Visita Meseta Añil."::::Rojo Fuego+:2:::::00000
+111000232:"d0xH008030=165_d0xT008024=0_0xT008024=1":"Rumbo a Isla Prima":"Visita Isla Prima."::::Rojo Fuego+:2:::::00000
+111000233:"d0xH008030=165_d0xM008025=0_0xM008025=1":"Rumbo a Isla Secunda":"Visita Isla Secunda."::::Rojo Fuego+:2:::::00000
+111000234:"d0xH008030=165_d0xN008025=0_0xN008025=1":"Rumbo a Isla Tera":"Visita Isla Tera."::::Rojo Fuego+:2:::::00000
+111000235:"d0xH008030=165_d0xO008025=0_0xO008025=1":"Rumbo a Isla Cuarta":"Visita Isla Cuarta."::::Rojo Fuego+:2:::::00000
+111000236:"d0xH008030=165_d0xP008025=0_0xP008025=1":"Rumbo a Isla Quinta":"Visita Isla Quinta."::::Rojo Fuego+:2:::::00000
+111000237:"d0xH008030=165_d0xQ008025=0_0xQ008025=1":"Rumbo a Isla Sexta":"Visita Isla Sexta."::::Rojo Fuego+:2:::::00000
+111000238:"d0xH008030=165_d0xR008025=0_0xR008025=1":"Rumbo a Isla Séptima":"Visita Isla Séptima."::::Rojo Fuego+:2:::::00000
+111000239:"d0xH008030=165_d0xS008025=0_0xS008025=1":"Visita a Túnel Norte-Sur":"Visita el Túnel Norte-Sur."::::Rojo Fuego+:2:::::00000
+111000240:"d0xH008030=165_d0xT008025=0_0xT008025=1":"Visita a Túnel Este-Oeste":"Visita el Túnel Este-Oeste."::::Rojo Fuego+:2:::::00000
+111000241:"d0xH008030=165_d0xM008026=0_0xM008026=1":"Visita a S.S. Anne":"Visita el S.S. Anne."::::Rojo Fuego+:2:::::00000
+111000242:"d0xH008030=165_d0xN008026=0_0xN008026=1":"Visita a Escondite Rocket":"Visita el Escondite Rocket."::::Rojo Fuego+:2:::::00000
+111000243:"d0xH008030=165_d0xO008026=0_0xO008026=1":"Visita a Silph S.A.":"Visita Silph S.A.."::::Rojo Fuego+:2:::::00000
+111000244:"d0xH008030=165_d0xP008026=0_0xP008026=1":"Visita a la Liga Pokémon":"Visita la Liga Pokémon."::::Rojo Fuego+:2:::::00000
+111000245:"d0xH008030=165_d0xQ008026=0_0xQ008026=1":"Visita a Almacén Rocket":"Visita el Almacén Rocket."::::Rojo Fuego+:2:::::00000
+111000246:"d0xH008030=165_d0xR008026=0_0xR008026=1":"Visita a Hoyo Punteado":"Visita el Hoyo Punteado."::::Rojo Fuego+:2:::::00000
+111000247:"d0xH008030=165_d0xS008026=0_0xS008026=1":"Visita a Túnel Dunsparce":"Visita el Túnel Dunsparce."::::Rojo Fuego+:2:::::00000
+111000248:"d0xH008030=165_d0xT008026=0_0xT008026=1":"Visita a la Cámara Monean":"Visita la Cámara Monean."::::Rojo Fuego+:2:::::00000
+111000249:"d0xH008030=165_d0xM008027=0_0xM008027=1":"Visita a Cañón Sevault":"Visita el Cañón Sevault."::::Rojo Fuego+:2:::::00000
+111000250:"d0xH008030=165_d0xN008027=0_0xN008027=1":"Visita a Centro de la Ruta 10":"Visita el Centro de la Ruta 10."::::Rojo Fuego+:2:::::00000
+111000251:"d0xH008030=165_d0xO008027=0_0xO008027=1":"Medio millón de pasos":"Camina 500.000 pasos."::::Rojo Fuego+:20:::::00000
+111000252:"d0xH008030=165_d0xP008027=0_0xP008027=1":"¡Un huevo!":"Eclosiona tu primer huevo."::::Rojo Fuego+:2:::::00000
+111000253:"d0xH008030=165_d0xQ008027=0_0xQ008027=1":"Criador":"Eclosiona 50 huevos."::::Rojo Fuego+:5:::::00000
+111000254:"d0xH008030=165_d0xR008027=0_0xR008027=1":"Cien huevos":"Eclosiona 100 huevos."::::Rojo Fuego+:5:::::00000
+111000255:"d0xH008030=165_d0xS008027=0_0xS008027=1":"Granja Pokémon":"Eclosiona 500 huevos."::::Rojo Fuego+:10:::::00000
+111000256:"d0xH008030=165_d0xT008027=0_0xT008027=1":"Guardería abierta":"Usa la Guardería."::::Rojo Fuego+:2:::::00000
+111000257:"d0xH008030=165_d0xM008028=0_0xM008028=1":"Clientela fija":"Usa la Guardería 20 veces."::::Rojo Fuego+:5:::::00000
+111000258:"d0xH008030=165_d0xN008028=0_0xN008028=1":"Ahorros":"Ten 10.000 ¥."::::Rojo Fuego+:2:::::00000
+111000259:"d0xH008030=165_d0xO008028=0_0xO008028=1":"Rico":"Ten 100.000 ¥."::::Rojo Fuego+:5:::::00000
+111000260:"d0xH008030=165_d0xP008028=0_0xP008028=1":"Millonario":"Ten 999.999 ¥."::::Rojo Fuego+:10:::::00000
+111000261:"d0xH008030=165_d0xQ008028=0_0xQ008028=1":"De compras":"Compra en tiendas 20 veces."::::Rojo Fuego+:2:::::00000
+111000262:"d0xH008030=165_d0xR008028=0_0xR008028=1":"Buen cliente":"Compra en tiendas 200 veces."::::Rojo Fuego+:5:::::00000
+111000263:"d0xH008030=165_d0xS008028=0_0xS008028=1":"Primera megapiedra":"Consigue una megapiedra de un guardián."::::Rojo Fuego+:2:::::00000
+111000264:"d0xH008030=165_d0xT008028=0_0xT008028=1":"Coleccionista mega":"Consigue 12 megapiedras de guardianes."::::Rojo Fuego+:5:::::00000
+111000265:"d0xH008030=165_d0xM008029=0_0xM008029=1":"Megacolección":"Consigue las 24 megapiedras de los guardianes."::::Rojo Fuego+:10:::::00000
+111000266:"d0xH008030=165_d0xN008029=0_0xN008029=1":"Primer cristal":"Consigue un cristal Z de un desafío."::::Rojo Fuego+:2:::::00000
+111000267:"d0xH008030=165_d0xO008029=0_0xO008029=1":"Medio camino Z":"Supera 9 desafíos Z."::::Rojo Fuego+:5:::::00000
+111000268:"d0xH008030=165_d0xP008029=0_0xP008029=1":"Coleccionista Z":"Supera los 18 desafíos Z."::::Rojo Fuego+:10:::::00000
+111000269:"d0xH008030=165_d0xQ008029=0_0xQ008029=1":"Herbolario":"Usa 10 mentas."::::Rojo Fuego+:5:::::00000
+111000270:"d0xH008030=165_d0xR008029=0_0xR008029=1":"Piedras preciosas":"Ten las diez piedras evolutivas a la vez."::::Rojo Fuego+:10:::::00000
+111000271:"d0xH008030=165_d0xS008029=0_0xS008029=1":"Amuletos":"Consigue el Amuleto Oval, el Amuleto Captura y el Amuleto EXP."::::Rojo Fuego+:5:::::00000
+111000272:"d0xH008030=165_d0xT008029=0_0xT008029=1":"Amuleto Iris":"Consigue el Amuleto Iris."::::Rojo Fuego+:20:::::00000
+111000273:"d0xH008030=165_d0xM00802a=0_0xM00802a=1":"Anillo despierto":"Instala tu primer módulo en el Omni Ring."::::Rojo Fuego+:2:::::00000
+111000274:"d0xH008030=165_d0xN00802a=0_0xN00802a=1":"Anillo completo":"Instala los cuatro módulos en el Omni Ring."::::Rojo Fuego+:10:::::00000
+111000275:"d0xH008030=165_d0xO00802a=0_0xO00802a=1":"Batería llena":"Lleva el Omni Ring a 9 cargas."::::Rojo Fuego+:5:::::00000
+111000276:"d0xH008030=165_d0xP00802a=0_0xP00802a=1":"Intercambio Prodigio":"Haz tu primer Intercambio Prodigio."::::Rojo Fuego+:2:::::00000
+111000277:"d0xH008030=165_d0xQ00802a=0_0xQ00802a=1":"Caja sorpresa":"Haz 30 Intercambios Prodigio."::::Rojo Fuego+:5:::::00000
+111000278:"d0xH008030=165_d0xR00802a=0_0xR00802a=1":"Prodigio brillante":"Recibe un variocolor en un Intercambio Prodigio."::::Rojo Fuego+:10:::::00000
+111000279:"d0xH008030=165_d0xS00802a=0_0xS00802a=1":"Botiquín":"Usa el Botiquín 20 veces."::::Rojo Fuego+:2:::::00000
+111000280:"d0xH008030=165_d0xT00802a=0_0xT00802a=1":"Llave maestra":"Cambia una clave del Key System."::::Rojo Fuego+:2:::::00000
+111000281:"d0xH008030=165_d0xM00802b=0_0xM00802b=1":"Retador":"Juega en dificultad Reto."::::Rojo Fuego+:5:::::00000
+111000282:"d0xH008030=165_d0xN00802b=0_0xN00802b=1":"Búsqueda":"Busca 10 Pokémon con el DexNav."::::Rojo Fuego+:2:::::00000
+111000283:"d0xH008030=165_d0xO00802b=0_0xO00802b=1":"Investigador de campo":"Busca 200 Pokémon con el DexNav."::::Rojo Fuego+:5:::::00000
+111000284:"d0xH008030=165_d0xP00802b=0_0xP00802b=1":"Experto en una especie":"Llega a nivel de búsqueda 100 con una especie."::::Rojo Fuego+:10:::::00000
+111000285:"d0xH008030=165_d0xQ00802b=0_0xQ00802b=1":"Premios de Oak":"Recibe 4 premios de la Pokédex."::::Rojo Fuego+:5:::::00000
+111000286:"d0xH008030=165_d0xR00802b=0_0xR00802b=1":"Todos los premios de Oak":"Recibe los 8 premios de la Pokédex."::::Rojo Fuego+:10:::::00000
+111000287:"d0xH008030=165_d0xS00802b=0_0xS00802b=1":"Modo Reto":"Entra en el Salón de la Fama en dificultad Reto."::::Rojo Fuego+:20:::::00000
+111000288:"d0xH008030=165_d0xT00802b=0_0xT00802b=1":"El elegido":"Entra en el Salón de la Fama con un solo Pokémon."::::Rojo Fuego+:20:::::00000
+111000289:"d0xH008030=165_d0xM00802c=0_0xM00802c=1":"Contrarreloj":"Entra en el Salón de la Fama en menos de 8 horas."::::Rojo Fuego+:20:::::00000
+111000290:"d0xH008030=165_d0xN00802c=0_0xN00802c=1":"Rayo humano":"Entra en el Salón de la Fama en menos de 4 horas."::::Rojo Fuego+:20:::::00000
+111000291:"d0xH008030=165_d0xO00802c=0_0xO00802c=1":"Monotipo":"Entra en el Salón de la Fama con un equipo que comparte un tipo."::::Rojo Fuego+:10:::::00000
+111000292:"d0xH008030=165_d0xP00802c=0_0xP00802c=1":"Bajo nivel":"Entra en el Salón de la Fama sin Pokémon por encima del nivel 55."::::Rojo Fuego+:20:::::00000
+111000293:"d0xH008030=165_d0xQ00802c=0_0xQ00802c=1":"Sin evolucionar":"Entra en el Salón de la Fama sin haber evolucionado ningún Pokémon."::::Rojo Fuego+:20:::::00000
+111000294:"d0xH008030=165_d0xR00802c=0_0xR00802c=1":"Pocas capturas":"Entra en el Salón de la Fama habiendo capturado 6 Pokémon o menos."::::Rojo Fuego+:20:::::00000
+111000295:"d0xH008030=165_d0xS00802c=0_0xS00802c=1":"Seis gemelos":"Entra en el Salón de la Fama con 6 Pokémon de la misma especie."::::Rojo Fuego+:10:::::00000
+111000296:"d0xH008030=165_d0xT00802c=0_0xT00802c=1":"Generación nueva":"Entra en el Salón de la Fama solo con Pokémon de la Gen 5 en adelante."::::Rojo Fuego+:10:::::00000
+111000297:"d0xH008030=165_d0xM00802d=0_0xM00802d=1":"Sin Centros":"Entra en el Salón de la Fama sin haber curado en un Centro Pokémon."::::Rojo Fuego+:20:::::00000
+111000298:"d0xH008030=165_d0xN00802d=0_0xN00802d=1":"Contra todo pronóstico":"Entra en el Salón de la Fama con un Magikarp en el equipo."::::Rojo Fuego+:10:::::00000
+111000299:"d0xH008030=165_d0xO00802d=0_0xO00802d=1":"¡Salpicadura!":"Usa Salpicadura 100 veces."::::Rojo Fuego+:2:::::00000
+111000300:"d0xH008030=165_d0xP00802d=0_0xP00802d=1":"Último recurso":"Usa Forcejeo 20 veces."::::Rojo Fuego+:2:::::00000
+111000301:"d0xH008030=165_d0xQ00802d=0_0xQ00802d=1":"Retirada estratégica":"Huye de 100 combates."::::Rojo Fuego+:2:::::00000
+111000302:"d0xH008030=165_d0xR00802d=0_0xR00802d=1":"¡Bonk!":"Choca contra una pared 500 veces."::::Rojo Fuego+:2:::::00000
+111000303:"d0xH008030=165_d0xS00802d=0_0xS00802d=1":"Despedidas":"Libera a 50 Pokémon."::::Rojo Fuego+:5:::::00000
+111000304:"d0xH008030=165_d0xT00802d=0_0xT00802d=1":"¡Siete, siete, siete!":"Saca el premio gordo en las tragaperras."::::Rojo Fuego+:5:::::00000
+111000305:"d0xH008030=165_d0xM00802e=0_0xM00802e=1":"Lector empedernido":"Mira la Pokédex 200 veces."::::Rojo Fuego+:2:::::00000
+111000306:"d0xH008030=165_d0xN00802e=0_0xN00802e=1":"Ahorrador":"Guarda la partida 100 veces."::::Rojo Fuego+:2:::::00000
+111000307:"d0xH008030=165_d0xO00802e=0_0xO00802e=1":"Cliente del Centro":"Cura en un Centro Pokémon 100 veces."::::Rojo Fuego+:5:::::00000
+111000308:"d0xH008030=165_d0xP00802e=0_0xP00802e=1":"Prodigio legendario":"Recibe un legendario en un Intercambio Prodigio."::::Rojo Fuego+:10:::::00000
+111000309:"d0xH008030=165_d0xQ00802e=0_0xQ00802e=1":"El récord del Magikarp":"Consigue el Magikarp récord."::::Rojo Fuego+:5:::::00000
+111000310:"d0xH008030=165_d0xR00802e=0_0xR00802e=1":"Fiel a sí mismo":"Ten un Magikarp de nivel 100."::::Rojo Fuego+:10:::::00000
+111000311:"d0xH008030=165_d0xS00802e=0_0xS00802e=1":"Primeros pasos":"Desbloquea el 10 % de los logros."::::Rojo Fuego+:2:::::00000
+111000312:"d0xH008030=165_d0xT00802e=0_0xT00802e=1":"Un cuarto":"Desbloquea el 25 % de los logros."::::Rojo Fuego+:5:::::00000
+111000313:"d0xH008030=165_d0xM00802f=0_0xM00802f=1":"La mitad":"Desbloquea el 50 % de los logros."::::Rojo Fuego+:10:::::00000
+111000314:"d0xH008030=165_d0xN00802f=0_0xN00802f=1":"Tres cuartos":"Desbloquea el 75 % de los logros."::::Rojo Fuego+:10:::::00000
+111000315:"d0xH008030=165_d0xO00802f=0_0xO00802f=1":"Casi perfecto":"Desbloquea el 90 % de los logros."::::Rojo Fuego+:20:::::00000
+111000316:"d0xH008030=165_d0xP00802f=0_0xP00802f=1":"Todo el bronce":"Desbloquea todos los logros de bronce."::::Rojo Fuego+:10:::::00000
+111000317:"d0xH008030=165_d0xQ00802f=0_0xQ00802f=1":"Sin secretos":"Desbloquea todos los logros ocultos."::::Rojo Fuego+:10:::::00000
+111000318:"d0xH008030=165_d0xR00802f=0_0xR00802f=1":"Maestro de logros":"Desbloquea todos los demás logros."::::Rojo Fuego+:20:::::00000

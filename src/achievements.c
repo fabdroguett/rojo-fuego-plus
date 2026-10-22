@@ -52,7 +52,10 @@ static const u8 *const sTierNames[ACH_TIER_COUNT] =
 
 // Read by RetroAchievements: a copy of the unlocked bits at an address that does not move
 // (the save blocks move around in RAM). tools/rojo_fuego/achievements.py --ra writes the set.
-EWRAM_DATA u8 gRfAchievementMirror[ACH_BYTES] = {0};
+// The last byte is MIRROR_SYNCED once the copy matches the save, so a fresh load does not look
+// like every achievement unlocking at once.
+#define MIRROR_SYNCED 0xA5
+EWRAM_DATA u8 gRfAchievementMirror[ACH_BYTES + 1] = {0};
 
 // Set by the DexNav when its battle starts; read and cleared when the battle ends
 EWRAM_DATA bool8 gRfDexNavBattle = FALSE;
@@ -63,6 +66,12 @@ static EWRAM_DATA u8 sNotificationCount = 0;
 static EWRAM_DATA u8 sNotificationWindowId = 0;
 static EWRAM_DATA u16 sNotificationTimer = 0;
 static EWRAM_DATA bool8 sNotificationShown = FALSE;
+
+static void SyncMirror(void)
+{
+    memcpy(gRfAchievementMirror, gSaveBlock3Ptr->achievementsUnlocked, ACH_BYTES);
+    gRfAchievementMirror[ACH_BYTES] = MIRROR_SYNCED;
+}
 
 static bool32 IsBitSet(const u8 *bits, u32 id)
 {
@@ -106,7 +115,7 @@ void Achievement_Unlock(u32 id)
     if (id >= ACH_COUNT || Achievement_IsUnlocked(id))
         return;
     SetBit(gSaveBlock3Ptr->achievementsUnlocked, id);
-    memcpy(gRfAchievementMirror, gSaveBlock3Ptr->achievementsUnlocked, ACH_BYTES);
+    SyncMirror();
     if (sNotificationCount < NOTIFICATION_QUEUE_SIZE)
         sNotificationQueue[sNotificationCount++] = id;
 }
@@ -434,7 +443,7 @@ void Achievements_CheckAll(void)
         if (!unlockedAny)
             break;
     }
-    memcpy(gRfAchievementMirror, gSaveBlock3Ptr->achievementsUnlocked, ACH_BYTES);
+    SyncMirror();
 }
 
 //// Notification ////
@@ -489,6 +498,9 @@ static void ShowNextNotification(void)
 void Achievements_OverworldUpdate(void)
 {
     bool32 playerIsFree = !ArePlayerFieldControlsLocked() && !gPaletteFade.active;
+
+    if (gRfAchievementMirror[ACH_BYTES] != MIRROR_SYNCED)
+        SyncMirror();
 
     if (++sCheckTimer >= CHECK_INTERVAL_FRAMES)
     {

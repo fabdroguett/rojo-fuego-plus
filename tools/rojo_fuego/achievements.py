@@ -396,6 +396,40 @@ def wrap(text, width=34):
     return "\\n".join(lines)
 
 
+def write_ra():
+    """RetroAchievements local set for RALibretro / RAIntegration ("<game id>-User.txt").
+
+    Each achievement fires when its bit in gRfAchievementMirror goes from 0 to 1. rcheevos maps
+    GBA EWRAM (0x02000000) to address 0x008000; the mirror address comes from pokefirered.map, so
+    run this after building. Bit conditions use 0xM (bit 0) to 0xT (bit 7).
+    """
+    map_file = ROOT / "pokefirered.map"
+    if not map_file.exists():
+        print("pokefirered.map not found: build first to write the RetroAchievements set")
+        return
+    mirror = None
+    for line in map_file.read_text(encoding="utf-8", errors="replace").splitlines():
+        parts = line.split()
+        if len(parts) == 2 and parts[1] == "gRfAchievementMirror":
+            mirror = int(parts[0], 16)
+    if mirror is None:
+        print("gRfAchievementMirror not in pokefirered.map")
+        return
+    base = 0x008000 + (mirror - 0x02000000)
+    synced = base + (len(ach) + 7) // 8  # MIRROR_SYNCED byte; must already be set on the previous frame
+    lines = ["1.0", "Pokemon Rojo Fuego+"]
+    for i, a in enumerate(ach):
+        address = base + i // 8
+        bit = "MNOPQRST"[i % 8]
+        memaddr = f"d0xH{synced:06x}=165_d0x{bit}{address:06x}=0_0x{bit}{address:06x}=1"
+        title = a["name"].replace('"', "'")
+        desc = a["desc"].replace('"', "'")
+        lines.append(f'{111000001 + i}:"{memaddr}":"{title}":"{desc}"::::Rojo Fuego+:{TIER_POINTS[a["tier"]] // 5}:::::00000')
+    out = ROOT / "tools/rojo_fuego/retroachievements_local.txt"
+    out.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"RetroAchievements set: {out.relative_to(ROOT)} (mirror at 0x{mirror:08x})")
+
+
 def main():
     ids = [a["id"] for a in ach]
     assert len(ids) == len(set(ids)), "duplicate achievement id"
@@ -456,6 +490,7 @@ def main():
             for a in ach]
     (ROOT / "tools/rojo_fuego/achievements.json").write_text(json.dumps(page, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{len(ach)} achievements, {len(COUNTERS)} counters, {len(SPECIALS)} special checks")
+    write_ra()
 
 
 if __name__ == "__main__":
