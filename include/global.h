@@ -276,6 +276,7 @@ struct SaveBlock3
     u8 omniRingMaxCharges;
     u8 omniRingCharges;
     u8 pokeVialCharges; // Rojo Fuego+ Botiquín uses left; refilled at Pokémon Centers
+    u16 extraRegisteredItems[3]; // Rojo Fuego+ SELECT items beyond registeredItem (registered_items.c)
     // Rojo Fuego+ achievements (src/achievements.c)
     u8 achievementsUnlocked[ACH_BYTES];
     u8 achievementsClaimed[ACH_BYTES];
