@@ -267,3 +267,62 @@ RF_Text_Rematch_Won:
 
 RF_Text_Rematch_Decline:
 	.string "Aquí te espero.$"
+
+@ Title Defense (from Pokémon SoulGold): once the player is Champion, a League run sometimes ends
+@ with a challenger who wants the title. Half the time one of the Kanto Gym Leaders shows up with
+@ their rematch team, right after the Champion battle.
+	.macro rf_title_challenger leader:req, trainer:req, name:req
+RF_EventScript_TitleDefense_\leader\():
+	bufferstring STR_VAR_1, RF_Text_TitleDefense_Name_\leader
+	msgbox RF_Text_TitleDefense_Arrives
+	closemessage
+	cleartrainerflag \trainer
+	trainerbattle_no_intro \trainer, RF_Text_TitleDefense_Defeat
+	cleartrainerflag \trainer
+	goto RF_EventScript_TitleDefense_Won
+RF_Text_TitleDefense_Name_\leader\():
+	.string "\name$"
+	.endm
+
+	.global RF_EventScript_TitleDefense
+RF_EventScript_TitleDefense::
+	random 2
+	goto_if_ne VAR_RESULT, 0, RF_EventScript_TitleDefense_None
+	random 7
+	goto_if_eq VAR_RESULT, 0, RF_EventScript_TitleDefense_Brock
+	goto_if_eq VAR_RESULT, 1, RF_EventScript_TitleDefense_Misty
+	goto_if_eq VAR_RESULT, 2, RF_EventScript_TitleDefense_LtSurge
+	goto_if_eq VAR_RESULT, 3, RF_EventScript_TitleDefense_Erika
+	goto_if_eq VAR_RESULT, 4, RF_EventScript_TitleDefense_Koga
+	goto_if_eq VAR_RESULT, 5, RF_EventScript_TitleDefense_Sabrina
+	goto RF_EventScript_TitleDefense_Blaine
+
+RF_EventScript_TitleDefense_None::
+	return
+
+	rf_title_challenger Brock, TRAINER_RF_REMATCH_BROCK, "BROCK"
+	rf_title_challenger Misty, TRAINER_RF_REMATCH_MISTY, "MISTY"
+	rf_title_challenger LtSurge, TRAINER_RF_REMATCH_LT_SURGE, "LT. SURGE"
+	rf_title_challenger Erika, TRAINER_RF_REMATCH_ERIKA, "ERIKA"
+	rf_title_challenger Koga, TRAINER_RF_REMATCH_KOGA, "KOGA"
+	rf_title_challenger Sabrina, TRAINER_RF_REMATCH_SABRINA, "SABRINA"
+	rf_title_challenger Blaine, TRAINER_RF_REMATCH_BLAINE, "BLAINE"
+
+RF_EventScript_TitleDefense_Won::
+	msgbox RF_Text_TitleDefense_Won
+	giveitem ITEM_BOTTLE_CAP
+	return
+
+RF_Text_TitleDefense_Arrives:
+	.string "¡Alguien entra corriendo en la sala!\p"
+	.string "{STR_VAR_1}: ¡Has vencido a la Liga,\n"
+	.string "pero el título de Campeón será mío!\p"
+	.string "¡Defiende tu título!$"
+
+RF_Text_TitleDefense_Defeat:
+	.string "Sigues siendo el Campeón…\n"
+	.string "¡Volveré más fuerte!$"
+
+RF_Text_TitleDefense_Won:
+	.string "¡Has defendido tu título de Campeón!\n"
+	.string "El retador te deja un recuerdo.$"
