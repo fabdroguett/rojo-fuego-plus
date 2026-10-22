@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_ui_theme.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
@@ -45,6 +46,9 @@
 #include "caps.h"
 #include "menu.h"
 #include "pokemon_summary_screen.h"
+#include "graphics.h"
+#include "malloc.h"
+#include "decompress.h"
 #include "type_icons.h"
 #include "pokedex.h"
 #include "test/battle.h"
@@ -1709,6 +1713,93 @@ static void MoveSelectionDisplayPPNumber(enum BattlerId battler)
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP_REMAINING);
 }
 
+// Rojo Fuego+: the move's type as its coloured badge plus the damage category icon, in place of
+// "TYPE/Grass". They show only while this battler is choosing a move on the move menu, so the
+// switch prompt and the L description never sit under them.
+#define TAG_RF_MOVE_TYPE_PAL_0 0xE724 // + 0..2: the three gMoveTypes_Pal banks (types use 13..15)
+#define TAG_RF_MOVE_TYPE_TILES 0xE727
+#define RF_MOVE_TYPE_ROW_Y     (57 * 8 - DISPLAY_HEIGHT * 2)
+#define sBadgeBattler data[0]
+
+static EWRAM_DATA u8 sMoveTypeBadgeSpriteId = 0; // validated by IsMoveBadgeSprite
+static EWRAM_DATA u8 sMoveCategoryBadgeSpriteId = 0;
+
+static void SpriteCB_MoveTypeBadge(struct Sprite *sprite)
+{
+    sprite->invisible = gBattlerControllerFuncs[sprite->sBadgeBattler] != HandleInputChooseMove
+                     || gBattle_BG0_Y != DISPLAY_HEIGHT * 2 || gBattle_BG0_X != 0
+                     || gBattleStruct->descriptionSubmenu;
+}
+
+static bool32 IsMoveBadgeSprite(u8 spriteId)
+{
+    return spriteId < MAX_SPRITES && gSprites[spriteId].inUse && gSprites[spriteId].callback == SpriteCB_MoveTypeBadge;
+}
+
+static u8 CreateMoveBadgeSprite(const struct SpriteTemplate *template, s16 x, enum BattlerId battler)
+{
+    u8 spriteId = CreateSprite(template, x, RF_MOVE_TYPE_ROW_Y + 8, 0);
+
+    if (spriteId == MAX_SPRITES)
+        return MAX_SPRITES;
+    gSprites[spriteId].oam.priority = 0;
+    gSprites[spriteId].callback = SpriteCB_MoveTypeBadge;
+    gSprites[spriteId].sBadgeBattler = battler;
+    return spriteId;
+}
+
+static bool32 ShowMoveTypeBadges(enum BattlerId battler, enum Type type, enum DamageCategory category)
+{
+    u32 i, paletteNum, tileStart;
+    u8 *gfx;
+
+    if (!IsMoveBadgeSprite(sMoveTypeBadgeSpriteId))
+    {
+        // One badge frame of VRAM (8 tiles), not the whole 24-frame sheet: battle OBJ VRAM is tight.
+        struct SpriteSheet sheet = {(const void *)gMoveTypes_Pal, 0x100, TAG_RF_MOVE_TYPE_TILES};
+        struct SpriteTemplate template = gSpriteTemplate_MoveTypes;
+
+        for (i = 0; i < 3; i++)
+        {
+            struct SpritePalette palette = {&gMoveTypes_Pal[i * 16], TAG_RF_MOVE_TYPE_PAL_0 + i};
+            if (LoadSpritePalette(&palette) == 0xFF)
+                return FALSE;
+        }
+        if (GetSpriteTileStartByTag(TAG_RF_MOVE_TYPE_TILES) == 0xFFFF && LoadSpriteSheet(&sheet) == 0)
+            return FALSE;
+        template.tileTag = TAG_RF_MOVE_TYPE_TILES;
+        template.paletteTag = TAG_RF_MOVE_TYPE_PAL_0;
+        template.anims = gDummySpriteAnimTable;
+        sMoveTypeBadgeSpriteId = CreateMoveBadgeSprite(&template, 168 + 4 + 16, battler);
+        if (sMoveTypeBadgeSpriteId == MAX_SPRITES)
+            return FALSE;
+    }
+    if (!IsMoveBadgeSprite(sMoveCategoryBadgeSpriteId))
+        sMoveCategoryBadgeSpriteId = CreateMoveBadgeSprite(&gSpriteTemplate_CategoryIcons, 168 + 44 + 8, battler);
+
+    paletteNum = IndexOfSpritePaletteTag(TAG_RF_MOVE_TYPE_PAL_0 + gTypesInfo[type].palette - 13);
+    tileStart = GetSpriteTileStartByTag(TAG_RF_MOVE_TYPE_TILES);
+    gfx = AllocUnchecked((NUMBER_OF_MON_TYPES + CONTEST_CATEGORIES_COUNT) * 0x100);
+    if (paletteNum == 0xFF || tileStart == 0xFFFF || gfx == NULL)
+    {
+        Free(gfx);
+        DestroySprite(&gSprites[sMoveTypeBadgeSpriteId]);
+        sMoveTypeBadgeSpriteId = MAX_SPRITES;
+        return FALSE;
+    }
+    DecompressDataWithHeaderWram(gMoveTypes_Gfx, gfx);
+    CpuCopy32(gfx + type * 0x100, (void *)(OBJ_VRAM0 + tileStart * TILE_SIZE_4BPP), 0x100);
+    Free(gfx);
+    gSprites[sMoveTypeBadgeSpriteId].oam.paletteNum = paletteNum;
+    gSprites[sMoveTypeBadgeSpriteId].sBadgeBattler = battler;
+    if (IsMoveBadgeSprite(sMoveCategoryBadgeSpriteId))
+    {
+        StartSpriteAnim(&gSprites[sMoveCategoryBadgeSpriteId], category);
+        gSprites[sMoveCategoryBadgeSpriteId].sBadgeBattler = battler;
+    }
+    return TRUE;
+}
+
 static void MoveSelectionDisplayMoveType(enum BattlerId battler)
 {
     u8 *txtPtr, *end;
@@ -1746,6 +1837,11 @@ static void MoveSelectionDisplayMoveType(enum BattlerId battler)
     {
         struct Pokemon *mon = GetBattlerMon(battler);
         type = CheckDynamicMoveType(mon, move, battler, MON_IN_BATTLE);
+    }
+    if (ShowMoveTypeBadges(battler, type, GetBattleMoveCategory(move)))
+    {
+        BattlePutTextOnWindow(COMPOUND_STRING(""), B_WIN_MOVE_TYPE);
+        return;
     }
     end = StringCopy(txtPtr, gTypesInfo[type].name);
 
@@ -1877,13 +1973,34 @@ static void MoveSelectionDisplayMoveDescription(enum BattlerId battler)
     CopyWindowToVram(B_WIN_MOVE_DESCRIPTION, COPYWIN_FULL);
 }
 
+// Rojo Fuego+: the selected action/move is a gold cell (arrow column + label), as in the start
+// menu. Only the palette bits of the BG0 tilemap change; the printed text stays as it is.
+static void RepaintBattleMenuCell(u32 x, u32 y, u32 width, u32 palette)
+{
+    u16 *tilemap = GetBgTilemapBuffer(0);
+    u32 row, column;
+
+    for (row = y; row < y + 2; row++)
+    {
+        for (column = x; column < x + width; column++)
+            tilemap[row * 32 + column] = (tilemap[row * 32 + column] & 0x0FFF) | (palette << 12);
+    }
+}
+
+#define MOVE_CELL_X(pos)     (9 * ((pos) & 1) + 1)
+#define MOVE_CELL_Y(pos)     (55 + ((pos) & 2))
+#define ACTION_CELL_X(pos)   (7 * ((pos) & 1) + 16)
+#define ACTION_CELL_Y(pos)   (35 + ((pos) & 2))
+#define ACTION_CELL_W(pos)   (((pos) & 1) ? 6 : 7)
+
 void MoveSelectionCreateCursorAt(u8 cursorPosition, u8 baseTileNum)
 {
     u16 src[2];
     src[0] = baseTileNum + 1;
     src[1] = baseTileNum + 2;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 9 * (cursorPosition & 1) + 1, 55 + (cursorPosition & 2), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, MOVE_CELL_X(cursorPosition), MOVE_CELL_Y(cursorPosition), 1, 2, 0x11);
+    RepaintBattleMenuCell(MOVE_CELL_X(cursorPosition), MOVE_CELL_Y(cursorPosition), 9, RF_UI_BATTLE_SELECTED_PAL);
     CopyBgTilemapBufferToVram(0);
 }
 
@@ -1893,7 +2010,8 @@ void MoveSelectionDestroyCursorAt(u8 cursorPosition)
     src[0] = 0x1016;
     src[1] = 0x1016;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 9 * (cursorPosition & 1) + 1, 55 + (cursorPosition & 2), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, MOVE_CELL_X(cursorPosition), MOVE_CELL_Y(cursorPosition), 1, 2, 0x11);
+    RepaintBattleMenuCell(MOVE_CELL_X(cursorPosition) + 1, MOVE_CELL_Y(cursorPosition), 8, 5);
     CopyBgTilemapBufferToVram(0);
 }
 
@@ -1903,7 +2021,8 @@ void ActionSelectionCreateCursorAt(u8 cursorPosition, u8 baseTileNum)
     src[0] = 1;
     src[1] = 2;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + 16, 35 + (cursorPosition & 2), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, ACTION_CELL_X(cursorPosition), ACTION_CELL_Y(cursorPosition), 1, 2, 0x11);
+    RepaintBattleMenuCell(ACTION_CELL_X(cursorPosition), ACTION_CELL_Y(cursorPosition), ACTION_CELL_W(cursorPosition), RF_UI_BATTLE_SELECTED_PAL);
     CopyBgTilemapBufferToVram(0);
 }
 
@@ -1913,7 +2032,8 @@ void ActionSelectionDestroyCursorAt(u8 cursorPosition)
     src[0] = 0x1016;
     src[1] = 0x1016;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + 16, 35 + (cursorPosition & 2), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, ACTION_CELL_X(cursorPosition), ACTION_CELL_Y(cursorPosition), 1, 2, 0x11);
+    RepaintBattleMenuCell(ACTION_CELL_X(cursorPosition) + 1, ACTION_CELL_Y(cursorPosition), ACTION_CELL_W(cursorPosition) - 1, 5);
     CopyBgTilemapBufferToVram(0);
 }
 

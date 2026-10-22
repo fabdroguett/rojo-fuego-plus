@@ -1,4 +1,6 @@
 #include "global.h"
+#include "key_system.h"
+#include "rf_ui_theme.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_ai_record.h"
@@ -3944,6 +3946,16 @@ void SetPPNumbersPaletteInMoveSelection(enum BattlerId battler)
     else
         var = 3;
 
+    if (KeySystem_IsOn(KEY_DARK_MODE))
+    {
+        // Rojo Fuego+: text_pp.pal is ink for a light box; on the night panel use light ink and
+        // brighter warnings (half, quarter, empty, normal: GetCurrentPPToMaxPPState order).
+        static const u16 sNightPPTextColors[] = {
+            RGB(31, 27, 8), RF_UI_NIGHT_SHADOW, RGB(31, 18, 6), RF_UI_NIGHT_SHADOW,
+            RGB(31, 9, 8), RF_UI_NIGHT_SHADOW, RF_UI_NIGHT_TEXT, RF_UI_NIGHT_SHADOW,
+        };
+        palPtr = sNightPPTextColors;
+    }
     gPlttBufferUnfaded[BG_PLTT_ID(5) + 12] = palPtr[(var * 2) + 0];
     gPlttBufferUnfaded[BG_PLTT_ID(5) + 11] = palPtr[(var * 2) + 1];
 

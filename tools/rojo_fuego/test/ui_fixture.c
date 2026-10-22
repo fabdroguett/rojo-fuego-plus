@@ -26,6 +26,7 @@
 #include "palette.h"
 #include "bg.h"
 #include "start_menu.h"
+#include "menu.h"
 #include "party_menu.h"
 #include "option_menu.h"
 #include "trainer_card.h"
@@ -101,6 +102,7 @@ void RFUiFixture_Voiceover(void)
 void RFUiFixture_Day(void)
 {
     KeySystem_Set(KEY_DARK_MODE, FALSE);
+    LoadMessageBoxAndBorderGfx(); // as the Key System menu does after the toggle
     SetMainCallback2(CB2_Overworld);
 }
 
@@ -117,6 +119,8 @@ void RFUiFixture_Wild(void)
     CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][1], SPECIES_CHARMANDER, 10, 31);
     CalculatePlayerPartyCount();
     CreateWildMon(SPECIES_PIDGEY, 5);
+    if (!CheckBagHasItem(ITEM_POKE_BALL, 1))
+        AddBagItem(ITEM_POKE_BALL, 5); // shows the last used Ball window
     SetMainCallback2(CB2_Overworld);
     BattleSetup_StartWildBattle();
 }
@@ -289,6 +293,19 @@ void RFUiFixture_Evolution(void)
     CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_BULBASAUR, 16, 31);
     CalculatePlayerPartyCount();
     SetMainCallback1(NULL);
-    gMain.savedCallback = CB2_ReturnToField;
+    gCB2_AfterEvolution = CB2_ReturnToField; // the game always sets it before evolving
     BeginEvolutionScene(&gParties[B_TRAINER_PLAYER][0], SPECIES_IVYSAUR, TRUE, 0);
+}
+
+void RFUiFixture_WildIntimidate(void)
+{
+    u8 abilityNum = 0; // Growlithe's first ability: Intimidate
+
+    ZeroPlayerPartyMons();
+    CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_BULBASAUR, 10, 31);
+    CalculatePlayerPartyCount();
+    CreateWildMon(SPECIES_GROWLITHE, 8);
+    SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_ABILITY_NUM, &abilityNum);
+    SetMainCallback2(CB2_Overworld);
+    BattleSetup_StartWildBattle();
 }

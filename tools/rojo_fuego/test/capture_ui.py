@@ -70,6 +70,7 @@ cases = {
     "relearner": ("Relearner", "run 300\n" + shot("relearner") + "hold D 1\nrun 30\n" + shot("relearner-row")),
     "evolution": ("Evolution", "run 300\n" + shot("evolution-start") + "run 900\n" + shot("evolution-mid")
                   + "mash A 600\n" + shot("evolution-end")),
+    "popup": ("WildIntimidate", "run 300\nhold A 1\nrun 20\nhold A 1\nrun 20\n" + "".join(shot(f"popup-{n}") + "run 25\n" for n in range(1, 9))),
     "battle": ("Wild", "run 500\nhold A 1\nrun 240\n" + shot("battle-actions")
                + "hold A 1\nrun 60\n" + shot("battle-moves")
                + "hold > 1\nrun 20\n" + shot("battle-moves-focus")),

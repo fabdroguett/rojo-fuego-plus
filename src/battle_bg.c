@@ -992,6 +992,21 @@ static const struct { u8 index; u16 color; } sDarkModeMenuColors[] =
     {16 * 5 + 15, RF_UI_NIGHT_SHADOW}, // menu text shadow
 };
 
+// Selected action/move cell: the menu text palette (5) on a gold fill. Index 14 is the cell,
+// 12/13 the ink, 15 its shadow; the cursor arrow tile uses 1 as its ground and 2/8 as ink.
+static void LoadBattleSelectedCellPalette(void)
+{
+    bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
+    u16 colors[16];
+    u16 ink = RGB(2, 7, 8), shadow = dark ? RGB(22, 16, 2) : RGB(25, 20, 6);
+
+    CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(5)], colors, sizeof(colors));
+    colors[14] = colors[1] = dark ? RF_UI_GOLD : RGB(31, 27, 12); // 1: arrow tile ground
+    colors[12] = colors[13] = colors[2] = ink;
+    colors[15] = colors[8] = shadow;
+    LoadPalette(colors, BG_PLTT_ID(RF_UI_BATTLE_SELECTED_PAL), sizeof(colors));
+}
+
 void LoadBattleMenuWindowGfx(void)
 {
     LoadUserWindowBorderGfx(2, 0x12, BG_PLTT_ID(1));
@@ -1002,6 +1017,7 @@ void LoadBattleMenuWindowGfx(void)
         for (u32 i = 0; i < ARRAY_COUNT(sDarkModeMenuColors); i++)
             LoadPalette(&sDarkModeMenuColors[i].color, BG_PLTT_ID(0) + sDarkModeMenuColors[i].index, PLTT_SIZEOF(1));
     }
+    LoadBattleSelectedCellPalette();
 
     if ((gBattleTypeFlags & (BATTLE_TYPE_ARENA | BATTLE_TYPE_POKEDUDE))
     || (IS_FRLG && (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)))

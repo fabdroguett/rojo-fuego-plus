@@ -2558,6 +2558,33 @@ static const struct SpritePalette sSpritePalette_AbilityPopUp =
     sAbilityPopUpPalette, TAG_ABILITY_POP_UP
 };
 
+// Rojo Fuego+ dark theme for the ability/item pop-up: 5 top band, 7 bottom band (also the
+// light theme's name ink), 1..4/6 rims, 9 ability ink. The night name ink is 13, unused by
+// the frame, so the bands can be recoloured independently.
+static const union TextColor sBattlerNightTextColor =
+{
+    .background = 0,
+    .foreground = 13,
+    .shadow = 1,
+    .accent = 0,
+};
+
+static void ThemeAbilityPopUpPalette(void)
+{
+    static const struct { u8 index; u16 color; } sNight[] =
+    {
+        {1, RF_UI_NIGHT_SHADOW}, {2, RF_UI_NIGHT_EDGE}, {3, RF_UI_NIGHT_EDGE}, {4, RF_UI_NIGHT_EDGE},
+        {5, RF_UI_SELECTED}, {6, RF_UI_NIGHT_EDGE}, {7, RF_UI_NIGHT_PANEL},
+        {9, RF_UI_GOLD}, {13, RF_UI_NIGHT_TEXT},
+    };
+    u32 i, paletteNum = IndexOfSpritePaletteTag(TAG_ABILITY_POP_UP);
+
+    if (paletteNum >= 16 || !KeySystem_IsOn(KEY_DARK_MODE))
+        return;
+    for (i = 0; i < ARRAY_COUNT(sNight); i++)
+        LoadPalette(&sNight[i].color, OBJ_PLTT_ID(paletteNum) + sNight[i].index, PLTT_SIZEOF(1));
+}
+
 static const struct OamData sOamData_AbilityPopUp =
 {
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -2607,7 +2634,9 @@ static void PrintOnAbilityPopUp(const u8 *str, u32 spriteId1, u32 spriteId2, u32
 
     if (isName)
     {
-        AddSpriteTextPrinterParameterized6(spriteId1, font, x, y, 0, 0, sBattlerTextColor, TEXT_SKIP_DRAW, str);
+        AddSpriteTextPrinterParameterized6(spriteId1, font, x, y, 0, 0,
+                                           KeySystem_IsOn(KEY_DARK_MODE) ? sBattlerNightTextColor : sBattlerTextColor,
+                                           TEXT_SKIP_DRAW, str);
     }
     else
     {
@@ -2706,6 +2735,7 @@ void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isD
 
     if (!IsAnyAbilityPopUpActive())
         LoadSpritePalette(&sSpritePalette_AbilityPopUp);
+        ThemeAbilityPopUpPalette();
 
     tileTag = (TAG_ABILITY_POP_UP_PLAYER1 + battler);
     if (IndexOfSpriteTileTag(tileTag) == 0xFF)
@@ -2864,6 +2894,7 @@ void CreateItemPopUp(enum BattlerId battler)
 
     if (!IsAnyAbilityPopUpActive())
         LoadSpritePalette(&sSpritePalette_AbilityPopUp);
+        ThemeAbilityPopUpPalette();
 
     tileTag = (TAG_ABILITY_POP_UP_PLAYER1 + battler);
     if (IndexOfSpriteTileTag(tileTag) == 0xFF)
@@ -2955,6 +2986,29 @@ static const struct SpriteTemplate sSpriteTemplate_LastUsedBallWindow =
 
 #define MOVE_INFO_WINDOW_TAG 0xE722
 #define MOVE_INFO_NIGHT_PAL_TAG 0xE723 // Rojo Fuego+: the pop-up palette's white is also name ink
+
+// Rojo Fuego+ dark theme for the MOVE INFO and last used Ball windows (same index layout):
+// 13 fill, 10/14 rims, 11 outline, 5 label, 7 key cap. The Ball cycle arrows (8/9) copy
+// 10/11/13, so 10 stays a visible teal.
+static void UseNightButtonWindowPalette(u8 spriteId)
+{
+    u16 colors[16];
+    struct SpritePalette night = {colors, MOVE_INFO_NIGHT_PAL_TAG};
+    u32 paletteNum;
+
+    if (spriteId >= MAX_SPRITES || !KeySystem_IsOn(KEY_DARK_MODE))
+        return;
+    CpuCopy16(sAbilityPopUpPalette, colors, sizeof(colors));
+    colors[5] = RF_UI_NIGHT_TEXT;
+    colors[7] = RF_UI_GOLD;
+    colors[10] = RF_UI_NIGHT_EDGE;
+    colors[11] = RF_UI_NIGHT_SHADOW;
+    colors[13] = RF_UI_NIGHT_PANEL;
+    colors[14] = RF_UI_NIGHT_EDGE;
+    paletteNum = LoadSpritePalette(&night);
+    if (paletteNum != 0xFF)
+        gSprites[spriteId].oam.paletteNum = paletteNum;
+}
 
 static const struct OamData sOamData_MoveInfoWindow =
 {
@@ -3084,6 +3138,7 @@ void TryAddLastUsedBallItemSprites(void)
                                                        LAST_BALL_WIN_X_0,
                                                        LAST_USED_WIN_Y, 5);
         gSprites[gBattleStruct->ballSpriteIds[1]].sHide = FALSE;
+        UseNightButtonWindowPalette(gBattleStruct->ballSpriteIds[1]);
         gSprites[gBattleStruct->moveInfoSpriteId].sHide = TRUE;
         gLastUsedBallMenuPresent = TRUE;
     }
@@ -3095,7 +3150,10 @@ static void DestroyLastUsedBallWinGfx(struct Sprite *sprite)
 {
     FreeSpriteTilesByTag(TAG_LAST_BALL_WINDOW);
     if (GetSpriteTileStartByTag(MOVE_INFO_WINDOW_TAG) == 0xFFFF)
+    {
         FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
+        FreeSpritePaletteByTag(MOVE_INFO_NIGHT_PAL_TAG);
+    }
     DestroySprite(sprite);
     gBattleStruct->ballSpriteIds[1] = MAX_SPRITES;
 }
@@ -3124,24 +3182,7 @@ void TryToAddMoveInfoWindow(void)
     {
         gBattleStruct->moveInfoSpriteId = CreateSprite(&sSpriteTemplate_MoveInfoWindow, LAST_BALL_WIN_X_0, LAST_USED_WIN_Y + 32, 6);
         gSprites[gBattleStruct->moveInfoSpriteId].sHide = FALSE;
-        if (KeySystem_IsOn(KEY_DARK_MODE))
-        {
-            // move_info_window: 13 fill, 10/14 rims, 11 outline, 5 label, 7 L key cap
-            u16 colors[16];
-            struct SpritePalette night = {colors, MOVE_INFO_NIGHT_PAL_TAG};
-            u32 paletteNum;
-
-            CpuCopy16(sAbilityPopUpPalette, colors, sizeof(colors));
-            colors[5] = RF_UI_NIGHT_TEXT;
-            colors[7] = RF_UI_GOLD;
-            colors[10] = RF_UI_NIGHT_PANEL;
-            colors[11] = RF_UI_NIGHT_SHADOW;
-            colors[13] = RF_UI_NIGHT_PANEL;
-            colors[14] = RF_UI_NIGHT_EDGE;
-            paletteNum = LoadSpritePalette(&night);
-            if (paletteNum != 0xFF)
-                gSprites[gBattleStruct->moveInfoSpriteId].oam.paletteNum = paletteNum;
-        }
+        UseNightButtonWindowPalette(gBattleStruct->moveInfoSpriteId);
     }
 }
 
@@ -3153,9 +3194,11 @@ void TryToHideMoveInfoWindow(void)
 static void DestroyMoveInfoWinGfx(struct Sprite *sprite)
 {
     FreeSpriteTilesByTag(MOVE_INFO_WINDOW_TAG);
-    FreeSpritePaletteByTag(MOVE_INFO_NIGHT_PAL_TAG);
     if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF)
+    {
         FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
+        FreeSpritePaletteByTag(MOVE_INFO_NIGHT_PAL_TAG);
+    }
     DestroySprite(sprite);
     gBattleStruct->moveInfoSpriteId = MAX_SPRITES;
 }

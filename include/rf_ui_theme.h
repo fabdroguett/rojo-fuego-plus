@@ -11,6 +11,7 @@
 #define RF_UI_NIGHT_SHADOW RGB(0, 3, 4)
 #define RF_UI_SELECTED RGB(4, 14, 14)
 #define RF_UI_GOLD RGB(31, 25, 6)
+#define RF_UI_BATTLE_SELECTED_PAL 11 // BG bank for the gold battle menu cell (free in battle)
 void RFUI_LoadPalette(u32 bank, bool32 dark);
 void RFUI_LoadWindowPalette(const u16 *palette, u32 offset);
 void RFUI_ThemeHealthboxPalette(u32 paletteNum);
