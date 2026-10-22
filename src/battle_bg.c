@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "key_system.h"
 #include "battle_anim.h"
 #include "battle_bg.h"
 #include "battle_main.h"
@@ -968,11 +969,38 @@ void InitBattleBgsVideo(void)
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON | DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
 }
 
+// Rojo Fuego+ dark mode (Key System, from Pokémon SoulGold): the battle textbox and menus in dark
+// colors. Only the box and frame colors change; the text keeps its own colors.
+static const struct { u8 index; u16 color; } sDarkModeTextboxColors[] =
+{
+    {15, RGB(4, 5, 7)},    // message box
+    {13, RGB(9, 10, 13)},  // frame
+    {12, RGB(12, 13, 16)}, // frame light
+    {14, RGB(7, 8, 10)},   // frame shadow
+};
+
+// Action and move menus: window border palette (1) and menu text palette (5)
+static const struct { u8 index; u16 color; } sDarkModeMenuColors[] =
+{
+    {16 * 1 + 14, RGB(5, 6, 8)},    // window background
+    {16 * 1 + 2,  RGB(29, 29, 29)}, // text
+    {16 * 1 + 8,  RGB(10, 11, 14)}, // text shadow
+    {16 * 5 + 14, RGB(5, 6, 8)},    // menu background
+    {16 * 5 + 12, RGB(29, 29, 29)}, // menu text
+    {16 * 5 + 13, RGB(29, 29, 29)}, // menu text
+    {16 * 5 + 15, RGB(10, 11, 14)}, // menu text shadow
+};
+
 void LoadBattleMenuWindowGfx(void)
 {
     LoadUserWindowBorderGfx(2, 0x12, BG_PLTT_ID(1));
     LoadUserWindowBorderGfx(2, 0x22, BG_PLTT_ID(1));
     LoadPalette(gBattleWindowTextPalette, BG_PLTT_ID(5), PLTT_SIZE_4BPP);
+    if (KeySystem_IsOn(KEY_DARK_MODE))
+    {
+        for (u32 i = 0; i < ARRAY_COUNT(sDarkModeMenuColors); i++)
+            LoadPalette(&sDarkModeMenuColors[i].color, BG_PLTT_ID(0) + sDarkModeMenuColors[i].index, PLTT_SIZEOF(1));
+    }
 
     if ((gBattleTypeFlags & (BATTLE_TYPE_ARENA | BATTLE_TYPE_POKEDUDE))
     || (IS_FRLG && (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)))
@@ -990,12 +1018,23 @@ void DrawMainBattleBackground(void)
     LoadBattleEnvironmentGfx(GetBattleEnvironmentOverride());
 }
 
+void LoadBattleTextboxPalette(void)
+{
+    u32 i;
+
+    LoadPalette(gBattleTextboxPalette, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
+    if (!KeySystem_IsOn(KEY_DARK_MODE))
+        return;
+    for (i = 0; i < ARRAY_COUNT(sDarkModeTextboxColors); i++)
+        LoadPalette(&sDarkModeTextboxColors[i].color, BG_PLTT_ID(0) + sDarkModeTextboxColors[i].index, PLTT_SIZEOF(1));
+}
+
 void LoadBattleTextboxAndBackground(void)
 {
     DecompressDataWithHeaderVram(gBattleTextboxTiles, (void *)(BG_CHAR_ADDR(0)));
     CopyToBgTilemapBuffer(0, gBattleTextboxTilemap, 0, 0);
     CopyBgTilemapBufferToVram(0);
-    LoadPalette(gBattleTextboxPalette, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
+    LoadBattleTextboxPalette();
     LoadBattleMenuWindowGfx();
     if (B_TERRAIN_BG_CHANGE == TRUE)
         DrawTerrainTypeBattleBackground();
@@ -1335,7 +1374,7 @@ bool8 LoadChosenBattleElement(u8 caseId)
         CopyBgTilemapBufferToVram(0);
         break;
     case 2:
-        LoadPalette(gBattleTextboxPalette, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
+        LoadBattleTextboxPalette();
         break;
     case 3:
         DecompressDataWithHeaderVram(gBattleEnvironmentInfo[GetBattleEnvironmentOverride()].background.tileset, (void *)(BG_CHAR_ADDR(2)));
