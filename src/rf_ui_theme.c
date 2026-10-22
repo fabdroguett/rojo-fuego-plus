@@ -2,6 +2,10 @@
 #include "palette.h"
 #include "rf_ui_theme.h"
 #include "key_system.h"
+#include "window.h"
+#include "text.h"
+#include "string_util.h"
+#include "menu.h"
 
 void RFUI_LoadPalette(u32 bank, bool32 dark)
 {
@@ -9,18 +13,58 @@ void RFUI_LoadPalette(u32 bank, bool32 dark)
     {
         RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_TEXT, RF_UI_NIGHT_SHADOW,
         RF_UI_NIGHT_GROUND, RF_UI_NIGHT_MUTED, RF_UI_NIGHT_EDGE, RGB(14, 27, 21),
-        RGB(30, 12, 10), RGB(30, 24, 13), RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL,
+        RF_UI_SELECTED, RF_UI_GOLD, RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL,
         RF_UI_NIGHT_EDGE, RF_UI_NIGHT_MUTED, RF_UI_NIGHT_GROUND, RF_UI_NIGHT_TEXT,
     };
     static const u16 day[16] =
     {
-        RGB(28,29,28), RGB(31,31,30), RGB(4,5,6), RGB(27,28,27),
-        RGB(28,29,28), RGB(11,12,13), RGB(20,21,21), RGB(4,15,10),
-        RGB(23,5,4), RGB(17,11,2), RGB(4,5,6), RGB(31,31,30),
-        RGB(20,21,21), RGB(11,12,13), RGB(28,29,28), RGB(4,5,6),
+        RGB(23,28,25), RGB(27,31,27), RGB(2,7,8), RGB(22,27,24),
+        RGB(23,28,25), RGB(8,15,14), RGB(11,21,19), RGB(4,15,10),
+        RGB(30,26,11), RGB(17,11,2), RGB(2,7,8), RGB(27,31,27),
+        RGB(11,21,19), RGB(8,15,14), RGB(23,28,25), RGB(2,7,8),
     };
     if (bank < 16)
         LoadPalette(dark ? night : day, BG_PLTT_ID(bank), PLTT_SIZE_4BPP);
+}
+
+// Three-tone, two-pixel stepped corners. All dimensions are native pixels.
+void RFUI_DrawPanel(u8 window, u32 x, u32 y, u32 width, u32 height, u8 fill, u8 edge)
+{
+    if (width < 6 || height < 6)
+        return;
+    if (x == 0 && y == 0
+        && width == GetWindowAttribute(window, WINDOW_WIDTH) * 8
+        && height == GetWindowAttribute(window, WINDOW_HEIGHT) * 8)
+        FillWindowPixelBuffer(window, PIXEL_FILL(fill));
+    else
+        FillWindowPixelRect(window, PIXEL_FILL(fill), x + 1, y + 1, width - 2, height - 2);
+    FillWindowPixelRect(window, PIXEL_FILL(edge), x + 2, y, width - 4, 1);
+    FillWindowPixelRect(window, PIXEL_FILL(edge), x + 2, y + height - 1, width - 4, 1);
+    FillWindowPixelRect(window, PIXEL_FILL(edge), x, y + 2, 1, height - 4);
+    FillWindowPixelRect(window, PIXEL_FILL(edge), x + width - 1, y + 2, 1, height - 4);
+    FillWindowPixelRect(window, PIXEL_FILL(edge), x + 1, y + 1, 1, 1);
+    FillWindowPixelRect(window, PIXEL_FILL(edge), x + width - 2, y + 1, 1, 1);
+    FillWindowPixelRect(window, PIXEL_FILL(edge), x + 1, y + height - 2, 1, 1);
+    FillWindowPixelRect(window, PIXEL_FILL(edge), x + width - 2, y + height - 2, 1, 1);
+}
+
+void RFUI_PrintFitted(u8 window, const u8 *text, u32 x, u32 y, u32 width, const u8 *colors)
+{
+    u8 buffer[96];
+    u32 font = FONT_SMALL, length;
+    if (GetStringWidth(font, text, 0) > width)
+        font = FONT_SMALL_NARROWER;
+    if (GetStringWidth(font, text, 0) > width)
+    {
+        StringCopyN(buffer, text, sizeof(buffer) - 4);
+        buffer[sizeof(buffer) - 4] = EOS;
+        length = StringLength(buffer);
+        while (length && GetStringWidth(font, buffer, 0) + 12 > width)
+            buffer[--length] = EOS;
+        StringAppend(buffer, COMPOUND_STRING("..."));
+        text = buffer;
+    }
+    AddTextPrinterParameterized3(window, font, x, y, colors, TEXT_SKIP_DRAW, text);
 }
 
 // Standard text windows share indices 1 (paper), 2 (ink), 3 (shadow).

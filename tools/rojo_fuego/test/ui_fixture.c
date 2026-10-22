@@ -25,6 +25,60 @@
 #include "text_window.h"
 #include "palette.h"
 #include "bg.h"
+#include "start_menu.h"
+#include "party_menu.h"
+#include "option_menu.h"
+#include "trainer_card.h"
+
+void RFUiFixture_Pokedex(void)
+{
+    u32 dex;
+    FlagSet(FLAG_SYS_POKEDEX_GET);
+    for (dex = 1; dex <= 30; dex++)
+    {
+        GetSetPokedexFlag(dex, FLAG_SET_SEEN);
+        if (dex <= 9)
+            GetSetPokedexFlag(dex, FLAG_SET_CAUGHT);
+    }
+    SetMainCallback1(NULL);
+    CB2_OpenPokedex();
+}
+
+u8 gRFUiFixture_OrderOK;
+void RFUiFixture_CheckOrder(void)
+{
+    gRFUiFixture_OrderOK = GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SPECIES) == SPECIES_PIKACHU
+        && GetMonData(&gParties[B_TRAINER_PLAYER][1], MON_DATA_SPECIES) == SPECIES_BLASTOISE
+        && GetMonData(&gParties[B_TRAINER_PLAYER][2], MON_DATA_SPECIES) == SPECIES_CHARIZARD;
+    SetMainCallback2(CB2_Overworld);
+}
+
+void RFUiFixture_FieldParty(void)
+{
+    static const enum Species species[] = {SPECIES_PIKACHU, SPECIES_CHARIZARD, SPECIES_BLASTOISE, SPECIES_VENUSAUR, SPECIES_PIDGEOT, SPECIES_LAPRAS};
+    u32 i;
+    ZeroPlayerPartyMons();
+    for (i = 0; i < ARRAY_COUNT(species); i++)
+        CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][i], species[i], 20 + i * 5, 31);
+    CalculatePlayerPartyCount();
+    SetMainCallback1(NULL);
+    CB2_PartyMenuFromStartMenu();
+}
+
+void RFUiFixture_Start(void)
+{
+    ZeroPlayerPartyMons();
+    CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_BULBASAUR, 10, 31);
+    CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][1], SPECIES_CHARMANDER, 10, 31);
+    CalculatePlayerPartyCount();
+    FlagSet(FLAG_SYS_POKEDEX_GET);
+    FlagSet(FLAG_SYS_POKEMON_GET);
+    FlagSet(DN_FLAG_DEXNAV_GET);
+    GetSetPokedexFlag(NATIONAL_DEX_PIDGEY, FLAG_SET_SEEN);
+    SetMainCallback1(NULL);
+    SetMainCallback2(CB2_Overworld);
+    ShowStartMenu();
+}
 
 void RFUiFixture_Voiceover(void)
 {
@@ -124,6 +178,8 @@ void RFUiFixture_Bag(void)
 {
     AddBagItem(ITEM_POTION, 5);
     AddBagItem(ITEM_POKE_BALL, 10);
+    AddBagItem(ITEM_TM01, 1);
+    AddBagItem(ITEM_ORAN_BERRY, 3);
     SetMainCallback1(NULL);
     GoToBagMenu(ITEMMENULOCATION_FIELD, 0, CB2_ReturnToField);
 }
@@ -147,4 +203,17 @@ void RFUiFixture_PC(void)
     SetMainCallback1(NULL);
     SetMainCallback2(CB2_Overworld);
     ShowPokemonStorageSystemPC();
+}
+
+void RFUiFixture_Options(void)
+{
+    SetMainCallback1(NULL);
+    gMain.savedCallback = CB2_ReturnToField;
+    SetMainCallback2(CB2_InitOptionMenu);
+}
+
+void RFUiFixture_Trainer(void)
+{
+    SetMainCallback1(NULL);
+    ShowPlayerTrainerCard(CB2_ReturnToField);
 }

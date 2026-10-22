@@ -70,7 +70,7 @@
                                 BAG_POKEBALLS_COUNT))))) + 1)
 
 // Up to 8 item slots can be visible at a time
-#define MAX_ITEMS_SHOWN 8
+#define MAX_ITEMS_SHOWN 7
 
 enum {
     SWITCH_POCKET_NONE,
@@ -263,7 +263,7 @@ static const struct BgTemplate sBgTemplates_ItemMenu[] =
     },
     {
         .bg = 2,
-        .charBaseIndex = 3,
+        .charBaseIndex = 2,
         .mapBaseIndex = 29,
         .screenSize = 0,
         .paletteMode = 0,
@@ -398,10 +398,10 @@ static const struct YesNoFuncTable sYesNoSellItemFunctions = {ConfirmSell, Cance
 
 static const struct ScrollArrowsTemplate sBagScrollArrowsTemplate = {
     .firstArrowType = SCROLL_ARROW_LEFT,
-    .firstX = 28,
+    .firstX = 144,
     .firstY = 16,
     .secondArrowType = SCROLL_ARROW_RIGHT,
-    .secondX = 100,
+    .secondX = 224,
     .secondY = 16,
     .fullyUpThreshold = -1,
     .fullyDownThreshold = -1,
@@ -433,25 +433,25 @@ static const struct WindowTemplate sDefaultBagWindows[] =
 {
     [WIN_ITEM_LIST] = {
         .bg = 0,
-        .tilemapLeft = 14,
-        .tilemapTop = 2,
+        .tilemapLeft = 1,
+        .tilemapTop = 4,
         .width = 15,
-        .height = 16,
+        .height = 14,
         .paletteNum = 1,
         .baseBlock = 0x27,
     },
     [WIN_DESCRIPTION] = {
         .bg = 0,
-        .tilemapLeft = 0,
+        .tilemapLeft = 17,
         .tilemapTop = 13,
-        .width = 14,
-        .height = 6,
+        .width = 13,
+        .height = 5,
         .paletteNum = 1,
         .baseBlock = 0x117,
     },
     [WIN_POCKET_NAME] = {
         .bg = 0,
-        .tilemapLeft = 4,
+        .tilemapLeft = 19,
         .tilemapTop = 1,
         .width = 8,
         .height = 2,
@@ -460,7 +460,7 @@ static const struct WindowTemplate sDefaultBagWindows[] =
     },
     [WIN_TMHM_INFO_ICONS] = {
         .bg = 0,
-        .tilemapLeft = 1,
+        .tilemapLeft = 18,
         .tilemapTop = 13,
         .width = 5,
         .height = 6,
@@ -469,7 +469,7 @@ static const struct WindowTemplate sDefaultBagWindows[] =
     },
     [WIN_TMHM_INFO] = {
         .bg = 0,
-        .tilemapLeft = 7,
+        .tilemapLeft = 24,
         .tilemapTop = 13,
         .width = 4,
         .height = 6,
@@ -588,6 +588,7 @@ static EWRAM_DATA struct ListBuffer1 *sListBuffer1 = 0;
 static EWRAM_DATA struct ListBuffer2 *sListBuffer2 = 0;
 EWRAM_DATA enum Item gSpecialVar_ItemId = 0;
 static EWRAM_DATA struct TempWallyBag *sTempWallyBag = 0;
+static EWRAM_DATA u8 sRFBagChromeWindow = 0;
 
 void ResetBagScrollPositions(void)
 {
@@ -1082,7 +1083,7 @@ static void PrintItemDescription(int itemIndex)
         str = gStringVar4;
     }
     FillWindowPixelBuffer(WIN_DESCRIPTION, PIXEL_FILL(0));
-    BagMenu_Print(WIN_DESCRIPTION, FONT_NORMAL, str, 3, 1, 0, 0, 0, COLORID_NORMAL);
+    BagMenu_Print(WIN_DESCRIPTION, FONT_SMALL, str, 3, 1, 0, 0, 0, COLORID_NORMAL);
 }
 
 static void BagMenu_PrintCursor(u8 listTaskId, u8 colorIndex)
@@ -1104,9 +1105,9 @@ static void CreatePocketScrollArrowPair(void)
     if (gBagMenu->pocketScrollArrowsTask == TASK_NONE)
         gBagMenu->pocketScrollArrowsTask = AddScrollIndicatorArrowPairParameterized(
             SCROLL_ARROW_UP,
-            172,
-            12,
-            148,
+            64,
+            30,
+            146,
             gBagMenu->numItemStacks[gBagPosition.pocket] - gBagMenu->numShownItems[gBagPosition.pocket],
             TAG_POCKET_SCROLL_ARROW,
             TAG_POCKET_SCROLL_ARROW,
@@ -1140,6 +1141,7 @@ static void DestroyPocketSwitchArrowPair(void)
 
 static void FreeBagMenu(void)
 {
+    sRFBagChromeWindow = WINDOW_NONE;
     Free(sListBuffer2);
     Free(sListBuffer1);
     FreeAllWindowBuffers();
@@ -1468,7 +1470,8 @@ static void SwitchBagPocket(u8 taskId, s16 deltaBagPocketId, bool16 skipEraseLis
     }
     DrawPocketIndicatorSquare(gBagPosition.pocket, FALSE);
     DrawPocketIndicatorSquare(newPocket, TRUE);
-    FillBgTilemapBufferRect_Palette0(2, 11, 14, 2, 15, 16);
+    if (sRFBagChromeWindow == WINDOW_NONE)
+        FillBgTilemapBufferRect_Palette0(2, 11, 14, 2, 15, 16);
     ScheduleBgCopyTilemapToVram(2);
     SetBagVisualPocketId(newPocket, TRUE);
     RemoveBagSprite(ITEMMENUSPRITE_BALL);
@@ -1527,12 +1530,20 @@ static void Task_SwitchBagPocket(u8 taskId)
 // When the pocket is switched this lighter background is redrawn row by row
 static void DrawItemListBgRow(u8 y)
 {
+    if (sRFBagChromeWindow != WINDOW_NONE)
+        return; // The new card stays stable while the pocket label animates.
     FillBgTilemapBufferRect_Palette0(2, 17, 14, y + 2, 15, 1);
     ScheduleBgCopyTilemapToVram(2);
 }
 
 static void DrawPocketIndicatorSquare(u8 x, bool8 isCurrentPocket)
 {
+    if (sRFBagChromeWindow != WINDOW_NONE)
+    {
+        FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(isCurrentPocket ? 9 : 6), 88 + x * 8, 23, 5, 2);
+        CopyWindowToVram(sRFBagChromeWindow, COPYWIN_GFX);
+        return;
+    }
     if (!isCurrentPocket)
         FillBgTilemapBufferRect_Palette0(2, 0x1017, x + 5, 3, 1, 1);
     else
@@ -2627,6 +2638,11 @@ static void CopyPocketNameToWindow(u32 a)
 
 static void LoadBagMenuTextWindows(void)
 {
+    static const struct WindowTemplate chrome = {
+        .bg = 2, .tilemapLeft = 0, .tilemapTop = 0,
+        .width = 30, .height = 20, .paletteNum = 11, .baseBlock = 64,
+    };
+    static const u8 ink[] = {0, 2, 3};
     u8 i;
 
     InitWindows(sDefaultBagWindows);
@@ -2634,7 +2650,21 @@ static void LoadBagMenuTextWindows(void)
     LoadUserWindowBorderGfx(0, 1, BG_PLTT_ID(14));
     LoadMessageBoxGfx(0, 10, BG_PLTT_ID(13));
     ListMenuLoadStdPalAt(BG_PLTT_ID(12), 1);
-    LoadPalette(&gStandardMenuPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+    RFUI_LoadWindowPalette(gStandardMenuPalette, BG_PLTT_ID(15));
+    sRFBagChromeWindow = AddWindow(&chrome);
+    if (sRFBagChromeWindow != WINDOW_NONE)
+    {
+        RFUI_LoadPalette(11, KeySystem_IsOn(KEY_DARK_MODE));
+        FillWindowPixelBuffer(sRFBagChromeWindow, PIXEL_FILL(4));
+        RFUI_DrawPanel(sRFBagChromeWindow, 0, 0, 240, 28, 1, 6);
+        RFUI_DrawPanel(sRFBagChromeWindow, 0, 29, 132, 118, 1, 6);
+        RFUI_DrawPanel(sRFBagChromeWindow, 134, 29, 106, 73, 1, 6);
+        RFUI_DrawPanel(sRFBagChromeWindow, 134, 103, 106, 44, 1, 6);
+        AddTextPrinterParameterized3(sRFBagChromeWindow, FONT_NORMAL, 8, 5, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("MOCHILA"));
+        AddTextPrinterParameterized3(sRFBagChromeWindow, FONT_SMALL, 4, 148, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("A Elegir  SELECT Ordenar  B Atras"));
+        PutWindowTilemap(sRFBagChromeWindow);
+        CopyWindowToVram(sRFBagChromeWindow, COPYWIN_FULL);
+    }
     for (i = 0; i <= WIN_POCKET_NAME; i++)
     {
         FillWindowPixelBuffer(i, PIXEL_FILL(0));

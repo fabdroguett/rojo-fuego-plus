@@ -1,4 +1,6 @@
 #include "global.h"
+#include "rf_ui_theme.h"
+#include "key_system.h"
 #include "option_menu.h"
 #include "bg.h"
 #include "gpu_regs.h"
@@ -72,7 +74,7 @@ static void DrawBgWindowFrames(void);
 
 EWRAM_DATA static bool8 sArrowPressed = FALSE;
 
-static const u8 gText_Option[]             = _("OPTION");
+static const u8 gText_Option[]             = _("AJUSTES");
 static const u8 gText_TextSpeedSlow[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}SLOW");
 static const u8 gText_TextSpeedMid[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}MID");
 static const u8 gText_TextSpeedFast[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}FAST");
@@ -88,19 +90,18 @@ static const u8 gText_ButtonTypeNormal[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_ButtonTypeLR[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}LR");
 static const u8 gText_ButtonTypeLEqualsA[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}L=A");
 
-static const u16 sOptionMenuText_Pal[] = INCGFX_U16("graphics/interface/option_menu_text.pal", ".gbapal");
 // note: this is only used in the Japanese release
 static const u8 sEqualSignGfx[] = INCGFX_U8("graphics/interface/option_menu_equals_sign.png", ".4bpp");
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
-    [MENUITEM_TEXTSPEED]   = COMPOUND_STRING("TEXT SPEED"),
-    [MENUITEM_BATTLESCENE] = COMPOUND_STRING("BATTLE SCENE"),
-    [MENUITEM_BATTLESTYLE] = COMPOUND_STRING("BATTLE STYLE"),
-    [MENUITEM_SOUND]       = COMPOUND_STRING("SOUND"),
-    [MENUITEM_BUTTONMODE]  = COMPOUND_STRING("BUTTON MODE"),
-    [MENUITEM_FRAMETYPE]   = COMPOUND_STRING("FRAME"),
-    [MENUITEM_CANCEL]      = COMPOUND_STRING("CANCEL"),
+    [MENUITEM_TEXTSPEED]   = COMPOUND_STRING("TEXTO"),
+    [MENUITEM_BATTLESCENE] = COMPOUND_STRING("ANIMACIONES"),
+    [MENUITEM_BATTLESTYLE] = COMPOUND_STRING("ESTILO"),
+    [MENUITEM_SOUND]       = COMPOUND_STRING("SONIDO"),
+    [MENUITEM_BUTTONMODE]  = COMPOUND_STRING("BOTONES"),
+    [MENUITEM_FRAMETYPE]   = COMPOUND_STRING("MARCO"),
+    [MENUITEM_CANCEL]      = COMPOUND_STRING("VOLVER"),
 };
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -148,7 +149,6 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
     }
 };
 
-static const u16 sOptionMenuBg_Pal[] = {RGB(17, 18, 31)};
 
 static void MainCB2(void)
 {
@@ -215,14 +215,26 @@ void CB2_InitOptionMenu(void)
         gMain.state++;
         break;
     case 4:
-        LoadPalette(sOptionMenuBg_Pal, BG_PLTT_ID(0), sizeof(sOptionMenuBg_Pal));
-        LoadPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->pal, BG_PLTT_ID(7), PLTT_SIZE_4BPP);
+    {
+        u16 ground = KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_GROUND : RGB(23,28,25);
+        LoadPalette(&ground, BG_PLTT_ID(0), sizeof(ground));
+        RFUI_LoadWindowPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->pal, BG_PLTT_ID(7));
         gMain.state++;
         break;
+    }
     case 5:
-        LoadPalette(sOptionMenuText_Pal, BG_PLTT_ID(1), sizeof(sOptionMenuText_Pal));
+    {
+        bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
+        const u16 text[] = {
+            0, dark ? RF_UI_NIGHT_PANEL : RGB(27,31,27), dark ? RF_UI_NIGHT_TEXT : RGB(2,7,8),
+            dark ? RF_UI_NIGHT_SHADOW : RGB(22,27,24), dark ? RF_UI_GOLD : RGB(17,11,2),
+            dark ? RF_UI_NIGHT_SHADOW : RGB(22,27,24), dark ? RF_UI_NIGHT_MUTED : RGB(8,15,14),
+            dark ? RF_UI_NIGHT_SHADOW : RGB(22,27,24), 0,0,0,0,0,0,0,0,
+        };
+        LoadPalette(text, BG_PLTT_ID(1), sizeof(text));
         gMain.state++;
         break;
+    }
     case 6:
         PutWindowTilemap(WIN_HEADER);
         DrawHeaderText();
@@ -537,7 +549,7 @@ static u8 FrameType_ProcessInput(u8 selection)
             selection = 0;
 
         LoadBgTiles(1, GetWindowFrameTilesPal(selection)->tiles, 0x120, 0x1A2);
-        LoadPalette(GetWindowFrameTilesPal(selection)->pal, BG_PLTT_ID(7), PLTT_SIZE_4BPP);
+        RFUI_LoadWindowPalette(GetWindowFrameTilesPal(selection)->pal, BG_PLTT_ID(7));
         sArrowPressed = TRUE;
     }
     if (JOY_NEW(DPAD_LEFT))
@@ -548,7 +560,7 @@ static u8 FrameType_ProcessInput(u8 selection)
             selection = WINDOW_FRAMES_COUNT - 1;
 
         LoadBgTiles(1, GetWindowFrameTilesPal(selection)->tiles, 0x120, 0x1A2);
-        LoadPalette(GetWindowFrameTilesPal(selection)->pal, BG_PLTT_ID(7), PLTT_SIZE_4BPP);
+        RFUI_LoadWindowPalette(GetWindowFrameTilesPal(selection)->pal, BG_PLTT_ID(7));
         sArrowPressed = TRUE;
     }
     return selection;

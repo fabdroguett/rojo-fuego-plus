@@ -1,4 +1,6 @@
 #include "global.h"
+#include "rf_ui_theme.h"
+#include "key_system.h"
 #include "battle_main.h"
 #include "battle_util.h"
 #include "bg.h"
@@ -366,6 +368,29 @@ static const struct SpritePalette sInterfaceSpritePalette[] =
     {0}
 };
 
+// Counters and stat labels are OBJ graphics, independent of the BG text bank.
+static void RFLoadDexSpriteText(void)
+{
+    u8 pal;
+    u16 text = RF_UI_NIGHT_TEXT;
+    u16 shadow = RF_UI_NIGHT_SHADOW;
+    if (!KeySystem_IsOn(KEY_DARK_MODE))
+        return;
+    pal = IndexOfSpritePaletteTag(TAG_DEX_INTERFACE);
+    if (pal < 16)
+    {
+        LoadPalette(&text, OBJ_PLTT_ID(pal) + 9, sizeof(text));
+        LoadPalette(&text, OBJ_PLTT_ID(pal) + 15, sizeof(text));
+        LoadPalette(&shadow, OBJ_PLTT_ID(pal) + 14, sizeof(shadow));
+    }
+    pal = IndexOfSpritePaletteTag(TAG_STAT_BAR);
+    if (pal < 16)
+    {
+        LoadPalette(&text, OBJ_PLTT_ID(pal) + COLOR_ID_FONT, sizeof(text));
+        LoadPalette(&shadow, OBJ_PLTT_ID(pal) + COLOR_ID_FONT_SHADOW, sizeof(shadow));
+    }
+}
+
 static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
 {
     [WIN_INFO] =
@@ -580,6 +605,30 @@ bool32 TryOpenPokedexPage_HGSS(u8 taskId, u8 page)
     return TRUE;
 }
 
+// Only the HGSS chrome bank is recoloured. Type badges, Pokémon and stat-bar palettes stay intact.
+static void RFLoadDexChrome(void)
+{
+    bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
+    const u16 colors[] = {
+        dark ? RF_UI_NIGHT_PANEL : RGB(27,31,27),
+        dark ? RF_UI_NIGHT_GROUND : RGB(23,28,25),
+        dark ? RF_UI_SELECTED : RGB(30,26,11),
+        dark ? RF_UI_NIGHT_EDGE : RGB(11,21,19),
+        dark ? RF_UI_NIGHT_SHADOW : RGB(22,27,24),
+        dark ? RF_UI_NIGHT_EDGE : RGB(11,21,19),
+        dark ? RF_UI_SELECTED : RGB(3,12,11),
+        dark ? RF_UI_NIGHT_PANEL : RGB(8,18,15),
+        dark ? RF_UI_NIGHT_GROUND : RGB(2,9,8),
+        dark ? RF_UI_NIGHT_EDGE : RGB(10,20,17),
+        dark ? RF_UI_GOLD : RGB(17,11,2),
+    };
+    const u16 border = dark ? RF_UI_NIGHT_EDGE : RGB(11,21,19);
+    const u16 text = dark ? RF_UI_NIGHT_TEXT : RGB(2,7,8);
+    LoadPalette(colors, BG_PLTT_ID(0) + 1, sizeof(colors));
+    LoadPalette(&border, BG_PLTT_ID(0) + 14, sizeof(border));
+    LoadPalette(&text, BG_PLTT_ID(0) + 15, sizeof(text));
+}
+
 #define tLoadScreenTaskId data[0]
 
 bool32 TryLoadPokedexBgPalette_HGSS(bool8 isSearchResults)
@@ -587,26 +636,27 @@ bool32 TryLoadPokedexBgPalette_HGSS(bool8 isSearchResults)
     if (!POKEDEX_PLUS_HGSS)
         return FALSE;
 
-    if (!HGSS_DARK_MODE)
+    if (!KeySystem_IsOn(KEY_DARK_MODE))
     {
         if (isSearchResults == TRUE)
-            LoadPalette(sPokedexPlusHGSS_SearchResults_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+            LoadPalette(sPokedexPlusHGSS_SearchResults_Pal + 1, BG_PLTT_ID(0) + 1, sizeof(sPokedexPlusHGSS_SearchResults_Pal) - sizeof(sPokedexPlusHGSS_SearchResults_Pal[0]));
         else if (!IsNationalPokedexEnabled())
-            LoadPalette(sPokedexPlusHGSS_Default_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+            LoadPalette(sPokedexPlusHGSS_Default_Pal + 1, BG_PLTT_ID(0) + 1, sizeof(sPokedexPlusHGSS_Default_Pal) - sizeof(sPokedexPlusHGSS_Default_Pal[0]));
         else
-            LoadPalette(sPokedexPlusHGSS_National_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+            LoadPalette(sPokedexPlusHGSS_National_Pal + 1, BG_PLTT_ID(0) + 1, sizeof(sPokedexPlusHGSS_National_Pal) - sizeof(sPokedexPlusHGSS_National_Pal[0]));
     }
     else
     {
         if (isSearchResults == TRUE)
-            LoadPalette(sPokedexPlusHGSS_SearchResults_dark_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+            LoadPalette(sPokedexPlusHGSS_SearchResults_dark_Pal + 1, BG_PLTT_ID(0) + 1, sizeof(sPokedexPlusHGSS_SearchResults_dark_Pal) - sizeof(sPokedexPlusHGSS_SearchResults_dark_Pal[0]));
         else if (!IsNationalPokedexEnabled())
-            LoadPalette(sPokedexPlusHGSS_Default_dark_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+            LoadPalette(sPokedexPlusHGSS_Default_dark_Pal + 1, BG_PLTT_ID(0) + 1, sizeof(sPokedexPlusHGSS_Default_dark_Pal) - sizeof(sPokedexPlusHGSS_Default_dark_Pal[0]));
         else
-            LoadPalette(sPokedexPlusHGSS_National_dark_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+            LoadPalette(sPokedexPlusHGSS_National_dark_Pal + 1, BG_PLTT_ID(0) + 1, sizeof(sPokedexPlusHGSS_National_dark_Pal) - sizeof(sPokedexPlusHGSS_National_dark_Pal[0]));
     }
 
-    LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+    RFLoadDexChrome();
+    RFUI_LoadWindowPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(15));
     return TRUE;
 }
 
@@ -663,8 +713,9 @@ static bool8 LoadPokedexListPage(u8 page)
         FreeAllSpritePalettes();
         gReservedSpritePaletteCount = 8;
         LoadCompressedSpriteSheet(&sInterfaceSpriteSheet[HGSS_DECAPPED]);
-        LoadSpritePalette(&sInterfaceSpritePalette[HGSS_DARK_MODE]);
+        LoadSpritePalette(&sInterfaceSpritePalette[KeySystem_IsOn(KEY_DARK_MODE)]);
         LoadSpritePalettes(sStatBarSpritePal);
+        RFLoadDexSpriteText();
         CreateInterfaceSprites(page);
         gMain.state++;
         break;
@@ -1632,8 +1683,8 @@ static void PrintInfoScreenTextWhite(const u8* str, u8 left, u8 top)
 {
     u8 color[3];
     color[0] = TEXT_COLOR_TRANSPARENT;
-    color[1] = TEXT_COLOR_WHITE;
-    color[2] = TEXT_DYNAMIC_COLOR_6;
+    color[1] = KeySystem_IsOn(KEY_DARK_MODE) ? TEXT_DYNAMIC_COLOR_6 : TEXT_COLOR_WHITE;
+    color[2] = TEXT_COLOR_TRANSPARENT;
 
     AddTextPrinterParameterized4(0, FONT_NORMAL, left, top, 0, 0, color, TEXT_SKIP_DRAW, str);
 }
@@ -1642,7 +1693,7 @@ static void PrintInfoScreenTextSmall(const u8* str, u8 fontId, u8 left, u8 top)
     u8 color[3];
     color[0] = TEXT_COLOR_TRANSPARENT;
     color[1] = TEXT_DYNAMIC_COLOR_6;
-    color[2] = TEXT_COLOR_LIGHT_GRAY;
+    color[2] = TEXT_COLOR_TRANSPARENT;
 
     AddTextPrinterParameterized4(0, fontId, left, top, 0, 0, color, 0, str);
 }
@@ -1653,7 +1704,7 @@ static void PrintStatsScreenTextSmall(u8 windowId, const u8* str, u8 left, u8 to
     u8 color[3];
     color[0] = TEXT_COLOR_TRANSPARENT;
     color[1] = TEXT_DYNAMIC_COLOR_6;
-    color[2] = TEXT_COLOR_LIGHT_GRAY;
+    color[2] = TEXT_COLOR_TRANSPARENT;
 
     AddTextPrinterParameterized4(windowId, 0, left, top, 0, 0, color, 0, str);
 }
@@ -1662,7 +1713,7 @@ static void PrintStatsScreenTextSmallNarrower(u8 windowId, const u8* str, u8 lef
     u8 color[3];
     color[0] = TEXT_COLOR_TRANSPARENT;
     color[1] = TEXT_DYNAMIC_COLOR_6;
-    color[2] = TEXT_COLOR_LIGHT_GRAY;
+    color[2] = TEXT_COLOR_TRANSPARENT;
 
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROWER, left, top, 0, 0, color, 0, str);
 }
@@ -1670,8 +1721,8 @@ static void PrintStatsScreenTextSmallWhite(u8 windowId, const u8* str, u8 left, 
 {
     u8 color[3];
     color[0] = TEXT_COLOR_TRANSPARENT;
-    color[1] = TEXT_COLOR_WHITE;
-    color[2] = TEXT_DYNAMIC_COLOR_6;
+    color[1] = KeySystem_IsOn(KEY_DARK_MODE) ? TEXT_DYNAMIC_COLOR_6 : TEXT_COLOR_WHITE;
+    color[2] = TEXT_COLOR_TRANSPARENT;
 
     AddTextPrinterParameterized4(windowId, 0, left, top, 0, 0, color, 0, str);
 }
@@ -4575,7 +4626,7 @@ bool32 TryLoadPlayArrowPalette_HGSS(bool8 cryPlaying)
 
     u16 color;
 
-    if (!HGSS_DARK_MODE)
+    if (!KeySystem_IsOn(KEY_DARK_MODE))
     {
         if (cryPlaying)
             color = RGB(29, 9, 4);
@@ -4667,17 +4718,19 @@ bool32 TryLoadSearchMenu_HGSS(u8 taskId)
                 CopyToBgTilemapBuffer(3, sPokedexPlusHGSS_ScreenSearchHoenn_Tilemap, 0, 0);
             else
                 CopyToBgTilemapBuffer(3, sPokedexPlusHGSS_ScreenSearchNational_Tilemap, 0, 0);
-            if (!HGSS_DARK_MODE)
-                LoadPalette(sPokedexPlusHGSS_MenuSearch_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(4 * 16 - 1));
+            if (!KeySystem_IsOn(KEY_DARK_MODE))
+                LoadPalette(sPokedexPlusHGSS_MenuSearch_Pal + 1, BG_PLTT_ID(0) + 1, sizeof(sPokedexPlusHGSS_MenuSearch_Pal) - sizeof(sPokedexPlusHGSS_MenuSearch_Pal[0]));
             else
-                LoadPalette(sPokedexPlusHGSS_MenuSearch_dark_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(4 * 16 - 1));
+                LoadPalette(sPokedexPlusHGSS_MenuSearch_dark_Pal + 1, BG_PLTT_ID(0) + 1, sizeof(sPokedexPlusHGSS_MenuSearch_dark_Pal) - sizeof(sPokedexPlusHGSS_MenuSearch_dark_Pal[0]));
+            RFLoadDexChrome();
             gMain.state = 1;
         }
         break;
     case 1:
         LoadCompressedSpriteSheet(&sInterfaceSpriteSheet[HGSS_DECAPPED]);
-        LoadSpritePalette(&sInterfaceSpritePalette[HGSS_DARK_MODE]);
+        LoadSpritePalette(&sInterfaceSpritePalette[KeySystem_IsOn(KEY_DARK_MODE)]);
         LoadSpritePalettes(sStatBarSpritePal);
+        RFLoadDexSpriteText();
         CreateSearchParameterScrollArrows(taskId);
         for (i = 0; i < NUM_TASK_DATA; i++)
             gTasks[taskId].data[i] = 0;
@@ -4777,14 +4830,14 @@ bool32 TryHandleCaughtMonPageFlicker_HGSS(u8 taskId)
 
     // if (++gTasks[taskId].tPalTimer & 16)
     // {
-    //     if (!HGSS_DARK_MODE)
+    //     if (!KeySystem_IsOn(KEY_DARK_MODE))
     //         LoadPalette(sPokedexPlusHGSS_Default_Pal + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
     //     else
     //         LoadPalette(sPokedexPlusHGSS_Default_dark_Pal + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
     // }
     // else
     // {
-    //     if (!HGSS_DARK_MODE)
+    //     if (!KeySystem_IsOn(KEY_DARK_MODE))
     //         LoadPalette(sPokedexPlusHGSS_Default_Pal + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
     //     else
     //         LoadPalette(sPokedexPlusHGSS_Default_dark_Pal + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
@@ -4795,13 +4848,15 @@ bool32 TryHandleCaughtMonPageFlicker_HGSS(u8 taskId)
 
 static void TryLoadDarkModeArrowPalette(void)
 {
-    if (!HGSS_DARK_MODE)
+    if (!KeySystem_IsOn(KEY_DARK_MODE))
         return;
 
     u32 index = IndexOfSpritePaletteTag(gSpritePalette_Arrow.tag);
-    u32 colorArrow = RGB2GBA(72, 72, 72);
-    u32 colorOutline = RGB2GBA(24, 24, 24);
+    u16 colorArrow = RF_UI_GOLD;
+    u16 colorOutline = RF_UI_NIGHT_SHADOW;
 
+    if (index >= 16)
+        return;
     LoadPalette(&colorArrow, OBJ_PLTT_ID(index) + 1, sizeof(colorArrow));
     LoadPalette(&colorOutline, OBJ_PLTT_ID(index) + 2, sizeof(colorOutline));
 }

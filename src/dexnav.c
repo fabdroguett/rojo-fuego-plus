@@ -2109,7 +2109,7 @@ static void CreateSelectionCursor(void)
     const struct SpriteSheet sheet = {sRFSelectionCursorPixels, sizeof(sRFSelectionCursorPixels), SELECTION_CURSOR_TAG};
     u16 palette[16] = {0};
     u8 spriteId;
-    palette[1] = KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_TEXT : RGB(4, 5, 6);
+    palette[1] = KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_GOLD : RGB(4, 5, 6);
     LoadSpriteSheet(&sheet);
     LoadPalette(palette, OBJ_PLTT_ID(12), PLTT_SIZE_4BPP);
     spriteId = CreateSprite(&sSelectionCursorSpriteTemplate, 12, 32, 0);
@@ -2571,7 +2571,9 @@ static void DrawDexNavChrome(void)
     u32 section, i;
     u32 active = sDexNavUiDataPtr->cursorRow == ROW_WATER ? 0 : sDexNavUiDataPtr->cursorRow == ROW_HIDDEN ? 2 : 1;
     FillWindowPixelBuffer(WINDOW_CHROME, PIXEL_FILL(4));
-    FillWindowPixelRect(WINDOW_CHROME, PIXEL_FILL(1), 0, 16, 162, 132);
+    RFUI_DrawPanel(WINDOW_CHROME, 0, 16, 162, 37, 1, 6);
+    RFUI_DrawPanel(WINDOW_CHROME, 0, 53, 162, 60, 1, 6);
+    RFUI_DrawPanel(WINDOW_CHROME, 0, 113, 162, 35, 1, 6);
     FillWindowPixelRect(WINDOW_CHROME, PIXEL_FILL(6), 163, 20, 1, 124);
     for (section = 0; section < 3; section++)
     {
@@ -2585,7 +2587,9 @@ static void DrawDexNavChrome(void)
                 caught += GetSetPokedexFlag(dex, FLAG_GET_CAUGHT) != 0;
             }
         }
-        FillWindowPixelRect(WINDOW_CHROME, PIXEL_FILL(section == active ? 6 : 4), 4, y[section], 154, 12);
+        FillWindowPixelRect(WINDOW_CHROME, PIXEL_FILL(section == active ? 8 : 4), 4, y[section] + 1, 154, 11);
+        if (section == active)
+            FillWindowPixelRect(WINDOW_CHROME, PIXEL_FILL(9), 5, y[section] + 2, 2, 8);
         AddTextPrinterParameterized3(WINDOW_CHROME, FONT_SMALL, 8, y[section], sFontColor_Black, TEXT_SKIP_DRAW, labels[section]);
         ConvertIntToDecimalStringN(gStringVar4, caught, STR_CONV_MODE_LEFT_ALIGN, 2);
         StringAppend(gStringVar4, COMPOUND_STRING("/"));

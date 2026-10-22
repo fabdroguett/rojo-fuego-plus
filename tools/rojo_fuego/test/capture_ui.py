@@ -31,6 +31,21 @@ def shot(name):
 
 
 cases = {
+    "options": ("Options", "run 240\n" + shot("options") + "hold > 1\nrun 30\n" + shot("options-changed") + "hold B 1\nrun 180\n" + shot("options-closed")),
+    "trainer": ("Trainer", "run 240\n" + shot("trainer") + "hold A 1\nrun 240\n" + shot("trainer-back") + "hold B 1\nrun 180\n" + shot("trainer-closed")),
+    "pokedex": ("Pokedex", "run 240\n" + shot("pokedex")
+                + "hold A 1\nrun 240\n" + shot("pokedex-info")),
+    "field-party": ("FieldParty", "run 240\n" + shot("field-party")
+                    + "hold D 1\nrun 60\n" + shot("field-party-focus")
+                    + "hold A 1\nrun 60\n" + shot("field-party-action")
+                    + "hold A 1\nrun 240\n" + shot("field-party-summary")
+                    + "hold B 1\nrun 240\nhold D 1\nrun 20\nhold A 1\nrun 60\n" + shot("field-party-switch")
+                    + "hold D 1\nrun 40\nhold A 1\nrun 240\n" + shot("field-party-reordered")
+                    + callback("RFUiFixture_CheckOrder") + "run 1\n" + f'r8 {symbols["gRFUiFixture_OrderOK"]:08x}\n'),
+    "start": ("Start", "run 60\n" + shot("start")
+              + "hold > 1\nrun 20\n" + shot("start-focus")
+              + "hold D 1\nrun 20\n" + shot("start-row")
+              + "hold B 1\nrun 30\n" + shot("start-closed")),
     "empty": ("DexNavEmpty", "run 180\n" + shot("empty")),
     "unknown": ("DexNavUnknown", "run 180\nhold > 1\nrun 20\nhold > 1\nrun 20\n" + shot("unknown")),
     "dexnav": ("DexNav", "run 180\n" + shot("dexnav")
@@ -41,7 +56,7 @@ cases = {
     "summary": ("Summary", "run 180\n" + shot("summary")
                 + "hold > 1\nrun 60\n" + shot("stats")
                 + "hold > 1\nrun 60\n" + shot("moves")),
-    "bag": ("Bag", "run 180\n" + shot("bag")),
+    "bag": ("Bag", "run 180\n" + shot("bag") + "hold > 1\nrun 90\n" + shot("bag-balls") + "hold > 1\nrun 90\n" + shot("bag-tm") + "hold < 1\nrun 90\nhold < 1\nrun 90\nhold A 1\nrun 40\n" + shot("bag-actions")),
     "quests": ("Quests", "run 60\n" + shot("quests") + "hold B 1\nrun 30\n" + shot("quests-closed")),
     "keys": ("Keys", "run 60\n" + shot("keys") + "hold B 1\nrun 30\n" + shot("keys-closed")),
     "pc": ("PC", "run 60\n" + shot("pc-menu") + "hold D 1\nrun 10\nhold D 1\nrun 10\nhold A 1\nrun 240\n" + shot("pc")),
@@ -81,7 +96,7 @@ for case in selected:
         result = docker("exec", "rojo-fuego-check", "/tmp/rf-mgba-harness",
                         "/work/pokefirered.gba", "/tmp/rf-ui.txt", capture_output=True, text=True)
         (OUT / f"{case}-{mode}.log").write_text(result.stdout)
-        if case in ("party", "party-slow", "faint"):
+        if case in ("party", "party-slow", "faint", "field-party"):
             assert result.stdout.strip().endswith("= 01"), f"Party switch failed: {case} {mode}: {result.stdout}"
         for line in script.splitlines():
             if line.startswith("shot "):

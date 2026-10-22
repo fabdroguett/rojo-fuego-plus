@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_ui_theme.h"
 #include "achievements.h"
 #include "event_data.h"
 #include "event_object_lock.h"
@@ -106,6 +107,9 @@ static void DrawChapterHeader(void)
     AddTextPrinterParameterized(window, FONT_SMALL, sChapterNames[sQuestChapter], 0, 0, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized(window, FONT_SMALL, gStringVar1, 155, 0, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized(window, FONT_SMALL, COMPOUND_STRING("L/R"), 200, 0, TEXT_SKIP_DRAW, NULL);
+    FillWindowPixelRect(window, PIXEL_FILL(3), 0, 13, 224, 2);
+    if (sQuestListCount != 0 && completed != 0)
+        FillWindowPixelRect(window, PIXEL_FILL(5), 0, 13, 224 * completed / sQuestListCount, 2);
     CopyWindowToVram(window, COPYWIN_FULL);
 }
 

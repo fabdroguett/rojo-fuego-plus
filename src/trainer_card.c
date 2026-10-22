@@ -1,4 +1,6 @@
 #include "global.h"
+#include "rf_ui_theme.h"
+#include "key_system.h"
 #include "achievements.h"
 #include "scanline_effect.h"
 #include "palette.h"
@@ -1465,6 +1467,16 @@ static u8 SetCardBgsAndPals(void)
                 LoadPalette(sKantoTrainerCardFemaleBg_Pal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         }
         LoadPalette(sTrainerCardStar_Pal, BG_PLTT_ID(4), PLTT_SIZE_4BPP);
+        if (sData->cardType == CARD_TYPE_FRLG && KeySystem_IsOn(KEY_DARK_MODE))
+        {
+            static const u16 frame[] = {
+                RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
+                RF_UI_NIGHT_EDGE, RF_UI_GOLD, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_MUTED,
+                RF_UI_GOLD, RGB(8,20,14), RF_UI_SELECTED, RF_UI_SELECTED,
+                RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
+            };
+            LoadPalette(frame, BG_PLTT_ID(0), sizeof(frame));
+        }
         break;
     case 3:
         SetBgTilemapBuffer(0, sData->cardTilemapBuffer);

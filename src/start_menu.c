@@ -49,6 +49,8 @@
 #include "key_system.h"
 #include "rf_quests.h"
 #include "wild_encounter.h"
+#include "rf_ui_theme.h"
+#include "money.h"
 #include "constants/battle_frontier.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -72,6 +74,7 @@ enum
     MENU_ACTION_DEBUG,
     MENU_ACTION_DEXNAV,
     MENU_ACTION_KEY_SYSTEM,
+    MENU_ACTION_QUESTS,
 };
 
 // Save status
@@ -93,6 +96,8 @@ EWRAM_DATA static u8 sStartMenuCursorPos = 0;
 EWRAM_DATA static u8 sNumStartMenuActions = 0;
 EWRAM_DATA static u8 sCurrentStartMenuActions[9] = {0};
 EWRAM_DATA static s8 sInitStartMenuData[2] = {0};
+EWRAM_DATA static bool8 sRemasteredMenu = FALSE;
+static EWRAM_DATA bool8 sDexNavNoticeShown = FALSE;
 
 EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
@@ -115,6 +120,7 @@ static bool8 StartMenuBattlePyramidBagCallback(void);
 static bool8 StartMenuDebugCallback(void);
 static bool8 StartMenuDexNavCallback(void);
 static bool8 StartMenuKeySystemCallback(void);
+static bool8 StartMenuQuestsCallback(void);
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -212,7 +218,97 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_DEBUG]           = {sText_MenuDebug,   {.u8_void = StartMenuDebugCallback}},
     [MENU_ACTION_DEXNAV]          = {gText_MenuDexNav,  {.u8_void = StartMenuDexNavCallback}},
     [MENU_ACTION_KEY_SYSTEM]      = {sText_MenuKeySystem, {.u8_void = StartMenuKeySystemCallback}},
+    [MENU_ACTION_QUESTS]          = {COMPOUND_STRING("MISIONES"), {.u8_void = StartMenuQuestsCallback}},
 };
+
+#include "data/rf_menu_icons.h"
+
+static const u8 *RemasteredActionName(u32 action)
+{
+    switch (action)
+    {
+    case MENU_ACTION_POKEDEX: return COMPOUND_STRING("POKEDEX");
+    case MENU_ACTION_POKEMON: return COMPOUND_STRING("EQUIPO");
+    case MENU_ACTION_BAG: return COMPOUND_STRING("MOCHILA");
+    case MENU_ACTION_PLAYER: return COMPOUND_STRING("PERFIL");
+    case MENU_ACTION_SAVE: return COMPOUND_STRING("GUARDAR");
+    case MENU_ACTION_OPTION: return COMPOUND_STRING("AJUSTES");
+    case MENU_ACTION_KEY_SYSTEM: return COMPOUND_STRING("CLAVES");
+    case MENU_ACTION_DEXNAV: return COMPOUND_STRING("DEXNAV");
+    case MENU_ACTION_QUESTS: return COMPOUND_STRING("MISIONES");
+    default: return sStartMenuItems[action].text;
+    }
+}
+
+static const u8 *RemasteredActionHelp(u32 action)
+{
+    switch (action)
+    {
+    case MENU_ACTION_POKEDEX: return COMPOUND_STRING("Especies, habitat y capturas.");
+    case MENU_ACTION_POKEMON: return COMPOUND_STRING("Revisa y organiza tu equipo.");
+    case MENU_ACTION_BAG: return COMPOUND_STRING("Objetos, bolsillos y herramientas.");
+    case MENU_ACTION_PLAYER: return COMPOUND_STRING("Tu ficha y las medallas de Kanto.");
+    case MENU_ACTION_SAVE: return COMPOUND_STRING("Guarda el progreso de tu aventura.");
+    case MENU_ACTION_OPTION: return COMPOUND_STRING("Texto, sonido y controles.");
+    case MENU_ACTION_KEY_SYSTEM: return COMPOUND_STRING("Personaliza las mejoras del juego.");
+    case MENU_ACTION_DEXNAV: return COMPOUND_STRING("Busca Pokemon y completa la zona.");
+    case MENU_ACTION_QUESTS: return COMPOUND_STRING("Capitulos, objetivos y recompensas.");
+    default: return COMPOUND_STRING("Abre la herramienta seleccionada.");
+    }
+}
+
+static u8 RFStartMoveCursor(u8 cursor, u8 count, u16 keys)
+{
+    s32 position, slots, delta;
+    if (count == 0)
+        return 0;
+    position = cursor % count;
+    if (keys & (DPAD_LEFT | DPAD_RIGHT))
+        return (position + ((keys & DPAD_RIGHT) ? 1 : count - 1)) % count;
+    if (!(keys & (DPAD_UP | DPAD_DOWN)))
+        return position;
+    slots = ((count + 2) / 3) * 3;
+    delta = (keys & DPAD_DOWN) ? 3 : slots - 3;
+    do { position = (position + delta) % slots; } while (position >= count);
+    return position;
+}
+
+static void DrawRemasteredMenu(void)
+{
+    static const u8 ink[] = {0, 2, 3};
+    u8 window = GetStartMenuWindowId();
+    u32 i;
+    if (window == WINDOW_NONE)
+        return;
+    RFUI_LoadPalette(15, KeySystem_IsOn(KEY_DARK_MODE));
+    FillWindowPixelBuffer(window, PIXEL_FILL(4));
+    RFUI_DrawPanel(window, 0, 0, 224, 144, 1, 6);
+    AddTextPrinterParameterized3(window, FONT_SMALL, 6, 3, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("MENU PRINCIPAL"));
+    StringCopy(gStringVar4, COMPOUND_STRING("¥"));
+    ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), GetMoney(&gSaveBlock1Ptr->money), STR_CONV_MODE_LEFT_ALIGN, 6);
+    AddTextPrinterParameterized3(window, FONT_SMALL, GetStringRightAlignXOffset(FONT_SMALL, gStringVar4, 216), 3, ink, TEXT_SKIP_DRAW, gStringVar4);
+    for (i = 0; i < sNumStartMenuActions; i++)
+    {
+        u32 x = 5 + (i % 3) * 72;
+        u32 y = 22 + (i / 3) * 30;
+        u32 action = sCurrentStartMenuActions[i];
+        static const u8 selectedInk[] = {0, 4, 9};
+        bool32 selected = i == sStartMenuCursorPos;
+        bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
+        const u8 *label = RemasteredActionName(action);
+        RFUI_DrawPanel(window, x, y, 70, 27, selected ? (dark ? 9 : 8) : 1, selected ? 9 : 6);
+        BlitBitmapToWindow(window, sRFMenuIcons[action], x + 4, y + 5, 16, 16);
+        AddTextPrinterParameterized3(window, GetStringWidth(FONT_SMALL, label, 0) > 44 ? FONT_SMALL_NARROWER : FONT_SMALL,
+            x + 23, y + 7, selected && dark ? selectedInk : ink, TEXT_SKIP_DRAW, label);
+    }
+    RFUI_DrawPanel(window, 5, 113, 214, 16, 4, 6);
+    AddTextPrinterParameterized3(window, FONT_SMALL, 9, 115, ink, TEXT_SKIP_DRAW,
+        sDexNavNoticeShown ? COMPOUND_STRING("No hay encuentros en esta zona.") : RemasteredActionHelp(sCurrentStartMenuActions[sStartMenuCursorPos]));
+    AddTextPrinterParameterized3(window, FONT_SMALL, 8, 130, ink, TEXT_SKIP_DRAW,
+        FlagGet(FLAG_SYS_POKEDEX_GET) ? COMPOUND_STRING("A Entrar   B Atras   R Misiones") : COMPOUND_STRING("A Entrar   B Atras"));
+    PutWindowTilemap(window);
+    CopyWindowToVram(window, COPYWIN_FULL);
+}
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
 {
@@ -350,6 +446,8 @@ static void BuildNormalStartMenu(void)
     // Rojo Fuego+: the Key System takes the place of EXIT so the menu still fits on screen.
     // B and Start keep closing the menu.
     AddStartMenuAction(MENU_ACTION_KEY_SYSTEM);
+    if (FlagGet(FLAG_SYS_POKEDEX_GET) && sNumStartMenuActions < ARRAY_COUNT(sCurrentStartMenuActions))
+        AddStartMenuAction(MENU_ACTION_QUESTS);
 }
 
 static void BuildDebugStartMenu(void)
@@ -474,7 +572,6 @@ static void ShowPyramidFloorWindow(void)
 }
 
 // Rojo Fuego+: told when the DexNav is chosen on a map without wild Pokémon
-static EWRAM_DATA bool8 sDexNavNoticeShown = FALSE;
 static EWRAM_DATA u8 sDexNavNoticeWindowId = 0;
 
 static const struct WindowTemplate sWindowTemplate_DexNavNotice = {
@@ -491,6 +588,12 @@ static void HideDexNavNotice(void)
 {
     if (!sDexNavNoticeShown)
         return;
+    if (sRemasteredMenu)
+    {
+        sDexNavNoticeShown = FALSE;
+        DrawRemasteredMenu();
+        return;
+    }
     ClearStdWindowAndFrameToTransparent(sDexNavNoticeWindowId, FALSE);
     CopyWindowToVram(sDexNavNoticeWindowId, COPYWIN_FULL);
     RemoveWindow(sDexNavNoticeWindowId);
@@ -501,6 +604,12 @@ static void ShowDexNavNotice(void)
 {
     if (sDexNavNoticeShown)
         return;
+    if (sRemasteredMenu)
+    {
+        sDexNavNoticeShown = TRUE;
+        DrawRemasteredMenu();
+        return;
+    }
     sDexNavNoticeWindowId = AddWindow(&sWindowTemplate_DexNavNotice);
     // The frame call clears the window, so it goes before the text
     DrawStdWindowFrame(sDexNavNoticeWindowId, FALSE);
@@ -567,11 +676,23 @@ static bool32 InitStartMenuStep(void)
         break;
     case 1:
         BuildStartMenuActions();
+        sRemasteredMenu = IS_FRLG && !IsOverworldLinkActive() && !InUnionRoom()
+            && !GetSafariZoneFlag() && !InBattlePike()
+            && CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE && !InMultiPartnerRoom()
+            && !(DEBUG_OVERWORLD_MENU && DEBUG_OVERWORLD_IN_MENU);
+        if (sStartMenuCursorPos >= sNumStartMenuActions)
+            sStartMenuCursorPos = 0;
         sInitStartMenuData[0]++;
         break;
     case 2:
         LoadMessageBoxAndBorderGfx();
-        DrawStdWindowFrame(AddStartMenuWindow(sNumStartMenuActions), FALSE);
+        if (sRemasteredMenu)
+        {
+            if (AddRemasteredStartMenuWindow() == WINDOW_NONE)
+                sRemasteredMenu = FALSE;
+        }
+        if (!sRemasteredMenu)
+            DrawStdWindowFrame(AddStartMenuWindow(sNumStartMenuActions), FALSE);
         sInitStartMenuData[1] = 0;
         sInitStartMenuData[0]++;
         break;
@@ -583,12 +704,17 @@ static bool32 InitStartMenuStep(void)
         sInitStartMenuData[0]++;
         break;
     case 4:
-        if (PrintStartMenuActions(&sInitStartMenuData[1], 2))
+        if (sRemasteredMenu || PrintStartMenuActions(&sInitStartMenuData[1], 2))
             sInitStartMenuData[0]++;
         break;
     case 5:
-        sStartMenuCursorPos = InitMenuNormal(GetStartMenuWindowId(), FONT_NORMAL, 0, 9, 16, sNumStartMenuActions, sStartMenuCursorPos);
-        CopyWindowToVram(GetStartMenuWindowId(), COPYWIN_MAP);
+        if (sRemasteredMenu)
+            DrawRemasteredMenu();
+        else
+        {
+            sStartMenuCursorPos = InitMenuNormal(GetStartMenuWindowId(), FONT_NORMAL, 0, 9, 16, sNumStartMenuActions, sStartMenuCursorPos);
+            CopyWindowToVram(GetStartMenuWindowId(), COPYWIN_MAP);
+        }
         return TRUE;
     }
 
@@ -685,16 +811,22 @@ static bool8 HandleStartMenuInput(void)
         RFQuests_OpenMenu();
         return TRUE;
     }
-    if (JOY_NEW(DPAD_UP | DPAD_DOWN | A_BUTTON))
+    if (JOY_NEW(DPAD_ANY | A_BUTTON))
         HideDexNavNotice();
 
-    if (JOY_NEW(DPAD_UP))
+    if (sRemasteredMenu && JOY_NEW(DPAD_ANY))
+    {
+        sStartMenuCursorPos = RFStartMoveCursor(sStartMenuCursorPos, sNumStartMenuActions, gMain.newKeys);
+        PlaySE(SE_SELECT);
+        DrawRemasteredMenu();
+    }
+    else if (JOY_NEW(DPAD_UP))
     {
         PlaySE(SE_SELECT);
         sStartMenuCursorPos = Menu_MoveCursor(-1);
     }
 
-    if (JOY_NEW(DPAD_DOWN))
+    else if (JOY_NEW(DPAD_DOWN))
     {
         PlaySE(SE_SELECT);
         sStartMenuCursorPos = Menu_MoveCursor(1);
@@ -722,6 +854,7 @@ static bool8 HandleStartMenuInput(void)
             && gMenuCallback != StartMenuExitCallback
             && gMenuCallback != StartMenuDebugCallback
             && gMenuCallback != StartMenuKeySystemCallback
+            && gMenuCallback != StartMenuQuestsCallback
             && gMenuCallback != StartMenuSafariZoneRetireCallback
             && gMenuCallback != StartMenuBattlePyramidRetireCallback)
         {
@@ -1576,6 +1709,14 @@ static bool8 StartMenuKeySystemCallback(void)
     RemoveExtraStartMenuWindows();
     HideStartMenuDebug(); // Hide start menu without enabling movement
     KeySystem_OpenMenu();
+    return TRUE;
+}
+
+static bool8 StartMenuQuestsCallback(void)
+{
+    RemoveExtraStartMenuWindows();
+    HideStartMenuDebug();
+    RFQuests_OpenMenu();
     return TRUE;
 }
 

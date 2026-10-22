@@ -2220,7 +2220,7 @@ void CreatePokedexList(u8 dexMode, u8 order)
 
 static void PrintMonDexNum(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top)
 {
-    static const u8 color[3] = { TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_LIGHT_GRAY };
+    static const u8 color[3] = { TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_TRANSPARENT };
     u32 xOffset = 0;
     if (POKEDEX_PLUS_HGSS)
         xOffset = 4;
@@ -2229,7 +2229,7 @@ static void PrintMonDexNum(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 to
 
 static void PrintMonName(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top)
 {
-    static const u8 color[3] = { TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_LIGHT_GRAY };
+    static const u8 color[3] = { TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_TRANSPARENT };
     u32 xOffset = 0;
     if (POKEDEX_PLUS_HGSS)
         xOffset = 13;
@@ -3151,7 +3151,7 @@ void PrintInfoScreenText(const u8 *str, u8 left, u8 top)
     u8 color[3];
     color[0] = TEXT_COLOR_TRANSPARENT;
     color[1] = TEXT_DYNAMIC_COLOR_6;
-    color[2] = TEXT_COLOR_LIGHT_GRAY;
+    color[2] = TEXT_COLOR_TRANSPARENT;
 
     AddTextPrinterParameterized4(0, FONT_NORMAL, left, top, 0, 0, color, TEXT_SKIP_DRAW, str);
 }
@@ -4679,7 +4679,7 @@ static void PrintInfoSubMenuText(u8 windowId, const u8 *str, u8 left, u8 top)
     u8 color[3];
     color[0] = TEXT_COLOR_TRANSPARENT;
     color[1] = TEXT_DYNAMIC_COLOR_6;
-    color[2] = TEXT_COLOR_LIGHT_GRAY;
+    color[2] = TEXT_COLOR_TRANSPARENT;
 
     AddTextPrinterParameterized4(windowId, FONT_NORMAL, left, top, 0, 0, color, TEXT_SKIP_DRAW, str);
 }

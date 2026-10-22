@@ -397,6 +397,13 @@ u8 AddStartMenuWindow(u8 numActions)
     return sStartMenuWindowId;
 }
 
+u8 AddRemasteredStartMenuWindow(void)
+{
+    if (sStartMenuWindowId == WINDOW_NONE)
+        sStartMenuWindowId = AddWindowParameterized(0, 1, 1, 28, 18, 15, 1);
+    return sStartMenuWindowId;
+}
+
 u8 GetStartMenuWindowId(void)
 {
     return sStartMenuWindowId;

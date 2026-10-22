@@ -1,5 +1,6 @@
 #include "global.h"
 #include "rf_ui_theme.h"
+#include "trainer_pokemon_sprites.h"
 #include "achievements.h"
 #include "malloc.h"
 #include "battle.h"
@@ -213,6 +214,11 @@ struct PartyMenuBox
 static EWRAM_DATA struct PartyMenuInternal *sPartyMenuInternal = NULL;
 EWRAM_DATA struct PartyMenu gPartyMenu = {0};
 static EWRAM_DATA struct PartyMenuBox *sPartyMenuBoxes = NULL;
+static EWRAM_DATA bool8 sRFPartyLayout = FALSE;
+static EWRAM_DATA u16 *sRFPartyMap = NULL;
+static EWRAM_DATA u8 sRFPartyWindow = 0;
+static EWRAM_DATA u8 sRFPartyLastSlot = 0;
+static EWRAM_DATA u16 sRFPartyPic = 0;
 static EWRAM_DATA u8 *sPartyBgGfxTilemap = NULL;
 static EWRAM_DATA u8 *sPartyBgTilemapBuffer = NULL;
 EWRAM_DATA bool8 gPartyMenuUseExitCallback = 0;
@@ -517,6 +523,107 @@ static const u8 sText_CannotSendMonToBoxPartner[] = _("Cannot send a mon that do
 // static const data
 #include "data/party_menu.h"
 
+static const struct WindowTemplate sRFPartyWindows[] = {
+    {0, 1, 0, 18, 3, 3, 0x63},
+    {0, 1, 3, 18, 3, 4, 0x99},
+    {0, 1, 6, 18, 3, 5, 0xCF},
+    {0, 1, 9, 18, 3, 6, 0x105},
+    {0, 1, 12, 18, 3, 7, 0x13B},
+    {0, 1, 15, 18, 3, 8, 0x171},
+    [WIN_MSG] = {2, 1, 15, 28, 4, 14, 0x1DF},
+    DUMMY_WIN_TEMPLATE,
+};
+static const u8 sRFPartyCoords[PARTY_SIZE][8] = {
+    {16,10,20,20,48,19,14,17}, {16,34,20,44,48,43,14,41},
+    {16,58,20,68,48,67,14,65}, {16,82,20,92,48,91,14,89},
+    {16,106,20,116,48,115,14,113}, {16,130,20,140,48,139,14,137},
+};
+
+static void RFPartyFreePreview(void)
+{
+    if (sRFPartyMap != NULL)
+    {
+        if (sRFPartyPic < MAX_SPRITES)
+            FreeAndDestroyMonPicSprite(sRFPartyPic);
+        HideBg(3);
+        UnsetBgTilemapBuffer(3);
+        Free(sRFPartyMap);
+        sRFPartyMap = NULL;
+    }
+    sRFPartyPic = 0xFFFF;
+    sRFPartyWindow = WINDOW_NONE;
+}
+
+static void RFPartyDrawPreview(void)
+{
+    static const u8 ink[] = {0,2,3};
+    struct Pokemon *mon;
+    u32 i;
+    u8 slot = (gPartyMenu.action == PARTY_ACTION_SWITCH || gPartyMenu.action == PARTY_ACTION_SOFTBOILED)
+        ? gPartyMenu.slotId2 : gPartyMenu.slotId;
+    if (!sRFPartyLayout || sRFPartyMap == NULL || sRFPartyWindow == WINDOW_NONE
+        || slot >= gPartiesCount[B_TRAINER_PLAYER] || slot == sRFPartyLastSlot)
+        return;
+    sRFPartyLastSlot = slot;
+    mon = &gParties[B_TRAINER_PLAYER][slot];
+    if (sRFPartyPic < MAX_SPRITES)
+        FreeAndDestroyMonPicSprite(sRFPartyPic);
+    sRFPartyPic = 0xFFFF;
+    FillWindowPixelBuffer(sRFPartyWindow, PIXEL_FILL(4));
+    RFUI_DrawPanel(sRFPartyWindow, 0, 0, 88, 160, 1, 6);
+    GetMonNickname(mon, gStringVar4);
+    RFUI_PrintFitted(sRFPartyWindow, gStringVar4, 4, 2, 80, ink);
+    if (!GetMonData(mon, MON_DATA_IS_EGG))
+    {
+        sRFPartyPic = CreateMonPicSprite(GetMonData(mon, MON_DATA_SPECIES), IsMonShiny(mon),
+            GetMonData(mon, MON_DATA_PERSONALITY), TRUE, 196, 48, 12, TAG_NONE);
+        if (sRFPartyPic < MAX_SPRITES)
+            gSprites[sRFPartyPic].oam.priority = 1;
+        StringCopy(gStringVar4, COMPOUND_STRING("H: "));
+        StringAppend(gStringVar4, gAbilitiesInfo[GetMonAbility(mon)].name);
+        RFUI_PrintFitted(sRFPartyWindow, gStringVar4, 4, 82, 80, ink);
+        StringCopy(gStringVar4, COMPOUND_STRING("Obj: "));
+        StringAppend(gStringVar4, GetMonData(mon, MON_DATA_HELD_ITEM) == ITEM_NONE
+            ? COMPOUND_STRING("Ninguno") : GetItemName(GetMonData(mon, MON_DATA_HELD_ITEM)));
+        RFUI_PrintFitted(sRFPartyWindow, gStringVar4, 4, 94, 80, ink);
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            enum Move move = GetMonData(mon, MON_DATA_MOVE1 + i);
+            RFUI_PrintFitted(sRFPartyWindow, move == MOVE_NONE ? COMPOUND_STRING("--") : GetMoveName(move), 4, 106 + i * 12, 80, ink);
+        }
+    }
+    else
+        RFUI_PrintFitted(sRFPartyWindow, COMPOUND_STRING("Huevo"), 4, 82, 80, ink);
+    PutWindowTilemap(sRFPartyWindow);
+    CopyWindowToVram(sRFPartyWindow, COPYWIN_FULL);
+}
+
+static void RFPartyInitPreview(void)
+{
+    static const struct BgTemplate bg = { .bg = 3, .charBaseIndex = 2, .mapBaseIndex = 27, .priority = 1 };
+    static const struct WindowTemplate window = {3,19,0,11,20,11,1};
+    static const u32 transparentTile[8] = {0};
+    if (!sRFPartyLayout)
+        return;
+    sRFPartyMap = AllocZeroed(0x800);
+    if (sRFPartyMap == NULL)
+        return;
+    sRFPartyPic = 0xFFFF;
+    InitBgFromTemplate(&bg);
+    LoadBgTiles(3, transparentTile, sizeof(transparentTile), 0);
+    SetBgTilemapBuffer(3, sRFPartyMap);
+    sRFPartyWindow = AddWindow(&window);
+    if (sRFPartyWindow == WINDOW_NONE)
+    {
+        RFPartyFreePreview();
+        return;
+    }
+    RFUI_LoadPalette(11, KeySystem_IsOn(KEY_DARK_MODE));
+    sRFPartyLastSlot = 0xFF;
+    RFPartyDrawPreview();
+    ShowBg(3);
+}
+
 // code
 static void InitPartyMenu(enum PartyMenuType menuType, enum PartyMenuLayout layout, u8 partyAction, bool8 keepCursorPos, u8 messageId, TaskFunc task, MainCallback callback)
 {
@@ -547,6 +654,8 @@ static void InitPartyMenu(enum PartyMenuType menuType, enum PartyMenuLayout layo
 
         if (layout != KEEP_PARTY_LAYOUT)
             gPartyMenu.layout = layout;
+        sRFPartyLayout = menuType == PARTY_MENU_TYPE_FIELD && gPartyMenu.layout == PARTY_LAYOUT_SINGLE
+            && partyAction == PARTY_ACTION_CHOOSE_MON;
 
         for (i = 0; i < ARRAY_COUNT(sPartyMenuInternal->data); i++)
             sPartyMenuInternal->data[i] = 0;
@@ -602,6 +711,7 @@ static void RefreshPartyMenu(void) //Refreshes the party menu without restarting
 static void CB2_UpdatePartyMenu(void)
 {
     RunTasks();
+    RFPartyDrawPreview();
     AnimateSprites();
     BuildOamBuffer();
     DoScheduledBgTilemapCopiesToVram();
@@ -738,6 +848,7 @@ static bool8 ShowPartyMenu(void)
     case 20:
         CreateTask(sPartyMenuInternal->task, 0);
         DisplayPartyMenuStdMessage(sPartyMenuInternal->messageId);
+        RFPartyInitPreview();
         gMain.state++;
         break;
     case 21:
@@ -875,6 +986,10 @@ static void Task_ExitPartyMenu(u8 taskId)
 
 static void ResetPartyMenu(void)
 {
+    sRFPartyLayout = FALSE;
+    sRFPartyMap = NULL;
+    sRFPartyWindow = WINDOW_NONE;
+    sRFPartyPic = 0xFFFF;
     sPartyMenuInternal = NULL;
     sPartyBgTilemapBuffer = NULL;
     sPartyMenuBoxes = NULL;
@@ -912,18 +1027,18 @@ struct DarkModeColor
 static const struct DarkModeColor sPartyMenuBgDarkColors[] =
 {
     // These source entries are copied into each slot when the cursor moves.
-    {116, RGB(10, 10, 11)}, {117, RGB(10, 10, 11)}, {118, RF_UI_NIGHT_EDGE},
-    {97, RF_UI_NIGHT_PANEL}, {103, RGB(30, 12, 10)}, {104, RGB(30, 12, 10)},
+    {116, RF_UI_SELECTED}, {117, RF_UI_SELECTED}, {118, RF_UI_NIGHT_EDGE},
+    {97, RF_UI_NIGHT_PANEL}, {103, RF_UI_GOLD}, {104, RF_UI_GOLD},
     {16 * 3 + 4, RF_UI_NIGHT_PANEL},
     {16 * 3 + 5, RF_UI_NIGHT_PANEL},
     {16 * 3 + 6, RF_UI_NIGHT_EDGE},
     {16 * 3 + 7, RF_UI_NIGHT_PANEL},
     {16 * 3 + 8, RF_UI_NIGHT_EDGE},
-    {16 * 9 + 4, RGB(10, 10, 11)},
-    {16 * 9 + 5, RGB(10, 10, 11)},
+    {16 * 9 + 4, RF_UI_SELECTED},
+    {16 * 9 + 5, RF_UI_SELECTED},
     {16 * 9 + 6, RF_UI_NIGHT_EDGE},
-    {16 * 9 + 7, RGB(30, 12, 10)},
-    {16 * 9 + 8, RGB(30, 12, 10)},
+    {16 * 9 + 7, RF_UI_GOLD},
+    {16 * 9 + 8, RF_UI_GOLD},
     {16 * 1 + 3, RF_UI_NIGHT_GROUND},
     {16 * 1 + 4, RF_UI_NIGHT_GROUND},
     {16 * 1 + 5, RF_UI_NIGHT_GROUND},
@@ -1011,6 +1126,7 @@ static void PartyPaletteBufferCopy(u8 palNum)
 
 static void FreePartyPointers(void)
 {
+    RFPartyFreePreview();
     if (sPartyMenuInternal)
         Free(sPartyMenuInternal);
     if (sPartyBgTilemapBuffer)
@@ -1036,6 +1152,8 @@ static void LoadPartyMenuBoxes(enum PartyMenuLayout layout)
     {
         sPartyMenuBoxes[i].infoRects = &sPartyBoxInfoRects[PARTY_BOX_RIGHT_COLUMN];
         sPartyMenuBoxes[i].spriteCoords = sPartyMenuSpriteCoords[layout][i];
+        if (sRFPartyLayout)
+            sPartyMenuBoxes[i].spriteCoords = sRFPartyCoords[i];
         sPartyMenuBoxes[i].windowId = i;
         sPartyMenuBoxes[i].monSpriteId = SPRITE_NONE;
         sPartyMenuBoxes[i].itemSpriteId = SPRITE_NONE;
@@ -1044,7 +1162,8 @@ static void LoadPartyMenuBoxes(enum PartyMenuLayout layout)
     }
 
     // The first party mon goes in the left column
-    sPartyMenuBoxes[0].infoRects = &sPartyBoxInfoRects[PARTY_BOX_LEFT_COLUMN];
+    if (!sRFPartyLayout)
+        sPartyMenuBoxes[0].infoRects = &sPartyBoxInfoRects[PARTY_BOX_LEFT_COLUMN];
 
     if (layout == PARTY_LAYOUT_MULTI_SHOWCASE)
         sPartyMenuBoxes[3].infoRects = &sPartyBoxInfoRects[PARTY_BOX_LEFT_COLUMN];
@@ -1376,7 +1495,7 @@ static void CreateCancelConfirmPokeballSprites(void)
         }
         else
         {
-            sPartyMenuInternal->spriteIdCancelPokeball = CreatePokeballButtonSprite(198, 148);
+            sPartyMenuInternal->spriteIdCancelPokeball = CreatePokeballButtonSprite(sRFPartyLayout ? 8 : 198, 148);
         }
         AnimatePartySlot(gPartyMenu.slotId, 1);
     }
@@ -2432,7 +2551,7 @@ static void InitPartyMenuWindows(enum PartyMenuLayout layout)
         InitWindows(sMultiPartyMenuWindowTemplate);
         break;
     default: // Singles and full-party multibattle menus
-        InitWindows(sSinglePartyMenuWindowTemplate);
+        InitWindows(sRFPartyLayout ? sRFPartyWindows : sSinglePartyMenuWindowTemplate);
         break;
     }
     LoadPartyMenuWindows();
@@ -2473,13 +2592,21 @@ static void CreateCancelConfirmWindows(bool8 chooseHalf)
         }
         else
         {
-            cancelWindowId = AddWindow(&sCancelButtonWindowTemplate);
+            if (sRFPartyLayout)
+            {
+                static const struct WindowTemplate footer = {0,3,18,14,2,3,0x1C7};
+                cancelWindowId = AddWindow(&footer);
+            }
+            else
+                cancelWindowId = AddWindow(&sCancelButtonWindowTemplate);
             offset = 3;
         }
         FillWindowPixelBuffer(cancelWindowId, PIXEL_FILL(0));
 
         // Branches are functionally identical. Second branch is never reached, Spin Trade wasnt fully implemented
-        if (gPartyMenu.menuType != PARTY_MENU_TYPE_SPIN_TRADE)
+        if (sRFPartyLayout)
+            AddTextPrinterParameterized3(cancelWindowId, FONT_SMALL, 1, 1, sFontColorTable[0], TEXT_SKIP_DRAW, COMPOUND_STRING("B Atras   A Elegir"));
+        else if (gPartyMenu.menuType != PARTY_MENU_TYPE_SPIN_TRADE)
         {
             mainOffset = GetStringCenterAlignXOffset(FONT_SMALL, gText_Cancel, 48);
             AddTextPrinterParameterized3(cancelWindowId, FONT_SMALL, mainOffset + offset, 1, sFontColorTable[0], TEXT_SKIP_DRAW, gText_Cancel);
@@ -2839,6 +2966,8 @@ void DisplayPartyMenuStdMessage(u32 stringId)
 
     if (*windowPtr != WINDOW_NONE)
         PartyMenuRemoveWindow(windowPtr);
+    if (sRFPartyLayout && stringId == PARTY_MSG_CHOOSE_MON)
+        return; // The field layout already exposes its hardware controls in the footer.
 
     if (stringId != PARTY_MSG_NONE)
     {
@@ -2864,7 +2993,13 @@ void DisplayPartyMenuStdMessage(u32 stringId)
             *windowPtr = AddWindow(&sOrderWhichApplianceMsgWindowTemplate);
             break;
         default:
-            *windowPtr = AddWindow(&sDefaultPartyMsgWindowTemplate);
+            if (sRFPartyLayout && stringId == PARTY_MSG_MOVE_TO_WHERE)
+            {
+                static const struct WindowTemplate footer = {2,1,18,17,2,15,0x24F};
+                *windowPtr = AddWindow(&footer);
+            }
+            else
+                *windowPtr = AddWindow(&sDefaultPartyMsgWindowTemplate);
             break;
         }
 
@@ -3473,6 +3608,7 @@ static void SwitchPartyMon(void)
 // Finish switching mons or using Softboiled
 static void FinishTwoMonAction(u8 taskId)
 {
+    sRFPartyLastSlot = 0xFF;
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     gPartyMenu.action = PARTY_ACTION_CHOOSE_MON;
     AnimatePartySlot(gPartyMenu.slotId, 0);
