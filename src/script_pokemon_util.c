@@ -529,6 +529,41 @@ void Script_GetNextDexReward(void)
 }
 #endif
 
+#if IS_FRLG
+// Rojo Fuego+ Wonder Trade: swaps the party Pokémon in VAR_0x8004 for a random non-legendary one
+// of the same level. VAR_RESULT = FALSE when the chosen slot holds an Egg.
+void Script_DoWonderTrade(void)
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004];
+    u32 level = GetMonData(mon, MON_DATA_LEVEL);
+    enum Species species;
+
+    gSpecialVar_Result = FALSE;
+    if (GetMonData(mon, MON_DATA_IS_EGG))
+        return;
+
+    do
+    {
+        const struct SpeciesInfo *info;
+        species = 1 + Random() % (NUM_SPECIES - 1);
+        info = &gSpeciesInfo[species];
+        if (!IsSpeciesEnabled(species) || info->isSubLegendary || info->isRestrictedLegendary || info->isMythical
+         || info->isUltraBeast || info->isParadox || info->isMegaEvolution || info->isGigantamax || info->isTotem
+         || info->isPrimalReversion || info->isUltraBurst || info->isTeraForm)
+            species = SPECIES_NONE;
+        // Only base forms and regional forms; other forms only exist in battle or are cosmetic
+        else if (GET_BASE_SPECIES_ID(species) != species
+              && !(info->isAlolanForm || info->isGalarianForm || info->isHisuianForm || info->isPaldeanForm))
+            species = SPECIES_NONE;
+    } while (species == SPECIES_NONE);
+
+    CreateMon(mon, species, level, Random32(), OTID_STRUCT_PLAYER_ID);
+    GiveMonInitialMoveset(mon);
+    StringCopy(gStringVar1, GetSpeciesName(species));
+    gSpecialVar_Result = TRUE;
+}
+#endif
+
 // Rojo Fuego+ Key System autosave, run by the Pokémon Center nurse after healing
 void Script_TryAutosave(void)
 {

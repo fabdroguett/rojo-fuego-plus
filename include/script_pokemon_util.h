@@ -11,6 +11,7 @@ void HealPlayerParty(void);
 void Script_HyperTrainChosenMon(void);
 void Script_TryAutosave(void);
 void Script_GetNextDexReward(void);
+void Script_DoWonderTrade(void);
 void Script_GetChosenMonOffensiveEVs(void);
 void Script_GetChosenMonDefensiveEVs(void);
 void Script_GetChosenMonOffensiveIVs(void);

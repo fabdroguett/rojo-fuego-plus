@@ -157,3 +157,60 @@ RF_Text_DexRewards_Give:
 RF_Text_DexRewards_AllGiven:
 	.string "¡Ya te di todos los premios! El\n"
 	.string "PROF. OAK está muy orgulloso.$"
+
+@ Wonder Trade: the Poké Maniac on Two Island swaps one party Pokémon a day for a random one
+RF_EventScript_WonderTrade::
+	lock
+	faceplayer
+	goto_if_set FLAG_RF_DAILY_WONDER_TRADE, RF_EventScript_WonderTrade_Tomorrow
+	msgbox RF_Text_WonderTrade_Intro, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RF_EventScript_WonderTrade_Bye
+	msgbox RF_Text_WonderTrade_WhichMon
+	special ChoosePartyMon
+	goto_if_ge VAR_0x8004, PARTY_SIZE, RF_EventScript_WonderTrade_Bye
+	callnative Script_DoWonderTrade
+	goto_if_eq VAR_RESULT, FALSE, RF_EventScript_WonderTrade_Egg
+	setflag FLAG_RF_DAILY_WONDER_TRADE
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox RF_Text_WonderTrade_Received
+	waitfanfare
+	release
+	end
+
+RF_EventScript_WonderTrade_Tomorrow::
+	msgbox RF_Text_WonderTrade_Tomorrow
+	release
+	end
+
+RF_EventScript_WonderTrade_Egg::
+	msgbox RF_Text_WonderTrade_Egg
+	release
+	end
+
+RF_EventScript_WonderTrade_Bye::
+	msgbox RF_Text_WonderTrade_Bye
+	release
+	end
+
+RF_Text_WonderTrade_Intro:
+	.string "¡Hago INTERCAMBIO PRODIGIO!\p"
+	.string "Me das un Pokémon y te doy otro\n"
+	.string "al azar, de cualquier región.\l"
+	.string "Uno al día. ¿Te animas?$"
+
+RF_Text_WonderTrade_WhichMon:
+	.string "¿Qué Pokémon cambias?$"
+
+RF_Text_WonderTrade_Received:
+	.string "¡Recibiste un {STR_VAR_1}!\n"
+	.string "¡Cuídalo mucho!$"
+
+RF_Text_WonderTrade_Tomorrow:
+	.string "Por hoy ya está. ¡Vuelve mañana\n"
+	.string "para otro INTERCAMBIO PRODIGIO!$"
+
+RF_Text_WonderTrade_Egg:
+	.string "Los HUEVOS no se pueden cambiar.$"
+
+RF_Text_WonderTrade_Bye:
+	.string "¡Cuando quieras!$"

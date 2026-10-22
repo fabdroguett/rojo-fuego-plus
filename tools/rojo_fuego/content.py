@@ -96,6 +96,7 @@ Z_TRIALS = {
 NPC_SCRIPTS = {
     "CeladonCity_DepartmentStore_5F_EventScript_Sailor": "RF_EventScript_HyperTrainer",
     "PalletTown_ProfessorOaksLab_EventScript_Aide3": "RF_EventScript_DexRewards",
+    "TwoIsland_EventScript_SuperNerd": "RF_EventScript_WonderTrade",
 }
 
 

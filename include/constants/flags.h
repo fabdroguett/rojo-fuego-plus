@@ -2473,6 +2473,7 @@
 #define FLAG_RF_DEX_REWARD_5        FLAG_0x0C7
 #define FLAG_RF_DEX_REWARD_6        FLAG_0x0C8
 #define FLAG_RF_DEX_REWARD_7        FLAG_0x0C9
+#define FLAG_RF_DAILY_WONDER_TRADE  FLAG_0x390 // first FRLG daily flag, cleared every day by ClearDailyFlags
 #endif
 
 #if TESTING
