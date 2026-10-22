@@ -82,6 +82,10 @@ static void MoveSelectionDisplayMoveType(enum BattlerId battler);
 static void MoveSelectionDisplayMoveNames(enum BattlerId battler);
 static void TryMoveSelectionDisplayMoveDescription(enum BattlerId battler);
 static void MoveSelectionDisplayMoveDescription(enum BattlerId battler);
+static void MoveSelectionDisplayStatStages(enum BattlerId battler);
+
+// Rojo Fuego+: the move description window is showing the stat changes page
+static EWRAM_DATA bool8 sShowingStatStages = FALSE;
 static void WaitForMonSelection(enum BattlerId battler);
 static void CompleteWhenChoseItem(enum BattlerId battler);
 static void Task_LaunchLvlUpAnim(u8);
@@ -880,9 +884,20 @@ void HandleInputChooseMove(enum BattlerId battler)
     }
     else if (gBattleStruct->descriptionSubmenu)
     {
-        if (JOY_NEW(B_MOVE_DESCRIPTION_BUTTON) || JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
+        if (JOY_NEW(SELECT_BUTTON))
+        {
+            // Rojo Fuego+: SELECT switches between the move description and the stat changes
+            PlaySE(SE_SELECT);
+            sShowingStatStages ^= TRUE;
+            if (sShowingStatStages)
+                MoveSelectionDisplayStatStages(battler);
+            else
+                MoveSelectionDisplayMoveDescription(battler);
+        }
+        else if (JOY_NEW(B_MOVE_DESCRIPTION_BUTTON) || JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
         {
             gBattleStruct->descriptionSubmenu = FALSE;
+            sShowingStatStages = FALSE;
             if (gCategoryIconSpriteId != 0xFF)
             {
                 DestroySprite(&gSprites[gCategoryIconSpriteId]);
@@ -1736,6 +1751,68 @@ static void MoveSelectionDisplayMoveType(enum BattlerId battler)
 
     PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
+}
+
+// Rojo Fuego+: appends "At+2 Ve-1 ..." for every stat stage that is not neutral
+static void AppendStatStages(u8 *dest, enum BattlerId battler)
+{
+    static const u8 *const sStatNames[NUM_BATTLE_STATS] =
+    {
+        [STAT_HP]      = COMPOUND_STRING("PS"),
+        [STAT_ATK]     = COMPOUND_STRING("At"),
+        [STAT_DEF]     = COMPOUND_STRING("Df"),
+        [STAT_SPEED]   = COMPOUND_STRING("Ve"),
+        [STAT_SPATK]   = COMPOUND_STRING("AE"),
+        [STAT_SPDEF]   = COMPOUND_STRING("DE"),
+        [STAT_ACC]     = COMPOUND_STRING("Pr"),
+        [STAT_EVASION] = COMPOUND_STRING("Ev"),
+    };
+    u32 stat;
+    bool32 any = FALSE;
+
+    for (stat = STAT_ATK; stat < NUM_BATTLE_STATS; stat++)
+    {
+        s32 stage = gBattleMons[battler].statStages[stat] - DEFAULT_STAT_STAGE;
+        if (stage == 0)
+            continue;
+        StringAppend(dest, sStatNames[stat]);
+        StringAppend(dest, stage > 0 ? COMPOUND_STRING("+") : COMPOUND_STRING("-"));
+        ConvertIntToDecimalStringN(dest + StringLength(dest), abs(stage), STR_CONV_MODE_LEFT_ALIGN, 1);
+        StringAppend(dest, COMPOUND_STRING(" "));
+        any = TRUE;
+    }
+    if (!any)
+        StringAppend(dest, COMPOUND_STRING("sin cambios"));
+}
+
+static void MoveSelectionDisplayStatStages(enum BattlerId battler)
+{
+    enum BattlerId foe;
+
+    if (gCategoryIconSpriteId != 0xFF)
+    {
+        DestroySprite(&gSprites[gCategoryIconSpriteId]);
+        gCategoryIconSpriteId = 0xFF;
+    }
+    LoadMessageBoxAndBorderGfx();
+    DrawStdWindowFrame(B_WIN_MOVE_DESCRIPTION, FALSE);
+
+    StringCopy(gDisplayedStringBattle, COMPOUND_STRING("TÚ: "));
+    AppendStatStages(gDisplayedStringBattle, battler);
+    StringAppend(gDisplayedStringBattle, gText_NewLine);
+    StringAppend(gDisplayedStringBattle, COMPOUND_STRING("RIVAL: "));
+    foe = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+    if (!IsBattlerAlive(foe) && IsDoubleBattle())
+        foe = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+    AppendStatStages(gDisplayedStringBattle, foe);
+    if (IsDoubleBattle() && IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT))
+     && foe != GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT))
+    {
+        StringAppend(gDisplayedStringBattle, COMPOUND_STRING("· "));
+        AppendStatStages(gDisplayedStringBattle, GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT));
+    }
+    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_DESCRIPTION);
+    CopyWindowToVram(B_WIN_MOVE_DESCRIPTION, COPYWIN_FULL);
 }
 
 static void TryMoveSelectionDisplayMoveDescription(enum BattlerId battler)
