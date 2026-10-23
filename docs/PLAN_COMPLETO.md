@@ -14,7 +14,12 @@ repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 
 ## Estado consolidado al 23-10-2026
 
-Último punto jugable: [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md), código de juego hasta
+Nueva ampliación solicitada: [selector de 54 iniciales](INICIALES.md), 27 oficiales de
+generaciones 1–9 y 27 extras, con elección normal/oculta, acceso desde las tres Poké Balls
+y confirmación. Implementado y validado: 54 entregas en mGBA, cancelación y 18 regresiones; ROM de avance actualizada en el Escritorio. La investigación de recursos
+se amplía a [28 fuentes útiles](ASSETS_INTERNET.md), todavía sin importar menús externos.
+
+Punto jugable anterior: [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md), código de juego hasta
 `797ea693` y verificación de entrega en `42ee71af`. El plan completo sigue abierto.
 
 | Área | Avance comprobado | Pendiente para cerrar |
@@ -29,7 +34,13 @@ repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 No se calcula el porcentaje global contando casillas: las tareas tienen tamaños distintos.
 43/350 expresa únicamente avance de contenido de misiones, no del proyecto completo.
 
-### Prioridad inmediata: sprites y gráficos de menús
+### Selector de iniciales completado y siguiente prioridad: arte
+
+- [x] **INICIALES-1:** pantalla nativa de 54 opciones, 18 grupos, habilidad normal/oculta,
+  confirmación y cancelación; integración con Oak. Las 54 entregas y las tres ramas del
+  rival pasan en mGBA; detalle en [INICIALES.md](INICIALES.md).
+- [x] **ARTE-0b:** ampliar investigación a 28 fuentes de Internet con usos y licencias.
+  [Catálogo ampliado](ASSETS_INTERNET.md). Los recursos externos siguen por integrar.
 
 Nuevo pedido del usuario: buscar mejores sprites para mochila, Pokédex y otros menús, o
 crearlos. Se incorpora como trabajo **ARTE**, después de la base ya comprobada y antes de

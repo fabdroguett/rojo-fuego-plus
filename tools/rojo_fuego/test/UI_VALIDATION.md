@@ -34,3 +34,16 @@ Production code regression tests:
 The battle-handoff test extracts the real callback and simulates menu ownership changes during
 both task and controller passes, palette fades, link/recorded modes and disabled acceleration.
 Screenshots demonstrate the exercised flows; they do not prove the original reported freeze's cause.
+
+Starter selection regression:
+
+Copy `starter_fixture.c` into `/work/src/rf_starter_fixture.c` and link with the normal
+flags plus `-u RFUiFixture_StarterLab -u RFUiFixture_StarterScript
+-u RFUiFixture_StarterRead -u RFUiFixture_StarterDay`. Run
+`python tools/rojo_fuego/test/capture_starters.py` from Windows. It warps a synthetic
+new game into Oak's actual lab, runs its ball script for all 54 species, checks species,
+ability, rival branch and final scene, then tests cancellation and captures the light theme.
+Results are in ignored `build_artifacts/ui/starters/`. It waits three frames after debug
+callback injection so the field callback handoff has finished before reading results.
+Remove `/work/src/rf_starter_fixture.c` and the ELF, then perform the production release
+steps above. A passing fixture ROM must never be copied to the user's Desktop.

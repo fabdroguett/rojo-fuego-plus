@@ -5,7 +5,17 @@ tandas pequeñas. Alcance y dependencias: [PLAN_COMPLETO.md](PLAN_COMPLETO.md).
 
 ## Trabajo activo
 
-Pedido más reciente: actualizar el plan y buscar/crear mejores sprites de mochila, Pokédex
+Último pedido: implementar ahora selector de iniciales de generaciones 1–9, extras como
+Beldum/Riolu/Gible/Axew y más a criterio, con habilidad oculta. Implementación en
+`src/rf_starter_menu.c`: 54 opciones/18 grupos; integración con Oak conservando rival Kanto.
+Catálogo y controles: [INICIALES.md](INICIALES.md). Investigación ampliada de 28 fuentes:
+[ASSETS_INTERNET.md](ASSETS_INTERNET.md). Validado: 54 elecciones en mGBA, cancelación, 18 regresiones y arranque de producción.
+ROM actualizada en el Escritorio, SHA-256
+`f79fc39f164350b6167dcae79d1dcd8676a9ce5876470e15b4ec16f3f267f82f`.
+Entrega local: `build_artifacts/releases/20261023-114921/`, sin fixtures.
+Memoria: EWRAM 230376 B, IWRAM 28648 B, ROM enlazada 27154056 B.
+
+Pedido anterior: actualizar el plan y buscar/crear mejores sprites de mochila, Pokédex
 y otros menús. Prioridad actual **ARTE-1–5** de PLAN_COMPLETO.md. Dos conceptos propios están
 en `graphics/rojo_fuego/menu_art_v2/concepts/`; fuentes y límites en RECURSOS_MENU.md.
 Los conceptos todavía no son recursos indexados nativos y no están integrados en la ROM.

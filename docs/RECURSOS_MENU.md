@@ -1,5 +1,8 @@
 # Recursos visuales de menús — investigación y propuestas
 
+Ampliación del 23-10-2026: [28 fuentes de recursos de Internet](ASSETS_INTERNET.md), con
+iconos, controles, paneles, fuentes y menús comunitarios; usos, licencias y adaptación GBA.
+
 Pedido del usuario, 23-10-2026: buscar mejores sprites para mochila, Pokédex y otros menús,
 o crearlos. Resultado: referencias verificadas y dos conceptos originales generados con
 la herramienta integrada imagegen, guardados como fuentes visuales en el proyecto.
