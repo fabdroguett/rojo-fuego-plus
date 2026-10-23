@@ -86,6 +86,7 @@ FuchsiaCity_Gym_EventScript_GymStatue::
 
 FuchsiaCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox FuchsiaCity_Gym_Text_GymStatuePlayerWon
+	call RF_EventScript_GymTutor_4
 	releaseall
 	end
 

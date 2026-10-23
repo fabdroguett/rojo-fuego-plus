@@ -20,6 +20,11 @@ INCFILE_HAS_TUTOR_PAT = re.compile(r"special ChooseMonForMoveTutor")
 INCFILE_HAS_TUTOR_PAT2 = re.compile(r"chooseboxmon SELECT_PC_MON_MOVE_TUTOR")
 INCFILE_MOVE_PAT = re.compile(r"setvar VAR_0x8005, (MOVE_[A-Z_]*)")
 INCFILE_MOVE_PAT2 = re.compile(r"move_tutor (MOVE_[A-Z_]*)")
+# Rojo Fuego+: gym rewards use a shared script macro rather than eight duplicated tutors.
+INCFILE_GYM_TUTOR_PAT = re.compile(
+    r"^\s*rf_gym_tutor\s+\d+\s*,\s*FLAG_[A-Z0-9_]+\s*,\s*(MOVE_[A-Z0-9_]+)",
+    flags=re.MULTILINE,
+)
 
 def enabled() -> bool:
     """
@@ -39,6 +44,8 @@ def extract_repo_tutors() -> typing.Generator[str, None, None]:
         with open(inc_fname, "r") as inc_fp:
             incfile = inc_fp.read()
             for move in INCFILE_MOVE_PAT2.finditer(incfile):
+                yield move.group(1)
+            for move in INCFILE_GYM_TUTOR_PAT.finditer(incfile):
                 yield move.group(1)
 
             if not INCFILE_HAS_TUTOR_PAT.search(incfile) and not INCFILE_HAS_TUTOR_PAT2.search(incfile):

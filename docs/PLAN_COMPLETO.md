@@ -84,7 +84,7 @@ existente empieza como implementado cuando hay evidencia, sin marcarlo validado 
 | SAVE-1 | Medición y estrategia documentadas | Seguir ALMACENAMIENTO_SAVE1.md; inventariar sectores 30/31 antes del prototipo SAVE-2 |
 | EVENTOS | Implementados diálogo, entrega y victoria; primera cadena validada en mGBA | Completar captura/recogida/uso y objetivos múltiples; conservar IDs 0–42 |
 | Validadores de contenido | Implementado; 43 entradas pasan | Ejecutar validate_quests.py al ampliar catálogos; comprobar ajuste real de textos en emulador |
-| SERVICIOS | Editor EV/IV, reaprendizaje y reposición de bayas comprobados | Completar tutores por gimnasio, servicios de preparación y herramientas |
+| SERVICIOS | Editor EV/IV, reaprendizaje, bayas y ocho tutores por medalla comprobados | Completar servicios de preparación y herramientas |
 
 Tras BASE se ejecutan SAVE-1 y EVENTOS en ese orden; después SERVICIOS. Si una tarea queda
 bloqueada, se registra la causa y se continúa con la siguiente que no dependa de ella. Las
@@ -151,7 +151,7 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
 - [x] Auditar restauración de consumibles equipados tras entrenadores; completar su clave
   opcional y verificar bayas y objetos consumidos o retirados.
 - [ ] Centralizar tutores y terminales por categorías con compatibilidad y costes visibles.
-- [ ] Añadir recompensa temática de tutor permanente después de cada gimnasio.
+- [x] Añadir recompensa temática de tutor permanente después de cada gimnasio.
 - [ ] Crear laboratorio de formas/fusiones con NPC, requisitos y explicaciones en la Pokédex.
 - [ ] Mejorar el selector de cuatro objetos registrados con una vista gráfica.
 

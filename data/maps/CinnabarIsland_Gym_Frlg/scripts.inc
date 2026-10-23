@@ -191,6 +191,7 @@ CinnabarIsland_Gym_EventScript_GymStatue::
 
 CinnabarIsland_Gym_EventScript_GymStatuePostVictory::
 	msgbox CinnabarIsland_Gym_Text_GymStatuePlayerWon
+	call RF_EventScript_GymTutor_6
 	releaseall
 	end
 

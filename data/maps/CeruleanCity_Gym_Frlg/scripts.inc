@@ -66,6 +66,7 @@ CeruleanCity_Gym_EventScript_GymStatue::
 
 CeruleanCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox CeruleanCity_Gym_Text_GymStatuePlayerWon
+	call RF_EventScript_GymTutor_1
 	releaseall
 	end
 

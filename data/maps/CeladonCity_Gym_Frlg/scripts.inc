@@ -80,6 +80,7 @@ CeladonCity_Gym_EventScript_GymStatue::
 
 CeladonCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox CeladonCity_Gym_Text_GymStatuePlayerWon
+	call RF_EventScript_GymTutor_3
 	releaseall
 	end
 

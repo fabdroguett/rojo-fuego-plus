@@ -282,6 +282,7 @@ VermilionCity_Gym_EventScript_GymStatue::
 
 VermilionCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox VermilionCity_Gym_Text_GymStatuePlayerWon
+	call RF_EventScript_GymTutor_2
 	releaseall
 	end
 

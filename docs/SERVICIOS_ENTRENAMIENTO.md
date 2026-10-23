@@ -45,9 +45,32 @@ solo repone la baya original usada por el jugador y únicamente si el hueco qued
 No devuelve bayas robadas o retiradas sin consumo, no sobrescribe objetos de reemplazo y
 no se aplica a salvajes, enlace ni combates grabados. No cambia sus efectos durante el combate.
 
+## Tutores por gimnasio
+
+Las estatuas de los ocho gimnasios ofrecen entrenamiento temático al obtener su medalla.
+Se conserva el diálogo original y después se ofrece enseñar el movimiento, gratis y sin
+límite de usos, a un Pokémon compatible del equipo o del PC. Los métodos anteriores para
+aprender movimientos siguen disponibles; no es un desbloqueo exclusivo del movimiento.
+
+| Medalla | Movimiento |
+|---|---|
+| Brock | Avalancha |
+| Misty | Hidropulso |
+| Lt. Surge | Puño Trueno |
+| Erika | Bomba Germen |
+| Koga | Lanza Mugre |
+| Sabrina | Cabezazo Zen |
+| Blaine | Onda Ígnea |
+| Giovanni | Tierra Viva |
+
+La disponibilidad depende de las flags de medalla existentes, sin nuevos campos o flags
+de premio único. La macro compartida `rf_gym_tutor` se reconoce en `make_tutors.py`, para
+que los generadores de compatibilidad y del recordador incluyan realmente esos movimientos.
+Se respetan las compatibilidades de especies del motor, no se fuerza su aprendizaje.
+
 ## Evidencia
 
-- 17 pruebas nativas con ASan/UBSan: límites EV/IV, acciones, previsualización inmutable,
+- 18 pruebas automáticas (C con ASan/UBSan y descubrimiento de tutores en Python): límites EV/IV, acciones, previsualización inmutable,
   cancelación/entradas inválidas, marca de entrenamiento extremo, listas de movimientos,
   objetos consumidos/robados y regresiones de los demás sistemas.
 - mGBA, fixture de entrenamiento: cancelar un máximo de EV preserva datos; aplicar el
@@ -56,9 +79,12 @@ no se aplica a salvajes, enlace ni combates grabados. No cambia sus efectos dura
 - mGBA, fixture de progresión: aprender un movimiento con Vileplume; consumir y reponer
   una Baya Zidra con la clave activa y dejarla consumida con la clave apagada.
 - Capturas y scripts en `build_artifacts/training/` y `build_artifacts/progression/`, ignorados.
+- mGBA: los ocho tutores enseñan su movimiento a un Mew sintético compatible; sin medalla
+  el tutor permanece bloqueado. Nueve casos pasan; capturas en `build_artifacts/gym-tutors/`.
 
 Reproducir el editor: sincronizar fuentes y herramientas a `/work`, ejecutar en el contenedor
 `bash tools/rojo_fuego/test/build_training_fixture.sh` y desde Windows
 `python tools/rojo_fuego/test/verify_training.py`. Las fases individuales sirven para depurar
 el mismo ELF; nunca reutilizar sus estados después de reenlazar. Antes de una entrega retirar
 la fuente temporal y el ELF, compilar con flags normales y comprobar ausencia de fixtures.
+Para los ocho tutores usar la misma fixture y ejecutar `verify_gym_tutors.py`.

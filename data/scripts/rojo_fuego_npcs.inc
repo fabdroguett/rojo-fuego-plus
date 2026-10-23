@@ -214,6 +214,43 @@ RF_Text_Training_Invalid:
 	.string "No puedo editar este Pokémon.\n"
 	.string "Los HUEVOS no pueden entrenar aquí.$"
 
+@ Each gym statue keeps an unlimited, free thematic tutor after its badge is earned.
+@ Badge flags already persist; no new save fields or once-only reward flags are needed.
+	.macro rf_gym_tutor index:req, badge:req, move:req
+	.global RF_EventScript_GymTutor_\index
+RF_EventScript_GymTutor_\index\():
+	goto_if_unset \badge, RF_EventScript_GymTutor_Return
+	buffermovename STR_VAR_1, \move
+	move_tutor \move, RF_Text_GymTutor_Offer, RF_Text_GymTutor_WhichMon, RF_EventScript_GymTutor_Return, RF_EventScript_GymTutor_Taught
+	return
+	.endm
+
+	rf_gym_tutor 0, FLAG_BADGE01_GET, MOVE_ROCK_SLIDE
+	rf_gym_tutor 1, FLAG_BADGE02_GET, MOVE_WATER_PULSE
+	rf_gym_tutor 2, FLAG_BADGE03_GET, MOVE_THUNDER_PUNCH
+	rf_gym_tutor 3, FLAG_BADGE04_GET, MOVE_SEED_BOMB
+	rf_gym_tutor 4, FLAG_BADGE05_GET, MOVE_GUNK_SHOT
+	rf_gym_tutor 5, FLAG_BADGE06_GET, MOVE_ZEN_HEADBUTT
+	rf_gym_tutor 6, FLAG_BADGE07_GET, MOVE_HEAT_WAVE
+	rf_gym_tutor 7, FLAG_BADGE08_GET, MOVE_EARTH_POWER
+
+RF_EventScript_GymTutor_Taught:
+	msgbox RF_Text_GymTutor_Taught
+RF_EventScript_GymTutor_Return:
+	return
+
+RF_Text_GymTutor_Offer:
+	.string "Tu medalla abre este entrenamiento.\n"
+	.string "Puedo enseñar {STR_VAR_1}.\p"
+	.string "Es gratis y puedes volver siempre.\n"
+	.string "¿Quieres elegir un Pokémon?$"
+RF_Text_GymTutor_WhichMon:
+	.string "Elige un Pokémon compatible\n"
+	.string "del equipo o del PC.$"
+RF_Text_GymTutor_Taught:
+	.string "¡Entrenamiento completado!\n"
+	.string "Vuelve cuando quieras.$"
+
 @ Pokédex rewards: Oak's third aide in his lab hands out a prize at each milestone
 RF_EventScript_QuestDesk::
 	setvar VAR_0x8004, RF_QUEST_EVENT_OAK_REPORT

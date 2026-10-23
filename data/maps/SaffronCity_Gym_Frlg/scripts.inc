@@ -92,6 +92,7 @@ SaffronCity_Gym_EventScript_GymStatue::
 
 SaffronCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox SaffronCity_Gym_Text_GymStatuePlayerWon
+	call RF_EventScript_GymTutor_5
 	releaseall
 	end
 

@@ -101,6 +101,7 @@ ViridianCity_Gym_EventScript_GymStatue::
 
 ViridianCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox ViridianCity_Gym_Text_GymStatuePlayerWon
+	call RF_EventScript_GymTutor_7
 	releaseall
 	end
 

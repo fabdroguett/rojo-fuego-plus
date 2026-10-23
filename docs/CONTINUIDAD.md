@@ -7,7 +7,7 @@ tandas pequeñas. Alcance y dependencias: [PLAN_COMPLETO.md](PLAN_COMPLETO.md).
 
 - BASE: corregido en código el premio perdido de Noa si la mochila está llena. Ahora se
   conserva el nivel del premio, se reclama al hablar con ella y no se duplica al cambiar de día.
-  El conjunto actualizado pasa 17 pruebas nativas con ASan/UBSan.
+  El conjunto actualizado pasa 18 pruebas automáticas (C con ASan/UBSan y Python).
 - Noa: mGBA confirmó victoria real con Mewtwo propio de nivel 30, dos medallas, premio de
   cinco Super Balls, reglas desactivadas y ausencia de premio pendiente. La prueba anterior
   falló solo en la comparación de hexadecimal mayúscula/minúscula del verificador; se corrigió.
@@ -26,7 +26,10 @@ tandas pequeñas. Alcance y dependencias: [PLAN_COMPLETO.md](PLAN_COMPLETO.md).
 - Editor EV/IV gratuito junto al entrenador de chapas de Azulona, con previsualización,
   confirmación y límites. Flujo de cancelación, EV y cambio de IV probado en mGBA.
   Detalles en [SERVICIOS_ENTRENAMIENTO.md](SERVICIOS_ENTRENAMIENTO.md).
-- Enlace de producción limpio: EWRAM 230360 B, IWRAM 28648 B, ROM 27148776 B. Sin fixtures
+- Tutores temáticos permanentes en las ocho estatuas de gimnasio tras su medalla, gratis
+  y con selección de equipo/PC. Ocho enseñanzas y un bloqueo sin medalla pasan en mGBA.
+  `make_tutors.py` reconoce la macro compartida para generar compatibilidades correctas.
+- Enlace de producción limpio: EWRAM 230360 B, IWRAM 28648 B, ROM 27151776 B. Sin fixtures
   ni ROM generada; verificar de nuevo después de cambios posteriores.
 
 ## Entorno actual
@@ -44,9 +47,9 @@ símbolos/estados al cambiar el enlace. Ver también `test/UI_VALIDATION.md`.
 
 ## Siguiente acción concreta
 
-1. Continuar SERVICIOS con tutores temáticos tras cada gimnasio, reutilizando los servicios
-   existentes y sin retirar los movimientos ya disponibles desde la ficha.
-2. Completar preparación y herramientas; SAVE-2 sigue aislado hasta cerrar sectores
+1. Continuar SERVICIOS con preparación visible en Centros Pokémon (naturaleza/habilidades/
+   crianza) y herramientas unificadas, reutilizando mentas y parches existentes.
+2. Auditar laboratorio de formas/fusiones y zonas de entrenamiento; SAVE-2 sigue aislado hasta cerrar sectores
    y migración. No rehacer sistemas existentes.
 3. Mantener validador, pruebas nativas y recorrido de emulador apropiados a cada cambio.
 4. Actualizar este archivo y subir exclusivamente código/documentación en cada punto estable.

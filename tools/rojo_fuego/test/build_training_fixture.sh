@@ -3,7 +3,8 @@ set -euo pipefail
 [[ "$PWD" == /work && -f Makefile && -f tools/rojo_fuego/test/training_fixture.c ]] || exit 1
 cp tools/rojo_fuego/test/training_fixture.c src/rf_training_fixture.c
 roots=(RFTrainingFixture_Begin RFTrainingFixture_IV RFTrainingFixture_CheckPreview
-       RFTrainingFixture_CheckEV RFTrainingFixture_CheckIV)
+       RFTrainingFixture_CheckEV RFTrainingFixture_CheckIV
+       RFTrainingFixture_GymTutor RFTrainingFixture_CheckGym)
 flags='-Map ../../pokefirered.map --print-memory-usage --gc-sections'
 for symbol in "${roots[@]}"; do flags+=" -u $symbol"; done
 rm -f pokefirered.elf

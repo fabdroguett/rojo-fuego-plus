@@ -6,9 +6,70 @@
 #include "overworld.h"
 #include "script.h"
 #include "constants/flags.h"
+#include "constants/moves.h"
 
 extern const u8 RF_EventScript_HyperTrainer[];
 EWRAM_DATA u32 gRFTrainingFixtureResult = 0;
+EWRAM_DATA u32 gRFTrainingFixtureGym = 0;
+EWRAM_DATA u32 gRFTrainingFixtureGymLocked = 0;
+
+extern const u8 PewterCity_Gym_EventScript_GymStatuePostVictory[];
+extern const u8 CeruleanCity_Gym_EventScript_GymStatuePostVictory[];
+extern const u8 VermilionCity_Gym_EventScript_GymStatuePostVictory[];
+extern const u8 CeladonCity_Gym_EventScript_GymStatuePostVictory[];
+extern const u8 FuchsiaCity_Gym_EventScript_GymStatuePostVictory[];
+extern const u8 SaffronCity_Gym_EventScript_GymStatuePostVictory[];
+extern const u8 CinnabarIsland_Gym_EventScript_GymStatuePostVictory[];
+extern const u8 ViridianCity_Gym_EventScript_GymStatuePostVictory[];
+
+static const u16 sGymMoves[] = {MOVE_ROCK_SLIDE, MOVE_WATER_PULSE, MOVE_THUNDER_PUNCH,
+    MOVE_SEED_BOMB, MOVE_GUNK_SHOT, MOVE_ZEN_HEADBUTT, MOVE_HEAT_WAVE, MOVE_EARTH_POWER};
+
+void RFTrainingFixture_GymTutor(void)
+{
+    static const u8 *const scripts[] = {
+        PewterCity_Gym_EventScript_GymStatuePostVictory,
+        CeruleanCity_Gym_EventScript_GymStatuePostVictory,
+        VermilionCity_Gym_EventScript_GymStatuePostVictory,
+        CeladonCity_Gym_EventScript_GymStatuePostVictory,
+        FuchsiaCity_Gym_EventScript_GymStatuePostVictory,
+        SaffronCity_Gym_EventScript_GymStatuePostVictory,
+        CinnabarIsland_Gym_EventScript_GymStatuePostVictory,
+        ViridianCity_Gym_EventScript_GymStatuePostVictory,
+    };
+    u32 i;
+    if (gRFTrainingFixtureGym >= ARRAY_COUNT(scripts))
+        return;
+    ZeroPlayerPartyMons();
+    CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_MEW, 30, 31);
+    SetMonMoveSlot(&gParties[B_TRAINER_PLAYER][0], MOVE_SPLASH, 0);
+    for (i = 1; i < MAX_MON_MOVES; i++)
+        SetMonMoveSlot(&gParties[B_TRAINER_PLAYER][0], MOVE_NONE, i);
+    CalculatePlayerPartyCount();
+    for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
+        FlagClear(i);
+    if (!gRFTrainingFixtureGymLocked)
+        FlagSet(FLAG_BADGE01_GET + gRFTrainingFixtureGym);
+    FlagSet(FLAG_SYS_POKEMON_GET);
+    FlagSet(FLAG_SYS_POKEDEX_GET);
+    gSaveBlock2Ptr->optionsTextSpeed = OPTIONS_TEXT_SPEED_INSTANT;
+    SetMainCallback1(NULL);
+    SetMainCallback2(CB2_Overworld);
+    ScriptContext_SetupScript(scripts[gRFTrainingFixtureGym]);
+}
+
+void RFTrainingFixture_CheckGym(void)
+{
+    u32 i;
+    bool32 learned = FALSE;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_MOVE1 + i) == sGymMoves[gRFTrainingFixtureGym])
+            learned = TRUE;
+    }
+    gRFTrainingFixtureResult = gRFTrainingFixtureGymLocked ? !learned : learned;
+    SetMainCallback2(CB2_Overworld);
+}
 
 void RFTrainingFixture_Begin(void)
 {
