@@ -29,16 +29,19 @@ tandas pequeñas. Alcance y dependencias: [PLAN_COMPLETO.md](PLAN_COMPLETO.md).
 - Tutores temáticos permanentes en las ocho estatuas de gimnasio tras su medalla, gratis
   y con selección de equipo/PC. Ocho enseñanzas y un bloqueo sin medalla pasan en mGBA.
   `make_tutors.py` reconoce la macro compartida para generar compatibilidades correctas.
-- Enlace de producción limpio: EWRAM 230360 B, IWRAM 28648 B, ROM 27151776 B. Sin fixtures
-  ni ROM generada; verificar de nuevo después de cambios posteriores.
+- Enlace de producción limpio: EWRAM 230360 B, IWRAM 28648 B, ROM 27151776 B. ROM local
+  de avance generada y verificada hasta el mapa, sin fixtures. Copiada al Escritorio actual.
+  Detalles y hash en [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md).
 
 ## Entorno actual
 
 Fuentes del host en `/source` (solo lectura), copia compilable en `/work`, contenedor
-`rojo-fuego-check`. La última ROM **de prueba** y su fuente temporal fueron retiradas
-de `/work`; solo quedó un ELF de producción. Nunca entregar las ROM de fixtures.
+`rojo-fuego-check`. Las fuentes temporales de fixtures se retiraron de `/work/src` antes
+de reenlazar y generar la ROM de producción. Nunca entregar las ROM de fixtures.
 El harness mGBA está en `/tmp/rf-mgba-harness`. Artefactos ignorados en
 `build_artifacts/progression/` y `build_artifacts/training/`; no se abren guardados del jugador.
+Los nueve casos de gimnasio están en `build_artifacts/gym-tutors/`; la entrega está en
+`build_artifacts/releases/20261023-111358/`. El código estable está subido hasta `797ea693`.
 
 Para reproducir: copiar las fuentes/herramientas actualizadas a `/work`, ejecutar allí
 `bash tools/rojo_fuego/test/build_progression_fixture.sh`, y ejecutar desde Windows

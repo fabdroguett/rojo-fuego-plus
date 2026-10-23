@@ -13,6 +13,12 @@ no el orden histórico de este archivo. Prioridad inmediata: BASE → SAVE-1 →
 Agrupar sistemas compartidos, ampliar contenido por zonas y validar por cambios coherentes;
 no detenerse tras tandas pequeñas ni bloquear todo el trabajo por la ampliación de cajas.
 
+Avance del 23-10-2026: 43 misiones, eventos/entregas, premio pendiente de Noa, recordador
+de preevoluciones, reposición de bayas, editor EV/IV y ocho tutores por medalla. Pasan
+18 pruebas automáticas y recorridos de mGBA. ROM local de avance verificada y copiada al
+Escritorio: [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md). El plan completo no está cerrado;
+la próxima acción se registra en [CONTINUIDAD.md](CONTINUIDAD.md).
+
 ## Actualización de trabajo: misiones y almacenamiento (22-10-2026)
 
 La instrucción más reciente autoriza **completar el resumen de colección del DexNav y generar
