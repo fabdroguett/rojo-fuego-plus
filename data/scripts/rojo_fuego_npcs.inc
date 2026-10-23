@@ -4,6 +4,10 @@
 RF_EventScript_HyperTrainer::
 	lock
 	faceplayer
+	dynmultichoice 14, 1, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, RF_Text_Training_Caps, RF_Text_Training_EV, RF_Text_Training_IV, RF_Text_Training_Exit
+	goto_if_eq VAR_RESULT, 1, RF_EventScript_TrainingEV
+	goto_if_eq VAR_RESULT, 2, RF_EventScript_TrainingIV
+	goto_if_ne VAR_RESULT, 0, RF_EventScript_HyperTrainer_Bye
 	msgbox RF_Text_HyperTrainer_Intro, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, RF_EventScript_HyperTrainer_Bye
 	checkitem ITEM_BOTTLE_CAP
@@ -116,6 +120,99 @@ RF_Text_Stat_SpDef:
 	.string "Def. Esp.$"
 RF_Text_Stat_All:
 	.string "Todas$"
+
+RF_EventScript_TrainingEV:
+	setvar VAR_0x8006, 0
+	goto RF_EventScript_TrainingChooseMon
+RF_EventScript_TrainingIV:
+	setvar VAR_0x8006, 1
+RF_EventScript_TrainingChooseMon:
+	msgbox RF_Text_HyperTrainer_WhichMon
+	special ChoosePartyMon
+	goto_if_ge VAR_0x8004, PARTY_SIZE, RF_EventScript_HyperTrainer_Bye
+	callnative Script_RF_TrainingCanEdit
+	goto_if_eq VAR_RESULT, FALSE, RF_EventScript_TrainingInvalid
+RF_EventScript_TrainingChooseStat:
+	message RF_Text_HyperTrainer_WhichStat
+	waitmessage
+	dynmultichoice 17, 1, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE, RF_Text_Stat_HP, RF_Text_Stat_Atk, RF_Text_Stat_Def, RF_Text_Stat_Speed, RF_Text_Stat_SpAtk, RF_Text_Stat_SpDef
+	closemessage
+	goto_if_eq VAR_RESULT, MULTI_B_PRESSED, RF_EventScript_HyperTrainer_Bye
+	copyvar VAR_0x8005, VAR_RESULT
+RF_EventScript_TrainingRead:
+	callnative Script_RF_TrainingRead
+	goto_if_eq VAR_RESULT, FALSE, RF_EventScript_TrainingInvalid
+	buffernumberstring STR_VAR_1, VAR_0x8007
+	buffernumberstring STR_VAR_2, VAR_0x8008
+	buffernumberstring STR_VAR_3, VAR_0x800B
+	call_if_eq VAR_0x8006, 0, RF_EventScript_TrainingShowEV
+	call_if_eq VAR_0x8006, 1, RF_EventScript_TrainingShowIV
+	closemessage
+	dynmultichoice 14, 1, FALSE, 7, 0, DYN_MULTICHOICE_CB_NONE, RF_Text_Training_Max, RF_Text_Training_Zero, RF_Text_Training_PlusOne, RF_Text_Training_MinusOne, RF_Text_Training_PlusTen, RF_Text_Training_MinusTen, RF_Text_Training_OtherStat
+	goto_if_eq VAR_RESULT, MULTI_B_PRESSED, RF_EventScript_HyperTrainer_Bye
+	goto_if_eq VAR_RESULT, 6, RF_EventScript_TrainingChooseStat
+	copyvar VAR_0x800A, VAR_RESULT
+	callnative Script_RF_TrainingPreview
+	goto_if_eq VAR_RESULT, FALSE, RF_EventScript_TrainingInvalid
+	buffernumberstring STR_VAR_1, VAR_0x8007
+	msgbox RF_Text_Training_Confirm, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RF_EventScript_TrainingRead
+	callnative Script_RF_TrainingEdit
+	call_if_eq VAR_RESULT, FALSE, RF_EventScript_TrainingNoChange
+	goto RF_EventScript_TrainingRead
+RF_EventScript_TrainingShowEV:
+	msgbox RF_Text_Training_EVValue
+	return
+RF_EventScript_TrainingShowIV:
+	msgbox RF_Text_Training_IVValue
+	return
+RF_EventScript_TrainingNoChange:
+	msgbox RF_Text_Training_NoChange
+	return
+RF_EventScript_TrainingInvalid:
+	msgbox RF_Text_Training_Invalid
+	release
+	end
+
+RF_Text_Training_Caps:
+	.string "Usar chapas$"
+RF_Text_Training_EV:
+	.string "Editar EV$"
+RF_Text_Training_IV:
+	.string "Editar IV reales$"
+RF_Text_Training_Exit:
+	.string "Salir$"
+RF_Text_Training_Max:
+	.string "Máximo permitido$"
+RF_Text_Training_Zero:
+	.string "Dejar en cero$"
+RF_Text_Training_PlusOne:
+	.string "Sumar 1$"
+RF_Text_Training_MinusOne:
+	.string "Restar 1$"
+RF_Text_Training_PlusTen:
+	.string "Sumar 10$"
+RF_Text_Training_MinusTen:
+	.string "Restar 10$"
+RF_Text_Training_OtherStat:
+	.string "Otra estadística$"
+RF_Text_Training_EVValue:
+	.string "EV actual: {STR_VAR_1}. Máximo: {STR_VAR_2}.\n"
+	.string "Total: {STR_VAR_3}/510. Servicio gratuito.$"
+RF_Text_Training_IVValue:
+	.string "IV real: {STR_VAR_1}. Máximo: {STR_VAR_2}.\n"
+	.string "Este editor cambia el IV real.\p"
+	.string "Al aplicarlo, quita el entrenamiento\n"
+	.string "extremo de esa estadística.$"
+RF_Text_Training_Confirm:
+	.string "¿Dejar esta estadística en {STR_VAR_1}?\n"
+	.string "No se consumen objetos.$"
+RF_Text_Training_NoChange:
+	.string "No hay cambios posibles.\n"
+	.string "Revisa el valor y el límite de EV.$"
+RF_Text_Training_Invalid:
+	.string "No puedo editar este Pokémon.\n"
+	.string "Los HUEVOS no pueden entrenar aquí.$"
 
 @ Pokédex rewards: Oak's third aide in his lab hands out a prize at each milestone
 RF_EventScript_QuestDesk::

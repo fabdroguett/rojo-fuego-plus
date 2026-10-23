@@ -84,7 +84,7 @@ existente empieza como implementado cuando hay evidencia, sin marcarlo validado 
 | SAVE-1 | Medición y estrategia documentadas | Seguir ALMACENAMIENTO_SAVE1.md; inventariar sectores 30/31 antes del prototipo SAVE-2 |
 | EVENTOS | Implementados diálogo, entrega y victoria; primera cadena validada en mGBA | Completar captura/recogida/uso y objetivos múltiples; conservar IDs 0–42 |
 | Validadores de contenido | Implementado; 43 entradas pasan | Ejecutar validate_quests.py al ampliar catálogos; comprobar ajuste real de textos en emulador |
-| SERVICIOS | Reaprendizaje de preevoluciones y reposición opcional de bayas comprobados | Implementar el editor EV/IV en el NPC de entrenamiento; completar preparación y tutores |
+| SERVICIOS | Editor EV/IV, reaprendizaje y reposición de bayas comprobados | Completar tutores por gimnasio, servicios de preparación y herramientas |
 
 Tras BASE se ejecutan SAVE-1 y EVENTOS en ese orden; después SERVICIOS. Si una tarea queda
 bloqueada, se registra la causa y se continúa con la siguiente que no dependa de ella. Las
@@ -142,7 +142,7 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
 ## 4. Preparación, herramientas y almacenamiento
 
 - [ ] Ampliar las cajas de Pokémon con migración segura: actualmente 14 cajas / 420 plazas.
-- [ ] Añadir editor opcional de EV/IV compatible con vitaminas, chapas y entrenamiento extremo.
+- [x] Añadir editor opcional de EV/IV compatible con vitaminas, chapas y entrenamiento extremo.
 - [x] Auditar y completar reaprendizaje desde el equipo: nivel, huevo y preevoluciones.
 - [ ] Añadir servicios claros de preparación y crianza en Centros Pokémon: naturaleza,
   habilidades, entrenamiento y acceso a herramientas existentes.

@@ -7,7 +7,7 @@ tandas pequeñas. Alcance y dependencias: [PLAN_COMPLETO.md](PLAN_COMPLETO.md).
 
 - BASE: corregido en código el premio perdido de Noa si la mochila está llena. Ahora se
   conserva el nivel del premio, se reclama al hablar con ella y no se duplica al cambiar de día.
-  El conjunto actualizado pasa 16 pruebas nativas con ASan/UBSan.
+  El conjunto actualizado pasa 17 pruebas nativas con ASan/UBSan.
 - Noa: mGBA confirmó victoria real con Mewtwo propio de nivel 30, dos medallas, premio de
   cinco Super Balls, reglas desactivadas y ausencia de premio pendiente. La prueba anterior
   falló solo en la comparación de hexadecimal mayúscula/minúscula del verificador; se corrigió.
@@ -23,7 +23,10 @@ tandas pequeñas. Alcance y dependencias: [PLAN_COMPLETO.md](PLAN_COMPLETO.md).
   y acotadas a 254 movimientos + Cancelar; aprendizaje real probado con Vileplume en mGBA.
 - Clave Reponer bayas: repone la baya original usada por el jugador tras entrenadores,
   sin devolver robos ni sustituir otro objeto. Verificada en mGBA activada/desactivada.
-- Enlace de producción limpio: EWRAM 230360 B, IWRAM 28648 B, ROM 27146864 B. Sin fixtures
+- Editor EV/IV gratuito junto al entrenador de chapas de Azulona, con previsualización,
+  confirmación y límites. Flujo de cancelación, EV y cambio de IV probado en mGBA.
+  Detalles en [SERVICIOS_ENTRENAMIENTO.md](SERVICIOS_ENTRENAMIENTO.md).
+- Enlace de producción limpio: EWRAM 230360 B, IWRAM 28648 B, ROM 27148776 B. Sin fixtures
   ni ROM generada; verificar de nuevo después de cambios posteriores.
 
 ## Entorno actual
@@ -32,7 +35,7 @@ Fuentes del host en `/source` (solo lectura), copia compilable en `/work`, conte
 `rojo-fuego-check`. La última ROM **de prueba** y su fuente temporal fueron retiradas
 de `/work`; solo quedó un ELF de producción. Nunca entregar las ROM de fixtures.
 El harness mGBA está en `/tmp/rf-mgba-harness`. Artefactos ignorados en
-`build_artifacts/progression/`; no se abren guardados del jugador.
+`build_artifacts/progression/` y `build_artifacts/training/`; no se abren guardados del jugador.
 
 Para reproducir: copiar las fuentes/herramientas actualizadas a `/work`, ejecutar allí
 `bash tools/rojo_fuego/test/build_progression_fixture.sh`, y ejecutar desde Windows
@@ -41,9 +44,9 @@ símbolos/estados al cambiar el enlace. Ver también `test/UI_VALIDATION.md`.
 
 ## Siguiente acción concreta
 
-1. Continuar SERVICIOS con editor opcional EV/IV en el NPC de entrenamiento de Azulona,
-   conservando chapas, límites estadísticos y confirmación antes de cambios.
-2. Completar preparación y tutores existentes; SAVE-2 sigue aislado hasta cerrar sectores
+1. Continuar SERVICIOS con tutores temáticos tras cada gimnasio, reutilizando los servicios
+   existentes y sin retirar los movimientos ya disponibles desde la ficha.
+2. Completar preparación y herramientas; SAVE-2 sigue aislado hasta cerrar sectores
    y migración. No rehacer sistemas existentes.
 3. Mantener validador, pruebas nativas y recorrido de emulador apropiados a cada cambio.
 4. Actualizar este archivo y subir exclusivamente código/documentación en cada punto estable.
