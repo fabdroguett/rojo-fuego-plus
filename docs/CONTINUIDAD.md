@@ -6,6 +6,15 @@ Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
 
 ## Punto guardado para retomar
 
+**Salvajes visibles ampliados (23-10-2026 13:29).** Pedido: más Pokémon visibles a la vez.
+`OWE_SPAWNS_MAX` 4 → 6 (IDs locales 247–252), espera por salvaje activo 30 → 15 fotogramas y
+`WE_OWE_SPAWN_REPLACEMENT` activo (el más antiguo se renueva a los 240 fotogramas; el contador
+es u8). Se conservan los encuentros aleatorios. Comprobado en Ruta 1 y Bosque Verde (hasta 6
+visibles) sin errores de mGBA. ROM en el Escritorio SHA-256
+`082982ab33b508fb1e0de5cab0ff036a7c30f4176e36a2f1561324afe96fe339`, entrega
+`build_artifacts/releases/20261023-132941/`. Pendiente: fuente global Monogram (CC0) elegida
+por el usuario; la descarga de itch.io requiere hacerla a mano.
+
 **Corrección 23-10-2026 13:19 — cuelgue con SELECT en combate.** Las ROM entregadas se
 compilan sin `RELEASE`, así que `DISABLED_ON_RELEASE` dejaba activos el menú de depuración de
 combate (SELECT), el de mapa (R+START) y el visor de sprites del resumen. Al salir del menú de

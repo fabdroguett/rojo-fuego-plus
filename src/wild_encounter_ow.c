@@ -54,7 +54,7 @@
 #define OWE_SPAWN_TIME_REPLACEMENT      240 // The number of frames before an existing spawn will be replaced with a new one (requires WE_OWE_SPAWN_REPLACEMENT).
 #define OWE_SPAWN_TIME_LURE             0
 #define OWE_SPAWN_TIME_MINIMUM          30  // The minimum value the spawn wait time can be reset to. Prevents spawn attempts every frame.
-#define OWE_SPAWN_TIME_PER_ACTIVE       30  // The number of frames that will be added to the countdown per currently active spawn.
+#define OWE_SPAWN_TIME_PER_ACTIVE       15  // The number of frames that will be added to the countdown per currently active spawn.
 
 #define OWE_DEFAULT_CHASE_RANGE         5
 #define OWE_RESTORED_MOVEMENT_FUNC_ID   10
