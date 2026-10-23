@@ -6,7 +6,7 @@ El usuario solicita completar el plan **incluyendo para implementación las idea
 hacks**. La lista de ejecución unificada está en [PLAN_COMPLETO.md](PLAN_COMPLETO.md).
 Ese documento prevalece sobre estados históricos y recomendaciones de posponer ideas que
 aparecen más abajo. Este archivo conserva el historial técnico; completar una tanda no
-equivale a terminar el proyecto. Hay 35 misiones implementadas de las 350 previstas.
+equivale a terminar el proyecto. Hay 43 misiones implementadas de las 350 previstas.
 
 Reestructuración del 23-10-2026: ejecutar los paquetes por dependencias de PLAN_COMPLETO.md,
 no el orden histórico de este archivo. Prioridad inmediata: BASE → SAVE-1 → EVENTOS → SERVICIOS.
@@ -19,7 +19,7 @@ La instrucción más reciente autoriza **completar el resumen de colección del 
 la ROM ahora**. El inicio programado para las 12:30 fue cancelado por esa nueva instrucción.
 La ROM queda local; se sube el código a GitHub y se apaga Docker al terminar.
 
-Las tandas implementadas suman 35 misiones reales con espacio persistente para 500 (meta de contenido:
+Las tandas implementadas suman 43 misiones reales con espacio persistente para 500 (meta de contenido:
 350), mochila de objetos de 60 espacios, ordenación y protección del PC, cuatro objetos y
 Castform de arena. Alcance, controles, restricciones de guardado y validación en
 [IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md](IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md).

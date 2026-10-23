@@ -1,5 +1,6 @@
 #include "global.h"
 #include "achievements.h"
+#include "rf_quests.h"
 #include "data.h"
 #include "main.h"
 #include "battle.h"
@@ -692,6 +693,7 @@ static void DowngradeBadPoison(void)
 
 static void CB2_EndWildBattle(void)
 {
+    RFQuests_OnBattleEnd();
     Achievements_OnBattleEnd(); // Rojo Fuego+
     CpuFill16(0, (void *)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
@@ -719,6 +721,7 @@ static void CB2_EndWildBattle(void)
 
 static void CB2_EndScriptedWildBattle(void)
 {
+    RFQuests_OnBattleEnd();
     Achievements_OnBattleEnd(); // Rojo Fuego+
     CpuFill16(0, (void *)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
@@ -1574,6 +1577,7 @@ static void HandleBattleVariantEndParty(void)
 
 static void CB2_EndTrainerBattle(void)
 {
+    RFQuests_OnBattleEnd();
     Achievements_OnBattleEnd(); // Rojo Fuego+
     HandleBattleVariantEndParty();
 

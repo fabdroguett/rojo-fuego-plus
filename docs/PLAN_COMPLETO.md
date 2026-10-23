@@ -41,7 +41,7 @@ y su modalidad estén listas, sin esperar a todos los jefes legendarios.
 
 ### Almacenamiento: resolver pronto sin frenar el resto
 
-- [ ] **SAVE-1, después de BASE:** calcular capacidad real, opciones de ampliación de cajas,
+- [x] **SAVE-1, después de BASE:** calcular capacidad real, opciones de ampliación de cajas,
   memoria de trabajo y migración; dejar una decisión técnica reproducible.
 - [ ] **SAVE-2:** implementar la opción viable y probar carga antigua/nueva, copia de Pokémon,
   cifrado/integridad, cajas vacías/llenas y operaciones masivas.
@@ -80,10 +80,11 @@ existente empieza como implementado cuando hay evidencia, sin marcarlo validado 
 
 | Trabajo preparado | Estado inicial | Siguiente acción |
 |---|---|---|
-| BASE | Pendiente de consolidación | Reproducir victoria/premio de Noa con equipo sintético obediente; aislar el caso de desobediencia y guardar la prueba |
-| SAVE-1 | Pendiente | Medir distribución de guardado y memoria usada por cajas; comparar alternativas antes de cambiar estructuras |
-| EVENTOS | Parcial: existen visitas/equipo/objetos y premios únicos | Añadir objetivos de diálogo/entrega/combate con una cadena de prueba; conservar IDs 0–34 |
-| Validadores de contenido | Pendiente | Comprobar IDs, referencias, ciclos de requisitos, objetivos, textos y recompensas del catálogo |
+| BASE | Parcial; victoria/premio de Noa validados y premio pendiente corregido | Mantener la reproducción de desobediencia como investigación separada; ampliar regresión al tocar cada sistema |
+| SAVE-1 | Medición y estrategia documentadas | Seguir ALMACENAMIENTO_SAVE1.md; inventariar sectores 30/31 antes del prototipo SAVE-2 |
+| EVENTOS | Implementados diálogo, entrega y victoria; primera cadena validada en mGBA | Completar captura/recogida/uso y objetivos múltiples; conservar IDs 0–42 |
+| Validadores de contenido | Implementado; 43 entradas pasan | Ejecutar validate_quests.py al ampliar catálogos; comprobar ajuste real de textos en emulador |
+| SERVICIOS | Reaprendizaje de preevoluciones y reposición opcional de bayas comprobados | Implementar el editor EV/IV en el NPC de entrenamiento; completar preparación y tutores |
 
 Tras BASE se ejecutan SAVE-1 y EVENTOS en ese orden; después SERVICIOS. Si una tarea queda
 bloqueada, se registra la causa y se continúa con la siguiente que no dependa de ella. Las
@@ -122,7 +123,7 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
 
 ## 3. Misiones, personajes y colecciones
 
-- [ ] Completar **350 misiones únicas**: 35 implementadas, 315 restantes. Mantener IDs estables.
+- [ ] Completar **350 misiones únicas**: 43 implementadas, 307 restantes. Mantener IDs estables.
   Distribución objetivo: personajes 70, exploración 60, Oak/hábitats 60, rescates 45,
   combate 50, legendarios/posjuego 40 y finales con objetivos propios 25.
 - [ ] Añadir objetivos por diálogo, captura, combate, recogida, entrega y uso de objetos;
@@ -142,12 +143,12 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
 
 - [ ] Ampliar las cajas de Pokémon con migración segura: actualmente 14 cajas / 420 plazas.
 - [ ] Añadir editor opcional de EV/IV compatible con vitaminas, chapas y entrenamiento extremo.
-- [ ] Auditar y completar reaprendizaje desde el equipo: nivel, huevo y preevoluciones.
+- [x] Auditar y completar reaprendizaje desde el equipo: nivel, huevo y preevoluciones.
 - [ ] Añadir servicios claros de preparación y crianza en Centros Pokémon: naturaleza,
   habilidades, entrenamiento y acceso a herramientas existentes.
 - [ ] Crear zonas de entrenamiento por estadística y ajuste de EV accesible.
 - [ ] Unificar reloj, repelente, botiquín y PC en un menú de herramientas.
-- [ ] Auditar restauración de consumibles equipados tras entrenadores; completar su clave
+- [x] Auditar restauración de consumibles equipados tras entrenadores; completar su clave
   opcional y verificar bayas y objetos consumidos o retirados.
 - [ ] Centralizar tutores y terminales por categorías con compatibilidad y costes visibles.
 - [ ] Añadir recompensa temática de tutor permanente después de cada gimnasio.

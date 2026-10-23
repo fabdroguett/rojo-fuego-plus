@@ -3,6 +3,7 @@
 #include "item.h"
 #include "pokemon.h"
 #include "rf_quests.h"
+#include "constants/opponents_frlg.h"
 
 #define QUEST_SAVE_MAGIC 0x51535431
 
@@ -124,6 +125,44 @@ const struct RFQuest *RFQuests_GetCatalog(void)
 void RFQuests_Refresh(void)
 {
     CheckQuestObjectives();
+}
+
+// Only active objectives receive events: a past conversation or victory is not retroactive.
+// Ready/claimed states already persist, so one-shot events need no extra save fields.
+u32 RFQuests_NotifyEvent(u32 event, u32 argument)
+{
+    u32 i, completed = 0;
+
+    if (!IS_FRLG || !FlagGet(FLAG_SYS_POKEDEX_GET))
+        return 0;
+    EnsureQuestSave();
+    for (i = 0; i < RF_QUEST_COUNT; i++)
+    {
+        const struct RFQuest *quest = &sRFQuests[i];
+        if (quest->condition == QUEST_EVENT && quest->argument == event
+         && (quest->alternative == 0 || quest->alternative == argument)
+         && RFQuests_GetState(i) == RF_QUEST_ACTIVE)
+        {
+            SetQuestState(i, RF_QUEST_READY);
+            completed++;
+        }
+    }
+    return completed;
+}
+
+bool32 RFQuests_DeliverItem(u32 id)
+{
+    const struct RFQuest *quest;
+
+    if (!RFQuests_IsUnlocked(id) || RFQuests_GetState(id) != RF_QUEST_ACTIVE)
+        return FALSE;
+    quest = &sRFQuests[id];
+    if (quest->condition != QUEST_DELIVER_ITEM || quest->alternative == 0
+     || !CheckBagHasItem(quest->argument, quest->alternative)
+     || !RemoveBagItem(quest->argument, quest->alternative))
+        return FALSE;
+    SetQuestState(id, RF_QUEST_READY);
+    return TRUE;
 }
 
 bool32 RFQuests_Accept(u32 id)

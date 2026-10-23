@@ -301,6 +301,8 @@ struct SaveBlock3
     u32 rfKeyDefaultsMagic;
     u32 rfExpReserveMagic;
     u32 rfExpReserve;
+    u32 rfTravelerSaveMagic;
+    u8 rfTravelerPendingPrize; // tier + 1; retained until the whole reward fits
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

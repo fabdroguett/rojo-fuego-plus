@@ -18,6 +18,8 @@ enum QuestCondition
     QUEST_PARTY_BOTH,
     QUEST_ITEM_OR_FOSSIL,
     QUEST_REVIVED_FOSSIL,
+    QUEST_EVENT,
+    QUEST_DELIVER_ITEM,
 };
 
 struct RFQuest
@@ -42,5 +44,11 @@ void RFQuests_Update(void);
 void RFQuests_OpenMenu(void);
 enum RFQuestState RFQuests_GetState(u32 id);
 bool32 RFQuests_IsUnlocked(u32 id);
+u32 RFQuests_NotifyEvent(u32 event, u32 argument);
+bool32 RFQuests_DeliverItem(u32 id);
+void RFQuests_OnBattleEnd(void);
+void Script_RF_QuestNotify(void);
+void Script_RF_QuestDeliver(void);
+void Script_RF_QuestGetState(void);
 
 #endif

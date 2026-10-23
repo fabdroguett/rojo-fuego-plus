@@ -1257,6 +1257,7 @@ RF_EventScript_ResearchJournalIntro::
 	goto_if_eq VAR_RESULT, TRUE, RF_EventScript_ResearchJournalExplain
 	giveitem ITEM_RESEARCH_JOURNAL
 RF_EventScript_ResearchJournalExplain::
+	call RF_EventScript_QuestDesk
 	msgbox RF_Text_ResearchJournalIntro
 	release
 	end
@@ -1275,6 +1276,7 @@ PalletTown_ProfessorOaksLab_EventScript_Aide1GameClear::
 	checkitem ITEM_RESEARCH_JOURNAL
 	goto_if_eq VAR_RESULT, FALSE, RF_EventScript_ResearchJournalIntro
 	famechecker FAMECHECKER_OAK, 5
+	call RF_EventScript_QuestDesk
 	msgbox PalletTown_ProfessorOaksLab_Text_OakIsGoingToHaveRadioShow
 	release
 	end

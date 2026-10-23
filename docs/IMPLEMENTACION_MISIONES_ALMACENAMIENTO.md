@@ -8,7 +8,7 @@ con respaldo de la versión anterior; las pruebas completas de menús y partidas
 
 - Diario accesible con **START → R**, después de recibir la Pokédex, o mediante el objeto
   **Diario**. Un ayudante del laboratorio de Oak entrega el objeto, también en el postgame.
-- **35 misiones** implementadas en seis capítulos: museo y fósiles, reliquias de Sete,
+- **43 misiones** implementadas en seis capítulos: museo y fósiles, reliquias de Sete,
   investigación de Oak, refugios de Kanto, vida y hábitats, cuidado y evolución. El plan de contenido sigue siendo 350 misiones; no están todas hechas.
 - **A** acepta o reclama; **SELECT** sigue una misión; **L/R** cambia de capítulo; **START** muestra el premio; **B** sale.
   La cabecera muestra las misiones reclamadas y el total del capítulo.

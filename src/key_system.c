@@ -119,6 +119,7 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_R_TEXT_FAST]            = {COMPOUND_STRING("Texto rápido con R"), COMPOUND_STRING("Mantener R acelera la escritura.\nNo confirma respuestas ni paginas.")},
     [KEY_WILD_LOOT]              = {COMPOUND_STRING("Botín de salvajes"), COMPOUND_STRING("25% de recoger su objeto al vencer.\nSin espacio: queda en reserva.")},
     [KEY_INFINITE_REPEL]         = {COMPOUND_STRING("Repelente infinito"), COMPOUND_STRING("Con el Emisor Repel en la mochila,\nevita salvajes de menor nivel.")},
+    [KEY_RESTORE_TRAINER_BERRIES] = {COMPOUND_STRING("Reponer bayas"), COMPOUND_STRING("Tras entrenadores, repone tu baya\nusada. No repone objetos robados.")},
 };
 
 static const u8 sText_On[] = _("Sí");

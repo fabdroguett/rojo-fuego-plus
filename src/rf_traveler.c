@@ -1,7 +1,9 @@
 #include "global.h"
 #include "event_data.h"
 #include "pokemon.h"
+#include "item.h"
 #include "rf_traveler.h"
+#include "rf_quests.h"
 #include "string_util.h"
 #include "text.h"
 #include "constants/flags.h"
@@ -21,6 +23,16 @@ enum
 };
 
 #define TRAVELER_CITIES 7
+#define TRAVELER_SAVE_MAGIC 0x4E4F4131
+
+static void EnsureTravelerSave(void)
+{
+    if (gSaveBlock3Ptr->rfTravelerSaveMagic != TRAVELER_SAVE_MAGIC)
+    {
+        gSaveBlock3Ptr->rfTravelerPendingPrize = 0;
+        gSaveBlock3Ptr->rfTravelerSaveMagic = TRAVELER_SAVE_MAGIC;
+    }
+}
 
 // Index order matches tools/rojo_fuego/traveler.py
 static const u8 *const sCityNames[TRAVELER_CITIES] =
@@ -156,6 +168,39 @@ void Script_RF_TravelerClearRules(void)
 {
     FlagClear(FLAG_RF_INVERSE_BATTLE);
     VarSet(VAR_RF_NO_BAG_USE, 0);
+}
+
+void Script_RF_TravelerRecordWin(void)
+{
+    EnsureTravelerSave();
+    if (!FlagGet(FLAG_RF_DAILY_TRAVELER))
+    {
+        // Never overwrite a reward waiting from a previous day.
+        if (gSaveBlock3Ptr->rfTravelerPendingPrize == 0)
+            gSaveBlock3Ptr->rfTravelerPendingPrize = GetProgressTier() + 1;
+        FlagSet(FLAG_RF_DAILY_TRAVELER);
+        RFQuests_NotifyEvent(RF_QUEST_EVENT_NOA_WIN, 0);
+    }
+}
+
+void Script_RF_TravelerClaimPrize(void)
+{
+    static const u16 items[] = {ITEM_GREAT_BALL, ITEM_RARE_CANDY, ITEM_PP_UP, ITEM_BOTTLE_CAP};
+    static const u8 counts[] = {5, 2, 2, 1};
+    u32 pending;
+
+    EnsureTravelerSave();
+    pending = gSaveBlock3Ptr->rfTravelerPendingPrize;
+    gSpecialVar_Result = 0; // no outstanding reward
+    if (pending == 0 || pending > ARRAY_COUNT(items))
+        return;
+    gSpecialVar_Result = 2; // bag full; preserve the complete reward
+    if (!AddBagItem(items[pending - 1], counts[pending - 1]))
+        return;
+    gSpecialVar_0x8000 = items[pending - 1];
+    gSpecialVar_0x8001 = counts[pending - 1];
+    gSaveBlock3Ptr->rfTravelerPendingPrize = 0;
+    gSpecialVar_Result = 1;
 }
 
 #else

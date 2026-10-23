@@ -1,6 +1,7 @@
 #include "global.h"
 #include "achievements.h"
 #include "omni_ring.h"
+#include "key_system.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_anim_scripts.h"
@@ -9310,6 +9311,18 @@ void SetItemsToRestoreAfterBattle(enum BattleTrainer trainer, u32 partySlot)
     lostItem->restoreAfterBattle = B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9 || B_TRAINERS_KNOCK_OFF_ITEMS;
 }
 
+static bool32 ShouldRestoreTrainerBerry(enum BattleTrainer trainer, u32 slot, enum Item item)
+{
+    return trainer == B_TRAINER_PLAYER
+        && item != ITEM_NONE && GetItemPocket(item) == POCKET_BERRIES
+        && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED))
+        && KeySystem_IsOn(KEY_RESTORE_TRAINER_BERRIES)
+        && !GetLostItemState(trainer, slot)->stolen
+        && gBattleStruct->partyState[trainer][slot].usedHeldItem == item
+        && GetMonData(&gParties[trainer][slot], MON_DATA_HELD_ITEM) == ITEM_NONE;
+}
+
 void TryRestoreHeldItems(void)
 {
     for (enum BattleTrainer trainer = 0; trainer < gBattlersCount; trainer++)
@@ -9318,6 +9331,7 @@ void TryRestoreHeldItems(void)
         {
             struct LostItem *lostItem = GetLostItemState(trainer, partySlot);
             enum Item originaItem = lostItem->originalItem;
+            bool32 restoreBerry = ShouldRestoreTrainerBerry(trainer, partySlot, originaItem);
 
             if (lostItem->wildItemPending)
             {
@@ -9325,13 +9339,13 @@ void TryRestoreHeldItems(void)
                 continue;
             }
 
-            if (!lostItem->stolen && !lostItem->restoreAfterBattle)
+            if (!lostItem->stolen && !lostItem->restoreAfterBattle && !restoreBerry)
                 continue;
 
             if (originaItem == ITEM_NONE)
                 continue;
 
-            if (GetItemPocket(originaItem) == POCKET_BERRIES)
+            if (GetItemPocket(originaItem) == POCKET_BERRIES && !restoreBerry)
                 continue;
 
             SetMonData(&gParties[trainer][partySlot], MON_DATA_HELD_ITEM, &originaItem);

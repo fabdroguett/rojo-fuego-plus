@@ -67,6 +67,7 @@ u32 MockBaseSpecies(u32 species);
 #define GET_BASE_SPECIES_ID(x) MockBaseSpecies(x)
 bool32 CheckBagHasItem(enum Item item, u16 count);
 bool32 AddBagItem(enum Item item, u16 count);
+bool32 RemoveBagItem(enum Item item, u16 count);
 #endif
 '''.replace("DECLARATIONS", declarations)
         harness = r'''
@@ -84,6 +85,7 @@ u32 GetMonData(struct Pokemon *mon, u32 field) {return field == MON_DATA_SPECIES
 u32 MockBaseSpecies(u32 species) {return species == 10000 ? SPECIES_UNOWN : species;}
 bool32 CheckBagHasItem(enum Item item, u16 count) {return bag[item] >= count;}
 bool32 AddBagItem(enum Item item, u16 count) {if (!room) return FALSE; bag[item] += count; return TRUE;}
+bool32 RemoveBagItem(enum Item item, u16 count) {if (bag[item] < count) return FALSE; bag[item] -= count; return TRUE;}
 #include "ENGINE_PATH"
 static void Visit(u16 map) {world.location.mapGroup = MAP_GROUP(map); world.location.mapNum = MAP_NUM(map); RFQuests_Refresh();}
 int main(void)
@@ -186,7 +188,54 @@ int main(void)
         assert(RFQuests_GetState(RF_QUEST_GROWTH_REPORT) == RF_QUEST_AVAILABLE);
         assert(RFQuests_GetState(RF_QUEST_VIAPOIS) == RF_QUEST_CLAIMED);
     }
+    // Events apply only after acceptance; all stages persist using the existing state bits.
+    assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_OAK_REPORT, 0) == 0);
+    assert(RFQuests_Accept(RF_QUEST_FIELD_BRIEFING));
+    assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_NOA_WIN, 0) == 0);
+    assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_OAK_REPORT, 0) == 1);
+    assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_OAK_REPORT, 0) == 0);
+    assert(RFQuests_Claim(RF_QUEST_FIELD_BRIEFING));
+    assert(bag[ITEM_POTION] == 2);
+    assert(!RFQuests_DeliverItem(RF_QUEST_FIELD_SUPPLIES));
+    assert(!RFQuests_DeliverItem(UINT32_MAX));
+    assert(RFQuests_Accept(RF_QUEST_FIELD_SUPPLIES));
+    RFQuests_Refresh(); // Possession alone must never remove supplies or finish a delivery.
+    assert(RFQuests_GetState(RF_QUEST_FIELD_SUPPLIES) == RF_QUEST_ACTIVE);
+    bag[ITEM_POTION] = 1;
+    assert(!RFQuests_DeliverItem(RF_QUEST_FIELD_SUPPLIES));
+    assert(bag[ITEM_POTION] == 1);
+    bag[ITEM_POTION] = 3;
+    assert(RFQuests_DeliverItem(RF_QUEST_FIELD_SUPPLIES));
+    assert(bag[ITEM_POTION] == 1);
+    assert(!RFQuests_DeliverItem(RF_QUEST_FIELD_SUPPLIES));
+    assert(bag[ITEM_POTION] == 1);
+    room = FALSE;
+    assert(!RFQuests_Claim(RF_QUEST_FIELD_SUPPLIES));
+    RFQuests_Refresh();
+    assert(RFQuests_GetState(RF_QUEST_FIELD_SUPPLIES) == RF_QUEST_READY);
+    room = TRUE;
+    assert(RFQuests_Claim(RF_QUEST_FIELD_SUPPLIES));
+    assert(RFQuests_Accept(RF_QUEST_FIELD_CHALLENGE));
+    assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_TRAINER_WIN, TRAINER_RF_REMATCH_BROCK) == 0);
+    assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_NOA_WIN, 0) == 1);
+    assert(RFQuests_Claim(RF_QUEST_FIELD_CHALLENGE));
+    assert(RFQuests_Accept(RF_QUEST_FIELD_REPORT));
+    assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_OAK_REPORT, 0) == 1);
+    assert(RFQuests_Claim(RF_QUEST_FIELD_REPORT));
+    const u16 rematches[] = {RF_QUEST_REMATCH_BROCK, RF_QUEST_REMATCH_MISTY, RF_QUEST_REMATCH_SURGE};
+    const u16 trainers[] = {TRAINER_RF_REMATCH_BROCK, TRAINER_RF_REMATCH_MISTY, TRAINER_RF_REMATCH_LT_SURGE};
+    for (u32 step = 0; step < ARRAY_COUNT(rematches); step++) {
+        assert(RFQuests_Accept(rematches[step]));
+        assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_TRAINER_WIN, 0xFFFF) == 0);
+        assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_TRAINER_WIN, trainers[step]) == 1);
+        assert(RFQuests_Claim(rematches[step]));
+    }
+    assert(RFQuests_Accept(RF_QUEST_REMATCH_REPORT));
+    assert(RFQuests_NotifyEvent(RF_QUEST_EVENT_OAK_REPORT, 0) == 1);
+    assert(RFQuests_Claim(RF_QUEST_REMATCH_REPORT));
+    assert(RFQuests_GetState(RF_QUEST_MUSEUM) == RF_QUEST_CLAIMED);
     for (u32 i = 0; i < RF_QUEST_COUNT; i++) {
+        assert(sRFQuests[i].name != NULL && sRFQuests[i].description != NULL);
         const struct RFQuest *quest = &sRFQuests[i];
         assert(quest->chapter < RF_QUEST_CHAPTER_COUNT);
         assert(quest->rewardItem != ITEM_NONE && quest->rewardCount > 0);

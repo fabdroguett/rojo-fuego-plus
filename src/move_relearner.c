@@ -911,6 +911,21 @@ static bool32 IsTmAvailable(enum Item item)
     return CheckBagHasItem(item, 1);
 }
 
+static u32 AppendRelearnerMove(u16 *moves, u32 count, u16 move)
+{
+    u32 i;
+
+    if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || count >= MAX_RELEARNER_MOVES)
+        return count;
+    for (i = 0; i < count; i++)
+    {
+        if (moves[i] == move)
+            return count;
+    }
+    moves[count] = move;
+    return count + 1;
+}
+
 static u32 GetRelearnerLevelUpMoves(struct BoxPokemon *mon, u16 *moves)
 {
     enum Species species = GetBoxMonData(mon, MON_DATA_SPECIES);
@@ -928,14 +943,7 @@ static u32 GetRelearnerLevelUpMoves(struct BoxPokemon *mon, u16 *moves)
             if (BoxMonKnowsMove(mon, learnset[i].move))
                 continue;
 
-            bool32 alreadyInList = FALSE;
-            for (u32 j = 0; j < numMoves; j++)
-            {
-                if (learnset[i].move == moves[j])
-                    alreadyInList = TRUE;
-            }
-            if (!alreadyInList)
-                moves[numMoves++] = learnset[i].move;
+            numMoves = AppendRelearnerMove(moves, numMoves, learnset[i].move);
         }
 
         species = (P_PRE_EVO_MOVES ? GetSpeciesPreEvolution(species) : SPECIES_NONE);
@@ -959,7 +967,7 @@ static u32 GetRelearnerEggMoves(struct BoxPokemon *mon, u16 *moves)
     for (u32 i = 0; eggMoves[i] != MOVE_UNAVAILABLE; i++)
     {
         if (!BoxMonKnowsMove(mon, eggMoves[i]))
-            moves[numMoves++] = eggMoves[i];
+            numMoves = AppendRelearnerMove(moves, numMoves, eggMoves[i]);
     }
 
     return numMoves;
@@ -985,7 +993,7 @@ static u32 GetRelearnerTMMoves(struct BoxPokemon *mon, u16 *moves)
             continue;
 
         if (!BoxMonKnowsMove(mon, move))
-            moves[numMoves++] = move;
+            numMoves = AppendRelearnerMove(moves, numMoves, move);
     }
 
     return numMoves;
@@ -1004,7 +1012,7 @@ static u32 GetRelearnerTutorMoves(struct BoxPokemon *mon, u16 *moves)
             continue;
 
         if (!BoxMonKnowsMove(mon, move))
-            moves[numMoves++] = move;
+            numMoves = AppendRelearnerMove(moves, numMoves, move);
     }
 
     return numMoves;

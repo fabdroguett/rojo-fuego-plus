@@ -118,6 +118,47 @@ RF_Text_Stat_All:
 	.string "Todas$"
 
 @ Pokédex rewards: Oak's third aide in his lab hands out a prize at each milestone
+RF_EventScript_QuestDesk::
+	setvar VAR_0x8004, RF_QUEST_EVENT_OAK_REPORT
+	setvar VAR_0x8005, 0
+	callnative Script_RF_QuestNotify
+	call_if_ne VAR_RESULT, 0, RF_EventScript_QuestDesk_Report
+	setvar VAR_0x8004, RF_QUEST_FIELD_SUPPLIES
+	callnative Script_RF_QuestGetState
+	goto_if_ne VAR_RESULT, 1, RF_EventScript_QuestDesk_Return
+	msgbox RF_Text_QuestDesk_Delivery, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RF_EventScript_QuestDesk_Return
+	setvar VAR_0x8004, RF_QUEST_FIELD_SUPPLIES
+	callnative Script_RF_QuestDeliver
+	goto_if_eq VAR_RESULT, 1, RF_EventScript_QuestDesk_Delivered
+	goto_if_eq VAR_RESULT, 2, RF_EventScript_QuestDesk_Missing
+RF_EventScript_QuestDesk_Return:
+	return
+
+RF_EventScript_QuestDesk_Report:
+	msgbox RF_Text_QuestDesk_Report
+	return
+RF_EventScript_QuestDesk_Delivered:
+	msgbox RF_Text_QuestDesk_Delivered
+	return
+RF_EventScript_QuestDesk_Missing:
+	msgbox RF_Text_QuestDesk_Missing
+	return
+
+RF_Text_QuestDesk_Report:
+	.string "¡He anotado tu informe!\n"
+	.string "Reclama el premio en el diario.$"
+RF_Text_QuestDesk_Delivery:
+	.string "Prepararemos botiquines de ruta.\n"
+	.string "¿Me entregas 2 POCIONES?\p"
+	.string "Se retirarán de tu mochila.$"
+RF_Text_QuestDesk_Delivered:
+	.string "¡Gracias por las 2 POCIONES!\n"
+	.string "Tu premio te espera en el diario.$"
+RF_Text_QuestDesk_Missing:
+	.string "Necesitas 2 POCIONES en la mochila.\n"
+	.string "Vuelve cuando las tengas.$"
+
 RF_EventScript_DexRewards::
 	lock
 	faceplayer
@@ -348,6 +389,9 @@ RF_EventScript_Traveler::
 	lock
 	faceplayer
 	callnative Script_RF_TravelerSetup
+	callnative Script_RF_TravelerClaimPrize
+	goto_if_eq VAR_RESULT, 1, RF_EventScript_Traveler_PrizeReceived
+	goto_if_eq VAR_RESULT, 2, RF_EventScript_Traveler_PrizeFull
 	goto_if_set FLAG_RF_DAILY_TRAVELER, RF_EventScript_Traveler_Done
 	msgbox RF_Text_Traveler_Intro
 	msgbox RF_Text_Traveler_Rules
@@ -379,26 +423,35 @@ RF_EventScript_Traveler_Double:
 
 RF_EventScript_Traveler_Won:
 	callnative Script_RF_TravelerClearRules
-	setflag FLAG_RF_DAILY_TRAVELER
+	callnative Script_RF_TravelerRecordWin
 	msgbox RF_Text_Traveler_Won
-	switch VAR_0x8004
-	case 0, RF_EventScript_Traveler_Prize0
-	case 1, RF_EventScript_Traveler_Prize1
-	case 2, RF_EventScript_Traveler_Prize2
-	giveitem ITEM_BOTTLE_CAP
-	goto RF_EventScript_Traveler_Bye
-RF_EventScript_Traveler_Prize0:
-	giveitem ITEM_GREAT_BALL, 5
-	goto RF_EventScript_Traveler_Bye
-RF_EventScript_Traveler_Prize1:
-	giveitem ITEM_RARE_CANDY, 2
-	goto RF_EventScript_Traveler_Bye
-RF_EventScript_Traveler_Prize2:
-	giveitem ITEM_PP_UP, 2
+	callnative Script_RF_TravelerClaimPrize
+	goto_if_eq VAR_RESULT, 2, RF_EventScript_Traveler_PrizeFull
+	goto_if_ne VAR_RESULT, 1, RF_EventScript_Traveler_Bye
+RF_EventScript_Traveler_PrizeReceived:
+	bufferitemname STR_VAR_1, VAR_0x8000
+	buffernumberstring STR_VAR_3, VAR_0x8001
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox RF_Text_Traveler_PrizeReceived
+	waitfanfare
 RF_EventScript_Traveler_Bye:
 	msgbox RF_Text_Traveler_Tomorrow
 	release
 	end
+
+RF_EventScript_Traveler_PrizeFull:
+	msgbox RF_Text_Traveler_PrizeFull
+	release
+	end
+
+RF_Text_Traveler_PrizeReceived:
+	.string "¡Recibiste {STR_VAR_1} x{STR_VAR_3}!$"
+
+RF_Text_Traveler_PrizeFull:
+	.string "No cabe el premio en tu mochila.\n"
+	.string "Te lo guardaré hasta que vuelvas.\p"
+	.string "Haz espacio y habla conmigo\n"
+	.string "en la ciudad donde esté ese día.$"
 
 RF_EventScript_Traveler_ExplainInverse:
 	msgbox RF_Text_Traveler_Inverse
