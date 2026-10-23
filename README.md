@@ -1,53 +1,89 @@
-# About `pokeemerald-expansion`
+# Rojo Fuego Plus
 
-![Gif that shows debugging functionality that is unique to pokeemerald-expansion such as rerolling Trainer ID, Cheat Start, PC from Debug Menu, Debug PC Fill, Pokémon Sprite Visualizer, Debug Warp to Map, and Battle Debug Menu](https://github.com/user-attachments/assets/cf9dfbee-4c6b-4bca-8e0a-07f116ef891c) ![Gif that shows overworld functionality that is unique to pokeemerald-expansion such as indoor running, BW2 style map popups, overworld followers, DNA Splicers, Gen 1 style fishing, OW Item descriptions, Quick Run from Battle, Use Last Ball, Wild Double Battles, and Catch from EXP](https://github.com/user-attachments/assets/383af243-0904-4d41-bced-721492fbc48e) ![Gif that shows off a number of modern Pokémon battle mechanics happening in the pokeemerald-expansion engine: 2 vs 1 battles, modern Pokémon, items, moves, abilities, fully customizable opponents and partners, Trainer Slides, and generational gimmicks](https://github.com/user-attachments/assets/50c576bc-415e-4d66-a38f-ad712f3316be)
+ROM hack de **Pokémon Rojo Fuego** para Game Boy Advance, en español, construido sobre
+[pokeemerald-expansion 1.17.1](https://github.com/rh-hideout/pokeemerald-expansion) en modo FireRed.
+Conserva la historia y los mapas de Kanto y las Islas Sete, y añade las 1025 especies, mecánicas
+modernas, misiones, servicios de entrenamiento y una interfaz renovada con tema oscuro.
 
-<!-- If you want to re-record or change these gifs, here are some notes that I used: https://files.catbox.moe/05001g.md -->
+> Este repositorio contiene **solo código fuente y recursos propios o con licencia libre**.
+> No incluye ni distribuye ROMs ni partidas guardadas. Necesitas tu propia copia legal del juego.
 
-**`pokeemerald-expansion`** is a GBA ROM hack base that equips developers with a comprehensive toolkit for creating Pokémon ROM hacks. **`pokeemerald-expansion`** is built on top of [pret's `pokeemerald`](https://github.com/pret/pokeemerald) decompilation project. **It is not a playable Pokémon game on its own.**
+## Qué incluye
 
-# [Features](FEATURES.md)
+**Pokémon y mundo**
+- **Las 1025 especies obtenibles.** De día siguen los encuentros originales de Kanto; por la tarde
+  y la noche aparecen las especies de las generaciones 2–9, repartidas por hábitat y nivel.
+- **117 legendarios, singulares, Ultraentes y paradójicos** en 28 misiones de saga. Al aceptar una
+  saga, sus Pokémon aparecen en lugares especiales del mapa ([ubicaciones](docs/LEYENDAS.md)).
+- **Pokémon salvajes visibles** por el mapa (hasta seis a la vez), Pokémon que te sigue, DexNav
+  rediseñado, brotes, ciclo de día y noche, y grutas ocultas diarias.
+- **Selector de iniciales** con 54 opciones (generaciones 1–9 y extras) y habilidad oculta opcional
+  ([detalle](docs/INICIALES.md)).
 
-**`pokeemerald-expansion`** offers hundreds of features from various [core series Pokémon games](https://bulbapedia.bulbagarden.net/wiki/Core_series), along with popular quality-of-life enhancements designed to streamline development and improve the player experience. A full list of those features can be found in [`FEATURES.md`](FEATURES.md).
+**Progresión y servicios**
+- **71 misiones** en nueve capítulos, con seguimiento, recompensas y misiones por eventos.
+- Logros, Omni Ring (megaevolución, movimientos Z, Dinamax y Teracristalización), guardianes
+  de megapiedras y pruebas de cristales Z.
+- Recordador de movimientos con preevoluciones, tutores por medalla, editor gratuito de EV/IV,
+  reposición de bayas y retos diarios de la entrenadora itinerante Noa
+  ([servicios](docs/SERVICIOS_ENTRENAMIENTO.md)).
+- **Sistema de Claves:** cada mejora se puede desactivar de forma persistente, sin parches aparte.
 
-# [Credits](CREDITS.md)
+**Interfaz**
+- Menús nativos renovados a 240×160, tema oscuro por defecto y claro opcional
+  ([guía de diseño](DESIGN.md)).
+- Iconos de menú del [1-Bit Pack de Kenney](https://kenney.nl/assets/1-bit-pack) (CC0) y glifos de
+  botones en los pies de pantalla.
 
- [![](https://img.shields.io/github/all-contributors/rh-hideout/pokeemerald-expansion/upcoming)](CREDITS.md)
+El plan completo y su estado están en [docs/PLAN_COMPLETO.md](docs/PLAN_COMPLETO.md), y el punto
+de trabajo actual en [docs/CONTINUIDAD.md](docs/CONTINUIDAD.md).
 
-If you use **`pokeemerald-expansion`**, please credit **RHH (Rom Hacking Hideout)**. Optionally, include the version number for clarity.
+## Jugar
+
+1. Compila la ROM (siguiente sección) o pídesela a quien la compile para ti.
+2. Juega en **mGBA** (PC o Android). Empieza una **partida nueva**: el formato de guardado ha
+   cambiado durante el desarrollo.
+3. Para ver las misiones, abre el menú con START y pulsa R (requiere la Pokédex).
+
+## Compilar
+
+El proyecto usa la cadena de compilación de pokeemerald-expansion. En Linux o WSL, con las
+dependencias de [INSTALL.md](INSTALL.md):
+
+```sh
+make BUILD=firered -j$(nproc)
+```
+
+El resultado es `pokefirered.gba`. Las ROMs, `build/` y los `.sav` están ignorados por Git; no
+los subas.
+
+### Herramientas del proyecto
+
+Los datos generados se crean con scripts de `tools/rojo_fuego/` (Python 3, sin dependencias):
+
+| Script | Genera |
+|---|---|
+| `encounters.py` | Tablas de tarde y noche de `src/data/wild_encounters.json` |
+| `legends.py` | Sagas legendarias: scripts, mapas, misiones y [docs/LEYENDAS.md](docs/LEYENDAS.md) |
+| `make_menu_icons.py` | Iconos de menú desde `graphics/rojo_fuego/icons/` |
+| `content.py`, `grottos.py` | Guardianes, pruebas Z y grutas ocultas |
+| `validate_quests.py` | Validación del catálogo de misiones |
+
+Las pruebas nativas se ejecutan con `python3 -m unittest discover -s tools/rojo_fuego/tests`.
+Las pruebas en emulador y su procedimiento están en
+[tools/rojo_fuego/test/UI_VALIDATION.md](tools/rojo_fuego/test/UI_VALIDATION.md).
+
+## Créditos
+
+- Basado en [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion) de
+  **RHH (Rom Hacking Hideout)** 1.17.1, que a su vez parte de
+  [pret/pokeemerald](https://github.com/pret/pokeemerald) y [pret/pokefirered](https://github.com/pret/pokefirered).
+  Consulta la [lista de colaboradores](CREDITS.md).
+- Iconos de menú: [Kenney](https://kenney.nl), 1-Bit Pack (CC0).
+- Forma arena de Castform: Mikitari, [Free Fakemon Pack](https://eeveeexpo.com/resources/1517/).
+- Pokémon es una marca de Nintendo, Creatures Inc. y GAME FREAK inc. Este es un proyecto de
+  aficionados sin ánimo de lucro, no afiliado a ellas.
 
 ```
 Based off RHH's pokeemerald-expansion 1.17.1 https://github.com/rh-hideout/pokeemerald-expansion/
 ```
-
-Please consider [crediting all contributors](CREDITS.md) involved in the project!
-
-# Choosing `pokeemerald` or **`pokeemerald-expansion`**
-
-- **`pokeemerald-expansion`** supports multiplayer functionality with other games built on **`pokeemerald-expansion`**. It is not compatible with official Pokémon games.
-- If compatibility with official games is important, use [`pokeemerald`](https://github.com/pret/pokeemerald). Otherwise, we recommend using **`pokeemerald-expansion`**.
-- **`pokeemerald-expansion`** incorporates regular updates from `pokeemerald`, including bug fixes and documentation improvements.
-
-# [Getting Started](INSTALL.md)
-
-❗❗ **Important**: Do not use GitHub's "Download Zip" option as it will not include commit history. This is necessary if you want to update or merge other feature branches.
-
-If you're new to git and GitHub, [Team Aqua's Asset Repo](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/) has a [guide to forking and cloning the repository](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/wiki/The-Basics-of-GitHub). Then you can follow one of the following guides:
-
-## 📥 [Installing **`pokeemerald-expansion`**](INSTALL.md)
-## 🏗️ [Building **`pokeemerald-expansion`**](INSTALL.md#Building-pokeemerald-expansion)
-## 🚚 [Migrating from **`pokeemerald`**](INSTALL.md#Migrating-from-pokeemerald)
-## 🚀 [Updating **`pokeemerald-expansion`**](INSTALL.md#Updating-pokeemerald-expansion)
-
-# [Documentation](https://rh-hideout.github.io/pokeemerald-expansion/)
-
-For detailed documentation, visit the [pokeemerald-expansion documentation page](https://rh-hideout.github.io/pokeemerald-expansion/).
-
-# [Contributions](CONTRIBUTING.md)
-If you are looking to [report a bug](CONTRIBUTING.md#Bug-Report), [open a pull request](CONTRIBUTING.md#Pull-Requests), or [request a feature](CONTRIBUTING.md#Feature-Request), our [`CONTRIBUTING.md`](CONTRIBUTING.md) has guides for each.
-
-# [Community](https://discord.gg/6CzjAG6GZk)
-
-[![](https://dcbadge.limes.pink/api/server/6CzjAG6GZk)](https://discord.gg/6CzjAG6GZk)
-
-Our community uses the [ROM Hacking Hideout (RHH) Discord server](https://discord.gg/6CzjAG6GZk) to communicate and organize. Most of our discussions take place there, and we welcome anybody to join us!
