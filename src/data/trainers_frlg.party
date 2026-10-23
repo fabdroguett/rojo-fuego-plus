@@ -14026,3 +14026,201 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Arcanine @ Sitrus Berry
 Level: 77
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+=== TRAINER_RF_TRAVELER_0 ===
+Name: NOA
+Class: Cooltrainer Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Serious
+Double Battle: No
+AI: Smart Trainer
+
+Pidgeotto
+Level: 15
+
+Nidorina
+Level: 15
+
+Vulpix
+Level: 16
+
+=== TRAINER_RF_TRAVELER_1 ===
+Name: NOA
+Class: Cooltrainer Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Serious
+Items: Hyper Potion
+Double Battle: No
+AI: Smart Trainer
+
+Fearow
+Level: 30
+
+Kingler
+Level: 30
+
+Nidoqueen
+Level: 31
+
+Ninetales
+Level: 32
+
+=== TRAINER_RF_TRAVELER_2 ===
+Name: NOA
+Class: Cooltrainer Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Serious
+Items: Full Restore
+Double Battle: No
+AI: Smart Trainer
+
+Fearow
+Level: 45
+
+Kingler
+Level: 45
+
+Nidoqueen
+Level: 46
+
+Ninetales
+Level: 46
+
+Lapras
+Level: 48
+
+=== TRAINER_RF_TRAVELER_3 ===
+Name: NOA
+Class: Cooltrainer Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Serious
+Items: Full Restore / Full Restore
+Double Battle: No
+AI: Smart Trainer
+
+Staraptor @ Choice Scarf
+Level: 66
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Nidoqueen @ Leftovers
+Level: 67
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Ninetales @ Heat Rock
+Level: 67
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Lapras @ Sitrus Berry
+Level: 68
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Lucario @ Life Orb
+Level: 68
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Garchomp @ Expert Belt
+Level: 70
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+=== TRAINER_RF_TRAVELER_DOUBLE_0 ===
+Name: NOA
+Class: Cooltrainer Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Serious
+Double Battle: Yes
+AI: Smart Trainer
+
+Pidgeotto
+Level: 15
+
+Nidorina
+Level: 15
+
+Vulpix
+Level: 16
+
+=== TRAINER_RF_TRAVELER_DOUBLE_1 ===
+Name: NOA
+Class: Cooltrainer Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Serious
+Items: Hyper Potion
+Double Battle: Yes
+AI: Smart Trainer
+
+Fearow
+Level: 30
+
+Kingler
+Level: 30
+
+Nidoqueen
+Level: 31
+
+Ninetales
+Level: 32
+
+=== TRAINER_RF_TRAVELER_DOUBLE_2 ===
+Name: NOA
+Class: Cooltrainer Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Serious
+Items: Full Restore
+Double Battle: Yes
+AI: Smart Trainer
+
+Fearow
+Level: 45
+
+Kingler
+Level: 45
+
+Nidoqueen
+Level: 46
+
+Ninetales
+Level: 46
+
+Lapras
+Level: 48
+
+=== TRAINER_RF_TRAVELER_DOUBLE_3 ===
+Name: NOA
+Class: Cooltrainer Frlg
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Serious
+Items: Full Restore / Full Restore
+Double Battle: Yes
+AI: Smart Trainer
+
+Staraptor @ Choice Scarf
+Level: 66
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Nidoqueen @ Leftovers
+Level: 67
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Ninetales @ Heat Rock
+Level: 67
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Lapras @ Sitrus Berry
+Level: 68
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Lucario @ Life Orb
+Level: 68
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Garchomp @ Expert Belt
+Level: 70
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe

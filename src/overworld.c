@@ -55,6 +55,7 @@
 #include "play_time.h"
 #include "random.h"
 #include "roamer.h"
+#include "rf_traveler.h"
 #include "rotating_gate.h"
 #include "rtc.h"
 #include "safari_zone.h"
@@ -900,6 +901,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     SetSavedWeatherFromCurrMapHeader();
     ChooseAmbientCrySpecies();
     SetDefaultFlashLevel();
+    RF_UpdateTraveler();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     InitMap();
@@ -970,6 +972,7 @@ static void LoadMapFromWarp(bool32 a1)
     if (isOutdoors)
         FlagClear(FLAG_SYS_USE_FLASH);
     SetDefaultFlashLevel();
+    RF_UpdateTraveler();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     UpdateLocationHistoryForRoamer();

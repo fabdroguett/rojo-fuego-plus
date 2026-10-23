@@ -2483,6 +2483,18 @@
 #define FLAG_RF_GROTTO_5            FLAG_0x39D
 #define FLAG_RF_GROTTO_6            FLAG_0x39E
 #define FLAG_RF_GROTTO_7            FLAG_0x39F
+// Traveling challenger (src/rf_traveler.c): one hide flag per Pokemon Center, set on every map load
+#define FLAG_RF_TRAVELER_HIDE_0     FLAG_0x0CA
+#define FLAG_RF_TRAVELER_HIDE_1     FLAG_0x0CB
+#define FLAG_RF_TRAVELER_HIDE_2     FLAG_0x0CC
+#define FLAG_RF_TRAVELER_HIDE_3     FLAG_0x0CD
+#define FLAG_RF_TRAVELER_HIDE_4     FLAG_0x0CE
+#define FLAG_RF_TRAVELER_HIDE_5     FLAG_0x0CF
+#define FLAG_RF_TRAVELER_HIDE_6     FLAG_0x0D0
+#define FLAG_RF_INVERSE_BATTLE      FLAG_0x0D1 // B_FLAG_INVERSE_BATTLE, only set during her battle
+#define FLAG_RF_DAILY_TRAVELER      FLAG_0x391
+#else
+#define FLAG_RF_INVERSE_BATTLE      0
 #endif
 
 #if TESTING

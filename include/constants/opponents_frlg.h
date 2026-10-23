@@ -635,12 +635,21 @@
 #define TRAINER_RF_REMATCH_KOGA                    628
 #define TRAINER_RF_REMATCH_SABRINA                 629
 #define TRAINER_RF_REMATCH_BLAINE                  630
+// Rojo Fuego+ traveling challenger (daily rules), one team per progress tier
+#define TRAINER_RF_TRAVELER_0                      631
+#define TRAINER_RF_TRAVELER_1                      632
+#define TRAINER_RF_TRAVELER_2                      633
+#define TRAINER_RF_TRAVELER_3                      634
+#define TRAINER_RF_TRAVELER_DOUBLE_0               635
+#define TRAINER_RF_TRAVELER_DOUBLE_1               636
+#define TRAINER_RF_TRAVELER_DOUBLE_2               637
+#define TRAINER_RF_TRAVELER_DOUBLE_3               638
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is
 //       only space for 25 additional trainers before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT_FRLG can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_FRLG                      631
+#define TRAINERS_COUNT_FRLG                      639
 #define MAX_TRAINERS_COUNT_FRLG                  768
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_FRLG_H

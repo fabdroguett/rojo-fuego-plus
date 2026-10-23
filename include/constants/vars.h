@@ -343,10 +343,12 @@
 #define VAR_DEXNAV_SPECIES          VAR_0x4029
 #define VAR_DEXNAV_STEP_COUNTER     VAR_0x402A
 #define VAR_DEXNAV_FILTER           VAR_0x402B
+#define VAR_RF_NO_BAG_USE           VAR_0x402D // B_VAR_NO_BAG_USE, only set during the traveling challenger battle
 #else
 #define VAR_DEXNAV_SPECIES          VAR_UNUSED_0x4083
 #define VAR_DEXNAV_STEP_COUNTER     VAR_UNUSED_0x408B
 #define VAR_DEXNAV_FILTER           VAR_UNUSED_0x4091
+#define VAR_RF_NO_BAG_USE           0
 #endif
 
 #endif // GUARD_CONSTANTS_VARS_H

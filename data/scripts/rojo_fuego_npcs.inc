@@ -326,3 +326,133 @@ RF_Text_TitleDefense_Defeat:
 RF_Text_TitleDefense_Won:
 	.string "¡Has defendido tu título de Campeón!\n"
 	.string "El retador te deja un recuerdo.$"
+
+@ Traveling challenger (daily challenges, from Crystal Clear): Noa waits in a different Pokémon
+@ Center every day (src/rf_traveler.c, tools/rojo_fuego/traveler.py) and battles once a day under
+@ that day's rules. Her team and the prize follow the player's progress.
+	.macro rf_traveler_battle tier:req, single:req, double:req
+RF_EventScript_Traveler_Single\tier\():
+	cleartrainerflag \single
+	trainerbattle_no_intro \single, RF_Text_Traveler_Defeat
+	cleartrainerflag \single
+	goto RF_EventScript_Traveler_Won
+RF_EventScript_Traveler_Double\tier\():
+	cleartrainerflag \double
+	trainerbattle_no_intro \double, RF_Text_Traveler_Defeat
+	cleartrainerflag \double
+	goto RF_EventScript_Traveler_Won
+	.endm
+
+	.global RF_EventScript_Traveler
+RF_EventScript_Traveler::
+	lock
+	faceplayer
+	callnative Script_RF_TravelerSetup
+	goto_if_set FLAG_RF_DAILY_TRAVELER, RF_EventScript_Traveler_Done
+	msgbox RF_Text_Traveler_Intro
+	msgbox RF_Text_Traveler_Rules
+	call_if_eq VAR_0x8007, TRUE, RF_EventScript_Traveler_ExplainInverse
+	msgbox RF_Text_Traveler_Offer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RF_EventScript_Traveler_Decline
+	goto_if_eq VAR_0x8006, FALSE, RF_EventScript_Traveler_NotEnough
+	msgbox RF_Text_Traveler_Start
+	closemessage
+	callnative Script_RF_TravelerApplyRules
+	goto_if_eq VAR_0x8005, TRUE, RF_EventScript_Traveler_Double
+	switch VAR_0x8004
+	case 0, RF_EventScript_Traveler_Single0
+	case 1, RF_EventScript_Traveler_Single1
+	case 2, RF_EventScript_Traveler_Single2
+	goto RF_EventScript_Traveler_Single3
+
+RF_EventScript_Traveler_Double:
+	switch VAR_0x8004
+	case 0, RF_EventScript_Traveler_Double0
+	case 1, RF_EventScript_Traveler_Double1
+	case 2, RF_EventScript_Traveler_Double2
+	goto RF_EventScript_Traveler_Double3
+
+	rf_traveler_battle 0, TRAINER_RF_TRAVELER_0, TRAINER_RF_TRAVELER_DOUBLE_0
+	rf_traveler_battle 1, TRAINER_RF_TRAVELER_1, TRAINER_RF_TRAVELER_DOUBLE_1
+	rf_traveler_battle 2, TRAINER_RF_TRAVELER_2, TRAINER_RF_TRAVELER_DOUBLE_2
+	rf_traveler_battle 3, TRAINER_RF_TRAVELER_3, TRAINER_RF_TRAVELER_DOUBLE_3
+
+RF_EventScript_Traveler_Won:
+	callnative Script_RF_TravelerClearRules
+	setflag FLAG_RF_DAILY_TRAVELER
+	msgbox RF_Text_Traveler_Won
+	switch VAR_0x8004
+	case 0, RF_EventScript_Traveler_Prize0
+	case 1, RF_EventScript_Traveler_Prize1
+	case 2, RF_EventScript_Traveler_Prize2
+	giveitem ITEM_BOTTLE_CAP
+	goto RF_EventScript_Traveler_Bye
+RF_EventScript_Traveler_Prize0:
+	giveitem ITEM_GREAT_BALL, 5
+	goto RF_EventScript_Traveler_Bye
+RF_EventScript_Traveler_Prize1:
+	giveitem ITEM_RARE_CANDY, 2
+	goto RF_EventScript_Traveler_Bye
+RF_EventScript_Traveler_Prize2:
+	giveitem ITEM_PP_UP, 2
+RF_EventScript_Traveler_Bye:
+	msgbox RF_Text_Traveler_Tomorrow
+	release
+	end
+
+RF_EventScript_Traveler_ExplainInverse:
+	msgbox RF_Text_Traveler_Inverse
+	return
+
+RF_EventScript_Traveler_Done:
+	msgbox RF_Text_Traveler_Tomorrow
+	release
+	end
+
+RF_EventScript_Traveler_Decline:
+	msgbox RF_Text_Traveler_Decline
+	release
+	end
+
+RF_EventScript_Traveler_NotEnough:
+	msgbox RF_Text_Traveler_NotEnough
+	release
+	end
+
+RF_Text_Traveler_Intro:
+	.string "Soy NOA. Viajo por Kanto y cada día\n"
+	.string "reto a alguien en un Centro distinto.$"
+
+RF_Text_Traveler_Rules:
+	.string "Las reglas de hoy son:\n"
+	.string "{STR_VAR_1}.$"
+
+RF_Text_Traveler_Inverse:
+	.string "En la inversa, los tipos van al revés:\n"
+	.string "lo muy eficaz pasa a ser poco eficaz.\p"
+	.string "Y los ataques sin efecto ahora\n"
+	.string "son muy eficaces.$"
+
+RF_Text_Traveler_Offer:
+	.string "¿Aceptas el desafío?$"
+
+RF_Text_Traveler_Start:
+	.string "¡Muy bien! A ver cómo te adaptas.$"
+
+RF_Text_Traveler_Defeat:
+	.string "¡Te adaptaste a la perfección!$"
+
+RF_Text_Traveler_Won:
+	.string "Gran combate. Toma, te lo has ganado.$"
+
+RF_Text_Traveler_Tomorrow:
+	.string "Mañana estaré en el Centro Pokémon\n"
+	.string "de {STR_VAR_2}. ¡Búscame allí!$"
+
+RF_Text_Traveler_Decline:
+	.string "Vaya… Estaré aquí hasta mañana\n"
+	.string "por si cambias de opinión.$"
+
+RF_Text_Traveler_NotEnough:
+	.string "Para un combate doble necesitas\n"
+	.string "dos Pokémon que puedan luchar.$"
