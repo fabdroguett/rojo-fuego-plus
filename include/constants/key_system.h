@@ -31,6 +31,7 @@ enum KeySystemKey
     KEY_DEXNAV_COLLECTION,
     KEY_RESTORE_TRAINER_BERRIES,
     KEY_COLOR_THEME, // Not an on/off key: cycles through enum KeyColorTheme. Shown after KEY_DARK_MODE.
+    KEY_FONT_STYLE,  // Not an on/off key: cycles through enum KeyFontStyle. Shown after KEY_COLOR_THEME.
     KEY_COUNT
 };
 
@@ -61,6 +62,16 @@ enum KeyColorTheme
     KEY_COLOR_THEME_AMBER,
     KEY_COLOR_THEME_GRAPHITE,
     KEY_COLOR_THEME_COUNT
+};
+
+// Latin text fonts (rf_fonts.c). Every style but the classic one is built by make_rf_fonts.py.
+enum KeyFontStyle
+{
+    KEY_FONT_M5X7, // 0: the default for saves without the setting
+    KEY_FONT_M6X11,
+    KEY_FONT_MONOGRAM,
+    KEY_FONT_CLASSIC,
+    KEY_FONT_STYLE_COUNT
 };
 
 #endif // GUARD_CONSTANTS_KEY_SYSTEM_H

@@ -20,12 +20,24 @@ Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
   ROM de producción sin fixtures, cabecera válida, arranque a `CB2_Overworld`, 18 pruebas nativas.
   Entrega `build_artifacts/releases/20261023-202304/` SHA-256 `b1532bfd…24f0`; **no se copió
   al Escritorio** porque mGBA estaba abierto con la ROM.
-- Fuente Monogram (CC0, Vinícius Menézio) obtenida: `monogram-bitmap.json` 14142 B y PNG 1376 B,
-  iguales a los oficiales de itch.io (la descarga automática de itch.io rechaza la clave; se tomó
-  la copia del paquete oficial incluida en el repositorio GitHub `flygohr/NuradanRPG`). Trae los
-  acentos del español; faltan ♂/♀ (conservar los del juego). Pendiente convertirla.
-- Siguiente: fuente Monogram global → DEX-1 (rótulos en español, logo/pestañas legibles en
-  oscuro) → DEX-2…11 según PLAN_COMPLETO.md.
+- **Fuente seleccionable** (Claves → Fuente, tras Tema de color): M5X7 (por defecto), M6X11,
+  MONOGRAM y CLÁSICA. Guardada en `SaveBlock3.rfUiFont` bajo el mismo magic que el tema; el
+  primer cambio escribe ambos campos. `text.c` pide glifos y anchos a `RFFont_Glyphs/Widths`
+  (`rf_fonts.c`) para las hojas normal, estrecha, corta y pequeña (y sus estrechas); las
+  "más estrechas" y el japonés siguen clásicos. `make_rf_fonts.py` (biblioteca estándar) genera
+  `graphics/rojo_fuego/fonts/<estilo>/latin_*.png` y `src/data/rf_font_widths.h`;
+  `rasterize_font.py` (Pillow + fontTools) pasa los TTF a JSON de mapa de bits.
+  m6x11plus nativa no cabe en las cajas (+20 % de ancho, 17 filas): se condensa y sus hojas
+  corta/pequeña usan m5x7. Fuentes: Monogram de la copia del paquete oficial en GitHub
+  `flygohr/NuradanRPG` (tamaños iguales a itch.io); m5x7 (34300 B, CC0) y m6x11plus (18192 B)
+  de copias en GitHub, porque la descarga de itch.io por script rechaza la clave. Créditos en CREDITS.md.
+  Validado en mGBA: combate, mochila, Pokédex, resumen y Claves con las cuatro fuentes.
+  Conocido: "VERY HARD" de la ficha de estadísticas se recorta con M5X7/M6X11 (se acorta en DEX-2).
+  Entrega vigente `build_artifacts/releases/20261023-204409/` SHA-256 `693d0761…b879` (temas +
+  fuentes; sin fixtures, cabecera válida, arranque a `CB2_Overworld`, 18 pruebas nativas). ROM
+  enlazada 27754192 B. **Pendiente copiarla al Escritorio** cuando mGBA esté cerrado, respaldando
+  la ROM actual (la de ARTE-2, `defe9d69…`).
+- Siguiente: DEX-1 (rótulos en español, logo/pestañas legibles en oscuro) → DEX-2…11.
 
 **ARTE-2: mochila nueva (23-10-2026 19:19).** `tools/rojo_fuego/make_bag_frames.py` (solo
 biblioteca estándar) reduce `menu_art_v2/concepts/backpack-v1.png` a 62 px, lo pasa a una paleta

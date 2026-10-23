@@ -107,12 +107,24 @@ void RFUiFixture_Day(void)
 }
 
 // Advances the colour theme exactly as choosing "Tema de color" in the Key System menu does.
-void RFUiFixture_NextTheme(void)
+static void RFUiFixture_SetDisplay(u32 theme, u32 font)
 {
-    gSaveBlock3Ptr->rfUiTheme = (KeySystem_GetColorTheme() + 1) % KEY_COLOR_THEME_COUNT;
+    gSaveBlock3Ptr->rfUiTheme = theme % KEY_COLOR_THEME_COUNT;
+    gSaveBlock3Ptr->rfUiFont = font % KEY_FONT_STYLE_COUNT;
     gSaveBlock3Ptr->rfUiThemeMagic = 0x54484D31;
     LoadMessageBoxAndBorderGfx();
     SetMainCallback2(CB2_Overworld);
+}
+
+void RFUiFixture_NextTheme(void)
+{
+    RFUiFixture_SetDisplay(KeySystem_GetColorTheme() + 1, KeySystem_GetFontStyle());
+}
+
+// Advances the font style as choosing "Fuente" in the Key System menu does.
+void RFUiFixture_NextFont(void)
+{
+    RFUiFixture_SetDisplay(KeySystem_GetColorTheme(), KeySystem_GetFontStyle() + 1);
 }
 
 void RFUiFixture_Slow(void)

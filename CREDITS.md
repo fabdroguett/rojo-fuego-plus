@@ -155,3 +155,16 @@ licencia [CC0](https://creativecommons.org/publicdomain/zero/1.0/)): libro, moch
 persona, disquete, engranaje, flecha, llave y pergamino. Fuente recortada en
 `graphics/rojo_fuego/icons/kenney_1bit_menu.png`; índices de la hoja en
 `tools/rojo_fuego/make_menu_icons.py`. La Poké Ball del menú es un dibujo propio.
+
+## Rojo Fuego+: fuentes de texto
+
+Seleccionables en Claves → Fuente; convertidas por `tools/rojo_fuego/make_rf_fonts.py` a partir de
+`graphics/rojo_fuego/fonts/`. La fuente clásica del juego se conserva como opción.
+
+- **m5x7**, de [Daniel Linssen](https://managore.itch.io/m5x7),
+  [CC0](https://creativecommons.org/publicdomain/zero/1.0/) (“attribution appreciated”).
+- **m6x11plus**, de [Daniel Linssen](https://managore.itch.io/m6x11): “free to use with
+  attribution”. Se condensa para que los textos del juego quepan.
+- **Monogram**, de Vinícius Menézio ([datagoblin](https://datagoblin.itch.io/monogram)),
+  [CC0](https://creativecommons.org/publicdomain/zero/1.0/); créditos originales en
+  `graphics/rojo_fuego/fonts/monogram/credits.txt`.

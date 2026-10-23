@@ -6,6 +6,7 @@
 #include "event_data.h"
 #include "field_name_box.h"
 #include "fonts.h"
+#include "rf_fonts.h"
 #include "m4a.h"
 #include "main.h"
 #include "malloc.h"
@@ -2218,8 +2219,8 @@ static void DecompressGlyph_Small(u16 glyphId, bool32 isJapanese)
     }
     else
     {
-        glyphs = gFontSmallLatinGlyphs + (0x20 * glyphId);
-        gCurGlyph.width = gFontSmallLatinGlyphWidths[glyphId];
+        glyphs = RFFont_Glyphs(RF_FONT_SHEET_SMALL, gFontSmallLatinGlyphs) + (0x20 * glyphId);
+        gCurGlyph.width = RFFont_Widths(RF_FONT_SHEET_SMALL, gFontSmallLatinGlyphWidths)[glyphId];
 
         if (gCurGlyph.width <= 8)
         {
@@ -2243,7 +2244,7 @@ static u32 GetGlyphWidth_Small(u16 glyphId, bool32 isJapanese)
     if (isJapanese == TRUE)
         return 8;
     else
-        return gFontSmallLatinGlyphWidths[glyphId];
+        return RFFont_Widths(RF_FONT_SHEET_SMALL, gFontSmallLatinGlyphWidths)[glyphId];
 }
 
 static void DecompressGlyph_Narrow(u16 glyphId, bool32 isJapanese)
@@ -2260,8 +2261,8 @@ static void DecompressGlyph_Narrow(u16 glyphId, bool32 isJapanese)
     }
     else
     {
-        glyphs = gFontNarrowLatinGlyphs + (0x20 * glyphId);
-        gCurGlyph.width = gFontNarrowLatinGlyphWidths[glyphId];
+        glyphs = RFFont_Glyphs(RF_FONT_SHEET_NARROW, gFontNarrowLatinGlyphs) + (0x20 * glyphId);
+        gCurGlyph.width = RFFont_Widths(RF_FONT_SHEET_NARROW, gFontNarrowLatinGlyphWidths)[glyphId];
 
         if (gCurGlyph.width <= 8)
         {
@@ -2285,7 +2286,7 @@ static u32 GetGlyphWidth_Narrow(u16 glyphId, bool32 isJapanese)
     if (isJapanese == TRUE)
         return 8;
     else
-        return gFontNarrowLatinGlyphWidths[glyphId];
+        return RFFont_Widths(RF_FONT_SHEET_NARROW, gFontNarrowLatinGlyphWidths)[glyphId];
 }
 
 static void DecompressGlyph_SmallNarrow(u16 glyphId, bool32 isJapanese)
@@ -2302,8 +2303,8 @@ static void DecompressGlyph_SmallNarrow(u16 glyphId, bool32 isJapanese)
     }
     else
     {
-        glyphs = gFontSmallNarrowLatinGlyphs + (0x20 * glyphId);
-        gCurGlyph.width = gFontSmallNarrowLatinGlyphWidths[glyphId];
+        glyphs = RFFont_Glyphs(RF_FONT_SHEET_SMALL_NARROW, gFontSmallNarrowLatinGlyphs) + (0x20 * glyphId);
+        gCurGlyph.width = RFFont_Widths(RF_FONT_SHEET_SMALL_NARROW, gFontSmallNarrowLatinGlyphWidths)[glyphId];
 
         if (gCurGlyph.width <= 8)
         {
@@ -2327,7 +2328,7 @@ static u32 GetGlyphWidth_SmallNarrow(u16 glyphId, bool32 isJapanese)
     if (isJapanese == TRUE)
         return 8;
     else
-        return gFontSmallNarrowLatinGlyphWidths[glyphId];
+        return RFFont_Widths(RF_FONT_SHEET_SMALL_NARROW, gFontSmallNarrowLatinGlyphWidths)[glyphId];
 }
 
 static void DecompressGlyph_Short(u16 glyphId, bool32 isJapanese)
@@ -2346,8 +2347,8 @@ static void DecompressGlyph_Short(u16 glyphId, bool32 isJapanese)
     }
     else
     {
-        glyphs = gFontShortLatinGlyphs + (0x20 * glyphId);
-        gCurGlyph.width = gFontShortLatinGlyphWidths[glyphId];
+        glyphs = RFFont_Glyphs(RF_FONT_SHEET_SHORT, gFontShortLatinGlyphs) + (0x20 * glyphId);
+        gCurGlyph.width = RFFont_Widths(RF_FONT_SHEET_SHORT, gFontShortLatinGlyphWidths)[glyphId];
 
         if (gCurGlyph.width <= 8)
         {
@@ -2371,7 +2372,7 @@ static u32 GetGlyphWidth_Short(u16 glyphId, bool32 isJapanese)
     if (isJapanese == TRUE)
         return gFontShortJapaneseGlyphWidths[glyphId];
     else
-        return gFontShortLatinGlyphWidths[glyphId];
+        return RFFont_Widths(RF_FONT_SHEET_SHORT, gFontShortLatinGlyphWidths)[glyphId];
 }
 
 static void DecompressGlyph_Normal(u16 glyphId, bool32 isJapanese)
@@ -2388,8 +2389,8 @@ static void DecompressGlyph_Normal(u16 glyphId, bool32 isJapanese)
     }
     else
     {
-        glyphs = gFontNormalLatinGlyphs + (0x20 * glyphId);
-        gCurGlyph.width = gFontNormalLatinGlyphWidths[glyphId];
+        glyphs = RFFont_Glyphs(RF_FONT_SHEET_NORMAL, gFontNormalLatinGlyphs) + (0x20 * glyphId);
+        gCurGlyph.width = RFFont_Widths(RF_FONT_SHEET_NORMAL, gFontNormalLatinGlyphWidths)[glyphId];
 
         if (gCurGlyph.width <= 8)
         {
@@ -2413,7 +2414,7 @@ static u32 GetGlyphWidth_Normal(u16 glyphId, bool32 isJapanese)
     if (isJapanese == TRUE)
         return 8;
     else
-        return gFontNormalLatinGlyphWidths[glyphId];
+        return RFFont_Widths(RF_FONT_SHEET_NORMAL, gFontNormalLatinGlyphWidths)[glyphId];
 }
 
 static void DecompressGlyph_Bold(u16 glyphId)
@@ -2527,8 +2528,8 @@ static void DecompressGlyph_ShortNarrow(u16 glyphId, bool32 isJapanese)
     }
     else
     {
-        glyphs = gFontShortNarrowLatinGlyphs + (0x20 * glyphId);
-        gCurGlyph.width = gFontShortNarrowLatinGlyphWidths[glyphId];
+        glyphs = RFFont_Glyphs(RF_FONT_SHEET_SHORT_NARROW, gFontShortNarrowLatinGlyphs) + (0x20 * glyphId);
+        gCurGlyph.width = RFFont_Widths(RF_FONT_SHEET_SHORT_NARROW, gFontShortNarrowLatinGlyphWidths)[glyphId];
 
         if (gCurGlyph.width <= 8)
         {
@@ -2552,7 +2553,7 @@ static u32 GetGlyphWidth_ShortNarrow(u16 glyphId, bool32 isJapanese)
     if (isJapanese == TRUE)
         return gFontShortJapaneseGlyphWidths[glyphId];
     else
-        return gFontShortNarrowLatinGlyphWidths[glyphId];
+        return RFFont_Widths(RF_FONT_SHEET_SHORT_NARROW, gFontShortNarrowLatinGlyphWidths)[glyphId];
 }
 
 static void DecompressGlyph_ShortNarrower(u16 glyphId, bool32 isJapanese)

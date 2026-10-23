@@ -95,6 +95,14 @@ static const u8 *const sText_ColorThemeNames[KEY_COLOR_THEME_COUNT] =
     [KEY_COLOR_THEME_GRAPHITE] = COMPOUND_STRING("GRAFITO"),
 };
 
+static const u8 *const sText_FontStyleNames[KEY_FONT_STYLE_COUNT] =
+{
+    [KEY_FONT_M5X7]     = COMPOUND_STRING("M5X7"),
+    [KEY_FONT_M6X11]    = COMPOUND_STRING("M6X11"),
+    [KEY_FONT_MONOGRAM] = COMPOUND_STRING("MONOGRAM"),
+    [KEY_FONT_CLASSIC]  = COMPOUND_STRING("CLÁSICA"),
+};
+
 static const u8 *const sText_DifficultyNames[KEY_DIFFICULTY_COUNT] =
 {
     [KEY_DIFFICULTY_NORMAL]    = COMPOUND_STRING("NORMAL"),
@@ -131,6 +139,7 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_INFINITE_REPEL]         = {COMPOUND_STRING("Repelente infinito"), COMPOUND_STRING("Con el Emisor Repel en la mochila,\nevita salvajes de menor nivel.")},
     [KEY_RESTORE_TRAINER_BERRIES] = {COMPOUND_STRING("Reponer bayas"), COMPOUND_STRING("Tras entrenadores, repone tu baya\nusada. No repone objetos robados.")},
     [KEY_COLOR_THEME]            = {COMPOUND_STRING("Tema de color"), COMPOUND_STRING("Colores de los menús: Pokédex,\nmochila, equipo, PC y más.")},
+    [KEY_FONT_STYLE]             = {COMPOUND_STRING("Fuente"), COMPOUND_STRING("Letra de todos los textos.\nM5X7 y M6X11: Daniel Linssen.")},
 };
 
 // Menu order. The enum order is the saved bit order, so newer keys are placed here instead.
@@ -139,7 +148,8 @@ static const u8 sKeyMenuOrder[KEY_COUNT] =
     KEY_CAPTURE_EXP, KEY_EXP_ALL, KEY_SCALED_EXP, KEY_LEVEL_CAP, KEY_PHYSICAL_SPECIAL_SPLIT,
     KEY_MODERN_CRITS, KEY_MODERN_STATUS, KEY_ABILITY_WEATHER_TURNS, KEY_FOLLOWERS,
     KEY_OW_ENCOUNTERS, KEY_HM_FREE, KEY_AUTORUN, KEY_AUTOSAVE, KEY_BATTLE_SPEED,
-    KEY_HIDDEN_SPARKLE, KEY_DIFFICULTY, KEY_DARK_MODE, KEY_COLOR_THEME, KEY_SHINY_ODDS,
+    KEY_HIDDEN_SPARKLE, KEY_DIFFICULTY, KEY_DARK_MODE, KEY_COLOR_THEME, KEY_FONT_STYLE,
+    KEY_SHINY_ODDS,
     KEY_INFINITE_REPEL, KEY_WILD_LOOT, KEY_EXP_RESERVE, KEY_R_TEXT_FAST,
     KEY_DEXNAV_COLLECTION, KEY_RESTORE_TRAINER_BERRIES,
 };
@@ -244,7 +254,7 @@ enum KeyShinyOdds KeySystem_GetShinyOdds(void)
 
 #define RF_UI_THEME_MAGIC 0x54484D31 // "THM1"
 
-// Saves made before the theme existed have no magic and use Menta, the original look.
+// Saves made before these settings existed have no magic: Menta, the original colours, and m5x7.
 enum KeyColorTheme KeySystem_GetColorTheme(void)
 {
     if (gSaveBlock3Ptr->rfUiThemeMagic != RF_UI_THEME_MAGIC)
@@ -252,9 +262,25 @@ enum KeyColorTheme KeySystem_GetColorTheme(void)
     return gSaveBlock3Ptr->rfUiTheme % KEY_COLOR_THEME_COUNT;
 }
 
-static void KeySystem_CycleColorTheme(void)
+enum KeyFontStyle KeySystem_GetFontStyle(void)
 {
-    gSaveBlock3Ptr->rfUiTheme = (KeySystem_GetColorTheme() + 1) % KEY_COLOR_THEME_COUNT;
+    if (gSaveBlock3Ptr->rfUiThemeMagic != RF_UI_THEME_MAGIC)
+        return KEY_FONT_M5X7;
+    return gSaveBlock3Ptr->rfUiFont % KEY_FONT_STYLE_COUNT;
+}
+
+// The first change writes both settings, so the other one never starts from stale save bytes.
+static void KeySystem_CycleDisplaySetting(u32 key)
+{
+    u8 theme = KeySystem_GetColorTheme();
+    u8 font = KeySystem_GetFontStyle();
+
+    if (key == KEY_COLOR_THEME)
+        theme = (theme + 1) % KEY_COLOR_THEME_COUNT;
+    else
+        font = (font + 1) % KEY_FONT_STYLE_COUNT;
+    gSaveBlock3Ptr->rfUiTheme = theme;
+    gSaveBlock3Ptr->rfUiFont = font;
     gSaveBlock3Ptr->rfUiThemeMagic = RF_UI_THEME_MAGIC;
 }
 
@@ -399,6 +425,8 @@ static void KeySystem_PrintValue(u8 windowId, u32 key, u8 y)
         value = sText_ShinyOddsNames[KeySystem_GetShinyOdds()];
     else if (key == KEY_COLOR_THEME)
         value = sText_ColorThemeNames[KeySystem_GetColorTheme()];
+    else if (key == KEY_FONT_STYLE)
+        value = sText_FontStyleNames[KeySystem_GetFontStyle()];
     else
         value = KeySystem_IsOn(key) ? sText_On : sText_Off;
     x = KEY_LIST_WIDTH * 8 - GetStringWidth(FONT_NORMAL, value, 0) - 8;
@@ -533,8 +561,8 @@ static void Task_KeySystemMenu(u8 taskId)
             gSaveBlock3Ptr->keySystemDifficulty = (KeySystem_GetDifficulty() + 1) % KEY_DIFFICULTY_COUNT;
         else if (input == KEY_SHINY_ODDS)
             gSaveBlock3Ptr->keySystemShinyOdds = (KeySystem_GetShinyOdds() + 1) % KEY_SHINY_ODDS_COUNT;
-        else if (input == KEY_COLOR_THEME)
-            KeySystem_CycleColorTheme();
+        else if (input == KEY_COLOR_THEME || input == KEY_FONT_STYLE)
+            KeySystem_CycleDisplaySetting(input);
         else
             KeySystem_Set(input, !KeySystem_IsOn(input));
         if (input == KEY_DARK_MODE || input == KEY_COLOR_THEME)
