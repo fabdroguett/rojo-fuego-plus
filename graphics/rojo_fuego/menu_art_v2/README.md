@@ -5,7 +5,7 @@ siguiendo el pedido del usuario de buscar o crear mejores sprites de menú.
 
 | Archivo | Uso previsto | Estado |
 |---|---|---|
-| `concepts/backpack-v1.png` | Dirección artística de mochila e icono | PNG RGBA ampliado; no integrado |
+| `concepts/backpack-v1.png` | Dirección artística de mochila e icono | Fuente de `graphics/bag/` vía `tools/rojo_fuego/make_bag_frames.py` (ARTE-2) |
 | `concepts/pokedex-v1.png` | Dirección artística de dispositivo e icono Pokédex | PNG RGBA ampliado; no integrado |
 
 1312×1199 píxeles por archivo. La transparencia está presente; el alfa parcial y la paleta

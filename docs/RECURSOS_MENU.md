@@ -39,7 +39,7 @@ Inspección local de los PNG y del código de la base actual:
 | Uso | Recurso actual | Formato / contrato |
 |---|---|---|
 | Iconos del menú principal | `src/data/rf_menu_icons.h` (generado) | 16×16, máscaras de 1 bit; `RFUI_DrawIcon` las pinta con roles del tema. Fuente Kenney 1-Bit (CC0) y script `make_menu_icons.py` |
-| Mochila | `graphics/bag/bag_male.png`, `bag_female.png` | 64×384, PNG indexado de 4 bits; seis cuadros de 64×64, offsets de animación en item_menu_icons.c |
+| Mochila | `graphics/bag/bag_male.png`, `bag_female.png` | 64×384, PNG indexado de 4 bits; seis cuadros de 64×64, offsets de animación en item_menu_icons.c. Generados desde el concepto por `make_bag_frames.py` (ARTE-2) |
 | Tiles de fondo de mochila | `graphics/bag/menu.png` | Atlas 128×32 indexado; depende de tilemap y paletas propios |
 | Pokédex HGSS | `graphics/pokedex/hgss/tileset_interface.png` | Atlas 32×512 indexado, más atlas de listas/búsqueda, tilemaps y paletas claros/oscuros |
 

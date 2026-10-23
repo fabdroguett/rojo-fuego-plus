@@ -6,6 +6,32 @@ Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
 
 ## Punto guardado para retomar
 
+**ARTE-2: mochila nueva (23-10-2026 19:19).** `tools/rojo_fuego/make_bag_frames.py` (solo
+biblioteca estándar) reduce `menu_art_v2/concepts/backpack-v1.png` a 62 px, lo pasa a una paleta
+fija de 15 colores por materiales (contorno, rojo ×5, petróleo ×5, dorado ×2, crema, blanco),
+limpia píxeles aislados y genera los seis cuadros en el orden de `item_menu_icons.c`: cerrado,
+Objetos (bolsillo frontal izq., poción), Objetos clave (compartimento principal, llave),
+Poké Balls (lateral izq., Poké Ball), MT/MO (lateral der., disco) y Bayas (frontal der., baya).
+`bag.pal` es compartida: la mochila femenina invierte las rampas rojo/petróleo. No editar los PNG
+a mano; ajustar el script (`POCKETS`, figuras de contenido) y regenerar.
+Validado en mGBA con el fixture `RFUiFixture_Bag` y el nuevo `RFUiFixture_BagFemale`
+(caso `bag-female` de `capture_ui.py`): cinco bolsillos de cada género en claro y oscuro y
+cierre al mapa. Capturas en `build_artifacts/ui/bag/`. ROM de producción sin símbolos de
+fixtures, cabecera BPRE y checksum válidos, arranque hasta `CB2_Overworld`. Escritorio SHA-256
+`defe9d69f83fb82843ba8349000eeaed8df966c7a4012c4b1134a36c3a2b7750`, entrega
+`build_artifacts/releases/20261023-191907/`; la ROM previa del Escritorio (22-10) quedó como
+`Rojo Fuego Plus (respaldo 20261022-2143).gba`. Memoria: EWRAM 230628 B, IWRAM 28648 B,
+ROM 27152624 B. Siguiente: **ARTE-3** (Pokédex HGSS).
+
+**Entorno en el PC `Fabian-Pc` (sin Docker).** Se compila en WSL Ubuntu (`arm-none-eabi-gcc`,
+`libmgba-dev` instalados): copia en `~/work` sincronizada con
+`rsync -a --exclude .git --exclude build_artifacts /mnt/c/Users/Fabian-Pc/rojo-fuego-plus/ ~/work/`,
+`touch .histignore` (la copia no tiene historial git) y
+`make SHELL='bash -o pipefail' BUILD=firered -j8 -O pokefirered.gba`. El harness se compila con
+`gcc -O2 -o /tmp/rf-mgba-harness tools/rojo_fuego/test/harness.c -lmgba`. Los scripts
+`capture_*.py` siguen esperando Docker; en este PC se ejecutan sus guiones del harness desde WSL.
+Las 209 advertencias `libpng warning: bKGD` son de recursos preexistentes, no del código.
+
 **Las 1025 especies obtenibles (23-10-2026 14:07).** Pedido: todos los Pokémon en el juego,
 salvajes repartidos a criterio y legendarios mediante misiones y ubicaciones especiales.
 - Salvajes: `tools/rojo_fuego/encounters.py` ahora incluye formas por defecto con sufijo
@@ -129,8 +155,8 @@ símbolos/estados al cambiar el enlace. Ver también `test/UI_VALIDATION.md`.
 
 ## Siguiente acción concreta
 
-1. **ARTE-2: siguiente trabajo al retomar.** Mochila de seis cuadros 64×64 a partir de los
-   conceptos de `menu_art_v2`, luego ARTE-3 (Pokédex HGSS) y ARTE-4/5. Para nuevos iconos,
+1. **ARTE-3: siguiente trabajo al retomar.** ARTE-2 (mochila) está integrado; seguir con la
+   Pokédex HGSS a partir de `menu_art_v2/concepts/pokedex-v1.png` y luego ARTE-4/5. Para nuevos iconos,
    añadir el índice de la hoja Kenney al script y regenerar; no editar `rf_menu_icons.h`.
    Candidatos pendientes: estados de misiones (bloqueada/lista/completada), Claves y DexNav,
    cuyo pie con glifos no cabe aún en 232 px.

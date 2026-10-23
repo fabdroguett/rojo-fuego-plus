@@ -196,6 +196,14 @@ void RFUiFixture_Bag(void)
     GoToBagMenu(ITEMMENULOCATION_FIELD, 0, CB2_ReturnToField);
 }
 
+// Female bag sheet with every pocket filled, so each pocket frame can be captured.
+void RFUiFixture_BagFemale(void)
+{
+    gSaveBlock2Ptr->playerGender = FEMALE;
+    AddBagItem(ITEM_TOWN_MAP, 1);
+    RFUiFixture_Bag();
+}
+
 void RFUiFixture_Quests(void)
 {
     SetMainCallback1(NULL);

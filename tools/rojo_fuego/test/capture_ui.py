@@ -57,6 +57,8 @@ cases = {
                 + "hold > 1\nrun 60\n" + shot("stats")
                 + "hold > 1\nrun 60\n" + shot("moves")),
     "bag": ("Bag", "run 180\n" + shot("bag") + "hold > 1\nrun 90\n" + shot("bag-balls") + "hold > 1\nrun 90\n" + shot("bag-tm") + "hold < 1\nrun 90\nhold < 1\nrun 90\nhold A 1\nrun 40\n" + shot("bag-actions")),
+    "bag-female": ("BagFemale", "run 180\n" + shot("bagf-0")
+                   + "".join("hold > 1\nrun 90\n" + shot(f"bagf-{n}") for n in range(1, 5))),
     "quests": ("Quests", "run 60\n" + shot("quests") + "hold B 1\nrun 30\n" + shot("quests-closed")),
     "keys": ("Keys", "run 60\n" + shot("keys") + "hold B 1\nrun 30\n" + shot("keys-closed")),
     "pc": ("PC", "run 60\n" + shot("pc-menu") + "hold D 1\nrun 10\nhold D 1\nrun 10\nhold A 1\nrun 240\n" + shot("pc")),

@@ -19,8 +19,8 @@ jugable subido: `7a96f850` en `rojo-fuego`. ROM de iniciales ya entregada y veri
 esta actualización es documental. Detalles de ROM, hash, pruebas, entorno y pendientes:
 [CONTINUIDAD.md](CONTINUIDAD.md).
 
-**Al retomar: ARTE-2** (mochila) → ARTE-3 (Pokédex HGSS) → ARTE-4/5 (resto y verificación).
-ARTE-1 quedó integrado el 23-10-2026: iconos Kenney 1-Bit (CC0) en menú principal y Misiones,
+**Al retomar: ARTE-3** (Pokédex HGSS) → ARTE-4/5 (resto y verificación).
+ARTE-2 (mochila) quedó integrado el 23-10-2026. ARTE-1 quedó integrado el 23-10-2026: iconos Kenney 1-Bit (CC0) en menú principal y Misiones,
 selector de iniciales rediseñado y pintado rápido de paneles; ver CONTINUIDAD.md.
 No repetir el selector de iniciales ni la investigación ya completada. Mantener pendientes
 las pruebas integrales de apodo, primera batalla, guardado/carga y Android.
@@ -69,8 +69,11 @@ retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
   nueve del Kenney 1-Bit Pack (CC0) y una Poké Ball propia, como máscaras de 1 bit
   pintadas con roles del tema (`RFUI_DrawIcon`). Capturas claro/oscuro/selección revisadas.
   Variantes mayores quedan para ARTE-4 donde cada pantalla las necesite.
-- [ ] **ARTE-2:** construir los cuadros de mochila, respetando los recursos de 64×384 y
+- [x] **ARTE-2:** construir los cuadros de mochila, respetando los recursos de 64×384 y
   sus seis cuadros de 64×64; comprobar bolsillos, selección y ambos recursos existentes.
+  `tools/rojo_fuego/make_bag_frames.py` genera `bag_male.png`, `bag_female.png` y `bag.pal`
+  desde el concepto propio: un cuadro cerrado y uno por bolsillo con su contenido asomando.
+  Comprobado en mGBA: cinco bolsillos, ambos géneros, claro/oscuro y retorno al mapa.
 - [ ] **ARTE-3:** adaptar la Pokédex HGSS y sus atlas/tilemaps, conservando lista, búsqueda,
   hábitats, estadísticas, evoluciones, formas, grito y tamaño. No sustituir un atlas por
   una ilustración completa del dispositivo.
