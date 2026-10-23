@@ -19,6 +19,11 @@ de preevoluciones, reposición de bayas, editor EV/IV y ocho tutores por medalla
 Escritorio: [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md). El plan completo no está cerrado;
 la próxima acción se registra en [CONTINUIDAD.md](CONTINUIDAD.md).
 
+Prioridad más reciente del 23-10-2026: **mejores sprites para mochila, Pokédex y otros menús**.
+Se investigaron recursos y se crearon dos conceptos propios; su adaptación e integración
+forman ARTE-1–5 en PLAN_COMPLETO.md. Consulta [RECURSOS_MENU.md](RECURSOS_MENU.md).
+La ROM del Escritorio aún no incluye estos conceptos.
+
 ## Actualización de trabajo: misiones y almacenamiento (22-10-2026)
 
 La instrucción más reciente autoriza **completar el resumen de colección del DexNav y generar
@@ -56,8 +61,8 @@ No se considera completado el plan de 350 misiones ni la ampliación de cajas de
   `.gba` no se generó ni modificó. Recorrido de las cámaras en emulador pendiente.
 
 
-> Documento de continuidad. Si se agotan los tokens de la sesión, leer este archivo y seguir
-> desde la sección "ESTADO ACTUAL" (cerca del final). Fecha de última actualización: 2026-10-22.
+> Continuidad vigente: leer primero PLAN_COMPLETO.md y CONTINUIDAD.md. Las secciones
+> históricas de este archivo no sustituyen su estado actualizado al 23-10-2026.
 
 ## ⚠ INSTRUCCIONES DE TRABAJO ACTUALES (usuario, 2026-10-22)
 - **Trabajar sin detenerse** en el orden del plan hasta que quede ~5 % del presupuesto de tokens.

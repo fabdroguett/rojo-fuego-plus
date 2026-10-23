@@ -13,7 +13,9 @@ Estado actualizado: **43 misiones**; reserva de EXP, botín y colección del Dex
 código y pruebas nativas. Grutas, defensa del título y Noa también tienen implementación;
 la victoria y el premio de Noa ya pasan en mGBA con equipo propio y obediente. El premio
 pendiente se conserva si no cabe en la mochila. Reaprendizaje de preevoluciones habilitado
-y aprendizaje probado; reposición opcional de bayas en validación. Las secciones
+y aprendizaje probado; reposición opcional de bayas, editor EV/IV y ocho tutores por medalla
+validados con pruebas nativas y recorridos de mGBA. La prioridad actual es renovar los
+recursos visuales de menús según [RECURSOS_MENU.md](RECURSOS_MENU.md). Las secciones
 siguientes conservan el registro de investigación y no son una lista actual de pendientes.
 
 Evaluación: 2026-10-22. Las propuestas se implementan por tandas autorizadas por el usuario; consultar el avance siguiente. Esfuerzo relativo estimado; falta auditar cada integración y el espacio real de ROM y guardado.

@@ -5,6 +5,11 @@ tandas pequeñas. Alcance y dependencias: [PLAN_COMPLETO.md](PLAN_COMPLETO.md).
 
 ## Trabajo activo
 
+Pedido más reciente: actualizar el plan y buscar/crear mejores sprites de mochila, Pokédex
+y otros menús. Prioridad actual **ARTE-1–5** de PLAN_COMPLETO.md. Dos conceptos propios están
+en `graphics/rojo_fuego/menu_art_v2/concepts/`; fuentes y límites en RECURSOS_MENU.md.
+Los conceptos todavía no son recursos indexados nativos y no están integrados en la ROM.
+
 - BASE: corregido en código el premio perdido de Noa si la mochila está llena. Ahora se
   conserva el nivel del premio, se reclama al hablar con ella y no se duplica al cambiar de día.
   El conjunto actualizado pasa 18 pruebas automáticas (C con ASan/UBSan y Python).
@@ -41,7 +46,8 @@ de reenlazar y generar la ROM de producción. Nunca entregar las ROM de fixtures
 El harness mGBA está en `/tmp/rf-mgba-harness`. Artefactos ignorados en
 `build_artifacts/progression/` y `build_artifacts/training/`; no se abren guardados del jugador.
 Los nueve casos de gimnasio están en `build_artifacts/gym-tutors/`; la entrega está en
-`build_artifacts/releases/20261023-111358/`. El código estable está subido hasta `797ea693`.
+`build_artifacts/releases/20261023-111358/`. Código de juego hasta `797ea693`; documentación
+y verificador de entrega en `42ee71af`. Docker quedó apagado tras la entrega.
 
 Para reproducir: copiar las fuentes/herramientas actualizadas a `/work`, ejecutar allí
 `bash tools/rojo_fuego/test/build_progression_fixture.sh`, y ejecutar desde Windows
@@ -50,12 +56,15 @@ símbolos/estados al cambiar el enlace. Ver también `test/UI_VALIDATION.md`.
 
 ## Siguiente acción concreta
 
-1. Continuar SERVICIOS con preparación visible en Centros Pokémon (naturaleza/habilidades/
+1. Continuar ARTE: adaptar los conceptos a iconos/sprites GBA, construir cuadros de mochila
+   y adaptar la Pokédex HGSS; verificar en mGBA antes de actualizar la ROM.
+2. Después continuar SERVICIOS con preparación visible en Centros Pokémon (naturaleza/habilidades/
    crianza) y herramientas unificadas, reutilizando mentas y parches existentes.
-2. Auditar laboratorio de formas/fusiones y zonas de entrenamiento; SAVE-2 sigue aislado hasta cerrar sectores
+3. Auditar laboratorio de formas/fusiones y zonas de entrenamiento; SAVE-2 sigue aislado hasta cerrar sectores
    y migración. No rehacer sistemas existentes.
-3. Mantener validador, pruebas nativas y recorrido de emulador apropiados a cada cambio.
-4. Actualizar este archivo y subir exclusivamente código/documentación en cada punto estable.
+4. Mantener validador, pruebas nativas y recorrido de emulador apropiados a cada cambio.
+5. Actualizar este archivo y subir código, documentación y recursos fuente propios en cada
+   punto estable; mantener ROMs y guardados fuera de Git.
 
 La fixture de revancha usa un NPC generado y estadísticas sintéticas altas para garantizar
 una victoria: valida entrega del evento, no equilibrio del jefe. Los intentos iniciales

@@ -12,6 +12,48 @@ Una casilla pendiente puede requerir implementación, completar una integración
 validar código existente. No cuenta como terminada solo porque compile. Las funciones
 repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 
+## Estado consolidado al 23-10-2026
+
+Último punto jugable: [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md), código de juego hasta
+`797ea693` y verificación de entrega en `42ee71af`. El plan completo sigue abierto.
+
+| Área | Avance comprobado | Pendiente para cerrar |
+|---|---|---|
+| Misiones | 43 implementadas, catálogo validado; cadena de diálogo/entrega/Noa/informe y revancha de Brock probadas | 307 misiones, más tipos de objetivos, cadenas y recorrido del contenido restante |
+| Noa | Victoria, premio, limpieza de reglas y conservación de premio pendiente comprobados con pruebas nativas y mGBA | Diagnosticar el caso original con desobediencia; ampliar pruebas de guardado y calendario |
+| Preparación | Editor EV/IV con confirmación/cancelación, recordador de preevoluciones, clave de bayas y ocho tutores por medalla | Servicios de Centros, herramientas, formas/fusiones y zonas de entrenamiento |
+| Almacenamiento | SAVE-1 medido y documentado; 14 cajas / 420 plazas | SAVE-2 y SAVE-3: banco, migración y recuperación antes de habilitar más cajas |
+| Verificación | 18 pruebas automáticas, recorridos mGBA, ROM de avance sin fixtures y arranque hasta el mapa | Regresión integral, partidas antiguas/nuevas completas y Android |
+| Recursos visuales | Búsqueda de recursos y dos conceptos propios de mochila/Pokédex guardados | Adaptación a píxeles/paletas nativos e integración; la ROM actual conserva los gráficos anteriores |
+
+No se calcula el porcentaje global contando casillas: las tareas tienen tamaños distintos.
+43/350 expresa únicamente avance de contenido de misiones, no del proyecto completo.
+
+### Prioridad inmediata: sprites y gráficos de menús
+
+Nuevo pedido del usuario: buscar mejores sprites para mochila, Pokédex y otros menús, o
+crearlos. Se incorpora como trabajo **ARTE**, después de la base ya comprobada y antes de
+retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
+
+- [x] **ARTE-0:** investigar fuentes y crear conceptos originales de mochila y Pokédex.
+  Referencias, archivos y procedencia: [RECURSOS_MENU.md](RECURSOS_MENU.md).
+- [ ] **ARTE-1:** convertir la dirección elegida en sprites nativos: iconos 16×16 para el
+  menú principal y variantes mayores donde el motor las admita; máximo 15 colores visibles
+  más transparencia por banco 4bpp. Comprobar silueta y contraste a 1× y 2×.
+- [ ] **ARTE-2:** construir los cuadros de mochila, respetando los recursos de 64×384 y
+  sus seis cuadros de 64×64; comprobar bolsillos, selección y ambos recursos existentes.
+- [ ] **ARTE-3:** adaptar la Pokédex HGSS y sus atlas/tilemaps, conservando lista, búsqueda,
+  hábitats, estadísticas, evoluciones, formas, grito y tamaño. No sustituir un atlas por
+  una ilustración completa del dispositivo.
+- [ ] **ARTE-4:** extender la familia visual a equipo, PC, misiones, claves y tienda;
+  validar claridad de cada icono y estados seleccionado/desactivado en claro y oscuro.
+- [ ] **ARTE-5:** integrar y verificar en mGBA; compilar sin advertencias, revisar VRAM,
+  regresiones de navegación y retorno al mapa. Generar nueva ROM local cuando esté validado.
+
+Después: preparación en Centros → herramientas unificadas → formas/fusiones y entrenamiento
+por estadística → siguiente paquete desbloqueado. Mantener las investigaciones de SAVE-2 y
+desobediencia aisladas para que no detengan trabajo independiente.
+
 ## Ejecución por dependencias — reestructurada el 23-10-2026
 
 Las secciones 1–8 son el **catálogo de alcance**, no una secuencia que deba completarse
@@ -85,8 +127,10 @@ existente empieza como implementado cuando hay evidencia, sin marcarlo validado 
 | EVENTOS | Implementados diálogo, entrega y victoria; primera cadena validada en mGBA | Completar captura/recogida/uso y objetivos múltiples; conservar IDs 0–42 |
 | Validadores de contenido | Implementado; 43 entradas pasan | Ejecutar validate_quests.py al ampliar catálogos; comprobar ajuste real de textos en emulador |
 | SERVICIOS | Editor EV/IV, reaprendizaje, bayas y ocho tutores por medalla comprobados | Completar servicios de preparación y herramientas |
+| ARTE | Conceptos creados; recursos de referencia registrados | Adaptar a formato GBA antes de integrar; prioridad vigente del usuario |
 
-Tras BASE se ejecutan SAVE-1 y EVENTOS en ese orden; después SERVICIOS. Si una tarea queda
+BASE, SAVE-1 y la primera integración EVENTOS ya permiten avanzar en SERVICIOS. El pedido
+visual vigente prioriza ahora ARTE-1–5 según la cola del principio. Si una tarea queda
 bloqueada, se registra la causa y se continúa con la siguiente que no dependa de ella. Las
 pruebas de Noa no justifican rehacer toda la interfaz ni posponer sistemas independientes.
 
@@ -114,8 +158,10 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
   DexNav, mochila ampliada, protección/ordenación del PC y sus opciones de desactivación.
 - [ ] Validar las grutas diarias existentes y su renovación, recompensas y cambio de día.
 - [ ] Validar defensa del título existente: requisitos, aspirantes, victoria, derrota y registro.
-- [ ] Completar la validación de Noa: victoria, premio diario, cambio de ciudad y limpieza
-  de reglas; investigar el bloqueo observado durante la prueba con desobediencia.
+- [x] Comprobar victoria, premio y limpieza de reglas de Noa con Pokémon propio obediente;
+  proteger premios pendientes y comprobar que no se dupliquen.
+- [ ] Completar el recorrido de calendario y guardado de Noa, e investigar el bloqueo
+  original observado durante la prueba con desobediencia.
 - [ ] Auditar el rastreador de legendarios existente antes de ampliarlo a un archivo completo.
 - [ ] Revisar cobertura de la Pokédex HGSS: evoluciones, movimientos, formas y hábitats.
 - [ ] Completar la revisión del tema oscuro y de iluminación en todas las pantallas y estados.
@@ -128,6 +174,8 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
   combate 50, legendarios/posjuego 40 y finales con objetivos propios 25.
 - [ ] Añadir objetivos por diálogo, captura, combate, recogida, entrega y uso de objetos;
   cadenas con cambios visibles, seguimiento y pistas para retomar partidas.
+  Diálogo, entrega explícita y victoria ya están integrados; faltan captura, recogida,
+  uso y objetivos múltiples. Los estados finales usan los bits de misión existentes.
 - [ ] Completar diario por capítulos, filtros de zona/dificultad/disponibilidad, progreso,
   coleccionables individuales y ocultación del contenido aún no descubierto.
 - [ ] Crear campaña de artefactos entre museo de Plateada y Sete: pistas, fragmentos,
@@ -193,6 +241,9 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
 
 ## 7. Presentación, personalización y actividades
 
+- [ ] Renovar sprites y gráficos de mochila, Pokédex y menús relacionados mediante ARTE-1–5;
+  conservar funciones existentes y adaptar los conceptos a la resolución real del juego.
+
 - [ ] Ampliar interacción del seguidor: comentarios por zona/estado/eventos y acciones de campo.
 - [ ] Crear vivienda y decoración en Paleta: recuerdos de logros, plantas y muñecos.
 - [ ] Añadir protagonistas, ropa, cabello y colores con sprites completos para todas las acciones.
@@ -231,9 +282,13 @@ PC/Android utiliza la ruta de emulador acordada y exige cerrar los siguientes co
 - [ ] Por cada sistema: compilar sin errores/advertencias; pruebas apropiadas de lógica y
   recorrido en emulador; guardar/cargar, cancelar, perder y recuperar premios cuando corresponda.
 - [ ] Probar integración entre funciones, partidas antiguas/nuevas y recorrido de historia/posjuego.
-- [ ] Generar ROM local de entrega con respaldo, sin fixtures, y verificar arranque y cabecera.
+- [x] Generar ROM local de avance sin fixtures y verificar arranque y cabecera; copia en
+  el Escritorio documentada en ENTREGA_2026_10_23.md.
+- [ ] Repetir la entrega de producción al cerrar el alcance completo, con respaldo cuando
+  exista una versión anterior y pruebas integrales previas.
 - [ ] Probar controles, guardado y funciones de reloj en Android con el emulador elegido.
-- [ ] Publicar únicamente código y documentación; mantener ROMs y guardados fuera de Git.
+- [ ] Publicar únicamente código, documentación y recursos fuente autorizados; mantener ROMs
+  y guardados fuera de Git.
 
 El port Android nativo sigue siendo una ruta técnica separada, pendiente de decisión según
 lo acordado en el plan original. Completar este plan no depende de convertir el motor a SDL2.
