@@ -1,5 +1,19 @@
 # Ideas de otros hacks para Rojo Fuego Plus
 
+## Incorporadas al plan de implementación (23-10-2026)
+
+El usuario pide añadir estas ideas al plan completo **para hacerlas también**. Todas las
+adaptaciones propuestas en este documento, incluidas las de fases tardías, se integran en
+[PLAN_COMPLETO.md](PLAN_COMPLETO.md), con dependencias y criterios de cierre. Las expresiones
+históricas «evaluación», «propuesta» o «dejar para después» no las excluyen ya del alcance;
+las cautelas sobre fuentes, licencias y preferencias del usuario siguen vigentes.
+Las funciones repetidas se consolidan, sin contar como trabajo nuevo lo que ya existe.
+
+Estado actualizado: **35 misiones**; reserva de EXP, botín y colección del DexNav tienen
+código y pruebas nativas. Grutas, defensa del título y Noa también tienen implementación;
+queda completar su validación, en particular victoria y premio de Noa. Las secciones
+siguientes conservan el registro de investigación y no son una lista actual de pendientes.
+
 Evaluación: 2026-10-22. Las propuestas se implementan por tandas autorizadas por el usuario; consultar el avance siguiente. Esfuerzo relativo estimado; falta auditar cada integración y el espacio real de ROM y guardado.
 
 ## Avance de implementación
@@ -87,7 +101,7 @@ Antes de implementar: verificar solapes de flags/vars de FRLG, guardado, presupu
 
 ## Sistema extenso de misiones (consulta del usuario)
 
-Alcance solicitado por el usuario: ampliar a 240-350 o 500. Objetivo de diseño adoptado: **350 misiones**, ampliables a 500, además de encargos repetibles separados. Cantidad objetivo solicitada por el usuario; actualmente hay 30 implementadas.
+Alcance solicitado por el usuario: ampliar a 240-350 o 500. Objetivo de diseño adoptado: **350 misiones**, ampliables a 500, además de encargos repetibles separados. Cantidad objetivo solicitada por el usuario; actualmente hay 35 implementadas y faltan 315 para la meta.
 
 | Tipo | Cantidad |
 |---|---:|

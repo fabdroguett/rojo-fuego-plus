@@ -1,5 +1,13 @@
 # PLAN — Pokémon Rojo Fuego: modificaciones + ruta a PC/Android
 
+## Alcance vigente (23-10-2026)
+
+El usuario solicita completar el plan **incluyendo para implementación las ideas de otros
+hacks**. La lista de ejecución unificada está en [PLAN_COMPLETO.md](PLAN_COMPLETO.md).
+Ese documento prevalece sobre estados históricos y recomendaciones de posponer ideas que
+aparecen más abajo. Este archivo conserva el historial técnico; completar una tanda no
+equivale a terminar el proyecto. Hay 35 misiones implementadas de las 350 previstas.
+
 ## Actualización de trabajo: misiones y almacenamiento (22-10-2026)
 
 La instrucción más reciente autoriza **completar el resumen de colección del DexNav y generar
