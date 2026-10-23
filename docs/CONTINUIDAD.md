@@ -6,6 +6,19 @@ Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
 
 ## Punto guardado para retomar
 
+**Corrección 23-10-2026 13:19 — cuelgue con SELECT en combate.** Las ROM entregadas se
+compilan sin `RELEASE`, así que `DISABLED_ON_RELEASE` dejaba activos el menú de depuración de
+combate (SELECT), el de mapa (R+START) y el visor de sprites del resumen. Al salir del menú de
+combate quedan sprites/estado corruptos (reproducido en mGBA) y el usuario obtuvo
+"Jumped to invalid address" atacando a un Rattata salvaje. Los tres quedan en `FALSE` en
+`include/config/debug.h`. Verificado: SELECT no hace nada y el combate sigue; ROM de producción
+sin fixtures, arranque correcto. Escritorio SHA-256
+`958adc5d6c4be1097f2507b4dcd608d2d96690c2ca6815fb2832bab7fb1f44bf`, entrega
+`build_artifacts/releases/20261023-131914/` (anterior `5bd46e5b…` respaldada).
+Salvajes visibles (OWE) comprobados en Ruta 1, Bosque Verde y Mt. Moon. Nuevos puntos del
+fixture de iniciales: `RFUiFixture_StarterRival` (combate rival real) y
+`RFUiFixture_StarterWarp` + `gRFUiFixture_Warp` (warp a mapa/coordenadas).
+
 Última implementación (23-10-2026, tarde): **ARTE-1 integrado y selector de iniciales mejorado**.
 - Iconos: nueve del Kenney 1-Bit Pack (CC0) + Poké Ball propia, como máscaras de 1 bit
   generadas por `tools/rojo_fuego/make_menu_icons.py` desde

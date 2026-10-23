@@ -47,3 +47,23 @@ void RFUiFixture_StarterDay(void)
     KeySystem_Set(KEY_DARK_MODE, FALSE);
     CB2_RF_StarterMenu();
 }
+
+extern const u8 PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerMid[];
+
+// Starts the real lab rival battle after a starter has been received (scene 3).
+void RFUiFixture_StarterRival(void)
+{
+    ScriptContext_SetupScript(PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerMid);
+    SetMainCallback2(CB2_Overworld);
+}
+
+// Harness writes {mapGroup, mapNum, x, y} here, then calls RFUiFixture_StarterWarp.
+u8 gRFUiFixture_Warp[4];
+
+void RFUiFixture_StarterWarp(void)
+{
+    SetWarpDestination(gRFUiFixture_Warp[0], gRFUiFixture_Warp[1], -1, gRFUiFixture_Warp[2], gRFUiFixture_Warp[3]);
+    SetMainCallback1(NULL);
+    WarpIntoMap();
+    SetMainCallback2(CB2_LoadMap);
+}
