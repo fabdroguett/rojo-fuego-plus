@@ -7,6 +7,7 @@
 #include "string_util.h"
 #include "menu.h"
 #include "bg.h"
+#include "data/rf_menu_icons.h"
 
 void RFUI_LoadPalette(u32 bank, bool32 dark)
 {
@@ -60,6 +61,55 @@ void RFUI_EndFieldOverlay(void)
 }
 
 // Three-tone, two-pixel stepped corners. All dimensions are native pixels.
+// Fills a window rectangle a tile row at a time. FillWindowPixelRect writes one nibble per
+// call from ROM code, which made full-screen RF menus take several frames to repaint and
+// drop button presses; aligned 8-pixel spans here are a single 32-bit store.
+void RFUI_FillRect(u8 window, u8 fill, u32 x, u32 y, u32 width, u32 height)
+{
+    u8 *tiles = gWindows[window].tileData;
+    u32 pitch = gWindows[window].window.width;
+    u32 xEnd = min(x + width, pitch * 8);
+    u32 yEnd = min(y + height, gWindows[window].window.height * 8u);
+    u32 word = (fill & 0xF) * 0x11111111u;
+    u32 row, col;
+
+    if (tiles == NULL)
+        return;
+    for (row = y; row < yEnd; row++)
+    {
+        u8 *line = tiles + (((row >> 3) * pitch) << 5) + ((row & 7) << 2);
+        for (col = x; col < xEnd;)
+        {
+            if ((col & 7) == 0 && col + 8 <= xEnd)
+            {
+                *(u32 *)(line + ((col >> 3) << 5)) = word;
+                col += 8;
+            }
+            else
+            {
+                u8 *pixel = line + ((col >> 3) << 5) + ((col & 7) >> 1);
+                *pixel = (col & 1) ? ((*pixel & 0x0F) | (word & 0xF0)) : ((*pixel & 0xF0) | (word & 0x0F));
+                col++;
+            }
+        }
+    }
+}
+
+// Rounded single-pixel outline without touching the interior.
+void RFUI_DrawRing(u8 window, u32 x, u32 y, u32 width, u32 height, u8 edge)
+{
+    if (width < 6 || height < 6)
+        return;
+    RFUI_FillRect(window, edge, x + 2, y, width - 4, 1);
+    RFUI_FillRect(window, edge, x + 2, y + height - 1, width - 4, 1);
+    RFUI_FillRect(window, edge, x, y + 2, 1, height - 4);
+    RFUI_FillRect(window, edge, x + width - 1, y + 2, 1, height - 4);
+    RFUI_FillRect(window, edge, x + 1, y + 1, 1, 1);
+    RFUI_FillRect(window, edge, x + width - 2, y + 1, 1, 1);
+    RFUI_FillRect(window, edge, x + 1, y + height - 2, 1, 1);
+    RFUI_FillRect(window, edge, x + width - 2, y + height - 2, 1, 1);
+}
+
 void RFUI_DrawPanel(u8 window, u32 x, u32 y, u32 width, u32 height, u8 fill, u8 edge)
 {
     if (width < 6 || height < 6)
@@ -69,15 +119,35 @@ void RFUI_DrawPanel(u8 window, u32 x, u32 y, u32 width, u32 height, u8 fill, u8 
         && height == GetWindowAttribute(window, WINDOW_HEIGHT) * 8)
         FillWindowPixelBuffer(window, PIXEL_FILL(fill));
     else
-        FillWindowPixelRect(window, PIXEL_FILL(fill), x + 1, y + 1, width - 2, height - 2);
-    FillWindowPixelRect(window, PIXEL_FILL(edge), x + 2, y, width - 4, 1);
-    FillWindowPixelRect(window, PIXEL_FILL(edge), x + 2, y + height - 1, width - 4, 1);
-    FillWindowPixelRect(window, PIXEL_FILL(edge), x, y + 2, 1, height - 4);
-    FillWindowPixelRect(window, PIXEL_FILL(edge), x + width - 1, y + 2, 1, height - 4);
-    FillWindowPixelRect(window, PIXEL_FILL(edge), x + 1, y + 1, 1, 1);
-    FillWindowPixelRect(window, PIXEL_FILL(edge), x + width - 2, y + 1, 1, 1);
-    FillWindowPixelRect(window, PIXEL_FILL(edge), x + 1, y + height - 2, 1, 1);
-    FillWindowPixelRect(window, PIXEL_FILL(edge), x + width - 2, y + height - 2, 1, 1);
+        RFUI_FillRect(window, fill, x + 1, y + 1, width - 2, height - 2);
+    RFUI_DrawRing(window, x, y, width, height, edge);
+}
+
+// Paints a 1-bit menu icon with theme roles: an optional 1px drop shadow, then the ink.
+void RFUI_DrawIcon(u8 window, enum RFMenuIcon icon, u32 x, u32 y, u8 ink, u8 shadow)
+{
+    u32 pass, row, col, start;
+    if (icon >= RF_ICON_COUNT)
+        return;
+    for (pass = (shadow == RFUI_NO_SHADOW); pass < 2; pass++)
+    {
+        u32 offset = pass == 0;
+        for (row = 0; row < 16; row++)
+        {
+            u32 bits = sRFMenuIconMasks[icon][row];
+            for (col = 0; col < 16;)
+            {
+                if (!(bits & (0x8000 >> col)))
+                {
+                    col++;
+                    continue;
+                }
+                for (start = col; col < 16 && (bits & (0x8000 >> col)); col++)
+                    ;
+                RFUI_FillRect(window, pass == 0 ? shadow : ink, x + start + offset, y + row + offset, col - start, 1);
+            }
+        }
+    }
 }
 
 void RFUI_PrintFitted(u8 window, const u8 *text, u32 x, u32 y, u32 width, const u8 *colors)

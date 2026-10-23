@@ -221,7 +221,26 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_QUESTS]          = {COMPOUND_STRING("MISIONES"), {.u8_void = StartMenuQuestsCallback}},
 };
 
-#include "data/rf_menu_icons.h"
+static const u8 sRFActionIcons[] =
+{
+    [MENU_ACTION_POKEDEX] = RF_ICON_POKEDEX,
+    [MENU_ACTION_POKEMON] = RF_ICON_TEAM,
+    [MENU_ACTION_BAG] = RF_ICON_BAG,
+    [MENU_ACTION_POKENAV] = RF_ICON_DEXNAV,
+    [MENU_ACTION_PLAYER] = RF_ICON_PROFILE,
+    [MENU_ACTION_SAVE] = RF_ICON_SAVE,
+    [MENU_ACTION_OPTION] = RF_ICON_OPTIONS,
+    [MENU_ACTION_EXIT] = RF_ICON_EXIT,
+    [MENU_ACTION_RETIRE_SAFARI] = RF_ICON_EXIT,
+    [MENU_ACTION_PLAYER_LINK] = RF_ICON_PROFILE,
+    [MENU_ACTION_REST_FRONTIER] = RF_ICON_SAVE,
+    [MENU_ACTION_RETIRE_FRONTIER] = RF_ICON_EXIT,
+    [MENU_ACTION_PYRAMID_BAG] = RF_ICON_BAG,
+    [MENU_ACTION_DEBUG] = RF_ICON_OPTIONS,
+    [MENU_ACTION_DEXNAV] = RF_ICON_DEXNAV,
+    [MENU_ACTION_KEY_SYSTEM] = RF_ICON_KEY,
+    [MENU_ACTION_QUESTS] = RF_ICON_QUESTS,
+};
 
 static const u8 *RemasteredActionName(u32 action)
 {
@@ -283,7 +302,7 @@ static void DrawRemasteredMenu(void)
     RFUI_LoadPalette(15, KeySystem_IsOn(KEY_DARK_MODE));
     FillWindowPixelBuffer(window, PIXEL_FILL(4));
     RFUI_DrawPanel(window, 0, 0, 224, 144, 1, 6);
-    AddTextPrinterParameterized3(window, FONT_SMALL, 6, 3, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("MENU PRINCIPAL"));
+    AddTextPrinterParameterized3(window, FONT_SMALL, 6, 3, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("MENÚ PRINCIPAL"));
     StringCopy(gStringVar4, COMPOUND_STRING("¥"));
     ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), GetMoney(&gSaveBlock1Ptr->money), STR_CONV_MODE_LEFT_ALIGN, 6);
     AddTextPrinterParameterized3(window, FONT_SMALL, GetStringRightAlignXOffset(FONT_SMALL, gStringVar4, 216), 3, ink, TEXT_SKIP_DRAW, gStringVar4);
@@ -297,7 +316,11 @@ static void DrawRemasteredMenu(void)
         bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
         const u8 *label = RemasteredActionName(action);
         RFUI_DrawPanel(window, x, y, 70, 27, selected ? (dark ? 9 : 8) : 1, selected ? 9 : 6);
-        BlitBitmapToWindow(window, sRFMenuIcons[action], x + 4, y + 5, 16, 16);
+        // Mint icons at rest; the focused tile inverts to ink on its gold/amber fill.
+        if (selected)
+            RFUI_DrawIcon(window, action < ARRAY_COUNT(sRFActionIcons) ? sRFActionIcons[action] : RF_ICON_COUNT, x + 4, y + 5, dark ? 4 : 9, RFUI_NO_SHADOW);
+        else
+            RFUI_DrawIcon(window, action < ARRAY_COUNT(sRFActionIcons) ? sRFActionIcons[action] : RF_ICON_COUNT, x + 4, y + 5, 7, 3);
         AddTextPrinterParameterized3(window, GetStringWidth(FONT_SMALL, label, 0) > 44 ? FONT_SMALL_NARROWER : FONT_SMALL,
             x + 23, y + 7, selected && dark ? selectedInk : ink, TEXT_SKIP_DRAW, label);
     }
@@ -305,7 +328,7 @@ static void DrawRemasteredMenu(void)
     AddTextPrinterParameterized3(window, FONT_SMALL, 9, 115, ink, TEXT_SKIP_DRAW,
         sDexNavNoticeShown ? COMPOUND_STRING("No hay encuentros en esta zona.") : RemasteredActionHelp(sCurrentStartMenuActions[sStartMenuCursorPos]));
     AddTextPrinterParameterized3(window, FONT_SMALL, 8, 130, ink, TEXT_SKIP_DRAW,
-        FlagGet(FLAG_SYS_POKEDEX_GET) ? COMPOUND_STRING("A Entrar   B Atrás   R Misiones") : COMPOUND_STRING("A Entrar   B Atrás"));
+        FlagGet(FLAG_SYS_POKEDEX_GET) ? COMPOUND_STRING("{A_BUTTON} Entrar   {B_BUTTON} Atrás   {R_BUTTON} Misiones") : COMPOUND_STRING("{A_BUTTON} Entrar   {B_BUTTON} Atrás"));
     PutWindowTilemap(window);
     CopyWindowToVram(window, COPYWIN_FULL);
 }

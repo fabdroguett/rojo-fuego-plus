@@ -53,7 +53,10 @@ for group, row in enumerate(groups):
         if choice == 0:
             script += f"shot /tmp/rf-starter-{tag}.ppm\n"
         # First A only previews confirmation; B must return without granting a mon.
-        script += key("A") + key("B") + key("A") + key("A")
+        script += key("A")
+        if tag == "00-0":
+            script += "shot /tmp/rf-starter-confirm.ppm\n"
+        script += key("B") + key("A") + key("A")
         script += "run 120\nmash B 900\nrun 180\n" + callback("RFUiFixture_StarterRead")
         script += f'dump {symbols["gRFUiFixture_StarterResult"]:08x} a /tmp/rf-starter-{tag}.bin\n'
         hidden = name not in {"SPECIES_ZORUA", "SPECIES_DEINO", "SPECIES_MIMIKYU"}
@@ -76,7 +79,7 @@ for tag, name, expected in cases:
     report.append({"species": name, "result": actual})
     if tag.endswith("-0"):
         docker("cp", f"rojo-fuego-check:/tmp/rf-starter-{tag}.ppm", str(OUT / f"{tag}.ppm"))
-for tag in ("lab", "day"):
+for tag in ("lab", "day", "confirm"):
     docker("cp", f"rojo-fuego-check:/tmp/rf-starter-{tag}.ppm", str(OUT / f"{tag}.ppm"))
 target = OUT / "cancel.bin"
 docker("cp", "rojo-fuego-check:/tmp/rf-starter-cancel.bin", str(target))

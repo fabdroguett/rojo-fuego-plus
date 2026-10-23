@@ -6,17 +6,29 @@ Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
 
 ## Punto guardado para retomar
 
-Última implementación completada: selector de iniciales de generaciones 1–9, extras como
-Beldum/Riolu/Gible/Axew y más a criterio, con habilidad oculta. Implementación en
-`src/rf_starter_menu.c`: 54 opciones/18 grupos; integración con Oak conservando rival Kanto.
-Catálogo y controles: [INICIALES.md](INICIALES.md). Investigación ampliada de 28 fuentes:
-[ASSETS_INTERNET.md](ASSETS_INTERNET.md). Validado: 54 elecciones en mGBA, cancelación, 18 regresiones y arranque de producción.
-ROM actualizada en el Escritorio, SHA-256
-`f79fc39f164350b6167dcae79d1dcd8676a9ce5876470e15b4ec16f3f267f82f`.
-Entrega local: `build_artifacts/releases/20261023-114921/`, sin fixtures.
-Memoria: EWRAM 230376 B, IWRAM 28648 B, ROM enlazada 27154056 B.
-Código y documentación sincronizados con `origin/rojo-fuego`, commit `7a96f850`.
-La actualización posterior de estos documentos solo cambia el plan, no la ROM.
+Última implementación (23-10-2026, tarde): **ARTE-1 integrado y selector de iniciales mejorado**.
+- Iconos: nueve del Kenney 1-Bit Pack (CC0) + Poké Ball propia, como máscaras de 1 bit
+  generadas por `tools/rojo_fuego/make_menu_icons.py` desde
+  `graphics/rojo_fuego/icons/kenney_1bit_menu.png`; se pintan con `RFUI_DrawIcon` según tema
+  y foco. Usados en el menú principal (todas las acciones) y la cabecera de Misiones.
+- `RFUI_FillRect`/`RFUI_DrawRing`: `RFUI_DrawPanel` ya no rellena píxel a píxel. El selector
+  de iniciales tardaba ~12 fotogramas por repintado y perdía pulsaciones; ahora ~3. Beneficia
+  a todos los menús RF que usan paneles (inicio, DexNav, mochila, equipo, PC, mapa).
+- Selector de iniciales: región/generación, paginador, tipos, foco animado y atenuación,
+  chips NORMAL/OCULTA, descripción de habilidad y confirmación modal ([INICIALES.md](INICIALES.md)).
+- Glifos de botones en pies de menú principal, mochila y Misiones.
+Validado: 54 elecciones + cancelación + vuelta desde confirmación en mGBA (`capture_starters.py`),
+capturas claro/oscuro de inicio, Misiones, Claves, mochila, DexNav, ficha, PC y equipo en combate
+(`capture_ui.py`; el cambio de equipo sigue pasando). Build de producción sin fixtures
+(0 símbolos `RFUiFixture_`/`RFProgress_`), cabecera BPRE válida y arranque hasta el mapa.
+ROM en el Escritorio, SHA-256 `5bd46e5b8ffbe5c9cdd5e5d7e681915bb7c057e15af64f155b9d3019333e7003`;
+entrega `build_artifacts/releases/20261023-121954/` con la anterior (`f79fc39f…`) respaldada.
+Memoria: EWRAM 230384 B, IWRAM 28648 B, ROM enlazada 27154640 B.
+No se probaron Android ni el recorrido completo de partida nueva con apodo/guardado.
+
+Selector de iniciales original (antes de esta revisión): 54 opciones/18 grupos con habilidad
+oculta, integrado con Oak conservando el rival de Kanto. Investigación de 28 fuentes:
+[ASSETS_INTERNET.md](ASSETS_INTERNET.md).
 ROM entregada: `C:/Users/fabia/OneDrive/Desktop/Rojo Fuego Plus.gba`.
 
 Pedido anterior: actualizar el plan y buscar/crear mejores sprites de mochila, Pokédex
@@ -74,15 +86,12 @@ símbolos/estados al cambiar el enlace. Ver también `test/UI_VALIDATION.md`.
 
 ## Siguiente acción concreta
 
-1. **ARTE-1: siguiente trabajo al retomar.** Partir del catálogo de Internet
-   [ASSETS_INTERNET.md](ASSETS_INTERNET.md): seleccionar una familia coherente de iconos
-   16×16 para mochila, Pokédex, equipo, misiones, logros, claves, guardar, mapa y objetos
-   registrados. Revisar el archivo y licencia concretos, guardar procedencia/créditos y
-   adaptar al formato nativo de `src/data/rf_menu_icons.h`. Los conceptos propios son
-   referencias opcionales; no confundirlos con sprites integrados. Validar a 1×/2×,
-   claro/oscuro, navegación y retorno al mapa antes de actualizar la ROM.
-2. Seguir **ARTE-2 → ARTE-3 → ARTE-4/5**: mochila de seis cuadros 64×64, Pokédex HGSS
-   y extensión visual a las demás superficies, con verificación de cada integración.
+1. **ARTE-2: siguiente trabajo al retomar.** Mochila de seis cuadros 64×64 a partir de los
+   conceptos de `menu_art_v2`, luego ARTE-3 (Pokédex HGSS) y ARTE-4/5. Para nuevos iconos,
+   añadir el índice de la hoja Kenney al script y regenerar; no editar `rf_menu_icons.h`.
+   Candidatos pendientes: estados de misiones (bloqueada/lista/completada), Claves y DexNav,
+   cuyo pie con glifos no cabe aún en 232 px.
+2. Seguir **ARTE-3 → ARTE-4/5** con verificación de cada integración.
 3. Después continuar SERVICIOS con preparación visible en Centros Pokémon (naturaleza/habilidades/
    crianza) y herramientas unificadas, reutilizando mentas y parches existentes.
 4. Auditar laboratorio de formas/fusiones y zonas de entrenamiento; SAVE-2 sigue aislado hasta cerrar sectores

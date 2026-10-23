@@ -42,10 +42,10 @@ static const u8 *const sChapterNames[] =
 STATIC_ASSERT(ARRAY_COUNT(sChapterNames) == QUEST_CHAPTERS, RFQuestChapterNames);
 static const u8 *const sStatusNames[] =
 {
-    COMPOUND_STRING("A: aceptar   START: premio"),
-    COMPOUND_STRING("En curso     START: premio"),
-    COMPOUND_STRING("A: reclamar  START: premio"),
-    COMPOUND_STRING("Completada   B: salir"),
+    COMPOUND_STRING("{A_BUTTON} Aceptar    {START_BUTTON} Premio"),
+    COMPOUND_STRING("En curso     {START_BUTTON} Premio"),
+    COMPOUND_STRING("{A_BUTTON} Reclamar   {START_BUTTON} Premio"),
+    COMPOUND_STRING("Completada   {B_BUTTON} Salir"),
 };
 static EWRAM_DATA struct ListMenuItem sQuestList[RF_QUEST_COUNT] = {0};
 static EWRAM_DATA u8 sQuestWindowIds[3] = {0};
@@ -104,12 +104,13 @@ static void DrawChapterHeader(void)
     StringAppend(gStringVar1, COMPOUND_STRING("/"));
     ConvertIntToDecimalStringN(gStringVar1 + StringLength(gStringVar1), sQuestListCount, STR_CONV_MODE_LEFT_ALIGN, 3);
     FillWindowPixelBuffer(window, PIXEL_FILL(1));
-    AddTextPrinterParameterized(window, FONT_SMALL, sChapterNames[sQuestChapter], 0, 0, TEXT_SKIP_DRAW, NULL);
+    RFUI_DrawIcon(window, RF_ICON_QUESTS, 0, 0, 2, 3);
+    AddTextPrinterParameterized(window, FONT_SMALL, sChapterNames[sQuestChapter], 20, 0, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized(window, FONT_SMALL, gStringVar1, 155, 0, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized(window, FONT_SMALL, COMPOUND_STRING("L/R"), 200, 0, TEXT_SKIP_DRAW, NULL);
-    FillWindowPixelRect(window, PIXEL_FILL(3), 0, 13, 224, 2);
+    AddTextPrinterParameterized(window, FONT_SMALL, COMPOUND_STRING("{L_BUTTON}{R_BUTTON}"), 190, 0, TEXT_SKIP_DRAW, NULL);
+    FillWindowPixelRect(window, PIXEL_FILL(3), 20, 13, 204, 2);
     if (sQuestListCount != 0 && completed != 0)
-        FillWindowPixelRect(window, PIXEL_FILL(5), 0, 13, 224 * completed / sQuestListCount, 2);
+        FillWindowPixelRect(window, PIXEL_FILL(5), 20, 13, 204 * completed / sQuestListCount, 2);
     CopyWindowToVram(window, COPYWIN_FULL);
 }
 

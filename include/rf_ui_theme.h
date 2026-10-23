@@ -2,6 +2,7 @@
 #define GUARD_RF_UI_THEME_H
 
 #include "constants/rgb.h"
+#include "constants/rf_menu_icons.h"
 
 #define RF_UI_NIGHT_GROUND RGB(1, 5, 6)
 #define RF_UI_NIGHT_PANEL RGB(2, 9, 10)
@@ -17,7 +18,11 @@ void RFUI_LoadWindowPalette(const u16 *palette, u32 offset);
 void RFUI_ThemeHealthboxPalette(u32 paletteNum);
 void RFUI_BeginFieldOverlay(void);
 void RFUI_EndFieldOverlay(void);
+void RFUI_FillRect(u8 window, u8 fill, u32 x, u32 y, u32 width, u32 height);
+void RFUI_DrawRing(u8 window, u32 x, u32 y, u32 width, u32 height, u8 edge);
 void RFUI_DrawPanel(u8 window, u32 x, u32 y, u32 width, u32 height, u8 fill, u8 edge);
+#define RFUI_NO_SHADOW 0xFF
+void RFUI_DrawIcon(u8 window, enum RFMenuIcon icon, u32 x, u32 y, u8 ink, u8 shadow);
 void RFUI_PrintFitted(u8 window, const u8 *text, u32 x, u32 y, u32 width, const u8 *colors);
 
 #endif

@@ -2667,7 +2667,7 @@ static void LoadBagMenuTextWindows(void)
         RFUI_DrawPanel(sRFBagChromeWindow, 134, 29, 106, 73, 1, 6);
         RFUI_DrawPanel(sRFBagChromeWindow, 134, 103, 106, 44, 1, 6);
         AddTextPrinterParameterized3(sRFBagChromeWindow, FONT_NORMAL, 8, 5, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("MOCHILA"));
-        AddTextPrinterParameterized3(sRFBagChromeWindow, FONT_SMALL, 4, 148, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("A Elegir  SELECT Ordenar  B Atrás"));
+        AddTextPrinterParameterized3(sRFBagChromeWindow, FONT_SMALL, 4, 148, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("{A_BUTTON} Elegir  {SELECT_BUTTON} Ordenar  {B_BUTTON} Atrás"));
         PutWindowTilemap(sRFBagChromeWindow);
         CopyWindowToVram(sRFBagChromeWindow, COPYWIN_FULL);
     }

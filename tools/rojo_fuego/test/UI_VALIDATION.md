@@ -42,7 +42,7 @@ flags plus `-u RFUiFixture_StarterLab -u RFUiFixture_StarterScript
 -u RFUiFixture_StarterRead -u RFUiFixture_StarterDay`. Run
 `python tools/rojo_fuego/test/capture_starters.py` from Windows. It warps a synthetic
 new game into Oak's actual lab, runs its ball script for all 54 species, checks species,
-ability, rival branch and final scene, then tests cancellation and captures the light theme.
+ability, rival branch and final scene, then tests cancellation and captures the light theme and the confirmation modal (`confirm.ppm`).
 Results are in ignored `build_artifacts/ui/starters/`. It waits three frames after debug
 callback injection so the field callback handoff has finished before reading results.
 Remove `/work/src/rf_starter_fixture.c` and the ELF, then perform the production release

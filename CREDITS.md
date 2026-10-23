@@ -147,3 +147,11 @@ Arte de **Mikitari**, variante `CASTFORM_4` de [Free Fakemon Pack](https://eevee
 Se adaptaron escala, lienzo y paletas al formato GBA. Se importó solamente una forma de
 Castform existente, sin incorporar las especies originales del paquete.
 Procedencia y hashes: `graphics/pokemon/castform/sandy/source.json`.
+
+## Rojo Fuego+: iconos de menú
+
+Nueve iconos 16×16 del [1-Bit Pack de Kenney](https://kenney.nl/assets/1-bit-pack) (v1.2,
+licencia [CC0](https://creativecommons.org/publicdomain/zero/1.0/)): libro, mochila, escáner,
+persona, disquete, engranaje, flecha, llave y pergamino. Fuente recortada en
+`graphics/rojo_fuego/icons/kenney_1bit_menu.png`; índices de la hoja en
+`tools/rojo_fuego/make_menu_icons.py`. La Poké Ball del menú es un dibujo propio.

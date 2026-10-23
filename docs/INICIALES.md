@@ -34,7 +34,12 @@ laboratorio de Oak. Son **54 opciones, nivel 5**, en 18 grupos de tres, sin desb
 - A abre confirmación, A confirma; B vuelve a elegir. B fuera de confirmación cierra
   sin recibir Pokémon y permite volver a abrir cualquiera de las Poké Balls.
 
-Diseño nativo 240×160, tres sprites completos y selección dorada, con tema claro/oscuro.
+Diseño nativo 240×160 con tema claro/oscuro. Revisión del 23-10-2026: cabecera con región
+y generación, paginador de 18 grupos (el actual dorado y más alto), iconos de tipo por
+tarjeta, doble anillo dorado y salto del Pokémon enfocado; los no elegidos se atenúan.
+Fila de habilidad con selector NORMAL/OCULTA (desactivado si no existe), descripción real
+y pie con glifos de botones. A abre una confirmación modal con especie, habilidad y nivel.
+Cada repintado tarda ~3 fotogramas (antes ~12, perdía pulsaciones rápidas).
 No introduce nuevos gráficos externos ni campos de guardado. Conserva el nombre opcional,
 las banderas y las escenas posteriores. El rival conserva sus equipos de Kanto: las tres
 columnas usan las ramas de historia hierba/fuego/agua (0/2/1); no se cambian sus equipos
