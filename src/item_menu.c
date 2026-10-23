@@ -861,21 +861,21 @@ static void BagMenu_InitBGs(void)
 }
 
 // Rojo Fuego+ dark mode (Key System, from Pokémon SoulGold): dark item list and description box
-static const struct { u8 index; u16 color; } sBagDarkModeColors[] =
+static const struct { u8 index; u8 role; } sBagDarkModeColors[] =
 {
-    {1,       RF_UI_NIGHT_PANEL},    // description box and other white panels
-    {9,       RF_UI_NIGHT_PANEL},    // item list background
-    {10,      RF_UI_NIGHT_EDGE},  // item list frame
-    {7,       RF_UI_NIGHT_PANEL},
-    {8,       RF_UI_NIGHT_EDGE},
-    {12,      RF_UI_NIGHT_PANEL}, // striped canvas
-    {13,      RF_UI_NIGHT_GROUND},
-    {16 + 12, RF_UI_NIGHT_PANEL},
-    {16 + 13, RF_UI_NIGHT_GROUND},
-    {16 + 10, RF_UI_NIGHT_PANEL},    // item list background (windows)
-    {16 + 2,  RF_UI_NIGHT_PANEL},    // description background
-    {16 + 1,  RF_UI_NIGHT_TEXT}, // text
-    {16 + 3,  RF_UI_NIGHT_SHADOW}, // text shadow
+    {1,       RF_ROLE_PANEL},    // description box and other white panels
+    {9,       RF_ROLE_PANEL},    // item list background
+    {10,      RF_ROLE_EDGE},  // item list frame
+    {7,       RF_ROLE_PANEL},
+    {8,       RF_ROLE_EDGE},
+    {12,      RF_ROLE_PANEL}, // striped canvas
+    {13,      RF_ROLE_GROUND},
+    {16 + 12, RF_ROLE_PANEL},
+    {16 + 13, RF_ROLE_GROUND},
+    {16 + 10, RF_ROLE_PANEL},    // item list background (windows)
+    {16 + 2,  RF_ROLE_PANEL},    // description background
+    {16 + 1,  RF_ROLE_TEXT}, // text
+    {16 + 3,  RF_ROLE_SHADOW}, // text shadow
 };
 
 static void LoadBagDarkModeColors(void)
@@ -885,7 +885,7 @@ static void LoadBagDarkModeColors(void)
     if (!KeySystem_IsOn(KEY_DARK_MODE))
         return;
     for (i = 0; i < ARRAY_COUNT(sBagDarkModeColors); i++)
-        LoadPalette(&sBagDarkModeColors[i].color, BG_PLTT_ID(0) + sBagDarkModeColors[i].index, PLTT_SIZEOF(1));
+        RFUI_LoadNightRole(sBagDarkModeColors[i].role, BG_PLTT_ID(0) + sBagDarkModeColors[i].index);
 }
 
 static bool8 LoadBagMenu_Graphics(void)

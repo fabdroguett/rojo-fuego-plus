@@ -766,12 +766,12 @@ static void BuyMenuDecompressBgGraphics(void)
     LoadPalette(gShopMenu_Pal, BG_PLTT_ID(SHOP_MENU_PALETTE_ID), PLTT_SIZE_4BPP);
     if (KeySystem_IsOn(KEY_DARK_MODE))
     {
-        static const u16 surfaces[] = {
+        const u16 surfaces[] = {
             RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_EDGE,
             RF_UI_NIGHT_GROUND, RF_UI_NIGHT_MUTED, RF_UI_NIGHT_EDGE, // 6: outer rim, no bright rails
         };
         // 9/10: the buy list's alternating row bands, 11: its rim
-        static const u16 list[] = {RGB(3, 11, 12), RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE};
+        const u16 list[] = {RF_UI_SELECTED, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE};
         LoadPalette(surfaces, BG_PLTT_ID(SHOP_MENU_PALETTE_ID) + 1, sizeof(surfaces));
         LoadPalette(list, BG_PLTT_ID(SHOP_MENU_PALETTE_ID) + 9, sizeof(list));
     }

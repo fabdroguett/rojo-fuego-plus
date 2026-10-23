@@ -4103,13 +4103,13 @@ static void InitPalettesAndSprites(void)
 
     if (KeySystem_IsOn(KEY_DARK_MODE))
     {
-        static const u16 frame[] = {
+        const u16 frame[] = {
             RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND,
             RF_UI_NIGHT_PANEL, RGB(30,24,13), RF_UI_NIGHT_EDGE, RF_UI_NIGHT_TEXT,
             RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RGB(30,24,13), RF_UI_NIGHT_EDGE,
-            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_TEXT, RGB(14,27,21),
+            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_TEXT, RF_UI_NIGHT_ACCENT,
         };
-        static const u16 backdrop[] = {
+        const u16 backdrop[] = {
             RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND,
             RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
             RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND, 0,0,0,0,0,

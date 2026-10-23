@@ -7,6 +7,7 @@ bool32 KeySystem_IsOn(enum KeySystemKey key);
 void KeySystem_Set(enum KeySystemKey key, bool32 on);
 enum KeyDifficulty KeySystem_GetDifficulty(void);
 enum KeyShinyOdds KeySystem_GetShinyOdds(void);
+enum KeyColorTheme KeySystem_GetColorTheme(void);
 u32 KeySystem_GetShinyThreshold(void);
 bool32 KeySystem_CanUseFieldMoveWithoutMon(enum Move move);
 s32 KeySystem_GetFieldMoveUser(enum Move move);

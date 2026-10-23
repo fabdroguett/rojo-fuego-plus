@@ -30,6 +30,7 @@ enum KeySystemKey
     KEY_R_TEXT_FAST,
     KEY_DEXNAV_COLLECTION,
     KEY_RESTORE_TRAINER_BERRIES,
+    KEY_COLOR_THEME, // Not an on/off key: cycles through enum KeyColorTheme. Shown after KEY_DARK_MODE.
     KEY_COUNT
 };
 
@@ -48,6 +49,18 @@ enum KeyShinyOdds
     KEY_SHINY_ODDS_512,
     KEY_SHINY_ODDS_256,
     KEY_SHINY_ODDS_COUNT
+};
+
+// Colour themes for the Rojo Fuego+ menus (rf_ui_theme.c). Each has a day and a night variant.
+enum KeyColorTheme
+{
+    KEY_COLOR_THEME_MINT, // 0: the original look, so older saves keep it
+    KEY_COLOR_THEME_CRIMSON,
+    KEY_COLOR_THEME_AZURE,
+    KEY_COLOR_THEME_VIOLET,
+    KEY_COLOR_THEME_AMBER,
+    KEY_COLOR_THEME_GRAPHITE,
+    KEY_COLOR_THEME_COUNT
 };
 
 #endif // GUARD_CONSTANTS_KEY_SYSTEM_H

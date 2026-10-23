@@ -216,7 +216,7 @@ void CB2_InitOptionMenu(void)
         break;
     case 4:
     {
-        u16 ground = KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_GROUND : RGB(23,28,25);
+        u16 ground = KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_GROUND : RF_UI_DAY_GROUND;
         LoadPalette(&ground, BG_PLTT_ID(0), sizeof(ground));
         RFUI_LoadWindowPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->pal, BG_PLTT_ID(7));
         gMain.state++;
@@ -226,10 +226,10 @@ void CB2_InitOptionMenu(void)
     {
         bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
         const u16 text[] = {
-            0, dark ? RF_UI_NIGHT_PANEL : RGB(27,31,27), dark ? RF_UI_NIGHT_TEXT : RGB(2,7,8),
-            dark ? RF_UI_NIGHT_SHADOW : RGB(22,27,24), dark ? RF_UI_GOLD : RGB(17,11,2),
-            dark ? RF_UI_NIGHT_SHADOW : RGB(22,27,24), dark ? RF_UI_NIGHT_MUTED : RGB(8,15,14),
-            dark ? RF_UI_NIGHT_SHADOW : RGB(22,27,24), 0,0,0,0,0,0,0,0,
+            0, dark ? RF_UI_NIGHT_PANEL : RF_UI_DAY_PANEL, dark ? RF_UI_NIGHT_TEXT : RF_UI_DAY_TEXT,
+            dark ? RF_UI_NIGHT_SHADOW : RF_UI_DAY_SHADOW, dark ? RF_UI_GOLD : RF_UI_DAY_GOLD,
+            dark ? RF_UI_NIGHT_SHADOW : RF_UI_DAY_SHADOW, dark ? RF_UI_NIGHT_MUTED : RF_UI_DAY_MUTED,
+            dark ? RF_UI_NIGHT_SHADOW : RF_UI_DAY_SHADOW, 0,0,0,0,0,0,0,0,
         };
         LoadPalette(text, BG_PLTT_ID(1), sizeof(text));
         gMain.state++;

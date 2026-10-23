@@ -106,6 +106,15 @@ void RFUiFixture_Day(void)
     SetMainCallback2(CB2_Overworld);
 }
 
+// Advances the colour theme exactly as choosing "Tema de color" in the Key System menu does.
+void RFUiFixture_NextTheme(void)
+{
+    gSaveBlock3Ptr->rfUiTheme = (KeySystem_GetColorTheme() + 1) % KEY_COLOR_THEME_COUNT;
+    gSaveBlock3Ptr->rfUiThemeMagic = 0x54484D31;
+    LoadMessageBoxAndBorderGfx();
+    SetMainCallback2(CB2_Overworld);
+}
+
 void RFUiFixture_Slow(void)
 {
     KeySystem_Set(KEY_BATTLE_SPEED, FALSE);

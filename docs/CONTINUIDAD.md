@@ -6,6 +6,27 @@ Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
 
 ## Punto guardado para retomar
 
+**Tema de color configurable (23-10-2026 20:23).** Pedido: Pokédex "con esteroides", otra paleta
+(carmesí o azur), otra fuente general y colores configurables en todos los menús RF.
+- `rf_ui_theme.c`: tabla `sThemeColors[tema][día/noche][rol]` con seis temas (MENTA, CARMESÍ,
+  AZUR, VIOLETA, ÁMBAR, GRAFITO) y 13 roles (`enum RFUIRole`). `RF_UI_NIGHT_*`/`RF_UI_DAY_*`
+  leen el tema activo vía `RFUI_Color`, por lo que ya no son constantes: las tablas de recoloreo
+  nocturno guardan roles y se cargan con `RFUI_LoadNightRole`. Menta reproduce los colores previos.
+- Claves: `KEY_COLOR_THEME` al final del enum (no mueve bits guardados); `sKeyMenuOrder` lo
+  muestra tras Modo oscuro. Guardado: `SaveBlock3.rfUiThemeMagic` ("THM1") + `rfUiTheme`;
+  sin magic se usa Menta. Cambiarlo repinta el menú al momento.
+- Validado en mGBA: 6 temas × claro/oscuro en Pokédex (lista, ficha, estadísticas), mochila y
+  menú principal; opción en Claves con ciclo y cierre al mapa. Fixture `RFUiFixture_NextTheme`.
+  ROM de producción sin fixtures, cabecera válida, arranque a `CB2_Overworld`, 18 pruebas nativas.
+  Entrega `build_artifacts/releases/20261023-202304/` SHA-256 `b1532bfd…24f0`; **no se copió
+  al Escritorio** porque mGBA estaba abierto con la ROM.
+- Fuente Monogram (CC0, Vinícius Menézio) obtenida: `monogram-bitmap.json` 14142 B y PNG 1376 B,
+  iguales a los oficiales de itch.io (la descarga automática de itch.io rechaza la clave; se tomó
+  la copia del paquete oficial incluida en el repositorio GitHub `flygohr/NuradanRPG`). Trae los
+  acentos del español; faltan ♂/♀ (conservar los del juego). Pendiente convertirla.
+- Siguiente: fuente Monogram global → DEX-1 (rótulos en español, logo/pestañas legibles en
+  oscuro) → DEX-2…11 según PLAN_COMPLETO.md.
+
 **ARTE-2: mochila nueva (23-10-2026 19:19).** `tools/rojo_fuego/make_bag_frames.py` (solo
 biblioteca estándar) reduce `menu_art_v2/concepts/backpack-v1.png` a 62 px, lo pasa a una paleta
 fija de 15 colores por materiales (contorno, rojo ×5, petróleo ×5, dorado ×2, crema, blanco),

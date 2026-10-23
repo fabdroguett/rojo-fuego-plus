@@ -74,9 +74,25 @@ retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
   `tools/rojo_fuego/make_bag_frames.py` genera `bag_male.png`, `bag_female.png` y `bag.pal`
   desde el concepto propio: un cuadro cerrado y uno por bolsillo con su contenido asomando.
   Comprobado en mGBA: cinco bolsillos, ambos géneros, claro/oscuro y retorno al mapa.
-- [ ] **ARTE-3:** adaptar la Pokédex HGSS y sus atlas/tilemaps, conservando lista, búsqueda,
-  hábitats, estadísticas, evoluciones, formas, grito y tamaño. No sustituir un atlas por
-  una ilustración completa del dispositivo.
+- [ ] **ARTE-3 → paquete DEX-PLUS:** la Pokédex HGSS "con esteroides" (pedido del 23-10-2026:
+  "esa Pokédex pero mejorada a full, con más funcionalidades"). Se conserva la base HGSS
+  (lista, búsqueda, área, estadísticas, evoluciones, formas, grito, tamaño) y se amplía.
+  No sustituir un atlas por una ilustración completa del dispositivo. Entregas comprobables:
+  - [ ] **DEX-1 Piel:** paletas claro/oscuro del concepto (rojo, petróleo, menta, dorado)
+    y rótulos de los atlas redibujados en español (pestañas, MENÚ/BUSCAR, KANTO/NACIONAL,
+    VISTOS/CAPT., botones de búsqueda).
+  - [ ] **DEX-2 Textos:** cadenas de pantalla en español (estadísticas, crianza, captura,
+    movimientos, evoluciones, tamaño, búsqueda).
+  - [ ] **DEX-3 Área real:** rutas/zonas y franja día/tarde/noche desde los datos de
+    `encounters.py`; legendarios con su misión de saga y ubicación (`legends.py`).
+  - [ ] **DEX-4 Debilidades:** tabla de tipos de la especie (×4, ×2, ×½, ×¼, inmune).
+  - [ ] **DEX-5 Crianza y EV:** grupos huevo, sexos, eclosión y EV, legibles y completos.
+  - [ ] **DEX-6 Movimientos completos:** nivel, MT/MO, tutor y huevo con su método visible.
+  - [ ] **DEX-7 Variocolor y formas:** alternar sprite shiny y macho/hembra en la ficha.
+  - [ ] **DEX-8 Evoluciones:** cadena completa con ramas, método claro y estado visto/capturado.
+  - [ ] **DEX-9 Progreso:** vistos/capturados de 1025, por generación y legendarios por saga.
+  - [ ] **DEX-10 Filtros rápidos:** faltantes, capturados, legendarios y por generación.
+  - [ ] **DEX-11 Atajo al DexNav:** desde la ficha, buscar esa especie en la zona actual.
 - [ ] **ARTE-4:** extender la familia visual a equipo, PC, misiones, claves y tienda;
   validar claridad de cada icono y estados seleccionado/desactivado en claro y oscuro.
 - [ ] **ARTE-5:** integrar y verificar en mGBA; compilar sin advertencias, revisar VRAM,

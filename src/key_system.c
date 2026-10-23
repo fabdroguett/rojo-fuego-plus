@@ -85,6 +85,16 @@ static const u8 *const sText_ShinyOddsNames[KEY_SHINY_ODDS_COUNT] =
     [KEY_SHINY_ODDS_256]    = COMPOUND_STRING("1/256"),
 };
 
+static const u8 *const sText_ColorThemeNames[KEY_COLOR_THEME_COUNT] =
+{
+    [KEY_COLOR_THEME_MINT]     = COMPOUND_STRING("MENTA"),
+    [KEY_COLOR_THEME_CRIMSON]  = COMPOUND_STRING("CARMESÍ"),
+    [KEY_COLOR_THEME_AZURE]    = COMPOUND_STRING("AZUR"),
+    [KEY_COLOR_THEME_VIOLET]   = COMPOUND_STRING("VIOLETA"),
+    [KEY_COLOR_THEME_AMBER]    = COMPOUND_STRING("ÁMBAR"),
+    [KEY_COLOR_THEME_GRAPHITE] = COMPOUND_STRING("GRAFITO"),
+};
+
 static const u8 *const sText_DifficultyNames[KEY_DIFFICULTY_COUNT] =
 {
     [KEY_DIFFICULTY_NORMAL]    = COMPOUND_STRING("NORMAL"),
@@ -120,6 +130,18 @@ static const struct KeyInfo sKeyInfo[KEY_COUNT] =
     [KEY_WILD_LOOT]              = {COMPOUND_STRING("Botín de salvajes"), COMPOUND_STRING("25% de recoger su objeto al vencer.\nSin espacio: queda en reserva.")},
     [KEY_INFINITE_REPEL]         = {COMPOUND_STRING("Repelente infinito"), COMPOUND_STRING("Con el Emisor Repel en la mochila,\nevita salvajes de menor nivel.")},
     [KEY_RESTORE_TRAINER_BERRIES] = {COMPOUND_STRING("Reponer bayas"), COMPOUND_STRING("Tras entrenadores, repone tu baya\nusada. No repone objetos robados.")},
+    [KEY_COLOR_THEME]            = {COMPOUND_STRING("Tema de color"), COMPOUND_STRING("Colores de los menús: Pokédex,\nmochila, equipo, PC y más.")},
+};
+
+// Menu order. The enum order is the saved bit order, so newer keys are placed here instead.
+static const u8 sKeyMenuOrder[KEY_COUNT] =
+{
+    KEY_CAPTURE_EXP, KEY_EXP_ALL, KEY_SCALED_EXP, KEY_LEVEL_CAP, KEY_PHYSICAL_SPECIAL_SPLIT,
+    KEY_MODERN_CRITS, KEY_MODERN_STATUS, KEY_ABILITY_WEATHER_TURNS, KEY_FOLLOWERS,
+    KEY_OW_ENCOUNTERS, KEY_HM_FREE, KEY_AUTORUN, KEY_AUTOSAVE, KEY_BATTLE_SPEED,
+    KEY_HIDDEN_SPARKLE, KEY_DIFFICULTY, KEY_DARK_MODE, KEY_COLOR_THEME, KEY_SHINY_ODDS,
+    KEY_INFINITE_REPEL, KEY_WILD_LOOT, KEY_EXP_RESERVE, KEY_R_TEXT_FAST,
+    KEY_DEXNAV_COLLECTION, KEY_RESTORE_TRAINER_BERRIES,
 };
 
 static const u8 sText_On[] = _("Sí");
@@ -218,6 +240,22 @@ enum KeyDifficulty KeySystem_GetDifficulty(void)
 enum KeyShinyOdds KeySystem_GetShinyOdds(void)
 {
     return gSaveBlock3Ptr->keySystemShinyOdds % KEY_SHINY_ODDS_COUNT;
+}
+
+#define RF_UI_THEME_MAGIC 0x54484D31 // "THM1"
+
+// Saves made before the theme existed have no magic and use Menta, the original look.
+enum KeyColorTheme KeySystem_GetColorTheme(void)
+{
+    if (gSaveBlock3Ptr->rfUiThemeMagic != RF_UI_THEME_MAGIC)
+        return KEY_COLOR_THEME_MINT;
+    return gSaveBlock3Ptr->rfUiTheme % KEY_COLOR_THEME_COUNT;
+}
+
+static void KeySystem_CycleColorTheme(void)
+{
+    gSaveBlock3Ptr->rfUiTheme = (KeySystem_GetColorTheme() + 1) % KEY_COLOR_THEME_COUNT;
+    gSaveBlock3Ptr->rfUiThemeMagic = RF_UI_THEME_MAGIC;
 }
 
 // Shiny value a Pokémon has to be under (out of 65536) to be shiny with the chosen odds
@@ -359,6 +397,8 @@ static void KeySystem_PrintValue(u8 windowId, u32 key, u8 y)
         value = sText_DifficultyNames[KeySystem_GetDifficulty()];
     else if (key == KEY_SHINY_ODDS)
         value = sText_ShinyOddsNames[KeySystem_GetShinyOdds()];
+    else if (key == KEY_COLOR_THEME)
+        value = sText_ColorThemeNames[KeySystem_GetColorTheme()];
     else
         value = KeySystem_IsOn(key) ? sText_On : sText_Off;
     x = KEY_LIST_WIDTH * 8 - GetStringWidth(FONT_NORMAL, value, 0) - 8;
@@ -413,8 +453,8 @@ void KeySystem_OpenMenu(void)
 
     for (i = 0; i < KEY_COUNT; i++)
     {
-        sKeyListItems[i].name = sKeyInfo[i].name;
-        sKeyListItems[i].id = i;
+        sKeyListItems[i].name = sKeyInfo[sKeyMenuOrder[i]].name;
+        sKeyListItems[i].id = sKeyMenuOrder[i];
     }
 
     LoadMessageBoxAndBorderGfx();
@@ -493,9 +533,11 @@ static void Task_KeySystemMenu(u8 taskId)
             gSaveBlock3Ptr->keySystemDifficulty = (KeySystem_GetDifficulty() + 1) % KEY_DIFFICULTY_COUNT;
         else if (input == KEY_SHINY_ODDS)
             gSaveBlock3Ptr->keySystemShinyOdds = (KeySystem_GetShinyOdds() + 1) % KEY_SHINY_ODDS_COUNT;
+        else if (input == KEY_COLOR_THEME)
+            KeySystem_CycleColorTheme();
         else
             KeySystem_Set(input, !KeySystem_IsOn(input));
-        if (input == KEY_DARK_MODE)
+        if (input == KEY_DARK_MODE || input == KEY_COLOR_THEME)
         {
             LoadMessageBoxAndBorderGfx();
             RFUI_BeginFieldOverlay(); // repaint the ground for the new theme

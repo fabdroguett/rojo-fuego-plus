@@ -9,24 +9,81 @@
 #include "bg.h"
 #include "data/rf_menu_icons.h"
 
+// One row per enum KeyColorTheme; Menta keeps the original Rojo Fuego+ colours exactly.
+// Role order: ground, panel, edge, text, muted, shadow, selected, gold, accent,
+// bar, bar light, bar dark, bar edge.
+static const u16 sThemeColors[KEY_COLOR_THEME_COUNT][2][RF_ROLE_COUNT] =
+{
+    [KEY_COLOR_THEME_MINT] = {
+        {RGB(23,28,25), RGB(27,31,27), RGB(11,21,19), RGB(2,7,8), RGB(8,15,14), RGB(22,27,24), RGB(30,26,11),
+         RGB(17,11,2), RGB(4,15,10), RGB(3,12,11), RGB(8,18,15), RGB(2,9,8), RGB(10,20,17)},
+        {RGB(1,5,6), RGB(2,9,10), RGB(8,18,18), RGB(30,31,28), RGB(18,25,23), RGB(0,3,4), RGB(4,14,14),
+         RGB(31,25,6), RGB(14,27,21), RGB(4,14,14), RGB(2,9,10), RGB(1,5,6), RGB(8,18,18)},
+    },
+    [KEY_COLOR_THEME_CRIMSON] = {
+        {RGB(29,24,25), RGB(31,29,29), RGB(22,8,12), RGB(8,2,4), RGB(15,7,9), RGB(28,22,23), RGB(31,25,11),
+         RGB(17,11,2), RGB(18,3,8), RGB(17,3,7), RGB(23,6,11), RGB(10,1,4), RGB(21,7,11)},
+        {RGB(5,1,2), RGB(9,2,4), RGB(20,6,10), RGB(31,29,29), RGB(25,18,20), RGB(3,0,1), RGB(16,3,7),
+         RGB(31,25,6), RGB(29,12,16), RGB(16,3,7), RGB(9,2,4), RGB(5,1,2), RGB(20,6,10)},
+    },
+    [KEY_COLOR_THEME_AZURE] = {
+        {RGB(24,27,31), RGB(29,30,31), RGB(8,15,27), RGB(2,4,10), RGB(7,11,19), RGB(22,25,30), RGB(31,26,11),
+         RGB(17,11,2), RGB(3,10,24), RGB(3,10,23), RGB(6,14,27), RGB(1,6,15), RGB(7,14,26)},
+        {RGB(1,3,7), RGB(2,5,11), RGB(7,14,25), RGB(28,30,31), RGB(18,22,28), RGB(0,1,4), RGB(4,11,22),
+         RGB(31,25,6), RGB(12,21,31), RGB(4,11,22), RGB(2,5,11), RGB(1,3,7), RGB(7,14,25)},
+    },
+    [KEY_COLOR_THEME_VIOLET] = {
+        {RGB(27,25,30), RGB(30,29,31), RGB(17,10,24), RGB(6,2,10), RGB(12,8,17), RGB(25,23,29), RGB(31,26,11),
+         RGB(17,11,2), RGB(12,4,20), RGB(12,4,19), RGB(17,9,25), RGB(7,2,12), RGB(16,9,23)},
+        {RGB(4,1,7), RGB(7,3,11), RGB(16,9,24), RGB(30,29,31), RGB(23,19,27), RGB(2,0,4), RGB(12,5,19),
+         RGB(31,25,6), RGB(24,16,31), RGB(12,5,19), RGB(7,3,11), RGB(4,1,7), RGB(16,9,24)},
+    },
+    [KEY_COLOR_THEME_AMBER] = {
+        {RGB(30,27,21), RGB(31,30,26), RGB(24,14,3), RGB(9,4,1), RGB(16,10,4), RGB(29,25,18), RGB(31,22,9),
+         RGB(17,9,1), RGB(20,10,1), RGB(19,9,1), RGB(25,15,4), RGB(11,5,1), RGB(23,13,3)},
+        {RGB(6,3,1), RGB(10,5,2), RGB(22,13,4), RGB(31,30,26), RGB(27,22,15), RGB(3,1,0), RGB(18,9,2),
+         RGB(31,27,10), RGB(31,20,6), RGB(18,9,2), RGB(10,5,2), RGB(6,3,1), RGB(22,13,4)},
+    },
+    [KEY_COLOR_THEME_GRAPHITE] = {
+        {RGB(25,25,26), RGB(30,30,30), RGB(11,11,13), RGB(3,3,4), RGB(9,9,10), RGB(23,23,24), RGB(31,26,11),
+         RGB(17,11,2), RGB(6,6,8), RGB(6,6,8), RGB(12,12,14), RGB(3,3,4), RGB(10,10,12)},
+        {RGB(2,2,3), RGB(4,4,5), RGB(12,12,14), RGB(30,30,30), RGB(20,20,22), RGB(1,1,1), RGB(8,8,10),
+         RGB(31,25,6), RGB(22,22,25), RGB(8,8,10), RGB(4,4,5), RGB(2,2,3), RGB(12,12,14)},
+    },
+};
+
+u16 RFUI_Color(bool32 dark, enum RFUIRole role)
+{
+    if (role >= RF_ROLE_COUNT)
+        return 0;
+    return sThemeColors[KeySystem_GetColorTheme()][dark != FALSE][role];
+}
+
+// Loads one night colour of the active theme into a palette slot (dark-mode recolour tables).
+void RFUI_LoadNightRole(enum RFUIRole role, u32 offset)
+{
+    u16 color = RFUI_Color(TRUE, role);
+    LoadPalette(&color, offset, PLTT_SIZEOF(1));
+}
+
 void RFUI_LoadPalette(u32 bank, bool32 dark)
 {
-    static const u16 night[16] =
+    // Slot -> role. Slot 7 is the accent; the rest repeat the surfaces for the window chrome.
+    static const u8 roles[16] =
     {
-        RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_TEXT, RF_UI_NIGHT_SHADOW,
-        RF_UI_NIGHT_GROUND, RF_UI_NIGHT_MUTED, RF_UI_NIGHT_EDGE, RGB(14, 27, 21),
-        RF_UI_SELECTED, RF_UI_GOLD, RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL,
-        RF_UI_NIGHT_EDGE, RF_UI_NIGHT_MUTED, RF_UI_NIGHT_GROUND, RF_UI_NIGHT_TEXT,
+        RF_ROLE_GROUND, RF_ROLE_PANEL, RF_ROLE_TEXT, RF_ROLE_SHADOW,
+        RF_ROLE_GROUND, RF_ROLE_MUTED, RF_ROLE_EDGE, RF_ROLE_ACCENT,
+        RF_ROLE_SELECTED, RF_ROLE_GOLD, RF_ROLE_TEXT, RF_ROLE_PANEL,
+        RF_ROLE_EDGE, RF_ROLE_MUTED, RF_ROLE_GROUND, RF_ROLE_TEXT,
     };
-    static const u16 day[16] =
-    {
-        RGB(23,28,25), RGB(27,31,27), RGB(2,7,8), RGB(22,27,24),
-        RGB(23,28,25), RGB(8,15,14), RGB(11,21,19), RGB(4,15,10),
-        RGB(30,26,11), RGB(17,11,2), RGB(2,7,8), RGB(27,31,27),
-        RGB(11,21,19), RGB(8,15,14), RGB(23,28,25), RGB(2,7,8),
-    };
-    if (bank < 16)
-        LoadPalette(dark ? night : day, BG_PLTT_ID(bank), PLTT_SIZE_4BPP);
+    u16 colors[16];
+    u32 i;
+
+    if (bank >= 16)
+        return;
+    for (i = 0; i < ARRAY_COUNT(colors); i++)
+        colors[i] = RFUI_Color(dark, roles[i]);
+    LoadPalette(colors, BG_PLTT_ID(bank), PLTT_SIZE_4BPP);
 }
 
 // Full-screen field menus (quests, Key System): the map layers are hidden and the backdrop takes
@@ -36,7 +93,7 @@ static EWRAM_DATA bool8 sFieldOverlayActive = FALSE;
 
 void RFUI_BeginFieldOverlay(void)
 {
-    u16 ground = KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_GROUND : RGB(23, 28, 25);
+    u16 ground = RFUI_Color(KeySystem_IsOn(KEY_DARK_MODE), RF_ROLE_GROUND);
 
     if (!sFieldOverlayActive)
     {
@@ -174,7 +231,7 @@ void RFUI_PrintFitted(u8 window, const u8 *text, u32 x, u32 y, u32 width, const 
 void RFUI_ThemeHealthboxPalette(u32 paletteNum)
 {
     static const u8 slots[] = {1, 2, 3, 4, 6, 8};
-    static const u16 night[] = {
+    const u16 night[] = {
         RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_SHADOW,
         RF_UI_SELECTED, RF_UI_NIGHT_EDGE, RF_UI_SELECTED,
     };

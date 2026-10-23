@@ -791,13 +791,13 @@ struct AchScreen
 // the locked trophy (3 body, 15 rim) becomes an outline.
 static void LoadAchScreenNightPalettes(void)
 {
-    static const u16 bg[12] =
+    const u16 bg[12] =
     {
         RF_UI_NIGHT_GROUND, RGB(2, 7, 8), RF_UI_SELECTED, RF_UI_NIGHT_SHADOW,
         RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_SHADOW,
         RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_MUTED, RGB(2, 7, 8),
     };
-    static const u16 shadow = RF_UI_NIGHT_SHADOW, row = RF_UI_SELECTED;
+    const u16 shadow = RF_UI_NIGHT_SHADOW, row = RF_UI_SELECTED;
     static const u16 green = RGB(12, 28, 14), locked = RGB(12, 17, 16);
 
     LoadPalette(bg, BG_PLTT_ID(0), sizeof(bg));

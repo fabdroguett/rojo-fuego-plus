@@ -1021,40 +1021,40 @@ static bool8 AllocPartyMenuBg(void)
 struct DarkModeColor
 {
     u8 index;
-    u16 color;
+    u8 role; // enum RFUIRole, night variant
 };
 
 static const struct DarkModeColor sPartyMenuBgDarkColors[] =
 {
     // These source entries are copied into each slot when the cursor moves.
-    {116, RF_UI_SELECTED}, {117, RF_UI_SELECTED}, {118, RF_UI_NIGHT_EDGE},
-    {97, RF_UI_NIGHT_PANEL}, {103, RF_UI_GOLD}, {104, RF_UI_GOLD},
-    {16 * 3 + 4, RF_UI_NIGHT_PANEL},
-    {16 * 3 + 5, RF_UI_NIGHT_PANEL},
-    {16 * 3 + 6, RF_UI_NIGHT_EDGE},
-    {16 * 3 + 7, RF_UI_NIGHT_PANEL},
-    {16 * 3 + 8, RF_UI_NIGHT_EDGE},
-    {16 * 9 + 4, RF_UI_SELECTED},
-    {16 * 9 + 5, RF_UI_SELECTED},
-    {16 * 9 + 6, RF_UI_NIGHT_EDGE},
-    {16 * 9 + 7, RF_UI_GOLD},
-    {16 * 9 + 8, RF_UI_GOLD},
-    {16 * 1 + 3, RF_UI_NIGHT_GROUND},
-    {16 * 1 + 4, RF_UI_NIGHT_GROUND},
-    {16 * 1 + 5, RF_UI_NIGHT_GROUND},
-    {16 * 2 + 3, RF_UI_NIGHT_GROUND},
-    {16 * 2 + 4, RF_UI_NIGHT_GROUND},
-    {16 * 2 + 5, RF_UI_NIGHT_GROUND},
+    {116, RF_ROLE_SELECTED}, {117, RF_ROLE_SELECTED}, {118, RF_ROLE_EDGE},
+    {97, RF_ROLE_PANEL}, {103, RF_ROLE_GOLD}, {104, RF_ROLE_GOLD},
+    {16 * 3 + 4, RF_ROLE_PANEL},
+    {16 * 3 + 5, RF_ROLE_PANEL},
+    {16 * 3 + 6, RF_ROLE_EDGE},
+    {16 * 3 + 7, RF_ROLE_PANEL},
+    {16 * 3 + 8, RF_ROLE_EDGE},
+    {16 * 9 + 4, RF_ROLE_SELECTED},
+    {16 * 9 + 5, RF_ROLE_SELECTED},
+    {16 * 9 + 6, RF_ROLE_EDGE},
+    {16 * 9 + 7, RF_ROLE_GOLD},
+    {16 * 9 + 8, RF_ROLE_GOLD},
+    {16 * 1 + 3, RF_ROLE_GROUND},
+    {16 * 1 + 4, RF_ROLE_GROUND},
+    {16 * 1 + 5, RF_ROLE_GROUND},
+    {16 * 2 + 3, RF_ROLE_GROUND},
+    {16 * 2 + 4, RF_ROLE_GROUND},
+    {16 * 2 + 5, RF_ROLE_GROUND},
 };
 
 static const struct DarkModeColor sPartyMenuTextDarkColors[] =
 {
-    {16 * 14 + 1, RF_UI_NIGHT_PANEL},
-    {16 * 14 + 2, RF_UI_NIGHT_TEXT},
-    {16 * 14 + 3, RF_UI_NIGHT_SHADOW},
-    {16 * 15 + 1, RF_UI_NIGHT_PANEL},
-    {16 * 15 + 2, RF_UI_NIGHT_TEXT},
-    {16 * 15 + 3, RF_UI_NIGHT_SHADOW},
+    {16 * 14 + 1, RF_ROLE_PANEL},
+    {16 * 14 + 2, RF_ROLE_TEXT},
+    {16 * 14 + 3, RF_ROLE_SHADOW},
+    {16 * 15 + 1, RF_ROLE_PANEL},
+    {16 * 15 + 2, RF_ROLE_TEXT},
+    {16 * 15 + 3, RF_ROLE_SHADOW},
 };
 
 static void LoadPartyMenuDarkModeColors(const struct DarkModeColor *colors, u32 count)
@@ -1064,7 +1064,7 @@ static void LoadPartyMenuDarkModeColors(const struct DarkModeColor *colors, u32 
     if (!KeySystem_IsOn(KEY_DARK_MODE))
         return;
     for (i = 0; i < count; i++)
-        LoadPalette(&colors[i].color, BG_PLTT_ID(0) + colors[i].index, PLTT_SIZEOF(1));
+        RFUI_LoadNightRole(colors[i].role, BG_PLTT_ID(0) + colors[i].index);
 }
 
 static bool8 AllocPartyMenuBgGfx(void)

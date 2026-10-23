@@ -2571,7 +2571,7 @@ static const union TextColor sBattlerNightTextColor =
 
 static void ThemeAbilityPopUpPalette(void)
 {
-    static const struct { u8 index; u16 color; } sNight[] =
+    const struct { u8 index; u16 color; } sNight[] =
     {
         {1, RF_UI_NIGHT_SHADOW}, {2, RF_UI_NIGHT_EDGE}, {3, RF_UI_NIGHT_EDGE}, {4, RF_UI_NIGHT_EDGE},
         {5, RF_UI_SELECTED}, {6, RF_UI_NIGHT_EDGE}, {7, RF_UI_NIGHT_PANEL},

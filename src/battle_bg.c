@@ -972,24 +972,24 @@ void InitBattleBgsVideo(void)
 
 // Rojo Fuego+ dark mode (Key System, from Pokémon SoulGold): the battle textbox and menus in dark
 // colors. Only the box and frame colors change; the text keeps its own colors.
-static const struct { u8 index; u16 color; } sDarkModeTextboxColors[] =
+static const struct { u8 index; u8 role; } sDarkModeTextboxColors[] =
 {
-    {15, RF_UI_NIGHT_PANEL},    // message box
-    {13, RF_UI_NIGHT_EDGE},  // frame
-    {12, RF_UI_NIGHT_EDGE}, // frame light
-    {14, RF_UI_NIGHT_GROUND},   // frame shadow
+    {15, RF_ROLE_PANEL},    // message box
+    {13, RF_ROLE_EDGE},  // frame
+    {12, RF_ROLE_EDGE}, // frame light
+    {14, RF_ROLE_GROUND},   // frame shadow
 };
 
 // Action and move menus: window border palette (1) and menu text palette (5)
-static const struct { u8 index; u16 color; } sDarkModeMenuColors[] =
+static const struct { u8 index; u8 role; } sDarkModeMenuColors[] =
 {
-    {16 * 1 + 14, RF_UI_NIGHT_PANEL},    // window background
-    {16 * 1 + 2,  RF_UI_NIGHT_TEXT}, // text
-    {16 * 1 + 8,  RF_UI_NIGHT_SHADOW}, // text shadow
-    {16 * 5 + 14, RF_UI_NIGHT_PANEL},    // menu background
-    {16 * 5 + 12, RF_UI_NIGHT_TEXT}, // menu text
-    {16 * 5 + 13, RF_UI_NIGHT_TEXT}, // menu text
-    {16 * 5 + 15, RF_UI_NIGHT_SHADOW}, // menu text shadow
+    {16 * 1 + 14, RF_ROLE_PANEL},    // window background
+    {16 * 1 + 2,  RF_ROLE_TEXT}, // text
+    {16 * 1 + 8,  RF_ROLE_SHADOW}, // text shadow
+    {16 * 5 + 14, RF_ROLE_PANEL},    // menu background
+    {16 * 5 + 12, RF_ROLE_TEXT}, // menu text
+    {16 * 5 + 13, RF_ROLE_TEXT}, // menu text
+    {16 * 5 + 15, RF_ROLE_SHADOW}, // menu text shadow
 };
 
 // Selected action/move cell: the menu text palette (5) on a gold fill. Index 14 is the cell,
@@ -1015,7 +1015,7 @@ void LoadBattleMenuWindowGfx(void)
     if (KeySystem_IsOn(KEY_DARK_MODE))
     {
         for (u32 i = 0; i < ARRAY_COUNT(sDarkModeMenuColors); i++)
-            LoadPalette(&sDarkModeMenuColors[i].color, BG_PLTT_ID(0) + sDarkModeMenuColors[i].index, PLTT_SIZEOF(1));
+            RFUI_LoadNightRole(sDarkModeMenuColors[i].role, BG_PLTT_ID(0) + sDarkModeMenuColors[i].index);
     }
     LoadBattleSelectedCellPalette();
 
@@ -1043,7 +1043,7 @@ void LoadBattleTextboxPalette(void)
     if (!KeySystem_IsOn(KEY_DARK_MODE))
         return;
     for (i = 0; i < ARRAY_COUNT(sDarkModeTextboxColors); i++)
-        LoadPalette(&sDarkModeTextboxColors[i].color, BG_PLTT_ID(0) + sDarkModeTextboxColors[i].index, PLTT_SIZEOF(1));
+        RFUI_LoadNightRole(sDarkModeTextboxColors[i].role, BG_PLTT_ID(0) + sDarkModeTextboxColors[i].index);
 }
 
 void LoadBattleTextboxAndBackground(void)

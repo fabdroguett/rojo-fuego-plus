@@ -608,22 +608,20 @@ bool32 TryOpenPokedexPage_HGSS(u8 taskId, u8 page)
 // Only the HGSS chrome bank is recoloured. Type badges, Pokémon and stat-bar palettes stay intact.
 static void RFLoadDexChrome(void)
 {
-    bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
-    const u16 colors[] = {
-        dark ? RF_UI_NIGHT_PANEL : RGB(27,31,27),
-        dark ? RF_UI_NIGHT_GROUND : RGB(23,28,25),
-        dark ? RF_UI_SELECTED : RGB(30,26,11),
-        dark ? RF_UI_NIGHT_EDGE : RGB(11,21,19),
-        dark ? RF_UI_NIGHT_SHADOW : RGB(22,27,24),
-        dark ? RF_UI_NIGHT_EDGE : RGB(11,21,19),
-        dark ? RF_UI_SELECTED : RGB(3,12,11),
-        dark ? RF_UI_NIGHT_PANEL : RGB(8,18,15),
-        dark ? RF_UI_NIGHT_GROUND : RGB(2,9,8),
-        dark ? RF_UI_NIGHT_EDGE : RGB(10,20,17),
-        dark ? RF_UI_GOLD : RGB(17,11,2),
+    // Bank 0 slots 1..11: panel, page, selected row, grid, inner rim, frame, tab bar, inactive tab
+    // labels, bar shadow, bar rim, gold. Slots 14/15: border and text.
+    static const u8 roles[] = {
+        RF_ROLE_PANEL, RF_ROLE_GROUND, RF_ROLE_SELECTED, RF_ROLE_EDGE, RF_ROLE_SHADOW, RF_ROLE_EDGE,
+        RF_ROLE_BAR, RF_ROLE_BAR_LIGHT, RF_ROLE_BAR_DARK, RF_ROLE_BAR_EDGE, RF_ROLE_GOLD,
     };
-    const u16 border = dark ? RF_UI_NIGHT_EDGE : RGB(11,21,19);
-    const u16 text = dark ? RF_UI_NIGHT_TEXT : RGB(2,7,8);
+    bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
+    u16 colors[ARRAY_COUNT(roles)];
+    u16 border = RFUI_Color(dark, RF_ROLE_EDGE);
+    u16 text = RFUI_Color(dark, RF_ROLE_TEXT);
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(roles); i++)
+        colors[i] = RFUI_Color(dark, roles[i]);
     LoadPalette(colors, BG_PLTT_ID(0) + 1, sizeof(colors));
     LoadPalette(&border, BG_PLTT_ID(0) + 14, sizeof(border));
     LoadPalette(&text, BG_PLTT_ID(0) + 15, sizeof(text));

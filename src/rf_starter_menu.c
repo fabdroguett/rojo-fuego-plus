@@ -204,7 +204,7 @@ static void Draw(void)
 static void ApplyFocus(void)
 {
     u32 i, mask = 0;
-    u16 panel = sDark ? RF_UI_NIGHT_PANEL : RGB(27, 31, 27);
+    u16 panel = sDark ? RF_UI_NIGHT_PANEL : RF_UI_DAY_PANEL;
     for (i = 0; i < 3; i++)
         if (i != sChoice)
             mask |= 1u << (16 + i);

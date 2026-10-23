@@ -3938,6 +3938,9 @@ void SetPPNumbersPaletteInMoveSelection(enum BattlerId battler)
 {
     struct ChooseMoveStruct *chooseMoveStruct = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
     const u16 *palPtr = gPPTextPalette;
+    // Rojo Fuego+: text_pp.pal is ink for a light box; on the night panel use light ink and
+    // brighter warnings (half, quarter, empty, normal: GetCurrentPPToMaxPPState order).
+    u16 nightPPTextColors[8];
     u8 var;
 
     if (!gBattleStruct->zmove.viewing)
@@ -3948,13 +3951,13 @@ void SetPPNumbersPaletteInMoveSelection(enum BattlerId battler)
 
     if (KeySystem_IsOn(KEY_DARK_MODE))
     {
-        // Rojo Fuego+: text_pp.pal is ink for a light box; on the night panel use light ink and
-        // brighter warnings (half, quarter, empty, normal: GetCurrentPPToMaxPPState order).
-        static const u16 sNightPPTextColors[] = {
-            RGB(31, 27, 8), RF_UI_NIGHT_SHADOW, RGB(31, 18, 6), RF_UI_NIGHT_SHADOW,
-            RGB(31, 9, 8), RF_UI_NIGHT_SHADOW, RF_UI_NIGHT_TEXT, RF_UI_NIGHT_SHADOW,
-        };
-        palPtr = sNightPPTextColors;
+        u16 shadow = RF_UI_NIGHT_SHADOW;
+        nightPPTextColors[0] = RGB(31, 27, 8);
+        nightPPTextColors[2] = RGB(31, 18, 6);
+        nightPPTextColors[4] = RGB(31, 9, 8);
+        nightPPTextColors[6] = RF_UI_NIGHT_TEXT;
+        nightPPTextColors[1] = nightPPTextColors[3] = nightPPTextColors[5] = nightPPTextColors[7] = shadow;
+        palPtr = nightPPTextColors;
     }
     gPlttBufferUnfaded[BG_PLTT_ID(5) + 12] = palPtr[(var * 2) + 0];
     gPlttBufferUnfaded[BG_PLTT_ID(5) + 11] = palPtr[(var * 2) + 1];

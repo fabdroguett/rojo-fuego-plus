@@ -1469,14 +1469,14 @@ static bool8 DecompressGraphics(void)
         LoadPalette(&gPPTextPalette, BG_PLTT_ID(8) + 1, PLTT_SIZEOF(16 - 1));
         if (KeySystem_IsOn(KEY_DARK_MODE))
         {
-            static const u16 surfaces[] = {
+            const u16 surfaces[] = {
                 RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
                 RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND, RF_UI_GOLD, // 6: section heading letters
                 RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL,
                 RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
                 RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND,
             };
-            static const u16 text[] = {
+            const u16 text[] = {
                 RF_UI_NIGHT_TEXT, RF_UI_NIGHT_SHADOW, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_TEXT,
             };
             u32 bank;

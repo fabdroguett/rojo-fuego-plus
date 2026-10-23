@@ -306,6 +306,8 @@ struct SaveBlock3
     u8 rfTravelerPendingPrize; // tier + 1; retained until the whole reward fits
     u32 rfLegendSaveMagic;
     u8 rfLegendCaught[RF_LEGEND_BYTES]; // Rojo Fuego+ legendary sagas (rf_legends.c): one bit per legend
+    u32 rfUiThemeMagic;
+    u8 rfUiTheme; // Rojo Fuego+ Key System: enum KeyColorTheme, valid only with rfUiThemeMagic
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

@@ -1492,7 +1492,7 @@ static u8 SetCardBgsAndPals(void)
         LoadPalette(sTrainerCardStar_Pal, BG_PLTT_ID(4), PLTT_SIZE_4BPP);
         if (sData->cardType == CARD_TYPE_FRLG && KeySystem_IsOn(KEY_DARK_MODE))
         {
-            static const u16 frame[] = {
+            const u16 frame[] = {
                 RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
                 RF_UI_NIGHT_EDGE, RF_UI_GOLD, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_MUTED,
                 RF_UI_GOLD, RGB(8,20,14), RF_UI_SELECTED, RF_UI_SELECTED,
