@@ -8,6 +8,11 @@ Ese documento prevalece sobre estados históricos y recomendaciones de posponer 
 aparecen más abajo. Este archivo conserva el historial técnico; completar una tanda no
 equivale a terminar el proyecto. Hay 35 misiones implementadas de las 350 previstas.
 
+Reestructuración del 23-10-2026: ejecutar los paquetes por dependencias de PLAN_COMPLETO.md,
+no el orden histórico de este archivo. Prioridad inmediata: BASE → SAVE-1 → EVENTOS → SERVICIOS.
+Agrupar sistemas compartidos, ampliar contenido por zonas y validar por cambios coherentes;
+no detenerse tras tandas pequeñas ni bloquear todo el trabajo por la ampliación de cajas.
+
 ## Actualización de trabajo: misiones y almacenamiento (22-10-2026)
 
 La instrucción más reciente autoriza **completar el resumen de colección del DexNav y generar

@@ -12,6 +12,86 @@ Una casilla pendiente puede requerir implementación, completar una integración
 validar código existente. No cuenta como terminada solo porque compile. Las funciones
 repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 
+## Ejecución por dependencias — reestructurada el 23-10-2026
+
+Las secciones 1–8 son el **catálogo de alcance**, no una secuencia que deba completarse
+capítulo por capítulo. El orden operativo es la tabla siguiente. Cada paquete entrega una
+función utilizable y comprobada; no se cierran sesiones por alcanzar una tanda pequeña.
+Se continúa con el siguiente paso preparado mientras no exista un bloqueo real.
+
+### Paquetes de trabajo
+
+| Orden / ID | Entrega y alcance del catálogo | Depende de | Condición para pasar al siguiente |
+|---|---|---|---|
+| 0 / BASE | Estado real de funciones, inventario de recursos, reproducción de fallos de Noa y pruebas de referencia (§1–2) | Nada | Cada fallo tiene reproducción o registro de límites; rutas que se van a modificar tienen una prueba base |
+| 1 / EVENTOS | Objetivos de misión por eventos, recompensas seguras y vínculo con logros (§3) | BASE | Una cadena combina diálogo, recogida/entrega y combate; guardar/cargar y premio pendiente funcionan |
+| 2 / SERVICIOS | Preparación, reaprendizaje, tutores, formas, EV/IV, herramientas y consumibles (§4) | BASE; EVENTOS para premios de misión | Servicios accesibles y compatibles con progresión; cambios de Pokémon y cancelación comprobados |
+| 3 / REGLAS | Perfiles y restauración de reglas/equipos temporales; ampliar Noa/defensa donde corresponda (§2, §5) | BASE | Entrar/salir, perder y guardar/cargar conservan equipo y reglas de historia |
+| 4 / COMBATES | Alquiler, espejo, dobles, equipos variables, incursiones y jefes por fases (§5) | REGLAS; EVENTOS para objetivos/premios | Cada modalidad completa un ciclo jugable; equipos y premios definidos por datos |
+| 5 / MUNDO | Registro compartido de encuentros/legendarios, radio, mapas contextuales, grutas y reapariciones (§2, §6) | BASE; EVENTOS | DexNav, radio y mapa consultan datos coherentes; renovación diaria y estados persistentes probados |
+| 6 / EXPLORACIÓN | Cámaras/puzles, minería, acciones Omni Ring, obstáculos persistentes, Safari, VS Seeker y conexiones (§6) | EVENTOS + MUNDO | Primera zona completa con entrada, objetivos, salida y recuperación; después ampliar usando sus sistemas |
+| 7 / CAMPAÑAS | Artefactos, personajes, rescates, tesoros, viajes, Sete, buceo, Porygon y expediciones (§3, §6) | EVENTOS + EXPLORACIÓN; COMBATES donde se use | Cadenas con desenlace y cambios de mundo; aumentar el catálogo hasta 350 misiones distintas |
+| 8 / PRESENTACIÓN | Seguidor, vivienda, cosméticos, iniciales, estaciones, fondos, minijuegos, música y señalización (§7) | BASE; MUNDO para estaciones; EVENTOS para desbloqueos | Recursos completos para cada acción y estados claro/oscuro; recompensas conectadas |
+| 9 / AMPLIACIONES | Nueva Partida+, innatas, megas propias, mundo abierto, otra región, gimnasio y viajes temporales (§8) | Sistemas que reutiliza cada ampliación | Progresión y compatibilidad definidas antes de añadir datos/mapas; recorrido propio validado |
+| 10 / ENTREGA | Regresión integrada, traducción restante, ROM local y prueba Android (§9) | Todos los paquetes y almacenamiento | Funciones y cadenas completas verificadas; entrega sin fixtures y código sin binarios en Git |
+
+La dependencia indica qué se necesita, no obliga a terminar todas las modalidades de un paquete
+antes de usar una base ya comprobada. Ejemplo: una misión de combate puede avanzar cuando REGLAS
+y su modalidad estén listas, sin esperar a todos los jefes legendarios.
+
+### Almacenamiento: resolver pronto sin frenar el resto
+
+- [ ] **SAVE-1, después de BASE:** calcular capacidad real, opciones de ampliación de cajas,
+  memoria de trabajo y migración; dejar una decisión técnica reproducible.
+- [ ] **SAVE-2:** implementar la opción viable y probar carga antigua/nueva, copia de Pokémon,
+  cifrado/integridad, cajas vacías/llenas y operaciones masivas.
+- [ ] **SAVE-3:** validar integración con PC portátil, favoritos, ordenación y recompensas.
+
+SAVE-2 solo bloquea funciones que necesiten más capacidad o su nuevo formato; los servicios,
+diálogos y cadenas compatibles con el guardado vigente pueden seguir. Todo campo persistente
+nuevo se coordina con SAVE-1, evitando que cada sistema reserve memoria por su cuenta.
+
+### Cómo reducir trabajo repetido
+
+1. Auditar **antes de tocar cada sistema**. BASE no es una auditoría exhaustiva de todo el juego
+   que impida empezar a implementar; prioriza código existente, fallos y límites compartidos.
+2. Unificar requisitos, eventos y premios cuando se reutilicen. No crear un motor genérico
+   enorme de antemano: extraer lo compartido al implementar el primer uso real.
+3. Agrupar cambios que comparten archivos y pruebas. Preparación/tutores/formas usan servicios
+   comunes; alquiler/espejo/dobles usan reglas temporales; radio/DexNav/mapa comparten encuentros.
+4. Separar motores de contenido: primero una cadena variada completa; después ampliar por
+   zonas con catálogos de datos y validadores. Objetivo orientativo: lotes de 15–25 misiones
+   cuando sus sistemas estén disponibles; nunca rellenar cifras con visitas repetidas.
+5. Escribir texto español y requisitos de arte al crear contenido. La fase final revisa y
+   completa; no concentra toda la traducción o los sprites faltantes al final.
+6. Mantener una sola integración activa. Registrar tareas independientes preparadas para
+   continuar, sin abrir cambios incompatibles simultáneos ni duplicar trabajo entre sesiones.
+7. No repetir compilaciones completas o recorridos ajenos al cambio sin motivo: compilar y
+   probar el sistema afectado por cada cambio coherente; ampliar regresión al cerrar paquete,
+   cambiar guardado/motor compartido o aparecer un fallo nuevo. Mantener controles obligatorios.
+8. Usar guardados sintéticos y recorridos reproducibles para entrar directamente a cada función.
+   Recalcular símbolos tras enlaces y recrear estados del emulador cuando corresponda.
+
+### Seguimiento y siguiente trabajo
+
+Cada paquete registra cuatro estados: **pendiente → en curso → implementado → validado**.
+Además anota dependencia, archivos, prueba realizada y siguiente acción concreta. El código
+existente empieza como implementado cuando hay evidencia, sin marcarlo validado por defecto.
+
+| Trabajo preparado | Estado inicial | Siguiente acción |
+|---|---|---|
+| BASE | Pendiente de consolidación | Reproducir victoria/premio de Noa con equipo sintético obediente; aislar el caso de desobediencia y guardar la prueba |
+| SAVE-1 | Pendiente | Medir distribución de guardado y memoria usada por cajas; comparar alternativas antes de cambiar estructuras |
+| EVENTOS | Parcial: existen visitas/equipo/objetos y premios únicos | Añadir objetivos de diálogo/entrega/combate con una cadena de prueba; conservar IDs 0–34 |
+| Validadores de contenido | Pendiente | Comprobar IDs, referencias, ciclos de requisitos, objetivos, textos y recompensas del catálogo |
+
+Tras BASE se ejecutan SAVE-1 y EVENTOS en ese orden; después SERVICIOS. Si una tarea queda
+bloqueada, se registra la causa y se continúa con la siguiente que no dependa de ella. Las
+pruebas de Noa no justifican rehacer toda la interfaz ni posponer sistemas independientes.
+
+El progreso se informa por entregas **validadas**, número de misiones únicas y pendientes
+concretos. No se promete un porcentaje de aceleración ni una fecha sin mediciones de trabajo.
+
 ## 1. Consolidación y compatibilidad
 
 - [ ] Auditar el código frente al historial y registrar por función: implementada, parcial,
@@ -143,14 +223,9 @@ licencias y créditos. Se conservan las advertencias de atribución del document
 
 ## 9. Orden de ejecución y cierre
 
-1. Consolidación, fallos pendientes y compatibilidad de guardados.
-2. Preparación/herramientas y ampliación de cajas.
-3. Motor de objetivos, personajes y primeras cadenas variadas; crecer hasta 350 durante las fases siguientes.
-4. Reglas, equipos diseñados, radio, alquiler, espejo y circuito de dobles.
-5. Cámaras, minería, artefactos, legendarios, incursiones y nuevas zonas de Sete.
-6. Personalización, estaciones, buceo, expediciones y actividades.
-7. Ampliaciones mayores de la sección 8.
-8. Traducción final, regresión completa y entrega PC/Android por la ruta de emulador acordada.
+El orden operativo y las dependencias están en **Ejecución por dependencias**, al principio
+de este documento. No ejecutar las secciones del catálogo como fases rígidas. La entrega
+PC/Android utiliza la ruta de emulador acordada y exige cerrar los siguientes controles.
 
 - [ ] Por cada sistema: compilar sin errores/advertencias; pruebas apropiadas de lógica y
   recorrido en emulador; guardar/cargar, cancelar, perder y recuperar premios cuando corresponda.
