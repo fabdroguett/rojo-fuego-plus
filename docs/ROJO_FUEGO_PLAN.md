@@ -6,7 +6,7 @@ La instrucción más reciente autoriza **completar el resumen de colección del 
 la ROM ahora**. El inicio programado para las 12:30 fue cancelado por esa nueva instrucción.
 La ROM queda local; se sube el código a GitHub y se apaga Docker al terminar.
 
-Las tandas implementadas suman 30 misiones reales con espacio persistente para 500 (meta de contenido:
+Las tandas implementadas suman 35 misiones reales con espacio persistente para 500 (meta de contenido:
 350), mochila de objetos de 60 espacios, ordenación y protección del PC, cuatro objetos y
 Castform de arena. Alcance, controles, restricciones de guardado y validación en
 [IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md](IMPLEMENTACION_MISIONES_ALMACENAMIENTO.md).
@@ -16,6 +16,25 @@ El límite por medallas ya se aplica realmente y se puede apagar desde su clave.
 Quinta tanda: resumen del DexNav por método y horario, disponible con START y desactivable.
 La investigación y el contenido pendiente están en [IDEAS_OTROS_HACKS.md](IDEAS_OTROS_HACKS.md).
 No se considera completado el plan de 350 misiones ni la ampliación de cajas de Pokémon.
+
+## Continuación: archivo de Tanoby (23-10-2026)
+
+- Sincronizada la copia de trabajo con el historial remoto depurado hasta `2a4c7928`.
+  La rama local `backup/antes-continuacion-20261023` conserva el historial anterior con
+  binarios: **no subir esa rama**.
+- Cinco misiones nuevas (IDs 30–34) en **RELIQUIAS DE SETE**, después de reclamar
+  «Archivo de Sete»: Liptoo → Weepth → Dilford → Scufib → Rixy. Completan el registro
+  de las siete cámaras junto con Monan y Sete, ya existentes.
+- Cada visita debe hacerse con la misión activa. Las recompensas se reclaman una sola vez;
+  si la mochila está llena, el encargo conserva el premio pendiente.
+- Se mantienen los IDs anteriores, los seis capítulos y el bloque persistente de 500 misiones.
+  No se cambia la versión del guardado ni se reinicia el progreso anterior.
+- Las doce pruebas nativas pasan con ASan/UBSan. La prueba de misiones cubre la cadena completa,
+  prerrequisitos, destino incorrecto, visitas previas, mochila llena, premios únicos y
+  preservación de estados al cruzar el byte de guardado entre los IDs 31 y 32.
+- Compilación y enlace ELF completos, sin errores ni advertencias; EWRAM 230280 B,
+  IWRAM 28648 B y ROM enlazada 27143848 B. `verify_code.sh` confirmó que el archivo
+  `.gba` no se generó ni modificó. Recorrido de las cámaras en emulador pendiente.
 
 
 > Documento de continuidad. Si se agotan los tokens de la sesión, leer este archivo y seguir

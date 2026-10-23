@@ -152,6 +152,40 @@ int main(void)
     RFQuests_Refresh();
     assert(RFQuests_Claim(RF_QUEST_GROWTH_FISH));
     assert(RFQuests_GetState(RF_QUEST_MUSEUM) == RF_QUEST_CLAIMED);
+    // An existing save unlocks the appended expedition without resetting old IDs.
+    SetQuestState(RF_QUEST_VIAPOIS, RF_QUEST_CLAIMED);
+    const u16 expedition[] = {RF_QUEST_LIPTOO, RF_QUEST_WEEPTH, RF_QUEST_DILFORD,
+                             RF_QUEST_SCUFIB, RF_QUEST_RIXY};
+    for (u32 step = 0; step < ARRAY_COUNT(expedition); step++) {
+        u32 id = expedition[step];
+        const struct RFQuest *quest = &sRFQuests[id];
+        assert(RFQuests_IsUnlocked(id));
+        if (step + 1 < ARRAY_COUNT(expedition))
+            assert(!RFQuests_IsUnlocked(expedition[step + 1]));
+        Visit(quest->argument); // Visits before accepting are not recorded.
+        world.location.mapGroup = 0;
+        world.location.mapNum = 0;
+        assert(RFQuests_Accept(id));
+        assert(RFQuests_GetState(id) == RF_QUEST_ACTIVE);
+        Visit(MAP_MT_MOON_B2F);
+        assert(RFQuests_GetState(id) == RF_QUEST_ACTIVE);
+        Visit(quest->argument);
+        assert(RFQuests_GetState(id) == RF_QUEST_READY);
+        u16 before = bag[quest->rewardItem];
+        room = FALSE;
+        assert(!RFQuests_Claim(id));
+        assert(bag[quest->rewardItem] == before);
+        assert(RFQuests_GetState(id) == RF_QUEST_READY);
+        room = TRUE;
+        assert(RFQuests_Claim(id));
+        assert(bag[quest->rewardItem] == before + quest->rewardCount);
+        assert(!RFQuests_Claim(id));
+        assert(bag[quest->rewardItem] == before + quest->rewardCount);
+        for (u32 previous = 0; previous <= step; previous++)
+            assert(RFQuests_GetState(expedition[previous]) == RF_QUEST_CLAIMED);
+        assert(RFQuests_GetState(RF_QUEST_GROWTH_REPORT) == RF_QUEST_AVAILABLE);
+        assert(RFQuests_GetState(RF_QUEST_VIAPOIS) == RF_QUEST_CLAIMED);
+    }
     for (u32 i = 0; i < RF_QUEST_COUNT; i++) {
         const struct RFQuest *quest = &sRFQuests[i];
         assert(quest->chapter < RF_QUEST_CHAPTER_COUNT);
