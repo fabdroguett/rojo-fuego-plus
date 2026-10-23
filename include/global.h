@@ -25,6 +25,7 @@
 #include "constants/trainer_tower.h"
 #include "constants/rf_achievements.h"
 #include "constants/rf_quests.h"
+#include "constants/rf_legends.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "config/save.h"
@@ -303,6 +304,8 @@ struct SaveBlock3
     u32 rfExpReserve;
     u32 rfTravelerSaveMagic;
     u8 rfTravelerPendingPrize; // tier + 1; retained until the whole reward fits
+    u32 rfLegendSaveMagic;
+    u8 rfLegendCaught[RF_LEGEND_BYTES]; // Rojo Fuego+ legendary sagas (rf_legends.c): one bit per legend
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

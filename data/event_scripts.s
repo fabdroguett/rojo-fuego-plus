@@ -1030,6 +1030,7 @@ gStdScripts_End::
 #if IS_FRLG
 	.include "data/scripts/rojo_fuego_guardians.inc"
 	.include "data/scripts/rojo_fuego_grottos.inc"
+	.include "data/scripts/rojo_fuego_legends.inc"
 	.include "data/scripts/rojo_fuego_ztrials.inc"
 	.include "data/scripts/rojo_fuego_npcs.inc"
 #endif

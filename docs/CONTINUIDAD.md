@@ -6,6 +6,27 @@ Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
 
 ## Punto guardado para retomar
 
+**Las 1025 especies obtenibles (23-10-2026 14:07).** Pedido: todos los Pokémon en el juego,
+salvajes repartidos a criterio y legendarios mediante misiones y ubicaciones especiales.
+- Salvajes: `tools/rojo_fuego/encounters.py` ahora incluye formas por defecto con sufijo
+  (Burmy, Shellos, Deerling, Gimmighoul…), la pareja Karrablast/Shelmet, especies definidas por
+  macros (Scatterbug, Flabébé, Furfrou, Minior) y evoluciones imposibles sin cable o
+  monedas (Escavalier, Accelgor, Gholdengo, Basculegion). 404 especies en tablas de
+  tarde/noche; el día conserva las tablas originales de Kanto.
+- Legendarios: `tools/rojo_fuego/legends.py` → 117 legendarios, singulares, Ultraentes y
+  paradójicos en 28 sagas (misiones 43–70, capítulos LEYENDAS DE KANTO / DEL MUNDO /
+  ULTRAENTES Y PARADOJAS) y 64 mapas. Al aceptar la misión aparecen como Pokémon visibles en
+  casillas abiertas y alcanzables calculadas desde los datos del mapa; capturarlos marca un bit
+  en `SaveBlock3.rfLegendCaught` (magic propio, +20 bytes) y los retira; la misión queda lista
+  con toda la saga. Ubicaciones y requisitos: [LEYENDAS.md](LEYENDAS.md).
+- Cobertura calculada: 1025/1025 (Floette y Alcremie por evolución; Unown en Tanoby).
+Validado en mGBA: Arceus visible solo con su misión activa, combate Nv. 65, captura con Master
+Ball, bit guardado y objeto retirado; Regigigas (saga de uno) deja la misión LISTA; capítulos
+nuevos en el menú. 54 iniciales y 18 pruebas nativas (incluida la nueva de sagas) pasan.
+ROM en el Escritorio SHA-256 `7e82a3fd6f7a5de8327b542811a8d3261509e895bbded9ce83cc393fe7abee7a`,
+entrega `build_artifacts/releases/20261023-140757/`. Pendiente: recorrer a pie cada ubicación
+(se validaron 2 de 64), equilibrar niveles y fuente Monogram (descarga manual en itch.io).
+
 **Salvajes visibles ampliados (23-10-2026 13:29).** Pedido: más Pokémon visibles a la vez.
 `OWE_SPAWNS_MAX` 4 → 6 (IDs locales 247–252), espera por salvaje activo 30 → 15 fotogramas y
 `WE_OWE_SPAWN_REPLACEMENT` activo (el más antiguo se renueva a los 240 fotogramas; el contador

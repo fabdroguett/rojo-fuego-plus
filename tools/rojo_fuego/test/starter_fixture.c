@@ -5,6 +5,8 @@
 #include "main.h"
 #include "overworld.h"
 #include "pokemon.h"
+#include "item.h"
+#include "rf_quests.h"
 #include "script.h"
 #include "constants/maps.h"
 
@@ -66,4 +68,29 @@ void RFUiFixture_StarterWarp(void)
     SetMainCallback1(NULL);
     WarpIntoMap();
     SetMainCallback2(CB2_LoadMap);
+}
+
+// Legendary sagas: unlock everything, accept mission gRFUiFixture_Quest and give Master Balls.
+u8 gRFUiFixture_Quest;
+u16 gRFUiFixture_LegendResult[4];
+
+void RFUiFixture_LegendSetup(void)
+{
+    u32 i;
+    FlagSet(FLAG_SYS_POKEDEX_GET);
+    FlagSet(FLAG_SYS_GAME_CLEAR);
+    for (i = 0; i < 8; i++)
+        FlagSet(FLAG_BADGE01_GET + i);
+    RFQuests_Accept(gRFUiFixture_Quest);
+    AddBagItem(ITEM_MASTER_BALL, 10);
+    SetMainCallback2(CB2_Overworld);
+}
+
+void RFUiFixture_LegendRead(void)
+{
+    gRFUiFixture_LegendResult[0] = RFQuests_GetState(gRFUiFixture_Quest);
+    gRFUiFixture_LegendResult[1] = gPartiesCount[B_TRAINER_PLAYER];
+    gRFUiFixture_LegendResult[2] = GetMonData(&gParties[B_TRAINER_PLAYER][gPartiesCount[B_TRAINER_PLAYER] - 1], MON_DATA_SPECIES);
+    gRFUiFixture_LegendResult[3] = gSaveBlock3Ptr->rfLegendCaught[0] | (gSaveBlock3Ptr->rfLegendCaught[9] << 8);
+    SetMainCallback2(CB2_Overworld);
 }

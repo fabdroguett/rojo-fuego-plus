@@ -11,7 +11,8 @@ def validate():
     values = {name: int(value) for name, value in
               re.findall(r"^#define (RF_QUEST_\w+)\s+(\d+)\s*$", constants, re.M)}
     count, chapters = values["RF_QUEST_COUNT"], values["RF_QUEST_CHAPTER_COUNT"]
-    source = (ROOT / "src/data/rf_quests.h").read_text(encoding="utf-8")
+    source = "\n".join((ROOT / "src/data" / name).read_text(encoding="utf-8")
+                       for name in ("rf_quests.h", "rf_quests_legends.h"))
     entries = re.findall(r"\[(RF_QUEST_\w+)\]\s*=\s*\{(.*?)\n    \},", source, re.S)
     errors, catalogue, ids = [], {}, set()
     symbols = "\n".join((ROOT / "include/constants" / path).read_text(encoding="utf-8")

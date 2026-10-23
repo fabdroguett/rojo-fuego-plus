@@ -3825,18 +3825,18 @@ const struct WildPokemonInfo sViridianForest_FireRed_LandMonsInfo = { 14, sVirid
 #ifdef FIRERED
 const struct WildPokemon sViridianForest_FireRed_Evening_LandMons[] =
 {
-    { 4, 4, SPECIES_BLIPBUG },
-    { 4, 4, SPECIES_PETILIL },
-    { 5, 5, SPECIES_VOLBEAT },
-    { 5, 5, SPECIES_PETILIL },
+    { 4, 4, SPECIES_BOUNSWEET },
+    { 4, 4, SPECIES_BURMY_PLANT },
+    { 5, 5, SPECIES_NYMBLE },
+    { 5, 5, SPECIES_SMOLIV },
+    { 3, 3, SPECIES_KARRABLAST },
+    { 3, 3, SPECIES_BURMY_PLANT },
+    { 5, 5, SPECIES_SUNKERN },
+    { 5, 5, SPECIES_NINCADA },
+    { 4, 4, SPECIES_COMBEE },
     { 3, 3, SPECIES_PINECO },
-    { 3, 3, SPECIES_PANSAGE },
-    { 5, 5, SPECIES_LEDYBA },
-    { 5, 5, SPECIES_GRUBBIN },
-    { 4, 4, SPECIES_VOLTORB_HISUI },
-    { 3, 3, SPECIES_HOPPIP },
-    { 6, 6, SPECIES_GOSSIFLEUR },
-    { 5, 5, SPECIES_VOLBEAT },
+    { 6, 6, SPECIES_HOPPIP },
+    { 5, 5, SPECIES_PETILIL },
 };
 
 const struct WildPokemonInfo sViridianForest_FireRed_Evening_LandMonsInfo = { 14, sViridianForest_FireRed_Evening_LandMons };
@@ -3845,18 +3845,18 @@ const struct WildPokemonInfo sViridianForest_FireRed_Evening_LandMonsInfo = { 14
 #ifdef FIRERED
 const struct WildPokemon sViridianForest_FireRed_Night_LandMons[] =
 {
-    { 4, 4, SPECIES_SNUBBULL },
-    { 4, 4, SPECIES_DRIFLOON },
-    { 5, 5, SPECIES_TOXEL },
-    { 5, 5, SPECIES_PHANTUMP },
-    { 3, 3, SPECIES_HONEDGE },
-    { 3, 3, SPECIES_QWILFISH },
-    { 5, 5, SPECIES_CROAGUNK },
-    { 5, 5, SPECIES_NICKIT },
-    { 4, 4, SPECIES_CLEFFA },
-    { 3, 3, SPECIES_SPINARAK },
-    { 6, 6, SPECIES_GOLETT },
-    { 5, 5, SPECIES_SPRITZEE },
+    { 4, 4, SPECIES_MILCERY },
+    { 4, 4, SPECIES_BELLSPROUT },
+    { 5, 5, SPECIES_VENIPEDE },
+    { 5, 5, SPECIES_MASCHIFF },
+    { 3, 3, SPECIES_SHUPPET },
+    { 3, 3, SPECIES_MIME_JR },
+    { 5, 5, SPECIES_SNUBBULL },
+    { 5, 5, SPECIES_SPINARAK },
+    { 4, 4, SPECIES_POOCHYENA },
+    { 3, 3, SPECIES_MILCERY },
+    { 6, 6, SPECIES_GLIMMET },
+    { 5, 5, SPECIES_HONEDGE },
 };
 
 const struct WildPokemonInfo sViridianForest_FireRed_Night_LandMonsInfo = { 14, sViridianForest_FireRed_Night_LandMons };
@@ -3885,18 +3885,18 @@ const struct WildPokemonInfo sViridianForest_LeafGreen_LandMonsInfo = { 14, sVir
 #ifdef LEAFGREEN
 const struct WildPokemon sViridianForest_LeafGreen_Evening_LandMons[] =
 {
-    { 4, 4, SPECIES_BLIPBUG },
-    { 4, 4, SPECIES_PETILIL },
-    { 5, 5, SPECIES_VOLBEAT },
-    { 5, 5, SPECIES_PETILIL },
+    { 4, 4, SPECIES_BOUNSWEET },
+    { 4, 4, SPECIES_BURMY_PLANT },
+    { 5, 5, SPECIES_NYMBLE },
+    { 5, 5, SPECIES_SMOLIV },
+    { 3, 3, SPECIES_KARRABLAST },
+    { 3, 3, SPECIES_BURMY_PLANT },
+    { 5, 5, SPECIES_SUNKERN },
+    { 5, 5, SPECIES_NINCADA },
+    { 4, 4, SPECIES_COMBEE },
     { 3, 3, SPECIES_PINECO },
-    { 3, 3, SPECIES_PANSAGE },
-    { 5, 5, SPECIES_LEDYBA },
-    { 5, 5, SPECIES_GRUBBIN },
-    { 4, 4, SPECIES_VOLTORB_HISUI },
-    { 3, 3, SPECIES_HOPPIP },
-    { 6, 6, SPECIES_GOSSIFLEUR },
-    { 5, 5, SPECIES_VOLBEAT },
+    { 6, 6, SPECIES_HOPPIP },
+    { 5, 5, SPECIES_PETILIL },
 };
 
 const struct WildPokemonInfo sViridianForest_LeafGreen_Evening_LandMonsInfo = { 14, sViridianForest_LeafGreen_Evening_LandMons };
@@ -3905,18 +3905,18 @@ const struct WildPokemonInfo sViridianForest_LeafGreen_Evening_LandMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sViridianForest_LeafGreen_Night_LandMons[] =
 {
-    { 4, 4, SPECIES_SNUBBULL },
-    { 4, 4, SPECIES_DRIFLOON },
-    { 5, 5, SPECIES_TOXEL },
-    { 5, 5, SPECIES_PHANTUMP },
-    { 3, 3, SPECIES_HONEDGE },
-    { 3, 3, SPECIES_QWILFISH },
-    { 5, 5, SPECIES_CROAGUNK },
-    { 5, 5, SPECIES_NICKIT },
-    { 4, 4, SPECIES_CLEFFA },
-    { 3, 3, SPECIES_SPINARAK },
-    { 6, 6, SPECIES_GOLETT },
-    { 5, 5, SPECIES_SPRITZEE },
+    { 4, 4, SPECIES_MILCERY },
+    { 4, 4, SPECIES_BELLSPROUT },
+    { 5, 5, SPECIES_VENIPEDE },
+    { 5, 5, SPECIES_MASCHIFF },
+    { 3, 3, SPECIES_SHUPPET },
+    { 3, 3, SPECIES_MIME_JR },
+    { 5, 5, SPECIES_SNUBBULL },
+    { 5, 5, SPECIES_SPINARAK },
+    { 4, 4, SPECIES_POOCHYENA },
+    { 3, 3, SPECIES_MILCERY },
+    { 6, 6, SPECIES_GLIMMET },
+    { 5, 5, SPECIES_HONEDGE },
 };
 
 const struct WildPokemonInfo sViridianForest_LeafGreen_Night_LandMonsInfo = { 14, sViridianForest_LeafGreen_Night_LandMons };
@@ -3945,18 +3945,18 @@ const struct WildPokemonInfo sMtMoon1F_FireRed_LandMonsInfo = { 7, sMtMoon1F_Fir
 #ifdef FIRERED
 const struct WildPokemon sMtMoon1F_FireRed_Evening_LandMons[] =
 {
-    { 7, 7, SPECIES_BONSLY },
-    { 8, 8, SPECIES_FARFETCHD_GALAR },
-    { 7, 7, SPECIES_TRAPINCH },
-    { 9, 9, SPECIES_OMANYTE },
-    { 10, 10, SPECIES_NINCADA },
-    { 8, 8, SPECIES_WOOPER },
-    { 9, 9, SPECIES_CLOBBOPUS },
-    { 8, 8, SPECIES_MEOWTH_GALAR },
+    { 7, 7, SPECIES_MEOWTH_GALAR },
+    { 8, 8, SPECIES_TRAPINCH },
+    { 7, 7, SPECIES_LILEEP },
+    { 9, 9, SPECIES_BONSLY },
+    { 10, 10, SPECIES_FERROSEED },
+    { 8, 8, SPECIES_GEODUDE_ALOLA },
+    { 9, 9, SPECIES_SILICOBRA },
+    { 8, 8, SPECIES_CUFANT },
     { 7, 7, SPECIES_ROLYCOLY },
-    { 7, 7, SPECIES_TIMBURR },
-    { 7, 7, SPECIES_DWEBBLE },
-    { 8, 8, SPECIES_SILICOBRA },
+    { 7, 7, SPECIES_MIENFOO },
+    { 7, 7, SPECIES_DRILBUR },
+    { 8, 8, SPECIES_BARBOACH },
 };
 
 const struct WildPokemonInfo sMtMoon1F_FireRed_Evening_LandMonsInfo = { 7, sMtMoon1F_FireRed_Evening_LandMons };
@@ -3965,18 +3965,18 @@ const struct WildPokemonInfo sMtMoon1F_FireRed_Evening_LandMonsInfo = { 7, sMtMo
 #ifdef FIRERED
 const struct WildPokemon sMtMoon1F_FireRed_Night_LandMons[] =
 {
-    { 7, 7, SPECIES_GREAVARD },
+    { 7, 7, SPECIES_SINISTEA_PHONY },
     { 8, 8, SPECIES_MEDITITE },
-    { 7, 7, SPECIES_GREAVARD },
-    { 9, 9, SPECIES_SHUPPET },
-    { 10, 10, SPECIES_SCRAGGY },
-    { 8, 8, SPECIES_INKAY },
-    { 9, 9, SPECIES_YAMASK_GALAR },
-    { 8, 8, SPECIES_ZORUA_HISUI },
-    { 7, 7, SPECIES_FRILLISH },
-    { 7, 7, SPECIES_CARVANHA },
-    { 7, 7, SPECIES_GLIMMET },
-    { 8, 8, SPECIES_FOONGUS },
+    { 7, 7, SPECIES_STUNKY },
+    { 9, 9, SPECIES_BRAMBLIN },
+    { 10, 10, SPECIES_ZIGZAGOON_GALAR },
+    { 8, 8, SPECIES_GREAVARD },
+    { 9, 9, SPECIES_ZORUA_HISUI },
+    { 8, 8, SPECIES_LITWICK },
+    { 7, 7, SPECIES_VAROOM },
+    { 7, 7, SPECIES_TINKATINK },
+    { 7, 7, SPECIES_CROAGUNK },
+    { 8, 8, SPECIES_RATTATA_ALOLA },
 };
 
 const struct WildPokemonInfo sMtMoon1F_FireRed_Night_LandMonsInfo = { 7, sMtMoon1F_FireRed_Night_LandMons };
@@ -4005,18 +4005,18 @@ const struct WildPokemonInfo sMtMoon1F_LeafGreen_LandMonsInfo = { 7, sMtMoon1F_L
 #ifdef LEAFGREEN
 const struct WildPokemon sMtMoon1F_LeafGreen_Evening_LandMons[] =
 {
-    { 7, 7, SPECIES_BONSLY },
-    { 8, 8, SPECIES_FARFETCHD_GALAR },
-    { 7, 7, SPECIES_TRAPINCH },
-    { 9, 9, SPECIES_OMANYTE },
-    { 10, 10, SPECIES_NINCADA },
-    { 8, 8, SPECIES_WOOPER },
-    { 9, 9, SPECIES_CLOBBOPUS },
-    { 8, 8, SPECIES_MEOWTH_GALAR },
+    { 7, 7, SPECIES_MEOWTH_GALAR },
+    { 8, 8, SPECIES_TRAPINCH },
+    { 7, 7, SPECIES_LILEEP },
+    { 9, 9, SPECIES_BONSLY },
+    { 10, 10, SPECIES_FERROSEED },
+    { 8, 8, SPECIES_GEODUDE_ALOLA },
+    { 9, 9, SPECIES_SILICOBRA },
+    { 8, 8, SPECIES_CUFANT },
     { 7, 7, SPECIES_ROLYCOLY },
-    { 7, 7, SPECIES_TIMBURR },
-    { 7, 7, SPECIES_DWEBBLE },
-    { 8, 8, SPECIES_SILICOBRA },
+    { 7, 7, SPECIES_MIENFOO },
+    { 7, 7, SPECIES_DRILBUR },
+    { 8, 8, SPECIES_BARBOACH },
 };
 
 const struct WildPokemonInfo sMtMoon1F_LeafGreen_Evening_LandMonsInfo = { 7, sMtMoon1F_LeafGreen_Evening_LandMons };
@@ -4025,18 +4025,18 @@ const struct WildPokemonInfo sMtMoon1F_LeafGreen_Evening_LandMonsInfo = { 7, sMt
 #ifdef LEAFGREEN
 const struct WildPokemon sMtMoon1F_LeafGreen_Night_LandMons[] =
 {
-    { 7, 7, SPECIES_GREAVARD },
+    { 7, 7, SPECIES_SINISTEA_PHONY },
     { 8, 8, SPECIES_MEDITITE },
-    { 7, 7, SPECIES_GREAVARD },
-    { 9, 9, SPECIES_SHUPPET },
-    { 10, 10, SPECIES_SCRAGGY },
-    { 8, 8, SPECIES_INKAY },
-    { 9, 9, SPECIES_YAMASK_GALAR },
-    { 8, 8, SPECIES_ZORUA_HISUI },
-    { 7, 7, SPECIES_FRILLISH },
-    { 7, 7, SPECIES_CARVANHA },
-    { 7, 7, SPECIES_GLIMMET },
-    { 8, 8, SPECIES_FOONGUS },
+    { 7, 7, SPECIES_STUNKY },
+    { 9, 9, SPECIES_BRAMBLIN },
+    { 10, 10, SPECIES_ZIGZAGOON_GALAR },
+    { 8, 8, SPECIES_GREAVARD },
+    { 9, 9, SPECIES_ZORUA_HISUI },
+    { 8, 8, SPECIES_LITWICK },
+    { 7, 7, SPECIES_VAROOM },
+    { 7, 7, SPECIES_TINKATINK },
+    { 7, 7, SPECIES_CROAGUNK },
+    { 8, 8, SPECIES_RATTATA_ALOLA },
 };
 
 const struct WildPokemonInfo sMtMoon1F_LeafGreen_Night_LandMonsInfo = { 7, sMtMoon1F_LeafGreen_Night_LandMons };
@@ -4065,17 +4065,17 @@ const struct WildPokemonInfo sMtMoonB1F_FireRed_LandMonsInfo = { 5, sMtMoonB1F_F
 #ifdef FIRERED
 const struct WildPokemon sMtMoonB1F_FireRed_Evening_LandMons[] =
 {
-    { 7, 7, SPECIES_CUFANT },
-    { 8, 8, SPECIES_NUMEL },
-    { 5, 5, SPECIES_NOSEPASS },
+    { 7, 7, SPECIES_NOSEPASS },
+    { 8, 8, SPECIES_SILICOBRA },
+    { 5, 5, SPECIES_TIRTOUGA },
     { 6, 6, SPECIES_PANCHAM },
-    { 9, 9, SPECIES_BARBOACH },
-    { 10, 10, SPECIES_DIGLETT_ALOLA },
-    { 7, 7, SPECIES_BINACLE },
-    { 8, 8, SPECIES_TIRTOUGA },
-    { 5, 5, SPECIES_LILEEP },
-    { 6, 6, SPECIES_SANDSHREW },
-    { 9, 9, SPECIES_GEODUDE_ALOLA },
+    { 9, 9, SPECIES_KABUTO },
+    { 10, 10, SPECIES_MEOWTH_GALAR },
+    { 7, 7, SPECIES_NOSEPASS },
+    { 8, 8, SPECIES_KLINK },
+    { 5, 5, SPECIES_PHANPY },
+    { 6, 6, SPECIES_CRANIDOS },
+    { 9, 9, SPECIES_CORSOLA },
     { 10, 10, SPECIES_NACLI },
 };
 
@@ -4085,17 +4085,17 @@ const struct WildPokemonInfo sMtMoonB1F_FireRed_Evening_LandMonsInfo = { 5, sMtM
 #ifdef FIRERED
 const struct WildPokemon sMtMoonB1F_FireRed_Night_LandMons[] =
 {
-    { 7, 7, SPECIES_MASCHIFF },
-    { 8, 8, SPECIES_WOOPER_PALDEA },
-    { 5, 5, SPECIES_YAMASK },
-    { 6, 6, SPECIES_BELLSPROUT },
-    { 9, 9, SPECIES_BRAMBLIN },
-    { 10, 10, SPECIES_PAWNIARD },
-    { 7, 7, SPECIES_SKRELP },
-    { 8, 8, SPECIES_STUNKY },
-    { 5, 5, SPECIES_PURRLOIN },
-    { 6, 6, SPECIES_WOOPER_PALDEA },
-    { 9, 9, SPECIES_BALTOY },
+    { 7, 7, SPECIES_YAMASK },
+    { 8, 8, SPECIES_YAMASK_GALAR },
+    { 5, 5, SPECIES_GRIMER_ALOLA },
+    { 6, 6, SPECIES_IMPIDIMP },
+    { 9, 9, SPECIES_FRILLISH },
+    { 10, 10, SPECIES_PURRLOIN },
+    { 7, 7, SPECIES_PHANTUMP },
+    { 8, 8, SPECIES_BRONZOR },
+    { 5, 5, SPECIES_MAREANIE },
+    { 6, 6, SPECIES_MEOWTH_ALOLA },
+    { 9, 9, SPECIES_SANDYGAST },
     { 10, 10, SPECIES_SANDILE },
 };
 
@@ -4125,17 +4125,17 @@ const struct WildPokemonInfo sMtMoonB1F_LeafGreen_LandMonsInfo = { 5, sMtMoonB1F
 #ifdef LEAFGREEN
 const struct WildPokemon sMtMoonB1F_LeafGreen_Evening_LandMons[] =
 {
-    { 7, 7, SPECIES_CUFANT },
-    { 8, 8, SPECIES_NUMEL },
-    { 5, 5, SPECIES_NOSEPASS },
+    { 7, 7, SPECIES_NOSEPASS },
+    { 8, 8, SPECIES_SILICOBRA },
+    { 5, 5, SPECIES_TIRTOUGA },
     { 6, 6, SPECIES_PANCHAM },
-    { 9, 9, SPECIES_BARBOACH },
-    { 10, 10, SPECIES_DIGLETT_ALOLA },
-    { 7, 7, SPECIES_BINACLE },
-    { 8, 8, SPECIES_TIRTOUGA },
-    { 5, 5, SPECIES_LILEEP },
-    { 6, 6, SPECIES_SANDSHREW },
-    { 9, 9, SPECIES_GEODUDE_ALOLA },
+    { 9, 9, SPECIES_KABUTO },
+    { 10, 10, SPECIES_MEOWTH_GALAR },
+    { 7, 7, SPECIES_NOSEPASS },
+    { 8, 8, SPECIES_KLINK },
+    { 5, 5, SPECIES_PHANPY },
+    { 6, 6, SPECIES_CRANIDOS },
+    { 9, 9, SPECIES_CORSOLA },
     { 10, 10, SPECIES_NACLI },
 };
 
@@ -4145,17 +4145,17 @@ const struct WildPokemonInfo sMtMoonB1F_LeafGreen_Evening_LandMonsInfo = { 5, sM
 #ifdef LEAFGREEN
 const struct WildPokemon sMtMoonB1F_LeafGreen_Night_LandMons[] =
 {
-    { 7, 7, SPECIES_MASCHIFF },
-    { 8, 8, SPECIES_WOOPER_PALDEA },
-    { 5, 5, SPECIES_YAMASK },
-    { 6, 6, SPECIES_BELLSPROUT },
-    { 9, 9, SPECIES_BRAMBLIN },
-    { 10, 10, SPECIES_PAWNIARD },
-    { 7, 7, SPECIES_SKRELP },
-    { 8, 8, SPECIES_STUNKY },
-    { 5, 5, SPECIES_PURRLOIN },
-    { 6, 6, SPECIES_WOOPER_PALDEA },
-    { 9, 9, SPECIES_BALTOY },
+    { 7, 7, SPECIES_YAMASK },
+    { 8, 8, SPECIES_YAMASK_GALAR },
+    { 5, 5, SPECIES_GRIMER_ALOLA },
+    { 6, 6, SPECIES_IMPIDIMP },
+    { 9, 9, SPECIES_FRILLISH },
+    { 10, 10, SPECIES_PURRLOIN },
+    { 7, 7, SPECIES_PHANTUMP },
+    { 8, 8, SPECIES_BRONZOR },
+    { 5, 5, SPECIES_MAREANIE },
+    { 6, 6, SPECIES_MEOWTH_ALOLA },
+    { 9, 9, SPECIES_SANDYGAST },
     { 10, 10, SPECIES_SANDILE },
 };
 
@@ -4185,18 +4185,18 @@ const struct WildPokemonInfo sMtMoonB2F_FireRed_LandMonsInfo = { 7, sMtMoonB2F_F
 #ifdef FIRERED
 const struct WildPokemon sMtMoonB2F_FireRed_Evening_LandMons[] =
 {
-    { 8, 8, SPECIES_KLINK },
-    { 9, 9, SPECIES_CLOBBOPUS },
-    { 9, 9, SPECIES_SHIELDON },
-    { 10, 10, SPECIES_CORSOLA },
-    { 10, 10, SPECIES_BONSLY },
-    { 10, 10, SPECIES_FERROSEED },
+    { 8, 8, SPECIES_BONSLY },
+    { 9, 9, SPECIES_DRILBUR },
+    { 9, 9, SPECIES_TOEDSCOOL },
+    { 10, 10, SPECIES_TRAPINCH },
+    { 10, 10, SPECIES_TYRUNT },
+    { 10, 10, SPECIES_GROWLITHE_HISUI },
+    { 12, 12, SPECIES_FARFETCHD_GALAR },
+    { 10, 10, SPECIES_DWEBBLE },
+    { 11, 11, SPECIES_SANDSHREW },
+    { 11, 11, SPECIES_TIMBURR },
+    { 11, 11, SPECIES_CRABRAWLER },
     { 12, 12, SPECIES_MAKUHITA },
-    { 10, 10, SPECIES_TOEDSCOOL },
-    { 11, 11, SPECIES_PHANPY },
-    { 11, 11, SPECIES_NUMEL },
-    { 11, 11, SPECIES_ROGGENROLA },
-    { 12, 12, SPECIES_ROCKRUFF },
 };
 
 const struct WildPokemonInfo sMtMoonB2F_FireRed_Evening_LandMonsInfo = { 7, sMtMoonB2F_FireRed_Evening_LandMons };
@@ -4205,18 +4205,18 @@ const struct WildPokemonInfo sMtMoonB2F_FireRed_Evening_LandMonsInfo = { 7, sMtM
 #ifdef FIRERED
 const struct WildPokemon sMtMoonB2F_FireRed_Night_LandMons[] =
 {
-    { 8, 8, SPECIES_SKORUPI },
-    { 9, 9, SPECIES_SANDYGAST },
-    { 9, 9, SPECIES_MASCHIFF },
-    { 10, 10, SPECIES_GRIMER_ALOLA },
-    { 10, 10, SPECIES_ZORUA },
-    { 10, 10, SPECIES_SKORUPI },
-    { 12, 12, SPECIES_LITWICK },
-    { 10, 10, SPECIES_GULPIN },
-    { 11, 11, SPECIES_SOLROCK },
-    { 11, 11, SPECIES_BRONZOR },
-    { 11, 11, SPECIES_IMPIDIMP },
-    { 12, 12, SPECIES_MAREANIE },
+    { 8, 8, SPECIES_MEOWTH_ALOLA },
+    { 9, 9, SPECIES_BRAMBLIN },
+    { 9, 9, SPECIES_SHROODLE },
+    { 10, 10, SPECIES_TRUBBISH },
+    { 10, 10, SPECIES_SALANDIT },
+    { 10, 10, SPECIES_TOXEL },
+    { 12, 12, SPECIES_PUMPKABOO_AVERAGE },
+    { 10, 10, SPECIES_GOLETT },
+    { 11, 11, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 11, 11, SPECIES_LUNATONE },
+    { 11, 11, SPECIES_PAWNIARD },
+    { 12, 12, SPECIES_SCRAGGY },
 };
 
 const struct WildPokemonInfo sMtMoonB2F_FireRed_Night_LandMonsInfo = { 7, sMtMoonB2F_FireRed_Night_LandMons };
@@ -4245,18 +4245,18 @@ const struct WildPokemonInfo sMtMoonB2F_LeafGreen_LandMonsInfo = { 7, sMtMoonB2F
 #ifdef LEAFGREEN
 const struct WildPokemon sMtMoonB2F_LeafGreen_Evening_LandMons[] =
 {
-    { 8, 8, SPECIES_KLINK },
-    { 9, 9, SPECIES_CLOBBOPUS },
-    { 9, 9, SPECIES_SHIELDON },
-    { 10, 10, SPECIES_CORSOLA },
-    { 10, 10, SPECIES_BONSLY },
-    { 10, 10, SPECIES_FERROSEED },
+    { 8, 8, SPECIES_BONSLY },
+    { 9, 9, SPECIES_DRILBUR },
+    { 9, 9, SPECIES_TOEDSCOOL },
+    { 10, 10, SPECIES_TRAPINCH },
+    { 10, 10, SPECIES_TYRUNT },
+    { 10, 10, SPECIES_GROWLITHE_HISUI },
+    { 12, 12, SPECIES_FARFETCHD_GALAR },
+    { 10, 10, SPECIES_DWEBBLE },
+    { 11, 11, SPECIES_SANDSHREW },
+    { 11, 11, SPECIES_TIMBURR },
+    { 11, 11, SPECIES_CRABRAWLER },
     { 12, 12, SPECIES_MAKUHITA },
-    { 10, 10, SPECIES_TOEDSCOOL },
-    { 11, 11, SPECIES_PHANPY },
-    { 11, 11, SPECIES_NUMEL },
-    { 11, 11, SPECIES_ROGGENROLA },
-    { 12, 12, SPECIES_ROCKRUFF },
 };
 
 const struct WildPokemonInfo sMtMoonB2F_LeafGreen_Evening_LandMonsInfo = { 7, sMtMoonB2F_LeafGreen_Evening_LandMons };
@@ -4265,18 +4265,18 @@ const struct WildPokemonInfo sMtMoonB2F_LeafGreen_Evening_LandMonsInfo = { 7, sM
 #ifdef LEAFGREEN
 const struct WildPokemon sMtMoonB2F_LeafGreen_Night_LandMons[] =
 {
-    { 8, 8, SPECIES_SKORUPI },
-    { 9, 9, SPECIES_SANDYGAST },
-    { 9, 9, SPECIES_MASCHIFF },
-    { 10, 10, SPECIES_GRIMER_ALOLA },
-    { 10, 10, SPECIES_ZORUA },
-    { 10, 10, SPECIES_SKORUPI },
-    { 12, 12, SPECIES_LITWICK },
-    { 10, 10, SPECIES_GULPIN },
-    { 11, 11, SPECIES_SOLROCK },
-    { 11, 11, SPECIES_BRONZOR },
-    { 11, 11, SPECIES_IMPIDIMP },
-    { 12, 12, SPECIES_MAREANIE },
+    { 8, 8, SPECIES_MEOWTH_ALOLA },
+    { 9, 9, SPECIES_BRAMBLIN },
+    { 9, 9, SPECIES_SHROODLE },
+    { 10, 10, SPECIES_TRUBBISH },
+    { 10, 10, SPECIES_SALANDIT },
+    { 10, 10, SPECIES_TOXEL },
+    { 12, 12, SPECIES_PUMPKABOO_AVERAGE },
+    { 10, 10, SPECIES_GOLETT },
+    { 11, 11, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 11, 11, SPECIES_LUNATONE },
+    { 11, 11, SPECIES_PAWNIARD },
+    { 12, 12, SPECIES_SCRAGGY },
 };
 
 const struct WildPokemonInfo sMtMoonB2F_LeafGreen_Night_LandMonsInfo = { 7, sMtMoonB2F_LeafGreen_Night_LandMons };
@@ -4314,11 +4314,11 @@ const struct WildPokemonInfo sSSAnneExterior_FireRed_FishingMonsInfo = { 10, sSS
 #ifdef FIRERED
 const struct WildPokemon sSSAnneExterior_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_SWINUB },
-    { 10, 20, SPECIES_CLAUNCHER },
-    { 20, 30, SPECIES_WINGULL },
-    { 30, 35, SPECIES_SANDSHREW_ALOLA },
-    { 35, 40, SPECIES_DARUMAKA_GALAR },
+    { 5, 10, SPECIES_POPPLIO },
+    { 10, 20, SPECIES_QUAXLY },
+    { 20, 30, SPECIES_MUDKIP },
+    { 30, 35, SPECIES_CRYOGONAL },
+    { 35, 40, SPECIES_PYUKUMUKU },
 };
 
 const struct WildPokemonInfo sSSAnneExterior_FireRed_Evening_WaterMonsInfo = { 1, sSSAnneExterior_FireRed_Evening_WaterMons };
@@ -4327,10 +4327,10 @@ const struct WildPokemonInfo sSSAnneExterior_FireRed_Evening_WaterMonsInfo = { 1
 #ifdef FIRERED
 const struct WildPokemon sSSAnneExterior_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SNEASEL },
-    { 10, 20, SPECIES_SLOWPOKE },
+    { 5, 10, SPECIES_SKRELP },
+    { 10, 20, SPECIES_SNEASEL },
     { 20, 30, SPECIES_SMOOCHUM },
-    { 30, 35, SPECIES_FRILLISH },
+    { 30, 35, SPECIES_SLOWPOKE },
     { 35, 40, SPECIES_QWILFISH },
 };
 
@@ -4369,11 +4369,11 @@ const struct WildPokemonInfo sSSAnneExterior_LeafGreen_FishingMonsInfo = { 10, s
 #ifdef LEAFGREEN
 const struct WildPokemon sSSAnneExterior_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_SWINUB },
-    { 10, 20, SPECIES_CLAUNCHER },
-    { 20, 30, SPECIES_WINGULL },
-    { 30, 35, SPECIES_SANDSHREW_ALOLA },
-    { 35, 40, SPECIES_DARUMAKA_GALAR },
+    { 5, 10, SPECIES_POPPLIO },
+    { 10, 20, SPECIES_QUAXLY },
+    { 20, 30, SPECIES_MUDKIP },
+    { 30, 35, SPECIES_CRYOGONAL },
+    { 35, 40, SPECIES_PYUKUMUKU },
 };
 
 const struct WildPokemonInfo sSSAnneExterior_LeafGreen_Evening_WaterMonsInfo = { 1, sSSAnneExterior_LeafGreen_Evening_WaterMons };
@@ -4382,10 +4382,10 @@ const struct WildPokemonInfo sSSAnneExterior_LeafGreen_Evening_WaterMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sSSAnneExterior_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SNEASEL },
-    { 10, 20, SPECIES_SLOWPOKE },
+    { 5, 10, SPECIES_SKRELP },
+    { 10, 20, SPECIES_SNEASEL },
     { 20, 30, SPECIES_SMOOCHUM },
-    { 30, 35, SPECIES_FRILLISH },
+    { 30, 35, SPECIES_SLOWPOKE },
     { 35, 40, SPECIES_QWILFISH },
 };
 
@@ -4415,18 +4415,18 @@ const struct WildPokemonInfo sDiglettsCaveB1F_FireRed_LandMonsInfo = { 5, sDigle
 #ifdef FIRERED
 const struct WildPokemon sDiglettsCaveB1F_FireRed_Evening_LandMons[] =
 {
-    { 18, 18, SPECIES_NOIBAT },
-    { 19, 19, SPECIES_PHANPY },
-    { 17, 17, SPECIES_SANDSHREW_ALOLA },
-    { 15, 15, SPECIES_CRANIDOS },
-    { 16, 16, SPECIES_CUFANT },
-    { 20, 20, SPECIES_CRABRAWLER },
-    { 21, 21, SPECIES_DRILBUR },
-    { 22, 22, SPECIES_NOIBAT },
+    { 18, 18, SPECIES_KLINK },
+    { 19, 19, SPECIES_APPLIN },
+    { 17, 17, SPECIES_SHIELDON },
+    { 15, 15, SPECIES_SWINUB },
+    { 16, 16, SPECIES_ARON },
+    { 20, 20, SPECIES_ROGGENROLA },
+    { 21, 21, SPECIES_MUDBRAY },
+    { 22, 22, SPECIES_ANORITH },
     { 17, 17, SPECIES_GLIGAR },
-    { 29, 29, SPECIES_FARFETCHD_GALAR },
-    { 17, 17, SPECIES_STUFFUL },
-    { 31, 31, SPECIES_GROWLITHE_HISUI },
+    { 29, 29, SPECIES_AMAURA },
+    { 17, 17, SPECIES_MINIOR },
+    { 31, 31, SPECIES_WOOPER },
 };
 
 const struct WildPokemonInfo sDiglettsCaveB1F_FireRed_Evening_LandMonsInfo = { 5, sDiglettsCaveB1F_FireRed_Evening_LandMons };
@@ -4435,18 +4435,18 @@ const struct WildPokemonInfo sDiglettsCaveB1F_FireRed_Evening_LandMonsInfo = { 5
 #ifdef FIRERED
 const struct WildPokemon sDiglettsCaveB1F_FireRed_Night_LandMons[] =
 {
-    { 18, 18, SPECIES_DUSKULL },
-    { 19, 19, SPECIES_ROTOM },
-    { 17, 17, SPECIES_BUDEW },
-    { 15, 15, SPECIES_VULLABY },
-    { 16, 16, SPECIES_LUNATONE },
-    { 20, 20, SPECIES_BULBASAUR },
-    { 21, 21, SPECIES_VAROOM },
-    { 22, 22, SPECIES_MURKROW },
-    { 17, 17, SPECIES_SNEASEL_HISUI },
-    { 29, 29, SPECIES_CORSOLA_GALAR },
-    { 17, 17, SPECIES_SABLEYE },
-    { 31, 31, SPECIES_MEOWTH_ALOLA },
+    { 18, 18, SPECIES_MASCHIFF },
+    { 19, 19, SPECIES_MISDREAVUS },
+    { 17, 17, SPECIES_CORSOLA_GALAR },
+    { 15, 15, SPECIES_HOUNDOUR },
+    { 16, 16, SPECIES_CARVANHA },
+    { 20, 20, SPECIES_DUSKULL },
+    { 21, 21, SPECIES_MAWILE },
+    { 22, 22, SPECIES_MORPEKO_FULL_BELLY },
+    { 17, 17, SPECIES_QWILFISH_HISUI },
+    { 29, 29, SPECIES_WOOPER_PALDEA },
+    { 17, 17, SPECIES_GULPIN },
+    { 31, 31, SPECIES_ZORUA },
 };
 
 const struct WildPokemonInfo sDiglettsCaveB1F_FireRed_Night_LandMonsInfo = { 5, sDiglettsCaveB1F_FireRed_Night_LandMons };
@@ -4475,18 +4475,18 @@ const struct WildPokemonInfo sDiglettsCaveB1F_LeafGreen_LandMonsInfo = { 5, sDig
 #ifdef LEAFGREEN
 const struct WildPokemon sDiglettsCaveB1F_LeafGreen_Evening_LandMons[] =
 {
-    { 18, 18, SPECIES_NOIBAT },
-    { 19, 19, SPECIES_PHANPY },
-    { 17, 17, SPECIES_SANDSHREW_ALOLA },
-    { 15, 15, SPECIES_CRANIDOS },
-    { 16, 16, SPECIES_CUFANT },
-    { 20, 20, SPECIES_CRABRAWLER },
-    { 21, 21, SPECIES_DRILBUR },
-    { 22, 22, SPECIES_NOIBAT },
+    { 18, 18, SPECIES_KLINK },
+    { 19, 19, SPECIES_APPLIN },
+    { 17, 17, SPECIES_SHIELDON },
+    { 15, 15, SPECIES_SWINUB },
+    { 16, 16, SPECIES_ARON },
+    { 20, 20, SPECIES_ROGGENROLA },
+    { 21, 21, SPECIES_MUDBRAY },
+    { 22, 22, SPECIES_ANORITH },
     { 17, 17, SPECIES_GLIGAR },
-    { 29, 29, SPECIES_FARFETCHD_GALAR },
-    { 17, 17, SPECIES_STUFFUL },
-    { 31, 31, SPECIES_GROWLITHE_HISUI },
+    { 29, 29, SPECIES_AMAURA },
+    { 17, 17, SPECIES_MINIOR },
+    { 31, 31, SPECIES_WOOPER },
 };
 
 const struct WildPokemonInfo sDiglettsCaveB1F_LeafGreen_Evening_LandMonsInfo = { 5, sDiglettsCaveB1F_LeafGreen_Evening_LandMons };
@@ -4495,18 +4495,18 @@ const struct WildPokemonInfo sDiglettsCaveB1F_LeafGreen_Evening_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sDiglettsCaveB1F_LeafGreen_Night_LandMons[] =
 {
-    { 18, 18, SPECIES_DUSKULL },
-    { 19, 19, SPECIES_ROTOM },
-    { 17, 17, SPECIES_BUDEW },
-    { 15, 15, SPECIES_VULLABY },
-    { 16, 16, SPECIES_LUNATONE },
-    { 20, 20, SPECIES_BULBASAUR },
-    { 21, 21, SPECIES_VAROOM },
-    { 22, 22, SPECIES_MURKROW },
-    { 17, 17, SPECIES_SNEASEL_HISUI },
-    { 29, 29, SPECIES_CORSOLA_GALAR },
-    { 17, 17, SPECIES_SABLEYE },
-    { 31, 31, SPECIES_MEOWTH_ALOLA },
+    { 18, 18, SPECIES_MASCHIFF },
+    { 19, 19, SPECIES_MISDREAVUS },
+    { 17, 17, SPECIES_CORSOLA_GALAR },
+    { 15, 15, SPECIES_HOUNDOUR },
+    { 16, 16, SPECIES_CARVANHA },
+    { 20, 20, SPECIES_DUSKULL },
+    { 21, 21, SPECIES_MAWILE },
+    { 22, 22, SPECIES_MORPEKO_FULL_BELLY },
+    { 17, 17, SPECIES_QWILFISH_HISUI },
+    { 29, 29, SPECIES_WOOPER_PALDEA },
+    { 17, 17, SPECIES_GULPIN },
+    { 31, 31, SPECIES_ZORUA },
 };
 
 const struct WildPokemonInfo sDiglettsCaveB1F_LeafGreen_Night_LandMonsInfo = { 5, sDiglettsCaveB1F_LeafGreen_Night_LandMons };
@@ -4535,17 +4535,17 @@ const struct WildPokemonInfo sVictoryRoad1F_FireRed_LandMonsInfo = { 7, sVictory
 #ifdef FIRERED
 const struct WildPokemon sVictoryRoad1F_FireRed_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_TYRUNT },
-    { 32, 32, SPECIES_AMAURA },
-    { 40, 40, SPECIES_MIENFOO },
-    { 43, 43, SPECIES_TAUROS_PALDEA_BLAZE },
-    { 46, 46, SPECIES_CYCLIZAR },
-    { 32, 32, SPECIES_KABUTO },
-    { 44, 44, SPECIES_TYRUNT },
-    { 44, 44, SPECIES_TURTONATOR },
-    { 44, 44, SPECIES_FALINKS },
-    { 44, 44, SPECIES_PASSIMIAN },
-    { 46, 46, SPECIES_HERACROSS },
+    { 32, 32, SPECIES_MINIOR },
+    { 32, 32, SPECIES_BINACLE },
+    { 40, 40, SPECIES_TAUROS_PALDEA_AQUA },
+    { 43, 43, SPECIES_TYROGUE },
+    { 46, 46, SPECIES_JANGMO_O },
+    { 32, 32, SPECIES_DRAMPA },
+    { 44, 44, SPECIES_SKARMORY },
+    { 44, 44, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 44, 44, SPECIES_STUNFISK },
+    { 44, 44, SPECIES_TOEDSCOOL },
+    { 46, 46, SPECIES_HIPPOPOTAS },
     { 46, 46, SPECIES_LARVITAR },
 };
 
@@ -4555,18 +4555,18 @@ const struct WildPokemonInfo sVictoryRoad1F_FireRed_Evening_LandMonsInfo = { 7, 
 #ifdef FIRERED
 const struct WildPokemon sVictoryRoad1F_FireRed_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_MEOWTH_ALOLA },
-    { 32, 32, SPECIES_ZIGZAGOON_GALAR },
-    { 40, 40, SPECIES_RATTATA_ALOLA },
-    { 43, 43, SPECIES_SEVIPER },
-    { 46, 46, SPECIES_KLEFKI },
-    { 32, 32, SPECIES_DUSKULL },
+    { 32, 32, SPECIES_ROTOM },
+    { 32, 32, SPECIES_QWILFISH },
+    { 40, 40, SPECIES_BULBASAUR },
+    { 43, 43, SPECIES_SOLROCK },
+    { 46, 46, SPECIES_DEINO },
+    { 32, 32, SPECIES_BOMBIRDIER },
+    { 44, 44, SPECIES_MIMIKYU_DISGUISED },
     { 44, 44, SPECIES_BELDUM },
-    { 44, 44, SPECIES_SPIRITOMB },
-    { 44, 44, SPECIES_ABSOL },
-    { 44, 44, SPECIES_DEINO },
-    { 46, 46, SPECIES_TRUBBISH },
-    { 46, 46, SPECIES_SHROODLE },
+    { 44, 44, SPECIES_BUDEW },
+    { 44, 44, SPECIES_DREEPY },
+    { 46, 46, SPECIES_ROTOM },
+    { 46, 46, SPECIES_VULLABY },
 };
 
 const struct WildPokemonInfo sVictoryRoad1F_FireRed_Night_LandMonsInfo = { 7, sVictoryRoad1F_FireRed_Night_LandMons };
@@ -4595,17 +4595,17 @@ const struct WildPokemonInfo sVictoryRoad1F_LeafGreen_LandMonsInfo = { 7, sVicto
 #ifdef LEAFGREEN
 const struct WildPokemon sVictoryRoad1F_LeafGreen_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_TYRUNT },
-    { 32, 32, SPECIES_AMAURA },
-    { 40, 40, SPECIES_MIENFOO },
-    { 43, 43, SPECIES_TAUROS_PALDEA_BLAZE },
-    { 46, 46, SPECIES_CYCLIZAR },
-    { 32, 32, SPECIES_KABUTO },
-    { 44, 44, SPECIES_TYRUNT },
-    { 44, 44, SPECIES_TURTONATOR },
-    { 44, 44, SPECIES_FALINKS },
-    { 44, 44, SPECIES_PASSIMIAN },
-    { 46, 46, SPECIES_HERACROSS },
+    { 32, 32, SPECIES_MINIOR },
+    { 32, 32, SPECIES_BINACLE },
+    { 40, 40, SPECIES_TAUROS_PALDEA_AQUA },
+    { 43, 43, SPECIES_TYROGUE },
+    { 46, 46, SPECIES_JANGMO_O },
+    { 32, 32, SPECIES_DRAMPA },
+    { 44, 44, SPECIES_SKARMORY },
+    { 44, 44, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 44, 44, SPECIES_STUNFISK },
+    { 44, 44, SPECIES_TOEDSCOOL },
+    { 46, 46, SPECIES_HIPPOPOTAS },
     { 46, 46, SPECIES_LARVITAR },
 };
 
@@ -4615,18 +4615,18 @@ const struct WildPokemonInfo sVictoryRoad1F_LeafGreen_Evening_LandMonsInfo = { 7
 #ifdef LEAFGREEN
 const struct WildPokemon sVictoryRoad1F_LeafGreen_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_MEOWTH_ALOLA },
-    { 32, 32, SPECIES_ZIGZAGOON_GALAR },
-    { 40, 40, SPECIES_RATTATA_ALOLA },
-    { 43, 43, SPECIES_SEVIPER },
-    { 46, 46, SPECIES_KLEFKI },
-    { 32, 32, SPECIES_DUSKULL },
+    { 32, 32, SPECIES_ROTOM },
+    { 32, 32, SPECIES_QWILFISH },
+    { 40, 40, SPECIES_BULBASAUR },
+    { 43, 43, SPECIES_SOLROCK },
+    { 46, 46, SPECIES_DEINO },
+    { 32, 32, SPECIES_BOMBIRDIER },
+    { 44, 44, SPECIES_MIMIKYU_DISGUISED },
     { 44, 44, SPECIES_BELDUM },
-    { 44, 44, SPECIES_SPIRITOMB },
-    { 44, 44, SPECIES_ABSOL },
-    { 44, 44, SPECIES_DEINO },
-    { 46, 46, SPECIES_TRUBBISH },
-    { 46, 46, SPECIES_SHROODLE },
+    { 44, 44, SPECIES_BUDEW },
+    { 44, 44, SPECIES_DREEPY },
+    { 46, 46, SPECIES_ROTOM },
+    { 46, 46, SPECIES_VULLABY },
 };
 
 const struct WildPokemonInfo sVictoryRoad1F_LeafGreen_Night_LandMonsInfo = { 7, sVictoryRoad1F_LeafGreen_Night_LandMons };
@@ -4655,18 +4655,18 @@ const struct WildPokemonInfo sVictoryRoad2F_FireRed_LandMonsInfo = { 7, sVictory
 #ifdef FIRERED
 const struct WildPokemon sVictoryRoad2F_FireRed_Evening_LandMons[] =
 {
-    { 34, 34, SPECIES_NINCADA },
-    { 34, 34, SPECIES_ARCHEN },
-    { 42, 42, SPECIES_DRACOZOLT },
-    { 45, 45, SPECIES_TAUROS_PALDEA_COMBAT },
-    { 48, 48, SPECIES_TYROGUE },
-    { 34, 34, SPECIES_AERODACTYL },
-    { 46, 46, SPECIES_DRAMPA },
-    { 46, 46, SPECIES_GIBLE },
-    { 46, 46, SPECIES_FRIGIBAX },
+    { 34, 34, SPECIES_AXEW },
+    { 34, 34, SPECIES_TIMBURR },
+    { 42, 42, SPECIES_OMANYTE },
+    { 45, 45, SPECIES_BAGON },
+    { 48, 48, SPECIES_ARCHEN },
+    { 34, 34, SPECIES_FLAMIGO },
     { 46, 46, SPECIES_GOOMY },
-    { 48, 48, SPECIES_DRACOVISH },
-    { 48, 48, SPECIES_SHUCKLE },
+    { 46, 46, SPECIES_NOIBAT },
+    { 46, 46, SPECIES_DRACOVISH },
+    { 46, 46, SPECIES_APPLIN },
+    { 48, 48, SPECIES_AXEW },
+    { 48, 48, SPECIES_OMANYTE },
 };
 
 const struct WildPokemonInfo sVictoryRoad2F_FireRed_Evening_LandMonsInfo = { 7, sVictoryRoad2F_FireRed_Evening_LandMons };
@@ -4675,18 +4675,18 @@ const struct WildPokemonInfo sVictoryRoad2F_FireRed_Evening_LandMonsInfo = { 7, 
 #ifdef FIRERED
 const struct WildPokemon sVictoryRoad2F_FireRed_Night_LandMons[] =
 {
-    { 34, 34, SPECIES_FOONGUS },
-    { 34, 34, SPECIES_MISDREAVUS },
-    { 42, 42, SPECIES_VENIPEDE },
-    { 45, 45, SPECIES_TINKATINK },
-    { 48, 48, SPECIES_BOMBIRDIER },
-    { 34, 34, SPECIES_HOUNDOUR },
-    { 46, 46, SPECIES_SALANDIT },
-    { 46, 46, SPECIES_CARBINK },
-    { 46, 46, SPECIES_POOCHYENA },
-    { 46, 46, SPECIES_MAWILE },
-    { 48, 48, SPECIES_DREEPY },
+    { 34, 34, SPECIES_GIMMIGHOUL_CHEST },
+    { 34, 34, SPECIES_GHOLDENGO },
+    { 42, 42, SPECIES_SPIRITOMB },
+    { 45, 45, SPECIES_CARBINK },
+    { 48, 48, SPECIES_SEVIPER },
+    { 34, 34, SPECIES_SABLEYE },
+    { 46, 46, SPECIES_SKORUPI },
+    { 46, 46, SPECIES_ABSOL },
+    { 46, 46, SPECIES_BASCULEGION_M },
+    { 46, 46, SPECIES_YAMASK },
     { 48, 48, SPECIES_DHELMISE },
+    { 48, 48, SPECIES_MURKROW },
 };
 
 const struct WildPokemonInfo sVictoryRoad2F_FireRed_Night_LandMonsInfo = { 7, sVictoryRoad2F_FireRed_Night_LandMons };
@@ -4715,18 +4715,18 @@ const struct WildPokemonInfo sVictoryRoad2F_LeafGreen_LandMonsInfo = { 7, sVicto
 #ifdef LEAFGREEN
 const struct WildPokemon sVictoryRoad2F_LeafGreen_Evening_LandMons[] =
 {
-    { 34, 34, SPECIES_NINCADA },
-    { 34, 34, SPECIES_ARCHEN },
-    { 42, 42, SPECIES_DRACOZOLT },
-    { 45, 45, SPECIES_TAUROS_PALDEA_COMBAT },
-    { 48, 48, SPECIES_TYROGUE },
-    { 34, 34, SPECIES_AERODACTYL },
-    { 46, 46, SPECIES_DRAMPA },
-    { 46, 46, SPECIES_GIBLE },
-    { 46, 46, SPECIES_FRIGIBAX },
+    { 34, 34, SPECIES_AXEW },
+    { 34, 34, SPECIES_TIMBURR },
+    { 42, 42, SPECIES_OMANYTE },
+    { 45, 45, SPECIES_BAGON },
+    { 48, 48, SPECIES_ARCHEN },
+    { 34, 34, SPECIES_FLAMIGO },
     { 46, 46, SPECIES_GOOMY },
-    { 48, 48, SPECIES_DRACOVISH },
-    { 48, 48, SPECIES_SHUCKLE },
+    { 46, 46, SPECIES_NOIBAT },
+    { 46, 46, SPECIES_DRACOVISH },
+    { 46, 46, SPECIES_APPLIN },
+    { 48, 48, SPECIES_AXEW },
+    { 48, 48, SPECIES_OMANYTE },
 };
 
 const struct WildPokemonInfo sVictoryRoad2F_LeafGreen_Evening_LandMonsInfo = { 7, sVictoryRoad2F_LeafGreen_Evening_LandMons };
@@ -4735,18 +4735,18 @@ const struct WildPokemonInfo sVictoryRoad2F_LeafGreen_Evening_LandMonsInfo = { 7
 #ifdef LEAFGREEN
 const struct WildPokemon sVictoryRoad2F_LeafGreen_Night_LandMons[] =
 {
-    { 34, 34, SPECIES_FOONGUS },
-    { 34, 34, SPECIES_MISDREAVUS },
-    { 42, 42, SPECIES_VENIPEDE },
-    { 45, 45, SPECIES_TINKATINK },
-    { 48, 48, SPECIES_BOMBIRDIER },
-    { 34, 34, SPECIES_HOUNDOUR },
-    { 46, 46, SPECIES_SALANDIT },
-    { 46, 46, SPECIES_CARBINK },
-    { 46, 46, SPECIES_POOCHYENA },
-    { 46, 46, SPECIES_MAWILE },
-    { 48, 48, SPECIES_DREEPY },
+    { 34, 34, SPECIES_GIMMIGHOUL_CHEST },
+    { 34, 34, SPECIES_GHOLDENGO },
+    { 42, 42, SPECIES_SPIRITOMB },
+    { 45, 45, SPECIES_CARBINK },
+    { 48, 48, SPECIES_SEVIPER },
+    { 34, 34, SPECIES_SABLEYE },
+    { 46, 46, SPECIES_SKORUPI },
+    { 46, 46, SPECIES_ABSOL },
+    { 46, 46, SPECIES_BASCULEGION_M },
+    { 46, 46, SPECIES_YAMASK },
     { 48, 48, SPECIES_DHELMISE },
+    { 48, 48, SPECIES_MURKROW },
 };
 
 const struct WildPokemonInfo sVictoryRoad2F_LeafGreen_Night_LandMonsInfo = { 7, sVictoryRoad2F_LeafGreen_Night_LandMons };
@@ -4775,18 +4775,18 @@ const struct WildPokemonInfo sVictoryRoad3F_FireRed_LandMonsInfo = { 7, sVictory
 #ifdef FIRERED
 const struct WildPokemon sVictoryRoad3F_FireRed_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_RELICANTH },
-    { 32, 32, SPECIES_ARON },
-    { 40, 40, SPECIES_ORTHWORM },
-    { 43, 43, SPECIES_DURALUDON },
-    { 46, 46, SPECIES_AMAURA },
-    { 32, 32, SPECIES_BAGON },
-    { 44, 44, SPECIES_SHUCKLE },
-    { 44, 44, SPECIES_THROH },
-    { 44, 44, SPECIES_ANORITH },
-    { 44, 44, SPECIES_HIPPOPOTAS },
-    { 46, 46, SPECIES_DRACOVISH },
-    { 46, 46, SPECIES_STUNFISK },
+    { 32, 32, SPECIES_CORSOLA },
+    { 32, 32, SPECIES_ROCKRUFF },
+    { 40, 40, SPECIES_ESCAVALIER },
+    { 43, 43, SPECIES_FALINKS },
+    { 46, 46, SPECIES_SANDSHREW_ALOLA },
+    { 32, 32, SPECIES_NUMEL },
+    { 44, 44, SPECIES_CLOBBOPUS },
+    { 44, 44, SPECIES_HERACROSS },
+    { 44, 44, SPECIES_DRUDDIGON },
+    { 44, 44, SPECIES_DIGLETT_ALOLA },
+    { 46, 46, SPECIES_STONJOURNER },
+    { 46, 46, SPECIES_GOOMY },
 };
 
 const struct WildPokemonInfo sVictoryRoad3F_FireRed_Evening_LandMonsInfo = { 7, sVictoryRoad3F_FireRed_Evening_LandMons };
@@ -4795,18 +4795,18 @@ const struct WildPokemonInfo sVictoryRoad3F_FireRed_Evening_LandMonsInfo = { 7, 
 #ifdef FIRERED
 const struct WildPokemon sVictoryRoad3F_FireRed_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_PHANTUMP },
-    { 32, 32, SPECIES_QWILFISH_HISUI },
-    { 40, 40, SPECIES_BULBASAUR },
-    { 43, 43, SPECIES_MEOWTH_ALOLA },
-    { 46, 46, SPECIES_CARVANHA },
-    { 32, 32, SPECIES_SNEASEL_HISUI },
-    { 44, 44, SPECIES_CORSOLA_GALAR },
-    { 44, 44, SPECIES_INKAY },
-    { 44, 44, SPECIES_DREEPY },
-    { 44, 44, SPECIES_VAROOM },
-    { 46, 46, SPECIES_ZIGZAGOON_GALAR },
-    { 46, 46, SPECIES_BOMBIRDIER },
+    { 32, 32, SPECIES_KLEFKI },
+    { 32, 32, SPECIES_DRIFLOON },
+    { 40, 40, SPECIES_GIMMIGHOUL_CHEST },
+    { 43, 43, SPECIES_SINISTEA_PHONY },
+    { 46, 46, SPECIES_BALTOY },
+    { 32, 32, SPECIES_INKAY },
+    { 44, 44, SPECIES_SNEASEL_HISUI },
+    { 44, 44, SPECIES_FOONGUS },
+    { 44, 44, SPECIES_NICKIT },
+    { 44, 44, SPECIES_MURKROW },
+    { 46, 46, SPECIES_BUDEW },
+    { 46, 46, SPECIES_DREEPY },
 };
 
 const struct WildPokemonInfo sVictoryRoad3F_FireRed_Night_LandMonsInfo = { 7, sVictoryRoad3F_FireRed_Night_LandMons };
@@ -4835,18 +4835,18 @@ const struct WildPokemonInfo sVictoryRoad3F_LeafGreen_LandMonsInfo = { 7, sVicto
 #ifdef LEAFGREEN
 const struct WildPokemon sVictoryRoad3F_LeafGreen_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_RELICANTH },
-    { 32, 32, SPECIES_ARON },
-    { 40, 40, SPECIES_ORTHWORM },
-    { 43, 43, SPECIES_DURALUDON },
-    { 46, 46, SPECIES_AMAURA },
-    { 32, 32, SPECIES_BAGON },
-    { 44, 44, SPECIES_SHUCKLE },
-    { 44, 44, SPECIES_THROH },
-    { 44, 44, SPECIES_ANORITH },
-    { 44, 44, SPECIES_HIPPOPOTAS },
-    { 46, 46, SPECIES_DRACOVISH },
-    { 46, 46, SPECIES_STUNFISK },
+    { 32, 32, SPECIES_CORSOLA },
+    { 32, 32, SPECIES_ROCKRUFF },
+    { 40, 40, SPECIES_ESCAVALIER },
+    { 43, 43, SPECIES_FALINKS },
+    { 46, 46, SPECIES_SANDSHREW_ALOLA },
+    { 32, 32, SPECIES_NUMEL },
+    { 44, 44, SPECIES_CLOBBOPUS },
+    { 44, 44, SPECIES_HERACROSS },
+    { 44, 44, SPECIES_DRUDDIGON },
+    { 44, 44, SPECIES_DIGLETT_ALOLA },
+    { 46, 46, SPECIES_STONJOURNER },
+    { 46, 46, SPECIES_GOOMY },
 };
 
 const struct WildPokemonInfo sVictoryRoad3F_LeafGreen_Evening_LandMonsInfo = { 7, sVictoryRoad3F_LeafGreen_Evening_LandMons };
@@ -4855,18 +4855,18 @@ const struct WildPokemonInfo sVictoryRoad3F_LeafGreen_Evening_LandMonsInfo = { 7
 #ifdef LEAFGREEN
 const struct WildPokemon sVictoryRoad3F_LeafGreen_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_PHANTUMP },
-    { 32, 32, SPECIES_QWILFISH_HISUI },
-    { 40, 40, SPECIES_BULBASAUR },
-    { 43, 43, SPECIES_MEOWTH_ALOLA },
-    { 46, 46, SPECIES_CARVANHA },
-    { 32, 32, SPECIES_SNEASEL_HISUI },
-    { 44, 44, SPECIES_CORSOLA_GALAR },
-    { 44, 44, SPECIES_INKAY },
-    { 44, 44, SPECIES_DREEPY },
-    { 44, 44, SPECIES_VAROOM },
-    { 46, 46, SPECIES_ZIGZAGOON_GALAR },
-    { 46, 46, SPECIES_BOMBIRDIER },
+    { 32, 32, SPECIES_KLEFKI },
+    { 32, 32, SPECIES_DRIFLOON },
+    { 40, 40, SPECIES_GIMMIGHOUL_CHEST },
+    { 43, 43, SPECIES_SINISTEA_PHONY },
+    { 46, 46, SPECIES_BALTOY },
+    { 32, 32, SPECIES_INKAY },
+    { 44, 44, SPECIES_SNEASEL_HISUI },
+    { 44, 44, SPECIES_FOONGUS },
+    { 44, 44, SPECIES_NICKIT },
+    { 44, 44, SPECIES_MURKROW },
+    { 46, 46, SPECIES_BUDEW },
+    { 46, 46, SPECIES_DREEPY },
 };
 
 const struct WildPokemonInfo sVictoryRoad3F_LeafGreen_Night_LandMonsInfo = { 7, sVictoryRoad3F_LeafGreen_Night_LandMons };
@@ -4895,17 +4895,17 @@ const struct WildPokemonInfo sPokemonMansion1F_FireRed_LandMonsInfo = { 7, sPoke
 #ifdef FIRERED
 const struct WildPokemon sPokemonMansion1F_FireRed_Evening_LandMons[] =
 {
-    { 28, 28, SPECIES_CYNDAQUIL },
-    { 32, 32, SPECIES_CHARCADET },
-    { 30, 30, SPECIES_VULPIX },
-    { 36, 36, SPECIES_HEATMOR },
-    { 30, 30, SPECIES_CHIMCHAR },
-    { 28, 28, SPECIES_CYNDAQUIL },
-    { 28, 28, SPECIES_SCORBUNNY },
-    { 32, 32, SPECIES_DARMANITAN_GALAR_ZEN },
-    { 32, 32, SPECIES_LARVESTA },
-    { 26, 26, SPECIES_FUECOCO },
-    { 32, 32, SPECIES_TORKOAL },
+    { 28, 28, SPECIES_CHARMANDER },
+    { 32, 32, SPECIES_SLUGMA },
+    { 30, 30, SPECIES_LITTEN },
+    { 36, 36, SPECIES_CYNDAQUIL },
+    { 30, 30, SPECIES_TURTONATOR },
+    { 28, 28, SPECIES_MAGBY },
+    { 28, 28, SPECIES_VULPIX },
+    { 32, 32, SPECIES_SCORBUNNY },
+    { 32, 32, SPECIES_ORICORIO_BAILE },
+    { 26, 26, SPECIES_CHIMCHAR },
+    { 32, 32, SPECIES_FENNEKIN },
     { 26, 26, SPECIES_HEATMOR },
 };
 
@@ -4915,18 +4915,18 @@ const struct WildPokemonInfo sPokemonMansion1F_FireRed_Evening_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sPokemonMansion1F_FireRed_Night_LandMons[] =
 {
+    { 28, 28, SPECIES_WYNAUT },
+    { 32, 32, SPECIES_ORANGURU },
+    { 30, 30, SPECIES_VELUZA },
+    { 36, 36, SPECIES_SIGILYPH },
+    { 30, 30, SPECIES_ESPURR },
+    { 28, 28, SPECIES_FLITTLE },
     { 28, 28, SPECIES_CHINGLING },
-    { 32, 32, SPECIES_WOOBAT },
-    { 30, 30, SPECIES_HATENNA },
-    { 36, 36, SPECIES_VELUZA },
-    { 30, 30, SPECIES_SOLOSIS },
-    { 28, 28, SPECIES_RALTS },
-    { 28, 28, SPECIES_MUNNA },
     { 32, 32, SPECIES_WYNAUT },
     { 32, 32, SPECIES_ELGYEM },
-    { 26, 26, SPECIES_ESPURR },
-    { 32, 32, SPECIES_ORANGURU },
-    { 26, 26, SPECIES_BRUXISH },
+    { 26, 26, SPECIES_NATU },
+    { 32, 32, SPECIES_PONYTA_GALAR },
+    { 26, 26, SPECIES_INDEEDEE_M },
 };
 
 const struct WildPokemonInfo sPokemonMansion1F_FireRed_Night_LandMonsInfo = { 7, sPokemonMansion1F_FireRed_Night_LandMons };
@@ -4955,17 +4955,17 @@ const struct WildPokemonInfo sPokemonMansion1F_LeafGreen_LandMonsInfo = { 7, sPo
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonMansion1F_LeafGreen_Evening_LandMons[] =
 {
-    { 28, 28, SPECIES_CYNDAQUIL },
-    { 32, 32, SPECIES_CHARCADET },
-    { 30, 30, SPECIES_VULPIX },
-    { 36, 36, SPECIES_HEATMOR },
-    { 30, 30, SPECIES_CHIMCHAR },
-    { 28, 28, SPECIES_CYNDAQUIL },
-    { 28, 28, SPECIES_SCORBUNNY },
-    { 32, 32, SPECIES_DARMANITAN_GALAR_ZEN },
-    { 32, 32, SPECIES_LARVESTA },
-    { 26, 26, SPECIES_FUECOCO },
-    { 32, 32, SPECIES_TORKOAL },
+    { 28, 28, SPECIES_CHARMANDER },
+    { 32, 32, SPECIES_SLUGMA },
+    { 30, 30, SPECIES_LITTEN },
+    { 36, 36, SPECIES_CYNDAQUIL },
+    { 30, 30, SPECIES_TURTONATOR },
+    { 28, 28, SPECIES_MAGBY },
+    { 28, 28, SPECIES_VULPIX },
+    { 32, 32, SPECIES_SCORBUNNY },
+    { 32, 32, SPECIES_ORICORIO_BAILE },
+    { 26, 26, SPECIES_CHIMCHAR },
+    { 32, 32, SPECIES_FENNEKIN },
     { 26, 26, SPECIES_HEATMOR },
 };
 
@@ -4975,18 +4975,18 @@ const struct WildPokemonInfo sPokemonMansion1F_LeafGreen_Evening_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonMansion1F_LeafGreen_Night_LandMons[] =
 {
+    { 28, 28, SPECIES_WYNAUT },
+    { 32, 32, SPECIES_ORANGURU },
+    { 30, 30, SPECIES_VELUZA },
+    { 36, 36, SPECIES_SIGILYPH },
+    { 30, 30, SPECIES_ESPURR },
+    { 28, 28, SPECIES_FLITTLE },
     { 28, 28, SPECIES_CHINGLING },
-    { 32, 32, SPECIES_WOOBAT },
-    { 30, 30, SPECIES_HATENNA },
-    { 36, 36, SPECIES_VELUZA },
-    { 30, 30, SPECIES_SOLOSIS },
-    { 28, 28, SPECIES_RALTS },
-    { 28, 28, SPECIES_MUNNA },
     { 32, 32, SPECIES_WYNAUT },
     { 32, 32, SPECIES_ELGYEM },
-    { 26, 26, SPECIES_ESPURR },
-    { 32, 32, SPECIES_ORANGURU },
-    { 26, 26, SPECIES_BRUXISH },
+    { 26, 26, SPECIES_NATU },
+    { 32, 32, SPECIES_PONYTA_GALAR },
+    { 26, 26, SPECIES_INDEEDEE_M },
 };
 
 const struct WildPokemonInfo sPokemonMansion1F_LeafGreen_Night_LandMonsInfo = { 7, sPokemonMansion1F_LeafGreen_Night_LandMons };
@@ -5015,18 +5015,18 @@ const struct WildPokemonInfo sPokemonMansion2F_FireRed_LandMonsInfo = { 7, sPoke
 #ifdef FIRERED
 const struct WildPokemon sPokemonMansion2F_FireRed_Evening_LandMons[] =
 {
-    { 28, 28, SPECIES_CHARMANDER },
+    { 28, 28, SPECIES_FENNEKIN },
+    { 32, 32, SPECIES_LITTEN },
+    { 30, 30, SPECIES_SLUGMA },
+    { 36, 36, SPECIES_TORCHIC },
+    { 30, 30, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 28, 28, SPECIES_CHARCADET },
+    { 28, 28, SPECIES_DARUMAKA },
+    { 32, 32, SPECIES_LITLEO },
     { 32, 32, SPECIES_FUECOCO },
-    { 30, 30, SPECIES_TORCHIC },
-    { 36, 36, SPECIES_PANSEAR },
-    { 30, 30, SPECIES_LITTEN },
-    { 28, 28, SPECIES_CHARMANDER },
-    { 28, 28, SPECIES_TORCHIC },
+    { 26, 26, SPECIES_LARVESTA },
     { 32, 32, SPECIES_SIZZLIPEDE },
-    { 32, 32, SPECIES_SLUGMA },
-    { 26, 26, SPECIES_MAGBY },
-    { 32, 32, SPECIES_FENNEKIN },
-    { 26, 26, SPECIES_DARUMAKA },
+    { 26, 26, SPECIES_TORKOAL },
 };
 
 const struct WildPokemonInfo sPokemonMansion2F_FireRed_Evening_LandMonsInfo = { 7, sPokemonMansion2F_FireRed_Evening_LandMons };
@@ -5035,18 +5035,18 @@ const struct WildPokemonInfo sPokemonMansion2F_FireRed_Evening_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sPokemonMansion2F_FireRed_Night_LandMons[] =
 {
-    { 28, 28, SPECIES_SHROODLE },
-    { 32, 32, SPECIES_MIME_JR },
+    { 28, 28, SPECIES_WOOBAT },
+    { 32, 32, SPECIES_HATENNA },
     { 30, 30, SPECIES_GOTHITA },
-    { 36, 36, SPECIES_SLOWPOKE_GALAR },
-    { 30, 30, SPECIES_SIGILYPH },
-    { 28, 28, SPECIES_PONYTA_GALAR },
-    { 28, 28, SPECIES_FLITTLE },
+    { 36, 36, SPECIES_RALTS },
+    { 30, 30, SPECIES_BRUXISH },
+    { 28, 28, SPECIES_GIRAFARIG },
+    { 28, 28, SPECIES_SOLOSIS },
+    { 32, 32, SPECIES_MUNNA },
     { 32, 32, SPECIES_SPOINK },
-    { 32, 32, SPECIES_BRUXISH },
+    { 26, 26, SPECIES_SLOWPOKE_GALAR },
+    { 32, 32, SPECIES_VENIPEDE },
     { 26, 26, SPECIES_GIRAFARIG },
-    { 32, 32, SPECIES_NATU },
-    { 26, 26, SPECIES_SABLEYE },
 };
 
 const struct WildPokemonInfo sPokemonMansion2F_FireRed_Night_LandMonsInfo = { 7, sPokemonMansion2F_FireRed_Night_LandMons };
@@ -5075,18 +5075,18 @@ const struct WildPokemonInfo sPokemonMansion2F_LeafGreen_LandMonsInfo = { 7, sPo
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonMansion2F_LeafGreen_Evening_LandMons[] =
 {
-    { 28, 28, SPECIES_CHARMANDER },
+    { 28, 28, SPECIES_FENNEKIN },
+    { 32, 32, SPECIES_LITTEN },
+    { 30, 30, SPECIES_SLUGMA },
+    { 36, 36, SPECIES_TORCHIC },
+    { 30, 30, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 28, 28, SPECIES_CHARCADET },
+    { 28, 28, SPECIES_DARUMAKA },
+    { 32, 32, SPECIES_LITLEO },
     { 32, 32, SPECIES_FUECOCO },
-    { 30, 30, SPECIES_TORCHIC },
-    { 36, 36, SPECIES_PANSEAR },
-    { 30, 30, SPECIES_LITTEN },
-    { 28, 28, SPECIES_CHARMANDER },
-    { 28, 28, SPECIES_TORCHIC },
+    { 26, 26, SPECIES_LARVESTA },
     { 32, 32, SPECIES_SIZZLIPEDE },
-    { 32, 32, SPECIES_SLUGMA },
-    { 26, 26, SPECIES_MAGBY },
-    { 32, 32, SPECIES_FENNEKIN },
-    { 26, 26, SPECIES_DARUMAKA },
+    { 26, 26, SPECIES_TORKOAL },
 };
 
 const struct WildPokemonInfo sPokemonMansion2F_LeafGreen_Evening_LandMonsInfo = { 7, sPokemonMansion2F_LeafGreen_Evening_LandMons };
@@ -5095,18 +5095,18 @@ const struct WildPokemonInfo sPokemonMansion2F_LeafGreen_Evening_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonMansion2F_LeafGreen_Night_LandMons[] =
 {
-    { 28, 28, SPECIES_SHROODLE },
-    { 32, 32, SPECIES_MIME_JR },
+    { 28, 28, SPECIES_WOOBAT },
+    { 32, 32, SPECIES_HATENNA },
     { 30, 30, SPECIES_GOTHITA },
-    { 36, 36, SPECIES_SLOWPOKE_GALAR },
-    { 30, 30, SPECIES_SIGILYPH },
-    { 28, 28, SPECIES_PONYTA_GALAR },
-    { 28, 28, SPECIES_FLITTLE },
+    { 36, 36, SPECIES_RALTS },
+    { 30, 30, SPECIES_BRUXISH },
+    { 28, 28, SPECIES_GIRAFARIG },
+    { 28, 28, SPECIES_SOLOSIS },
+    { 32, 32, SPECIES_MUNNA },
     { 32, 32, SPECIES_SPOINK },
-    { 32, 32, SPECIES_BRUXISH },
+    { 26, 26, SPECIES_SLOWPOKE_GALAR },
+    { 32, 32, SPECIES_VENIPEDE },
     { 26, 26, SPECIES_GIRAFARIG },
-    { 32, 32, SPECIES_NATU },
-    { 26, 26, SPECIES_SABLEYE },
 };
 
 const struct WildPokemonInfo sPokemonMansion2F_LeafGreen_Night_LandMonsInfo = { 7, sPokemonMansion2F_LeafGreen_Night_LandMons };
@@ -5135,18 +5135,18 @@ const struct WildPokemonInfo sPokemonMansion3F_FireRed_LandMonsInfo = { 7, sPoke
 #ifdef FIRERED
 const struct WildPokemon sPokemonMansion3F_FireRed_Evening_LandMons[] =
 {
-    { 28, 28, SPECIES_FENNEKIN },
-    { 32, 32, SPECIES_MAGBY },
-    { 30, 30, SPECIES_SLUGMA },
-    { 36, 36, SPECIES_TEPIG },
-    { 30, 30, SPECIES_TORKOAL },
-    { 28, 28, SPECIES_LITLEO },
-    { 28, 28, SPECIES_TAUROS_PALDEA_BLAZE },
-    { 32, 32, SPECIES_TORKOAL },
-    { 32, 32, SPECIES_MAGBY },
-    { 26, 26, SPECIES_LITLEO },
+    { 28, 28, SPECIES_CHIMCHAR },
+    { 32, 32, SPECIES_SCORBUNNY },
+    { 30, 30, SPECIES_TEPIG },
+    { 36, 36, SPECIES_PANSEAR },
+    { 30, 30, SPECIES_HEATMOR },
+    { 28, 28, SPECIES_TEPIG },
+    { 28, 28, SPECIES_CHARMANDER },
     { 32, 32, SPECIES_TORCHIC },
-    { 26, 26, SPECIES_FUECOCO },
+    { 32, 32, SPECIES_VULPIX },
+    { 26, 26, SPECIES_ORICORIO_BAILE },
+    { 32, 32, SPECIES_NUMEL },
+    { 26, 26, SPECIES_FENNEKIN },
 };
 
 const struct WildPokemonInfo sPokemonMansion3F_FireRed_Evening_LandMonsInfo = { 7, sPokemonMansion3F_FireRed_Evening_LandMons };
@@ -5155,18 +5155,18 @@ const struct WildPokemonInfo sPokemonMansion3F_FireRed_Evening_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sPokemonMansion3F_FireRed_Night_LandMons[] =
 {
-    { 28, 28, SPECIES_WYNAUT },
-    { 32, 32, SPECIES_LITWICK },
-    { 30, 30, SPECIES_LUNATONE },
-    { 36, 36, SPECIES_WOOPER_PALDEA },
-    { 30, 30, SPECIES_SMOOCHUM },
-    { 28, 28, SPECIES_BRAMBLIN },
-    { 28, 28, SPECIES_CROAGUNK },
-    { 32, 32, SPECIES_SPIRITOMB },
-    { 32, 32, SPECIES_DHELMISE },
-    { 26, 26, SPECIES_GRIMER_ALOLA },
-    { 32, 32, SPECIES_ORANGURU },
-    { 26, 26, SPECIES_GIRAFARIG },
+    { 28, 28, SPECIES_YAMASK_GALAR },
+    { 32, 32, SPECIES_ELGYEM },
+    { 30, 30, SPECIES_ZORUA_HISUI },
+    { 36, 36, SPECIES_FLITTLE },
+    { 30, 30, SPECIES_SOLOSIS },
+    { 28, 28, SPECIES_BULBASAUR },
+    { 28, 28, SPECIES_PONYTA_GALAR },
+    { 32, 32, SPECIES_VELUZA },
+    { 32, 32, SPECIES_SPINARAK },
+    { 26, 26, SPECIES_PHANTUMP },
+    { 32, 32, SPECIES_SKRELP },
+    { 26, 26, SPECIES_INDEEDEE_M },
 };
 
 const struct WildPokemonInfo sPokemonMansion3F_FireRed_Night_LandMonsInfo = { 7, sPokemonMansion3F_FireRed_Night_LandMons };
@@ -5195,18 +5195,18 @@ const struct WildPokemonInfo sPokemonMansion3F_LeafGreen_LandMonsInfo = { 7, sPo
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonMansion3F_LeafGreen_Evening_LandMons[] =
 {
-    { 28, 28, SPECIES_FENNEKIN },
-    { 32, 32, SPECIES_MAGBY },
-    { 30, 30, SPECIES_SLUGMA },
-    { 36, 36, SPECIES_TEPIG },
-    { 30, 30, SPECIES_TORKOAL },
-    { 28, 28, SPECIES_LITLEO },
-    { 28, 28, SPECIES_TAUROS_PALDEA_BLAZE },
-    { 32, 32, SPECIES_TORKOAL },
-    { 32, 32, SPECIES_MAGBY },
-    { 26, 26, SPECIES_LITLEO },
+    { 28, 28, SPECIES_CHIMCHAR },
+    { 32, 32, SPECIES_SCORBUNNY },
+    { 30, 30, SPECIES_TEPIG },
+    { 36, 36, SPECIES_PANSEAR },
+    { 30, 30, SPECIES_HEATMOR },
+    { 28, 28, SPECIES_TEPIG },
+    { 28, 28, SPECIES_CHARMANDER },
     { 32, 32, SPECIES_TORCHIC },
-    { 26, 26, SPECIES_FUECOCO },
+    { 32, 32, SPECIES_VULPIX },
+    { 26, 26, SPECIES_ORICORIO_BAILE },
+    { 32, 32, SPECIES_NUMEL },
+    { 26, 26, SPECIES_FENNEKIN },
 };
 
 const struct WildPokemonInfo sPokemonMansion3F_LeafGreen_Evening_LandMonsInfo = { 7, sPokemonMansion3F_LeafGreen_Evening_LandMons };
@@ -5215,18 +5215,18 @@ const struct WildPokemonInfo sPokemonMansion3F_LeafGreen_Evening_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonMansion3F_LeafGreen_Night_LandMons[] =
 {
-    { 28, 28, SPECIES_WYNAUT },
-    { 32, 32, SPECIES_LITWICK },
-    { 30, 30, SPECIES_LUNATONE },
-    { 36, 36, SPECIES_WOOPER_PALDEA },
-    { 30, 30, SPECIES_SMOOCHUM },
-    { 28, 28, SPECIES_BRAMBLIN },
-    { 28, 28, SPECIES_CROAGUNK },
-    { 32, 32, SPECIES_SPIRITOMB },
-    { 32, 32, SPECIES_DHELMISE },
-    { 26, 26, SPECIES_GRIMER_ALOLA },
-    { 32, 32, SPECIES_ORANGURU },
-    { 26, 26, SPECIES_GIRAFARIG },
+    { 28, 28, SPECIES_YAMASK_GALAR },
+    { 32, 32, SPECIES_ELGYEM },
+    { 30, 30, SPECIES_ZORUA_HISUI },
+    { 36, 36, SPECIES_FLITTLE },
+    { 30, 30, SPECIES_SOLOSIS },
+    { 28, 28, SPECIES_BULBASAUR },
+    { 28, 28, SPECIES_PONYTA_GALAR },
+    { 32, 32, SPECIES_VELUZA },
+    { 32, 32, SPECIES_SPINARAK },
+    { 26, 26, SPECIES_PHANTUMP },
+    { 32, 32, SPECIES_SKRELP },
+    { 26, 26, SPECIES_INDEEDEE_M },
 };
 
 const struct WildPokemonInfo sPokemonMansion3F_LeafGreen_Night_LandMonsInfo = { 7, sPokemonMansion3F_LeafGreen_Night_LandMons };
@@ -5255,18 +5255,18 @@ const struct WildPokemonInfo sPokemonMansionB1F_FireRed_LandMonsInfo = { 5, sPok
 #ifdef FIRERED
 const struct WildPokemon sPokemonMansionB1F_FireRed_Evening_LandMons[] =
 {
-    { 28, 28, SPECIES_DARUMAKA },
+    { 28, 28, SPECIES_CYNDAQUIL },
     { 34, 34, SPECIES_PANSEAR },
-    { 30, 30, SPECIES_VULPIX },
-    { 30, 30, SPECIES_VULPIX },
-    { 30, 30, SPECIES_HEATMOR },
-    { 38, 38, SPECIES_DARMANITAN_GALAR_ZEN },
-    { 28, 28, SPECIES_TURTONATOR },
-    { 34, 34, SPECIES_SIZZLIPEDE },
-    { 32, 32, SPECIES_LITTEN },
-    { 26, 26, SPECIES_NUMEL },
-    { 32, 32, SPECIES_DARUMAKA },
-    { 26, 26, SPECIES_CHIMCHAR },
+    { 30, 30, SPECIES_SCORBUNNY },
+    { 30, 30, SPECIES_CHARCADET },
+    { 30, 30, SPECIES_SLUGMA },
+    { 38, 38, SPECIES_GROWLITHE_HISUI },
+    { 28, 28, SPECIES_FUECOCO },
+    { 34, 34, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 32, 32, SPECIES_PANSEAR },
+    { 26, 26, SPECIES_MAGBY },
+    { 32, 32, SPECIES_HEATMOR },
+    { 26, 26, SPECIES_TORKOAL },
 };
 
 const struct WildPokemonInfo sPokemonMansionB1F_FireRed_Evening_LandMonsInfo = { 5, sPokemonMansionB1F_FireRed_Evening_LandMons };
@@ -5275,18 +5275,18 @@ const struct WildPokemonInfo sPokemonMansionB1F_FireRed_Evening_LandMonsInfo = {
 #ifdef FIRERED
 const struct WildPokemon sPokemonMansionB1F_FireRed_Night_LandMons[] =
 {
-    { 28, 28, SPECIES_SALANDIT },
-    { 34, 34, SPECIES_BELLSPROUT },
-    { 30, 30, SPECIES_YAMASK },
-    { 30, 30, SPECIES_FLITTLE },
-    { 30, 30, SPECIES_GIRAFARIG },
-    { 38, 38, SPECIES_SHUPPET },
-    { 28, 28, SPECIES_VENIPEDE },
-    { 34, 34, SPECIES_TOXEL },
-    { 32, 32, SPECIES_SHROODLE },
-    { 26, 26, SPECIES_SANDYGAST },
-    { 32, 32, SPECIES_SPINARAK },
-    { 26, 26, SPECIES_ORANGURU },
+    { 28, 28, SPECIES_PHANTUMP },
+    { 34, 34, SPECIES_MUNNA },
+    { 30, 30, SPECIES_WYNAUT },
+    { 30, 30, SPECIES_CROAGUNK },
+    { 30, 30, SPECIES_QWILFISH_HISUI },
+    { 38, 38, SPECIES_GULPIN },
+    { 28, 28, SPECIES_DUSKULL },
+    { 34, 34, SPECIES_GHOLDENGO },
+    { 32, 32, SPECIES_YAMASK },
+    { 26, 26, SPECIES_GOTHITA },
+    { 32, 32, SPECIES_ORANGURU },
+    { 26, 26, SPECIES_VELUZA },
 };
 
 const struct WildPokemonInfo sPokemonMansionB1F_FireRed_Night_LandMonsInfo = { 5, sPokemonMansionB1F_FireRed_Night_LandMons };
@@ -5315,18 +5315,18 @@ const struct WildPokemonInfo sPokemonMansionB1F_LeafGreen_LandMonsInfo = { 5, sP
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonMansionB1F_LeafGreen_Evening_LandMons[] =
 {
-    { 28, 28, SPECIES_DARUMAKA },
+    { 28, 28, SPECIES_CYNDAQUIL },
     { 34, 34, SPECIES_PANSEAR },
-    { 30, 30, SPECIES_VULPIX },
-    { 30, 30, SPECIES_VULPIX },
-    { 30, 30, SPECIES_HEATMOR },
-    { 38, 38, SPECIES_DARMANITAN_GALAR_ZEN },
-    { 28, 28, SPECIES_TURTONATOR },
-    { 34, 34, SPECIES_SIZZLIPEDE },
-    { 32, 32, SPECIES_LITTEN },
-    { 26, 26, SPECIES_NUMEL },
-    { 32, 32, SPECIES_DARUMAKA },
-    { 26, 26, SPECIES_CHIMCHAR },
+    { 30, 30, SPECIES_SCORBUNNY },
+    { 30, 30, SPECIES_CHARCADET },
+    { 30, 30, SPECIES_SLUGMA },
+    { 38, 38, SPECIES_GROWLITHE_HISUI },
+    { 28, 28, SPECIES_FUECOCO },
+    { 34, 34, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 32, 32, SPECIES_PANSEAR },
+    { 26, 26, SPECIES_MAGBY },
+    { 32, 32, SPECIES_HEATMOR },
+    { 26, 26, SPECIES_TORKOAL },
 };
 
 const struct WildPokemonInfo sPokemonMansionB1F_LeafGreen_Evening_LandMonsInfo = { 5, sPokemonMansionB1F_LeafGreen_Evening_LandMons };
@@ -5335,18 +5335,18 @@ const struct WildPokemonInfo sPokemonMansionB1F_LeafGreen_Evening_LandMonsInfo =
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonMansionB1F_LeafGreen_Night_LandMons[] =
 {
-    { 28, 28, SPECIES_SALANDIT },
-    { 34, 34, SPECIES_BELLSPROUT },
-    { 30, 30, SPECIES_YAMASK },
-    { 30, 30, SPECIES_FLITTLE },
-    { 30, 30, SPECIES_GIRAFARIG },
-    { 38, 38, SPECIES_SHUPPET },
-    { 28, 28, SPECIES_VENIPEDE },
-    { 34, 34, SPECIES_TOXEL },
-    { 32, 32, SPECIES_SHROODLE },
-    { 26, 26, SPECIES_SANDYGAST },
-    { 32, 32, SPECIES_SPINARAK },
-    { 26, 26, SPECIES_ORANGURU },
+    { 28, 28, SPECIES_PHANTUMP },
+    { 34, 34, SPECIES_MUNNA },
+    { 30, 30, SPECIES_WYNAUT },
+    { 30, 30, SPECIES_CROAGUNK },
+    { 30, 30, SPECIES_QWILFISH_HISUI },
+    { 38, 38, SPECIES_GULPIN },
+    { 28, 28, SPECIES_DUSKULL },
+    { 34, 34, SPECIES_GHOLDENGO },
+    { 32, 32, SPECIES_YAMASK },
+    { 26, 26, SPECIES_GOTHITA },
+    { 32, 32, SPECIES_ORANGURU },
+    { 26, 26, SPECIES_VELUZA },
 };
 
 const struct WildPokemonInfo sPokemonMansionB1F_LeafGreen_Night_LandMonsInfo = { 5, sPokemonMansionB1F_LeafGreen_Night_LandMons };
@@ -5402,28 +5402,28 @@ const struct WildPokemonInfo sSafariZoneCenter_FireRed_FishingMonsInfo = { 20, s
 #ifdef FIRERED
 const struct WildPokemon sSafariZoneCenter_FireRed_Evening_LandMons[] =
 {
-    { 25, 25, SPECIES_CHESPIN },
-    { 22, 22, SPECIES_SKWOVET },
-    { 24, 24, SPECIES_LITLEO },
-    { 25, 25, SPECIES_YANMA },
-    { 22, 22, SPECIES_CHESPIN },
-    { 31, 31, SPECIES_DEWPIDER },
-    { 31, 31, SPECIES_AIPOM },
-    { 30, 30, SPECIES_YUNGOOS },
-    { 22, 22, SPECIES_WOOLOO },
-    { 23, 23, SPECIES_TEDDIURSA },
-    { 22, 22, SPECIES_SKWOVET },
-    { 23, 23, SPECIES_FOMANTIS },
+    { 25, 25, SPECIES_EEVEE },
+    { 22, 22, SPECIES_MUNCHLAX },
+    { 24, 24, SPECIES_PANSAGE },
+    { 25, 25, SPECIES_LOTAD },
+    { 22, 22, SPECIES_TANDEMAUS },
+    { 31, 31, SPECIES_BUNNELBY },
+    { 31, 31, SPECIES_SKITTY },
+    { 30, 30, SPECIES_RIOLU },
+    { 22, 22, SPECIES_AIPOM },
+    { 23, 23, SPECIES_SPINDA },
+    { 22, 22, SPECIES_BUNEARY },
+    { 23, 23, SPECIES_DEWPIDER },
 };
 
 const struct WildPokemonInfo sSafariZoneCenter_FireRed_Evening_LandMonsInfo = { 21, sSafariZoneCenter_FireRed_Evening_LandMons };
 
 const struct WildPokemon sSafariZoneCenter_FireRed_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_STARYU },
-    { 20, 25, SPECIES_FROAKIE },
-    { 25, 30, SPECIES_CHINCHOU },
-    { 30, 35, SPECIES_PIPLUP },
+    { 20, 25, SPECIES_WISHIWASHI_SOLO },
+    { 20, 25, SPECIES_DUCKLETT },
+    { 25, 30, SPECIES_PANPOUR },
+    { 30, 35, SPECIES_CLAMPERL },
     { 35, 40, SPECIES_BERGMITE },
 };
 
@@ -5433,29 +5433,29 @@ const struct WildPokemonInfo sSafariZoneCenter_FireRed_Evening_WaterMonsInfo = {
 #ifdef FIRERED
 const struct WildPokemon sSafariZoneCenter_FireRed_Night_LandMons[] =
 {
-    { 25, 25, SPECIES_AZURILL },
+    { 25, 25, SPECIES_DEDENNE },
     { 22, 22, SPECIES_MORELULL },
-    { 24, 24, SPECIES_CUTIEFLY },
-    { 25, 25, SPECIES_COTTONEE },
-    { 22, 22, SPECIES_TOGEPI },
-    { 31, 31, SPECIES_DEDENNE },
-    { 31, 31, SPECIES_SWIRLIX },
-    { 30, 30, SPECIES_IGGLYBUFF },
-    { 22, 22, SPECIES_MILCERY },
-    { 23, 23, SPECIES_FIDOUGH },
-    { 22, 22, SPECIES_SNUBBULL },
+    { 24, 24, SPECIES_COTTONEE },
+    { 25, 25, SPECIES_FLABEBE },
+    { 22, 22, SPECIES_SPRITZEE },
+    { 31, 31, SPECIES_IGGLYBUFF },
+    { 31, 31, SPECIES_FIDOUGH },
+    { 30, 30, SPECIES_SWIRLIX },
+    { 22, 22, SPECIES_CUTIEFLY },
     { 23, 23, SPECIES_AZURILL },
+    { 22, 22, SPECIES_DEDENNE },
+    { 23, 23, SPECIES_TOGEPI },
 };
 
 const struct WildPokemonInfo sSafariZoneCenter_FireRed_Night_LandMonsInfo = { 21, sSafariZoneCenter_FireRed_Night_LandMons };
 
 const struct WildPokemon sSafariZoneCenter_FireRed_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_SKRELP },
-    { 20, 25, SPECIES_SLOWPOKE },
-    { 25, 30, SPECIES_SNEASEL },
-    { 30, 35, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_SLOWPOKE },
+    { 20, 25, SPECIES_FRILLISH },
+    { 20, 25, SPECIES_MAREANIE },
+    { 25, 30, SPECIES_SLOWPOKE },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_CARVANHA },
 };
 
 const struct WildPokemonInfo sSafariZoneCenter_FireRed_Night_WaterMonsInfo = { 2, sSafariZoneCenter_FireRed_Night_WaterMons };
@@ -5511,28 +5511,28 @@ const struct WildPokemonInfo sSafariZoneCenter_LeafGreen_FishingMonsInfo = { 20,
 #ifdef LEAFGREEN
 const struct WildPokemon sSafariZoneCenter_LeafGreen_Evening_LandMons[] =
 {
-    { 25, 25, SPECIES_CHESPIN },
-    { 22, 22, SPECIES_SKWOVET },
-    { 24, 24, SPECIES_LITLEO },
-    { 25, 25, SPECIES_YANMA },
-    { 22, 22, SPECIES_CHESPIN },
-    { 31, 31, SPECIES_DEWPIDER },
-    { 31, 31, SPECIES_AIPOM },
-    { 30, 30, SPECIES_YUNGOOS },
-    { 22, 22, SPECIES_WOOLOO },
-    { 23, 23, SPECIES_TEDDIURSA },
-    { 22, 22, SPECIES_SKWOVET },
-    { 23, 23, SPECIES_FOMANTIS },
+    { 25, 25, SPECIES_EEVEE },
+    { 22, 22, SPECIES_MUNCHLAX },
+    { 24, 24, SPECIES_PANSAGE },
+    { 25, 25, SPECIES_LOTAD },
+    { 22, 22, SPECIES_TANDEMAUS },
+    { 31, 31, SPECIES_BUNNELBY },
+    { 31, 31, SPECIES_SKITTY },
+    { 30, 30, SPECIES_RIOLU },
+    { 22, 22, SPECIES_AIPOM },
+    { 23, 23, SPECIES_SPINDA },
+    { 22, 22, SPECIES_BUNEARY },
+    { 23, 23, SPECIES_DEWPIDER },
 };
 
 const struct WildPokemonInfo sSafariZoneCenter_LeafGreen_Evening_LandMonsInfo = { 21, sSafariZoneCenter_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sSafariZoneCenter_LeafGreen_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_STARYU },
-    { 20, 25, SPECIES_FROAKIE },
-    { 25, 30, SPECIES_CHINCHOU },
-    { 30, 35, SPECIES_PIPLUP },
+    { 20, 25, SPECIES_WISHIWASHI_SOLO },
+    { 20, 25, SPECIES_DUCKLETT },
+    { 25, 30, SPECIES_PANPOUR },
+    { 30, 35, SPECIES_CLAMPERL },
     { 35, 40, SPECIES_BERGMITE },
 };
 
@@ -5542,29 +5542,29 @@ const struct WildPokemonInfo sSafariZoneCenter_LeafGreen_Evening_WaterMonsInfo =
 #ifdef LEAFGREEN
 const struct WildPokemon sSafariZoneCenter_LeafGreen_Night_LandMons[] =
 {
-    { 25, 25, SPECIES_AZURILL },
+    { 25, 25, SPECIES_DEDENNE },
     { 22, 22, SPECIES_MORELULL },
-    { 24, 24, SPECIES_CUTIEFLY },
-    { 25, 25, SPECIES_COTTONEE },
-    { 22, 22, SPECIES_TOGEPI },
-    { 31, 31, SPECIES_DEDENNE },
-    { 31, 31, SPECIES_SWIRLIX },
-    { 30, 30, SPECIES_IGGLYBUFF },
-    { 22, 22, SPECIES_MILCERY },
-    { 23, 23, SPECIES_FIDOUGH },
-    { 22, 22, SPECIES_SNUBBULL },
+    { 24, 24, SPECIES_COTTONEE },
+    { 25, 25, SPECIES_FLABEBE },
+    { 22, 22, SPECIES_SPRITZEE },
+    { 31, 31, SPECIES_IGGLYBUFF },
+    { 31, 31, SPECIES_FIDOUGH },
+    { 30, 30, SPECIES_SWIRLIX },
+    { 22, 22, SPECIES_CUTIEFLY },
     { 23, 23, SPECIES_AZURILL },
+    { 22, 22, SPECIES_DEDENNE },
+    { 23, 23, SPECIES_TOGEPI },
 };
 
 const struct WildPokemonInfo sSafariZoneCenter_LeafGreen_Night_LandMonsInfo = { 21, sSafariZoneCenter_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sSafariZoneCenter_LeafGreen_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_SKRELP },
-    { 20, 25, SPECIES_SLOWPOKE },
-    { 25, 30, SPECIES_SNEASEL },
-    { 30, 35, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_SLOWPOKE },
+    { 20, 25, SPECIES_FRILLISH },
+    { 20, 25, SPECIES_MAREANIE },
+    { 25, 30, SPECIES_SLOWPOKE },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_CARVANHA },
 };
 
 const struct WildPokemonInfo sSafariZoneCenter_LeafGreen_Night_WaterMonsInfo = { 2, sSafariZoneCenter_LeafGreen_Night_WaterMons };
@@ -5620,29 +5620,29 @@ const struct WildPokemonInfo sSafariZoneEast_FireRed_FishingMonsInfo = { 20, sSa
 #ifdef FIRERED
 const struct WildPokemon sSafariZoneEast_FireRed_Evening_LandMons[] =
 {
-    { 24, 24, SPECIES_AUDINO },
-    { 26, 26, SPECIES_SENTRET },
-    { 23, 23, SPECIES_PIDOVE },
-    { 25, 25, SPECIES_APPLIN },
-    { 22, 22, SPECIES_BLIPBUG },
-    { 33, 33, SPECIES_PIDOVE },
-    { 24, 24, SPECIES_CHIKORITA },
-    { 25, 25, SPECIES_TURTWIG },
-    { 22, 22, SPECIES_COMBEE },
-    { 25, 25, SPECIES_PINSIR },
-    { 22, 22, SPECIES_SWABLU },
-    { 28, 28, SPECIES_SEEDOT },
+    { 24, 24, SPECIES_TEDDIURSA },
+    { 26, 26, SPECIES_LECHONK },
+    { 23, 23, SPECIES_WIMPOD },
+    { 25, 25, SPECIES_CHATOT },
+    { 22, 22, SPECIES_FARFETCHD },
+    { 33, 33, SPECIES_GOSSIFLEUR },
+    { 24, 24, SPECIES_SWABLU },
+    { 25, 25, SPECIES_NYMBLE },
+    { 22, 22, SPECIES_RUFFLET },
+    { 25, 25, SPECIES_LILLIPUP },
+    { 22, 22, SPECIES_AUDINO },
+    { 28, 28, SPECIES_CASTFORM_NORMAL },
 };
 
 const struct WildPokemonInfo sSafariZoneEast_FireRed_Evening_LandMonsInfo = { 21, sSafariZoneEast_FireRed_Evening_LandMons };
 
 const struct WildPokemon sSafariZoneEast_FireRed_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_PYUKUMUKU },
-    { 20, 25, SPECIES_CETODDLE },
-    { 25, 30, SPECIES_WAILMER },
-    { 30, 35, SPECIES_FINNEON },
-    { 35, 40, SPECIES_SOBBLE },
+    { 20, 25, SPECIES_TYMPOLE },
+    { 20, 25, SPECIES_SQUIRTLE },
+    { 25, 30, SPECIES_CLAUNCHER },
+    { 30, 35, SPECIES_SURSKIT },
+    { 35, 40, SPECIES_CORPHISH },
 };
 
 const struct WildPokemonInfo sSafariZoneEast_FireRed_Evening_WaterMonsInfo = { 2, sSafariZoneEast_FireRed_Evening_WaterMons };
@@ -5651,29 +5651,29 @@ const struct WildPokemonInfo sSafariZoneEast_FireRed_Evening_WaterMonsInfo = { 2
 #ifdef FIRERED
 const struct WildPokemon sSafariZoneEast_FireRed_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_MIME_JR },
-    { 26, 26, SPECIES_TOGEPI },
-    { 23, 23, SPECIES_RATTATA_ALOLA },
-    { 25, 25, SPECIES_SKORUPI },
+    { 24, 24, SPECIES_SHROODLE },
+    { 26, 26, SPECIES_SKRELP },
+    { 23, 23, SPECIES_CLEFFA },
+    { 25, 25, SPECIES_LUNATONE },
+    { 22, 22, SPECIES_BELLSPROUT },
+    { 33, 33, SPECIES_TOXEL },
+    { 24, 24, SPECIES_WOOPER_PALDEA },
+    { 25, 25, SPECIES_FLABEBE },
     { 22, 22, SPECIES_MEDITITE },
-    { 33, 33, SPECIES_FOONGUS },
-    { 24, 24, SPECIES_BALTOY },
-    { 25, 25, SPECIES_TRUBBISH },
-    { 22, 22, SPECIES_CUTIEFLY },
-    { 25, 25, SPECIES_PHANTUMP },
-    { 22, 22, SPECIES_STUNKY },
-    { 28, 28, SPECIES_BUDEW },
+    { 25, 25, SPECIES_RALTS },
+    { 22, 22, SPECIES_FIDOUGH },
+    { 28, 28, SPECIES_TOGEPI },
 };
 
 const struct WildPokemonInfo sSafariZoneEast_FireRed_Night_LandMonsInfo = { 21, sSafariZoneEast_FireRed_Night_LandMons };
 
 const struct WildPokemon sSafariZoneEast_FireRed_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_FRILLISH },
-    { 20, 25, SPECIES_SKRELP },
-    { 25, 30, SPECIES_SNEASEL },
-    { 30, 35, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 20, 25, SPECIES_QWILFISH },
+    { 20, 25, SPECIES_SNEASEL },
+    { 25, 30, SPECIES_SLOWPOKE },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sSafariZoneEast_FireRed_Night_WaterMonsInfo = { 2, sSafariZoneEast_FireRed_Night_WaterMons };
@@ -5729,29 +5729,29 @@ const struct WildPokemonInfo sSafariZoneEast_LeafGreen_FishingMonsInfo = { 20, s
 #ifdef LEAFGREEN
 const struct WildPokemon sSafariZoneEast_LeafGreen_Evening_LandMons[] =
 {
-    { 24, 24, SPECIES_AUDINO },
-    { 26, 26, SPECIES_SENTRET },
-    { 23, 23, SPECIES_PIDOVE },
-    { 25, 25, SPECIES_APPLIN },
-    { 22, 22, SPECIES_BLIPBUG },
-    { 33, 33, SPECIES_PIDOVE },
-    { 24, 24, SPECIES_CHIKORITA },
-    { 25, 25, SPECIES_TURTWIG },
-    { 22, 22, SPECIES_COMBEE },
-    { 25, 25, SPECIES_PINSIR },
-    { 22, 22, SPECIES_SWABLU },
-    { 28, 28, SPECIES_SEEDOT },
+    { 24, 24, SPECIES_TEDDIURSA },
+    { 26, 26, SPECIES_LECHONK },
+    { 23, 23, SPECIES_WIMPOD },
+    { 25, 25, SPECIES_CHATOT },
+    { 22, 22, SPECIES_FARFETCHD },
+    { 33, 33, SPECIES_GOSSIFLEUR },
+    { 24, 24, SPECIES_SWABLU },
+    { 25, 25, SPECIES_NYMBLE },
+    { 22, 22, SPECIES_RUFFLET },
+    { 25, 25, SPECIES_LILLIPUP },
+    { 22, 22, SPECIES_AUDINO },
+    { 28, 28, SPECIES_CASTFORM_NORMAL },
 };
 
 const struct WildPokemonInfo sSafariZoneEast_LeafGreen_Evening_LandMonsInfo = { 21, sSafariZoneEast_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sSafariZoneEast_LeafGreen_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_PYUKUMUKU },
-    { 20, 25, SPECIES_CETODDLE },
-    { 25, 30, SPECIES_WAILMER },
-    { 30, 35, SPECIES_FINNEON },
-    { 35, 40, SPECIES_SOBBLE },
+    { 20, 25, SPECIES_TYMPOLE },
+    { 20, 25, SPECIES_SQUIRTLE },
+    { 25, 30, SPECIES_CLAUNCHER },
+    { 30, 35, SPECIES_SURSKIT },
+    { 35, 40, SPECIES_CORPHISH },
 };
 
 const struct WildPokemonInfo sSafariZoneEast_LeafGreen_Evening_WaterMonsInfo = { 2, sSafariZoneEast_LeafGreen_Evening_WaterMons };
@@ -5760,29 +5760,29 @@ const struct WildPokemonInfo sSafariZoneEast_LeafGreen_Evening_WaterMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sSafariZoneEast_LeafGreen_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_MIME_JR },
-    { 26, 26, SPECIES_TOGEPI },
-    { 23, 23, SPECIES_RATTATA_ALOLA },
-    { 25, 25, SPECIES_SKORUPI },
+    { 24, 24, SPECIES_SHROODLE },
+    { 26, 26, SPECIES_SKRELP },
+    { 23, 23, SPECIES_CLEFFA },
+    { 25, 25, SPECIES_LUNATONE },
+    { 22, 22, SPECIES_BELLSPROUT },
+    { 33, 33, SPECIES_TOXEL },
+    { 24, 24, SPECIES_WOOPER_PALDEA },
+    { 25, 25, SPECIES_FLABEBE },
     { 22, 22, SPECIES_MEDITITE },
-    { 33, 33, SPECIES_FOONGUS },
-    { 24, 24, SPECIES_BALTOY },
-    { 25, 25, SPECIES_TRUBBISH },
-    { 22, 22, SPECIES_CUTIEFLY },
-    { 25, 25, SPECIES_PHANTUMP },
-    { 22, 22, SPECIES_STUNKY },
-    { 28, 28, SPECIES_BUDEW },
+    { 25, 25, SPECIES_RALTS },
+    { 22, 22, SPECIES_FIDOUGH },
+    { 28, 28, SPECIES_TOGEPI },
 };
 
 const struct WildPokemonInfo sSafariZoneEast_LeafGreen_Night_LandMonsInfo = { 21, sSafariZoneEast_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sSafariZoneEast_LeafGreen_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_FRILLISH },
-    { 20, 25, SPECIES_SKRELP },
-    { 25, 30, SPECIES_SNEASEL },
-    { 30, 35, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 20, 25, SPECIES_QWILFISH },
+    { 20, 25, SPECIES_SNEASEL },
+    { 25, 30, SPECIES_SLOWPOKE },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sSafariZoneEast_LeafGreen_Night_WaterMonsInfo = { 2, sSafariZoneEast_LeafGreen_Night_WaterMons };
@@ -5838,18 +5838,18 @@ const struct WildPokemonInfo sSafariZoneNorth_FireRed_FishingMonsInfo = { 20, sS
 #ifdef FIRERED
 const struct WildPokemon sSafariZoneNorth_FireRed_Evening_LandMons[] =
 {
-    { 26, 26, SPECIES_MUNCHLAX },
-    { 30, 30, SPECIES_LILLIPUP },
-    { 25, 25, SPECIES_TAROUNTULA },
-    { 27, 27, SPECIES_SENTRET },
-    { 23, 23, SPECIES_ZIGZAGOON },
-    { 30, 30, SPECIES_PORYGON },
-    { 30, 30, SPECIES_EEVEE },
-    { 32, 32, SPECIES_KRICKETOT },
-    { 23, 23, SPECIES_LICKITUNG },
-    { 26, 26, SPECIES_SURSKIT },
-    { 23, 23, SPECIES_SPINDA },
-    { 28, 28, SPECIES_RUFFLET },
+    { 26, 26, SPECIES_CASTFORM_NORMAL },
+    { 30, 30, SPECIES_YANMA },
+    { 25, 25, SPECIES_DEWPIDER },
+    { 27, 27, SPECIES_AERODACTYL },
+    { 23, 23, SPECIES_TEDDIURSA },
+    { 30, 30, SPECIES_LECHONK },
+    { 30, 30, SPECIES_SMEARGLE },
+    { 32, 32, SPECIES_SHROOMISH },
+    { 23, 23, SPECIES_HOOTHOOT },
+    { 26, 26, SPECIES_CACNEA },
+    { 23, 23, SPECIES_TAROUNTULA },
+    { 28, 28, SPECIES_GLAMEOW },
 };
 
 const struct WildPokemonInfo sSafariZoneNorth_FireRed_Evening_LandMonsInfo = { 21, sSafariZoneNorth_FireRed_Evening_LandMons };
@@ -5857,10 +5857,10 @@ const struct WildPokemonInfo sSafariZoneNorth_FireRed_Evening_LandMonsInfo = { 2
 const struct WildPokemon sSafariZoneNorth_FireRed_Evening_WaterMons[] =
 {
     { 20, 25, SPECIES_SNOM },
-    { 20, 25, SPECIES_CORPHISH },
-    { 25, 30, SPECIES_CLAMPERL },
-    { 30, 35, SPECIES_ARROKUDA },
-    { 35, 40, SPECIES_CUBCHOO },
+    { 20, 25, SPECIES_DELIBIRD },
+    { 25, 30, SPECIES_SNORUNT },
+    { 30, 35, SPECIES_CETODDLE },
+    { 35, 40, SPECIES_SOBBLE },
 };
 
 const struct WildPokemonInfo sSafariZoneNorth_FireRed_Evening_WaterMonsInfo = { 2, sSafariZoneNorth_FireRed_Evening_WaterMons };
@@ -5869,29 +5869,29 @@ const struct WildPokemonInfo sSafariZoneNorth_FireRed_Evening_WaterMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sSafariZoneNorth_FireRed_Night_LandMons[] =
 {
-    { 26, 26, SPECIES_MORELULL },
-    { 30, 30, SPECIES_SANDILE },
-    { 25, 25, SPECIES_RALTS },
-    { 27, 27, SPECIES_SOLROCK },
-    { 23, 23, SPECIES_IMPIDIMP },
-    { 30, 30, SPECIES_IGGLYBUFF },
-    { 30, 30, SPECIES_QWILFISH_HISUI },
-    { 32, 32, SPECIES_GOLETT },
-    { 23, 23, SPECIES_SCRAGGY },
-    { 26, 26, SPECIES_FIDOUGH },
-    { 23, 23, SPECIES_MAWILE },
-    { 28, 28, SPECIES_YAMASK_GALAR },
+    { 26, 26, SPECIES_MIME_JR },
+    { 30, 30, SPECIES_SHROODLE },
+    { 25, 25, SPECIES_RATTATA_ALOLA },
+    { 27, 27, SPECIES_GOLETT },
+    { 23, 23, SPECIES_STUNKY },
+    { 30, 30, SPECIES_GLIMMET },
+    { 30, 30, SPECIES_SOLROCK },
+    { 32, 32, SPECIES_PUMPKABOO_AVERAGE },
+    { 23, 23, SPECIES_TRUBBISH },
+    { 26, 26, SPECIES_FOONGUS },
+    { 23, 23, SPECIES_BALTOY },
+    { 28, 28, SPECIES_MAWILE },
 };
 
 const struct WildPokemonInfo sSafariZoneNorth_FireRed_Night_LandMonsInfo = { 21, sSafariZoneNorth_FireRed_Night_LandMons };
 
 const struct WildPokemon sSafariZoneNorth_FireRed_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_CARVANHA },
-    { 20, 25, SPECIES_SMOOCHUM },
-    { 25, 30, SPECIES_QWILFISH },
+    { 20, 25, SPECIES_MAREANIE },
+    { 20, 25, SPECIES_SNEASEL },
+    { 25, 30, SPECIES_SKRELP },
     { 30, 35, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sSafariZoneNorth_FireRed_Night_WaterMonsInfo = { 2, sSafariZoneNorth_FireRed_Night_WaterMons };
@@ -5947,18 +5947,18 @@ const struct WildPokemonInfo sSafariZoneNorth_LeafGreen_FishingMonsInfo = { 20, 
 #ifdef LEAFGREEN
 const struct WildPokemon sSafariZoneNorth_LeafGreen_Evening_LandMons[] =
 {
-    { 26, 26, SPECIES_MUNCHLAX },
-    { 30, 30, SPECIES_LILLIPUP },
-    { 25, 25, SPECIES_TAROUNTULA },
-    { 27, 27, SPECIES_SENTRET },
-    { 23, 23, SPECIES_ZIGZAGOON },
-    { 30, 30, SPECIES_PORYGON },
-    { 30, 30, SPECIES_EEVEE },
-    { 32, 32, SPECIES_KRICKETOT },
-    { 23, 23, SPECIES_LICKITUNG },
-    { 26, 26, SPECIES_SURSKIT },
-    { 23, 23, SPECIES_SPINDA },
-    { 28, 28, SPECIES_RUFFLET },
+    { 26, 26, SPECIES_CASTFORM_NORMAL },
+    { 30, 30, SPECIES_YANMA },
+    { 25, 25, SPECIES_DEWPIDER },
+    { 27, 27, SPECIES_AERODACTYL },
+    { 23, 23, SPECIES_TEDDIURSA },
+    { 30, 30, SPECIES_LECHONK },
+    { 30, 30, SPECIES_SMEARGLE },
+    { 32, 32, SPECIES_SHROOMISH },
+    { 23, 23, SPECIES_HOOTHOOT },
+    { 26, 26, SPECIES_CACNEA },
+    { 23, 23, SPECIES_TAROUNTULA },
+    { 28, 28, SPECIES_GLAMEOW },
 };
 
 const struct WildPokemonInfo sSafariZoneNorth_LeafGreen_Evening_LandMonsInfo = { 21, sSafariZoneNorth_LeafGreen_Evening_LandMons };
@@ -5966,10 +5966,10 @@ const struct WildPokemonInfo sSafariZoneNorth_LeafGreen_Evening_LandMonsInfo = {
 const struct WildPokemon sSafariZoneNorth_LeafGreen_Evening_WaterMons[] =
 {
     { 20, 25, SPECIES_SNOM },
-    { 20, 25, SPECIES_CORPHISH },
-    { 25, 30, SPECIES_CLAMPERL },
-    { 30, 35, SPECIES_ARROKUDA },
-    { 35, 40, SPECIES_CUBCHOO },
+    { 20, 25, SPECIES_DELIBIRD },
+    { 25, 30, SPECIES_SNORUNT },
+    { 30, 35, SPECIES_CETODDLE },
+    { 35, 40, SPECIES_SOBBLE },
 };
 
 const struct WildPokemonInfo sSafariZoneNorth_LeafGreen_Evening_WaterMonsInfo = { 2, sSafariZoneNorth_LeafGreen_Evening_WaterMons };
@@ -5978,29 +5978,29 @@ const struct WildPokemonInfo sSafariZoneNorth_LeafGreen_Evening_WaterMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sSafariZoneNorth_LeafGreen_Night_LandMons[] =
 {
-    { 26, 26, SPECIES_MORELULL },
-    { 30, 30, SPECIES_SANDILE },
-    { 25, 25, SPECIES_RALTS },
-    { 27, 27, SPECIES_SOLROCK },
-    { 23, 23, SPECIES_IMPIDIMP },
-    { 30, 30, SPECIES_IGGLYBUFF },
-    { 30, 30, SPECIES_QWILFISH_HISUI },
-    { 32, 32, SPECIES_GOLETT },
-    { 23, 23, SPECIES_SCRAGGY },
-    { 26, 26, SPECIES_FIDOUGH },
-    { 23, 23, SPECIES_MAWILE },
-    { 28, 28, SPECIES_YAMASK_GALAR },
+    { 26, 26, SPECIES_MIME_JR },
+    { 30, 30, SPECIES_SHROODLE },
+    { 25, 25, SPECIES_RATTATA_ALOLA },
+    { 27, 27, SPECIES_GOLETT },
+    { 23, 23, SPECIES_STUNKY },
+    { 30, 30, SPECIES_GLIMMET },
+    { 30, 30, SPECIES_SOLROCK },
+    { 32, 32, SPECIES_PUMPKABOO_AVERAGE },
+    { 23, 23, SPECIES_TRUBBISH },
+    { 26, 26, SPECIES_FOONGUS },
+    { 23, 23, SPECIES_BALTOY },
+    { 28, 28, SPECIES_MAWILE },
 };
 
 const struct WildPokemonInfo sSafariZoneNorth_LeafGreen_Night_LandMonsInfo = { 21, sSafariZoneNorth_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sSafariZoneNorth_LeafGreen_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_CARVANHA },
-    { 20, 25, SPECIES_SMOOCHUM },
-    { 25, 30, SPECIES_QWILFISH },
+    { 20, 25, SPECIES_MAREANIE },
+    { 20, 25, SPECIES_SNEASEL },
+    { 25, 30, SPECIES_SKRELP },
     { 30, 35, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sSafariZoneNorth_LeafGreen_Night_WaterMonsInfo = { 2, sSafariZoneNorth_LeafGreen_Night_WaterMons };
@@ -6057,28 +6057,28 @@ const struct WildPokemonInfo sSafariZoneWest_FireRed_FishingMonsInfo = { 20, sSa
 const struct WildPokemon sSafariZoneWest_FireRed_Evening_LandMons[] =
 {
     { 26, 26, SPECIES_PORYGON },
-    { 22, 22, SPECIES_SIZZLIPEDE },
-    { 25, 25, SPECIES_WIMPOD },
-    { 27, 27, SPECIES_FLETCHLING },
-    { 23, 23, SPECIES_SNOVER },
-    { 30, 30, SPECIES_SHROOMISH },
-    { 30, 30, SPECIES_NYMBLE },
-    { 32, 32, SPECIES_DUNSPARCE },
-    { 23, 23, SPECIES_SUNKERN },
-    { 25, 25, SPECIES_TAILLOW },
-    { 23, 23, SPECIES_SKIDDO },
-    { 28, 28, SPECIES_HELIOPTILE },
+    { 22, 22, SPECIES_SPRIGATITO },
+    { 25, 25, SPECIES_RELLOR },
+    { 27, 27, SPECIES_SKWOVET },
+    { 23, 23, SPECIES_WURMPLE },
+    { 30, 30, SPECIES_EEVEE },
+    { 30, 30, SPECIES_VOLBEAT },
+    { 32, 32, SPECIES_SQUAWKABILLY_GREEN },
+    { 23, 23, SPECIES_MINCCINO },
+    { 25, 25, SPECIES_MUNCHLAX },
+    { 23, 23, SPECIES_CHIKORITA },
+    { 28, 28, SPECIES_DEERLING_SPRING },
 };
 
 const struct WildPokemonInfo sSafariZoneWest_FireRed_Evening_LandMonsInfo = { 21, sSafariZoneWest_FireRed_Evening_LandMons };
 
 const struct WildPokemon sSafariZoneWest_FireRed_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_FEEBAS },
-    { 20, 25, SPECIES_SNORUNT },
-    { 25, 30, SPECIES_CHEWTLE },
-    { 30, 35, SPECIES_POPPLIO },
-    { 35, 40, SPECIES_TOTODILE },
+    { 20, 25, SPECIES_FROAKIE },
+    { 20, 25, SPECIES_PIPLUP },
+    { 25, 30, SPECIES_FINIZEN },
+    { 30, 35, SPECIES_BUIZEL },
+    { 35, 40, SPECIES_FEEBAS },
 };
 
 const struct WildPokemonInfo sSafariZoneWest_FireRed_Evening_WaterMonsInfo = { 2, sSafariZoneWest_FireRed_Evening_WaterMons };
@@ -6087,18 +6087,18 @@ const struct WildPokemonInfo sSafariZoneWest_FireRed_Evening_WaterMonsInfo = { 2
 #ifdef FIRERED
 const struct WildPokemon sSafariZoneWest_FireRed_Night_LandMons[] =
 {
-    { 26, 26, SPECIES_RATTATA_ALOLA },
-    { 22, 22, SPECIES_SWIRLIX },
-    { 25, 25, SPECIES_SPRITZEE },
-    { 27, 27, SPECIES_GLIMMET },
-    { 23, 23, SPECIES_MIME_JR },
-    { 30, 30, SPECIES_AZURILL },
-    { 30, 30, SPECIES_DEDENNE },
-    { 32, 32, SPECIES_TINKATINK },
-    { 23, 23, SPECIES_GULPIN },
-    { 25, 25, SPECIES_ZORUA_HISUI },
+    { 26, 26, SPECIES_AZURILL },
+    { 22, 22, SPECIES_MAREANIE },
+    { 25, 25, SPECIES_TINKATINK },
+    { 27, 27, SPECIES_MORELULL },
     { 23, 23, SPECIES_COTTONEE },
-    { 28, 28, SPECIES_SNUBBULL },
+    { 30, 30, SPECIES_ZIGZAGOON_GALAR },
+    { 30, 30, SPECIES_MILCERY },
+    { 32, 32, SPECIES_SCRAGGY },
+    { 23, 23, SPECIES_SWIRLIX },
+    { 25, 25, SPECIES_IGGLYBUFF },
+    { 23, 23, SPECIES_CUTIEFLY },
+    { 28, 28, SPECIES_IMPIDIMP },
 };
 
 const struct WildPokemonInfo sSafariZoneWest_FireRed_Night_LandMonsInfo = { 21, sSafariZoneWest_FireRed_Night_LandMons };
@@ -6107,9 +6107,9 @@ const struct WildPokemon sSafariZoneWest_FireRed_Night_WaterMons[] =
 {
     { 20, 25, SPECIES_SLOWPOKE },
     { 20, 25, SPECIES_SKRELP },
-    { 25, 30, SPECIES_FRILLISH },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_MAREANIE },
+    { 25, 30, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sSafariZoneWest_FireRed_Night_WaterMonsInfo = { 2, sSafariZoneWest_FireRed_Night_WaterMons };
@@ -6166,28 +6166,28 @@ const struct WildPokemonInfo sSafariZoneWest_LeafGreen_FishingMonsInfo = { 20, s
 const struct WildPokemon sSafariZoneWest_LeafGreen_Evening_LandMons[] =
 {
     { 26, 26, SPECIES_PORYGON },
-    { 22, 22, SPECIES_SIZZLIPEDE },
-    { 25, 25, SPECIES_WIMPOD },
-    { 27, 27, SPECIES_FLETCHLING },
-    { 23, 23, SPECIES_SNOVER },
-    { 30, 30, SPECIES_SHROOMISH },
-    { 30, 30, SPECIES_NYMBLE },
-    { 32, 32, SPECIES_DUNSPARCE },
-    { 23, 23, SPECIES_SUNKERN },
-    { 25, 25, SPECIES_TAILLOW },
-    { 23, 23, SPECIES_SKIDDO },
-    { 28, 28, SPECIES_HELIOPTILE },
+    { 22, 22, SPECIES_SPRIGATITO },
+    { 25, 25, SPECIES_RELLOR },
+    { 27, 27, SPECIES_SKWOVET },
+    { 23, 23, SPECIES_WURMPLE },
+    { 30, 30, SPECIES_EEVEE },
+    { 30, 30, SPECIES_VOLBEAT },
+    { 32, 32, SPECIES_SQUAWKABILLY_GREEN },
+    { 23, 23, SPECIES_MINCCINO },
+    { 25, 25, SPECIES_MUNCHLAX },
+    { 23, 23, SPECIES_CHIKORITA },
+    { 28, 28, SPECIES_DEERLING_SPRING },
 };
 
 const struct WildPokemonInfo sSafariZoneWest_LeafGreen_Evening_LandMonsInfo = { 21, sSafariZoneWest_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sSafariZoneWest_LeafGreen_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_FEEBAS },
-    { 20, 25, SPECIES_SNORUNT },
-    { 25, 30, SPECIES_CHEWTLE },
-    { 30, 35, SPECIES_POPPLIO },
-    { 35, 40, SPECIES_TOTODILE },
+    { 20, 25, SPECIES_FROAKIE },
+    { 20, 25, SPECIES_PIPLUP },
+    { 25, 30, SPECIES_FINIZEN },
+    { 30, 35, SPECIES_BUIZEL },
+    { 35, 40, SPECIES_FEEBAS },
 };
 
 const struct WildPokemonInfo sSafariZoneWest_LeafGreen_Evening_WaterMonsInfo = { 2, sSafariZoneWest_LeafGreen_Evening_WaterMons };
@@ -6196,18 +6196,18 @@ const struct WildPokemonInfo sSafariZoneWest_LeafGreen_Evening_WaterMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sSafariZoneWest_LeafGreen_Night_LandMons[] =
 {
-    { 26, 26, SPECIES_RATTATA_ALOLA },
-    { 22, 22, SPECIES_SWIRLIX },
-    { 25, 25, SPECIES_SPRITZEE },
-    { 27, 27, SPECIES_GLIMMET },
-    { 23, 23, SPECIES_MIME_JR },
-    { 30, 30, SPECIES_AZURILL },
-    { 30, 30, SPECIES_DEDENNE },
-    { 32, 32, SPECIES_TINKATINK },
-    { 23, 23, SPECIES_GULPIN },
-    { 25, 25, SPECIES_ZORUA_HISUI },
+    { 26, 26, SPECIES_AZURILL },
+    { 22, 22, SPECIES_MAREANIE },
+    { 25, 25, SPECIES_TINKATINK },
+    { 27, 27, SPECIES_MORELULL },
     { 23, 23, SPECIES_COTTONEE },
-    { 28, 28, SPECIES_SNUBBULL },
+    { 30, 30, SPECIES_ZIGZAGOON_GALAR },
+    { 30, 30, SPECIES_MILCERY },
+    { 32, 32, SPECIES_SCRAGGY },
+    { 23, 23, SPECIES_SWIRLIX },
+    { 25, 25, SPECIES_IGGLYBUFF },
+    { 23, 23, SPECIES_CUTIEFLY },
+    { 28, 28, SPECIES_IMPIDIMP },
 };
 
 const struct WildPokemonInfo sSafariZoneWest_LeafGreen_Night_LandMonsInfo = { 21, sSafariZoneWest_LeafGreen_Night_LandMons };
@@ -6216,9 +6216,9 @@ const struct WildPokemon sSafariZoneWest_LeafGreen_Night_WaterMons[] =
 {
     { 20, 25, SPECIES_SLOWPOKE },
     { 20, 25, SPECIES_SKRELP },
-    { 25, 30, SPECIES_FRILLISH },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_MAREANIE },
+    { 25, 30, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sSafariZoneWest_LeafGreen_Night_WaterMonsInfo = { 2, sSafariZoneWest_LeafGreen_Night_WaterMons };
@@ -6285,29 +6285,29 @@ const struct WildPokemonInfo sCeruleanCave1F_FireRed_FishingMonsInfo = { 20, sCe
 #ifdef FIRERED
 const struct WildPokemon sCeruleanCave1F_FireRed_Evening_LandMons[] =
 {
-    { 49, 49, SPECIES_TOEDSCOOL },
-    { 49, 49, SPECIES_RIOLU },
-    { 46, 46, SPECIES_AXEW },
-    { 46, 46, SPECIES_HAWLUCHA },
-    { 52, 52, SPECIES_TAUROS_PALDEA_AQUA },
-    { 52, 52, SPECIES_SKARMORY },
-    { 58, 58, SPECIES_DRUDDIGON },
-    { 58, 58, SPECIES_STUNFISK_GALAR },
-    { 55, 55, SPECIES_JANGMO_O },
-    { 55, 55, SPECIES_KLINK },
-    { 61, 61, SPECIES_MUDBRAY },
-    { 61, 61, SPECIES_SAWK },
+    { 49, 49, SPECIES_GIBLE },
+    { 49, 49, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 46, 46, SPECIES_CYCLIZAR },
+    { 46, 46, SPECIES_DURALUDON },
+    { 52, 52, SPECIES_PASSIMIAN },
+    { 52, 52, SPECIES_LARVITAR },
+    { 58, 58, SPECIES_STONJOURNER },
+    { 58, 58, SPECIES_HAWLUCHA },
+    { 55, 55, SPECIES_RELICANTH },
+    { 55, 55, SPECIES_STUNFISK_GALAR },
+    { 61, 61, SPECIES_RELICANTH },
+    { 61, 61, SPECIES_PASSIMIAN },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_FireRed_Evening_LandMonsInfo = { 7, sCeruleanCave1F_FireRed_Evening_LandMons };
 
 const struct WildPokemon sCeruleanCave1F_FireRed_Evening_WaterMons[] =
 {
-    { 30, 40, SPECIES_SQUIRTLE },
-    { 40, 50, SPECIES_WIMPOD },
-    { 45, 55, SPECIES_MUDKIP },
-    { 40, 50, SPECIES_OSHAWOTT },
-    { 40, 50, SPECIES_CRYOGONAL },
+    { 30, 40, SPECIES_SPHEAL },
+    { 40, 50, SPECIES_STARYU },
+    { 45, 55, SPECIES_OSHAWOTT },
+    { 40, 50, SPECIES_CHEWTLE },
+    { 40, 50, SPECIES_DONDOZO },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_FireRed_Evening_WaterMonsInfo = { 2, sCeruleanCave1F_FireRed_Evening_WaterMons };
@@ -6316,29 +6316,29 @@ const struct WildPokemonInfo sCeruleanCave1F_FireRed_Evening_WaterMonsInfo = { 2
 #ifdef FIRERED
 const struct WildPokemon sCeruleanCave1F_FireRed_Night_LandMons[] =
 {
-    { 49, 49, SPECIES_BELDUM },
-    { 49, 49, SPECIES_DEINO },
-    { 46, 46, SPECIES_VULLABY },
-    { 46, 46, SPECIES_MASCHIFF },
-    { 52, 52, SPECIES_NICKIT },
-    { 52, 52, SPECIES_ABSOL },
-    { 58, 58, SPECIES_GREAVARD },
-    { 58, 58, SPECIES_KLEFKI },
-    { 55, 55, SPECIES_BOMBIRDIER },
+    { 49, 49, SPECIES_BRONZOR },
+    { 49, 49, SPECIES_MORPEKO_FULL_BELLY },
+    { 46, 46, SPECIES_BRAMBLIN },
+    { 46, 46, SPECIES_SNEASEL_HISUI },
+    { 52, 52, SPECIES_YAMASK_GALAR },
+    { 52, 52, SPECIES_SALANDIT },
+    { 58, 58, SPECIES_CARBINK },
+    { 58, 58, SPECIES_BRONZOR },
     { 55, 55, SPECIES_POOCHYENA },
+    { 55, 55, SPECIES_BELDUM },
+    { 61, 61, SPECIES_GREAVARD },
     { 61, 61, SPECIES_SEVIPER },
-    { 61, 61, SPECIES_DREEPY },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_FireRed_Night_LandMonsInfo = { 7, sCeruleanCave1F_FireRed_Night_LandMons };
 
 const struct WildPokemon sCeruleanCave1F_FireRed_Night_WaterMons[] =
 {
-    { 30, 40, SPECIES_BRUXISH },
-    { 40, 50, SPECIES_VELUZA },
-    { 45, 55, SPECIES_VELUZA },
+    { 30, 40, SPECIES_BASCULEGION_M },
     { 40, 50, SPECIES_BRUXISH },
+    { 45, 55, SPECIES_BASCULEGION_M },
     { 40, 50, SPECIES_VELUZA },
+    { 40, 50, SPECIES_BRUXISH },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_FireRed_Night_WaterMonsInfo = { 2, sCeruleanCave1F_FireRed_Night_WaterMons };
@@ -6405,29 +6405,29 @@ const struct WildPokemonInfo sCeruleanCave1F_LeafGreen_FishingMonsInfo = { 20, s
 #ifdef LEAFGREEN
 const struct WildPokemon sCeruleanCave1F_LeafGreen_Evening_LandMons[] =
 {
-    { 49, 49, SPECIES_TOEDSCOOL },
-    { 49, 49, SPECIES_RIOLU },
-    { 46, 46, SPECIES_AXEW },
-    { 46, 46, SPECIES_HAWLUCHA },
-    { 52, 52, SPECIES_TAUROS_PALDEA_AQUA },
-    { 52, 52, SPECIES_SKARMORY },
-    { 58, 58, SPECIES_DRUDDIGON },
-    { 58, 58, SPECIES_STUNFISK_GALAR },
-    { 55, 55, SPECIES_JANGMO_O },
-    { 55, 55, SPECIES_KLINK },
-    { 61, 61, SPECIES_MUDBRAY },
-    { 61, 61, SPECIES_SAWK },
+    { 49, 49, SPECIES_GIBLE },
+    { 49, 49, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 46, 46, SPECIES_CYCLIZAR },
+    { 46, 46, SPECIES_DURALUDON },
+    { 52, 52, SPECIES_PASSIMIAN },
+    { 52, 52, SPECIES_LARVITAR },
+    { 58, 58, SPECIES_STONJOURNER },
+    { 58, 58, SPECIES_HAWLUCHA },
+    { 55, 55, SPECIES_RELICANTH },
+    { 55, 55, SPECIES_STUNFISK_GALAR },
+    { 61, 61, SPECIES_RELICANTH },
+    { 61, 61, SPECIES_PASSIMIAN },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_LeafGreen_Evening_LandMonsInfo = { 7, sCeruleanCave1F_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sCeruleanCave1F_LeafGreen_Evening_WaterMons[] =
 {
-    { 30, 40, SPECIES_SQUIRTLE },
-    { 40, 50, SPECIES_WIMPOD },
-    { 45, 55, SPECIES_MUDKIP },
-    { 40, 50, SPECIES_OSHAWOTT },
-    { 40, 50, SPECIES_CRYOGONAL },
+    { 30, 40, SPECIES_SPHEAL },
+    { 40, 50, SPECIES_STARYU },
+    { 45, 55, SPECIES_OSHAWOTT },
+    { 40, 50, SPECIES_CHEWTLE },
+    { 40, 50, SPECIES_DONDOZO },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_LeafGreen_Evening_WaterMonsInfo = { 2, sCeruleanCave1F_LeafGreen_Evening_WaterMons };
@@ -6436,29 +6436,29 @@ const struct WildPokemonInfo sCeruleanCave1F_LeafGreen_Evening_WaterMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sCeruleanCave1F_LeafGreen_Night_LandMons[] =
 {
-    { 49, 49, SPECIES_BELDUM },
-    { 49, 49, SPECIES_DEINO },
-    { 46, 46, SPECIES_VULLABY },
-    { 46, 46, SPECIES_MASCHIFF },
-    { 52, 52, SPECIES_NICKIT },
-    { 52, 52, SPECIES_ABSOL },
-    { 58, 58, SPECIES_GREAVARD },
-    { 58, 58, SPECIES_KLEFKI },
-    { 55, 55, SPECIES_BOMBIRDIER },
+    { 49, 49, SPECIES_BRONZOR },
+    { 49, 49, SPECIES_MORPEKO_FULL_BELLY },
+    { 46, 46, SPECIES_BRAMBLIN },
+    { 46, 46, SPECIES_SNEASEL_HISUI },
+    { 52, 52, SPECIES_YAMASK_GALAR },
+    { 52, 52, SPECIES_SALANDIT },
+    { 58, 58, SPECIES_CARBINK },
+    { 58, 58, SPECIES_BRONZOR },
     { 55, 55, SPECIES_POOCHYENA },
+    { 55, 55, SPECIES_BELDUM },
+    { 61, 61, SPECIES_GREAVARD },
     { 61, 61, SPECIES_SEVIPER },
-    { 61, 61, SPECIES_DREEPY },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_LeafGreen_Night_LandMonsInfo = { 7, sCeruleanCave1F_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sCeruleanCave1F_LeafGreen_Night_WaterMons[] =
 {
-    { 30, 40, SPECIES_BRUXISH },
-    { 40, 50, SPECIES_VELUZA },
-    { 45, 55, SPECIES_VELUZA },
+    { 30, 40, SPECIES_BASCULEGION_M },
     { 40, 50, SPECIES_BRUXISH },
+    { 45, 55, SPECIES_BASCULEGION_M },
     { 40, 50, SPECIES_VELUZA },
+    { 40, 50, SPECIES_BRUXISH },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_LeafGreen_Night_WaterMonsInfo = { 2, sCeruleanCave1F_LeafGreen_Night_WaterMons };
@@ -6498,18 +6498,18 @@ const struct WildPokemonInfo sCeruleanCave2F_FireRed_RockSmashMonsInfo = { 50, s
 #ifdef FIRERED
 const struct WildPokemon sCeruleanCave2F_FireRed_Evening_LandMons[] =
 {
-    { 49, 49, SPECIES_MAKUHITA },
-    { 49, 49, SPECIES_BINACLE },
-    { 52, 52, SPECIES_KLAWF },
-    { 52, 52, SPECIES_FLAMIGO },
-    { 55, 55, SPECIES_TOGEDEMARU },
-    { 55, 55, SPECIES_STONJOURNER },
-    { 58, 58, SPECIES_DURANT },
-    { 58, 58, SPECIES_SAWK },
-    { 61, 61, SPECIES_STUNFISK },
-    { 61, 61, SPECIES_LARVITAR },
-    { 64, 64, SPECIES_SHUCKLE },
-    { 64, 64, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 49, 49, SPECIES_HIPPOPOTAS },
+    { 49, 49, SPECIES_AMAURA },
+    { 52, 52, SPECIES_THROH },
+    { 52, 52, SPECIES_SAWK },
+    { 55, 55, SPECIES_DRACOZOLT },
+    { 55, 55, SPECIES_ORTHWORM },
+    { 58, 58, SPECIES_BINACLE },
+    { 58, 58, SPECIES_TOGEDEMARU },
+    { 61, 61, SPECIES_FRIGIBAX },
+    { 61, 61, SPECIES_SHUCKLE },
+    { 64, 64, SPECIES_KLAWF },
+    { 64, 64, SPECIES_FLAMIGO },
 };
 
 const struct WildPokemonInfo sCeruleanCave2F_FireRed_Evening_LandMonsInfo = { 7, sCeruleanCave2F_FireRed_Evening_LandMons };
@@ -6518,18 +6518,18 @@ const struct WildPokemonInfo sCeruleanCave2F_FireRed_Evening_LandMonsInfo = { 7,
 #ifdef FIRERED
 const struct WildPokemon sCeruleanCave2F_FireRed_Night_LandMons[] =
 {
-    { 49, 49, SPECIES_PURRLOIN },
-    { 49, 49, SPECIES_DRIFLOON },
-    { 52, 52, SPECIES_MURKROW },
-    { 52, 52, SPECIES_HOUNDOUR },
-    { 55, 55, SPECIES_HONEDGE },
-    { 55, 55, SPECIES_PAWNIARD },
-    { 58, 58, SPECIES_MISDREAVUS },
-    { 58, 58, SPECIES_BRONZOR },
-    { 61, 61, SPECIES_DUSKULL },
-    { 61, 61, SPECIES_CARBINK },
-    { 64, 64, SPECIES_ROTOM },
-    { 64, 64, SPECIES_DHELMISE },
+    { 49, 49, SPECIES_CORSOLA_GALAR },
+    { 49, 49, SPECIES_SCRAGGY },
+    { 52, 52, SPECIES_DRIFLOON },
+    { 52, 52, SPECIES_SANDILE },
+    { 55, 55, SPECIES_ROTOM },
+    { 55, 55, SPECIES_VAROOM },
+    { 58, 58, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 58, 58, SPECIES_SPIRITOMB },
+    { 61, 61, SPECIES_NICKIT },
+    { 61, 61, SPECIES_MASCHIFF },
+    { 64, 64, SPECIES_MEOWTH_ALOLA },
+    { 64, 64, SPECIES_PAWNIARD },
 };
 
 const struct WildPokemonInfo sCeruleanCave2F_FireRed_Night_LandMonsInfo = { 7, sCeruleanCave2F_FireRed_Night_LandMons };
@@ -6569,18 +6569,18 @@ const struct WildPokemonInfo sCeruleanCave2F_LeafGreen_RockSmashMonsInfo = { 50,
 #ifdef LEAFGREEN
 const struct WildPokemon sCeruleanCave2F_LeafGreen_Evening_LandMons[] =
 {
-    { 49, 49, SPECIES_MAKUHITA },
-    { 49, 49, SPECIES_BINACLE },
-    { 52, 52, SPECIES_KLAWF },
-    { 52, 52, SPECIES_FLAMIGO },
-    { 55, 55, SPECIES_TOGEDEMARU },
-    { 55, 55, SPECIES_STONJOURNER },
-    { 58, 58, SPECIES_DURANT },
-    { 58, 58, SPECIES_SAWK },
-    { 61, 61, SPECIES_STUNFISK },
-    { 61, 61, SPECIES_LARVITAR },
-    { 64, 64, SPECIES_SHUCKLE },
-    { 64, 64, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 49, 49, SPECIES_HIPPOPOTAS },
+    { 49, 49, SPECIES_AMAURA },
+    { 52, 52, SPECIES_THROH },
+    { 52, 52, SPECIES_SAWK },
+    { 55, 55, SPECIES_DRACOZOLT },
+    { 55, 55, SPECIES_ORTHWORM },
+    { 58, 58, SPECIES_BINACLE },
+    { 58, 58, SPECIES_TOGEDEMARU },
+    { 61, 61, SPECIES_FRIGIBAX },
+    { 61, 61, SPECIES_SHUCKLE },
+    { 64, 64, SPECIES_KLAWF },
+    { 64, 64, SPECIES_FLAMIGO },
 };
 
 const struct WildPokemonInfo sCeruleanCave2F_LeafGreen_Evening_LandMonsInfo = { 7, sCeruleanCave2F_LeafGreen_Evening_LandMons };
@@ -6589,18 +6589,18 @@ const struct WildPokemonInfo sCeruleanCave2F_LeafGreen_Evening_LandMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sCeruleanCave2F_LeafGreen_Night_LandMons[] =
 {
-    { 49, 49, SPECIES_PURRLOIN },
-    { 49, 49, SPECIES_DRIFLOON },
-    { 52, 52, SPECIES_MURKROW },
-    { 52, 52, SPECIES_HOUNDOUR },
-    { 55, 55, SPECIES_HONEDGE },
-    { 55, 55, SPECIES_PAWNIARD },
-    { 58, 58, SPECIES_MISDREAVUS },
-    { 58, 58, SPECIES_BRONZOR },
-    { 61, 61, SPECIES_DUSKULL },
-    { 61, 61, SPECIES_CARBINK },
-    { 64, 64, SPECIES_ROTOM },
-    { 64, 64, SPECIES_DHELMISE },
+    { 49, 49, SPECIES_CORSOLA_GALAR },
+    { 49, 49, SPECIES_SCRAGGY },
+    { 52, 52, SPECIES_DRIFLOON },
+    { 52, 52, SPECIES_SANDILE },
+    { 55, 55, SPECIES_ROTOM },
+    { 55, 55, SPECIES_VAROOM },
+    { 58, 58, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 58, 58, SPECIES_SPIRITOMB },
+    { 61, 61, SPECIES_NICKIT },
+    { 61, 61, SPECIES_MASCHIFF },
+    { 64, 64, SPECIES_MEOWTH_ALOLA },
+    { 64, 64, SPECIES_PAWNIARD },
 };
 
 const struct WildPokemonInfo sCeruleanCave2F_LeafGreen_Night_LandMonsInfo = { 7, sCeruleanCave2F_LeafGreen_Night_LandMons };
@@ -6667,29 +6667,29 @@ const struct WildPokemonInfo sCeruleanCaveB1F_FireRed_FishingMonsInfo = { 20, sC
 #ifdef FIRERED
 const struct WildPokemon sCeruleanCaveB1F_FireRed_Evening_LandMons[] =
 {
-    { 58, 58, SPECIES_MUDBRAY },
-    { 58, 58, SPECIES_SANDSHREW_ALOLA },
-    { 55, 55, SPECIES_STUNFISK },
-    { 55, 55, SPECIES_DRACOVISH },
-    { 52, 52, SPECIES_FERROSEED },
-    { 52, 52, SPECIES_STUFFUL },
-    { 67, 67, SPECIES_PHANPY },
-    { 67, 67, SPECIES_NACLI },
-    { 64, 64, SPECIES_TOEDSCOOL },
-    { 64, 64, SPECIES_SHIELDON },
-    { 61, 61, SPECIES_FARFETCHD_GALAR },
-    { 61, 61, SPECIES_JANGMO_O },
+    { 58, 58, SPECIES_SANDSHREW },
+    { 58, 58, SPECIES_TATSUGIRI_CURLY },
+    { 55, 55, SPECIES_STUFFUL },
+    { 55, 55, SPECIES_DURANT },
+    { 52, 52, SPECIES_AXEW },
+    { 52, 52, SPECIES_AERODACTYL },
+    { 67, 67, SPECIES_ARCHEN },
+    { 67, 67, SPECIES_TAUROS_PALDEA_AQUA },
+    { 64, 64, SPECIES_TIMBURR },
+    { 64, 64, SPECIES_MAKUHITA },
+    { 61, 61, SPECIES_BAGON },
+    { 61, 61, SPECIES_FRIGIBAX },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_FireRed_Evening_LandMonsInfo = { 7, sCeruleanCaveB1F_FireRed_Evening_LandMons };
 
 const struct WildPokemon sCeruleanCaveB1F_FireRed_Evening_WaterMons[] =
 {
-    { 40, 50, SPECIES_VANILLITE },
-    { 50, 60, SPECIES_SPHEAL },
-    { 55, 65, SPECIES_MANTYKE },
-    { 50, 60, SPECIES_VULPIX_ALOLA },
-    { 50, 60, SPECIES_ARCTOVISH },
+    { 40, 50, SPECIES_ARROKUDA },
+    { 50, 60, SPECIES_VANILLITE },
+    { 55, 65, SPECIES_ALOMOMOLA },
+    { 50, 60, SPECIES_SHELLOS_WEST },
+    { 50, 60, SPECIES_TOTODILE },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_FireRed_Evening_WaterMonsInfo = { 2, sCeruleanCaveB1F_FireRed_Evening_WaterMons };
@@ -6698,29 +6698,29 @@ const struct WildPokemonInfo sCeruleanCaveB1F_FireRed_Evening_WaterMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sCeruleanCaveB1F_FireRed_Night_LandMons[] =
 {
-    { 58, 58, SPECIES_ZORUA },
-    { 58, 58, SPECIES_SCRAGGY },
-    { 55, 55, SPECIES_IMPIDIMP },
-    { 55, 55, SPECIES_ZIGZAGOON_GALAR },
-    { 52, 52, SPECIES_SALANDIT },
-    { 52, 52, SPECIES_QWILFISH_HISUI },
-    { 67, 67, SPECIES_SANDILE },
-    { 67, 67, SPECIES_DEINO },
-    { 64, 64, SPECIES_SNEASEL_HISUI },
-    { 64, 64, SPECIES_BELLSPROUT },
-    { 61, 61, SPECIES_YAMASK_GALAR },
-    { 61, 61, SPECIES_BELDUM },
+    { 58, 58, SPECIES_MURKROW },
+    { 58, 58, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 55, 55, SPECIES_SKORUPI },
+    { 55, 55, SPECIES_DEINO },
+    { 52, 52, SPECIES_GIMMIGHOUL_CHEST },
+    { 52, 52, SPECIES_INKAY },
+    { 67, 67, SPECIES_SEVIPER },
+    { 67, 67, SPECIES_MISDREAVUS },
+    { 64, 64, SPECIES_VULLABY },
+    { 64, 64, SPECIES_ABSOL },
+    { 61, 61, SPECIES_PURRLOIN },
+    { 61, 61, SPECIES_HONEDGE },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_FireRed_Night_LandMonsInfo = { 7, sCeruleanCaveB1F_FireRed_Night_LandMons };
 
 const struct WildPokemon sCeruleanCaveB1F_FireRed_Night_WaterMons[] =
 {
-    { 40, 50, SPECIES_BRUXISH },
-    { 50, 60, SPECIES_BRUXISH },
-    { 55, 65, SPECIES_VELUZA },
-    { 50, 60, SPECIES_MAREANIE },
+    { 40, 50, SPECIES_QWILFISH },
     { 50, 60, SPECIES_SNEASEL },
+    { 55, 65, SPECIES_BRUXISH },
+    { 50, 60, SPECIES_VELUZA },
+    { 50, 60, SPECIES_BASCULEGION_M },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_FireRed_Night_WaterMonsInfo = { 2, sCeruleanCaveB1F_FireRed_Night_WaterMons };
@@ -6787,29 +6787,29 @@ const struct WildPokemonInfo sCeruleanCaveB1F_LeafGreen_FishingMonsInfo = { 20, 
 #ifdef LEAFGREEN
 const struct WildPokemon sCeruleanCaveB1F_LeafGreen_Evening_LandMons[] =
 {
-    { 58, 58, SPECIES_MUDBRAY },
-    { 58, 58, SPECIES_SANDSHREW_ALOLA },
-    { 55, 55, SPECIES_STUNFISK },
-    { 55, 55, SPECIES_DRACOVISH },
-    { 52, 52, SPECIES_FERROSEED },
-    { 52, 52, SPECIES_STUFFUL },
-    { 67, 67, SPECIES_PHANPY },
-    { 67, 67, SPECIES_NACLI },
-    { 64, 64, SPECIES_TOEDSCOOL },
-    { 64, 64, SPECIES_SHIELDON },
-    { 61, 61, SPECIES_FARFETCHD_GALAR },
-    { 61, 61, SPECIES_JANGMO_O },
+    { 58, 58, SPECIES_SANDSHREW },
+    { 58, 58, SPECIES_TATSUGIRI_CURLY },
+    { 55, 55, SPECIES_STUFFUL },
+    { 55, 55, SPECIES_DURANT },
+    { 52, 52, SPECIES_AXEW },
+    { 52, 52, SPECIES_AERODACTYL },
+    { 67, 67, SPECIES_ARCHEN },
+    { 67, 67, SPECIES_TAUROS_PALDEA_AQUA },
+    { 64, 64, SPECIES_TIMBURR },
+    { 64, 64, SPECIES_MAKUHITA },
+    { 61, 61, SPECIES_BAGON },
+    { 61, 61, SPECIES_FRIGIBAX },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_LeafGreen_Evening_LandMonsInfo = { 7, sCeruleanCaveB1F_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sCeruleanCaveB1F_LeafGreen_Evening_WaterMons[] =
 {
-    { 40, 50, SPECIES_VANILLITE },
-    { 50, 60, SPECIES_SPHEAL },
-    { 55, 65, SPECIES_MANTYKE },
-    { 50, 60, SPECIES_VULPIX_ALOLA },
-    { 50, 60, SPECIES_ARCTOVISH },
+    { 40, 50, SPECIES_ARROKUDA },
+    { 50, 60, SPECIES_VANILLITE },
+    { 55, 65, SPECIES_ALOMOMOLA },
+    { 50, 60, SPECIES_SHELLOS_WEST },
+    { 50, 60, SPECIES_TOTODILE },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_LeafGreen_Evening_WaterMonsInfo = { 2, sCeruleanCaveB1F_LeafGreen_Evening_WaterMons };
@@ -6818,29 +6818,29 @@ const struct WildPokemonInfo sCeruleanCaveB1F_LeafGreen_Evening_WaterMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sCeruleanCaveB1F_LeafGreen_Night_LandMons[] =
 {
-    { 58, 58, SPECIES_ZORUA },
-    { 58, 58, SPECIES_SCRAGGY },
-    { 55, 55, SPECIES_IMPIDIMP },
-    { 55, 55, SPECIES_ZIGZAGOON_GALAR },
-    { 52, 52, SPECIES_SALANDIT },
-    { 52, 52, SPECIES_QWILFISH_HISUI },
-    { 67, 67, SPECIES_SANDILE },
-    { 67, 67, SPECIES_DEINO },
-    { 64, 64, SPECIES_SNEASEL_HISUI },
-    { 64, 64, SPECIES_BELLSPROUT },
-    { 61, 61, SPECIES_YAMASK_GALAR },
-    { 61, 61, SPECIES_BELDUM },
+    { 58, 58, SPECIES_MURKROW },
+    { 58, 58, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 55, 55, SPECIES_SKORUPI },
+    { 55, 55, SPECIES_DEINO },
+    { 52, 52, SPECIES_GIMMIGHOUL_CHEST },
+    { 52, 52, SPECIES_INKAY },
+    { 67, 67, SPECIES_SEVIPER },
+    { 67, 67, SPECIES_MISDREAVUS },
+    { 64, 64, SPECIES_VULLABY },
+    { 64, 64, SPECIES_ABSOL },
+    { 61, 61, SPECIES_PURRLOIN },
+    { 61, 61, SPECIES_HONEDGE },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_LeafGreen_Night_LandMonsInfo = { 7, sCeruleanCaveB1F_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sCeruleanCaveB1F_LeafGreen_Night_WaterMons[] =
 {
-    { 40, 50, SPECIES_BRUXISH },
-    { 50, 60, SPECIES_BRUXISH },
-    { 55, 65, SPECIES_VELUZA },
-    { 50, 60, SPECIES_MAREANIE },
+    { 40, 50, SPECIES_QWILFISH },
     { 50, 60, SPECIES_SNEASEL },
+    { 55, 65, SPECIES_BRUXISH },
+    { 50, 60, SPECIES_VELUZA },
+    { 50, 60, SPECIES_BASCULEGION_M },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_LeafGreen_Night_WaterMonsInfo = { 2, sCeruleanCaveB1F_LeafGreen_Night_WaterMons };
@@ -6869,18 +6869,18 @@ const struct WildPokemonInfo sRockTunnel1F_FireRed_LandMonsInfo = { 7, sRockTunn
 #ifdef FIRERED
 const struct WildPokemon sRockTunnel1F_FireRed_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_MEOWTH_GALAR },
-    { 16, 16, SPECIES_FERROSEED },
-    { 16, 16, SPECIES_CORSOLA },
-    { 17, 17, SPECIES_OMANYTE },
-    { 16, 16, SPECIES_SILICOBRA },
-    { 16, 16, SPECIES_BONSLY },
-    { 17, 17, SPECIES_TIMBURR },
-    { 17, 17, SPECIES_GEODUDE_ALOLA },
-    { 15, 15, SPECIES_AMAURA },
-    { 13, 13, SPECIES_DRILBUR },
-    { 15, 15, SPECIES_CLOBBOPUS },
-    { 15, 15, SPECIES_KABUTO },
+    { 15, 15, SPECIES_ROCKRUFF },
+    { 16, 16, SPECIES_PANCHAM },
+    { 16, 16, SPECIES_TRAPINCH },
+    { 17, 17, SPECIES_KABUTO },
+    { 16, 16, SPECIES_ROCKRUFF },
+    { 16, 16, SPECIES_GEODUDE_ALOLA },
+    { 17, 17, SPECIES_NACLI },
+    { 17, 17, SPECIES_LILEEP },
+    { 15, 15, SPECIES_FERROSEED },
+    { 13, 13, SPECIES_BINACLE },
+    { 15, 15, SPECIES_ROGGENROLA },
+    { 15, 15, SPECIES_MIENFOO },
 };
 
 const struct WildPokemonInfo sRockTunnel1F_FireRed_Evening_LandMonsInfo = { 7, sRockTunnel1F_FireRed_Evening_LandMons };
@@ -6889,18 +6889,18 @@ const struct WildPokemonInfo sRockTunnel1F_FireRed_Evening_LandMonsInfo = { 7, s
 #ifdef FIRERED
 const struct WildPokemon sRockTunnel1F_FireRed_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_ZORUA },
-    { 16, 16, SPECIES_FOONGUS },
-    { 16, 16, SPECIES_LUNATONE },
-    { 17, 17, SPECIES_PURRLOIN },
-    { 16, 16, SPECIES_GRIMER_ALOLA },
-    { 16, 16, SPECIES_HONEDGE },
-    { 17, 17, SPECIES_YAMASK },
-    { 17, 17, SPECIES_BRAMBLIN },
-    { 15, 15, SPECIES_ZORUA_HISUI },
-    { 13, 13, SPECIES_PAWNIARD },
-    { 15, 15, SPECIES_POOCHYENA },
-    { 15, 15, SPECIES_PHANTUMP },
+    { 15, 15, SPECIES_GULPIN },
+    { 16, 16, SPECIES_ZORUA },
+    { 16, 16, SPECIES_SHUPPET },
+    { 17, 17, SPECIES_LITWICK },
+    { 16, 16, SPECIES_SANDYGAST },
+    { 16, 16, SPECIES_SINISTEA_PHONY },
+    { 17, 17, SPECIES_GRIMER_ALOLA },
+    { 17, 17, SPECIES_HOUNDOUR },
+    { 15, 15, SPECIES_BRAMBLIN },
+    { 13, 13, SPECIES_BALTOY },
+    { 15, 15, SPECIES_IMPIDIMP },
+    { 15, 15, SPECIES_CROAGUNK },
 };
 
 const struct WildPokemonInfo sRockTunnel1F_FireRed_Night_LandMonsInfo = { 7, sRockTunnel1F_FireRed_Night_LandMons };
@@ -6929,18 +6929,18 @@ const struct WildPokemonInfo sRockTunnel1F_LeafGreen_LandMonsInfo = { 7, sRockTu
 #ifdef LEAFGREEN
 const struct WildPokemon sRockTunnel1F_LeafGreen_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_MEOWTH_GALAR },
-    { 16, 16, SPECIES_FERROSEED },
-    { 16, 16, SPECIES_CORSOLA },
-    { 17, 17, SPECIES_OMANYTE },
-    { 16, 16, SPECIES_SILICOBRA },
-    { 16, 16, SPECIES_BONSLY },
-    { 17, 17, SPECIES_TIMBURR },
-    { 17, 17, SPECIES_GEODUDE_ALOLA },
-    { 15, 15, SPECIES_AMAURA },
-    { 13, 13, SPECIES_DRILBUR },
-    { 15, 15, SPECIES_CLOBBOPUS },
-    { 15, 15, SPECIES_KABUTO },
+    { 15, 15, SPECIES_ROCKRUFF },
+    { 16, 16, SPECIES_PANCHAM },
+    { 16, 16, SPECIES_TRAPINCH },
+    { 17, 17, SPECIES_KABUTO },
+    { 16, 16, SPECIES_ROCKRUFF },
+    { 16, 16, SPECIES_GEODUDE_ALOLA },
+    { 17, 17, SPECIES_NACLI },
+    { 17, 17, SPECIES_LILEEP },
+    { 15, 15, SPECIES_FERROSEED },
+    { 13, 13, SPECIES_BINACLE },
+    { 15, 15, SPECIES_ROGGENROLA },
+    { 15, 15, SPECIES_MIENFOO },
 };
 
 const struct WildPokemonInfo sRockTunnel1F_LeafGreen_Evening_LandMonsInfo = { 7, sRockTunnel1F_LeafGreen_Evening_LandMons };
@@ -6949,18 +6949,18 @@ const struct WildPokemonInfo sRockTunnel1F_LeafGreen_Evening_LandMonsInfo = { 7,
 #ifdef LEAFGREEN
 const struct WildPokemon sRockTunnel1F_LeafGreen_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_ZORUA },
-    { 16, 16, SPECIES_FOONGUS },
-    { 16, 16, SPECIES_LUNATONE },
-    { 17, 17, SPECIES_PURRLOIN },
-    { 16, 16, SPECIES_GRIMER_ALOLA },
-    { 16, 16, SPECIES_HONEDGE },
-    { 17, 17, SPECIES_YAMASK },
-    { 17, 17, SPECIES_BRAMBLIN },
-    { 15, 15, SPECIES_ZORUA_HISUI },
-    { 13, 13, SPECIES_PAWNIARD },
-    { 15, 15, SPECIES_POOCHYENA },
-    { 15, 15, SPECIES_PHANTUMP },
+    { 15, 15, SPECIES_GULPIN },
+    { 16, 16, SPECIES_ZORUA },
+    { 16, 16, SPECIES_SHUPPET },
+    { 17, 17, SPECIES_LITWICK },
+    { 16, 16, SPECIES_SANDYGAST },
+    { 16, 16, SPECIES_SINISTEA_PHONY },
+    { 17, 17, SPECIES_GRIMER_ALOLA },
+    { 17, 17, SPECIES_HOUNDOUR },
+    { 15, 15, SPECIES_BRAMBLIN },
+    { 13, 13, SPECIES_BALTOY },
+    { 15, 15, SPECIES_IMPIDIMP },
+    { 15, 15, SPECIES_CROAGUNK },
 };
 
 const struct WildPokemonInfo sRockTunnel1F_LeafGreen_Night_LandMonsInfo = { 7, sRockTunnel1F_LeafGreen_Night_LandMons };
@@ -7000,18 +7000,18 @@ const struct WildPokemonInfo sRockTunnelB1F_FireRed_RockSmashMonsInfo = { 50, sR
 #ifdef FIRERED
 const struct WildPokemon sRockTunnelB1F_FireRed_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_NACLI },
-    { 17, 17, SPECIES_CRABRAWLER },
-    { 17, 17, SPECIES_TIRTOUGA },
-    { 16, 16, SPECIES_NINCADA },
-    { 15, 15, SPECIES_ROCKRUFF },
-    { 17, 17, SPECIES_DWEBBLE },
     { 16, 16, SPECIES_ROGGENROLA },
-    { 13, 13, SPECIES_NOSEPASS },
-    { 15, 15, SPECIES_ROLYCOLY },
-    { 15, 15, SPECIES_TYROGUE },
-    { 15, 15, SPECIES_SANDSHREW },
-    { 17, 17, SPECIES_CORSOLA },
+    { 17, 17, SPECIES_TYROGUE },
+    { 17, 17, SPECIES_WOOPER },
+    { 16, 16, SPECIES_STUFFUL },
+    { 15, 15, SPECIES_DRILBUR },
+    { 17, 17, SPECIES_CRANIDOS },
+    { 16, 16, SPECIES_DWEBBLE },
+    { 13, 13, SPECIES_TIRTOUGA },
+    { 15, 15, SPECIES_NOSEPASS },
+    { 15, 15, SPECIES_TOEDSCOOL },
+    { 15, 15, SPECIES_BARBOACH },
+    { 17, 17, SPECIES_TYRUNT },
 };
 
 const struct WildPokemonInfo sRockTunnelB1F_FireRed_Evening_LandMonsInfo = { 7, sRockTunnelB1F_FireRed_Evening_LandMons };
@@ -7020,18 +7020,18 @@ const struct WildPokemonInfo sRockTunnelB1F_FireRed_Evening_LandMonsInfo = { 7, 
 #ifdef FIRERED
 const struct WildPokemon sRockTunnelB1F_FireRed_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_LITWICK },
-    { 17, 17, SPECIES_MEDITITE },
-    { 17, 17, SPECIES_SHROODLE },
-    { 16, 16, SPECIES_DRIFLOON },
-    { 15, 15, SPECIES_VAROOM },
-    { 17, 17, SPECIES_BALTOY },
+    { 16, 16, SPECIES_FOONGUS },
+    { 17, 17, SPECIES_GREAVARD },
+    { 17, 17, SPECIES_ZIGZAGOON_GALAR },
     { 16, 16, SPECIES_SANDYGAST },
-    { 13, 13, SPECIES_INKAY },
-    { 15, 15, SPECIES_MEDITITE },
-    { 15, 15, SPECIES_NICKIT },
-    { 15, 15, SPECIES_BUDEW },
-    { 17, 17, SPECIES_RATTATA_ALOLA },
+    { 15, 15, SPECIES_GOLETT },
+    { 17, 17, SPECIES_STUNKY },
+    { 16, 16, SPECIES_ZORUA },
+    { 13, 13, SPECIES_VAROOM },
+    { 15, 15, SPECIES_VULLABY },
+    { 15, 15, SPECIES_WOOPER_PALDEA },
+    { 15, 15, SPECIES_TINKATINK },
+    { 17, 17, SPECIES_SCRAGGY },
 };
 
 const struct WildPokemonInfo sRockTunnelB1F_FireRed_Night_LandMonsInfo = { 7, sRockTunnelB1F_FireRed_Night_LandMons };
@@ -7071,18 +7071,18 @@ const struct WildPokemonInfo sRockTunnelB1F_LeafGreen_RockSmashMonsInfo = { 50, 
 #ifdef LEAFGREEN
 const struct WildPokemon sRockTunnelB1F_LeafGreen_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_NACLI },
-    { 17, 17, SPECIES_CRABRAWLER },
-    { 17, 17, SPECIES_TIRTOUGA },
-    { 16, 16, SPECIES_NINCADA },
-    { 15, 15, SPECIES_ROCKRUFF },
-    { 17, 17, SPECIES_DWEBBLE },
     { 16, 16, SPECIES_ROGGENROLA },
-    { 13, 13, SPECIES_NOSEPASS },
-    { 15, 15, SPECIES_ROLYCOLY },
-    { 15, 15, SPECIES_TYROGUE },
-    { 15, 15, SPECIES_SANDSHREW },
-    { 17, 17, SPECIES_CORSOLA },
+    { 17, 17, SPECIES_TYROGUE },
+    { 17, 17, SPECIES_WOOPER },
+    { 16, 16, SPECIES_STUFFUL },
+    { 15, 15, SPECIES_DRILBUR },
+    { 17, 17, SPECIES_CRANIDOS },
+    { 16, 16, SPECIES_DWEBBLE },
+    { 13, 13, SPECIES_TIRTOUGA },
+    { 15, 15, SPECIES_NOSEPASS },
+    { 15, 15, SPECIES_TOEDSCOOL },
+    { 15, 15, SPECIES_BARBOACH },
+    { 17, 17, SPECIES_TYRUNT },
 };
 
 const struct WildPokemonInfo sRockTunnelB1F_LeafGreen_Evening_LandMonsInfo = { 7, sRockTunnelB1F_LeafGreen_Evening_LandMons };
@@ -7091,18 +7091,18 @@ const struct WildPokemonInfo sRockTunnelB1F_LeafGreen_Evening_LandMonsInfo = { 7
 #ifdef LEAFGREEN
 const struct WildPokemon sRockTunnelB1F_LeafGreen_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_LITWICK },
-    { 17, 17, SPECIES_MEDITITE },
-    { 17, 17, SPECIES_SHROODLE },
-    { 16, 16, SPECIES_DRIFLOON },
-    { 15, 15, SPECIES_VAROOM },
-    { 17, 17, SPECIES_BALTOY },
+    { 16, 16, SPECIES_FOONGUS },
+    { 17, 17, SPECIES_GREAVARD },
+    { 17, 17, SPECIES_ZIGZAGOON_GALAR },
     { 16, 16, SPECIES_SANDYGAST },
-    { 13, 13, SPECIES_INKAY },
-    { 15, 15, SPECIES_MEDITITE },
-    { 15, 15, SPECIES_NICKIT },
-    { 15, 15, SPECIES_BUDEW },
-    { 17, 17, SPECIES_RATTATA_ALOLA },
+    { 15, 15, SPECIES_GOLETT },
+    { 17, 17, SPECIES_STUNKY },
+    { 16, 16, SPECIES_ZORUA },
+    { 13, 13, SPECIES_VAROOM },
+    { 15, 15, SPECIES_VULLABY },
+    { 15, 15, SPECIES_WOOPER_PALDEA },
+    { 15, 15, SPECIES_TINKATINK },
+    { 17, 17, SPECIES_SCRAGGY },
 };
 
 const struct WildPokemonInfo sRockTunnelB1F_LeafGreen_Night_LandMonsInfo = { 7, sRockTunnelB1F_LeafGreen_Night_LandMons };
@@ -7131,18 +7131,18 @@ const struct WildPokemonInfo sSeafoamIslands1F_FireRed_LandMonsInfo = { 7, sSeaf
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslands1F_FireRed_Evening_LandMons[] =
 {
-    { 27, 27, SPECIES_NOSEPASS },
-    { 29, 29, SPECIES_FEEBAS },
-    { 31, 31, SPECIES_VANILLITE },
-    { 22, 22, SPECIES_DARUMAKA_GALAR },
-    { 22, 22, SPECIES_TYMPOLE },
-    { 24, 24, SPECIES_LOTAD },
-    { 26, 26, SPECIES_WIGLETT },
-    { 28, 28, SPECIES_QUAXLY },
-    { 33, 33, SPECIES_DELIBIRD },
-    { 26, 26, SPECIES_DUCKLETT },
-    { 26, 26, SPECIES_PANPOUR },
-    { 30, 30, SPECIES_FINIZEN },
+    { 27, 27, SPECIES_ARON },
+    { 29, 29, SPECIES_ROLYCOLY },
+    { 31, 31, SPECIES_QUAXLY },
+    { 22, 22, SPECIES_CRYOGONAL },
+    { 22, 22, SPECIES_LUVDISC },
+    { 24, 24, SPECIES_VULPIX_ALOLA },
+    { 26, 26, SPECIES_CHINCHOU },
+    { 28, 28, SPECIES_FINNEON },
+    { 33, 33, SPECIES_SNOVER },
+    { 26, 26, SPECIES_VULPIX_ALOLA },
+    { 26, 26, SPECIES_DARUMAKA_GALAR },
+    { 30, 30, SPECIES_LUVDISC },
 };
 
 const struct WildPokemonInfo sSeafoamIslands1F_FireRed_Evening_LandMonsInfo = { 7, sSeafoamIslands1F_FireRed_Evening_LandMons };
@@ -7151,18 +7151,18 @@ const struct WildPokemonInfo sSeafoamIslands1F_FireRed_Evening_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslands1F_FireRed_Night_LandMons[] =
 {
-    { 27, 27, SPECIES_GLIMMET },
-    { 29, 29, SPECIES_GLIMMET },
-    { 31, 31, SPECIES_SOLROCK },
+    { 27, 27, SPECIES_SLOWPOKE },
+    { 29, 29, SPECIES_LUNATONE },
+    { 31, 31, SPECIES_GLIMMET },
     { 22, 22, SPECIES_SOLROCK },
-    { 22, 22, SPECIES_LUNATONE },
-    { 24, 24, SPECIES_GLIMMET },
-    { 26, 26, SPECIES_SKRELP },
-    { 28, 28, SPECIES_SMOOCHUM },
-    { 33, 33, SPECIES_CARVANHA },
-    { 26, 26, SPECIES_QWILFISH },
+    { 22, 22, SPECIES_SOLROCK },
+    { 24, 24, SPECIES_LUNATONE },
     { 26, 26, SPECIES_GLIMMET },
-    { 30, 30, SPECIES_FRILLISH },
+    { 28, 28, SPECIES_CARVANHA },
+    { 33, 33, SPECIES_SKRELP },
+    { 26, 26, SPECIES_FRILLISH },
+    { 26, 26, SPECIES_SNEASEL },
+    { 30, 30, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sSeafoamIslands1F_FireRed_Night_LandMonsInfo = { 7, sSeafoamIslands1F_FireRed_Night_LandMons };
@@ -7191,18 +7191,18 @@ const struct WildPokemonInfo sSeafoamIslands1F_LeafGreen_LandMonsInfo = { 7, sSe
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslands1F_LeafGreen_Evening_LandMons[] =
 {
-    { 27, 27, SPECIES_NOSEPASS },
-    { 29, 29, SPECIES_FEEBAS },
-    { 31, 31, SPECIES_VANILLITE },
-    { 22, 22, SPECIES_DARUMAKA_GALAR },
-    { 22, 22, SPECIES_TYMPOLE },
-    { 24, 24, SPECIES_LOTAD },
-    { 26, 26, SPECIES_WIGLETT },
-    { 28, 28, SPECIES_QUAXLY },
-    { 33, 33, SPECIES_DELIBIRD },
-    { 26, 26, SPECIES_DUCKLETT },
-    { 26, 26, SPECIES_PANPOUR },
-    { 30, 30, SPECIES_FINIZEN },
+    { 27, 27, SPECIES_ARON },
+    { 29, 29, SPECIES_ROLYCOLY },
+    { 31, 31, SPECIES_QUAXLY },
+    { 22, 22, SPECIES_CRYOGONAL },
+    { 22, 22, SPECIES_LUVDISC },
+    { 24, 24, SPECIES_VULPIX_ALOLA },
+    { 26, 26, SPECIES_CHINCHOU },
+    { 28, 28, SPECIES_FINNEON },
+    { 33, 33, SPECIES_SNOVER },
+    { 26, 26, SPECIES_VULPIX_ALOLA },
+    { 26, 26, SPECIES_DARUMAKA_GALAR },
+    { 30, 30, SPECIES_LUVDISC },
 };
 
 const struct WildPokemonInfo sSeafoamIslands1F_LeafGreen_Evening_LandMonsInfo = { 7, sSeafoamIslands1F_LeafGreen_Evening_LandMons };
@@ -7211,18 +7211,18 @@ const struct WildPokemonInfo sSeafoamIslands1F_LeafGreen_Evening_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslands1F_LeafGreen_Night_LandMons[] =
 {
-    { 27, 27, SPECIES_GLIMMET },
-    { 29, 29, SPECIES_GLIMMET },
-    { 31, 31, SPECIES_SOLROCK },
+    { 27, 27, SPECIES_SLOWPOKE },
+    { 29, 29, SPECIES_LUNATONE },
+    { 31, 31, SPECIES_GLIMMET },
     { 22, 22, SPECIES_SOLROCK },
-    { 22, 22, SPECIES_LUNATONE },
-    { 24, 24, SPECIES_GLIMMET },
-    { 26, 26, SPECIES_SKRELP },
-    { 28, 28, SPECIES_SMOOCHUM },
-    { 33, 33, SPECIES_CARVANHA },
-    { 26, 26, SPECIES_QWILFISH },
+    { 22, 22, SPECIES_SOLROCK },
+    { 24, 24, SPECIES_LUNATONE },
     { 26, 26, SPECIES_GLIMMET },
-    { 30, 30, SPECIES_FRILLISH },
+    { 28, 28, SPECIES_CARVANHA },
+    { 33, 33, SPECIES_SKRELP },
+    { 26, 26, SPECIES_FRILLISH },
+    { 26, 26, SPECIES_SNEASEL },
+    { 30, 30, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sSeafoamIslands1F_LeafGreen_Night_LandMonsInfo = { 7, sSeafoamIslands1F_LeafGreen_Night_LandMons };
@@ -7251,18 +7251,18 @@ const struct WildPokemonInfo sSeafoamIslandsB1F_FireRed_LandMonsInfo = { 7, sSea
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslandsB1F_FireRed_Evening_LandMons[] =
 {
-    { 29, 29, SPECIES_CRANIDOS },
-    { 31, 31, SPECIES_QUAXLY },
+    { 29, 29, SPECIES_NACLI },
+    { 31, 31, SPECIES_OSHAWOTT },
     { 28, 28, SPECIES_SOBBLE },
-    { 22, 22, SPECIES_CRYOGONAL },
-    { 22, 22, SPECIES_WIGLETT },
-    { 24, 24, SPECIES_LUVDISC },
-    { 26, 26, SPECIES_BUIZEL },
-    { 28, 28, SPECIES_TYMPOLE },
-    { 33, 33, SPECIES_WOOPER },
-    { 26, 26, SPECIES_CHINCHOU },
-    { 35, 35, SPECIES_DELIBIRD },
-    { 30, 30, SPECIES_AERODACTYL },
+    { 22, 22, SPECIES_FINIZEN },
+    { 22, 22, SPECIES_SHELLOS_WEST },
+    { 24, 24, SPECIES_WIMPOD },
+    { 26, 26, SPECIES_MANTYKE },
+    { 28, 28, SPECIES_LOTAD },
+    { 33, 33, SPECIES_WINGULL },
+    { 26, 26, SPECIES_WIGLETT },
+    { 35, 35, SPECIES_CUBCHOO },
+    { 30, 30, SPECIES_WAILMER },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB1F_FireRed_Evening_LandMonsInfo = { 7, sSeafoamIslandsB1F_FireRed_Evening_LandMons };
@@ -7271,18 +7271,18 @@ const struct WildPokemonInfo sSeafoamIslandsB1F_FireRed_Evening_LandMonsInfo = {
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslandsB1F_FireRed_Night_LandMons[] =
 {
-    { 29, 29, SPECIES_SNEASEL },
-    { 31, 31, SPECIES_LUNATONE },
-    { 28, 28, SPECIES_SOLROCK },
+    { 29, 29, SPECIES_GLIMMET },
+    { 31, 31, SPECIES_CARVANHA },
+    { 28, 28, SPECIES_LUNATONE },
     { 22, 22, SPECIES_SLOWPOKE },
-    { 22, 22, SPECIES_MAREANIE },
-    { 24, 24, SPECIES_CARVANHA },
+    { 22, 22, SPECIES_SMOOCHUM },
+    { 24, 24, SPECIES_GLIMMET },
     { 26, 26, SPECIES_SOLROCK },
-    { 28, 28, SPECIES_QWILFISH },
-    { 33, 33, SPECIES_SMOOCHUM },
-    { 26, 26, SPECIES_SLOWPOKE },
-    { 35, 35, SPECIES_LUNATONE },
-    { 30, 30, SPECIES_SKRELP },
+    { 28, 28, SPECIES_MAREANIE },
+    { 33, 33, SPECIES_MAREANIE },
+    { 26, 26, SPECIES_SNEASEL },
+    { 35, 35, SPECIES_SMOOCHUM },
+    { 30, 30, SPECIES_SOLROCK },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB1F_FireRed_Night_LandMonsInfo = { 7, sSeafoamIslandsB1F_FireRed_Night_LandMons };
@@ -7311,18 +7311,18 @@ const struct WildPokemonInfo sSeafoamIslandsB1F_LeafGreen_LandMonsInfo = { 7, sS
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslandsB1F_LeafGreen_Evening_LandMons[] =
 {
-    { 29, 29, SPECIES_CRANIDOS },
-    { 31, 31, SPECIES_QUAXLY },
+    { 29, 29, SPECIES_NACLI },
+    { 31, 31, SPECIES_OSHAWOTT },
     { 28, 28, SPECIES_SOBBLE },
-    { 22, 22, SPECIES_CRYOGONAL },
-    { 22, 22, SPECIES_WIGLETT },
-    { 24, 24, SPECIES_LUVDISC },
-    { 26, 26, SPECIES_BUIZEL },
-    { 28, 28, SPECIES_TYMPOLE },
-    { 33, 33, SPECIES_WOOPER },
-    { 26, 26, SPECIES_CHINCHOU },
-    { 35, 35, SPECIES_DELIBIRD },
-    { 30, 30, SPECIES_AERODACTYL },
+    { 22, 22, SPECIES_FINIZEN },
+    { 22, 22, SPECIES_SHELLOS_WEST },
+    { 24, 24, SPECIES_WIMPOD },
+    { 26, 26, SPECIES_MANTYKE },
+    { 28, 28, SPECIES_LOTAD },
+    { 33, 33, SPECIES_WINGULL },
+    { 26, 26, SPECIES_WIGLETT },
+    { 35, 35, SPECIES_CUBCHOO },
+    { 30, 30, SPECIES_WAILMER },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB1F_LeafGreen_Evening_LandMonsInfo = { 7, sSeafoamIslandsB1F_LeafGreen_Evening_LandMons };
@@ -7331,18 +7331,18 @@ const struct WildPokemonInfo sSeafoamIslandsB1F_LeafGreen_Evening_LandMonsInfo =
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslandsB1F_LeafGreen_Night_LandMons[] =
 {
-    { 29, 29, SPECIES_SNEASEL },
-    { 31, 31, SPECIES_LUNATONE },
-    { 28, 28, SPECIES_SOLROCK },
+    { 29, 29, SPECIES_GLIMMET },
+    { 31, 31, SPECIES_CARVANHA },
+    { 28, 28, SPECIES_LUNATONE },
     { 22, 22, SPECIES_SLOWPOKE },
-    { 22, 22, SPECIES_MAREANIE },
-    { 24, 24, SPECIES_CARVANHA },
+    { 22, 22, SPECIES_SMOOCHUM },
+    { 24, 24, SPECIES_GLIMMET },
     { 26, 26, SPECIES_SOLROCK },
-    { 28, 28, SPECIES_QWILFISH },
-    { 33, 33, SPECIES_SMOOCHUM },
-    { 26, 26, SPECIES_SLOWPOKE },
-    { 35, 35, SPECIES_LUNATONE },
-    { 30, 30, SPECIES_SKRELP },
+    { 28, 28, SPECIES_MAREANIE },
+    { 33, 33, SPECIES_MAREANIE },
+    { 26, 26, SPECIES_SNEASEL },
+    { 35, 35, SPECIES_SMOOCHUM },
+    { 30, 30, SPECIES_SOLROCK },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB1F_LeafGreen_Night_LandMonsInfo = { 7, sSeafoamIslandsB1F_LeafGreen_Night_LandMons };
@@ -7371,18 +7371,18 @@ const struct WildPokemonInfo sSeafoamIslandsB2F_FireRed_LandMonsInfo = { 7, sSea
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslandsB2F_FireRed_Evening_LandMons[] =
 {
-    { 30, 30, SPECIES_ARON },
-    { 32, 32, SPECIES_MUDKIP },
-    { 30, 30, SPECIES_CETODDLE },
-    { 32, 32, SPECIES_LUVDISC },
-    { 22, 22, SPECIES_STARYU },
-    { 24, 24, SPECIES_CLAUNCHER },
-    { 26, 26, SPECIES_WIGLETT },
-    { 34, 34, SPECIES_SQUIRTLE },
-    { 32, 32, SPECIES_PYUKUMUKU },
-    { 28, 28, SPECIES_WIMPOD },
-    { 32, 32, SPECIES_BINACLE },
-    { 30, 30, SPECIES_MUDKIP },
+    { 30, 30, SPECIES_CRANIDOS },
+    { 32, 32, SPECIES_FROAKIE },
+    { 30, 30, SPECIES_BUIZEL },
+    { 32, 32, SPECIES_CORPHISH },
+    { 22, 22, SPECIES_PANPOUR },
+    { 24, 24, SPECIES_LOTAD },
+    { 26, 26, SPECIES_PANPOUR },
+    { 34, 34, SPECIES_SWINUB },
+    { 32, 32, SPECIES_WIGLETT },
+    { 28, 28, SPECIES_CRYOGONAL },
+    { 32, 32, SPECIES_DARUMAKA_GALAR },
+    { 30, 30, SPECIES_DEWPIDER },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB2F_FireRed_Evening_LandMonsInfo = { 7, sSeafoamIslandsB2F_FireRed_Evening_LandMons };
@@ -7391,18 +7391,18 @@ const struct WildPokemonInfo sSeafoamIslandsB2F_FireRed_Evening_LandMonsInfo = {
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslandsB2F_FireRed_Night_LandMons[] =
 {
-    { 30, 30, SPECIES_FRILLISH },
-    { 32, 32, SPECIES_SNEASEL },
-    { 30, 30, SPECIES_GLIMMET },
-    { 32, 32, SPECIES_FRILLISH },
-    { 22, 22, SPECIES_QWILFISH },
-    { 24, 24, SPECIES_SOLROCK },
-    { 26, 26, SPECIES_LUNATONE },
-    { 34, 34, SPECIES_MAREANIE },
+    { 30, 30, SPECIES_SMOOCHUM },
     { 32, 32, SPECIES_GLIMMET },
-    { 28, 28, SPECIES_SMOOCHUM },
-    { 32, 32, SPECIES_SLOWPOKE },
-    { 30, 30, SPECIES_FRILLISH },
+    { 30, 30, SPECIES_CARVANHA },
+    { 32, 32, SPECIES_LUNATONE },
+    { 22, 22, SPECIES_QWILFISH },
+    { 24, 24, SPECIES_SLOWPOKE },
+    { 26, 26, SPECIES_FRILLISH },
+    { 34, 34, SPECIES_SKRELP },
+    { 32, 32, SPECIES_SKRELP },
+    { 28, 28, SPECIES_SOLROCK },
+    { 32, 32, SPECIES_CARVANHA },
+    { 30, 30, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB2F_FireRed_Night_LandMonsInfo = { 7, sSeafoamIslandsB2F_FireRed_Night_LandMons };
@@ -7431,18 +7431,18 @@ const struct WildPokemonInfo sSeafoamIslandsB2F_LeafGreen_LandMonsInfo = { 7, sS
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslandsB2F_LeafGreen_Evening_LandMons[] =
 {
-    { 30, 30, SPECIES_ARON },
-    { 32, 32, SPECIES_MUDKIP },
-    { 30, 30, SPECIES_CETODDLE },
-    { 32, 32, SPECIES_LUVDISC },
-    { 22, 22, SPECIES_STARYU },
-    { 24, 24, SPECIES_CLAUNCHER },
-    { 26, 26, SPECIES_WIGLETT },
-    { 34, 34, SPECIES_SQUIRTLE },
-    { 32, 32, SPECIES_PYUKUMUKU },
-    { 28, 28, SPECIES_WIMPOD },
-    { 32, 32, SPECIES_BINACLE },
-    { 30, 30, SPECIES_MUDKIP },
+    { 30, 30, SPECIES_CRANIDOS },
+    { 32, 32, SPECIES_FROAKIE },
+    { 30, 30, SPECIES_BUIZEL },
+    { 32, 32, SPECIES_CORPHISH },
+    { 22, 22, SPECIES_PANPOUR },
+    { 24, 24, SPECIES_LOTAD },
+    { 26, 26, SPECIES_PANPOUR },
+    { 34, 34, SPECIES_SWINUB },
+    { 32, 32, SPECIES_WIGLETT },
+    { 28, 28, SPECIES_CRYOGONAL },
+    { 32, 32, SPECIES_DARUMAKA_GALAR },
+    { 30, 30, SPECIES_DEWPIDER },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB2F_LeafGreen_Evening_LandMonsInfo = { 7, sSeafoamIslandsB2F_LeafGreen_Evening_LandMons };
@@ -7451,18 +7451,18 @@ const struct WildPokemonInfo sSeafoamIslandsB2F_LeafGreen_Evening_LandMonsInfo =
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslandsB2F_LeafGreen_Night_LandMons[] =
 {
-    { 30, 30, SPECIES_FRILLISH },
-    { 32, 32, SPECIES_SNEASEL },
-    { 30, 30, SPECIES_GLIMMET },
-    { 32, 32, SPECIES_FRILLISH },
-    { 22, 22, SPECIES_QWILFISH },
-    { 24, 24, SPECIES_SOLROCK },
-    { 26, 26, SPECIES_LUNATONE },
-    { 34, 34, SPECIES_MAREANIE },
+    { 30, 30, SPECIES_SMOOCHUM },
     { 32, 32, SPECIES_GLIMMET },
-    { 28, 28, SPECIES_SMOOCHUM },
-    { 32, 32, SPECIES_SLOWPOKE },
-    { 30, 30, SPECIES_FRILLISH },
+    { 30, 30, SPECIES_CARVANHA },
+    { 32, 32, SPECIES_LUNATONE },
+    { 22, 22, SPECIES_QWILFISH },
+    { 24, 24, SPECIES_SLOWPOKE },
+    { 26, 26, SPECIES_FRILLISH },
+    { 34, 34, SPECIES_SKRELP },
+    { 32, 32, SPECIES_SKRELP },
+    { 28, 28, SPECIES_SOLROCK },
+    { 32, 32, SPECIES_CARVANHA },
+    { 30, 30, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB2F_LeafGreen_Night_LandMonsInfo = { 7, sSeafoamIslandsB2F_LeafGreen_Night_LandMons };
@@ -7518,29 +7518,29 @@ const struct WildPokemonInfo sSeafoamIslandsB3F_FireRed_FishingMonsInfo = { 20, 
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslandsB3F_FireRed_Evening_LandMons[] =
 {
-    { 30, 30, SPECIES_BUIZEL },
-    { 32, 32, SPECIES_CORPHISH },
-    { 32, 32, SPECIES_PYUKUMUKU },
-    { 30, 30, SPECIES_DONDOZO },
-    { 32, 32, SPECIES_CRAMORANT },
-    { 24, 24, SPECIES_ARCTOZOLT },
-    { 26, 26, SPECIES_ALOMOMOLA },
-    { 34, 34, SPECIES_CLAMPERL },
-    { 32, 32, SPECIES_CORPHISH },
-    { 28, 28, SPECIES_CUBCHOO },
-    { 34, 34, SPECIES_CRAMORANT },
-    { 30, 30, SPECIES_DONDOZO },
+    { 30, 30, SPECIES_ARROKUDA },
+    { 32, 32, SPECIES_CHEWTLE },
+    { 32, 32, SPECIES_TYMPOLE },
+    { 30, 30, SPECIES_ARCTOZOLT },
+    { 32, 32, SPECIES_ARCTOVISH },
+    { 24, 24, SPECIES_BASCULIN_RED_STRIPED },
+    { 26, 26, SPECIES_CRAMORANT },
+    { 34, 34, SPECIES_EISCUE_ICE },
+    { 32, 32, SPECIES_WIMPOD },
+    { 28, 28, SPECIES_SNORUNT },
+    { 34, 34, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 30, 30, SPECIES_ARCTOVISH },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB3F_FireRed_Evening_LandMonsInfo = { 7, sSeafoamIslandsB3F_FireRed_Evening_LandMons };
 
 const struct WildPokemon sSeafoamIslandsB3F_FireRed_Evening_WaterMons[] =
 {
-    { 25, 35, SPECIES_SURSKIT },
-    { 25, 30, SPECIES_POPPLIO },
-    { 35, 40, SPECIES_VANILLITE },
-    { 30, 40, SPECIES_FROAKIE },
-    { 35, 40, SPECIES_SNOVER },
+    { 25, 35, SPECIES_CETODDLE },
+    { 25, 30, SPECIES_BASCULIN_RED_STRIPED },
+    { 35, 40, SPECIES_EISCUE_ICE },
+    { 30, 40, SPECIES_CRAMORANT },
+    { 35, 40, SPECIES_PIPLUP },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB3F_FireRed_Evening_WaterMonsInfo = { 2, sSeafoamIslandsB3F_FireRed_Evening_WaterMons };
@@ -7549,29 +7549,29 @@ const struct WildPokemonInfo sSeafoamIslandsB3F_FireRed_Evening_WaterMonsInfo = 
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslandsB3F_FireRed_Night_LandMons[] =
 {
-    { 30, 30, SPECIES_CARBINK },
+    { 30, 30, SPECIES_SOLROCK },
     { 32, 32, SPECIES_CARBINK },
     { 32, 32, SPECIES_CARBINK },
-    { 30, 30, SPECIES_BRUXISH },
-    { 32, 32, SPECIES_CARBINK },
-    { 24, 24, SPECIES_VELUZA },
-    { 26, 26, SPECIES_BRUXISH },
-    { 34, 34, SPECIES_CARVANHA },
-    { 32, 32, SPECIES_CARBINK },
-    { 28, 28, SPECIES_SKRELP },
-    { 34, 34, SPECIES_SNEASEL },
     { 30, 30, SPECIES_VELUZA },
+    { 32, 32, SPECIES_CARBINK },
+    { 24, 24, SPECIES_BASCULEGION_M },
+    { 26, 26, SPECIES_BRUXISH },
+    { 34, 34, SPECIES_CARBINK },
+    { 32, 32, SPECIES_BRUXISH },
+    { 28, 28, SPECIES_VELUZA },
+    { 34, 34, SPECIES_BASCULEGION_M },
+    { 30, 30, SPECIES_MAREANIE },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB3F_FireRed_Night_LandMonsInfo = { 7, sSeafoamIslandsB3F_FireRed_Night_LandMons };
 
 const struct WildPokemon sSeafoamIslandsB3F_FireRed_Night_WaterMons[] =
 {
-    { 25, 35, SPECIES_VELUZA },
-    { 25, 30, SPECIES_SKRELP },
-    { 35, 40, SPECIES_BRUXISH },
-    { 30, 40, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_CARVANHA },
+    { 25, 35, SPECIES_BASCULEGION_M },
+    { 25, 30, SPECIES_SLOWPOKE },
+    { 35, 40, SPECIES_QWILFISH },
+    { 30, 40, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_VELUZA },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB3F_FireRed_Night_WaterMonsInfo = { 2, sSeafoamIslandsB3F_FireRed_Night_WaterMons };
@@ -7627,29 +7627,29 @@ const struct WildPokemonInfo sSeafoamIslandsB3F_LeafGreen_FishingMonsInfo = { 20
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslandsB3F_LeafGreen_Evening_LandMons[] =
 {
-    { 30, 30, SPECIES_BUIZEL },
-    { 32, 32, SPECIES_CORPHISH },
-    { 32, 32, SPECIES_PYUKUMUKU },
-    { 30, 30, SPECIES_DONDOZO },
-    { 32, 32, SPECIES_CRAMORANT },
-    { 24, 24, SPECIES_ARCTOZOLT },
-    { 26, 26, SPECIES_ALOMOMOLA },
-    { 34, 34, SPECIES_CLAMPERL },
-    { 32, 32, SPECIES_CORPHISH },
-    { 28, 28, SPECIES_CUBCHOO },
-    { 34, 34, SPECIES_CRAMORANT },
-    { 30, 30, SPECIES_DONDOZO },
+    { 30, 30, SPECIES_ARROKUDA },
+    { 32, 32, SPECIES_CHEWTLE },
+    { 32, 32, SPECIES_TYMPOLE },
+    { 30, 30, SPECIES_ARCTOZOLT },
+    { 32, 32, SPECIES_ARCTOVISH },
+    { 24, 24, SPECIES_BASCULIN_RED_STRIPED },
+    { 26, 26, SPECIES_CRAMORANT },
+    { 34, 34, SPECIES_EISCUE_ICE },
+    { 32, 32, SPECIES_WIMPOD },
+    { 28, 28, SPECIES_SNORUNT },
+    { 34, 34, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 30, 30, SPECIES_ARCTOVISH },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB3F_LeafGreen_Evening_LandMonsInfo = { 7, sSeafoamIslandsB3F_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sSeafoamIslandsB3F_LeafGreen_Evening_WaterMons[] =
 {
-    { 25, 35, SPECIES_SURSKIT },
-    { 25, 30, SPECIES_POPPLIO },
-    { 35, 40, SPECIES_VANILLITE },
-    { 30, 40, SPECIES_FROAKIE },
-    { 35, 40, SPECIES_SNOVER },
+    { 25, 35, SPECIES_CETODDLE },
+    { 25, 30, SPECIES_BASCULIN_RED_STRIPED },
+    { 35, 40, SPECIES_EISCUE_ICE },
+    { 30, 40, SPECIES_CRAMORANT },
+    { 35, 40, SPECIES_PIPLUP },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB3F_LeafGreen_Evening_WaterMonsInfo = { 2, sSeafoamIslandsB3F_LeafGreen_Evening_WaterMons };
@@ -7658,29 +7658,29 @@ const struct WildPokemonInfo sSeafoamIslandsB3F_LeafGreen_Evening_WaterMonsInfo 
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslandsB3F_LeafGreen_Night_LandMons[] =
 {
-    { 30, 30, SPECIES_CARBINK },
+    { 30, 30, SPECIES_SOLROCK },
     { 32, 32, SPECIES_CARBINK },
     { 32, 32, SPECIES_CARBINK },
-    { 30, 30, SPECIES_BRUXISH },
-    { 32, 32, SPECIES_CARBINK },
-    { 24, 24, SPECIES_VELUZA },
-    { 26, 26, SPECIES_BRUXISH },
-    { 34, 34, SPECIES_CARVANHA },
-    { 32, 32, SPECIES_CARBINK },
-    { 28, 28, SPECIES_SKRELP },
-    { 34, 34, SPECIES_SNEASEL },
     { 30, 30, SPECIES_VELUZA },
+    { 32, 32, SPECIES_CARBINK },
+    { 24, 24, SPECIES_BASCULEGION_M },
+    { 26, 26, SPECIES_BRUXISH },
+    { 34, 34, SPECIES_CARBINK },
+    { 32, 32, SPECIES_BRUXISH },
+    { 28, 28, SPECIES_VELUZA },
+    { 34, 34, SPECIES_BASCULEGION_M },
+    { 30, 30, SPECIES_MAREANIE },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB3F_LeafGreen_Night_LandMonsInfo = { 7, sSeafoamIslandsB3F_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sSeafoamIslandsB3F_LeafGreen_Night_WaterMons[] =
 {
-    { 25, 35, SPECIES_VELUZA },
-    { 25, 30, SPECIES_SKRELP },
-    { 35, 40, SPECIES_BRUXISH },
-    { 30, 40, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_CARVANHA },
+    { 25, 35, SPECIES_BASCULEGION_M },
+    { 25, 30, SPECIES_SLOWPOKE },
+    { 35, 40, SPECIES_QWILFISH },
+    { 30, 40, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_VELUZA },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB3F_LeafGreen_Night_WaterMonsInfo = { 2, sSeafoamIslandsB3F_LeafGreen_Night_WaterMons };
@@ -7736,29 +7736,29 @@ const struct WildPokemonInfo sSeafoamIslandsB4F_FireRed_FishingMonsInfo = { 20, 
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslandsB4F_FireRed_Evening_LandMons[] =
 {
-    { 30, 30, SPECIES_ROLYCOLY },
-    { 32, 32, SPECIES_TOTODILE },
-    { 32, 32, SPECIES_FINIZEN },
+    { 30, 30, SPECIES_SPHEAL },
+    { 32, 32, SPECIES_CUBCHOO },
+    { 32, 32, SPECIES_PYUKUMUKU },
     { 34, 34, SPECIES_VULPIX_ALOLA },
-    { 32, 32, SPECIES_SOBBLE },
-    { 26, 26, SPECIES_KLAWF },
-    { 34, 34, SPECIES_ARROKUDA },
-    { 34, 34, SPECIES_LOTAD },
-    { 36, 36, SPECIES_RELICANTH },
-    { 28, 28, SPECIES_LILEEP },
-    { 36, 36, SPECIES_ALOMOMOLA },
-    { 30, 30, SPECIES_ARCTOZOLT },
+    { 32, 32, SPECIES_WAILMER },
+    { 26, 26, SPECIES_SHUCKLE },
+    { 34, 34, SPECIES_CHEWTLE },
+    { 34, 34, SPECIES_DONDOZO },
+    { 36, 36, SPECIES_FEEBAS },
+    { 28, 28, SPECIES_DRACOVISH },
+    { 36, 36, SPECIES_DRACOVISH },
+    { 30, 30, SPECIES_BASCULIN_RED_STRIPED },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB4F_FireRed_Evening_LandMonsInfo = { 7, sSeafoamIslandsB4F_FireRed_Evening_LandMons };
 
 const struct WildPokemon sSeafoamIslandsB4F_FireRed_Evening_WaterMons[] =
 {
-    { 25, 35, SPECIES_WAILMER },
-    { 25, 30, SPECIES_TYMPOLE },
-    { 35, 40, SPECIES_SPHEAL },
-    { 30, 40, SPECIES_DUCKLETT },
-    { 35, 40, SPECIES_FEEBAS },
+    { 25, 35, SPECIES_SNOVER },
+    { 25, 30, SPECIES_RELICANTH },
+    { 35, 40, SPECIES_SOBBLE },
+    { 30, 40, SPECIES_BUIZEL },
+    { 35, 40, SPECIES_TOTODILE },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB4F_FireRed_Evening_WaterMonsInfo = { 2, sSeafoamIslandsB4F_FireRed_Evening_WaterMons };
@@ -7767,17 +7767,17 @@ const struct WildPokemonInfo sSeafoamIslandsB4F_FireRed_Evening_WaterMonsInfo = 
 #ifdef FIRERED
 const struct WildPokemon sSeafoamIslandsB4F_FireRed_Night_LandMons[] =
 {
-    { 30, 30, SPECIES_LUNATONE },
-    { 32, 32, SPECIES_GLIMMET },
-    { 32, 32, SPECIES_SNEASEL },
-    { 34, 34, SPECIES_SLOWPOKE },
-    { 32, 32, SPECIES_VELUZA },
-    { 26, 26, SPECIES_MAREANIE },
+    { 30, 30, SPECIES_GLIMMET },
+    { 32, 32, SPECIES_CARBINK },
+    { 32, 32, SPECIES_LUNATONE },
     { 34, 34, SPECIES_FRILLISH },
-    { 34, 34, SPECIES_SMOOCHUM },
-    { 36, 36, SPECIES_SOLROCK },
-    { 28, 28, SPECIES_LUNATONE },
-    { 36, 36, SPECIES_CARBINK },
+    { 32, 32, SPECIES_BRUXISH },
+    { 26, 26, SPECIES_SNEASEL },
+    { 34, 34, SPECIES_QWILFISH },
+    { 34, 34, SPECIES_GLIMMET },
+    { 36, 36, SPECIES_LUNATONE },
+    { 28, 28, SPECIES_SLOWPOKE },
+    { 36, 36, SPECIES_FRILLISH },
     { 30, 30, SPECIES_BRUXISH },
 };
 
@@ -7785,11 +7785,11 @@ const struct WildPokemonInfo sSeafoamIslandsB4F_FireRed_Night_LandMonsInfo = { 7
 
 const struct WildPokemon sSeafoamIslandsB4F_FireRed_Night_WaterMons[] =
 {
-    { 25, 35, SPECIES_SNEASEL },
-    { 25, 30, SPECIES_SLOWPOKE },
+    { 25, 35, SPECIES_SMOOCHUM },
+    { 25, 30, SPECIES_CARVANHA },
     { 35, 40, SPECIES_SKRELP },
-    { 30, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 30, 40, SPECIES_VELUZA },
+    { 35, 40, SPECIES_BASCULEGION_M },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB4F_FireRed_Night_WaterMonsInfo = { 2, sSeafoamIslandsB4F_FireRed_Night_WaterMons };
@@ -7845,29 +7845,29 @@ const struct WildPokemonInfo sSeafoamIslandsB4F_LeafGreen_FishingMonsInfo = { 20
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslandsB4F_LeafGreen_Evening_LandMons[] =
 {
-    { 30, 30, SPECIES_ROLYCOLY },
-    { 32, 32, SPECIES_TOTODILE },
-    { 32, 32, SPECIES_FINIZEN },
+    { 30, 30, SPECIES_SPHEAL },
+    { 32, 32, SPECIES_CUBCHOO },
+    { 32, 32, SPECIES_PYUKUMUKU },
     { 34, 34, SPECIES_VULPIX_ALOLA },
-    { 32, 32, SPECIES_SOBBLE },
-    { 26, 26, SPECIES_KLAWF },
-    { 34, 34, SPECIES_ARROKUDA },
-    { 34, 34, SPECIES_LOTAD },
-    { 36, 36, SPECIES_RELICANTH },
-    { 28, 28, SPECIES_LILEEP },
-    { 36, 36, SPECIES_ALOMOMOLA },
-    { 30, 30, SPECIES_ARCTOZOLT },
+    { 32, 32, SPECIES_WAILMER },
+    { 26, 26, SPECIES_SHUCKLE },
+    { 34, 34, SPECIES_CHEWTLE },
+    { 34, 34, SPECIES_DONDOZO },
+    { 36, 36, SPECIES_FEEBAS },
+    { 28, 28, SPECIES_DRACOVISH },
+    { 36, 36, SPECIES_DRACOVISH },
+    { 30, 30, SPECIES_BASCULIN_RED_STRIPED },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB4F_LeafGreen_Evening_LandMonsInfo = { 7, sSeafoamIslandsB4F_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sSeafoamIslandsB4F_LeafGreen_Evening_WaterMons[] =
 {
-    { 25, 35, SPECIES_WAILMER },
-    { 25, 30, SPECIES_TYMPOLE },
-    { 35, 40, SPECIES_SPHEAL },
-    { 30, 40, SPECIES_DUCKLETT },
-    { 35, 40, SPECIES_FEEBAS },
+    { 25, 35, SPECIES_SNOVER },
+    { 25, 30, SPECIES_RELICANTH },
+    { 35, 40, SPECIES_SOBBLE },
+    { 30, 40, SPECIES_BUIZEL },
+    { 35, 40, SPECIES_TOTODILE },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB4F_LeafGreen_Evening_WaterMonsInfo = { 2, sSeafoamIslandsB4F_LeafGreen_Evening_WaterMons };
@@ -7876,17 +7876,17 @@ const struct WildPokemonInfo sSeafoamIslandsB4F_LeafGreen_Evening_WaterMonsInfo 
 #ifdef LEAFGREEN
 const struct WildPokemon sSeafoamIslandsB4F_LeafGreen_Night_LandMons[] =
 {
-    { 30, 30, SPECIES_LUNATONE },
-    { 32, 32, SPECIES_GLIMMET },
-    { 32, 32, SPECIES_SNEASEL },
-    { 34, 34, SPECIES_SLOWPOKE },
-    { 32, 32, SPECIES_VELUZA },
-    { 26, 26, SPECIES_MAREANIE },
+    { 30, 30, SPECIES_GLIMMET },
+    { 32, 32, SPECIES_CARBINK },
+    { 32, 32, SPECIES_LUNATONE },
     { 34, 34, SPECIES_FRILLISH },
-    { 34, 34, SPECIES_SMOOCHUM },
-    { 36, 36, SPECIES_SOLROCK },
-    { 28, 28, SPECIES_LUNATONE },
-    { 36, 36, SPECIES_CARBINK },
+    { 32, 32, SPECIES_BRUXISH },
+    { 26, 26, SPECIES_SNEASEL },
+    { 34, 34, SPECIES_QWILFISH },
+    { 34, 34, SPECIES_GLIMMET },
+    { 36, 36, SPECIES_LUNATONE },
+    { 28, 28, SPECIES_SLOWPOKE },
+    { 36, 36, SPECIES_FRILLISH },
     { 30, 30, SPECIES_BRUXISH },
 };
 
@@ -7894,11 +7894,11 @@ const struct WildPokemonInfo sSeafoamIslandsB4F_LeafGreen_Night_LandMonsInfo = {
 
 const struct WildPokemon sSeafoamIslandsB4F_LeafGreen_Night_WaterMons[] =
 {
-    { 25, 35, SPECIES_SNEASEL },
-    { 25, 30, SPECIES_SLOWPOKE },
+    { 25, 35, SPECIES_SMOOCHUM },
+    { 25, 30, SPECIES_CARVANHA },
     { 35, 40, SPECIES_SKRELP },
-    { 30, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 30, 40, SPECIES_VELUZA },
+    { 35, 40, SPECIES_BASCULEGION_M },
 };
 
 const struct WildPokemonInfo sSeafoamIslandsB4F_LeafGreen_Night_WaterMonsInfo = { 2, sSeafoamIslandsB4F_LeafGreen_Night_WaterMons };
@@ -7927,18 +7927,18 @@ const struct WildPokemonInfo sPokemonTower3F_FireRed_LandMonsInfo = { 2, sPokemo
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower3F_FireRed_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_ELGYEM },
-    { 16, 16, SPECIES_SOLOSIS },
-    { 17, 17, SPECIES_MUNNA },
+    { 15, 15, SPECIES_CHINGLING },
+    { 16, 16, SPECIES_MIME_JR },
+    { 17, 17, SPECIES_SPOINK },
     { 13, 13, SPECIES_SLOWPOKE_GALAR },
-    { 14, 14, SPECIES_GOTHITA },
-    { 18, 18, SPECIES_ESPURR },
-    { 19, 19, SPECIES_CHINGLING },
-    { 15, 15, SPECIES_SPOINK },
-    { 17, 17, SPECIES_HATENNA },
-    { 17, 17, SPECIES_WOOBAT },
-    { 17, 17, SPECIES_NATU },
-    { 20, 20, SPECIES_MIME_JR },
+    { 14, 14, SPECIES_NATU },
+    { 18, 18, SPECIES_WOOBAT },
+    { 19, 19, SPECIES_HATENNA },
+    { 15, 15, SPECIES_ESPURR },
+    { 17, 17, SPECIES_BRONZOR },
+    { 17, 17, SPECIES_HONEDGE },
+    { 17, 17, SPECIES_RALTS },
+    { 20, 20, SPECIES_SINISTEA_PHONY },
 };
 
 const struct WildPokemonInfo sPokemonTower3F_FireRed_Evening_LandMonsInfo = { 2, sPokemonTower3F_FireRed_Evening_LandMons };
@@ -7947,18 +7947,18 @@ const struct WildPokemonInfo sPokemonTower3F_FireRed_Evening_LandMonsInfo = { 2,
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower3F_FireRed_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_MUNNA },
-    { 16, 16, SPECIES_HOUNDOUR },
-    { 17, 17, SPECIES_WOOBAT },
-    { 13, 13, SPECIES_NATU },
-    { 14, 14, SPECIES_WYNAUT },
-    { 18, 18, SPECIES_SLOWPOKE_GALAR },
-    { 19, 19, SPECIES_GOLETT },
-    { 15, 15, SPECIES_HATENNA },
-    { 17, 17, SPECIES_BRONZOR },
-    { 17, 17, SPECIES_MUNNA },
-    { 17, 17, SPECIES_ELGYEM },
-    { 20, 20, SPECIES_SOLOSIS },
+    { 15, 15, SPECIES_WOOBAT },
+    { 16, 16, SPECIES_ZORUA_HISUI },
+    { 17, 17, SPECIES_PUMPKABOO_AVERAGE },
+    { 13, 13, SPECIES_NICKIT },
+    { 14, 14, SPECIES_NATU },
+    { 18, 18, SPECIES_RATTATA_ALOLA },
+    { 19, 19, SPECIES_MASCHIFF },
+    { 15, 15, SPECIES_MEOWTH_ALOLA },
+    { 17, 17, SPECIES_SOLOSIS },
+    { 17, 17, SPECIES_MIME_JR },
+    { 17, 17, SPECIES_SPOINK },
+    { 20, 20, SPECIES_YAMASK_GALAR },
 };
 
 const struct WildPokemonInfo sPokemonTower3F_FireRed_Night_LandMonsInfo = { 2, sPokemonTower3F_FireRed_Night_LandMons };
@@ -7987,18 +7987,18 @@ const struct WildPokemonInfo sPokemonTower3F_LeafGreen_LandMonsInfo = { 2, sPoke
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower3F_LeafGreen_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_ELGYEM },
-    { 16, 16, SPECIES_SOLOSIS },
-    { 17, 17, SPECIES_MUNNA },
+    { 15, 15, SPECIES_CHINGLING },
+    { 16, 16, SPECIES_MIME_JR },
+    { 17, 17, SPECIES_SPOINK },
     { 13, 13, SPECIES_SLOWPOKE_GALAR },
-    { 14, 14, SPECIES_GOTHITA },
-    { 18, 18, SPECIES_ESPURR },
-    { 19, 19, SPECIES_CHINGLING },
-    { 15, 15, SPECIES_SPOINK },
-    { 17, 17, SPECIES_HATENNA },
-    { 17, 17, SPECIES_WOOBAT },
-    { 17, 17, SPECIES_NATU },
-    { 20, 20, SPECIES_MIME_JR },
+    { 14, 14, SPECIES_NATU },
+    { 18, 18, SPECIES_WOOBAT },
+    { 19, 19, SPECIES_HATENNA },
+    { 15, 15, SPECIES_ESPURR },
+    { 17, 17, SPECIES_BRONZOR },
+    { 17, 17, SPECIES_HONEDGE },
+    { 17, 17, SPECIES_RALTS },
+    { 20, 20, SPECIES_SINISTEA_PHONY },
 };
 
 const struct WildPokemonInfo sPokemonTower3F_LeafGreen_Evening_LandMonsInfo = { 2, sPokemonTower3F_LeafGreen_Evening_LandMons };
@@ -8007,18 +8007,18 @@ const struct WildPokemonInfo sPokemonTower3F_LeafGreen_Evening_LandMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower3F_LeafGreen_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_MUNNA },
-    { 16, 16, SPECIES_HOUNDOUR },
-    { 17, 17, SPECIES_WOOBAT },
-    { 13, 13, SPECIES_NATU },
-    { 14, 14, SPECIES_WYNAUT },
-    { 18, 18, SPECIES_SLOWPOKE_GALAR },
-    { 19, 19, SPECIES_GOLETT },
-    { 15, 15, SPECIES_HATENNA },
-    { 17, 17, SPECIES_BRONZOR },
-    { 17, 17, SPECIES_MUNNA },
-    { 17, 17, SPECIES_ELGYEM },
-    { 20, 20, SPECIES_SOLOSIS },
+    { 15, 15, SPECIES_WOOBAT },
+    { 16, 16, SPECIES_ZORUA_HISUI },
+    { 17, 17, SPECIES_PUMPKABOO_AVERAGE },
+    { 13, 13, SPECIES_NICKIT },
+    { 14, 14, SPECIES_NATU },
+    { 18, 18, SPECIES_RATTATA_ALOLA },
+    { 19, 19, SPECIES_MASCHIFF },
+    { 15, 15, SPECIES_MEOWTH_ALOLA },
+    { 17, 17, SPECIES_SOLOSIS },
+    { 17, 17, SPECIES_MIME_JR },
+    { 17, 17, SPECIES_SPOINK },
+    { 20, 20, SPECIES_YAMASK_GALAR },
 };
 
 const struct WildPokemonInfo sPokemonTower3F_LeafGreen_Night_LandMonsInfo = { 2, sPokemonTower3F_LeafGreen_Night_LandMons };
@@ -8047,18 +8047,18 @@ const struct WildPokemonInfo sPokemonTower4F_FireRed_LandMonsInfo = { 4, sPokemo
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower4F_FireRed_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_STUNKY },
-    { 16, 16, SPECIES_LITWICK },
-    { 17, 17, SPECIES_VULLABY },
-    { 13, 13, SPECIES_RALTS },
-    { 14, 14, SPECIES_ZORUA },
-    { 18, 18, SPECIES_SHUPPET },
-    { 20, 20, SPECIES_CHINGLING },
-    { 15, 15, SPECIES_ESPURR },
-    { 17, 17, SPECIES_MASCHIFF },
-    { 17, 17, SPECIES_FLITTLE },
-    { 17, 17, SPECIES_SPOINK },
-    { 19, 19, SPECIES_GOTHITA },
+    { 15, 15, SPECIES_GRIMER_ALOLA },
+    { 16, 16, SPECIES_POOCHYENA },
+    { 17, 17, SPECIES_HOUNDOUR },
+    { 13, 13, SPECIES_SANDILE },
+    { 14, 14, SPECIES_WOOBAT },
+    { 18, 18, SPECIES_PAWNIARD },
+    { 20, 20, SPECIES_FLITTLE },
+    { 15, 15, SPECIES_MUNNA },
+    { 17, 17, SPECIES_YAMASK },
+    { 17, 17, SPECIES_MEDITITE },
+    { 17, 17, SPECIES_ESPURR },
+    { 19, 19, SPECIES_HATENNA },
 };
 
 const struct WildPokemonInfo sPokemonTower4F_FireRed_Evening_LandMonsInfo = { 4, sPokemonTower4F_FireRed_Evening_LandMons };
@@ -8067,17 +8067,17 @@ const struct WildPokemonInfo sPokemonTower4F_FireRed_Evening_LandMonsInfo = { 4,
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower4F_FireRed_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_NATU },
-    { 16, 16, SPECIES_GREAVARD },
-    { 17, 17, SPECIES_MEOWTH_ALOLA },
-    { 13, 13, SPECIES_NATU },
-    { 14, 14, SPECIES_RATTATA_ALOLA },
-    { 18, 18, SPECIES_YAMASK },
-    { 20, 20, SPECIES_GRIMER_ALOLA },
-    { 15, 15, SPECIES_ESPURR },
-    { 17, 17, SPECIES_SPOINK },
-    { 17, 17, SPECIES_HOUNDOUR },
-    { 17, 17, SPECIES_BRAMBLIN },
+    { 15, 15, SPECIES_SLOWPOKE_GALAR },
+    { 16, 16, SPECIES_SHUPPET },
+    { 17, 17, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 13, 13, SPECIES_WYNAUT },
+    { 14, 14, SPECIES_GOTHITA },
+    { 18, 18, SPECIES_ELGYEM },
+    { 20, 20, SPECIES_INKAY },
+    { 15, 15, SPECIES_PURRLOIN },
+    { 17, 17, SPECIES_SLOWPOKE_GALAR },
+    { 17, 17, SPECIES_DRIFLOON },
+    { 17, 17, SPECIES_PHANTUMP },
     { 19, 19, SPECIES_CHINGLING },
 };
 
@@ -8107,18 +8107,18 @@ const struct WildPokemonInfo sPokemonTower4F_LeafGreen_LandMonsInfo = { 4, sPoke
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower4F_LeafGreen_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_STUNKY },
-    { 16, 16, SPECIES_LITWICK },
-    { 17, 17, SPECIES_VULLABY },
-    { 13, 13, SPECIES_RALTS },
-    { 14, 14, SPECIES_ZORUA },
-    { 18, 18, SPECIES_SHUPPET },
-    { 20, 20, SPECIES_CHINGLING },
-    { 15, 15, SPECIES_ESPURR },
-    { 17, 17, SPECIES_MASCHIFF },
-    { 17, 17, SPECIES_FLITTLE },
-    { 17, 17, SPECIES_SPOINK },
-    { 19, 19, SPECIES_GOTHITA },
+    { 15, 15, SPECIES_GRIMER_ALOLA },
+    { 16, 16, SPECIES_POOCHYENA },
+    { 17, 17, SPECIES_HOUNDOUR },
+    { 13, 13, SPECIES_SANDILE },
+    { 14, 14, SPECIES_WOOBAT },
+    { 18, 18, SPECIES_PAWNIARD },
+    { 20, 20, SPECIES_FLITTLE },
+    { 15, 15, SPECIES_MUNNA },
+    { 17, 17, SPECIES_YAMASK },
+    { 17, 17, SPECIES_MEDITITE },
+    { 17, 17, SPECIES_ESPURR },
+    { 19, 19, SPECIES_HATENNA },
 };
 
 const struct WildPokemonInfo sPokemonTower4F_LeafGreen_Evening_LandMonsInfo = { 4, sPokemonTower4F_LeafGreen_Evening_LandMons };
@@ -8127,17 +8127,17 @@ const struct WildPokemonInfo sPokemonTower4F_LeafGreen_Evening_LandMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower4F_LeafGreen_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_NATU },
-    { 16, 16, SPECIES_GREAVARD },
-    { 17, 17, SPECIES_MEOWTH_ALOLA },
-    { 13, 13, SPECIES_NATU },
-    { 14, 14, SPECIES_RATTATA_ALOLA },
-    { 18, 18, SPECIES_YAMASK },
-    { 20, 20, SPECIES_GRIMER_ALOLA },
-    { 15, 15, SPECIES_ESPURR },
-    { 17, 17, SPECIES_SPOINK },
-    { 17, 17, SPECIES_HOUNDOUR },
-    { 17, 17, SPECIES_BRAMBLIN },
+    { 15, 15, SPECIES_SLOWPOKE_GALAR },
+    { 16, 16, SPECIES_SHUPPET },
+    { 17, 17, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 13, 13, SPECIES_WYNAUT },
+    { 14, 14, SPECIES_GOTHITA },
+    { 18, 18, SPECIES_ELGYEM },
+    { 20, 20, SPECIES_INKAY },
+    { 15, 15, SPECIES_PURRLOIN },
+    { 17, 17, SPECIES_SLOWPOKE_GALAR },
+    { 17, 17, SPECIES_DRIFLOON },
+    { 17, 17, SPECIES_PHANTUMP },
     { 19, 19, SPECIES_CHINGLING },
 };
 
@@ -8167,18 +8167,18 @@ const struct WildPokemonInfo sPokemonTower5F_FireRed_LandMonsInfo = { 6, sPokemo
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower5F_FireRed_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_GOTHITA },
-    { 16, 16, SPECIES_SANDILE },
-    { 17, 17, SPECIES_MIME_JR },
-    { 13, 13, SPECIES_ZORUA },
-    { 14, 14, SPECIES_RALTS },
-    { 18, 18, SPECIES_INKAY },
-    { 20, 20, SPECIES_MEDITITE },
-    { 15, 15, SPECIES_SLOWPOKE_GALAR },
+    { 15, 15, SPECIES_LITWICK },
+    { 16, 16, SPECIES_VULLABY },
+    { 17, 17, SPECIES_SOLOSIS },
+    { 13, 13, SPECIES_MEDITITE },
+    { 14, 14, SPECIES_NICKIT },
+    { 18, 18, SPECIES_LITWICK },
+    { 20, 20, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 15, 15, SPECIES_YAMASK },
+    { 17, 17, SPECIES_ESPURR },
+    { 17, 17, SPECIES_SCRAGGY },
     { 17, 17, SPECIES_FLITTLE },
-    { 17, 17, SPECIES_WOOBAT },
-    { 17, 17, SPECIES_YAMASK_GALAR },
-    { 19, 19, SPECIES_ZORUA_HISUI },
+    { 19, 19, SPECIES_IMPIDIMP },
 };
 
 const struct WildPokemonInfo sPokemonTower5F_FireRed_Evening_LandMonsInfo = { 6, sPokemonTower5F_FireRed_Evening_LandMons };
@@ -8187,18 +8187,18 @@ const struct WildPokemonInfo sPokemonTower5F_FireRed_Evening_LandMonsInfo = { 6,
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower5F_FireRed_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_SOLOSIS },
-    { 16, 16, SPECIES_SCRAGGY },
-    { 17, 17, SPECIES_PURRLOIN },
-    { 13, 13, SPECIES_PHANTUMP },
-    { 14, 14, SPECIES_BRONZOR },
-    { 18, 18, SPECIES_SOLOSIS },
-    { 20, 20, SPECIES_STUNKY },
-    { 15, 15, SPECIES_SHUPPET },
+    { 15, 15, SPECIES_FLITTLE },
+    { 16, 16, SPECIES_STUNKY },
+    { 17, 17, SPECIES_ZORUA },
+    { 13, 13, SPECIES_BRAMBLIN },
+    { 14, 14, SPECIES_GREAVARD },
+    { 18, 18, SPECIES_CHINGLING },
+    { 20, 20, SPECIES_WYNAUT },
+    { 15, 15, SPECIES_PAWNIARD },
     { 17, 17, SPECIES_DRIFLOON },
-    { 17, 17, SPECIES_VULLABY },
-    { 17, 17, SPECIES_IMPIDIMP },
-    { 19, 19, SPECIES_NICKIT },
+    { 17, 17, SPECIES_SANDYGAST },
+    { 17, 17, SPECIES_RATTATA_ALOLA },
+    { 19, 19, SPECIES_WOOBAT },
 };
 
 const struct WildPokemonInfo sPokemonTower5F_FireRed_Night_LandMonsInfo = { 6, sPokemonTower5F_FireRed_Night_LandMons };
@@ -8227,18 +8227,18 @@ const struct WildPokemonInfo sPokemonTower5F_LeafGreen_LandMonsInfo = { 6, sPoke
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower5F_LeafGreen_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_GOTHITA },
-    { 16, 16, SPECIES_SANDILE },
-    { 17, 17, SPECIES_MIME_JR },
-    { 13, 13, SPECIES_ZORUA },
-    { 14, 14, SPECIES_RALTS },
-    { 18, 18, SPECIES_INKAY },
-    { 20, 20, SPECIES_MEDITITE },
-    { 15, 15, SPECIES_SLOWPOKE_GALAR },
+    { 15, 15, SPECIES_LITWICK },
+    { 16, 16, SPECIES_VULLABY },
+    { 17, 17, SPECIES_SOLOSIS },
+    { 13, 13, SPECIES_MEDITITE },
+    { 14, 14, SPECIES_NICKIT },
+    { 18, 18, SPECIES_LITWICK },
+    { 20, 20, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 15, 15, SPECIES_YAMASK },
+    { 17, 17, SPECIES_ESPURR },
+    { 17, 17, SPECIES_SCRAGGY },
     { 17, 17, SPECIES_FLITTLE },
-    { 17, 17, SPECIES_WOOBAT },
-    { 17, 17, SPECIES_YAMASK_GALAR },
-    { 19, 19, SPECIES_ZORUA_HISUI },
+    { 19, 19, SPECIES_IMPIDIMP },
 };
 
 const struct WildPokemonInfo sPokemonTower5F_LeafGreen_Evening_LandMonsInfo = { 6, sPokemonTower5F_LeafGreen_Evening_LandMons };
@@ -8247,18 +8247,18 @@ const struct WildPokemonInfo sPokemonTower5F_LeafGreen_Evening_LandMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower5F_LeafGreen_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_SOLOSIS },
-    { 16, 16, SPECIES_SCRAGGY },
-    { 17, 17, SPECIES_PURRLOIN },
-    { 13, 13, SPECIES_PHANTUMP },
-    { 14, 14, SPECIES_BRONZOR },
-    { 18, 18, SPECIES_SOLOSIS },
-    { 20, 20, SPECIES_STUNKY },
-    { 15, 15, SPECIES_SHUPPET },
+    { 15, 15, SPECIES_FLITTLE },
+    { 16, 16, SPECIES_STUNKY },
+    { 17, 17, SPECIES_ZORUA },
+    { 13, 13, SPECIES_BRAMBLIN },
+    { 14, 14, SPECIES_GREAVARD },
+    { 18, 18, SPECIES_CHINGLING },
+    { 20, 20, SPECIES_WYNAUT },
+    { 15, 15, SPECIES_PAWNIARD },
     { 17, 17, SPECIES_DRIFLOON },
-    { 17, 17, SPECIES_VULLABY },
-    { 17, 17, SPECIES_IMPIDIMP },
-    { 19, 19, SPECIES_NICKIT },
+    { 17, 17, SPECIES_SANDYGAST },
+    { 17, 17, SPECIES_RATTATA_ALOLA },
+    { 19, 19, SPECIES_WOOBAT },
 };
 
 const struct WildPokemonInfo sPokemonTower5F_LeafGreen_Night_LandMonsInfo = { 6, sPokemonTower5F_LeafGreen_Night_LandMons };
@@ -8287,18 +8287,18 @@ const struct WildPokemonInfo sPokemonTower6F_FireRed_LandMonsInfo = { 8, sPokemo
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower6F_FireRed_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_ZIGZAGOON_GALAR },
-    { 17, 17, SPECIES_MEOWTH_ALOLA },
-    { 18, 18, SPECIES_GOLETT },
-    { 14, 14, SPECIES_MUNNA },
-    { 15, 15, SPECIES_POOCHYENA },
-    { 19, 19, SPECIES_SANDYGAST },
-    { 21, 21, SPECIES_LITWICK },
-    { 17, 17, SPECIES_HONEDGE },
-    { 18, 18, SPECIES_MASCHIFF },
-    { 19, 19, SPECIES_GREAVARD },
-    { 18, 18, SPECIES_WYNAUT },
-    { 23, 23, SPECIES_HATENNA },
+    { 16, 16, SPECIES_MUNNA },
+    { 17, 17, SPECIES_SHUPPET },
+    { 18, 18, SPECIES_HONEDGE },
+    { 14, 14, SPECIES_MEOWTH_ALOLA },
+    { 15, 15, SPECIES_RALTS },
+    { 19, 19, SPECIES_GOLETT },
+    { 21, 21, SPECIES_PHANTUMP },
+    { 17, 17, SPECIES_BRONZOR },
+    { 18, 18, SPECIES_HATENNA },
+    { 19, 19, SPECIES_MASCHIFF },
+    { 18, 18, SPECIES_POOCHYENA },
+    { 23, 23, SPECIES_GOTHITA },
 };
 
 const struct WildPokemonInfo sPokemonTower6F_FireRed_Evening_LandMonsInfo = { 8, sPokemonTower6F_FireRed_Evening_LandMons };
@@ -8307,18 +8307,18 @@ const struct WildPokemonInfo sPokemonTower6F_FireRed_Evening_LandMonsInfo = { 8,
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower6F_FireRed_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_HATENNA },
-    { 17, 17, SPECIES_ELGYEM },
-    { 18, 18, SPECIES_PAWNIARD },
-    { 14, 14, SPECIES_BALTOY },
-    { 15, 15, SPECIES_FLITTLE },
-    { 19, 19, SPECIES_RALTS },
-    { 21, 21, SPECIES_IMPIDIMP },
-    { 17, 17, SPECIES_GOLETT },
-    { 18, 18, SPECIES_CHINGLING },
-    { 19, 19, SPECIES_SOLOSIS },
-    { 18, 18, SPECIES_NICKIT },
-    { 23, 23, SPECIES_RATTATA_ALOLA },
+    { 16, 16, SPECIES_HONEDGE },
+    { 17, 17, SPECIES_ZIGZAGOON_GALAR },
+    { 18, 18, SPECIES_NATU },
+    { 14, 14, SPECIES_HOUNDOUR },
+    { 15, 15, SPECIES_SLOWPOKE_GALAR },
+    { 19, 19, SPECIES_ZORUA_HISUI },
+    { 21, 21, SPECIES_PUMPKABOO_AVERAGE },
+    { 17, 17, SPECIES_SANDILE },
+    { 18, 18, SPECIES_SINISTEA_PHONY },
+    { 19, 19, SPECIES_SPOINK },
+    { 18, 18, SPECIES_PURRLOIN },
+    { 23, 23, SPECIES_MIME_JR },
 };
 
 const struct WildPokemonInfo sPokemonTower6F_FireRed_Night_LandMonsInfo = { 8, sPokemonTower6F_FireRed_Night_LandMons };
@@ -8347,18 +8347,18 @@ const struct WildPokemonInfo sPokemonTower6F_LeafGreen_LandMonsInfo = { 8, sPoke
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower6F_LeafGreen_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_ZIGZAGOON_GALAR },
-    { 17, 17, SPECIES_MEOWTH_ALOLA },
-    { 18, 18, SPECIES_GOLETT },
-    { 14, 14, SPECIES_MUNNA },
-    { 15, 15, SPECIES_POOCHYENA },
-    { 19, 19, SPECIES_SANDYGAST },
-    { 21, 21, SPECIES_LITWICK },
-    { 17, 17, SPECIES_HONEDGE },
-    { 18, 18, SPECIES_MASCHIFF },
-    { 19, 19, SPECIES_GREAVARD },
-    { 18, 18, SPECIES_WYNAUT },
-    { 23, 23, SPECIES_HATENNA },
+    { 16, 16, SPECIES_MUNNA },
+    { 17, 17, SPECIES_SHUPPET },
+    { 18, 18, SPECIES_HONEDGE },
+    { 14, 14, SPECIES_MEOWTH_ALOLA },
+    { 15, 15, SPECIES_RALTS },
+    { 19, 19, SPECIES_GOLETT },
+    { 21, 21, SPECIES_PHANTUMP },
+    { 17, 17, SPECIES_BRONZOR },
+    { 18, 18, SPECIES_HATENNA },
+    { 19, 19, SPECIES_MASCHIFF },
+    { 18, 18, SPECIES_POOCHYENA },
+    { 23, 23, SPECIES_GOTHITA },
 };
 
 const struct WildPokemonInfo sPokemonTower6F_LeafGreen_Evening_LandMonsInfo = { 8, sPokemonTower6F_LeafGreen_Evening_LandMons };
@@ -8367,18 +8367,18 @@ const struct WildPokemonInfo sPokemonTower6F_LeafGreen_Evening_LandMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower6F_LeafGreen_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_HATENNA },
-    { 17, 17, SPECIES_ELGYEM },
-    { 18, 18, SPECIES_PAWNIARD },
-    { 14, 14, SPECIES_BALTOY },
-    { 15, 15, SPECIES_FLITTLE },
-    { 19, 19, SPECIES_RALTS },
-    { 21, 21, SPECIES_IMPIDIMP },
-    { 17, 17, SPECIES_GOLETT },
-    { 18, 18, SPECIES_CHINGLING },
-    { 19, 19, SPECIES_SOLOSIS },
-    { 18, 18, SPECIES_NICKIT },
-    { 23, 23, SPECIES_RATTATA_ALOLA },
+    { 16, 16, SPECIES_HONEDGE },
+    { 17, 17, SPECIES_ZIGZAGOON_GALAR },
+    { 18, 18, SPECIES_NATU },
+    { 14, 14, SPECIES_HOUNDOUR },
+    { 15, 15, SPECIES_SLOWPOKE_GALAR },
+    { 19, 19, SPECIES_ZORUA_HISUI },
+    { 21, 21, SPECIES_PUMPKABOO_AVERAGE },
+    { 17, 17, SPECIES_SANDILE },
+    { 18, 18, SPECIES_SINISTEA_PHONY },
+    { 19, 19, SPECIES_SPOINK },
+    { 18, 18, SPECIES_PURRLOIN },
+    { 23, 23, SPECIES_MIME_JR },
 };
 
 const struct WildPokemonInfo sPokemonTower6F_LeafGreen_Night_LandMonsInfo = { 8, sPokemonTower6F_LeafGreen_Night_LandMons };
@@ -8407,17 +8407,17 @@ const struct WildPokemonInfo sPokemonTower7F_FireRed_LandMonsInfo = { 10, sPokem
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower7F_FireRed_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_PONYTA_GALAR },
-    { 17, 17, SPECIES_PONYTA_GALAR },
+    { 16, 16, SPECIES_SABLEYE },
+    { 17, 17, SPECIES_CORSOLA_GALAR },
+    { 18, 18, SPECIES_MORPEKO_FULL_BELLY },
+    { 15, 15, SPECIES_CORSOLA_GALAR },
+    { 19, 19, SPECIES_PONYTA_GALAR },
+    { 23, 23, SPECIES_QWILFISH_HISUI },
+    { 17, 17, SPECIES_ROTOM },
+    { 19, 19, SPECIES_SABLEYE },
     { 18, 18, SPECIES_MURKROW },
-    { 15, 15, SPECIES_SABLEYE },
-    { 19, 19, SPECIES_CORSOLA_GALAR },
-    { 23, 23, SPECIES_ROTOM },
-    { 17, 17, SPECIES_MISDREAVUS },
-    { 19, 19, SPECIES_ROTOM },
-    { 18, 18, SPECIES_QWILFISH_HISUI },
-    { 23, 23, SPECIES_CORSOLA_GALAR },
-    { 18, 18, SPECIES_MURKROW },
+    { 23, 23, SPECIES_MISDREAVUS },
+    { 18, 18, SPECIES_YAMASK_GALAR },
     { 25, 25, SPECIES_MISDREAVUS },
 };
 
@@ -8427,18 +8427,18 @@ const struct WildPokemonInfo sPokemonTower7F_FireRed_Evening_LandMonsInfo = { 10
 #ifdef FIRERED
 const struct WildPokemon sPokemonTower7F_FireRed_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_MURKROW },
-    { 17, 17, SPECIES_SCRAGGY },
-    { 18, 18, SPECIES_SABLEYE },
-    { 15, 15, SPECIES_PONYTA_GALAR },
-    { 19, 19, SPECIES_MISDREAVUS },
-    { 23, 23, SPECIES_SCRAGGY },
-    { 17, 17, SPECIES_MASCHIFF },
-    { 19, 19, SPECIES_MEOWTH_ALOLA },
-    { 18, 18, SPECIES_BRONZOR },
-    { 23, 23, SPECIES_VULLABY },
-    { 18, 18, SPECIES_ZORUA },
-    { 25, 25, SPECIES_GOTHITA },
+    { 16, 16, SPECIES_MUNNA },
+    { 17, 17, SPECIES_GRIMER_ALOLA },
+    { 18, 18, SPECIES_CORSOLA_GALAR },
+    { 15, 15, SPECIES_ELGYEM },
+    { 19, 19, SPECIES_SABLEYE },
+    { 23, 23, SPECIES_QWILFISH_HISUI },
+    { 17, 17, SPECIES_ROTOM },
+    { 19, 19, SPECIES_PONYTA_GALAR },
+    { 18, 18, SPECIES_MURKROW },
+    { 23, 23, SPECIES_BALTOY },
+    { 18, 18, SPECIES_INKAY },
+    { 25, 25, SPECIES_MORPEKO_FULL_BELLY },
 };
 
 const struct WildPokemonInfo sPokemonTower7F_FireRed_Night_LandMonsInfo = { 10, sPokemonTower7F_FireRed_Night_LandMons };
@@ -8467,17 +8467,17 @@ const struct WildPokemonInfo sPokemonTower7F_LeafGreen_LandMonsInfo = { 10, sPok
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower7F_LeafGreen_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_PONYTA_GALAR },
-    { 17, 17, SPECIES_PONYTA_GALAR },
+    { 16, 16, SPECIES_SABLEYE },
+    { 17, 17, SPECIES_CORSOLA_GALAR },
+    { 18, 18, SPECIES_MORPEKO_FULL_BELLY },
+    { 15, 15, SPECIES_CORSOLA_GALAR },
+    { 19, 19, SPECIES_PONYTA_GALAR },
+    { 23, 23, SPECIES_QWILFISH_HISUI },
+    { 17, 17, SPECIES_ROTOM },
+    { 19, 19, SPECIES_SABLEYE },
     { 18, 18, SPECIES_MURKROW },
-    { 15, 15, SPECIES_SABLEYE },
-    { 19, 19, SPECIES_CORSOLA_GALAR },
-    { 23, 23, SPECIES_ROTOM },
-    { 17, 17, SPECIES_MISDREAVUS },
-    { 19, 19, SPECIES_ROTOM },
-    { 18, 18, SPECIES_QWILFISH_HISUI },
-    { 23, 23, SPECIES_CORSOLA_GALAR },
-    { 18, 18, SPECIES_MURKROW },
+    { 23, 23, SPECIES_MISDREAVUS },
+    { 18, 18, SPECIES_YAMASK_GALAR },
     { 25, 25, SPECIES_MISDREAVUS },
 };
 
@@ -8487,18 +8487,18 @@ const struct WildPokemonInfo sPokemonTower7F_LeafGreen_Evening_LandMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sPokemonTower7F_LeafGreen_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_MURKROW },
-    { 17, 17, SPECIES_SCRAGGY },
-    { 18, 18, SPECIES_SABLEYE },
-    { 15, 15, SPECIES_PONYTA_GALAR },
-    { 19, 19, SPECIES_MISDREAVUS },
-    { 23, 23, SPECIES_SCRAGGY },
-    { 17, 17, SPECIES_MASCHIFF },
-    { 19, 19, SPECIES_MEOWTH_ALOLA },
-    { 18, 18, SPECIES_BRONZOR },
-    { 23, 23, SPECIES_VULLABY },
-    { 18, 18, SPECIES_ZORUA },
-    { 25, 25, SPECIES_GOTHITA },
+    { 16, 16, SPECIES_MUNNA },
+    { 17, 17, SPECIES_GRIMER_ALOLA },
+    { 18, 18, SPECIES_CORSOLA_GALAR },
+    { 15, 15, SPECIES_ELGYEM },
+    { 19, 19, SPECIES_SABLEYE },
+    { 23, 23, SPECIES_QWILFISH_HISUI },
+    { 17, 17, SPECIES_ROTOM },
+    { 19, 19, SPECIES_PONYTA_GALAR },
+    { 18, 18, SPECIES_MURKROW },
+    { 23, 23, SPECIES_BALTOY },
+    { 18, 18, SPECIES_INKAY },
+    { 25, 25, SPECIES_MORPEKO_FULL_BELLY },
 };
 
 const struct WildPokemonInfo sPokemonTower7F_LeafGreen_Night_LandMonsInfo = { 10, sPokemonTower7F_LeafGreen_Night_LandMons };
@@ -8527,18 +8527,18 @@ const struct WildPokemonInfo sPowerPlant_FireRed_LandMonsInfo = { 7, sPowerPlant
 #ifdef FIRERED
 const struct WildPokemon sPowerPlant_FireRed_Evening_LandMons[] =
 {
-    { 22, 22, SPECIES_EMOLGA },
+    { 22, 22, SPECIES_HELIOPTILE },
     { 22, 22, SPECIES_JOLTIK },
-    { 25, 25, SPECIES_WATTREL },
-    { 25, 25, SPECIES_EMOLGA },
-    { 22, 22, SPECIES_JOLTIK },
-    { 24, 24, SPECIES_TADBULB },
-    { 31, 31, SPECIES_PINCURCHIN },
-    { 34, 34, SPECIES_MINUN },
-    { 26, 26, SPECIES_PLUSLE },
-    { 32, 32, SPECIES_BLITZLE },
+    { 25, 25, SPECIES_HELIOPTILE },
+    { 25, 25, SPECIES_ELEKID },
+    { 22, 22, SPECIES_TYNAMO },
+    { 24, 24, SPECIES_VOLTORB_HISUI },
+    { 31, 31, SPECIES_EMOLGA },
+    { 34, 34, SPECIES_PINCURCHIN },
     { 26, 26, SPECIES_MAREEP },
-    { 35, 35, SPECIES_ELEKID },
+    { 32, 32, SPECIES_PACHIRISU },
+    { 26, 26, SPECIES_YAMPER },
+    { 35, 35, SPECIES_ELECTRIKE },
 };
 
 const struct WildPokemonInfo sPowerPlant_FireRed_Evening_LandMonsInfo = { 7, sPowerPlant_FireRed_Evening_LandMons };
@@ -8549,16 +8549,16 @@ const struct WildPokemon sPowerPlant_FireRed_Night_LandMons[] =
 {
     { 22, 22, SPECIES_TOXEL },
     { 22, 22, SPECIES_DEDENNE },
-    { 25, 25, SPECIES_TINKATINK },
+    { 25, 25, SPECIES_MAWILE },
     { 25, 25, SPECIES_TOXEL },
-    { 22, 22, SPECIES_MAWILE },
-    { 24, 24, SPECIES_TINKATINK },
-    { 31, 31, SPECIES_DEDENNE },
-    { 34, 34, SPECIES_VAROOM },
-    { 26, 26, SPECIES_TOXEL },
+    { 22, 22, SPECIES_DEDENNE },
+    { 24, 24, SPECIES_VAROOM },
+    { 31, 31, SPECIES_TOXEL },
+    { 34, 34, SPECIES_TINKATINK },
+    { 26, 26, SPECIES_DEDENNE },
     { 32, 32, SPECIES_MAWILE },
     { 26, 26, SPECIES_TINKATINK },
-    { 35, 35, SPECIES_TOXEL },
+    { 35, 35, SPECIES_MAWILE },
 };
 
 const struct WildPokemonInfo sPowerPlant_FireRed_Night_LandMonsInfo = { 7, sPowerPlant_FireRed_Night_LandMons };
@@ -8587,18 +8587,18 @@ const struct WildPokemonInfo sPowerPlant_LeafGreen_LandMonsInfo = { 7, sPowerPla
 #ifdef LEAFGREEN
 const struct WildPokemon sPowerPlant_LeafGreen_Evening_LandMons[] =
 {
-    { 22, 22, SPECIES_EMOLGA },
+    { 22, 22, SPECIES_HELIOPTILE },
     { 22, 22, SPECIES_JOLTIK },
-    { 25, 25, SPECIES_WATTREL },
-    { 25, 25, SPECIES_EMOLGA },
-    { 22, 22, SPECIES_JOLTIK },
-    { 24, 24, SPECIES_TADBULB },
-    { 31, 31, SPECIES_PINCURCHIN },
-    { 34, 34, SPECIES_MINUN },
-    { 26, 26, SPECIES_PLUSLE },
-    { 31, 31, SPECIES_BLITZLE },
+    { 25, 25, SPECIES_HELIOPTILE },
+    { 25, 25, SPECIES_ELEKID },
+    { 22, 22, SPECIES_TYNAMO },
+    { 24, 24, SPECIES_VOLTORB_HISUI },
+    { 31, 31, SPECIES_EMOLGA },
+    { 34, 34, SPECIES_PINCURCHIN },
     { 26, 26, SPECIES_MAREEP },
-    { 34, 34, SPECIES_ELEKID },
+    { 31, 31, SPECIES_PACHIRISU },
+    { 26, 26, SPECIES_YAMPER },
+    { 34, 34, SPECIES_ELECTRIKE },
 };
 
 const struct WildPokemonInfo sPowerPlant_LeafGreen_Evening_LandMonsInfo = { 7, sPowerPlant_LeafGreen_Evening_LandMons };
@@ -8609,16 +8609,16 @@ const struct WildPokemon sPowerPlant_LeafGreen_Night_LandMons[] =
 {
     { 22, 22, SPECIES_TOXEL },
     { 22, 22, SPECIES_DEDENNE },
-    { 25, 25, SPECIES_TINKATINK },
+    { 25, 25, SPECIES_MAWILE },
     { 25, 25, SPECIES_TOXEL },
-    { 22, 22, SPECIES_MAWILE },
-    { 24, 24, SPECIES_TINKATINK },
-    { 31, 31, SPECIES_DEDENNE },
-    { 34, 34, SPECIES_VAROOM },
-    { 26, 26, SPECIES_TOXEL },
+    { 22, 22, SPECIES_DEDENNE },
+    { 24, 24, SPECIES_VAROOM },
+    { 31, 31, SPECIES_TOXEL },
+    { 34, 34, SPECIES_TINKATINK },
+    { 26, 26, SPECIES_DEDENNE },
     { 31, 31, SPECIES_MAWILE },
     { 26, 26, SPECIES_TINKATINK },
-    { 34, 34, SPECIES_TOXEL },
+    { 34, 34, SPECIES_MAWILE },
 };
 
 const struct WildPokemonInfo sPowerPlant_LeafGreen_Night_LandMonsInfo = { 7, sPowerPlant_LeafGreen_Night_LandMons };
@@ -8658,18 +8658,18 @@ const struct WildPokemonInfo sMtEmberExterior_FireRed_RockSmashMonsInfo = { 50, 
 #ifdef FIRERED
 const struct WildPokemon sMtEmberExterior_FireRed_Evening_LandMons[] =
 {
-    { 30, 30, SPECIES_CHARCADET },
-    { 38, 38, SPECIES_SCORBUNNY },
-    { 33, 33, SPECIES_CHARCADET },
-    { 32, 32, SPECIES_MIENFOO },
-    { 35, 35, SPECIES_CYCLIZAR },
-    { 33, 33, SPECIES_DURALUDON },
-    { 36, 36, SPECIES_SAWK },
-    { 40, 40, SPECIES_THROH },
-    { 30, 30, SPECIES_ANORITH },
-    { 39, 39, SPECIES_TYRUNT },
-    { 30, 30, SPECIES_NOIBAT },
-    { 42, 42, SPECIES_BARBOACH },
+    { 30, 30, SPECIES_DARUMAKA },
+    { 38, 38, SPECIES_FUECOCO },
+    { 33, 33, SPECIES_TORCHIC },
+    { 32, 32, SPECIES_RIOLU },
+    { 35, 35, SPECIES_TEPIG },
+    { 33, 33, SPECIES_DRAMPA },
+    { 36, 36, SPECIES_OMANYTE },
+    { 40, 40, SPECIES_CRABRAWLER },
+    { 30, 30, SPECIES_STUNFISK_GALAR },
+    { 39, 39, SPECIES_NOIBAT },
+    { 30, 30, SPECIES_SHIELDON },
+    { 42, 42, SPECIES_SIZZLIPEDE },
 };
 
 const struct WildPokemonInfo sMtEmberExterior_FireRed_Evening_LandMonsInfo = { 21, sMtEmberExterior_FireRed_Evening_LandMons };
@@ -8678,18 +8678,18 @@ const struct WildPokemonInfo sMtEmberExterior_FireRed_Evening_LandMonsInfo = { 2
 #ifdef FIRERED
 const struct WildPokemon sMtEmberExterior_FireRed_Night_LandMons[] =
 {
+    { 30, 30, SPECIES_HOUNDOUR },
+    { 38, 38, SPECIES_SALANDIT },
+    { 33, 33, SPECIES_SNEASEL_HISUI },
+    { 32, 32, SPECIES_WOOPER_PALDEA },
+    { 35, 35, SPECIES_SALANDIT },
+    { 33, 33, SPECIES_SNEASEL_HISUI },
+    { 36, 36, SPECIES_CROAGUNK },
+    { 40, 40, SPECIES_CROAGUNK },
+    { 30, 30, SPECIES_HOUNDOUR },
+    { 39, 39, SPECIES_YAMASK_GALAR },
     { 30, 30, SPECIES_SALANDIT },
-    { 38, 38, SPECIES_WOOPER_PALDEA },
-    { 33, 33, SPECIES_CROAGUNK },
-    { 32, 32, SPECIES_SALANDIT },
-    { 35, 35, SPECIES_SNEASEL_HISUI },
-    { 33, 33, SPECIES_CROAGUNK },
-    { 36, 36, SPECIES_WOOPER_PALDEA },
-    { 40, 40, SPECIES_MEDITITE },
-    { 30, 30, SPECIES_SANDYGAST },
-    { 39, 39, SPECIES_SANDILE },
-    { 30, 30, SPECIES_SNEASEL_HISUI },
-    { 42, 42, SPECIES_LITWICK },
+    { 42, 42, SPECIES_SCRAGGY },
 };
 
 const struct WildPokemonInfo sMtEmberExterior_FireRed_Night_LandMonsInfo = { 21, sMtEmberExterior_FireRed_Night_LandMons };
@@ -8729,18 +8729,18 @@ const struct WildPokemonInfo sMtEmberExterior_LeafGreen_RockSmashMonsInfo = { 50
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberExterior_LeafGreen_Evening_LandMons[] =
 {
-    { 30, 30, SPECIES_CHARCADET },
-    { 38, 38, SPECIES_SCORBUNNY },
-    { 33, 33, SPECIES_CHARCADET },
-    { 32, 32, SPECIES_MIENFOO },
-    { 35, 35, SPECIES_CYCLIZAR },
-    { 33, 33, SPECIES_DURALUDON },
-    { 36, 36, SPECIES_SAWK },
-    { 40, 40, SPECIES_THROH },
-    { 38, 38, SPECIES_ANORITH },
-    { 39, 39, SPECIES_TYRUNT },
-    { 40, 40, SPECIES_NOIBAT },
-    { 42, 42, SPECIES_BARBOACH },
+    { 30, 30, SPECIES_DARUMAKA },
+    { 38, 38, SPECIES_FUECOCO },
+    { 33, 33, SPECIES_TORCHIC },
+    { 32, 32, SPECIES_RIOLU },
+    { 35, 35, SPECIES_TEPIG },
+    { 33, 33, SPECIES_DRAMPA },
+    { 36, 36, SPECIES_OMANYTE },
+    { 40, 40, SPECIES_CRABRAWLER },
+    { 38, 38, SPECIES_STUNFISK_GALAR },
+    { 39, 39, SPECIES_NOIBAT },
+    { 40, 40, SPECIES_SHIELDON },
+    { 42, 42, SPECIES_SIZZLIPEDE },
 };
 
 const struct WildPokemonInfo sMtEmberExterior_LeafGreen_Evening_LandMonsInfo = { 21, sMtEmberExterior_LeafGreen_Evening_LandMons };
@@ -8749,18 +8749,18 @@ const struct WildPokemonInfo sMtEmberExterior_LeafGreen_Evening_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberExterior_LeafGreen_Night_LandMons[] =
 {
-    { 30, 30, SPECIES_SALANDIT },
-    { 38, 38, SPECIES_WOOPER_PALDEA },
-    { 33, 33, SPECIES_CROAGUNK },
-    { 32, 32, SPECIES_SALANDIT },
-    { 35, 35, SPECIES_SNEASEL_HISUI },
-    { 33, 33, SPECIES_CROAGUNK },
-    { 36, 36, SPECIES_WOOPER_PALDEA },
-    { 40, 40, SPECIES_MEDITITE },
-    { 38, 38, SPECIES_SANDYGAST },
-    { 39, 39, SPECIES_SANDILE },
-    { 40, 40, SPECIES_SNEASEL_HISUI },
-    { 42, 42, SPECIES_LITWICK },
+    { 30, 30, SPECIES_HOUNDOUR },
+    { 38, 38, SPECIES_SALANDIT },
+    { 33, 33, SPECIES_SNEASEL_HISUI },
+    { 32, 32, SPECIES_WOOPER_PALDEA },
+    { 35, 35, SPECIES_SALANDIT },
+    { 33, 33, SPECIES_SNEASEL_HISUI },
+    { 36, 36, SPECIES_CROAGUNK },
+    { 40, 40, SPECIES_CROAGUNK },
+    { 38, 38, SPECIES_HOUNDOUR },
+    { 39, 39, SPECIES_YAMASK_GALAR },
+    { 40, 40, SPECIES_SALANDIT },
+    { 42, 42, SPECIES_SCRAGGY },
 };
 
 const struct WildPokemonInfo sMtEmberExterior_LeafGreen_Night_LandMonsInfo = { 21, sMtEmberExterior_LeafGreen_Night_LandMons };
@@ -8789,18 +8789,18 @@ const struct WildPokemonInfo sMtEmberSummitPath1F_FireRed_LandMonsInfo = { 7, sM
 #ifdef FIRERED
 const struct WildPokemon sMtEmberSummitPath1F_FireRed_Evening_LandMons[] =
 {
-    { 33, 33, SPECIES_SANDSHREW },
-    { 35, 35, SPECIES_TIRTOUGA },
-    { 29, 29, SPECIES_FALINKS },
-    { 31, 31, SPECIES_KLINK },
-    { 31, 31, SPECIES_DURANT },
-    { 33, 33, SPECIES_SKARMORY },
-    { 35, 35, SPECIES_DRUDDIGON },
-    { 37, 37, SPECIES_STONJOURNER },
-    { 37, 37, SPECIES_MAKUHITA },
-    { 39, 39, SPECIES_MEOWTH_GALAR },
-    { 37, 37, SPECIES_TAUROS_PALDEA_AQUA },
-    { 39, 39, SPECIES_DRAMPA },
+    { 33, 33, SPECIES_NOIBAT },
+    { 35, 35, SPECIES_HIPPOPOTAS },
+    { 29, 29, SPECIES_DURALUDON },
+    { 31, 31, SPECIES_TOGEDEMARU },
+    { 31, 31, SPECIES_SKARMORY },
+    { 33, 33, SPECIES_CORSOLA },
+    { 35, 35, SPECIES_TATSUGIRI_CURLY },
+    { 37, 37, SPECIES_FLAMIGO },
+    { 37, 37, SPECIES_GLIGAR },
+    { 39, 39, SPECIES_DURANT },
+    { 37, 37, SPECIES_BONSLY },
+    { 39, 39, SPECIES_TAUROS_PALDEA_COMBAT },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath1F_FireRed_Evening_LandMonsInfo = { 7, sMtEmberSummitPath1F_FireRed_Evening_LandMons };
@@ -8809,18 +8809,18 @@ const struct WildPokemonInfo sMtEmberSummitPath1F_FireRed_Evening_LandMonsInfo =
 #ifdef FIRERED
 const struct WildPokemon sMtEmberSummitPath1F_FireRed_Night_LandMons[] =
 {
-    { 33, 33, SPECIES_SHUPPET },
-    { 35, 35, SPECIES_DHELMISE },
-    { 29, 29, SPECIES_BOMBIRDIER },
-    { 31, 31, SPECIES_TRUBBISH },
+    { 33, 33, SPECIES_MISDREAVUS },
+    { 35, 35, SPECIES_BOMBIRDIER },
+    { 29, 29, SPECIES_MIMIKYU_DISGUISED },
     { 31, 31, SPECIES_KLEFKI },
-    { 33, 33, SPECIES_GULPIN },
-    { 35, 35, SPECIES_ABSOL },
+    { 31, 31, SPECIES_DHELMISE },
+    { 33, 33, SPECIES_BELLSPROUT },
+    { 35, 35, SPECIES_KLEFKI },
+    { 37, 37, SPECIES_BUDEW },
+    { 37, 37, SPECIES_GULPIN },
+    { 39, 39, SPECIES_ABSOL },
     { 37, 37, SPECIES_BULBASAUR },
-    { 37, 37, SPECIES_SEVIPER },
-    { 39, 39, SPECIES_DUSKULL },
-    { 37, 37, SPECIES_SPIRITOMB },
-    { 39, 39, SPECIES_SPINARAK },
+    { 39, 39, SPECIES_MIMIKYU_DISGUISED },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath1F_FireRed_Night_LandMonsInfo = { 7, sMtEmberSummitPath1F_FireRed_Night_LandMons };
@@ -8849,18 +8849,18 @@ const struct WildPokemonInfo sMtEmberSummitPath1F_LeafGreen_LandMonsInfo = { 7, 
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberSummitPath1F_LeafGreen_Evening_LandMons[] =
 {
-    { 33, 33, SPECIES_SANDSHREW },
-    { 35, 35, SPECIES_TIRTOUGA },
-    { 29, 29, SPECIES_FALINKS },
-    { 31, 31, SPECIES_KLINK },
-    { 31, 31, SPECIES_DURANT },
-    { 33, 33, SPECIES_SKARMORY },
-    { 35, 35, SPECIES_DRUDDIGON },
-    { 37, 37, SPECIES_STONJOURNER },
-    { 37, 37, SPECIES_MAKUHITA },
-    { 39, 39, SPECIES_MEOWTH_GALAR },
-    { 37, 37, SPECIES_TAUROS_PALDEA_AQUA },
-    { 39, 39, SPECIES_DRAMPA },
+    { 33, 33, SPECIES_NOIBAT },
+    { 35, 35, SPECIES_HIPPOPOTAS },
+    { 29, 29, SPECIES_DURALUDON },
+    { 31, 31, SPECIES_TOGEDEMARU },
+    { 31, 31, SPECIES_SKARMORY },
+    { 33, 33, SPECIES_CORSOLA },
+    { 35, 35, SPECIES_TATSUGIRI_CURLY },
+    { 37, 37, SPECIES_FLAMIGO },
+    { 37, 37, SPECIES_GLIGAR },
+    { 39, 39, SPECIES_DURANT },
+    { 37, 37, SPECIES_BONSLY },
+    { 39, 39, SPECIES_TAUROS_PALDEA_COMBAT },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath1F_LeafGreen_Evening_LandMonsInfo = { 7, sMtEmberSummitPath1F_LeafGreen_Evening_LandMons };
@@ -8869,18 +8869,18 @@ const struct WildPokemonInfo sMtEmberSummitPath1F_LeafGreen_Evening_LandMonsInfo
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberSummitPath1F_LeafGreen_Night_LandMons[] =
 {
-    { 33, 33, SPECIES_SHUPPET },
-    { 35, 35, SPECIES_DHELMISE },
-    { 29, 29, SPECIES_BOMBIRDIER },
-    { 31, 31, SPECIES_TRUBBISH },
+    { 33, 33, SPECIES_MISDREAVUS },
+    { 35, 35, SPECIES_BOMBIRDIER },
+    { 29, 29, SPECIES_MIMIKYU_DISGUISED },
     { 31, 31, SPECIES_KLEFKI },
-    { 33, 33, SPECIES_GULPIN },
-    { 35, 35, SPECIES_ABSOL },
+    { 31, 31, SPECIES_DHELMISE },
+    { 33, 33, SPECIES_BELLSPROUT },
+    { 35, 35, SPECIES_KLEFKI },
+    { 37, 37, SPECIES_BUDEW },
+    { 37, 37, SPECIES_GULPIN },
+    { 39, 39, SPECIES_ABSOL },
     { 37, 37, SPECIES_BULBASAUR },
-    { 37, 37, SPECIES_SEVIPER },
-    { 39, 39, SPECIES_DUSKULL },
-    { 37, 37, SPECIES_SPIRITOMB },
-    { 39, 39, SPECIES_SPINARAK },
+    { 39, 39, SPECIES_MIMIKYU_DISGUISED },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath1F_LeafGreen_Night_LandMonsInfo = { 7, sMtEmberSummitPath1F_LeafGreen_Night_LandMons };
@@ -8920,18 +8920,18 @@ const struct WildPokemonInfo sMtEmberSummitPath2F_FireRed_RockSmashMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sMtEmberSummitPath2F_FireRed_Evening_LandMons[] =
 {
-    { 34, 34, SPECIES_TYROGUE },
-    { 36, 36, SPECIES_SWINUB },
-    { 30, 30, SPECIES_DIGLETT_ALOLA },
-    { 32, 32, SPECIES_TRAPINCH },
-    { 32, 32, SPECIES_ORTHWORM },
-    { 34, 34, SPECIES_APPLIN },
-    { 38, 38, SPECIES_RIOLU },
-    { 38, 38, SPECIES_HIPPOPOTAS },
-    { 40, 40, SPECIES_ARCHEN },
-    { 40, 40, SPECIES_MUDBRAY },
-    { 40, 40, SPECIES_CRANIDOS },
-    { 40, 40, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 34, 34, SPECIES_MIENFOO },
+    { 36, 36, SPECIES_KLAWF },
+    { 30, 30, SPECIES_ORTHWORM },
+    { 32, 32, SPECIES_DRUDDIGON },
+    { 32, 32, SPECIES_SILICOBRA },
+    { 34, 34, SPECIES_NINCADA },
+    { 38, 38, SPECIES_STUNFISK },
+    { 38, 38, SPECIES_CUFANT },
+    { 40, 40, SPECIES_STONJOURNER },
+    { 40, 40, SPECIES_ANORITH },
+    { 40, 40, SPECIES_THROH },
+    { 40, 40, SPECIES_HAWLUCHA },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath2F_FireRed_Evening_LandMonsInfo = { 7, sMtEmberSummitPath2F_FireRed_Evening_LandMons };
@@ -8940,18 +8940,18 @@ const struct WildPokemonInfo sMtEmberSummitPath2F_FireRed_Evening_LandMonsInfo =
 #ifdef FIRERED
 const struct WildPokemon sMtEmberSummitPath2F_FireRed_Night_LandMons[] =
 {
-    { 34, 34, SPECIES_SPINARAK },
-    { 36, 36, SPECIES_VENIPEDE },
-    { 30, 30, SPECIES_SKORUPI },
-    { 32, 32, SPECIES_FOONGUS },
-    { 32, 32, SPECIES_VENIPEDE },
-    { 34, 34, SPECIES_BOMBIRDIER },
-    { 38, 38, SPECIES_GULPIN },
-    { 38, 38, SPECIES_ABSOL },
-    { 40, 40, SPECIES_SEVIPER },
-    { 40, 40, SPECIES_BULBASAUR },
-    { 40, 40, SPECIES_DUSKULL },
+    { 34, 34, SPECIES_DUSKULL },
+    { 36, 36, SPECIES_BALTOY },
+    { 30, 30, SPECIES_SHROODLE },
+    { 32, 32, SPECIES_GIMMIGHOUL_CHEST },
+    { 32, 32, SPECIES_TRUBBISH },
+    { 34, 34, SPECIES_GHOLDENGO },
+    { 38, 38, SPECIES_SEVIPER },
+    { 38, 38, SPECIES_VENIPEDE },
+    { 40, 40, SPECIES_SPIRITOMB },
+    { 40, 40, SPECIES_SKORUPI },
     { 40, 40, SPECIES_SPINARAK },
+    { 40, 40, SPECIES_DUSKULL },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath2F_FireRed_Night_LandMonsInfo = { 7, sMtEmberSummitPath2F_FireRed_Night_LandMons };
@@ -8991,18 +8991,18 @@ const struct WildPokemonInfo sMtEmberSummitPath2F_LeafGreen_RockSmashMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberSummitPath2F_LeafGreen_Evening_LandMons[] =
 {
-    { 34, 34, SPECIES_TYROGUE },
-    { 36, 36, SPECIES_SWINUB },
-    { 30, 30, SPECIES_DIGLETT_ALOLA },
-    { 32, 32, SPECIES_TRAPINCH },
-    { 32, 32, SPECIES_ORTHWORM },
-    { 34, 34, SPECIES_APPLIN },
-    { 38, 38, SPECIES_RIOLU },
-    { 38, 38, SPECIES_HIPPOPOTAS },
-    { 40, 40, SPECIES_ARCHEN },
-    { 40, 40, SPECIES_MUDBRAY },
-    { 40, 40, SPECIES_CRANIDOS },
-    { 40, 40, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 34, 34, SPECIES_MIENFOO },
+    { 36, 36, SPECIES_KLAWF },
+    { 30, 30, SPECIES_ORTHWORM },
+    { 32, 32, SPECIES_DRUDDIGON },
+    { 32, 32, SPECIES_SILICOBRA },
+    { 34, 34, SPECIES_NINCADA },
+    { 38, 38, SPECIES_STUNFISK },
+    { 38, 38, SPECIES_CUFANT },
+    { 40, 40, SPECIES_STONJOURNER },
+    { 40, 40, SPECIES_ANORITH },
+    { 40, 40, SPECIES_THROH },
+    { 40, 40, SPECIES_HAWLUCHA },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath2F_LeafGreen_Evening_LandMonsInfo = { 7, sMtEmberSummitPath2F_LeafGreen_Evening_LandMons };
@@ -9011,18 +9011,18 @@ const struct WildPokemonInfo sMtEmberSummitPath2F_LeafGreen_Evening_LandMonsInfo
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberSummitPath2F_LeafGreen_Night_LandMons[] =
 {
-    { 34, 34, SPECIES_SPINARAK },
-    { 36, 36, SPECIES_VENIPEDE },
-    { 30, 30, SPECIES_SKORUPI },
-    { 32, 32, SPECIES_FOONGUS },
-    { 32, 32, SPECIES_VENIPEDE },
-    { 34, 34, SPECIES_BOMBIRDIER },
-    { 38, 38, SPECIES_GULPIN },
-    { 38, 38, SPECIES_ABSOL },
-    { 40, 40, SPECIES_SEVIPER },
-    { 40, 40, SPECIES_BULBASAUR },
-    { 40, 40, SPECIES_DUSKULL },
+    { 34, 34, SPECIES_DUSKULL },
+    { 36, 36, SPECIES_BALTOY },
+    { 30, 30, SPECIES_SHROODLE },
+    { 32, 32, SPECIES_GIMMIGHOUL_CHEST },
+    { 32, 32, SPECIES_TRUBBISH },
+    { 34, 34, SPECIES_GHOLDENGO },
+    { 38, 38, SPECIES_SEVIPER },
+    { 38, 38, SPECIES_VENIPEDE },
+    { 40, 40, SPECIES_SPIRITOMB },
+    { 40, 40, SPECIES_SKORUPI },
     { 40, 40, SPECIES_SPINARAK },
+    { 40, 40, SPECIES_DUSKULL },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath2F_LeafGreen_Night_LandMonsInfo = { 7, sMtEmberSummitPath2F_LeafGreen_Night_LandMons };
@@ -9051,18 +9051,18 @@ const struct WildPokemonInfo sMtEmberSummitPath3F_FireRed_LandMonsInfo = { 7, sM
 #ifdef FIRERED
 const struct WildPokemon sMtEmberSummitPath3F_FireRed_Evening_LandMons[] =
 {
-    { 33, 33, SPECIES_ROGGENROLA },
-    { 35, 35, SPECIES_TOGEDEMARU },
-    { 29, 29, SPECIES_GLIGAR },
-    { 31, 31, SPECIES_AXEW },
-    { 31, 31, SPECIES_DRACOZOLT },
-    { 33, 33, SPECIES_HAWLUCHA },
-    { 35, 35, SPECIES_PANCHAM },
-    { 37, 37, SPECIES_PASSIMIAN },
-    { 37, 37, SPECIES_FLAMIGO },
-    { 39, 39, SPECIES_TAUROS_PALDEA_COMBAT },
-    { 37, 37, SPECIES_CRABRAWLER },
-    { 39, 39, SPECIES_STONJOURNER },
+    { 33, 33, SPECIES_GLIGAR },
+    { 35, 35, SPECIES_LILEEP },
+    { 29, 29, SPECIES_CYCLIZAR },
+    { 31, 31, SPECIES_AMAURA },
+    { 31, 31, SPECIES_PHANPY },
+    { 33, 33, SPECIES_ESCAVALIER },
+    { 35, 35, SPECIES_FARFETCHD_GALAR },
+    { 37, 37, SPECIES_DRACOZOLT },
+    { 37, 37, SPECIES_SAWK },
+    { 39, 39, SPECIES_DIGLETT_ALOLA },
+    { 37, 37, SPECIES_SANDSHREW },
+    { 39, 39, SPECIES_SKARMORY },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath3F_FireRed_Evening_LandMonsInfo = { 7, sMtEmberSummitPath3F_FireRed_Evening_LandMons };
@@ -9071,18 +9071,18 @@ const struct WildPokemonInfo sMtEmberSummitPath3F_FireRed_Evening_LandMonsInfo =
 #ifdef FIRERED
 const struct WildPokemon sMtEmberSummitPath3F_FireRed_Night_LandMons[] =
 {
-    { 33, 33, SPECIES_TRUBBISH },
-    { 35, 35, SPECIES_DHELMISE },
-    { 29, 29, SPECIES_TRUBBISH },
-    { 31, 31, SPECIES_SPIRITOMB },
-    { 31, 31, SPECIES_BUDEW },
-    { 33, 33, SPECIES_SHROODLE },
-    { 35, 35, SPECIES_BELLSPROUT },
+    { 33, 33, SPECIES_SABLEYE },
+    { 35, 35, SPECIES_FOONGUS },
+    { 29, 29, SPECIES_DHELMISE },
+    { 31, 31, SPECIES_BOMBIRDIER },
+    { 31, 31, SPECIES_SEVIPER },
+    { 33, 33, SPECIES_GHOLDENGO },
+    { 35, 35, SPECIES_SPIRITOMB },
+    { 37, 37, SPECIES_BUDEW },
     { 37, 37, SPECIES_KLEFKI },
-    { 37, 37, SPECIES_SKORUPI },
-    { 39, 39, SPECIES_ROTOM },
-    { 37, 37, SPECIES_BALTOY },
-    { 39, 39, SPECIES_QWILFISH_HISUI },
+    { 39, 39, SPECIES_TRUBBISH },
+    { 37, 37, SPECIES_BOMBIRDIER },
+    { 39, 39, SPECIES_MIMIKYU_DISGUISED },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath3F_FireRed_Night_LandMonsInfo = { 7, sMtEmberSummitPath3F_FireRed_Night_LandMons };
@@ -9111,18 +9111,18 @@ const struct WildPokemonInfo sMtEmberSummitPath3F_LeafGreen_LandMonsInfo = { 7, 
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberSummitPath3F_LeafGreen_Evening_LandMons[] =
 {
-    { 33, 33, SPECIES_ROGGENROLA },
-    { 35, 35, SPECIES_TOGEDEMARU },
-    { 29, 29, SPECIES_GLIGAR },
-    { 31, 31, SPECIES_AXEW },
-    { 31, 31, SPECIES_DRACOZOLT },
-    { 33, 33, SPECIES_HAWLUCHA },
-    { 35, 35, SPECIES_PANCHAM },
-    { 37, 37, SPECIES_PASSIMIAN },
-    { 37, 37, SPECIES_FLAMIGO },
-    { 39, 39, SPECIES_TAUROS_PALDEA_COMBAT },
-    { 37, 37, SPECIES_CRABRAWLER },
-    { 39, 39, SPECIES_STONJOURNER },
+    { 33, 33, SPECIES_GLIGAR },
+    { 35, 35, SPECIES_LILEEP },
+    { 29, 29, SPECIES_CYCLIZAR },
+    { 31, 31, SPECIES_AMAURA },
+    { 31, 31, SPECIES_PHANPY },
+    { 33, 33, SPECIES_ESCAVALIER },
+    { 35, 35, SPECIES_FARFETCHD_GALAR },
+    { 37, 37, SPECIES_DRACOZOLT },
+    { 37, 37, SPECIES_SAWK },
+    { 39, 39, SPECIES_DIGLETT_ALOLA },
+    { 37, 37, SPECIES_SANDSHREW },
+    { 39, 39, SPECIES_SKARMORY },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath3F_LeafGreen_Evening_LandMonsInfo = { 7, sMtEmberSummitPath3F_LeafGreen_Evening_LandMons };
@@ -9131,18 +9131,18 @@ const struct WildPokemonInfo sMtEmberSummitPath3F_LeafGreen_Evening_LandMonsInfo
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberSummitPath3F_LeafGreen_Night_LandMons[] =
 {
-    { 33, 33, SPECIES_TRUBBISH },
-    { 35, 35, SPECIES_DHELMISE },
-    { 29, 29, SPECIES_TRUBBISH },
-    { 31, 31, SPECIES_SPIRITOMB },
-    { 31, 31, SPECIES_BUDEW },
-    { 33, 33, SPECIES_SHROODLE },
-    { 35, 35, SPECIES_BELLSPROUT },
+    { 33, 33, SPECIES_SABLEYE },
+    { 35, 35, SPECIES_FOONGUS },
+    { 29, 29, SPECIES_DHELMISE },
+    { 31, 31, SPECIES_BOMBIRDIER },
+    { 31, 31, SPECIES_SEVIPER },
+    { 33, 33, SPECIES_GHOLDENGO },
+    { 35, 35, SPECIES_SPIRITOMB },
+    { 37, 37, SPECIES_BUDEW },
     { 37, 37, SPECIES_KLEFKI },
-    { 37, 37, SPECIES_SKORUPI },
-    { 39, 39, SPECIES_ROTOM },
-    { 37, 37, SPECIES_BALTOY },
-    { 39, 39, SPECIES_QWILFISH_HISUI },
+    { 39, 39, SPECIES_TRUBBISH },
+    { 37, 37, SPECIES_BOMBIRDIER },
+    { 39, 39, SPECIES_MIMIKYU_DISGUISED },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath3F_LeafGreen_Night_LandMonsInfo = { 7, sMtEmberSummitPath3F_LeafGreen_Night_LandMons };
@@ -9182,18 +9182,18 @@ const struct WildPokemonInfo sMtEmberRubyPath1F_FireRed_RockSmashMonsInfo = { 50
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPath1F_FireRed_Evening_LandMons[] =
 {
-    { 36, 36, SPECIES_CUFANT },
-    { 38, 38, SPECIES_SWINUB },
+    { 36, 36, SPECIES_MINIOR },
+    { 38, 38, SPECIES_TYROGUE },
     { 32, 32, SPECIES_HERACROSS },
-    { 34, 34, SPECIES_DRAMPA },
-    { 34, 34, SPECIES_STUNFISK_GALAR },
-    { 36, 36, SPECIES_ARON },
-    { 38, 38, SPECIES_GROWLITHE_HISUI },
-    { 40, 40, SPECIES_ROCKRUFF },
-    { 40, 40, SPECIES_SANDSHREW },
-    { 42, 42, SPECIES_SAWK },
-    { 40, 40, SPECIES_RELICANTH },
-    { 42, 42, SPECIES_FALINKS },
+    { 34, 34, SPECIES_MEOWTH_GALAR },
+    { 34, 34, SPECIES_SANDSHREW_ALOLA },
+    { 36, 36, SPECIES_KLINK },
+    { 38, 38, SPECIES_TURTONATOR },
+    { 40, 40, SPECIES_PANCHAM },
+    { 40, 40, SPECIES_FALINKS },
+    { 42, 42, SPECIES_APPLIN },
+    { 40, 40, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 42, 42, SPECIES_ORTHWORM },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPath1F_FireRed_Evening_LandMonsInfo = { 7, sMtEmberRubyPath1F_FireRed_Evening_LandMons };
@@ -9202,18 +9202,18 @@ const struct WildPokemonInfo sMtEmberRubyPath1F_FireRed_Evening_LandMonsInfo = {
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPath1F_FireRed_Night_LandMons[] =
 {
-    { 36, 36, SPECIES_TINKATINK },
-    { 38, 38, SPECIES_SPIRITOMB },
-    { 32, 32, SPECIES_CROAGUNK },
-    { 34, 34, SPECIES_BELLSPROUT },
-    { 34, 34, SPECIES_MURKROW },
-    { 36, 36, SPECIES_VAROOM },
-    { 38, 38, SPECIES_HONEDGE },
-    { 40, 40, SPECIES_POOCHYENA },
-    { 40, 40, SPECIES_SHROODLE },
-    { 42, 42, SPECIES_MAWILE },
-    { 40, 40, SPECIES_YAMASK },
-    { 42, 42, SPECIES_GRIMER_ALOLA },
+    { 36, 36, SPECIES_SHUPPET },
+    { 38, 38, SPECIES_BELLSPROUT },
+    { 32, 32, SPECIES_SHROODLE },
+    { 34, 34, SPECIES_ABSOL },
+    { 34, 34, SPECIES_DHELMISE },
+    { 36, 36, SPECIES_BULBASAUR },
+    { 38, 38, SPECIES_GULPIN },
+    { 40, 40, SPECIES_VENIPEDE },
+    { 40, 40, SPECIES_DUSKULL },
+    { 42, 42, SPECIES_SKORUPI },
+    { 40, 40, SPECIES_SPINARAK },
+    { 42, 42, SPECIES_GIMMIGHOUL_CHEST },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPath1F_FireRed_Night_LandMonsInfo = { 7, sMtEmberRubyPath1F_FireRed_Night_LandMons };
@@ -9253,18 +9253,18 @@ const struct WildPokemonInfo sMtEmberRubyPath1F_LeafGreen_RockSmashMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPath1F_LeafGreen_Evening_LandMons[] =
 {
-    { 36, 36, SPECIES_CUFANT },
-    { 38, 38, SPECIES_SWINUB },
+    { 36, 36, SPECIES_MINIOR },
+    { 38, 38, SPECIES_TYROGUE },
     { 32, 32, SPECIES_HERACROSS },
-    { 34, 34, SPECIES_DRAMPA },
-    { 34, 34, SPECIES_STUNFISK_GALAR },
-    { 36, 36, SPECIES_ARON },
-    { 38, 38, SPECIES_GROWLITHE_HISUI },
-    { 40, 40, SPECIES_ROCKRUFF },
-    { 40, 40, SPECIES_SANDSHREW },
-    { 42, 42, SPECIES_SAWK },
-    { 40, 40, SPECIES_RELICANTH },
-    { 42, 42, SPECIES_FALINKS },
+    { 34, 34, SPECIES_MEOWTH_GALAR },
+    { 34, 34, SPECIES_SANDSHREW_ALOLA },
+    { 36, 36, SPECIES_KLINK },
+    { 38, 38, SPECIES_TURTONATOR },
+    { 40, 40, SPECIES_PANCHAM },
+    { 40, 40, SPECIES_FALINKS },
+    { 42, 42, SPECIES_APPLIN },
+    { 40, 40, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 42, 42, SPECIES_ORTHWORM },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPath1F_LeafGreen_Evening_LandMonsInfo = { 7, sMtEmberRubyPath1F_LeafGreen_Evening_LandMons };
@@ -9273,18 +9273,18 @@ const struct WildPokemonInfo sMtEmberRubyPath1F_LeafGreen_Evening_LandMonsInfo =
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPath1F_LeafGreen_Night_LandMons[] =
 {
-    { 36, 36, SPECIES_TINKATINK },
-    { 38, 38, SPECIES_SPIRITOMB },
-    { 32, 32, SPECIES_CROAGUNK },
-    { 34, 34, SPECIES_BELLSPROUT },
-    { 34, 34, SPECIES_MURKROW },
-    { 36, 36, SPECIES_VAROOM },
-    { 38, 38, SPECIES_HONEDGE },
-    { 40, 40, SPECIES_POOCHYENA },
-    { 40, 40, SPECIES_SHROODLE },
-    { 42, 42, SPECIES_MAWILE },
-    { 40, 40, SPECIES_YAMASK },
-    { 42, 42, SPECIES_GRIMER_ALOLA },
+    { 36, 36, SPECIES_SHUPPET },
+    { 38, 38, SPECIES_BELLSPROUT },
+    { 32, 32, SPECIES_SHROODLE },
+    { 34, 34, SPECIES_ABSOL },
+    { 34, 34, SPECIES_DHELMISE },
+    { 36, 36, SPECIES_BULBASAUR },
+    { 38, 38, SPECIES_GULPIN },
+    { 40, 40, SPECIES_VENIPEDE },
+    { 40, 40, SPECIES_DUSKULL },
+    { 42, 42, SPECIES_SKORUPI },
+    { 40, 40, SPECIES_SPINARAK },
+    { 42, 42, SPECIES_GIMMIGHOUL_CHEST },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPath1F_LeafGreen_Night_LandMonsInfo = { 7, sMtEmberRubyPath1F_LeafGreen_Night_LandMons };
@@ -9324,18 +9324,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB1F_FireRed_RockSmashMonsInfo = { 5
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB1F_FireRed_Evening_LandMons[] =
 {
-    { 38, 38, SPECIES_STUFFUL },
-    { 36, 36, SPECIES_FARFETCHD_GALAR },
-    { 34, 34, SPECIES_MUDBRAY },
-    { 40, 40, SPECIES_ROLYCOLY },
-    { 24, 24, SPECIES_GEODUDE_ALOLA },
-    { 26, 26, SPECIES_APPLIN },
+    { 38, 38, SPECIES_ARCHEN },
+    { 36, 36, SPECIES_ARON },
+    { 34, 34, SPECIES_ROLYCOLY },
+    { 40, 40, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 24, 24, SPECIES_MUDBRAY },
+    { 26, 26, SPECIES_PASSIMIAN },
     { 42, 42, SPECIES_CLOBBOPUS },
-    { 28, 28, SPECIES_DRUDDIGON },
-    { 42, 42, SPECIES_ARON },
-    { 30, 30, SPECIES_DWEBBLE },
-    { 42, 42, SPECIES_CRABRAWLER },
-    { 30, 30, SPECIES_KLAWF },
+    { 28, 28, SPECIES_HAWLUCHA },
+    { 42, 42, SPECIES_CORSOLA },
+    { 30, 30, SPECIES_SWINUB },
+    { 42, 42, SPECIES_SHUCKLE },
+    { 30, 30, SPECIES_FALINKS },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB1F_FireRed_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB1F_FireRed_Evening_LandMons };
@@ -9344,18 +9344,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB1F_FireRed_Evening_LandMonsInfo = 
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB1F_FireRed_Night_LandMons[] =
 {
-    { 38, 38, SPECIES_IMPIDIMP },
-    { 36, 36, SPECIES_WOOPER_PALDEA },
-    { 34, 34, SPECIES_SABLEYE },
-    { 40, 40, SPECIES_PAWNIARD },
-    { 24, 24, SPECIES_DUSKULL },
-    { 26, 26, SPECIES_GREAVARD },
-    { 42, 42, SPECIES_ABSOL },
-    { 28, 28, SPECIES_SEVIPER },
-    { 42, 42, SPECIES_CORSOLA_GALAR },
-    { 30, 30, SPECIES_GULPIN },
-    { 42, 42, SPECIES_KLEFKI },
-    { 30, 30, SPECIES_FOONGUS },
+    { 38, 38, SPECIES_TRUBBISH },
+    { 36, 36, SPECIES_FOONGUS },
+    { 34, 34, SPECIES_PUMPKABOO_AVERAGE },
+    { 40, 40, SPECIES_GRIMER_ALOLA },
+    { 24, 24, SPECIES_MASCHIFF },
+    { 26, 26, SPECIES_BOMBIRDIER },
+    { 42, 42, SPECIES_ZORUA },
+    { 28, 28, SPECIES_SHUPPET },
+    { 42, 42, SPECIES_SEVIPER },
+    { 30, 30, SPECIES_GREAVARD },
+    { 42, 42, SPECIES_BELLSPROUT },
+    { 30, 30, SPECIES_TRUBBISH },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB1F_FireRed_Night_LandMonsInfo = { 7, sMtEmberRubyPathB1F_FireRed_Night_LandMons };
@@ -9395,18 +9395,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB1F_LeafGreen_RockSmashMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB1F_LeafGreen_Evening_LandMons[] =
 {
-    { 38, 38, SPECIES_STUFFUL },
-    { 36, 36, SPECIES_FARFETCHD_GALAR },
-    { 34, 34, SPECIES_MUDBRAY },
-    { 40, 40, SPECIES_ROLYCOLY },
-    { 24, 24, SPECIES_GEODUDE_ALOLA },
-    { 26, 26, SPECIES_APPLIN },
+    { 38, 38, SPECIES_ARCHEN },
+    { 36, 36, SPECIES_ARON },
+    { 34, 34, SPECIES_ROLYCOLY },
+    { 40, 40, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 24, 24, SPECIES_MUDBRAY },
+    { 26, 26, SPECIES_PASSIMIAN },
     { 42, 42, SPECIES_CLOBBOPUS },
-    { 28, 28, SPECIES_DRUDDIGON },
-    { 42, 42, SPECIES_ARON },
-    { 30, 30, SPECIES_DWEBBLE },
-    { 42, 42, SPECIES_CRABRAWLER },
-    { 30, 30, SPECIES_KLAWF },
+    { 28, 28, SPECIES_HAWLUCHA },
+    { 42, 42, SPECIES_CORSOLA },
+    { 30, 30, SPECIES_SWINUB },
+    { 42, 42, SPECIES_SHUCKLE },
+    { 30, 30, SPECIES_FALINKS },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB1F_LeafGreen_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB1F_LeafGreen_Evening_LandMons };
@@ -9415,18 +9415,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB1F_LeafGreen_Evening_LandMonsInfo 
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB1F_LeafGreen_Night_LandMons[] =
 {
-    { 38, 38, SPECIES_IMPIDIMP },
-    { 36, 36, SPECIES_WOOPER_PALDEA },
-    { 34, 34, SPECIES_SABLEYE },
-    { 40, 40, SPECIES_PAWNIARD },
-    { 24, 24, SPECIES_DUSKULL },
-    { 26, 26, SPECIES_GREAVARD },
-    { 42, 42, SPECIES_ABSOL },
-    { 28, 28, SPECIES_SEVIPER },
-    { 42, 42, SPECIES_CORSOLA_GALAR },
-    { 30, 30, SPECIES_GULPIN },
-    { 42, 42, SPECIES_KLEFKI },
-    { 30, 30, SPECIES_FOONGUS },
+    { 38, 38, SPECIES_TRUBBISH },
+    { 36, 36, SPECIES_FOONGUS },
+    { 34, 34, SPECIES_PUMPKABOO_AVERAGE },
+    { 40, 40, SPECIES_GRIMER_ALOLA },
+    { 24, 24, SPECIES_MASCHIFF },
+    { 26, 26, SPECIES_BOMBIRDIER },
+    { 42, 42, SPECIES_ZORUA },
+    { 28, 28, SPECIES_SHUPPET },
+    { 42, 42, SPECIES_SEVIPER },
+    { 30, 30, SPECIES_GREAVARD },
+    { 42, 42, SPECIES_BELLSPROUT },
+    { 30, 30, SPECIES_TRUBBISH },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB1F_LeafGreen_Night_LandMonsInfo = { 7, sMtEmberRubyPathB1F_LeafGreen_Night_LandMons };
@@ -9466,18 +9466,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo = { 5
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB2F_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_GLIGAR },
-    { 26, 26, SPECIES_KLAWF },
-    { 42, 42, SPECIES_CYCLIZAR },
-    { 24, 24, SPECIES_TYRUNT },
-    { 28, 28, SPECIES_CRANIDOS },
-    { 30, 30, SPECIES_DURANT },
-    { 44, 44, SPECIES_BARBOACH },
-    { 32, 32, SPECIES_BINACLE },
-    { 44, 44, SPECIES_NINCADA },
-    { 22, 22, SPECIES_ROGGENROLA },
-    { 44, 44, SPECIES_STUNFISK_GALAR },
-    { 22, 22, SPECIES_PASSIMIAN },
+    { 40, 40, SPECIES_FALINKS },
+    { 26, 26, SPECIES_TAUROS_PALDEA_AQUA },
+    { 42, 42, SPECIES_NINCADA },
+    { 24, 24, SPECIES_DURANT },
+    { 28, 28, SPECIES_TOGEDEMARU },
+    { 30, 30, SPECIES_CYCLIZAR },
+    { 44, 44, SPECIES_ESCAVALIER },
+    { 32, 32, SPECIES_BARBOACH },
+    { 44, 44, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 22, 22, SPECIES_TIRTOUGA },
+    { 44, 44, SPECIES_TAUROS_PALDEA_AQUA },
+    { 22, 22, SPECIES_DRAMPA },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB2F_FireRed_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB2F_FireRed_Evening_LandMons };
@@ -9486,18 +9486,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB2F_FireRed_Evening_LandMonsInfo = 
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB2F_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_CORSOLA_GALAR },
-    { 26, 26, SPECIES_PHANTUMP },
-    { 42, 42, SPECIES_ZIGZAGOON_GALAR },
-    { 24, 24, SPECIES_DRIFLOON },
-    { 28, 28, SPECIES_STUNKY },
-    { 30, 30, SPECIES_YAMASK_GALAR },
-    { 44, 44, SPECIES_SKORUPI },
-    { 32, 32, SPECIES_SHUPPET },
-    { 44, 44, SPECIES_DHELMISE },
-    { 22, 22, SPECIES_BOMBIRDIER },
-    { 44, 44, SPECIES_BULBASAUR },
-    { 22, 22, SPECIES_PURRLOIN },
+    { 40, 40, SPECIES_BULBASAUR },
+    { 26, 26, SPECIES_MIMIKYU_DISGUISED },
+    { 42, 42, SPECIES_ABSOL },
+    { 24, 24, SPECIES_VENIPEDE },
+    { 28, 28, SPECIES_GULPIN },
+    { 30, 30, SPECIES_QWILFISH_HISUI },
+    { 44, 44, SPECIES_MISDREAVUS },
+    { 32, 32, SPECIES_YAMASK },
+    { 44, 44, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 22, 22, SPECIES_SINISTEA_PHONY },
+    { 44, 44, SPECIES_BALTOY },
+    { 22, 22, SPECIES_KLEFKI },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB2F_FireRed_Night_LandMonsInfo = { 7, sMtEmberRubyPathB2F_FireRed_Night_LandMons };
@@ -9537,18 +9537,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB2F_LeafGreen_RockSmashMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB2F_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_GLIGAR },
-    { 26, 26, SPECIES_KLAWF },
-    { 42, 42, SPECIES_CYCLIZAR },
-    { 24, 24, SPECIES_TYRUNT },
-    { 28, 28, SPECIES_CRANIDOS },
-    { 30, 30, SPECIES_DURANT },
-    { 44, 44, SPECIES_BARBOACH },
-    { 32, 32, SPECIES_BINACLE },
-    { 44, 44, SPECIES_NINCADA },
-    { 22, 22, SPECIES_ROGGENROLA },
-    { 44, 44, SPECIES_STUNFISK_GALAR },
-    { 22, 22, SPECIES_PASSIMIAN },
+    { 40, 40, SPECIES_FALINKS },
+    { 26, 26, SPECIES_TAUROS_PALDEA_AQUA },
+    { 42, 42, SPECIES_NINCADA },
+    { 24, 24, SPECIES_DURANT },
+    { 28, 28, SPECIES_TOGEDEMARU },
+    { 30, 30, SPECIES_CYCLIZAR },
+    { 44, 44, SPECIES_ESCAVALIER },
+    { 32, 32, SPECIES_BARBOACH },
+    { 44, 44, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 22, 22, SPECIES_TIRTOUGA },
+    { 44, 44, SPECIES_TAUROS_PALDEA_AQUA },
+    { 22, 22, SPECIES_DRAMPA },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB2F_LeafGreen_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB2F_LeafGreen_Evening_LandMons };
@@ -9557,18 +9557,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB2F_LeafGreen_Evening_LandMonsInfo 
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB2F_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_CORSOLA_GALAR },
-    { 26, 26, SPECIES_PHANTUMP },
-    { 42, 42, SPECIES_ZIGZAGOON_GALAR },
-    { 24, 24, SPECIES_DRIFLOON },
-    { 28, 28, SPECIES_STUNKY },
-    { 30, 30, SPECIES_YAMASK_GALAR },
-    { 44, 44, SPECIES_SKORUPI },
-    { 32, 32, SPECIES_SHUPPET },
-    { 44, 44, SPECIES_DHELMISE },
-    { 22, 22, SPECIES_BOMBIRDIER },
-    { 44, 44, SPECIES_BULBASAUR },
-    { 22, 22, SPECIES_PURRLOIN },
+    { 40, 40, SPECIES_BULBASAUR },
+    { 26, 26, SPECIES_MIMIKYU_DISGUISED },
+    { 42, 42, SPECIES_ABSOL },
+    { 24, 24, SPECIES_VENIPEDE },
+    { 28, 28, SPECIES_GULPIN },
+    { 30, 30, SPECIES_QWILFISH_HISUI },
+    { 44, 44, SPECIES_MISDREAVUS },
+    { 32, 32, SPECIES_YAMASK },
+    { 44, 44, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 22, 22, SPECIES_SINISTEA_PHONY },
+    { 44, 44, SPECIES_BALTOY },
+    { 22, 22, SPECIES_KLEFKI },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB2F_LeafGreen_Night_LandMonsInfo = { 7, sMtEmberRubyPathB2F_LeafGreen_Night_LandMons };
@@ -9608,18 +9608,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB3F_FireRed_RockSmashMonsInfo = { 5
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB3F_FireRed_Evening_LandMons[] =
 {
-    { 26, 26, SPECIES_AXEW },
-    { 28, 28, SPECIES_APPLIN },
-    { 30, 30, SPECIES_HIPPOPOTAS },
-    { 32, 32, SPECIES_TRAPINCH },
-    { 24, 24, SPECIES_AXEW },
-    { 22, 22, SPECIES_TOEDSCOOL },
-    { 20, 20, SPECIES_KLINK },
-    { 34, 34, SPECIES_TIMBURR },
-    { 36, 36, SPECIES_BONSLY },
-    { 18, 18, SPECIES_CORSOLA },
-    { 36, 36, SPECIES_PHANPY },
-    { 18, 18, SPECIES_SILICOBRA },
+    { 26, 26, SPECIES_CUFANT },
+    { 28, 28, SPECIES_FARFETCHD_GALAR },
+    { 30, 30, SPECIES_MAKUHITA },
+    { 32, 32, SPECIES_GEODUDE_ALOLA },
+    { 24, 24, SPECIES_ANORITH },
+    { 22, 22, SPECIES_DWEBBLE },
+    { 20, 20, SPECIES_TOEDSCOOL },
+    { 34, 34, SPECIES_KABUTO },
+    { 36, 36, SPECIES_NACLI },
+    { 18, 18, SPECIES_ROCKRUFF },
+    { 36, 36, SPECIES_OMANYTE },
+    { 18, 18, SPECIES_NOIBAT },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB3F_FireRed_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB3F_FireRed_Evening_LandMons };
@@ -9628,18 +9628,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB3F_FireRed_Evening_LandMonsInfo = 
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB3F_FireRed_Night_LandMons[] =
 {
-    { 26, 26, SPECIES_MISDREAVUS },
-    { 28, 28, SPECIES_BRAMBLIN },
-    { 30, 30, SPECIES_TRUBBISH },
-    { 32, 32, SPECIES_VENIPEDE },
-    { 24, 24, SPECIES_HOUNDOUR },
-    { 22, 22, SPECIES_SPINARAK },
-    { 20, 20, SPECIES_BUDEW },
-    { 34, 34, SPECIES_ZORUA_HISUI },
-    { 36, 36, SPECIES_SALANDIT },
-    { 18, 18, SPECIES_INKAY },
-    { 36, 36, SPECIES_MAWILE },
-    { 18, 18, SPECIES_SALANDIT },
+    { 26, 26, SPECIES_MORPEKO_FULL_BELLY },
+    { 28, 28, SPECIES_ROTOM },
+    { 30, 30, SPECIES_SPINARAK },
+    { 32, 32, SPECIES_BULBASAUR },
+    { 24, 24, SPECIES_RATTATA_ALOLA },
+    { 22, 22, SPECIES_INKAY },
+    { 20, 20, SPECIES_SABLEYE },
+    { 34, 34, SPECIES_IMPIDIMP },
+    { 36, 36, SPECIES_POOCHYENA },
+    { 18, 18, SPECIES_GIMMIGHOUL_CHEST },
+    { 36, 36, SPECIES_ZORUA_HISUI },
+    { 18, 18, SPECIES_ZIGZAGOON_GALAR },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB3F_FireRed_Night_LandMonsInfo = { 7, sMtEmberRubyPathB3F_FireRed_Night_LandMons };
@@ -9679,18 +9679,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB3F_LeafGreen_RockSmashMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB3F_LeafGreen_Evening_LandMons[] =
 {
-    { 26, 26, SPECIES_AXEW },
-    { 28, 28, SPECIES_APPLIN },
-    { 30, 30, SPECIES_HIPPOPOTAS },
-    { 32, 32, SPECIES_TRAPINCH },
-    { 24, 24, SPECIES_AXEW },
-    { 22, 22, SPECIES_TOEDSCOOL },
-    { 20, 20, SPECIES_KLINK },
-    { 34, 34, SPECIES_TIMBURR },
-    { 36, 36, SPECIES_BONSLY },
-    { 18, 18, SPECIES_CORSOLA },
-    { 36, 36, SPECIES_PHANPY },
-    { 18, 18, SPECIES_SILICOBRA },
+    { 26, 26, SPECIES_CUFANT },
+    { 28, 28, SPECIES_FARFETCHD_GALAR },
+    { 30, 30, SPECIES_MAKUHITA },
+    { 32, 32, SPECIES_GEODUDE_ALOLA },
+    { 24, 24, SPECIES_ANORITH },
+    { 22, 22, SPECIES_DWEBBLE },
+    { 20, 20, SPECIES_TOEDSCOOL },
+    { 34, 34, SPECIES_KABUTO },
+    { 36, 36, SPECIES_NACLI },
+    { 18, 18, SPECIES_ROCKRUFF },
+    { 36, 36, SPECIES_OMANYTE },
+    { 18, 18, SPECIES_NOIBAT },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB3F_LeafGreen_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB3F_LeafGreen_Evening_LandMons };
@@ -9699,18 +9699,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB3F_LeafGreen_Evening_LandMonsInfo 
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB3F_LeafGreen_Night_LandMons[] =
 {
-    { 26, 26, SPECIES_MISDREAVUS },
-    { 28, 28, SPECIES_BRAMBLIN },
-    { 30, 30, SPECIES_TRUBBISH },
-    { 32, 32, SPECIES_VENIPEDE },
-    { 24, 24, SPECIES_HOUNDOUR },
-    { 22, 22, SPECIES_SPINARAK },
-    { 20, 20, SPECIES_BUDEW },
-    { 34, 34, SPECIES_ZORUA_HISUI },
-    { 36, 36, SPECIES_SALANDIT },
-    { 18, 18, SPECIES_INKAY },
-    { 36, 36, SPECIES_MAWILE },
-    { 18, 18, SPECIES_SALANDIT },
+    { 26, 26, SPECIES_MORPEKO_FULL_BELLY },
+    { 28, 28, SPECIES_ROTOM },
+    { 30, 30, SPECIES_SPINARAK },
+    { 32, 32, SPECIES_BULBASAUR },
+    { 24, 24, SPECIES_RATTATA_ALOLA },
+    { 22, 22, SPECIES_INKAY },
+    { 20, 20, SPECIES_SABLEYE },
+    { 34, 34, SPECIES_IMPIDIMP },
+    { 36, 36, SPECIES_POOCHYENA },
+    { 18, 18, SPECIES_GIMMIGHOUL_CHEST },
+    { 36, 36, SPECIES_ZORUA_HISUI },
+    { 18, 18, SPECIES_ZIGZAGOON_GALAR },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB3F_LeafGreen_Night_LandMonsInfo = { 7, sMtEmberRubyPathB3F_LeafGreen_Night_LandMons };
@@ -9750,18 +9750,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB1FStairs_FireRed_RockSmashMonsInfo
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB1FStairs_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_TRAPINCH },
-    { 26, 26, SPECIES_TAUROS_PALDEA_COMBAT },
-    { 42, 42, SPECIES_AMAURA },
-    { 24, 24, SPECIES_STUNFISK },
-    { 28, 28, SPECIES_DURALUDON },
-    { 30, 30, SPECIES_RELICANTH },
-    { 44, 44, SPECIES_MIENFOO },
-    { 32, 32, SPECIES_HERACROSS },
-    { 44, 44, SPECIES_NUMEL },
-    { 22, 22, SPECIES_SHIELDON },
-    { 44, 44, SPECIES_MAKUHITA },
-    { 22, 22, SPECIES_HERACROSS },
+    { 40, 40, SPECIES_RIOLU },
+    { 26, 26, SPECIES_TURTONATOR },
+    { 42, 42, SPECIES_CRANIDOS },
+    { 24, 24, SPECIES_PANCHAM },
+    { 28, 28, SPECIES_BONSLY },
+    { 30, 30, SPECIES_APPLIN },
+    { 44, 44, SPECIES_TYROGUE },
+    { 32, 32, SPECIES_AMAURA },
+    { 44, 44, SPECIES_FERROSEED },
+    { 22, 22, SPECIES_BINACLE },
+    { 44, 44, SPECIES_AERODACTYL },
+    { 22, 22, SPECIES_THROH },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB1FStairs_FireRed_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB1FStairs_FireRed_Evening_LandMons };
@@ -9770,18 +9770,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB1FStairs_FireRed_Evening_LandMonsI
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB1FStairs_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_HONEDGE },
-    { 26, 26, SPECIES_IMPIDIMP },
-    { 42, 42, SPECIES_YAMASK },
-    { 24, 24, SPECIES_TRUBBISH },
-    { 28, 28, SPECIES_PURRLOIN },
-    { 30, 30, SPECIES_ZIGZAGOON_GALAR },
-    { 44, 44, SPECIES_NICKIT },
-    { 32, 32, SPECIES_DUSKULL },
-    { 44, 44, SPECIES_MASCHIFF },
+    { 40, 40, SPECIES_RATTATA_ALOLA },
+    { 26, 26, SPECIES_BRONZOR },
+    { 42, 42, SPECIES_BUDEW },
+    { 24, 24, SPECIES_MURKROW },
+    { 28, 28, SPECIES_DRIFLOON },
+    { 30, 30, SPECIES_SNEASEL_HISUI },
+    { 44, 44, SPECIES_HONEDGE },
+    { 32, 32, SPECIES_PURRLOIN },
+    { 44, 44, SPECIES_SKORUPI },
+    { 22, 22, SPECIES_SPIRITOMB },
+    { 44, 44, SPECIES_BRAMBLIN },
     { 22, 22, SPECIES_VAROOM },
-    { 44, 44, SPECIES_PHANTUMP },
-    { 22, 22, SPECIES_SHUPPET },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB1FStairs_FireRed_Night_LandMonsInfo = { 7, sMtEmberRubyPathB1FStairs_FireRed_Night_LandMons };
@@ -9821,18 +9821,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB1FStairs_LeafGreen_RockSmashMonsIn
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB1FStairs_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_TRAPINCH },
-    { 26, 26, SPECIES_TAUROS_PALDEA_COMBAT },
-    { 42, 42, SPECIES_AMAURA },
-    { 24, 24, SPECIES_STUNFISK },
-    { 28, 28, SPECIES_DURALUDON },
-    { 30, 30, SPECIES_RELICANTH },
-    { 44, 44, SPECIES_MIENFOO },
-    { 32, 32, SPECIES_HERACROSS },
-    { 44, 44, SPECIES_NUMEL },
-    { 22, 22, SPECIES_SHIELDON },
-    { 44, 44, SPECIES_MAKUHITA },
-    { 22, 22, SPECIES_HERACROSS },
+    { 40, 40, SPECIES_RIOLU },
+    { 26, 26, SPECIES_TURTONATOR },
+    { 42, 42, SPECIES_CRANIDOS },
+    { 24, 24, SPECIES_PANCHAM },
+    { 28, 28, SPECIES_BONSLY },
+    { 30, 30, SPECIES_APPLIN },
+    { 44, 44, SPECIES_TYROGUE },
+    { 32, 32, SPECIES_AMAURA },
+    { 44, 44, SPECIES_FERROSEED },
+    { 22, 22, SPECIES_BINACLE },
+    { 44, 44, SPECIES_AERODACTYL },
+    { 22, 22, SPECIES_THROH },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB1FStairs_LeafGreen_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB1FStairs_LeafGreen_Evening_LandMons };
@@ -9841,18 +9841,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB1FStairs_LeafGreen_Evening_LandMon
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB1FStairs_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_HONEDGE },
-    { 26, 26, SPECIES_IMPIDIMP },
-    { 42, 42, SPECIES_YAMASK },
-    { 24, 24, SPECIES_TRUBBISH },
-    { 28, 28, SPECIES_PURRLOIN },
-    { 30, 30, SPECIES_ZIGZAGOON_GALAR },
-    { 44, 44, SPECIES_NICKIT },
-    { 32, 32, SPECIES_DUSKULL },
-    { 44, 44, SPECIES_MASCHIFF },
+    { 40, 40, SPECIES_RATTATA_ALOLA },
+    { 26, 26, SPECIES_BRONZOR },
+    { 42, 42, SPECIES_BUDEW },
+    { 24, 24, SPECIES_MURKROW },
+    { 28, 28, SPECIES_DRIFLOON },
+    { 30, 30, SPECIES_SNEASEL_HISUI },
+    { 44, 44, SPECIES_HONEDGE },
+    { 32, 32, SPECIES_PURRLOIN },
+    { 44, 44, SPECIES_SKORUPI },
+    { 22, 22, SPECIES_SPIRITOMB },
+    { 44, 44, SPECIES_BRAMBLIN },
     { 22, 22, SPECIES_VAROOM },
-    { 44, 44, SPECIES_PHANTUMP },
-    { 22, 22, SPECIES_SHUPPET },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB1FStairs_LeafGreen_Night_LandMonsInfo = { 7, sMtEmberRubyPathB1FStairs_LeafGreen_Night_LandMons };
@@ -9892,18 +9892,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB2FStairs_FireRed_RockSmashMonsInfo
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB2FStairs_FireRed_Evening_LandMons[] =
 {
-    { 38, 38, SPECIES_TOGEDEMARU },
-    { 36, 36, SPECIES_GLIGAR },
-    { 34, 34, SPECIES_DRACOVISH },
-    { 40, 40, SPECIES_SKARMORY },
-    { 24, 24, SPECIES_DRAMPA },
-    { 26, 26, SPECIES_PANCHAM },
-    { 42, 42, SPECIES_WOOPER },
-    { 28, 28, SPECIES_TOGEDEMARU },
-    { 42, 42, SPECIES_NOIBAT },
-    { 30, 30, SPECIES_ANORITH },
-    { 42, 42, SPECIES_TURTONATOR },
-    { 30, 30, SPECIES_HAWLUCHA },
+    { 38, 38, SPECIES_STUFFUL },
+    { 36, 36, SPECIES_KABUTO },
+    { 34, 34, SPECIES_DRACOZOLT },
+    { 40, 40, SPECIES_TRAPINCH },
+    { 24, 24, SPECIES_PASSIMIAN },
+    { 26, 26, SPECIES_KLAWF },
+    { 42, 42, SPECIES_STUFFUL },
+    { 28, 28, SPECIES_RIOLU },
+    { 42, 42, SPECIES_SHIELDON },
+    { 30, 30, SPECIES_ORTHWORM },
+    { 42, 42, SPECIES_DURALUDON },
+    { 30, 30, SPECIES_STUNFISK },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB2FStairs_FireRed_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB2FStairs_FireRed_Evening_LandMons };
@@ -9912,18 +9912,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB2FStairs_FireRed_Evening_LandMonsI
 #ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB2FStairs_FireRed_Night_LandMons[] =
 {
-    { 38, 38, SPECIES_YAMASK },
-    { 36, 36, SPECIES_BELLSPROUT },
-    { 34, 34, SPECIES_INKAY },
-    { 40, 40, SPECIES_GREAVARD },
-    { 24, 24, SPECIES_DHELMISE },
-    { 26, 26, SPECIES_SCRAGGY },
-    { 42, 42, SPECIES_ROTOM },
-    { 28, 28, SPECIES_BULBASAUR },
-    { 42, 42, SPECIES_SABLEYE },
-    { 30, 30, SPECIES_GRIMER_ALOLA },
-    { 42, 42, SPECIES_GULPIN },
-    { 30, 30, SPECIES_FOONGUS },
+    { 38, 38, SPECIES_GREAVARD },
+    { 36, 36, SPECIES_DUSKULL },
+    { 34, 34, SPECIES_FOONGUS },
+    { 40, 40, SPECIES_SHROODLE },
+    { 24, 24, SPECIES_WOOPER_PALDEA },
+    { 26, 26, SPECIES_SANDILE },
+    { 42, 42, SPECIES_MORPEKO_FULL_BELLY },
+    { 28, 28, SPECIES_GHOLDENGO },
+    { 42, 42, SPECIES_MEOWTH_ALOLA },
+    { 30, 30, SPECIES_VULLABY },
+    { 42, 42, SPECIES_LITWICK },
+    { 30, 30, SPECIES_MEDITITE },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB2FStairs_FireRed_Night_LandMonsInfo = { 7, sMtEmberRubyPathB2FStairs_FireRed_Night_LandMons };
@@ -9963,18 +9963,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB2FStairs_LeafGreen_RockSmashMonsIn
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB2FStairs_LeafGreen_Evening_LandMons[] =
 {
-    { 38, 38, SPECIES_TOGEDEMARU },
-    { 36, 36, SPECIES_GLIGAR },
-    { 34, 34, SPECIES_DRACOVISH },
-    { 40, 40, SPECIES_SKARMORY },
-    { 24, 24, SPECIES_DRAMPA },
-    { 26, 26, SPECIES_PANCHAM },
-    { 42, 42, SPECIES_WOOPER },
-    { 28, 28, SPECIES_TOGEDEMARU },
-    { 42, 42, SPECIES_NOIBAT },
-    { 30, 30, SPECIES_ANORITH },
-    { 42, 42, SPECIES_TURTONATOR },
-    { 30, 30, SPECIES_HAWLUCHA },
+    { 38, 38, SPECIES_STUFFUL },
+    { 36, 36, SPECIES_KABUTO },
+    { 34, 34, SPECIES_DRACOZOLT },
+    { 40, 40, SPECIES_TRAPINCH },
+    { 24, 24, SPECIES_PASSIMIAN },
+    { 26, 26, SPECIES_KLAWF },
+    { 42, 42, SPECIES_STUFFUL },
+    { 28, 28, SPECIES_RIOLU },
+    { 42, 42, SPECIES_SHIELDON },
+    { 30, 30, SPECIES_ORTHWORM },
+    { 42, 42, SPECIES_DURALUDON },
+    { 30, 30, SPECIES_STUNFISK },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB2FStairs_LeafGreen_Evening_LandMonsInfo = { 7, sMtEmberRubyPathB2FStairs_LeafGreen_Evening_LandMons };
@@ -9983,18 +9983,18 @@ const struct WildPokemonInfo sMtEmberRubyPathB2FStairs_LeafGreen_Evening_LandMon
 #ifdef LEAFGREEN
 const struct WildPokemon sMtEmberRubyPathB2FStairs_LeafGreen_Night_LandMons[] =
 {
-    { 38, 38, SPECIES_YAMASK },
-    { 36, 36, SPECIES_BELLSPROUT },
-    { 34, 34, SPECIES_INKAY },
-    { 40, 40, SPECIES_GREAVARD },
-    { 24, 24, SPECIES_DHELMISE },
-    { 26, 26, SPECIES_SCRAGGY },
-    { 42, 42, SPECIES_ROTOM },
-    { 28, 28, SPECIES_BULBASAUR },
-    { 42, 42, SPECIES_SABLEYE },
-    { 30, 30, SPECIES_GRIMER_ALOLA },
-    { 42, 42, SPECIES_GULPIN },
-    { 30, 30, SPECIES_FOONGUS },
+    { 38, 38, SPECIES_GREAVARD },
+    { 36, 36, SPECIES_DUSKULL },
+    { 34, 34, SPECIES_FOONGUS },
+    { 40, 40, SPECIES_SHROODLE },
+    { 24, 24, SPECIES_WOOPER_PALDEA },
+    { 26, 26, SPECIES_SANDILE },
+    { 42, 42, SPECIES_MORPEKO_FULL_BELLY },
+    { 28, 28, SPECIES_GHOLDENGO },
+    { 42, 42, SPECIES_MEOWTH_ALOLA },
+    { 30, 30, SPECIES_VULLABY },
+    { 42, 42, SPECIES_LITWICK },
+    { 30, 30, SPECIES_MEDITITE },
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB2FStairs_LeafGreen_Night_LandMonsInfo = { 7, sMtEmberRubyPathB2FStairs_LeafGreen_Night_LandMons };
@@ -10050,29 +10050,29 @@ const struct WildPokemonInfo sThreeIslandBerryForest_FireRed_FishingMonsInfo = {
 #ifdef FIRERED
 const struct WildPokemon sThreeIslandBerryForest_FireRed_Evening_LandMons[] =
 {
-    { 37, 37, SPECIES_TAROUNTULA },
-    { 35, 35, SPECIES_TROPIUS },
-    { 32, 32, SPECIES_ROWLET },
-    { 30, 30, SPECIES_CACNEA },
-    { 34, 34, SPECIES_BOUNSWEET },
-    { 34, 34, SPECIES_WURMPLE },
-    { 35, 35, SPECIES_CAPSAKID },
-    { 31, 31, SPECIES_SEWADDLE },
-    { 37, 37, SPECIES_GROOKEY },
-    { 37, 37, SPECIES_ILLUMISE },
-    { 40, 40, SPECIES_MARACTUS },
-    { 40, 40, SPECIES_CARNIVINE },
+    { 37, 37, SPECIES_SIZZLIPEDE },
+    { 35, 35, SPECIES_COMBEE },
+    { 32, 32, SPECIES_SURSKIT },
+    { 30, 30, SPECIES_ILLUMISE },
+    { 34, 34, SPECIES_CARNIVINE },
+    { 34, 34, SPECIES_GRUBBIN },
+    { 35, 35, SPECIES_SEEDOT },
+    { 31, 31, SPECIES_LEDYBA },
+    { 37, 37, SPECIES_CHESPIN },
+    { 37, 37, SPECIES_JOLTIK },
+    { 40, 40, SPECIES_PANSAGE },
+    { 40, 40, SPECIES_ACCELGOR },
 };
 
 const struct WildPokemonInfo sThreeIslandBerryForest_FireRed_Evening_LandMonsInfo = { 21, sThreeIslandBerryForest_FireRed_Evening_LandMons };
 
 const struct WildPokemon sThreeIslandBerryForest_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_ARCTOVISH },
-    { 20, 35, SPECIES_SNORUNT },
-    { 35, 40, SPECIES_CRYOGONAL },
+    { 5, 20, SPECIES_SNOM },
+    { 20, 35, SPECIES_BERGMITE },
+    { 35, 40, SPECIES_ARCTOVISH },
     { 35, 40, SPECIES_MANTYKE },
-    { 35, 40, SPECIES_FINIZEN },
+    { 35, 40, SPECIES_ARCTOZOLT },
 };
 
 const struct WildPokemonInfo sThreeIslandBerryForest_FireRed_Evening_WaterMonsInfo = { 2, sThreeIslandBerryForest_FireRed_Evening_WaterMons };
@@ -10081,29 +10081,29 @@ const struct WildPokemonInfo sThreeIslandBerryForest_FireRed_Evening_WaterMonsIn
 #ifdef FIRERED
 const struct WildPokemon sThreeIslandBerryForest_FireRed_Night_LandMons[] =
 {
-    { 37, 37, SPECIES_COMFEY },
-    { 35, 35, SPECIES_MORELULL },
-    { 32, 32, SPECIES_MILCERY },
-    { 30, 30, SPECIES_COMFEY },
+    { 37, 37, SPECIES_ZORUA },
+    { 35, 35, SPECIES_SANDYGAST },
+    { 32, 32, SPECIES_COMFEY },
+    { 30, 30, SPECIES_SPRITZEE },
+    { 34, 34, SPECIES_SNUBBULL },
     { 34, 34, SPECIES_CLEFFA },
-    { 34, 34, SPECIES_TOGEPI },
-    { 35, 35, SPECIES_MILCERY },
-    { 31, 31, SPECIES_MORELULL },
-    { 37, 37, SPECIES_SWIRLIX },
-    { 37, 37, SPECIES_CLEFFA },
-    { 40, 40, SPECIES_CUTIEFLY },
-    { 40, 40, SPECIES_COMFEY },
+    { 35, 35, SPECIES_COMFEY },
+    { 31, 31, SPECIES_AZURILL },
+    { 37, 37, SPECIES_SPRITZEE },
+    { 37, 37, SPECIES_CUTIEFLY },
+    { 40, 40, SPECIES_MILCERY },
+    { 40, 40, SPECIES_FIDOUGH },
 };
 
 const struct WildPokemonInfo sThreeIslandBerryForest_FireRed_Night_LandMonsInfo = { 21, sThreeIslandBerryForest_FireRed_Night_LandMons };
 
 const struct WildPokemon sThreeIslandBerryForest_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_VELUZA },
-    { 20, 35, SPECIES_CARVANHA },
+    { 5, 20, SPECIES_MAREANIE },
+    { 20, 35, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_BASCULEGION_M },
     { 35, 40, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_FRILLISH },
+    { 35, 40, SPECIES_BRUXISH },
 };
 
 const struct WildPokemonInfo sThreeIslandBerryForest_FireRed_Night_WaterMonsInfo = { 2, sThreeIslandBerryForest_FireRed_Night_WaterMons };
@@ -10159,29 +10159,29 @@ const struct WildPokemonInfo sThreeIslandBerryForest_LeafGreen_FishingMonsInfo =
 #ifdef LEAFGREEN
 const struct WildPokemon sThreeIslandBerryForest_LeafGreen_Evening_LandMons[] =
 {
-    { 37, 37, SPECIES_TAROUNTULA },
-    { 35, 35, SPECIES_TROPIUS },
-    { 32, 32, SPECIES_ROWLET },
-    { 30, 30, SPECIES_CACNEA },
-    { 34, 34, SPECIES_BOUNSWEET },
-    { 34, 34, SPECIES_WURMPLE },
-    { 35, 35, SPECIES_CAPSAKID },
-    { 31, 31, SPECIES_SEWADDLE },
-    { 37, 37, SPECIES_GROOKEY },
-    { 37, 37, SPECIES_ILLUMISE },
-    { 40, 40, SPECIES_MARACTUS },
-    { 40, 40, SPECIES_CARNIVINE },
+    { 37, 37, SPECIES_SIZZLIPEDE },
+    { 35, 35, SPECIES_COMBEE },
+    { 32, 32, SPECIES_SURSKIT },
+    { 30, 30, SPECIES_ILLUMISE },
+    { 34, 34, SPECIES_CARNIVINE },
+    { 34, 34, SPECIES_GRUBBIN },
+    { 35, 35, SPECIES_SEEDOT },
+    { 31, 31, SPECIES_LEDYBA },
+    { 37, 37, SPECIES_CHESPIN },
+    { 37, 37, SPECIES_JOLTIK },
+    { 40, 40, SPECIES_PANSAGE },
+    { 40, 40, SPECIES_ACCELGOR },
 };
 
 const struct WildPokemonInfo sThreeIslandBerryForest_LeafGreen_Evening_LandMonsInfo = { 21, sThreeIslandBerryForest_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sThreeIslandBerryForest_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_ARCTOVISH },
-    { 20, 35, SPECIES_SNORUNT },
-    { 35, 40, SPECIES_CRYOGONAL },
+    { 5, 20, SPECIES_SNOM },
+    { 20, 35, SPECIES_BERGMITE },
+    { 35, 40, SPECIES_ARCTOVISH },
     { 35, 40, SPECIES_MANTYKE },
-    { 35, 40, SPECIES_FINIZEN },
+    { 35, 40, SPECIES_ARCTOZOLT },
 };
 
 const struct WildPokemonInfo sThreeIslandBerryForest_LeafGreen_Evening_WaterMonsInfo = { 2, sThreeIslandBerryForest_LeafGreen_Evening_WaterMons };
@@ -10190,29 +10190,29 @@ const struct WildPokemonInfo sThreeIslandBerryForest_LeafGreen_Evening_WaterMons
 #ifdef LEAFGREEN
 const struct WildPokemon sThreeIslandBerryForest_LeafGreen_Night_LandMons[] =
 {
-    { 37, 37, SPECIES_COMFEY },
-    { 35, 35, SPECIES_MORELULL },
-    { 32, 32, SPECIES_MILCERY },
-    { 30, 30, SPECIES_COMFEY },
+    { 37, 37, SPECIES_ZORUA },
+    { 35, 35, SPECIES_SANDYGAST },
+    { 32, 32, SPECIES_COMFEY },
+    { 30, 30, SPECIES_SPRITZEE },
+    { 34, 34, SPECIES_SNUBBULL },
     { 34, 34, SPECIES_CLEFFA },
-    { 34, 34, SPECIES_TOGEPI },
-    { 35, 35, SPECIES_MILCERY },
-    { 31, 31, SPECIES_MORELULL },
-    { 37, 37, SPECIES_SWIRLIX },
-    { 37, 37, SPECIES_CLEFFA },
-    { 40, 40, SPECIES_CUTIEFLY },
-    { 40, 40, SPECIES_COMFEY },
+    { 35, 35, SPECIES_COMFEY },
+    { 31, 31, SPECIES_AZURILL },
+    { 37, 37, SPECIES_SPRITZEE },
+    { 37, 37, SPECIES_CUTIEFLY },
+    { 40, 40, SPECIES_MILCERY },
+    { 40, 40, SPECIES_FIDOUGH },
 };
 
 const struct WildPokemonInfo sThreeIslandBerryForest_LeafGreen_Night_LandMonsInfo = { 21, sThreeIslandBerryForest_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sThreeIslandBerryForest_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_VELUZA },
-    { 20, 35, SPECIES_CARVANHA },
+    { 5, 20, SPECIES_MAREANIE },
+    { 20, 35, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_BASCULEGION_M },
     { 35, 40, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_FRILLISH },
+    { 35, 40, SPECIES_BRUXISH },
 };
 
 const struct WildPokemonInfo sThreeIslandBerryForest_LeafGreen_Night_WaterMonsInfo = { 2, sThreeIslandBerryForest_LeafGreen_Night_WaterMons };
@@ -10268,29 +10268,29 @@ const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_FireRed_FishingMonsI
 #ifdef FIRERED
 const struct WildPokemon sFourIslandIcefallCaveEntrance_FireRed_Evening_LandMons[] =
 {
-    { 43, 43, SPECIES_FROAKIE },
-    { 45, 45, SPECIES_SPHEAL },
-    { 45, 45, SPECIES_CUBCHOO },
-    { 47, 47, SPECIES_SQUIRTLE },
-    { 40, 40, SPECIES_OSHAWOTT },
-    { 49, 49, SPECIES_CHEWTLE },
-    { 51, 51, SPECIES_PANPOUR },
-    { 41, 41, SPECIES_LARVITAR },
-    { 48, 48, SPECIES_CETODDLE },
-    { 53, 53, SPECIES_CRAMORANT },
-    { 48, 48, SPECIES_DONDOZO },
-    { 53, 53, SPECIES_FRIGIBAX },
+    { 43, 43, SPECIES_MUDKIP },
+    { 45, 45, SPECIES_TOTODILE },
+    { 45, 45, SPECIES_CLAUNCHER },
+    { 47, 47, SPECIES_STARYU },
+    { 40, 40, SPECIES_WIGLETT },
+    { 49, 49, SPECIES_SURSKIT },
+    { 51, 51, SPECIES_SPHEAL },
+    { 41, 41, SPECIES_OSHAWOTT },
+    { 48, 48, SPECIES_FINNEON },
+    { 53, 53, SPECIES_DELIBIRD },
+    { 48, 48, SPECIES_CLAMPERL },
+    { 53, 53, SPECIES_ARCTOZOLT },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_FireRed_Evening_LandMonsInfo = { 7, sFourIslandIcefallCaveEntrance_FireRed_Evening_LandMons };
 
 const struct WildPokemon sFourIslandIcefallCaveEntrance_FireRed_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_FINNEON },
-    { 5, 35, SPECIES_BUIZEL },
-    { 35, 40, SPECIES_BERGMITE },
-    { 5, 15, SPECIES_WINGULL },
-    { 5, 15, SPECIES_VULPIX_ALOLA },
+    { 5, 35, SPECIES_ARROKUDA },
+    { 5, 35, SPECIES_PYUKUMUKU },
+    { 35, 40, SPECIES_SQUIRTLE },
+    { 5, 15, SPECIES_STARYU },
+    { 5, 15, SPECIES_CORPHISH },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_FireRed_Evening_WaterMonsInfo = { 2, sFourIslandIcefallCaveEntrance_FireRed_Evening_WaterMons };
@@ -10299,29 +10299,29 @@ const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_FireRed_Evening_Wate
 #ifdef FIRERED
 const struct WildPokemon sFourIslandIcefallCaveEntrance_FireRed_Night_LandMons[] =
 {
-    { 43, 43, SPECIES_SLOWPOKE },
-    { 45, 45, SPECIES_CARBINK },
-    { 45, 45, SPECIES_GLIMMET },
-    { 47, 47, SPECIES_SOLROCK },
-    { 40, 40, SPECIES_LUNATONE },
-    { 49, 49, SPECIES_QWILFISH },
-    { 51, 51, SPECIES_SOLROCK },
-    { 41, 41, SPECIES_MAREANIE },
+    { 43, 43, SPECIES_CARBINK },
+    { 45, 45, SPECIES_SOLROCK },
+    { 45, 45, SPECIES_FRILLISH },
+    { 47, 47, SPECIES_MAREANIE },
+    { 40, 40, SPECIES_VELUZA },
+    { 49, 49, SPECIES_CARVANHA },
+    { 51, 51, SPECIES_GLIMMET },
+    { 41, 41, SPECIES_SOLROCK },
+    { 48, 48, SPECIES_SNEASEL },
+    { 53, 53, SPECIES_SKRELP },
     { 48, 48, SPECIES_LUNATONE },
-    { 53, 53, SPECIES_CARVANHA },
-    { 48, 48, SPECIES_BRUXISH },
-    { 53, 53, SPECIES_SNEASEL },
+    { 53, 53, SPECIES_CARBINK },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_FireRed_Night_LandMonsInfo = { 7, sFourIslandIcefallCaveEntrance_FireRed_Night_LandMons };
 
 const struct WildPokemon sFourIslandIcefallCaveEntrance_FireRed_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_SKRELP },
     { 5, 35, SPECIES_SLOWPOKE },
-    { 35, 40, SPECIES_SMOOCHUM },
-    { 5, 15, SPECIES_SNEASEL },
+    { 5, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_CARVANHA },
     { 5, 15, SPECIES_SMOOCHUM },
+    { 5, 15, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_FireRed_Night_WaterMonsInfo = { 2, sFourIslandIcefallCaveEntrance_FireRed_Night_WaterMons };
@@ -10377,29 +10377,29 @@ const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_LeafGreen_FishingMon
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIslandIcefallCaveEntrance_LeafGreen_Evening_LandMons[] =
 {
-    { 43, 43, SPECIES_FROAKIE },
-    { 45, 45, SPECIES_SPHEAL },
-    { 45, 45, SPECIES_CUBCHOO },
-    { 47, 47, SPECIES_SQUIRTLE },
-    { 40, 40, SPECIES_OSHAWOTT },
-    { 49, 49, SPECIES_CHEWTLE },
-    { 51, 51, SPECIES_PANPOUR },
-    { 41, 41, SPECIES_LARVITAR },
-    { 48, 48, SPECIES_CETODDLE },
-    { 53, 53, SPECIES_CRAMORANT },
-    { 48, 48, SPECIES_DONDOZO },
-    { 53, 53, SPECIES_FRIGIBAX },
+    { 43, 43, SPECIES_MUDKIP },
+    { 45, 45, SPECIES_TOTODILE },
+    { 45, 45, SPECIES_CLAUNCHER },
+    { 47, 47, SPECIES_STARYU },
+    { 40, 40, SPECIES_WIGLETT },
+    { 49, 49, SPECIES_SURSKIT },
+    { 51, 51, SPECIES_SPHEAL },
+    { 41, 41, SPECIES_OSHAWOTT },
+    { 48, 48, SPECIES_FINNEON },
+    { 53, 53, SPECIES_DELIBIRD },
+    { 48, 48, SPECIES_CLAMPERL },
+    { 53, 53, SPECIES_ARCTOZOLT },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_LeafGreen_Evening_LandMonsInfo = { 7, sFourIslandIcefallCaveEntrance_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sFourIslandIcefallCaveEntrance_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_FINNEON },
-    { 5, 35, SPECIES_BUIZEL },
-    { 35, 40, SPECIES_BERGMITE },
-    { 5, 15, SPECIES_WINGULL },
-    { 5, 15, SPECIES_VULPIX_ALOLA },
+    { 5, 35, SPECIES_ARROKUDA },
+    { 5, 35, SPECIES_PYUKUMUKU },
+    { 35, 40, SPECIES_SQUIRTLE },
+    { 5, 15, SPECIES_STARYU },
+    { 5, 15, SPECIES_CORPHISH },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_LeafGreen_Evening_WaterMonsInfo = { 2, sFourIslandIcefallCaveEntrance_LeafGreen_Evening_WaterMons };
@@ -10408,29 +10408,29 @@ const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_LeafGreen_Evening_Wa
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIslandIcefallCaveEntrance_LeafGreen_Night_LandMons[] =
 {
-    { 43, 43, SPECIES_SLOWPOKE },
-    { 45, 45, SPECIES_CARBINK },
-    { 45, 45, SPECIES_GLIMMET },
-    { 47, 47, SPECIES_SOLROCK },
-    { 40, 40, SPECIES_LUNATONE },
-    { 49, 49, SPECIES_QWILFISH },
-    { 51, 51, SPECIES_SOLROCK },
-    { 41, 41, SPECIES_MAREANIE },
+    { 43, 43, SPECIES_CARBINK },
+    { 45, 45, SPECIES_SOLROCK },
+    { 45, 45, SPECIES_FRILLISH },
+    { 47, 47, SPECIES_MAREANIE },
+    { 40, 40, SPECIES_VELUZA },
+    { 49, 49, SPECIES_CARVANHA },
+    { 51, 51, SPECIES_GLIMMET },
+    { 41, 41, SPECIES_SOLROCK },
+    { 48, 48, SPECIES_SNEASEL },
+    { 53, 53, SPECIES_SKRELP },
     { 48, 48, SPECIES_LUNATONE },
-    { 53, 53, SPECIES_CARVANHA },
-    { 48, 48, SPECIES_BRUXISH },
-    { 53, 53, SPECIES_SNEASEL },
+    { 53, 53, SPECIES_CARBINK },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_LeafGreen_Night_LandMonsInfo = { 7, sFourIslandIcefallCaveEntrance_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sFourIslandIcefallCaveEntrance_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_SKRELP },
     { 5, 35, SPECIES_SLOWPOKE },
-    { 35, 40, SPECIES_SMOOCHUM },
-    { 5, 15, SPECIES_SNEASEL },
+    { 5, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_CARVANHA },
     { 5, 15, SPECIES_SMOOCHUM },
+    { 5, 15, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_LeafGreen_Night_WaterMonsInfo = { 2, sFourIslandIcefallCaveEntrance_LeafGreen_Night_WaterMons };
@@ -10459,18 +10459,18 @@ const struct WildPokemonInfo sFourIslandIcefallCave1F_FireRed_LandMonsInfo = { 7
 #ifdef FIRERED
 const struct WildPokemon sFourIslandIcefallCave1F_FireRed_Evening_LandMons[] =
 {
-    { 25, 25, SPECIES_OSHAWOTT },
-    { 45, 45, SPECIES_CHEWTLE },
+    { 25, 25, SPECIES_POPPLIO },
     { 45, 45, SPECIES_CLAMPERL },
-    { 27, 27, SPECIES_SNORUNT },
-    { 40, 40, SPECIES_SNOM },
-    { 29, 29, SPECIES_STARYU },
-    { 30, 30, SPECIES_PIPLUP },
-    { 31, 31, SPECIES_DARUMAKA_GALAR },
-    { 48, 48, SPECIES_LUVDISC },
-    { 23, 23, SPECIES_QUAXLY },
-    { 48, 48, SPECIES_TOTODILE },
-    { 23, 23, SPECIES_ALOMOMOLA },
+    { 45, 45, SPECIES_SNORUNT },
+    { 27, 27, SPECIES_WISHIWASHI_SOLO },
+    { 40, 40, SPECIES_VANILLITE },
+    { 29, 29, SPECIES_QUAXLY },
+    { 30, 30, SPECIES_DUCKLETT },
+    { 31, 31, SPECIES_FINIZEN },
+    { 48, 48, SPECIES_WISHIWASHI_SOLO },
+    { 23, 23, SPECIES_WINGULL },
+    { 48, 48, SPECIES_CRAMORANT },
+    { 23, 23, SPECIES_EISCUE_ICE },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCave1F_FireRed_Evening_LandMonsInfo = { 7, sFourIslandIcefallCave1F_FireRed_Evening_LandMons };
@@ -10479,18 +10479,18 @@ const struct WildPokemonInfo sFourIslandIcefallCave1F_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFourIslandIcefallCave1F_FireRed_Night_LandMons[] =
 {
-    { 25, 25, SPECIES_CARVANHA },
-    { 45, 45, SPECIES_GLIMMET },
+    { 25, 25, SPECIES_LUNATONE },
     { 45, 45, SPECIES_CARBINK },
-    { 27, 27, SPECIES_VELUZA },
-    { 40, 40, SPECIES_QWILFISH },
-    { 29, 29, SPECIES_SOLROCK },
-    { 30, 30, SPECIES_CARVANHA },
-    { 31, 31, SPECIES_FRILLISH },
-    { 48, 48, SPECIES_GLIMMET },
-    { 23, 23, SPECIES_CARBINK },
+    { 45, 45, SPECIES_VELUZA },
+    { 27, 27, SPECIES_SOLROCK },
+    { 40, 40, SPECIES_SLOWPOKE },
+    { 29, 29, SPECIES_CARBINK },
+    { 30, 30, SPECIES_QWILFISH },
+    { 31, 31, SPECIES_BRUXISH },
     { 48, 48, SPECIES_MAREANIE },
-    { 23, 23, SPECIES_BRUXISH },
+    { 23, 23, SPECIES_FRILLISH },
+    { 48, 48, SPECIES_BASCULEGION_M },
+    { 23, 23, SPECIES_SKRELP },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCave1F_FireRed_Night_LandMonsInfo = { 7, sFourIslandIcefallCave1F_FireRed_Night_LandMons };
@@ -10519,18 +10519,18 @@ const struct WildPokemonInfo sFourIslandIcefallCave1F_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIslandIcefallCave1F_LeafGreen_Evening_LandMons[] =
 {
-    { 25, 25, SPECIES_OSHAWOTT },
-    { 45, 45, SPECIES_CHEWTLE },
+    { 25, 25, SPECIES_POPPLIO },
     { 45, 45, SPECIES_CLAMPERL },
-    { 27, 27, SPECIES_SNORUNT },
-    { 40, 40, SPECIES_SNOM },
-    { 29, 29, SPECIES_STARYU },
-    { 30, 30, SPECIES_PIPLUP },
-    { 31, 31, SPECIES_DARUMAKA_GALAR },
-    { 48, 48, SPECIES_LUVDISC },
-    { 23, 23, SPECIES_QUAXLY },
-    { 48, 48, SPECIES_TOTODILE },
-    { 23, 23, SPECIES_ALOMOMOLA },
+    { 45, 45, SPECIES_SNORUNT },
+    { 27, 27, SPECIES_WISHIWASHI_SOLO },
+    { 40, 40, SPECIES_VANILLITE },
+    { 29, 29, SPECIES_QUAXLY },
+    { 30, 30, SPECIES_DUCKLETT },
+    { 31, 31, SPECIES_FINIZEN },
+    { 48, 48, SPECIES_WISHIWASHI_SOLO },
+    { 23, 23, SPECIES_WINGULL },
+    { 48, 48, SPECIES_CRAMORANT },
+    { 23, 23, SPECIES_EISCUE_ICE },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCave1F_LeafGreen_Evening_LandMonsInfo = { 7, sFourIslandIcefallCave1F_LeafGreen_Evening_LandMons };
@@ -10539,18 +10539,18 @@ const struct WildPokemonInfo sFourIslandIcefallCave1F_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIslandIcefallCave1F_LeafGreen_Night_LandMons[] =
 {
-    { 25, 25, SPECIES_CARVANHA },
-    { 45, 45, SPECIES_GLIMMET },
+    { 25, 25, SPECIES_LUNATONE },
     { 45, 45, SPECIES_CARBINK },
-    { 27, 27, SPECIES_VELUZA },
-    { 40, 40, SPECIES_QWILFISH },
-    { 29, 29, SPECIES_SOLROCK },
-    { 30, 30, SPECIES_CARVANHA },
-    { 31, 31, SPECIES_FRILLISH },
-    { 48, 48, SPECIES_GLIMMET },
-    { 23, 23, SPECIES_CARBINK },
+    { 45, 45, SPECIES_VELUZA },
+    { 27, 27, SPECIES_SOLROCK },
+    { 40, 40, SPECIES_SLOWPOKE },
+    { 29, 29, SPECIES_CARBINK },
+    { 30, 30, SPECIES_QWILFISH },
+    { 31, 31, SPECIES_BRUXISH },
     { 48, 48, SPECIES_MAREANIE },
-    { 23, 23, SPECIES_BRUXISH },
+    { 23, 23, SPECIES_FRILLISH },
+    { 48, 48, SPECIES_BASCULEGION_M },
+    { 23, 23, SPECIES_SKRELP },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCave1F_LeafGreen_Night_LandMonsInfo = { 7, sFourIslandIcefallCave1F_LeafGreen_Night_LandMons };
@@ -10579,18 +10579,18 @@ const struct WildPokemonInfo sFourIslandIcefallCaveB1F_FireRed_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sFourIslandIcefallCaveB1F_FireRed_Evening_LandMons[] =
 {
-    { 25, 25, SPECIES_POPPLIO },
-    { 45, 45, SPECIES_ARROKUDA },
-    { 45, 45, SPECIES_CLAUNCHER },
-    { 27, 27, SPECIES_PANPOUR },
-    { 40, 40, SPECIES_ARCTOZOLT },
-    { 29, 29, SPECIES_DEWPIDER },
-    { 30, 30, SPECIES_GROWLITHE_HISUI },
-    { 31, 31, SPECIES_LOTAD },
-    { 48, 48, SPECIES_ARCHEN },
-    { 23, 23, SPECIES_POPPLIO },
-    { 48, 48, SPECIES_PIPLUP },
-    { 23, 23, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 25, 25, SPECIES_PIPLUP },
+    { 45, 45, SPECIES_BERGMITE },
+    { 45, 45, SPECIES_CETODDLE },
+    { 27, 27, SPECIES_FINNEON },
+    { 40, 40, SPECIES_LUVDISC },
+    { 29, 29, SPECIES_MUDKIP },
+    { 30, 30, SPECIES_CLAUNCHER },
+    { 31, 31, SPECIES_ALOMOMOLA },
+    { 48, 48, SPECIES_TYMPOLE },
+    { 23, 23, SPECIES_FROAKIE },
+    { 48, 48, SPECIES_CHINCHOU },
+    { 23, 23, SPECIES_DONDOZO },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveB1F_FireRed_Evening_LandMonsInfo = { 7, sFourIslandIcefallCaveB1F_FireRed_Evening_LandMons };
@@ -10599,18 +10599,18 @@ const struct WildPokemonInfo sFourIslandIcefallCaveB1F_FireRed_Evening_LandMonsI
 #ifdef FIRERED
 const struct WildPokemon sFourIslandIcefallCaveB1F_FireRed_Night_LandMons[] =
 {
-    { 25, 25, SPECIES_SOLROCK },
-    { 45, 45, SPECIES_VELUZA },
-    { 45, 45, SPECIES_SKRELP },
-    { 27, 27, SPECIES_LUNATONE },
-    { 40, 40, SPECIES_SLOWPOKE },
-    { 29, 29, SPECIES_VELUZA },
-    { 30, 30, SPECIES_BRUXISH },
-    { 31, 31, SPECIES_CARVANHA },
-    { 48, 48, SPECIES_SOLROCK },
-    { 23, 23, SPECIES_SKRELP },
-    { 48, 48, SPECIES_FRILLISH },
-    { 23, 23, SPECIES_QWILFISH },
+    { 25, 25, SPECIES_FRILLISH },
+    { 45, 45, SPECIES_LUNATONE },
+    { 45, 45, SPECIES_GLIMMET },
+    { 27, 27, SPECIES_BASCULEGION_M },
+    { 40, 40, SPECIES_CARVANHA },
+    { 29, 29, SPECIES_QWILFISH },
+    { 30, 30, SPECIES_MAREANIE },
+    { 31, 31, SPECIES_GLIMMET },
+    { 48, 48, SPECIES_SKRELP },
+    { 23, 23, SPECIES_SLOWPOKE },
+    { 48, 48, SPECIES_BRUXISH },
+    { 23, 23, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveB1F_FireRed_Night_LandMonsInfo = { 7, sFourIslandIcefallCaveB1F_FireRed_Night_LandMons };
@@ -10639,18 +10639,18 @@ const struct WildPokemonInfo sFourIslandIcefallCaveB1F_LeafGreen_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIslandIcefallCaveB1F_LeafGreen_Evening_LandMons[] =
 {
-    { 25, 25, SPECIES_POPPLIO },
-    { 45, 45, SPECIES_ARROKUDA },
-    { 45, 45, SPECIES_CLAUNCHER },
-    { 27, 27, SPECIES_PANPOUR },
-    { 40, 40, SPECIES_ARCTOZOLT },
-    { 29, 29, SPECIES_DEWPIDER },
-    { 30, 30, SPECIES_GROWLITHE_HISUI },
-    { 31, 31, SPECIES_LOTAD },
-    { 48, 48, SPECIES_ARCHEN },
-    { 23, 23, SPECIES_POPPLIO },
-    { 48, 48, SPECIES_PIPLUP },
-    { 23, 23, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 25, 25, SPECIES_PIPLUP },
+    { 45, 45, SPECIES_BERGMITE },
+    { 45, 45, SPECIES_CETODDLE },
+    { 27, 27, SPECIES_FINNEON },
+    { 40, 40, SPECIES_LUVDISC },
+    { 29, 29, SPECIES_MUDKIP },
+    { 30, 30, SPECIES_CLAUNCHER },
+    { 31, 31, SPECIES_ALOMOMOLA },
+    { 48, 48, SPECIES_TYMPOLE },
+    { 23, 23, SPECIES_FROAKIE },
+    { 48, 48, SPECIES_CHINCHOU },
+    { 23, 23, SPECIES_DONDOZO },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveB1F_LeafGreen_Evening_LandMonsInfo = { 7, sFourIslandIcefallCaveB1F_LeafGreen_Evening_LandMons };
@@ -10659,18 +10659,18 @@ const struct WildPokemonInfo sFourIslandIcefallCaveB1F_LeafGreen_Evening_LandMon
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIslandIcefallCaveB1F_LeafGreen_Night_LandMons[] =
 {
-    { 25, 25, SPECIES_SOLROCK },
-    { 45, 45, SPECIES_VELUZA },
-    { 45, 45, SPECIES_SKRELP },
-    { 27, 27, SPECIES_LUNATONE },
-    { 40, 40, SPECIES_SLOWPOKE },
-    { 29, 29, SPECIES_VELUZA },
-    { 30, 30, SPECIES_BRUXISH },
-    { 31, 31, SPECIES_CARVANHA },
-    { 48, 48, SPECIES_SOLROCK },
-    { 23, 23, SPECIES_SKRELP },
-    { 48, 48, SPECIES_FRILLISH },
-    { 23, 23, SPECIES_QWILFISH },
+    { 25, 25, SPECIES_FRILLISH },
+    { 45, 45, SPECIES_LUNATONE },
+    { 45, 45, SPECIES_GLIMMET },
+    { 27, 27, SPECIES_BASCULEGION_M },
+    { 40, 40, SPECIES_CARVANHA },
+    { 29, 29, SPECIES_QWILFISH },
+    { 30, 30, SPECIES_MAREANIE },
+    { 31, 31, SPECIES_GLIMMET },
+    { 48, 48, SPECIES_SKRELP },
+    { 23, 23, SPECIES_SLOWPOKE },
+    { 48, 48, SPECIES_BRUXISH },
+    { 23, 23, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveB1F_LeafGreen_Night_LandMonsInfo = { 7, sFourIslandIcefallCaveB1F_LeafGreen_Night_LandMons };
@@ -10726,29 +10726,29 @@ const struct WildPokemonInfo sFourIslandIcefallCaveBack_FireRed_FishingMonsInfo 
 #ifdef FIRERED
 const struct WildPokemon sFourIslandIcefallCaveBack_FireRed_Evening_LandMons[] =
 {
-    { 43, 43, SPECIES_PIPLUP },
-    { 45, 45, SPECIES_BERGMITE },
-    { 45, 45, SPECIES_FINNEON },
-    { 47, 47, SPECIES_WAILMER },
-    { 40, 40, SPECIES_FRIGIBAX },
-    { 49, 49, SPECIES_MUDKIP },
-    { 51, 51, SPECIES_SANDSHREW_ALOLA },
-    { 41, 41, SPECIES_ARROKUDA },
-    { 48, 48, SPECIES_OMANYTE },
-    { 53, 53, SPECIES_VULPIX_ALOLA },
-    { 48, 48, SPECIES_CETODDLE },
-    { 53, 53, SPECIES_ARCTOVISH },
+    { 43, 43, SPECIES_FEEBAS },
+    { 45, 45, SPECIES_VANILLITE },
+    { 45, 45, SPECIES_DARUMAKA_GALAR },
+    { 47, 47, SPECIES_SQUIRTLE },
+    { 40, 40, SPECIES_WAILMER },
+    { 49, 49, SPECIES_CUBCHOO },
+    { 51, 51, SPECIES_LARVITAR },
+    { 41, 41, SPECIES_SHELLOS_WEST },
+    { 48, 48, SPECIES_POPPLIO },
+    { 53, 53, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 48, 48, SPECIES_FRIGIBAX },
+    { 53, 53, SPECIES_ALOMOMOLA },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveBack_FireRed_Evening_LandMonsInfo = { 7, sFourIslandIcefallCaveBack_FireRed_Evening_LandMons };
 
 const struct WildPokemon sFourIslandIcefallCaveBack_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_CLAMPERL },
-    { 20, 35, SPECIES_KABUTO },
-    { 35, 45, SPECIES_DUCKLETT },
-    { 35, 45, SPECIES_TYMPOLE },
-    { 30, 45, SPECIES_QUAXLY },
+    { 5, 20, SPECIES_SPHEAL },
+    { 20, 35, SPECIES_DARUMAKA_GALAR },
+    { 35, 45, SPECIES_WISHIWASHI_SOLO },
+    { 35, 45, SPECIES_SNOVER },
+    { 30, 45, SPECIES_PANPOUR },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveBack_FireRed_Evening_WaterMonsInfo = { 2, sFourIslandIcefallCaveBack_FireRed_Evening_WaterMons };
@@ -10757,29 +10757,29 @@ const struct WildPokemonInfo sFourIslandIcefallCaveBack_FireRed_Evening_WaterMon
 #ifdef FIRERED
 const struct WildPokemon sFourIslandIcefallCaveBack_FireRed_Night_LandMons[] =
 {
-    { 43, 43, SPECIES_SMOOCHUM },
+    { 43, 43, SPECIES_VELUZA },
     { 45, 45, SPECIES_CARBINK },
-    { 45, 45, SPECIES_SMOOCHUM },
-    { 47, 47, SPECIES_SLOWPOKE },
-    { 40, 40, SPECIES_SNEASEL },
-    { 49, 49, SPECIES_GLIMMET },
-    { 51, 51, SPECIES_MAREANIE },
-    { 41, 41, SPECIES_LUNATONE },
-    { 48, 48, SPECIES_CARBINK },
-    { 53, 53, SPECIES_GLIMMET },
-    { 48, 48, SPECIES_SMOOCHUM },
-    { 53, 53, SPECIES_CARVANHA },
+    { 45, 45, SPECIES_FRILLISH },
+    { 47, 47, SPECIES_SMOOCHUM },
+    { 40, 40, SPECIES_LUNATONE },
+    { 49, 49, SPECIES_SOLROCK },
+    { 51, 51, SPECIES_SMOOCHUM },
+    { 41, 41, SPECIES_SLOWPOKE },
+    { 48, 48, SPECIES_VELUZA },
+    { 53, 53, SPECIES_SKRELP },
+    { 48, 48, SPECIES_SNEASEL },
+    { 53, 53, SPECIES_BASCULEGION_M },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveBack_FireRed_Night_LandMonsInfo = { 7, sFourIslandIcefallCaveBack_FireRed_Night_LandMons };
 
 const struct WildPokemon sFourIslandIcefallCaveBack_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SKRELP },
-    { 20, 35, SPECIES_SLOWPOKE },
+    { 5, 20, SPECIES_MAREANIE },
+    { 20, 35, SPECIES_BASCULEGION_M },
+    { 35, 45, SPECIES_CARVANHA },
     { 35, 45, SPECIES_FRILLISH },
-    { 35, 45, SPECIES_SNEASEL },
-    { 30, 45, SPECIES_BRUXISH },
+    { 30, 45, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveBack_FireRed_Night_WaterMonsInfo = { 2, sFourIslandIcefallCaveBack_FireRed_Night_WaterMons };
@@ -10835,29 +10835,29 @@ const struct WildPokemonInfo sFourIslandIcefallCaveBack_LeafGreen_FishingMonsInf
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIslandIcefallCaveBack_LeafGreen_Evening_LandMons[] =
 {
-    { 43, 43, SPECIES_PIPLUP },
-    { 45, 45, SPECIES_BERGMITE },
-    { 45, 45, SPECIES_FINNEON },
-    { 47, 47, SPECIES_WAILMER },
-    { 40, 40, SPECIES_FRIGIBAX },
-    { 49, 49, SPECIES_MUDKIP },
-    { 51, 51, SPECIES_SANDSHREW_ALOLA },
-    { 41, 41, SPECIES_ARROKUDA },
-    { 48, 48, SPECIES_OMANYTE },
-    { 53, 53, SPECIES_VULPIX_ALOLA },
-    { 48, 48, SPECIES_CETODDLE },
-    { 53, 53, SPECIES_ARCTOVISH },
+    { 43, 43, SPECIES_FEEBAS },
+    { 45, 45, SPECIES_VANILLITE },
+    { 45, 45, SPECIES_DARUMAKA_GALAR },
+    { 47, 47, SPECIES_SQUIRTLE },
+    { 40, 40, SPECIES_WAILMER },
+    { 49, 49, SPECIES_CUBCHOO },
+    { 51, 51, SPECIES_LARVITAR },
+    { 41, 41, SPECIES_SHELLOS_WEST },
+    { 48, 48, SPECIES_POPPLIO },
+    { 53, 53, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 48, 48, SPECIES_FRIGIBAX },
+    { 53, 53, SPECIES_ALOMOMOLA },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveBack_LeafGreen_Evening_LandMonsInfo = { 7, sFourIslandIcefallCaveBack_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sFourIslandIcefallCaveBack_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_CLAMPERL },
-    { 20, 35, SPECIES_KABUTO },
-    { 35, 45, SPECIES_DUCKLETT },
-    { 35, 45, SPECIES_TYMPOLE },
-    { 30, 45, SPECIES_QUAXLY },
+    { 5, 20, SPECIES_SPHEAL },
+    { 20, 35, SPECIES_DARUMAKA_GALAR },
+    { 35, 45, SPECIES_WISHIWASHI_SOLO },
+    { 35, 45, SPECIES_SNOVER },
+    { 30, 45, SPECIES_PANPOUR },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveBack_LeafGreen_Evening_WaterMonsInfo = { 2, sFourIslandIcefallCaveBack_LeafGreen_Evening_WaterMons };
@@ -10866,29 +10866,29 @@ const struct WildPokemonInfo sFourIslandIcefallCaveBack_LeafGreen_Evening_WaterM
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIslandIcefallCaveBack_LeafGreen_Night_LandMons[] =
 {
-    { 43, 43, SPECIES_SMOOCHUM },
+    { 43, 43, SPECIES_VELUZA },
     { 45, 45, SPECIES_CARBINK },
-    { 45, 45, SPECIES_SMOOCHUM },
-    { 47, 47, SPECIES_SLOWPOKE },
-    { 40, 40, SPECIES_SNEASEL },
-    { 49, 49, SPECIES_GLIMMET },
-    { 51, 51, SPECIES_MAREANIE },
-    { 41, 41, SPECIES_LUNATONE },
-    { 48, 48, SPECIES_CARBINK },
-    { 53, 53, SPECIES_GLIMMET },
-    { 48, 48, SPECIES_SMOOCHUM },
-    { 53, 53, SPECIES_CARVANHA },
+    { 45, 45, SPECIES_FRILLISH },
+    { 47, 47, SPECIES_SMOOCHUM },
+    { 40, 40, SPECIES_LUNATONE },
+    { 49, 49, SPECIES_SOLROCK },
+    { 51, 51, SPECIES_SMOOCHUM },
+    { 41, 41, SPECIES_SLOWPOKE },
+    { 48, 48, SPECIES_VELUZA },
+    { 53, 53, SPECIES_SKRELP },
+    { 48, 48, SPECIES_SNEASEL },
+    { 53, 53, SPECIES_BASCULEGION_M },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveBack_LeafGreen_Night_LandMonsInfo = { 7, sFourIslandIcefallCaveBack_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sFourIslandIcefallCaveBack_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SKRELP },
-    { 20, 35, SPECIES_SLOWPOKE },
+    { 5, 20, SPECIES_MAREANIE },
+    { 20, 35, SPECIES_BASCULEGION_M },
+    { 35, 45, SPECIES_CARVANHA },
     { 35, 45, SPECIES_FRILLISH },
-    { 35, 45, SPECIES_SNEASEL },
-    { 30, 45, SPECIES_BRUXISH },
+    { 30, 45, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveBack_LeafGreen_Night_WaterMonsInfo = { 2, sFourIslandIcefallCaveBack_LeafGreen_Night_WaterMons };
@@ -10917,18 +10917,18 @@ const struct WildPokemonInfo sSixIslandPatternBush_FireRed_LandMonsInfo = { 21, 
 #ifdef FIRERED
 const struct WildPokemon sSixIslandPatternBush_FireRed_Evening_LandMons[] =
 {
-    { 9, 9, SPECIES_BOUNSWEET },
-    { 9, 9, SPECIES_GRUBBIN },
-    { 14, 14, SPECIES_SKIDDO },
-    { 6, 6, SPECIES_SMOLIV },
+    { 9, 9, SPECIES_BLIPBUG },
+    { 9, 9, SPECIES_CAPSAKID },
+    { 14, 14, SPECIES_TAROUNTULA },
     { 6, 6, SPECIES_RELLOR },
-    { 15, 15, SPECIES_CHERUBI },
-    { 9, 9, SPECIES_SEWADDLE },
-    { 20, 20, SPECIES_VOLBEAT },
-    { 9, 9, SPECIES_RELLOR },
-    { 25, 25, SPECIES_WURMPLE },
-    { 14, 14, SPECIES_BLIPBUG },
-    { 30, 30, SPECIES_CHERUBI },
+    { 6, 6, SPECIES_KRICKETOT },
+    { 15, 15, SPECIES_SEWADDLE },
+    { 9, 9, SPECIES_SHELMET },
+    { 20, 20, SPECIES_FOMANTIS },
+    { 9, 9, SPECIES_CHERUBI },
+    { 25, 25, SPECIES_SKIDDO },
+    { 14, 14, SPECIES_SCATTERBUG },
+    { 30, 30, SPECIES_BLIPBUG },
 };
 
 const struct WildPokemonInfo sSixIslandPatternBush_FireRed_Evening_LandMonsInfo = { 21, sSixIslandPatternBush_FireRed_Evening_LandMons };
@@ -10937,17 +10937,17 @@ const struct WildPokemonInfo sSixIslandPatternBush_FireRed_Evening_LandMonsInfo 
 #ifdef FIRERED
 const struct WildPokemon sSixIslandPatternBush_FireRed_Night_LandMons[] =
 {
-    { 9, 9, SPECIES_POOCHYENA },
-    { 9, 9, SPECIES_SNUBBULL },
-    { 14, 14, SPECIES_AZURILL },
-    { 6, 6, SPECIES_IGGLYBUFF },
-    { 6, 6, SPECIES_FIDOUGH },
-    { 15, 15, SPECIES_SPRITZEE },
-    { 9, 9, SPECIES_COTTONEE },
-    { 20, 20, SPECIES_MILCERY },
-    { 9, 9, SPECIES_CUTIEFLY },
-    { 25, 25, SPECIES_SPRITZEE },
-    { 14, 14, SPECIES_IGGLYBUFF },
+    { 9, 9, SPECIES_LITWICK },
+    { 9, 9, SPECIES_PUMPKABOO_AVERAGE },
+    { 14, 14, SPECIES_COTTONEE },
+    { 6, 6, SPECIES_MORELULL },
+    { 6, 6, SPECIES_FLABEBE },
+    { 15, 15, SPECIES_IGGLYBUFF },
+    { 9, 9, SPECIES_CLEFFA },
+    { 20, 20, SPECIES_AZURILL },
+    { 9, 9, SPECIES_SWIRLIX },
+    { 25, 25, SPECIES_SNUBBULL },
+    { 14, 14, SPECIES_MILCERY },
     { 30, 30, SPECIES_SWIRLIX },
 };
 
@@ -10977,18 +10977,18 @@ const struct WildPokemonInfo sSixIslandPatternBush_LeafGreen_LandMonsInfo = { 21
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandPatternBush_LeafGreen_Evening_LandMons[] =
 {
-    { 9, 9, SPECIES_BOUNSWEET },
-    { 9, 9, SPECIES_GRUBBIN },
-    { 14, 14, SPECIES_SKIDDO },
-    { 6, 6, SPECIES_SMOLIV },
+    { 9, 9, SPECIES_BLIPBUG },
+    { 9, 9, SPECIES_CAPSAKID },
+    { 14, 14, SPECIES_TAROUNTULA },
     { 6, 6, SPECIES_RELLOR },
-    { 15, 15, SPECIES_CHERUBI },
-    { 9, 9, SPECIES_SEWADDLE },
-    { 20, 20, SPECIES_VOLBEAT },
-    { 9, 9, SPECIES_RELLOR },
-    { 25, 25, SPECIES_WURMPLE },
-    { 14, 14, SPECIES_BLIPBUG },
-    { 30, 30, SPECIES_CHERUBI },
+    { 6, 6, SPECIES_KRICKETOT },
+    { 15, 15, SPECIES_SEWADDLE },
+    { 9, 9, SPECIES_SHELMET },
+    { 20, 20, SPECIES_FOMANTIS },
+    { 9, 9, SPECIES_CHERUBI },
+    { 25, 25, SPECIES_SKIDDO },
+    { 14, 14, SPECIES_SCATTERBUG },
+    { 30, 30, SPECIES_BLIPBUG },
 };
 
 const struct WildPokemonInfo sSixIslandPatternBush_LeafGreen_Evening_LandMonsInfo = { 21, sSixIslandPatternBush_LeafGreen_Evening_LandMons };
@@ -10997,17 +10997,17 @@ const struct WildPokemonInfo sSixIslandPatternBush_LeafGreen_Evening_LandMonsInf
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandPatternBush_LeafGreen_Night_LandMons[] =
 {
-    { 9, 9, SPECIES_POOCHYENA },
-    { 9, 9, SPECIES_SNUBBULL },
-    { 14, 14, SPECIES_AZURILL },
-    { 6, 6, SPECIES_IGGLYBUFF },
-    { 6, 6, SPECIES_FIDOUGH },
-    { 15, 15, SPECIES_SPRITZEE },
-    { 9, 9, SPECIES_COTTONEE },
-    { 20, 20, SPECIES_MILCERY },
-    { 9, 9, SPECIES_CUTIEFLY },
-    { 25, 25, SPECIES_SPRITZEE },
-    { 14, 14, SPECIES_IGGLYBUFF },
+    { 9, 9, SPECIES_LITWICK },
+    { 9, 9, SPECIES_PUMPKABOO_AVERAGE },
+    { 14, 14, SPECIES_COTTONEE },
+    { 6, 6, SPECIES_MORELULL },
+    { 6, 6, SPECIES_FLABEBE },
+    { 15, 15, SPECIES_IGGLYBUFF },
+    { 9, 9, SPECIES_CLEFFA },
+    { 20, 20, SPECIES_AZURILL },
+    { 9, 9, SPECIES_SWIRLIX },
+    { 25, 25, SPECIES_SNUBBULL },
+    { 14, 14, SPECIES_MILCERY },
     { 30, 30, SPECIES_SWIRLIX },
 };
 
@@ -11037,18 +11037,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom1_FireRed_LandMonsInfo = { 1
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom1_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_ARCHEN },
-    { 37, 37, SPECIES_JANGMO_O },
+    { 40, 40, SPECIES_FERROSEED },
+    { 37, 37, SPECIES_BARBOACH },
     { 44, 44, SPECIES_GIBLE },
     { 46, 46, SPECIES_GOOMY },
-    { 41, 41, SPECIES_BAGON },
-    { 43, 43, SPECIES_GOOMY },
-    { 38, 38, SPECIES_ORTHWORM },
-    { 48, 48, SPECIES_GIBLE },
-    { 50, 50, SPECIES_SWINUB },
-    { 22, 22, SPECIES_THROH },
-    { 52, 52, SPECIES_TYROGUE },
-    { 22, 22, SPECIES_SKARMORY },
+    { 41, 41, SPECIES_JANGMO_O },
+    { 43, 43, SPECIES_DRILBUR },
+    { 38, 38, SPECIES_JANGMO_O },
+    { 48, 48, SPECIES_LILEEP },
+    { 50, 50, SPECIES_SILICOBRA },
+    { 22, 22, SPECIES_NUMEL },
+    { 52, 52, SPECIES_CUFANT },
+    { 22, 22, SPECIES_TURTONATOR },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom1_FireRed_Evening_LandMonsInfo = { 1, sFiveIslandLostCaveRoom1_FireRed_Evening_LandMons };
@@ -11057,18 +11057,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom1_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom1_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_ROTOM },
-    { 37, 37, SPECIES_MAREANIE },
-    { 44, 44, SPECIES_BELDUM },
-    { 46, 46, SPECIES_DREEPY },
-    { 41, 41, SPECIES_DREEPY },
+    { 40, 40, SPECIES_BELLSPROUT },
+    { 37, 37, SPECIES_DREEPY },
+    { 44, 44, SPECIES_DREEPY },
+    { 46, 46, SPECIES_DEINO },
+    { 41, 41, SPECIES_BELDUM },
     { 43, 43, SPECIES_DEINO },
-    { 38, 38, SPECIES_BELDUM },
-    { 48, 48, SPECIES_DEINO },
-    { 50, 50, SPECIES_BELDUM },
-    { 22, 22, SPECIES_DREEPY },
-    { 52, 52, SPECIES_ZORUA },
+    { 38, 38, SPECIES_DREEPY },
+    { 48, 48, SPECIES_BELDUM },
+    { 50, 50, SPECIES_DEINO },
     { 22, 22, SPECIES_PAWNIARD },
+    { 52, 52, SPECIES_STUNKY },
+    { 22, 22, SPECIES_DREEPY },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom1_FireRed_Night_LandMonsInfo = { 1, sFiveIslandLostCaveRoom1_FireRed_Night_LandMons };
@@ -11097,18 +11097,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom1_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom1_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_ARCHEN },
-    { 37, 37, SPECIES_JANGMO_O },
+    { 40, 40, SPECIES_FERROSEED },
+    { 37, 37, SPECIES_BARBOACH },
     { 44, 44, SPECIES_GIBLE },
     { 46, 46, SPECIES_GOOMY },
-    { 41, 41, SPECIES_BAGON },
-    { 43, 43, SPECIES_GOOMY },
-    { 38, 38, SPECIES_ORTHWORM },
-    { 48, 48, SPECIES_GIBLE },
-    { 50, 50, SPECIES_SWINUB },
-    { 22, 22, SPECIES_THROH },
-    { 52, 52, SPECIES_TYROGUE },
-    { 22, 22, SPECIES_SKARMORY },
+    { 41, 41, SPECIES_JANGMO_O },
+    { 43, 43, SPECIES_DRILBUR },
+    { 38, 38, SPECIES_JANGMO_O },
+    { 48, 48, SPECIES_LILEEP },
+    { 50, 50, SPECIES_SILICOBRA },
+    { 22, 22, SPECIES_NUMEL },
+    { 52, 52, SPECIES_CUFANT },
+    { 22, 22, SPECIES_TURTONATOR },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom1_LeafGreen_Evening_LandMonsInfo = { 1, sFiveIslandLostCaveRoom1_LeafGreen_Evening_LandMons };
@@ -11117,18 +11117,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom1_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom1_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_ROTOM },
-    { 37, 37, SPECIES_MAREANIE },
-    { 44, 44, SPECIES_BELDUM },
-    { 46, 46, SPECIES_DREEPY },
-    { 41, 41, SPECIES_DREEPY },
+    { 40, 40, SPECIES_BELLSPROUT },
+    { 37, 37, SPECIES_DREEPY },
+    { 44, 44, SPECIES_DREEPY },
+    { 46, 46, SPECIES_DEINO },
+    { 41, 41, SPECIES_BELDUM },
     { 43, 43, SPECIES_DEINO },
-    { 38, 38, SPECIES_BELDUM },
-    { 48, 48, SPECIES_DEINO },
-    { 50, 50, SPECIES_BELDUM },
-    { 22, 22, SPECIES_DREEPY },
-    { 52, 52, SPECIES_ZORUA },
+    { 38, 38, SPECIES_DREEPY },
+    { 48, 48, SPECIES_BELDUM },
+    { 50, 50, SPECIES_DEINO },
     { 22, 22, SPECIES_PAWNIARD },
+    { 52, 52, SPECIES_STUNKY },
+    { 22, 22, SPECIES_DREEPY },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom1_LeafGreen_Night_LandMonsInfo = { 1, sFiveIslandLostCaveRoom1_LeafGreen_Night_LandMons };
@@ -11157,18 +11157,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom2_FireRed_LandMonsInfo = { 2
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom2_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_MIENFOO },
-    { 37, 37, SPECIES_FALINKS },
-    { 44, 44, SPECIES_CUFANT },
-    { 46, 46, SPECIES_JANGMO_O },
-    { 41, 41, SPECIES_FLAMIGO },
-    { 43, 43, SPECIES_DIGLETT_ALOLA },
-    { 38, 38, SPECIES_DRILBUR },
-    { 48, 48, SPECIES_FERROSEED },
-    { 50, 50, SPECIES_STUFFUL },
-    { 22, 22, SPECIES_RIOLU },
-    { 52, 52, SPECIES_LILEEP },
-    { 22, 22, SPECIES_BAGON },
+    { 40, 40, SPECIES_TOGEDEMARU },
+    { 37, 37, SPECIES_SANDSHREW },
+    { 44, 44, SPECIES_FARFETCHD_GALAR },
+    { 46, 46, SPECIES_KLINK },
+    { 41, 41, SPECIES_HERACROSS },
+    { 43, 43, SPECIES_HAWLUCHA },
+    { 38, 38, SPECIES_MUDBRAY },
+    { 48, 48, SPECIES_THROH },
+    { 50, 50, SPECIES_TIMBURR },
+    { 22, 22, SPECIES_STONJOURNER },
+    { 52, 52, SPECIES_RELICANTH },
+    { 22, 22, SPECIES_STUNFISK_GALAR },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom2_FireRed_Evening_LandMonsInfo = { 2, sFiveIslandLostCaveRoom2_FireRed_Evening_LandMons };
@@ -11177,17 +11177,17 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom2_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom2_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_VAROOM },
-    { 37, 37, SPECIES_STUNKY },
-    { 44, 44, SPECIES_BRONZOR },
-    { 46, 46, SPECIES_KLEFKI },
-    { 41, 41, SPECIES_BRAMBLIN },
-    { 43, 43, SPECIES_GOLETT },
-    { 38, 38, SPECIES_WOOPER_PALDEA },
-    { 48, 48, SPECIES_SANDYGAST },
-    { 50, 50, SPECIES_MISDREAVUS },
-    { 22, 22, SPECIES_POOCHYENA },
-    { 52, 52, SPECIES_YAMASK_GALAR },
+    { 40, 40, SPECIES_GOLETT },
+    { 37, 37, SPECIES_TOXEL },
+    { 44, 44, SPECIES_SANDYGAST },
+    { 46, 46, SPECIES_DHELMISE },
+    { 41, 41, SPECIES_PHANTUMP },
+    { 43, 43, SPECIES_BELDUM },
+    { 38, 38, SPECIES_NICKIT },
+    { 48, 48, SPECIES_CORSOLA_GALAR },
+    { 50, 50, SPECIES_CORSOLA_GALAR },
+    { 22, 22, SPECIES_CROAGUNK },
+    { 52, 52, SPECIES_MEOWTH_ALOLA },
     { 22, 22, SPECIES_ABSOL },
 };
 
@@ -11217,18 +11217,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom2_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom2_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_MIENFOO },
-    { 37, 37, SPECIES_FALINKS },
-    { 44, 44, SPECIES_CUFANT },
-    { 46, 46, SPECIES_JANGMO_O },
-    { 41, 41, SPECIES_FLAMIGO },
-    { 43, 43, SPECIES_DIGLETT_ALOLA },
-    { 38, 38, SPECIES_DRILBUR },
-    { 48, 48, SPECIES_FERROSEED },
-    { 50, 50, SPECIES_STUFFUL },
-    { 22, 22, SPECIES_RIOLU },
-    { 52, 52, SPECIES_LILEEP },
-    { 22, 22, SPECIES_BAGON },
+    { 40, 40, SPECIES_TOGEDEMARU },
+    { 37, 37, SPECIES_SANDSHREW },
+    { 44, 44, SPECIES_FARFETCHD_GALAR },
+    { 46, 46, SPECIES_KLINK },
+    { 41, 41, SPECIES_HERACROSS },
+    { 43, 43, SPECIES_HAWLUCHA },
+    { 38, 38, SPECIES_MUDBRAY },
+    { 48, 48, SPECIES_THROH },
+    { 50, 50, SPECIES_TIMBURR },
+    { 22, 22, SPECIES_STONJOURNER },
+    { 52, 52, SPECIES_RELICANTH },
+    { 22, 22, SPECIES_STUNFISK_GALAR },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom2_LeafGreen_Evening_LandMonsInfo = { 2, sFiveIslandLostCaveRoom2_LeafGreen_Evening_LandMons };
@@ -11237,17 +11237,17 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom2_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom2_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_VAROOM },
-    { 37, 37, SPECIES_STUNKY },
-    { 44, 44, SPECIES_BRONZOR },
-    { 46, 46, SPECIES_KLEFKI },
-    { 41, 41, SPECIES_BRAMBLIN },
-    { 43, 43, SPECIES_GOLETT },
-    { 38, 38, SPECIES_WOOPER_PALDEA },
-    { 48, 48, SPECIES_SANDYGAST },
-    { 50, 50, SPECIES_MISDREAVUS },
-    { 22, 22, SPECIES_POOCHYENA },
-    { 52, 52, SPECIES_YAMASK_GALAR },
+    { 40, 40, SPECIES_GOLETT },
+    { 37, 37, SPECIES_TOXEL },
+    { 44, 44, SPECIES_SANDYGAST },
+    { 46, 46, SPECIES_DHELMISE },
+    { 41, 41, SPECIES_PHANTUMP },
+    { 43, 43, SPECIES_BELDUM },
+    { 38, 38, SPECIES_NICKIT },
+    { 48, 48, SPECIES_CORSOLA_GALAR },
+    { 50, 50, SPECIES_CORSOLA_GALAR },
+    { 22, 22, SPECIES_CROAGUNK },
+    { 52, 52, SPECIES_MEOWTH_ALOLA },
     { 22, 22, SPECIES_ABSOL },
 };
 
@@ -11277,18 +11277,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom3_FireRed_LandMonsInfo = { 3
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom3_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_ROCKRUFF },
-    { 37, 37, SPECIES_WOOPER },
-    { 44, 44, SPECIES_BAGON },
-    { 46, 46, SPECIES_TIRTOUGA },
-    { 41, 41, SPECIES_NACLI },
-    { 43, 43, SPECIES_MEOWTH_GALAR },
-    { 38, 38, SPECIES_FRIGIBAX },
-    { 48, 48, SPECIES_HAWLUCHA },
-    { 50, 50, SPECIES_PASSIMIAN },
-    { 22, 22, SPECIES_TAUROS_PALDEA_BLAZE },
-    { 52, 52, SPECIES_STONJOURNER },
-    { 22, 22, SPECIES_CYCLIZAR },
+    { 40, 40, SPECIES_BAGON },
+    { 37, 37, SPECIES_GLIGAR },
+    { 44, 44, SPECIES_SAWK },
+    { 46, 46, SPECIES_DRUDDIGON },
+    { 41, 41, SPECIES_MIENFOO },
+    { 43, 43, SPECIES_ARCHEN },
+    { 38, 38, SPECIES_WOOPER },
+    { 48, 48, SPECIES_TATSUGIRI_CURLY },
+    { 50, 50, SPECIES_SANDSHREW_ALOLA },
+    { 22, 22, SPECIES_GROWLITHE_HISUI },
+    { 52, 52, SPECIES_SHUCKLE },
+    { 22, 22, SPECIES_BAGON },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom3_FireRed_Evening_LandMonsInfo = { 3, sFiveIslandLostCaveRoom3_FireRed_Evening_LandMons };
@@ -11297,18 +11297,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom3_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom3_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_VULLABY },
-    { 37, 37, SPECIES_VENIPEDE },
-    { 44, 44, SPECIES_MEDITITE },
-    { 46, 46, SPECIES_DRIFLOON },
-    { 41, 41, SPECIES_SEVIPER },
-    { 43, 43, SPECIES_TOXEL },
-    { 38, 38, SPECIES_SANDILE },
-    { 48, 48, SPECIES_ZORUA_HISUI },
-    { 50, 50, SPECIES_HOUNDOUR },
-    { 22, 22, SPECIES_QWILFISH_HISUI },
-    { 52, 52, SPECIES_ABSOL },
-    { 22, 22, SPECIES_VULLABY },
+    { 40, 40, SPECIES_INKAY },
+    { 37, 37, SPECIES_ZIGZAGOON_GALAR },
+    { 44, 44, SPECIES_SPIRITOMB },
+    { 46, 46, SPECIES_GRIMER_ALOLA },
+    { 41, 41, SPECIES_SPINARAK },
+    { 43, 43, SPECIES_ROTOM },
+    { 38, 38, SPECIES_MURKROW },
+    { 48, 48, SPECIES_DUSKULL },
+    { 50, 50, SPECIES_SHROODLE },
+    { 22, 22, SPECIES_BRONZOR },
+    { 52, 52, SPECIES_VAROOM },
+    { 22, 22, SPECIES_MEDITITE },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom3_FireRed_Night_LandMonsInfo = { 3, sFiveIslandLostCaveRoom3_FireRed_Night_LandMons };
@@ -11337,18 +11337,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom3_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom3_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_ROCKRUFF },
-    { 37, 37, SPECIES_WOOPER },
-    { 44, 44, SPECIES_BAGON },
-    { 46, 46, SPECIES_TIRTOUGA },
-    { 41, 41, SPECIES_NACLI },
-    { 43, 43, SPECIES_MEOWTH_GALAR },
-    { 38, 38, SPECIES_FRIGIBAX },
-    { 48, 48, SPECIES_HAWLUCHA },
-    { 50, 50, SPECIES_PASSIMIAN },
-    { 22, 22, SPECIES_TAUROS_PALDEA_BLAZE },
-    { 52, 52, SPECIES_STONJOURNER },
-    { 22, 22, SPECIES_CYCLIZAR },
+    { 40, 40, SPECIES_BAGON },
+    { 37, 37, SPECIES_GLIGAR },
+    { 44, 44, SPECIES_SAWK },
+    { 46, 46, SPECIES_DRUDDIGON },
+    { 41, 41, SPECIES_MIENFOO },
+    { 43, 43, SPECIES_ARCHEN },
+    { 38, 38, SPECIES_WOOPER },
+    { 48, 48, SPECIES_TATSUGIRI_CURLY },
+    { 50, 50, SPECIES_SANDSHREW_ALOLA },
+    { 22, 22, SPECIES_GROWLITHE_HISUI },
+    { 52, 52, SPECIES_SHUCKLE },
+    { 22, 22, SPECIES_BAGON },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom3_LeafGreen_Evening_LandMonsInfo = { 3, sFiveIslandLostCaveRoom3_LeafGreen_Evening_LandMons };
@@ -11357,18 +11357,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom3_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom3_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_VULLABY },
-    { 37, 37, SPECIES_VENIPEDE },
-    { 44, 44, SPECIES_MEDITITE },
-    { 46, 46, SPECIES_DRIFLOON },
-    { 41, 41, SPECIES_SEVIPER },
-    { 43, 43, SPECIES_TOXEL },
-    { 38, 38, SPECIES_SANDILE },
-    { 48, 48, SPECIES_ZORUA_HISUI },
-    { 50, 50, SPECIES_HOUNDOUR },
-    { 22, 22, SPECIES_QWILFISH_HISUI },
-    { 52, 52, SPECIES_ABSOL },
-    { 22, 22, SPECIES_VULLABY },
+    { 40, 40, SPECIES_INKAY },
+    { 37, 37, SPECIES_ZIGZAGOON_GALAR },
+    { 44, 44, SPECIES_SPIRITOMB },
+    { 46, 46, SPECIES_GRIMER_ALOLA },
+    { 41, 41, SPECIES_SPINARAK },
+    { 43, 43, SPECIES_ROTOM },
+    { 38, 38, SPECIES_MURKROW },
+    { 48, 48, SPECIES_DUSKULL },
+    { 50, 50, SPECIES_SHROODLE },
+    { 22, 22, SPECIES_BRONZOR },
+    { 52, 52, SPECIES_VAROOM },
+    { 22, 22, SPECIES_MEDITITE },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom3_LeafGreen_Night_LandMonsInfo = { 3, sFiveIslandLostCaveRoom3_LeafGreen_Night_LandMons };
@@ -11397,18 +11397,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom4_FireRed_LandMonsInfo = { 4
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom4_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_AERODACTYL },
-    { 37, 37, SPECIES_LARVITAR },
-    { 44, 44, SPECIES_SHUCKLE },
-    { 46, 46, SPECIES_TAUROS_PALDEA_AQUA },
-    { 41, 41, SPECIES_NOSEPASS },
-    { 43, 43, SPECIES_AERODACTYL },
-    { 38, 38, SPECIES_DRACOZOLT },
-    { 48, 48, SPECIES_SANDSHREW_ALOLA },
-    { 50, 50, SPECIES_TOGEDEMARU },
-    { 22, 22, SPECIES_TIRTOUGA },
-    { 52, 52, SPECIES_DRACOVISH },
-    { 22, 22, SPECIES_THROH },
+    { 40, 40, SPECIES_TYRUNT },
+    { 37, 37, SPECIES_SANDSHREW_ALOLA },
+    { 44, 44, SPECIES_ARON },
+    { 46, 46, SPECIES_MINIOR },
+    { 41, 41, SPECIES_GIBLE },
+    { 43, 43, SPECIES_ROLYCOLY },
+    { 38, 38, SPECIES_DIGLETT_ALOLA },
+    { 48, 48, SPECIES_STUNFISK_GALAR },
+    { 50, 50, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 22, 22, SPECIES_FRIGIBAX },
+    { 52, 52, SPECIES_ROGGENROLA },
+    { 22, 22, SPECIES_SAWK },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom4_FireRed_Evening_LandMonsInfo = { 4, sFiveIslandLostCaveRoom4_FireRed_Evening_LandMons };
@@ -11417,18 +11417,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom4_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom4_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_BRONZOR },
-    { 37, 37, SPECIES_SANDILE },
-    { 44, 44, SPECIES_SPINARAK },
-    { 46, 46, SPECIES_DEINO },
-    { 41, 41, SPECIES_RATTATA_ALOLA },
-    { 43, 43, SPECIES_SHROODLE },
-    { 38, 38, SPECIES_CROAGUNK },
-    { 48, 48, SPECIES_MEOWTH_ALOLA },
-    { 50, 50, SPECIES_BOMBIRDIER },
-    { 22, 22, SPECIES_SPIRITOMB },
-    { 52, 52, SPECIES_SNEASEL_HISUI },
-    { 22, 22, SPECIES_MURKROW },
+    { 40, 40, SPECIES_PAWNIARD },
+    { 37, 37, SPECIES_POOCHYENA },
+    { 44, 44, SPECIES_MASCHIFF },
+    { 46, 46, SPECIES_BELDUM },
+    { 41, 41, SPECIES_ZORUA },
+    { 43, 43, SPECIES_GREAVARD },
+    { 38, 38, SPECIES_HOUNDOUR },
+    { 48, 48, SPECIES_DHELMISE },
+    { 50, 50, SPECIES_PAWNIARD },
+    { 22, 22, SPECIES_BRAMBLIN },
+    { 52, 52, SPECIES_PHANTUMP },
+    { 22, 22, SPECIES_DEINO },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom4_FireRed_Night_LandMonsInfo = { 4, sFiveIslandLostCaveRoom4_FireRed_Night_LandMons };
@@ -11457,18 +11457,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom4_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom4_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_AERODACTYL },
-    { 37, 37, SPECIES_LARVITAR },
-    { 44, 44, SPECIES_SHUCKLE },
-    { 46, 46, SPECIES_TAUROS_PALDEA_AQUA },
-    { 41, 41, SPECIES_NOSEPASS },
-    { 43, 43, SPECIES_AERODACTYL },
-    { 38, 38, SPECIES_DRACOZOLT },
-    { 48, 48, SPECIES_SANDSHREW_ALOLA },
-    { 50, 50, SPECIES_TOGEDEMARU },
-    { 22, 22, SPECIES_TIRTOUGA },
-    { 52, 52, SPECIES_DRACOVISH },
-    { 22, 22, SPECIES_THROH },
+    { 40, 40, SPECIES_TYRUNT },
+    { 37, 37, SPECIES_SANDSHREW_ALOLA },
+    { 44, 44, SPECIES_ARON },
+    { 46, 46, SPECIES_MINIOR },
+    { 41, 41, SPECIES_GIBLE },
+    { 43, 43, SPECIES_ROLYCOLY },
+    { 38, 38, SPECIES_DIGLETT_ALOLA },
+    { 48, 48, SPECIES_STUNFISK_GALAR },
+    { 50, 50, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 22, 22, SPECIES_FRIGIBAX },
+    { 52, 52, SPECIES_ROGGENROLA },
+    { 22, 22, SPECIES_SAWK },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom4_LeafGreen_Evening_LandMonsInfo = { 4, sFiveIslandLostCaveRoom4_LeafGreen_Evening_LandMons };
@@ -11477,18 +11477,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom4_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom4_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_BRONZOR },
-    { 37, 37, SPECIES_SANDILE },
-    { 44, 44, SPECIES_SPINARAK },
-    { 46, 46, SPECIES_DEINO },
-    { 41, 41, SPECIES_RATTATA_ALOLA },
-    { 43, 43, SPECIES_SHROODLE },
-    { 38, 38, SPECIES_CROAGUNK },
-    { 48, 48, SPECIES_MEOWTH_ALOLA },
-    { 50, 50, SPECIES_BOMBIRDIER },
-    { 22, 22, SPECIES_SPIRITOMB },
-    { 52, 52, SPECIES_SNEASEL_HISUI },
-    { 22, 22, SPECIES_MURKROW },
+    { 40, 40, SPECIES_PAWNIARD },
+    { 37, 37, SPECIES_POOCHYENA },
+    { 44, 44, SPECIES_MASCHIFF },
+    { 46, 46, SPECIES_BELDUM },
+    { 41, 41, SPECIES_ZORUA },
+    { 43, 43, SPECIES_GREAVARD },
+    { 38, 38, SPECIES_HOUNDOUR },
+    { 48, 48, SPECIES_DHELMISE },
+    { 50, 50, SPECIES_PAWNIARD },
+    { 22, 22, SPECIES_BRAMBLIN },
+    { 52, 52, SPECIES_PHANTUMP },
+    { 22, 22, SPECIES_DEINO },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom4_LeafGreen_Night_LandMonsInfo = { 4, sFiveIslandLostCaveRoom4_LeafGreen_Night_LandMons };
@@ -11517,18 +11517,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom5_FireRed_LandMonsInfo = { 5
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom5_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_DRILBUR },
-    { 37, 37, SPECIES_GIBLE },
-    { 44, 44, SPECIES_RIOLU },
-    { 46, 46, SPECIES_FARFETCHD_GALAR },
-    { 41, 41, SPECIES_STONJOURNER },
-    { 43, 43, SPECIES_TAUROS_PALDEA_BLAZE },
-    { 38, 38, SPECIES_CRABRAWLER },
-    { 48, 48, SPECIES_SKARMORY },
-    { 50, 50, SPECIES_STUNFISK_GALAR },
-    { 22, 22, SPECIES_ANORITH },
-    { 52, 52, SPECIES_DRAMPA },
-    { 22, 22, SPECIES_FLAMIGO },
+    { 40, 40, SPECIES_CRABRAWLER },
+    { 37, 37, SPECIES_SKARMORY },
+    { 44, 44, SPECIES_LARVITAR },
+    { 46, 46, SPECIES_AXEW },
+    { 41, 41, SPECIES_CRABRAWLER },
+    { 43, 43, SPECIES_DRAMPA },
+    { 38, 38, SPECIES_FLAMIGO },
+    { 48, 48, SPECIES_DRACOVISH },
+    { 50, 50, SPECIES_NOSEPASS },
+    { 22, 22, SPECIES_PHANPY },
+    { 52, 52, SPECIES_HIPPOPOTAS },
+    { 22, 22, SPECIES_HERACROSS },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom5_FireRed_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom5_FireRed_Evening_LandMons };
@@ -11537,17 +11537,17 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom5_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom5_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_BULBASAUR },
-    { 37, 37, SPECIES_BELDUM },
-    { 44, 44, SPECIES_HONEDGE },
-    { 46, 46, SPECIES_CORSOLA_GALAR },
-    { 41, 41, SPECIES_BALTOY },
-    { 43, 43, SPECIES_BUDEW },
-    { 38, 38, SPECIES_TINKATINK },
-    { 48, 48, SPECIES_SKORUPI },
-    { 50, 50, SPECIES_DREEPY },
-    { 22, 22, SPECIES_LITWICK },
-    { 52, 52, SPECIES_MURKROW },
+    { 40, 40, SPECIES_SPINARAK },
+    { 37, 37, SPECIES_MISDREAVUS },
+    { 44, 44, SPECIES_SANDILE },
+    { 46, 46, SPECIES_SABLEYE },
+    { 41, 41, SPECIES_VULLABY },
+    { 43, 43, SPECIES_ZORUA_HISUI },
+    { 38, 38, SPECIES_GIMMIGHOUL_CHEST },
+    { 48, 48, SPECIES_BELLSPROUT },
+    { 50, 50, SPECIES_TOXEL },
+    { 22, 22, SPECIES_INKAY },
+    { 52, 52, SPECIES_MORPEKO_FULL_BELLY },
     { 22, 22, SPECIES_DEINO },
 };
 
@@ -11577,18 +11577,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom5_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom5_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_DRILBUR },
-    { 37, 37, SPECIES_GIBLE },
-    { 44, 44, SPECIES_RIOLU },
-    { 46, 46, SPECIES_FARFETCHD_GALAR },
-    { 41, 41, SPECIES_STONJOURNER },
-    { 43, 43, SPECIES_TAUROS_PALDEA_BLAZE },
-    { 38, 38, SPECIES_CRABRAWLER },
-    { 48, 48, SPECIES_SKARMORY },
-    { 50, 50, SPECIES_STUNFISK_GALAR },
-    { 22, 22, SPECIES_ANORITH },
-    { 52, 52, SPECIES_DRAMPA },
-    { 22, 22, SPECIES_FLAMIGO },
+    { 40, 40, SPECIES_CRABRAWLER },
+    { 37, 37, SPECIES_SKARMORY },
+    { 44, 44, SPECIES_LARVITAR },
+    { 46, 46, SPECIES_AXEW },
+    { 41, 41, SPECIES_CRABRAWLER },
+    { 43, 43, SPECIES_DRAMPA },
+    { 38, 38, SPECIES_FLAMIGO },
+    { 48, 48, SPECIES_DRACOVISH },
+    { 50, 50, SPECIES_NOSEPASS },
+    { 22, 22, SPECIES_PHANPY },
+    { 52, 52, SPECIES_HIPPOPOTAS },
+    { 22, 22, SPECIES_HERACROSS },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom5_LeafGreen_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom5_LeafGreen_Evening_LandMons };
@@ -11597,17 +11597,17 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom5_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom5_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_BULBASAUR },
-    { 37, 37, SPECIES_BELDUM },
-    { 44, 44, SPECIES_HONEDGE },
-    { 46, 46, SPECIES_CORSOLA_GALAR },
-    { 41, 41, SPECIES_BALTOY },
-    { 43, 43, SPECIES_BUDEW },
-    { 38, 38, SPECIES_TINKATINK },
-    { 48, 48, SPECIES_SKORUPI },
-    { 50, 50, SPECIES_DREEPY },
-    { 22, 22, SPECIES_LITWICK },
-    { 52, 52, SPECIES_MURKROW },
+    { 40, 40, SPECIES_SPINARAK },
+    { 37, 37, SPECIES_MISDREAVUS },
+    { 44, 44, SPECIES_SANDILE },
+    { 46, 46, SPECIES_SABLEYE },
+    { 41, 41, SPECIES_VULLABY },
+    { 43, 43, SPECIES_ZORUA_HISUI },
+    { 38, 38, SPECIES_GIMMIGHOUL_CHEST },
+    { 48, 48, SPECIES_BELLSPROUT },
+    { 50, 50, SPECIES_TOXEL },
+    { 22, 22, SPECIES_INKAY },
+    { 52, 52, SPECIES_MORPEKO_FULL_BELLY },
     { 22, 22, SPECIES_DEINO },
 };
 
@@ -11637,18 +11637,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom6_FireRed_LandMonsInfo = { 6
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom6_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_TIMBURR },
-    { 37, 37, SPECIES_TAUROS_PALDEA_COMBAT },
-    { 44, 44, SPECIES_TRAPINCH },
-    { 46, 46, SPECIES_DRILBUR },
-    { 41, 41, SPECIES_HIPPOPOTAS },
-    { 43, 43, SPECIES_TAUROS_PALDEA_AQUA },
-    { 38, 38, SPECIES_DIGLETT_ALOLA },
-    { 48, 48, SPECIES_TIMBURR },
-    { 50, 50, SPECIES_NINCADA },
-    { 22, 22, SPECIES_GEODUDE_ALOLA },
-    { 52, 52, SPECIES_MIENFOO },
-    { 22, 22, SPECIES_GOOMY },
+    { 40, 40, SPECIES_PHANPY },
+    { 37, 37, SPECIES_SWINUB },
+    { 44, 44, SPECIES_CLOBBOPUS },
+    { 46, 46, SPECIES_STUNFISK },
+    { 41, 41, SPECIES_TYRUNT },
+    { 43, 43, SPECIES_GOOMY },
+    { 38, 38, SPECIES_MEOWTH_GALAR },
+    { 48, 48, SPECIES_ARCHEN },
+    { 50, 50, SPECIES_AMAURA },
+    { 22, 22, SPECIES_TURTONATOR },
+    { 52, 52, SPECIES_ARON },
+    { 22, 22, SPECIES_DURALUDON },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom6_FireRed_Evening_LandMonsInfo = { 6, sFiveIslandLostCaveRoom6_FireRed_Evening_LandMons };
@@ -11657,18 +11657,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom6_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom6_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_VENIPEDE },
-    { 37, 37, SPECIES_MAWILE },
-    { 44, 44, SPECIES_SHROODLE },
-    { 46, 46, SPECIES_SNEASEL_HISUI },
-    { 41, 41, SPECIES_QWILFISH_HISUI },
-    { 43, 43, SPECIES_VENIPEDE },
-    { 38, 38, SPECIES_BRAMBLIN },
-    { 48, 48, SPECIES_MISDREAVUS },
-    { 50, 50, SPECIES_DUSKULL },
-    { 22, 22, SPECIES_TINKATINK },
-    { 52, 52, SPECIES_GRIMER_ALOLA },
-    { 22, 22, SPECIES_ROTOM },
+    { 40, 40, SPECIES_IMPIDIMP },
+    { 37, 37, SPECIES_STUNKY },
+    { 44, 44, SPECIES_TINKATINK },
+    { 46, 46, SPECIES_SALANDIT },
+    { 41, 41, SPECIES_TRUBBISH },
+    { 43, 43, SPECIES_YAMASK_GALAR },
+    { 38, 38, SPECIES_PURRLOIN },
+    { 48, 48, SPECIES_NICKIT },
+    { 50, 50, SPECIES_BALTOY },
+    { 22, 22, SPECIES_GOLETT },
+    { 52, 52, SPECIES_SHUPPET },
+    { 22, 22, SPECIES_WOOPER_PALDEA },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom6_FireRed_Night_LandMonsInfo = { 6, sFiveIslandLostCaveRoom6_FireRed_Night_LandMons };
@@ -11697,18 +11697,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom6_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom6_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_TIMBURR },
-    { 37, 37, SPECIES_TAUROS_PALDEA_COMBAT },
-    { 44, 44, SPECIES_TRAPINCH },
-    { 46, 46, SPECIES_DRILBUR },
-    { 41, 41, SPECIES_HIPPOPOTAS },
-    { 43, 43, SPECIES_TAUROS_PALDEA_AQUA },
-    { 38, 38, SPECIES_DIGLETT_ALOLA },
-    { 48, 48, SPECIES_TIMBURR },
-    { 50, 50, SPECIES_NINCADA },
-    { 22, 22, SPECIES_GEODUDE_ALOLA },
-    { 52, 52, SPECIES_MIENFOO },
-    { 22, 22, SPECIES_GOOMY },
+    { 40, 40, SPECIES_PHANPY },
+    { 37, 37, SPECIES_SWINUB },
+    { 44, 44, SPECIES_CLOBBOPUS },
+    { 46, 46, SPECIES_STUNFISK },
+    { 41, 41, SPECIES_TYRUNT },
+    { 43, 43, SPECIES_GOOMY },
+    { 38, 38, SPECIES_MEOWTH_GALAR },
+    { 48, 48, SPECIES_ARCHEN },
+    { 50, 50, SPECIES_AMAURA },
+    { 22, 22, SPECIES_TURTONATOR },
+    { 52, 52, SPECIES_ARON },
+    { 22, 22, SPECIES_DURALUDON },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom6_LeafGreen_Evening_LandMonsInfo = { 6, sFiveIslandLostCaveRoom6_LeafGreen_Evening_LandMons };
@@ -11717,18 +11717,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom6_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom6_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_VENIPEDE },
-    { 37, 37, SPECIES_MAWILE },
-    { 44, 44, SPECIES_SHROODLE },
-    { 46, 46, SPECIES_SNEASEL_HISUI },
-    { 41, 41, SPECIES_QWILFISH_HISUI },
-    { 43, 43, SPECIES_VENIPEDE },
-    { 38, 38, SPECIES_BRAMBLIN },
-    { 48, 48, SPECIES_MISDREAVUS },
-    { 50, 50, SPECIES_DUSKULL },
-    { 22, 22, SPECIES_TINKATINK },
-    { 52, 52, SPECIES_GRIMER_ALOLA },
-    { 22, 22, SPECIES_ROTOM },
+    { 40, 40, SPECIES_IMPIDIMP },
+    { 37, 37, SPECIES_STUNKY },
+    { 44, 44, SPECIES_TINKATINK },
+    { 46, 46, SPECIES_SALANDIT },
+    { 41, 41, SPECIES_TRUBBISH },
+    { 43, 43, SPECIES_YAMASK_GALAR },
+    { 38, 38, SPECIES_PURRLOIN },
+    { 48, 48, SPECIES_NICKIT },
+    { 50, 50, SPECIES_BALTOY },
+    { 22, 22, SPECIES_GOLETT },
+    { 52, 52, SPECIES_SHUPPET },
+    { 22, 22, SPECIES_WOOPER_PALDEA },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom6_LeafGreen_Night_LandMonsInfo = { 6, sFiveIslandLostCaveRoom6_LeafGreen_Night_LandMons };
@@ -11757,18 +11757,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom7_FireRed_LandMonsInfo = { 7
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom7_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_GROWLITHE_HISUI },
-    { 37, 37, SPECIES_OMANYTE },
-    { 44, 44, SPECIES_TYRUNT },
-    { 46, 46, SPECIES_OMANYTE },
-    { 41, 41, SPECIES_AXEW },
-    { 43, 43, SPECIES_ROCKRUFF },
-    { 38, 38, SPECIES_TYROGUE },
-    { 48, 48, SPECIES_KLINK },
-    { 50, 50, SPECIES_SHIELDON },
-    { 22, 22, SPECIES_MEOWTH_GALAR },
-    { 52, 52, SPECIES_LILEEP },
-    { 22, 22, SPECIES_ORTHWORM },
+    { 40, 40, SPECIES_CLOBBOPUS },
+    { 37, 37, SPECIES_TATSUGIRI_CURLY },
+    { 44, 44, SPECIES_ROCKRUFF },
+    { 46, 46, SPECIES_DRAMPA },
+    { 41, 41, SPECIES_STUNFISK_GALAR },
+    { 43, 43, SPECIES_PASSIMIAN },
+    { 38, 38, SPECIES_GROWLITHE_HISUI },
+    { 48, 48, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 50, 50, SPECIES_DIGLETT_ALOLA },
+    { 22, 22, SPECIES_BONSLY },
+    { 52, 52, SPECIES_JANGMO_O },
+    { 22, 22, SPECIES_DRACOZOLT },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom7_FireRed_Evening_LandMonsInfo = { 7, sFiveIslandLostCaveRoom7_FireRed_Evening_LandMons };
@@ -11777,18 +11777,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom7_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom7_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_QWILFISH_HISUI },
-    { 37, 37, SPECIES_POOCHYENA },
-    { 44, 44, SPECIES_GREAVARD },
-    { 46, 46, SPECIES_KLEFKI },
-    { 41, 41, SPECIES_TOXEL },
-    { 43, 43, SPECIES_SPINARAK },
-    { 38, 38, SPECIES_PAWNIARD },
-    { 48, 48, SPECIES_STUNKY },
-    { 50, 50, SPECIES_BOMBIRDIER },
-    { 22, 22, SPECIES_GOLETT },
-    { 52, 52, SPECIES_MEOWTH_ALOLA },
-    { 22, 22, SPECIES_SALANDIT },
+    { 40, 40, SPECIES_MAWILE },
+    { 37, 37, SPECIES_HONEDGE },
+    { 44, 44, SPECIES_SANDYGAST },
+    { 46, 46, SPECIES_GHOLDENGO },
+    { 41, 41, SPECIES_BOMBIRDIER },
+    { 43, 43, SPECIES_FOONGUS },
+    { 38, 38, SPECIES_LITWICK },
+    { 48, 48, SPECIES_BULBASAUR },
+    { 50, 50, SPECIES_GULPIN },
+    { 22, 22, SPECIES_QWILFISH_HISUI },
+    { 52, 52, SPECIES_YAMASK },
+    { 22, 22, SPECIES_GHOLDENGO },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom7_FireRed_Night_LandMonsInfo = { 7, sFiveIslandLostCaveRoom7_FireRed_Night_LandMons };
@@ -11817,18 +11817,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom7_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom7_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_GROWLITHE_HISUI },
-    { 37, 37, SPECIES_OMANYTE },
-    { 44, 44, SPECIES_TYRUNT },
-    { 46, 46, SPECIES_OMANYTE },
-    { 41, 41, SPECIES_AXEW },
-    { 43, 43, SPECIES_ROCKRUFF },
-    { 38, 38, SPECIES_TYROGUE },
-    { 48, 48, SPECIES_KLINK },
-    { 50, 50, SPECIES_SHIELDON },
-    { 22, 22, SPECIES_MEOWTH_GALAR },
-    { 52, 52, SPECIES_LILEEP },
-    { 22, 22, SPECIES_ORTHWORM },
+    { 40, 40, SPECIES_CLOBBOPUS },
+    { 37, 37, SPECIES_TATSUGIRI_CURLY },
+    { 44, 44, SPECIES_ROCKRUFF },
+    { 46, 46, SPECIES_DRAMPA },
+    { 41, 41, SPECIES_STUNFISK_GALAR },
+    { 43, 43, SPECIES_PASSIMIAN },
+    { 38, 38, SPECIES_GROWLITHE_HISUI },
+    { 48, 48, SPECIES_TAUROS_PALDEA_COMBAT },
+    { 50, 50, SPECIES_DIGLETT_ALOLA },
+    { 22, 22, SPECIES_BONSLY },
+    { 52, 52, SPECIES_JANGMO_O },
+    { 22, 22, SPECIES_DRACOZOLT },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom7_LeafGreen_Evening_LandMonsInfo = { 7, sFiveIslandLostCaveRoom7_LeafGreen_Evening_LandMons };
@@ -11837,18 +11837,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom7_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom7_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_QWILFISH_HISUI },
-    { 37, 37, SPECIES_POOCHYENA },
-    { 44, 44, SPECIES_GREAVARD },
-    { 46, 46, SPECIES_KLEFKI },
-    { 41, 41, SPECIES_TOXEL },
-    { 43, 43, SPECIES_SPINARAK },
-    { 38, 38, SPECIES_PAWNIARD },
-    { 48, 48, SPECIES_STUNKY },
-    { 50, 50, SPECIES_BOMBIRDIER },
-    { 22, 22, SPECIES_GOLETT },
-    { 52, 52, SPECIES_MEOWTH_ALOLA },
-    { 22, 22, SPECIES_SALANDIT },
+    { 40, 40, SPECIES_MAWILE },
+    { 37, 37, SPECIES_HONEDGE },
+    { 44, 44, SPECIES_SANDYGAST },
+    { 46, 46, SPECIES_GHOLDENGO },
+    { 41, 41, SPECIES_BOMBIRDIER },
+    { 43, 43, SPECIES_FOONGUS },
+    { 38, 38, SPECIES_LITWICK },
+    { 48, 48, SPECIES_BULBASAUR },
+    { 50, 50, SPECIES_GULPIN },
+    { 22, 22, SPECIES_QWILFISH_HISUI },
+    { 52, 52, SPECIES_YAMASK },
+    { 22, 22, SPECIES_GHOLDENGO },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom7_LeafGreen_Night_LandMonsInfo = { 7, sFiveIslandLostCaveRoom7_LeafGreen_Night_LandMons };
@@ -11877,18 +11877,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom8_FireRed_LandMonsInfo = { 8
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom8_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_DIGLETT_ALOLA },
-    { 37, 37, SPECIES_STUNFISK },
-    { 44, 44, SPECIES_SAWK },
-    { 46, 46, SPECIES_HERACROSS },
-    { 41, 41, SPECIES_TURTONATOR },
-    { 43, 43, SPECIES_ROGGENROLA },
-    { 38, 38, SPECIES_PANCHAM },
-    { 48, 48, SPECIES_RELICANTH },
-    { 50, 50, SPECIES_CORSOLA },
-    { 22, 22, SPECIES_ARON },
-    { 52, 52, SPECIES_BINACLE },
-    { 22, 22, SPECIES_DRUDDIGON },
+    { 40, 40, SPECIES_NUMEL },
+    { 37, 37, SPECIES_FLAMIGO },
+    { 44, 44, SPECIES_NOIBAT },
+    { 46, 46, SPECIES_KLAWF },
+    { 41, 41, SPECIES_HIPPOPOTAS },
+    { 43, 43, SPECIES_DWEBBLE },
+    { 38, 38, SPECIES_SHUCKLE },
+    { 48, 48, SPECIES_SILICOBRA },
+    { 50, 50, SPECIES_ESCAVALIER },
+    { 22, 22, SPECIES_NINCADA },
+    { 52, 52, SPECIES_TATSUGIRI_CURLY },
+    { 22, 22, SPECIES_JANGMO_O },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom8_FireRed_Evening_LandMonsInfo = { 8, sFiveIslandLostCaveRoom8_FireRed_Evening_LandMons };
@@ -11897,18 +11897,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom8_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom8_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_DHELMISE },
-    { 37, 37, SPECIES_ZORUA },
-    { 44, 44, SPECIES_SCRAGGY },
-    { 46, 46, SPECIES_BELDUM },
-    { 41, 41, SPECIES_SABLEYE },
-    { 43, 43, SPECIES_BELLSPROUT },
-    { 38, 38, SPECIES_PURRLOIN },
-    { 48, 48, SPECIES_BRONZOR },
-    { 50, 50, SPECIES_YAMASK_GALAR },
-    { 22, 22, SPECIES_RATTATA_ALOLA },
-    { 52, 52, SPECIES_CROAGUNK },
-    { 22, 22, SPECIES_SEVIPER },
+    { 40, 40, SPECIES_PURRLOIN },
+    { 37, 37, SPECIES_MIMIKYU_DISGUISED },
+    { 44, 44, SPECIES_IMPIDIMP },
+    { 46, 46, SPECIES_SNEASEL_HISUI },
+    { 41, 41, SPECIES_KLEFKI },
+    { 43, 43, SPECIES_SEVIPER },
+    { 38, 38, SPECIES_ZIGZAGOON_GALAR },
+    { 48, 48, SPECIES_STUNKY },
+    { 50, 50, SPECIES_DREEPY },
+    { 22, 22, SPECIES_PUMPKABOO_AVERAGE },
+    { 52, 52, SPECIES_VENIPEDE },
+    { 22, 22, SPECIES_SINISTEA_PHONY },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom8_FireRed_Night_LandMonsInfo = { 8, sFiveIslandLostCaveRoom8_FireRed_Night_LandMons };
@@ -11937,18 +11937,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom8_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom8_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_DIGLETT_ALOLA },
-    { 37, 37, SPECIES_STUNFISK },
-    { 44, 44, SPECIES_SAWK },
-    { 46, 46, SPECIES_HERACROSS },
-    { 41, 41, SPECIES_TURTONATOR },
-    { 43, 43, SPECIES_ROGGENROLA },
-    { 38, 38, SPECIES_PANCHAM },
-    { 48, 48, SPECIES_RELICANTH },
-    { 50, 50, SPECIES_CORSOLA },
-    { 22, 22, SPECIES_ARON },
-    { 52, 52, SPECIES_BINACLE },
-    { 22, 22, SPECIES_DRUDDIGON },
+    { 40, 40, SPECIES_NUMEL },
+    { 37, 37, SPECIES_FLAMIGO },
+    { 44, 44, SPECIES_NOIBAT },
+    { 46, 46, SPECIES_KLAWF },
+    { 41, 41, SPECIES_HIPPOPOTAS },
+    { 43, 43, SPECIES_DWEBBLE },
+    { 38, 38, SPECIES_SHUCKLE },
+    { 48, 48, SPECIES_SILICOBRA },
+    { 50, 50, SPECIES_ESCAVALIER },
+    { 22, 22, SPECIES_NINCADA },
+    { 52, 52, SPECIES_TATSUGIRI_CURLY },
+    { 22, 22, SPECIES_JANGMO_O },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom8_LeafGreen_Evening_LandMonsInfo = { 8, sFiveIslandLostCaveRoom8_LeafGreen_Evening_LandMons };
@@ -11957,18 +11957,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom8_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom8_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_DHELMISE },
-    { 37, 37, SPECIES_ZORUA },
-    { 44, 44, SPECIES_SCRAGGY },
-    { 46, 46, SPECIES_BELDUM },
-    { 41, 41, SPECIES_SABLEYE },
-    { 43, 43, SPECIES_BELLSPROUT },
-    { 38, 38, SPECIES_PURRLOIN },
-    { 48, 48, SPECIES_BRONZOR },
-    { 50, 50, SPECIES_YAMASK_GALAR },
-    { 22, 22, SPECIES_RATTATA_ALOLA },
-    { 52, 52, SPECIES_CROAGUNK },
-    { 22, 22, SPECIES_SEVIPER },
+    { 40, 40, SPECIES_PURRLOIN },
+    { 37, 37, SPECIES_MIMIKYU_DISGUISED },
+    { 44, 44, SPECIES_IMPIDIMP },
+    { 46, 46, SPECIES_SNEASEL_HISUI },
+    { 41, 41, SPECIES_KLEFKI },
+    { 43, 43, SPECIES_SEVIPER },
+    { 38, 38, SPECIES_ZIGZAGOON_GALAR },
+    { 48, 48, SPECIES_STUNKY },
+    { 50, 50, SPECIES_DREEPY },
+    { 22, 22, SPECIES_PUMPKABOO_AVERAGE },
+    { 52, 52, SPECIES_VENIPEDE },
+    { 22, 22, SPECIES_SINISTEA_PHONY },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom8_LeafGreen_Night_LandMonsInfo = { 8, sFiveIslandLostCaveRoom8_LeafGreen_Night_LandMons };
@@ -11997,17 +11997,17 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom9_FireRed_LandMonsInfo = { 9
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom9_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_SILICOBRA },
-    { 37, 37, SPECIES_MUDBRAY },
-    { 44, 44, SPECIES_LARVITAR },
-    { 46, 46, SPECIES_PASSIMIAN },
-    { 41, 41, SPECIES_FRIGIBAX },
-    { 43, 43, SPECIES_NUMEL },
-    { 38, 38, SPECIES_GOOMY },
-    { 48, 48, SPECIES_BONSLY },
-    { 50, 50, SPECIES_TOEDSCOOL },
-    { 22, 22, SPECIES_PHANPY },
-    { 52, 52, SPECIES_SWINUB },
+    { 40, 40, SPECIES_AERODACTYL },
+    { 37, 37, SPECIES_NINCADA },
+    { 44, 44, SPECIES_MIENFOO },
+    { 46, 46, SPECIES_MEOWTH_GALAR },
+    { 41, 41, SPECIES_CRABRAWLER },
+    { 43, 43, SPECIES_THROH },
+    { 38, 38, SPECIES_RIOLU },
+    { 48, 48, SPECIES_STUFFUL },
+    { 50, 50, SPECIES_FARFETCHD_GALAR },
+    { 22, 22, SPECIES_HERACROSS },
+    { 52, 52, SPECIES_TYROGUE },
     { 22, 22, SPECIES_GIBLE },
 };
 
@@ -12017,18 +12017,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom9_FireRed_Evening_LandMonsIn
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom9_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_ZORUA_HISUI },
-    { 37, 37, SPECIES_VAROOM },
-    { 44, 44, SPECIES_DREEPY },
-    { 46, 46, SPECIES_FOONGUS },
-    { 41, 41, SPECIES_BULBASAUR },
-    { 43, 43, SPECIES_GULPIN },
-    { 38, 38, SPECIES_YAMASK },
-    { 48, 48, SPECIES_CORSOLA_GALAR },
-    { 50, 50, SPECIES_HONEDGE },
-    { 22, 22, SPECIES_PHANTUMP },
-    { 52, 52, SPECIES_DRIFLOON },
-    { 22, 22, SPECIES_SPIRITOMB },
+    { 40, 40, SPECIES_DRIFLOON },
+    { 37, 37, SPECIES_SKORUPI },
+    { 44, 44, SPECIES_RATTATA_ALOLA },
+    { 46, 46, SPECIES_ABSOL },
+    { 41, 41, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 43, 43, SPECIES_BUDEW },
+    { 38, 38, SPECIES_SCRAGGY },
+    { 48, 48, SPECIES_STUNKY },
+    { 50, 50, SPECIES_YAMASK },
+    { 22, 22, SPECIES_KLEFKI },
+    { 52, 52, SPECIES_ROTOM },
+    { 22, 22, SPECIES_KLEFKI },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom9_FireRed_Night_LandMonsInfo = { 9, sFiveIslandLostCaveRoom9_FireRed_Night_LandMons };
@@ -12057,17 +12057,17 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom9_LeafGreen_LandMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom9_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_SILICOBRA },
-    { 37, 37, SPECIES_MUDBRAY },
-    { 44, 44, SPECIES_LARVITAR },
-    { 46, 46, SPECIES_PASSIMIAN },
-    { 41, 41, SPECIES_FRIGIBAX },
-    { 43, 43, SPECIES_NUMEL },
-    { 38, 38, SPECIES_GOOMY },
-    { 48, 48, SPECIES_BONSLY },
-    { 50, 50, SPECIES_TOEDSCOOL },
-    { 22, 22, SPECIES_PHANPY },
-    { 52, 52, SPECIES_SWINUB },
+    { 40, 40, SPECIES_AERODACTYL },
+    { 37, 37, SPECIES_NINCADA },
+    { 44, 44, SPECIES_MIENFOO },
+    { 46, 46, SPECIES_MEOWTH_GALAR },
+    { 41, 41, SPECIES_CRABRAWLER },
+    { 43, 43, SPECIES_THROH },
+    { 38, 38, SPECIES_RIOLU },
+    { 48, 48, SPECIES_STUFFUL },
+    { 50, 50, SPECIES_FARFETCHD_GALAR },
+    { 22, 22, SPECIES_HERACROSS },
+    { 52, 52, SPECIES_TYROGUE },
     { 22, 22, SPECIES_GIBLE },
 };
 
@@ -12077,18 +12077,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom9_LeafGreen_Evening_LandMons
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom9_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_ZORUA_HISUI },
-    { 37, 37, SPECIES_VAROOM },
-    { 44, 44, SPECIES_DREEPY },
-    { 46, 46, SPECIES_FOONGUS },
-    { 41, 41, SPECIES_BULBASAUR },
-    { 43, 43, SPECIES_GULPIN },
-    { 38, 38, SPECIES_YAMASK },
-    { 48, 48, SPECIES_CORSOLA_GALAR },
-    { 50, 50, SPECIES_HONEDGE },
-    { 22, 22, SPECIES_PHANTUMP },
-    { 52, 52, SPECIES_DRIFLOON },
-    { 22, 22, SPECIES_SPIRITOMB },
+    { 40, 40, SPECIES_DRIFLOON },
+    { 37, 37, SPECIES_SKORUPI },
+    { 44, 44, SPECIES_RATTATA_ALOLA },
+    { 46, 46, SPECIES_ABSOL },
+    { 41, 41, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 43, 43, SPECIES_BUDEW },
+    { 38, 38, SPECIES_SCRAGGY },
+    { 48, 48, SPECIES_STUNKY },
+    { 50, 50, SPECIES_YAMASK },
+    { 22, 22, SPECIES_KLEFKI },
+    { 52, 52, SPECIES_ROTOM },
+    { 22, 22, SPECIES_KLEFKI },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom9_LeafGreen_Night_LandMonsInfo = { 9, sFiveIslandLostCaveRoom9_LeafGreen_Night_LandMons };
@@ -12117,18 +12117,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom10_FireRed_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom10_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_HIPPOPOTAS },
-    { 37, 37, SPECIES_FLAMIGO },
-    { 44, 44, SPECIES_FERROSEED },
-    { 46, 46, SPECIES_DURANT },
-    { 41, 41, SPECIES_JANGMO_O },
-    { 43, 43, SPECIES_DRUDDIGON },
-    { 38, 38, SPECIES_KABUTO },
-    { 48, 48, SPECIES_ORTHWORM },
-    { 50, 50, SPECIES_SHUCKLE },
-    { 22, 22, SPECIES_CUFANT },
-    { 52, 52, SPECIES_THROH },
-    { 22, 22, SPECIES_TURTONATOR },
+    { 40, 40, SPECIES_SHIELDON },
+    { 37, 37, SPECIES_MUDBRAY },
+    { 44, 44, SPECIES_DRUDDIGON },
+    { 46, 46, SPECIES_KLINK },
+    { 41, 41, SPECIES_TRAPINCH },
+    { 43, 43, SPECIES_OMANYTE },
+    { 38, 38, SPECIES_MINIOR },
+    { 48, 48, SPECIES_AXEW },
+    { 50, 50, SPECIES_KABUTO },
+    { 22, 22, SPECIES_SAWK },
+    { 52, 52, SPECIES_DURANT },
+    { 22, 22, SPECIES_DRUDDIGON },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom10_FireRed_Evening_LandMonsInfo = { 10, sFiveIslandLostCaveRoom10_FireRed_Evening_LandMons };
@@ -12137,18 +12137,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom10_FireRed_Evening_LandMonsI
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom10_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_SKORUPI },
-    { 37, 37, SPECIES_ZIGZAGOON_GALAR },
-    { 44, 44, SPECIES_SANDILE },
-    { 46, 46, SPECIES_IMPIDIMP },
-    { 41, 41, SPECIES_WOOPER_PALDEA },
-    { 43, 43, SPECIES_NICKIT },
-    { 38, 38, SPECIES_MEDITITE },
-    { 48, 48, SPECIES_BUDEW },
-    { 50, 50, SPECIES_LITWICK },
-    { 22, 22, SPECIES_SPIRITOMB },
-    { 52, 52, SPECIES_TRUBBISH },
-    { 22, 22, SPECIES_DEINO },
+    { 40, 40, SPECIES_DRIFLOON },
+    { 37, 37, SPECIES_POOCHYENA },
+    { 44, 44, SPECIES_MURKROW },
+    { 46, 46, SPECIES_DHELMISE },
+    { 41, 41, SPECIES_SPINARAK },
+    { 43, 43, SPECIES_BOMBIRDIER },
+    { 38, 38, SPECIES_TRUBBISH },
+    { 48, 48, SPECIES_SINISTEA_PHONY },
+    { 50, 50, SPECIES_SEVIPER },
+    { 22, 22, SPECIES_VENIPEDE },
+    { 52, 52, SPECIES_CORSOLA_GALAR },
+    { 22, 22, SPECIES_BELDUM },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom10_FireRed_Night_LandMonsInfo = { 10, sFiveIslandLostCaveRoom10_FireRed_Night_LandMons };
@@ -12177,18 +12177,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom10_LeafGreen_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom10_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_HIPPOPOTAS },
-    { 37, 37, SPECIES_FLAMIGO },
-    { 44, 44, SPECIES_FERROSEED },
-    { 46, 46, SPECIES_DURANT },
-    { 41, 41, SPECIES_JANGMO_O },
-    { 43, 43, SPECIES_DRUDDIGON },
-    { 38, 38, SPECIES_KABUTO },
-    { 48, 48, SPECIES_ORTHWORM },
-    { 50, 50, SPECIES_SHUCKLE },
-    { 22, 22, SPECIES_CUFANT },
-    { 52, 52, SPECIES_THROH },
-    { 22, 22, SPECIES_TURTONATOR },
+    { 40, 40, SPECIES_SHIELDON },
+    { 37, 37, SPECIES_MUDBRAY },
+    { 44, 44, SPECIES_DRUDDIGON },
+    { 46, 46, SPECIES_KLINK },
+    { 41, 41, SPECIES_TRAPINCH },
+    { 43, 43, SPECIES_OMANYTE },
+    { 38, 38, SPECIES_MINIOR },
+    { 48, 48, SPECIES_AXEW },
+    { 50, 50, SPECIES_KABUTO },
+    { 22, 22, SPECIES_SAWK },
+    { 52, 52, SPECIES_DURANT },
+    { 22, 22, SPECIES_DRUDDIGON },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom10_LeafGreen_Evening_LandMonsInfo = { 10, sFiveIslandLostCaveRoom10_LeafGreen_Evening_LandMons };
@@ -12197,18 +12197,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom10_LeafGreen_Evening_LandMon
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom10_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_SKORUPI },
-    { 37, 37, SPECIES_ZIGZAGOON_GALAR },
-    { 44, 44, SPECIES_SANDILE },
-    { 46, 46, SPECIES_IMPIDIMP },
-    { 41, 41, SPECIES_WOOPER_PALDEA },
-    { 43, 43, SPECIES_NICKIT },
-    { 38, 38, SPECIES_MEDITITE },
-    { 48, 48, SPECIES_BUDEW },
-    { 50, 50, SPECIES_LITWICK },
-    { 22, 22, SPECIES_SPIRITOMB },
-    { 52, 52, SPECIES_TRUBBISH },
-    { 22, 22, SPECIES_DEINO },
+    { 40, 40, SPECIES_DRIFLOON },
+    { 37, 37, SPECIES_POOCHYENA },
+    { 44, 44, SPECIES_MURKROW },
+    { 46, 46, SPECIES_DHELMISE },
+    { 41, 41, SPECIES_SPINARAK },
+    { 43, 43, SPECIES_BOMBIRDIER },
+    { 38, 38, SPECIES_TRUBBISH },
+    { 48, 48, SPECIES_SINISTEA_PHONY },
+    { 50, 50, SPECIES_SEVIPER },
+    { 22, 22, SPECIES_VENIPEDE },
+    { 52, 52, SPECIES_CORSOLA_GALAR },
+    { 22, 22, SPECIES_BELDUM },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom10_LeafGreen_Night_LandMonsInfo = { 10, sFiveIslandLostCaveRoom10_LeafGreen_Night_LandMons };
@@ -12237,18 +12237,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom11_FireRed_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom11_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_SHIELDON },
-    { 37, 37, SPECIES_SANDSHREW },
-    { 44, 44, SPECIES_GLIGAR },
-    { 46, 46, SPECIES_NACLI },
-    { 41, 41, SPECIES_CYCLIZAR },
-    { 15, 15, SPECIES_CLOBBOPUS },
-    { 20, 20, SPECIES_CRANIDOS },
+    { 40, 40, SPECIES_DIGLETT_ALOLA },
+    { 37, 37, SPECIES_DWEBBLE },
+    { 44, 44, SPECIES_ANORITH },
+    { 46, 46, SPECIES_STUNFISK },
+    { 41, 41, SPECIES_TOEDSCOOL },
+    { 15, 15, SPECIES_SHIELDON },
+    { 20, 20, SPECIES_DRILBUR },
     { 48, 48, SPECIES_BARBOACH },
-    { 50, 50, SPECIES_GROWLITHE_HISUI },
-    { 22, 22, SPECIES_NOIBAT },
-    { 52, 52, SPECIES_ARCHEN },
-    { 22, 22, SPECIES_STUNFISK_GALAR },
+    { 50, 50, SPECIES_SANDSHREW },
+    { 22, 22, SPECIES_TOGEDEMARU },
+    { 52, 52, SPECIES_CORSOLA },
+    { 22, 22, SPECIES_KLAWF },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom11_FireRed_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom11_FireRed_Evening_LandMons };
@@ -12257,18 +12257,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom11_FireRed_Evening_LandMonsI
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom11_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_INKAY },
-    { 37, 37, SPECIES_VULLABY },
-    { 44, 44, SPECIES_ABSOL },
-    { 46, 46, SPECIES_SEVIPER },
-    { 41, 41, SPECIES_HOUNDOUR },
-    { 15, 15, SPECIES_SHUPPET },
-    { 20, 20, SPECIES_MASCHIFF },
-    { 48, 48, SPECIES_BALTOY },
-    { 50, 50, SPECIES_INKAY },
-    { 22, 22, SPECIES_SANDYGAST },
-    { 52, 52, SPECIES_MURKROW },
-    { 22, 22, SPECIES_VAROOM },
+    { 40, 40, SPECIES_QWILFISH_HISUI },
+    { 37, 37, SPECIES_MAWILE },
+    { 44, 44, SPECIES_DUSKULL },
+    { 46, 46, SPECIES_SABLEYE },
+    { 41, 41, SPECIES_SKORUPI },
+    { 15, 15, SPECIES_BULBASAUR },
+    { 20, 20, SPECIES_GULPIN },
+    { 48, 48, SPECIES_ABSOL },
+    { 50, 50, SPECIES_PHANTUMP },
+    { 22, 22, SPECIES_HOUNDOUR },
+    { 52, 52, SPECIES_PUMPKABOO_AVERAGE },
+    { 22, 22, SPECIES_SPIRITOMB },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom11_FireRed_Night_LandMonsInfo = { 5, sFiveIslandLostCaveRoom11_FireRed_Night_LandMons };
@@ -12297,18 +12297,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom11_LeafGreen_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom11_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_SHIELDON },
-    { 37, 37, SPECIES_SANDSHREW },
-    { 44, 44, SPECIES_GLIGAR },
-    { 46, 46, SPECIES_NACLI },
-    { 41, 41, SPECIES_CYCLIZAR },
-    { 15, 15, SPECIES_CLOBBOPUS },
-    { 20, 20, SPECIES_CRANIDOS },
+    { 40, 40, SPECIES_DIGLETT_ALOLA },
+    { 37, 37, SPECIES_DWEBBLE },
+    { 44, 44, SPECIES_ANORITH },
+    { 46, 46, SPECIES_STUNFISK },
+    { 41, 41, SPECIES_TOEDSCOOL },
+    { 15, 15, SPECIES_SHIELDON },
+    { 20, 20, SPECIES_DRILBUR },
     { 48, 48, SPECIES_BARBOACH },
-    { 50, 50, SPECIES_GROWLITHE_HISUI },
-    { 22, 22, SPECIES_NOIBAT },
-    { 52, 52, SPECIES_ARCHEN },
-    { 22, 22, SPECIES_STUNFISK_GALAR },
+    { 50, 50, SPECIES_SANDSHREW },
+    { 22, 22, SPECIES_TOGEDEMARU },
+    { 52, 52, SPECIES_CORSOLA },
+    { 22, 22, SPECIES_KLAWF },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom11_LeafGreen_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom11_LeafGreen_Evening_LandMons };
@@ -12317,18 +12317,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom11_LeafGreen_Evening_LandMon
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom11_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_INKAY },
-    { 37, 37, SPECIES_VULLABY },
-    { 44, 44, SPECIES_ABSOL },
-    { 46, 46, SPECIES_SEVIPER },
-    { 41, 41, SPECIES_HOUNDOUR },
-    { 15, 15, SPECIES_SHUPPET },
-    { 20, 20, SPECIES_MASCHIFF },
-    { 48, 48, SPECIES_BALTOY },
-    { 50, 50, SPECIES_INKAY },
-    { 22, 22, SPECIES_SANDYGAST },
-    { 52, 52, SPECIES_MURKROW },
-    { 22, 22, SPECIES_VAROOM },
+    { 40, 40, SPECIES_QWILFISH_HISUI },
+    { 37, 37, SPECIES_MAWILE },
+    { 44, 44, SPECIES_DUSKULL },
+    { 46, 46, SPECIES_SABLEYE },
+    { 41, 41, SPECIES_SKORUPI },
+    { 15, 15, SPECIES_BULBASAUR },
+    { 20, 20, SPECIES_GULPIN },
+    { 48, 48, SPECIES_ABSOL },
+    { 50, 50, SPECIES_PHANTUMP },
+    { 22, 22, SPECIES_HOUNDOUR },
+    { 52, 52, SPECIES_PUMPKABOO_AVERAGE },
+    { 22, 22, SPECIES_SPIRITOMB },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom11_LeafGreen_Night_LandMonsInfo = { 5, sFiveIslandLostCaveRoom11_LeafGreen_Night_LandMons };
@@ -12357,18 +12357,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom12_FireRed_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom12_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_DURALUDON },
-    { 37, 37, SPECIES_FALINKS },
-    { 44, 44, SPECIES_ROLYCOLY },
-    { 46, 46, SPECIES_APPLIN },
-    { 41, 41, SPECIES_KLAWF },
-    { 15, 15, SPECIES_WOOPER },
-    { 20, 20, SPECIES_SILICOBRA },
-    { 48, 48, SPECIES_DWEBBLE },
-    { 50, 50, SPECIES_HAWLUCHA },
-    { 22, 22, SPECIES_AMAURA },
-    { 52, 52, SPECIES_TAUROS_PALDEA_AQUA },
-    { 22, 22, SPECIES_DURALUDON },
+    { 40, 40, SPECIES_GROWLITHE_HISUI },
+    { 37, 37, SPECIES_GEODUDE_ALOLA },
+    { 44, 44, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 46, 46, SPECIES_CYCLIZAR },
+    { 41, 41, SPECIES_HAWLUCHA },
+    { 15, 15, SPECIES_FALINKS },
+    { 20, 20, SPECIES_ROGGENROLA },
+    { 48, 48, SPECIES_TYRUNT },
+    { 50, 50, SPECIES_PANCHAM },
+    { 22, 22, SPECIES_PHANPY },
+    { 52, 52, SPECIES_SKARMORY },
+    { 22, 22, SPECIES_ESCAVALIER },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom12_FireRed_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom12_FireRed_Evening_LandMons };
@@ -12377,18 +12377,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom12_FireRed_Evening_LandMonsI
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom12_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_BRAMBLIN },
-    { 37, 37, SPECIES_SPINARAK },
-    { 44, 44, SPECIES_HONEDGE },
-    { 46, 46, SPECIES_GOLETT },
-    { 41, 41, SPECIES_TOXEL },
-    { 15, 15, SPECIES_SKORUPI },
-    { 20, 20, SPECIES_ZIGZAGOON_GALAR },
-    { 48, 48, SPECIES_GRIMER_ALOLA },
-    { 50, 50, SPECIES_ABSOL },
+    { 40, 40, SPECIES_VAROOM },
+    { 37, 37, SPECIES_TOXEL },
+    { 44, 44, SPECIES_GREAVARD },
+    { 46, 46, SPECIES_SNEASEL_HISUI },
+    { 41, 41, SPECIES_WOOPER_PALDEA },
+    { 15, 15, SPECIES_HONEDGE },
+    { 20, 20, SPECIES_SCRAGGY },
+    { 48, 48, SPECIES_GIMMIGHOUL_CHEST },
+    { 50, 50, SPECIES_YAMASK_GALAR },
     { 22, 22, SPECIES_ZORUA },
-    { 52, 52, SPECIES_MEOWTH_ALOLA },
-    { 22, 22, SPECIES_CORSOLA_GALAR },
+    { 52, 52, SPECIES_MASCHIFF },
+    { 22, 22, SPECIES_DHELMISE },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom12_FireRed_Night_LandMonsInfo = { 5, sFiveIslandLostCaveRoom12_FireRed_Night_LandMons };
@@ -12417,18 +12417,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom12_LeafGreen_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom12_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_DURALUDON },
-    { 37, 37, SPECIES_FALINKS },
-    { 44, 44, SPECIES_ROLYCOLY },
-    { 46, 46, SPECIES_APPLIN },
-    { 41, 41, SPECIES_KLAWF },
-    { 15, 15, SPECIES_WOOPER },
-    { 20, 20, SPECIES_SILICOBRA },
-    { 48, 48, SPECIES_DWEBBLE },
-    { 50, 50, SPECIES_HAWLUCHA },
-    { 22, 22, SPECIES_AMAURA },
-    { 52, 52, SPECIES_TAUROS_PALDEA_AQUA },
-    { 22, 22, SPECIES_DURALUDON },
+    { 40, 40, SPECIES_GROWLITHE_HISUI },
+    { 37, 37, SPECIES_GEODUDE_ALOLA },
+    { 44, 44, SPECIES_TAUROS_PALDEA_BLAZE },
+    { 46, 46, SPECIES_CYCLIZAR },
+    { 41, 41, SPECIES_HAWLUCHA },
+    { 15, 15, SPECIES_FALINKS },
+    { 20, 20, SPECIES_ROGGENROLA },
+    { 48, 48, SPECIES_TYRUNT },
+    { 50, 50, SPECIES_PANCHAM },
+    { 22, 22, SPECIES_PHANPY },
+    { 52, 52, SPECIES_SKARMORY },
+    { 22, 22, SPECIES_ESCAVALIER },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom12_LeafGreen_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom12_LeafGreen_Evening_LandMons };
@@ -12437,18 +12437,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom12_LeafGreen_Evening_LandMon
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom12_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_BRAMBLIN },
-    { 37, 37, SPECIES_SPINARAK },
-    { 44, 44, SPECIES_HONEDGE },
-    { 46, 46, SPECIES_GOLETT },
-    { 41, 41, SPECIES_TOXEL },
-    { 15, 15, SPECIES_SKORUPI },
-    { 20, 20, SPECIES_ZIGZAGOON_GALAR },
-    { 48, 48, SPECIES_GRIMER_ALOLA },
-    { 50, 50, SPECIES_ABSOL },
+    { 40, 40, SPECIES_VAROOM },
+    { 37, 37, SPECIES_TOXEL },
+    { 44, 44, SPECIES_GREAVARD },
+    { 46, 46, SPECIES_SNEASEL_HISUI },
+    { 41, 41, SPECIES_WOOPER_PALDEA },
+    { 15, 15, SPECIES_HONEDGE },
+    { 20, 20, SPECIES_SCRAGGY },
+    { 48, 48, SPECIES_GIMMIGHOUL_CHEST },
+    { 50, 50, SPECIES_YAMASK_GALAR },
     { 22, 22, SPECIES_ZORUA },
-    { 52, 52, SPECIES_MEOWTH_ALOLA },
-    { 22, 22, SPECIES_CORSOLA_GALAR },
+    { 52, 52, SPECIES_MASCHIFF },
+    { 22, 22, SPECIES_DHELMISE },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom12_LeafGreen_Night_LandMonsInfo = { 5, sFiveIslandLostCaveRoom12_LeafGreen_Night_LandMons };
@@ -12477,18 +12477,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom13_FireRed_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom13_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_PANCHAM },
-    { 37, 37, SPECIES_MAKUHITA },
-    { 44, 44, SPECIES_DRACOZOLT },
-    { 46, 46, SPECIES_STUFFUL },
-    { 41, 41, SPECIES_AERODACTYL },
-    { 15, 15, SPECIES_NOSEPASS },
-    { 20, 20, SPECIES_SAWK },
-    { 48, 48, SPECIES_FLAMIGO },
-    { 50, 50, SPECIES_DRUDDIGON },
-    { 22, 22, SPECIES_ARON },
-    { 52, 52, SPECIES_APPLIN },
-    { 22, 22, SPECIES_DRACOZOLT },
+    { 40, 40, SPECIES_MAKUHITA },
+    { 37, 37, SPECIES_TIRTOUGA },
+    { 44, 44, SPECIES_DRACOVISH },
+    { 46, 46, SPECIES_DURALUDON },
+    { 41, 41, SPECIES_STONJOURNER },
+    { 15, 15, SPECIES_RELICANTH },
+    { 20, 20, SPECIES_CUFANT },
+    { 48, 48, SPECIES_NUMEL },
+    { 50, 50, SPECIES_NOSEPASS },
+    { 22, 22, SPECIES_AERODACTYL },
+    { 52, 52, SPECIES_FERROSEED },
+    { 22, 22, SPECIES_DURANT },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom13_FireRed_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom13_FireRed_Evening_LandMons };
@@ -12497,18 +12497,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom13_FireRed_Evening_LandMonsI
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom13_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_SABLEYE },
-    { 37, 37, SPECIES_DHELMISE },
-    { 44, 44, SPECIES_BRONZOR },
-    { 46, 46, SPECIES_YAMASK_GALAR },
-    { 41, 41, SPECIES_WOOPER_PALDEA },
-    { 15, 15, SPECIES_SALANDIT },
-    { 20, 20, SPECIES_BELLSPROUT },
-    { 48, 48, SPECIES_BOMBIRDIER },
-    { 50, 50, SPECIES_PURRLOIN },
-    { 22, 22, SPECIES_PAWNIARD },
-    { 52, 52, SPECIES_VENIPEDE },
-    { 22, 22, SPECIES_BUDEW },
+    { 40, 40, SPECIES_BUDEW },
+    { 37, 37, SPECIES_SPIRITOMB },
+    { 44, 44, SPECIES_MEDITITE },
+    { 46, 46, SPECIES_VAROOM },
+    { 41, 41, SPECIES_BELLSPROUT },
+    { 15, 15, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 20, 20, SPECIES_SHUPPET },
+    { 48, 48, SPECIES_SANDYGAST },
+    { 50, 50, SPECIES_ZIGZAGOON_GALAR },
+    { 22, 22, SPECIES_GRIMER_ALOLA },
+    { 52, 52, SPECIES_MORPEKO_FULL_BELLY },
+    { 22, 22, SPECIES_ZORUA_HISUI },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom13_FireRed_Night_LandMonsInfo = { 5, sFiveIslandLostCaveRoom13_FireRed_Night_LandMons };
@@ -12537,18 +12537,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom13_LeafGreen_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom13_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_PANCHAM },
-    { 37, 37, SPECIES_MAKUHITA },
-    { 44, 44, SPECIES_DRACOZOLT },
-    { 46, 46, SPECIES_STUFFUL },
-    { 41, 41, SPECIES_AERODACTYL },
-    { 15, 15, SPECIES_NOSEPASS },
-    { 20, 20, SPECIES_SAWK },
-    { 48, 48, SPECIES_FLAMIGO },
-    { 50, 50, SPECIES_DRUDDIGON },
-    { 22, 22, SPECIES_ARON },
-    { 52, 52, SPECIES_APPLIN },
-    { 22, 22, SPECIES_DRACOZOLT },
+    { 40, 40, SPECIES_MAKUHITA },
+    { 37, 37, SPECIES_TIRTOUGA },
+    { 44, 44, SPECIES_DRACOVISH },
+    { 46, 46, SPECIES_DURALUDON },
+    { 41, 41, SPECIES_STONJOURNER },
+    { 15, 15, SPECIES_RELICANTH },
+    { 20, 20, SPECIES_CUFANT },
+    { 48, 48, SPECIES_NUMEL },
+    { 50, 50, SPECIES_NOSEPASS },
+    { 22, 22, SPECIES_AERODACTYL },
+    { 52, 52, SPECIES_FERROSEED },
+    { 22, 22, SPECIES_DURANT },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom13_LeafGreen_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom13_LeafGreen_Evening_LandMons };
@@ -12557,18 +12557,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom13_LeafGreen_Evening_LandMon
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom13_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_SABLEYE },
-    { 37, 37, SPECIES_DHELMISE },
-    { 44, 44, SPECIES_BRONZOR },
-    { 46, 46, SPECIES_YAMASK_GALAR },
-    { 41, 41, SPECIES_WOOPER_PALDEA },
-    { 15, 15, SPECIES_SALANDIT },
-    { 20, 20, SPECIES_BELLSPROUT },
-    { 48, 48, SPECIES_BOMBIRDIER },
-    { 50, 50, SPECIES_PURRLOIN },
-    { 22, 22, SPECIES_PAWNIARD },
-    { 52, 52, SPECIES_VENIPEDE },
-    { 22, 22, SPECIES_BUDEW },
+    { 40, 40, SPECIES_BUDEW },
+    { 37, 37, SPECIES_SPIRITOMB },
+    { 44, 44, SPECIES_MEDITITE },
+    { 46, 46, SPECIES_VAROOM },
+    { 41, 41, SPECIES_BELLSPROUT },
+    { 15, 15, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 20, 20, SPECIES_SHUPPET },
+    { 48, 48, SPECIES_SANDYGAST },
+    { 50, 50, SPECIES_ZIGZAGOON_GALAR },
+    { 22, 22, SPECIES_GRIMER_ALOLA },
+    { 52, 52, SPECIES_MORPEKO_FULL_BELLY },
+    { 22, 22, SPECIES_ZORUA_HISUI },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom13_LeafGreen_Night_LandMonsInfo = { 5, sFiveIslandLostCaveRoom13_LeafGreen_Night_LandMons };
@@ -12597,18 +12597,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom14_FireRed_LandMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom14_FireRed_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_RIOLU },
-    { 37, 37, SPECIES_KABUTO },
-    { 44, 44, SPECIES_DRILBUR },
-    { 46, 46, SPECIES_OMANYTE },
-    { 41, 41, SPECIES_RELICANTH },
-    { 15, 15, SPECIES_GROWLITHE_HISUI },
-    { 20, 20, SPECIES_NOSEPASS },
-    { 48, 48, SPECIES_GEODUDE_ALOLA },
-    { 50, 50, SPECIES_BINACLE },
-    { 22, 22, SPECIES_NACLI },
-    { 52, 52, SPECIES_ARCHEN },
-    { 22, 22, SPECIES_DURANT },
+    { 40, 40, SPECIES_MUDBRAY },
+    { 37, 37, SPECIES_WOOPER },
+    { 44, 44, SPECIES_GEODUDE_ALOLA },
+    { 46, 46, SPECIES_ORTHWORM },
+    { 41, 41, SPECIES_TIMBURR },
+    { 15, 15, SPECIES_LILEEP },
+    { 20, 20, SPECIES_SANDSHREW_ALOLA },
+    { 48, 48, SPECIES_TIRTOUGA },
+    { 50, 50, SPECIES_MAKUHITA },
+    { 22, 22, SPECIES_WOOPER },
+    { 52, 52, SPECIES_SWINUB },
+    { 22, 22, SPECIES_CYCLIZAR },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom14_FireRed_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom14_FireRed_Evening_LandMons };
@@ -12617,18 +12617,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom14_FireRed_Evening_LandMonsI
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandLostCaveRoom14_FireRed_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_SANDYGAST },
-    { 37, 37, SPECIES_GREAVARD },
-    { 44, 44, SPECIES_SHROODLE },
-    { 46, 46, SPECIES_SHUPPET },
-    { 41, 41, SPECIES_SABLEYE },
-    { 15, 15, SPECIES_DRIFLOON },
-    { 20, 20, SPECIES_ZORUA_HISUI },
-    { 48, 48, SPECIES_TRUBBISH },
-    { 50, 50, SPECIES_STUNKY },
-    { 22, 22, SPECIES_GULPIN },
-    { 52, 52, SPECIES_KLEFKI },
-    { 22, 22, SPECIES_CARBINK },
+    { 40, 40, SPECIES_ZORUA_HISUI },
+    { 37, 37, SPECIES_FOONGUS },
+    { 44, 44, SPECIES_INKAY },
+    { 46, 46, SPECIES_BALTOY },
+    { 41, 41, SPECIES_DRIFLOON },
+    { 15, 15, SPECIES_NICKIT },
+    { 20, 20, SPECIES_SHROODLE },
+    { 48, 48, SPECIES_IMPIDIMP },
+    { 50, 50, SPECIES_BRAMBLIN },
+    { 22, 22, SPECIES_BRONZOR },
+    { 52, 52, SPECIES_GOLETT },
+    { 22, 22, SPECIES_MIMIKYU_DISGUISED },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom14_FireRed_Night_LandMonsInfo = { 5, sFiveIslandLostCaveRoom14_FireRed_Night_LandMons };
@@ -12657,18 +12657,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom14_LeafGreen_LandMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom14_LeafGreen_Evening_LandMons[] =
 {
-    { 40, 40, SPECIES_RIOLU },
-    { 37, 37, SPECIES_KABUTO },
-    { 44, 44, SPECIES_DRILBUR },
-    { 46, 46, SPECIES_OMANYTE },
-    { 41, 41, SPECIES_RELICANTH },
-    { 15, 15, SPECIES_GROWLITHE_HISUI },
-    { 20, 20, SPECIES_NOSEPASS },
-    { 48, 48, SPECIES_GEODUDE_ALOLA },
-    { 50, 50, SPECIES_BINACLE },
-    { 22, 22, SPECIES_NACLI },
-    { 52, 52, SPECIES_ARCHEN },
-    { 22, 22, SPECIES_DURANT },
+    { 40, 40, SPECIES_MUDBRAY },
+    { 37, 37, SPECIES_WOOPER },
+    { 44, 44, SPECIES_GEODUDE_ALOLA },
+    { 46, 46, SPECIES_ORTHWORM },
+    { 41, 41, SPECIES_TIMBURR },
+    { 15, 15, SPECIES_LILEEP },
+    { 20, 20, SPECIES_SANDSHREW_ALOLA },
+    { 48, 48, SPECIES_TIRTOUGA },
+    { 50, 50, SPECIES_MAKUHITA },
+    { 22, 22, SPECIES_WOOPER },
+    { 52, 52, SPECIES_SWINUB },
+    { 22, 22, SPECIES_CYCLIZAR },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom14_LeafGreen_Evening_LandMonsInfo = { 5, sFiveIslandLostCaveRoom14_LeafGreen_Evening_LandMons };
@@ -12677,18 +12677,18 @@ const struct WildPokemonInfo sFiveIslandLostCaveRoom14_LeafGreen_Evening_LandMon
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandLostCaveRoom14_LeafGreen_Night_LandMons[] =
 {
-    { 40, 40, SPECIES_SANDYGAST },
-    { 37, 37, SPECIES_GREAVARD },
-    { 44, 44, SPECIES_SHROODLE },
-    { 46, 46, SPECIES_SHUPPET },
-    { 41, 41, SPECIES_SABLEYE },
-    { 15, 15, SPECIES_DRIFLOON },
-    { 20, 20, SPECIES_ZORUA_HISUI },
-    { 48, 48, SPECIES_TRUBBISH },
-    { 50, 50, SPECIES_STUNKY },
-    { 22, 22, SPECIES_GULPIN },
-    { 52, 52, SPECIES_KLEFKI },
-    { 22, 22, SPECIES_CARBINK },
+    { 40, 40, SPECIES_ZORUA_HISUI },
+    { 37, 37, SPECIES_FOONGUS },
+    { 44, 44, SPECIES_INKAY },
+    { 46, 46, SPECIES_BALTOY },
+    { 41, 41, SPECIES_DRIFLOON },
+    { 15, 15, SPECIES_NICKIT },
+    { 20, 20, SPECIES_SHROODLE },
+    { 48, 48, SPECIES_IMPIDIMP },
+    { 50, 50, SPECIES_BRAMBLIN },
+    { 22, 22, SPECIES_BRONZOR },
+    { 52, 52, SPECIES_GOLETT },
+    { 22, 22, SPECIES_MIMIKYU_DISGUISED },
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom14_LeafGreen_Night_LandMonsInfo = { 5, sFiveIslandLostCaveRoom14_LeafGreen_Night_LandMons };
@@ -12755,29 +12755,29 @@ const struct WildPokemonInfo sOneIslandKindleRoad_FireRed_FishingMonsInfo = { 20
 #ifdef FIRERED
 const struct WildPokemon sOneIslandKindleRoad_FireRed_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_CHIMCHAR },
-    { 34, 34, SPECIES_LITTEN },
-    { 36, 36, SPECIES_TEPIG },
-    { 31, 31, SPECIES_PANSEAR },
-    { 31, 31, SPECIES_SLUGMA },
+    { 32, 32, SPECIES_CHARCADET },
+    { 34, 34, SPECIES_MAGBY },
+    { 36, 36, SPECIES_VULPIX },
     { 31, 31, SPECIES_CHARMANDER },
+    { 31, 31, SPECIES_TORKOAL },
+    { 31, 31, SPECIES_CYNDAQUIL },
     { 30, 30, SPECIES_LARVESTA },
-    { 34, 34, SPECIES_TEPIG },
-    { 37, 37, SPECIES_SCORBUNNY },
-    { 37, 37, SPECIES_CYNDAQUIL },
-    { 40, 40, SPECIES_FENNEKIN },
-    { 40, 40, SPECIES_FUECOCO },
+    { 34, 34, SPECIES_LITTEN },
+    { 37, 37, SPECIES_CHIMCHAR },
+    { 37, 37, SPECIES_LITLEO },
+    { 40, 40, SPECIES_DARUMAKA },
+    { 40, 40, SPECIES_CHARCADET },
 };
 
 const struct WildPokemonInfo sOneIslandKindleRoad_FireRed_Evening_LandMonsInfo = { 21, sOneIslandKindleRoad_FireRed_Evening_LandMons };
 
 const struct WildPokemon sOneIslandKindleRoad_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_SNOVER },
-    { 20, 35, SPECIES_BUIZEL },
-    { 35, 40, SPECIES_OSHAWOTT },
-    { 35, 40, SPECIES_PANPOUR },
-    { 35, 40, SPECIES_ALOMOMOLA },
+    { 5, 20, SPECIES_POPPLIO },
+    { 20, 35, SPECIES_SHELLOS_WEST },
+    { 35, 40, SPECIES_PYUKUMUKU },
+    { 35, 40, SPECIES_CLAUNCHER },
+    { 35, 40, SPECIES_SURSKIT },
 };
 
 const struct WildPokemonInfo sOneIslandKindleRoad_FireRed_Evening_WaterMonsInfo = { 2, sOneIslandKindleRoad_FireRed_Evening_WaterMons };
@@ -12786,29 +12786,29 @@ const struct WildPokemonInfo sOneIslandKindleRoad_FireRed_Evening_WaterMonsInfo 
 #ifdef FIRERED
 const struct WildPokemon sOneIslandKindleRoad_FireRed_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_CROAGUNK },
-    { 34, 34, SPECIES_MEDITITE },
-    { 36, 36, SPECIES_SANDILE },
-    { 31, 31, SPECIES_BALTOY },
+    { 32, 32, SPECIES_SALANDIT },
+    { 34, 34, SPECIES_SANDILE },
+    { 36, 36, SPECIES_SALANDIT },
     { 31, 31, SPECIES_CROAGUNK },
-    { 31, 31, SPECIES_HOUNDOUR },
-    { 30, 30, SPECIES_LITWICK },
-    { 34, 34, SPECIES_SNEASEL_HISUI },
+    { 31, 31, SPECIES_LITWICK },
+    { 31, 31, SPECIES_CROAGUNK },
+    { 30, 30, SPECIES_WOOPER_PALDEA },
+    { 34, 34, SPECIES_SANDYGAST },
     { 37, 37, SPECIES_SCRAGGY },
-    { 37, 37, SPECIES_MEDITITE },
-    { 40, 40, SPECIES_SCRAGGY },
-    { 40, 40, SPECIES_CROAGUNK },
+    { 37, 37, SPECIES_GOLETT },
+    { 40, 40, SPECIES_YAMASK_GALAR },
+    { 40, 40, SPECIES_MEDITITE },
 };
 
 const struct WildPokemonInfo sOneIslandKindleRoad_FireRed_Night_LandMonsInfo = { 21, sOneIslandKindleRoad_FireRed_Night_LandMons };
 
 const struct WildPokemon sOneIslandKindleRoad_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_VELUZA },
-    { 20, 35, SPECIES_QWILFISH },
+    { 5, 20, SPECIES_BRUXISH },
+    { 20, 35, SPECIES_SKRELP },
+    { 35, 40, SPECIES_VELUZA },
     { 35, 40, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_BRUXISH },
 };
 
 const struct WildPokemonInfo sOneIslandKindleRoad_FireRed_Night_WaterMonsInfo = { 2, sOneIslandKindleRoad_FireRed_Night_WaterMons };
@@ -12875,29 +12875,29 @@ const struct WildPokemonInfo sOneIslandKindleRoad_LeafGreen_FishingMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sOneIslandKindleRoad_LeafGreen_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_CHIMCHAR },
-    { 34, 34, SPECIES_LITTEN },
-    { 36, 36, SPECIES_TEPIG },
-    { 31, 31, SPECIES_PANSEAR },
-    { 31, 31, SPECIES_SLUGMA },
+    { 32, 32, SPECIES_CHARCADET },
+    { 34, 34, SPECIES_MAGBY },
+    { 36, 36, SPECIES_VULPIX },
     { 31, 31, SPECIES_CHARMANDER },
+    { 31, 31, SPECIES_TORKOAL },
+    { 31, 31, SPECIES_CYNDAQUIL },
     { 30, 30, SPECIES_LARVESTA },
-    { 34, 34, SPECIES_TEPIG },
-    { 37, 37, SPECIES_SCORBUNNY },
-    { 37, 37, SPECIES_CYNDAQUIL },
-    { 40, 40, SPECIES_FENNEKIN },
-    { 40, 40, SPECIES_FUECOCO },
+    { 34, 34, SPECIES_LITTEN },
+    { 37, 37, SPECIES_CHIMCHAR },
+    { 37, 37, SPECIES_LITLEO },
+    { 40, 40, SPECIES_DARUMAKA },
+    { 40, 40, SPECIES_CHARCADET },
 };
 
 const struct WildPokemonInfo sOneIslandKindleRoad_LeafGreen_Evening_LandMonsInfo = { 21, sOneIslandKindleRoad_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sOneIslandKindleRoad_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_SNOVER },
-    { 20, 35, SPECIES_BUIZEL },
-    { 35, 40, SPECIES_OSHAWOTT },
-    { 35, 40, SPECIES_PANPOUR },
-    { 35, 40, SPECIES_ALOMOMOLA },
+    { 5, 20, SPECIES_POPPLIO },
+    { 20, 35, SPECIES_SHELLOS_WEST },
+    { 35, 40, SPECIES_PYUKUMUKU },
+    { 35, 40, SPECIES_CLAUNCHER },
+    { 35, 40, SPECIES_SURSKIT },
 };
 
 const struct WildPokemonInfo sOneIslandKindleRoad_LeafGreen_Evening_WaterMonsInfo = { 2, sOneIslandKindleRoad_LeafGreen_Evening_WaterMons };
@@ -12906,29 +12906,29 @@ const struct WildPokemonInfo sOneIslandKindleRoad_LeafGreen_Evening_WaterMonsInf
 #ifdef LEAFGREEN
 const struct WildPokemon sOneIslandKindleRoad_LeafGreen_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_CROAGUNK },
-    { 34, 34, SPECIES_MEDITITE },
-    { 36, 36, SPECIES_SANDILE },
-    { 31, 31, SPECIES_BALTOY },
+    { 32, 32, SPECIES_SALANDIT },
+    { 34, 34, SPECIES_SANDILE },
+    { 36, 36, SPECIES_SALANDIT },
     { 31, 31, SPECIES_CROAGUNK },
-    { 31, 31, SPECIES_HOUNDOUR },
-    { 30, 30, SPECIES_LITWICK },
-    { 34, 34, SPECIES_SNEASEL_HISUI },
+    { 31, 31, SPECIES_LITWICK },
+    { 31, 31, SPECIES_CROAGUNK },
+    { 30, 30, SPECIES_WOOPER_PALDEA },
+    { 34, 34, SPECIES_SANDYGAST },
     { 37, 37, SPECIES_SCRAGGY },
-    { 37, 37, SPECIES_MEDITITE },
-    { 40, 40, SPECIES_SCRAGGY },
-    { 40, 40, SPECIES_CROAGUNK },
+    { 37, 37, SPECIES_GOLETT },
+    { 40, 40, SPECIES_YAMASK_GALAR },
+    { 40, 40, SPECIES_MEDITITE },
 };
 
 const struct WildPokemonInfo sOneIslandKindleRoad_LeafGreen_Night_LandMonsInfo = { 21, sOneIslandKindleRoad_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sOneIslandKindleRoad_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_VELUZA },
-    { 20, 35, SPECIES_QWILFISH },
+    { 5, 20, SPECIES_BRUXISH },
+    { 20, 35, SPECIES_SKRELP },
+    { 35, 40, SPECIES_VELUZA },
     { 35, 40, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_BRUXISH },
 };
 
 const struct WildPokemonInfo sOneIslandKindleRoad_LeafGreen_Night_WaterMonsInfo = { 2, sOneIslandKindleRoad_LeafGreen_Night_WaterMons };
@@ -12984,29 +12984,29 @@ const struct WildPokemonInfo sOneIslandTreasureBeach_FireRed_FishingMonsInfo = {
 #ifdef FIRERED
 const struct WildPokemon sOneIslandTreasureBeach_FireRed_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_ILLUMISE },
-    { 33, 33, SPECIES_SNIVY },
-    { 31, 31, SPECIES_WHISMUR },
-    { 35, 35, SPECIES_MINCCINO },
-    { 36, 36, SPECIES_MUNCHLAX },
-    { 31, 31, SPECIES_PAWMI },
-    { 38, 38, SPECIES_SHINX },
-    { 31, 31, SPECIES_AUDINO },
-    { 40, 40, SPECIES_SMEARGLE },
+    { 32, 32, SPECIES_RUFFLET },
+    { 33, 33, SPECIES_ACCELGOR },
+    { 31, 31, SPECIES_ZANGOOSE },
+    { 35, 35, SPECIES_PICHU },
+    { 36, 36, SPECIES_BOUNSWEET },
+    { 31, 31, SPECIES_MARACTUS },
+    { 38, 38, SPECIES_PINSIR },
+    { 31, 31, SPECIES_WATTREL },
+    { 40, 40, SPECIES_ZIGZAGOON },
     { 37, 37, SPECIES_BIDOOF },
-    { 40, 40, SPECIES_STARLY },
-    { 40, 40, SPECIES_MILTANK },
+    { 40, 40, SPECIES_MARACTUS },
+    { 40, 40, SPECIES_KOMALA },
 };
 
 const struct WildPokemonInfo sOneIslandTreasureBeach_FireRed_Evening_LandMonsInfo = { 21, sOneIslandTreasureBeach_FireRed_Evening_LandMons };
 
 const struct WildPokemon sOneIslandTreasureBeach_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_BERGMITE },
-    { 20, 35, SPECIES_PYUKUMUKU },
-    { 35, 40, SPECIES_ARCTOVISH },
-    { 35, 40, SPECIES_TOTODILE },
-    { 35, 40, SPECIES_CUBCHOO },
+    { 5, 20, SPECIES_DONDOZO },
+    { 20, 35, SPECIES_SOBBLE },
+    { 35, 40, SPECIES_CORPHISH },
+    { 35, 40, SPECIES_CRAMORANT },
+    { 35, 40, SPECIES_ALOMOMOLA },
 };
 
 const struct WildPokemonInfo sOneIslandTreasureBeach_FireRed_Evening_WaterMonsInfo = { 2, sOneIslandTreasureBeach_FireRed_Evening_WaterMons };
@@ -13015,18 +13015,18 @@ const struct WildPokemonInfo sOneIslandTreasureBeach_FireRed_Evening_WaterMonsIn
 #ifdef FIRERED
 const struct WildPokemon sOneIslandTreasureBeach_FireRed_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_FLITTLE },
-    { 33, 33, SPECIES_SIGILYPH },
-    { 31, 31, SPECIES_ORANGURU },
-    { 35, 35, SPECIES_GIRAFARIG },
-    { 36, 36, SPECIES_SIGILYPH },
-    { 31, 31, SPECIES_COMFEY },
-    { 38, 38, SPECIES_FIDOUGH },
-    { 31, 31, SPECIES_TOGEPI },
-    { 40, 40, SPECIES_COTTONEE },
-    { 37, 37, SPECIES_SNUBBULL },
-    { 40, 40, SPECIES_COMFEY },
+    { 32, 32, SPECIES_SIGILYPH },
+    { 33, 33, SPECIES_GIRAFARIG },
+    { 31, 31, SPECIES_INDEEDEE_M },
+    { 35, 35, SPECIES_TOGEPI },
+    { 36, 36, SPECIES_GIRAFARIG },
+    { 31, 31, SPECIES_INDEEDEE_M },
+    { 38, 38, SPECIES_COMFEY },
+    { 31, 31, SPECIES_SIGILYPH },
     { 40, 40, SPECIES_ORANGURU },
+    { 37, 37, SPECIES_COMFEY },
+    { 40, 40, SPECIES_IGGLYBUFF },
+    { 40, 40, SPECIES_BOMBIRDIER },
 };
 
 const struct WildPokemonInfo sOneIslandTreasureBeach_FireRed_Night_LandMonsInfo = { 21, sOneIslandTreasureBeach_FireRed_Night_LandMons };
@@ -13034,10 +13034,10 @@ const struct WildPokemonInfo sOneIslandTreasureBeach_FireRed_Night_LandMonsInfo 
 const struct WildPokemon sOneIslandTreasureBeach_FireRed_Night_WaterMons[] =
 {
     { 5, 20, SPECIES_SLOWPOKE },
-    { 20, 35, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_SKRELP },
+    { 20, 35, SPECIES_BASCULEGION_M },
+    { 35, 40, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_QWILFISH },
     { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sOneIslandTreasureBeach_FireRed_Night_WaterMonsInfo = { 2, sOneIslandTreasureBeach_FireRed_Night_WaterMons };
@@ -13093,29 +13093,29 @@ const struct WildPokemonInfo sOneIslandTreasureBeach_LeafGreen_FishingMonsInfo =
 #ifdef LEAFGREEN
 const struct WildPokemon sOneIslandTreasureBeach_LeafGreen_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_ILLUMISE },
-    { 33, 33, SPECIES_SNIVY },
-    { 31, 31, SPECIES_WHISMUR },
-    { 35, 35, SPECIES_MINCCINO },
-    { 36, 36, SPECIES_MUNCHLAX },
-    { 31, 31, SPECIES_PAWMI },
-    { 38, 38, SPECIES_SHINX },
-    { 31, 31, SPECIES_AUDINO },
-    { 40, 40, SPECIES_SMEARGLE },
+    { 32, 32, SPECIES_RUFFLET },
+    { 33, 33, SPECIES_ACCELGOR },
+    { 31, 31, SPECIES_ZANGOOSE },
+    { 35, 35, SPECIES_PICHU },
+    { 36, 36, SPECIES_BOUNSWEET },
+    { 31, 31, SPECIES_MARACTUS },
+    { 38, 38, SPECIES_PINSIR },
+    { 31, 31, SPECIES_WATTREL },
+    { 40, 40, SPECIES_ZIGZAGOON },
     { 37, 37, SPECIES_BIDOOF },
-    { 40, 40, SPECIES_STARLY },
-    { 40, 40, SPECIES_MILTANK },
+    { 40, 40, SPECIES_MARACTUS },
+    { 40, 40, SPECIES_KOMALA },
 };
 
 const struct WildPokemonInfo sOneIslandTreasureBeach_LeafGreen_Evening_LandMonsInfo = { 21, sOneIslandTreasureBeach_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sOneIslandTreasureBeach_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_BERGMITE },
-    { 20, 35, SPECIES_PYUKUMUKU },
-    { 35, 40, SPECIES_ARCTOVISH },
-    { 35, 40, SPECIES_TOTODILE },
-    { 35, 40, SPECIES_CUBCHOO },
+    { 5, 20, SPECIES_DONDOZO },
+    { 20, 35, SPECIES_SOBBLE },
+    { 35, 40, SPECIES_CORPHISH },
+    { 35, 40, SPECIES_CRAMORANT },
+    { 35, 40, SPECIES_ALOMOMOLA },
 };
 
 const struct WildPokemonInfo sOneIslandTreasureBeach_LeafGreen_Evening_WaterMonsInfo = { 2, sOneIslandTreasureBeach_LeafGreen_Evening_WaterMons };
@@ -13124,18 +13124,18 @@ const struct WildPokemonInfo sOneIslandTreasureBeach_LeafGreen_Evening_WaterMons
 #ifdef LEAFGREEN
 const struct WildPokemon sOneIslandTreasureBeach_LeafGreen_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_FLITTLE },
-    { 33, 33, SPECIES_SIGILYPH },
-    { 31, 31, SPECIES_ORANGURU },
-    { 35, 35, SPECIES_GIRAFARIG },
-    { 36, 36, SPECIES_SIGILYPH },
-    { 31, 31, SPECIES_COMFEY },
-    { 38, 38, SPECIES_FIDOUGH },
-    { 31, 31, SPECIES_TOGEPI },
-    { 40, 40, SPECIES_COTTONEE },
-    { 37, 37, SPECIES_SNUBBULL },
-    { 40, 40, SPECIES_COMFEY },
+    { 32, 32, SPECIES_SIGILYPH },
+    { 33, 33, SPECIES_GIRAFARIG },
+    { 31, 31, SPECIES_INDEEDEE_M },
+    { 35, 35, SPECIES_TOGEPI },
+    { 36, 36, SPECIES_GIRAFARIG },
+    { 31, 31, SPECIES_INDEEDEE_M },
+    { 38, 38, SPECIES_COMFEY },
+    { 31, 31, SPECIES_SIGILYPH },
     { 40, 40, SPECIES_ORANGURU },
+    { 37, 37, SPECIES_COMFEY },
+    { 40, 40, SPECIES_IGGLYBUFF },
+    { 40, 40, SPECIES_BOMBIRDIER },
 };
 
 const struct WildPokemonInfo sOneIslandTreasureBeach_LeafGreen_Night_LandMonsInfo = { 21, sOneIslandTreasureBeach_LeafGreen_Night_LandMons };
@@ -13143,10 +13143,10 @@ const struct WildPokemonInfo sOneIslandTreasureBeach_LeafGreen_Night_LandMonsInf
 const struct WildPokemon sOneIslandTreasureBeach_LeafGreen_Night_WaterMons[] =
 {
     { 5, 20, SPECIES_SLOWPOKE },
-    { 20, 35, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_SKRELP },
+    { 20, 35, SPECIES_BASCULEGION_M },
+    { 35, 40, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_QWILFISH },
     { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sOneIslandTreasureBeach_LeafGreen_Night_WaterMonsInfo = { 2, sOneIslandTreasureBeach_LeafGreen_Night_WaterMons };
@@ -13202,29 +13202,29 @@ const struct WildPokemonInfo sTwoIslandCapeBrink_FireRed_FishingMonsInfo = { 20,
 #ifdef FIRERED
 const struct WildPokemon sTwoIslandCapeBrink_FireRed_Evening_LandMons[] =
 {
-    { 31, 31, SPECIES_FARFETCHD },
-    { 30, 30, SPECIES_DWEBBLE },
-    { 32, 32, SPECIES_ROOKIDEE },
-    { 36, 36, SPECIES_CHATOT },
-    { 36, 36, SPECIES_PIKIPEK },
-    { 31, 31, SPECIES_HOOTHOOT },
-    { 38, 38, SPECIES_FARFETCHD },
+    { 31, 31, SPECIES_SQUAWKABILLY_GREEN },
+    { 30, 30, SPECIES_LEDYBA },
+    { 32, 32, SPECIES_ROWLET },
+    { 36, 36, SPECIES_TAILLOW },
+    { 36, 36, SPECIES_FLETCHLING },
+    { 31, 31, SPECIES_TROPIUS },
+    { 38, 38, SPECIES_ROOKIDEE },
     { 31, 31, SPECIES_STARLY },
-    { 37, 37, SPECIES_RUFFLET },
-    { 37, 37, SPECIES_ROWLET },
-    { 40, 40, SPECIES_TROPIUS },
-    { 40, 40, SPECIES_TROPIUS },
+    { 37, 37, SPECIES_YANMA },
+    { 37, 37, SPECIES_PIDOVE },
+    { 40, 40, SPECIES_PIKIPEK },
+    { 40, 40, SPECIES_ORICORIO_BAILE },
 };
 
 const struct WildPokemonInfo sTwoIslandCapeBrink_FireRed_Evening_LandMonsInfo = { 21, sTwoIslandCapeBrink_FireRed_Evening_LandMons };
 
 const struct WildPokemon sTwoIslandCapeBrink_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_CORPHISH },
-    { 20, 35, SPECIES_WIMPOD },
+    { 5, 20, SPECIES_TOTODILE },
+    { 20, 35, SPECIES_MUDKIP },
+    { 35, 40, SPECIES_BERGMITE },
+    { 35, 40, SPECIES_STARYU },
     { 35, 40, SPECIES_CHEWTLE },
-    { 35, 40, SPECIES_DONDOZO },
-    { 35, 40, SPECIES_SOBBLE },
 };
 
 const struct WildPokemonInfo sTwoIslandCapeBrink_FireRed_Evening_WaterMonsInfo = { 2, sTwoIslandCapeBrink_FireRed_Evening_WaterMons };
@@ -13233,29 +13233,29 @@ const struct WildPokemonInfo sTwoIslandCapeBrink_FireRed_Evening_WaterMonsInfo =
 #ifdef FIRERED
 const struct WildPokemon sTwoIslandCapeBrink_FireRed_Night_LandMons[] =
 {
-    { 31, 31, SPECIES_MAWILE },
+    { 31, 31, SPECIES_SNEASEL_HISUI },
     { 30, 30, SPECIES_SIGILYPH },
-    { 32, 32, SPECIES_WOOBAT },
+    { 32, 32, SPECIES_SIGILYPH },
     { 36, 36, SPECIES_NATU },
-    { 36, 36, SPECIES_SIGILYPH },
-    { 31, 31, SPECIES_WOOBAT },
-    { 38, 38, SPECIES_SIGILYPH },
+    { 36, 36, SPECIES_WOOBAT },
+    { 31, 31, SPECIES_SIGILYPH },
+    { 38, 38, SPECIES_WOOBAT },
     { 31, 31, SPECIES_NATU },
-    { 37, 37, SPECIES_SIGILYPH },
-    { 37, 37, SPECIES_NATU },
+    { 37, 37, SPECIES_GHOLDENGO },
+    { 37, 37, SPECIES_PAWNIARD },
     { 40, 40, SPECIES_WOOBAT },
-    { 40, 40, SPECIES_SIGILYPH },
+    { 40, 40, SPECIES_TINKATINK },
 };
 
 const struct WildPokemonInfo sTwoIslandCapeBrink_FireRed_Night_LandMonsInfo = { 21, sTwoIslandCapeBrink_FireRed_Night_LandMons };
 
 const struct WildPokemon sTwoIslandCapeBrink_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_QWILFISH },
-    { 20, 35, SPECIES_BRUXISH },
-    { 35, 40, SPECIES_VELUZA },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 5, 20, SPECIES_SNEASEL },
+    { 20, 35, SPECIES_CARVANHA },
     { 35, 40, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_QWILFISH },
+    { 35, 40, SPECIES_VELUZA },
 };
 
 const struct WildPokemonInfo sTwoIslandCapeBrink_FireRed_Night_WaterMonsInfo = { 2, sTwoIslandCapeBrink_FireRed_Night_WaterMons };
@@ -13311,29 +13311,29 @@ const struct WildPokemonInfo sTwoIslandCapeBrink_LeafGreen_FishingMonsInfo = { 2
 #ifdef LEAFGREEN
 const struct WildPokemon sTwoIslandCapeBrink_LeafGreen_Evening_LandMons[] =
 {
-    { 31, 31, SPECIES_FARFETCHD },
-    { 30, 30, SPECIES_DWEBBLE },
-    { 32, 32, SPECIES_ROOKIDEE },
-    { 36, 36, SPECIES_CHATOT },
-    { 36, 36, SPECIES_PIKIPEK },
-    { 31, 31, SPECIES_HOOTHOOT },
-    { 38, 38, SPECIES_FARFETCHD },
+    { 31, 31, SPECIES_SQUAWKABILLY_GREEN },
+    { 30, 30, SPECIES_LEDYBA },
+    { 32, 32, SPECIES_ROWLET },
+    { 36, 36, SPECIES_TAILLOW },
+    { 36, 36, SPECIES_FLETCHLING },
+    { 31, 31, SPECIES_TROPIUS },
+    { 38, 38, SPECIES_ROOKIDEE },
     { 31, 31, SPECIES_STARLY },
-    { 37, 37, SPECIES_RUFFLET },
-    { 37, 37, SPECIES_ROWLET },
-    { 40, 40, SPECIES_TROPIUS },
-    { 40, 40, SPECIES_TROPIUS },
+    { 37, 37, SPECIES_YANMA },
+    { 37, 37, SPECIES_PIDOVE },
+    { 40, 40, SPECIES_PIKIPEK },
+    { 40, 40, SPECIES_ORICORIO_BAILE },
 };
 
 const struct WildPokemonInfo sTwoIslandCapeBrink_LeafGreen_Evening_LandMonsInfo = { 21, sTwoIslandCapeBrink_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sTwoIslandCapeBrink_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_CORPHISH },
-    { 20, 35, SPECIES_WIMPOD },
+    { 5, 20, SPECIES_TOTODILE },
+    { 20, 35, SPECIES_MUDKIP },
+    { 35, 40, SPECIES_BERGMITE },
+    { 35, 40, SPECIES_STARYU },
     { 35, 40, SPECIES_CHEWTLE },
-    { 35, 40, SPECIES_DONDOZO },
-    { 35, 40, SPECIES_SOBBLE },
 };
 
 const struct WildPokemonInfo sTwoIslandCapeBrink_LeafGreen_Evening_WaterMonsInfo = { 2, sTwoIslandCapeBrink_LeafGreen_Evening_WaterMons };
@@ -13342,29 +13342,29 @@ const struct WildPokemonInfo sTwoIslandCapeBrink_LeafGreen_Evening_WaterMonsInfo
 #ifdef LEAFGREEN
 const struct WildPokemon sTwoIslandCapeBrink_LeafGreen_Night_LandMons[] =
 {
-    { 31, 31, SPECIES_MAWILE },
+    { 31, 31, SPECIES_SNEASEL_HISUI },
     { 30, 30, SPECIES_SIGILYPH },
-    { 32, 32, SPECIES_WOOBAT },
+    { 32, 32, SPECIES_SIGILYPH },
     { 36, 36, SPECIES_NATU },
-    { 36, 36, SPECIES_SIGILYPH },
-    { 31, 31, SPECIES_WOOBAT },
-    { 38, 38, SPECIES_SIGILYPH },
+    { 36, 36, SPECIES_WOOBAT },
+    { 31, 31, SPECIES_SIGILYPH },
+    { 38, 38, SPECIES_WOOBAT },
     { 31, 31, SPECIES_NATU },
-    { 37, 37, SPECIES_SIGILYPH },
-    { 37, 37, SPECIES_NATU },
+    { 37, 37, SPECIES_GHOLDENGO },
+    { 37, 37, SPECIES_PAWNIARD },
     { 40, 40, SPECIES_WOOBAT },
-    { 40, 40, SPECIES_SIGILYPH },
+    { 40, 40, SPECIES_TINKATINK },
 };
 
 const struct WildPokemonInfo sTwoIslandCapeBrink_LeafGreen_Night_LandMonsInfo = { 21, sTwoIslandCapeBrink_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sTwoIslandCapeBrink_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_QWILFISH },
-    { 20, 35, SPECIES_BRUXISH },
-    { 35, 40, SPECIES_VELUZA },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 5, 20, SPECIES_SNEASEL },
+    { 20, 35, SPECIES_CARVANHA },
     { 35, 40, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_QWILFISH },
+    { 35, 40, SPECIES_VELUZA },
 };
 
 const struct WildPokemonInfo sTwoIslandCapeBrink_LeafGreen_Night_WaterMonsInfo = { 2, sTwoIslandCapeBrink_LeafGreen_Night_WaterMons };
@@ -13420,29 +13420,29 @@ const struct WildPokemonInfo sThreeIslandBondBridge_FireRed_FishingMonsInfo = { 
 #ifdef FIRERED
 const struct WildPokemon sThreeIslandBondBridge_FireRed_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_TREECKO },
-    { 31, 31, SPECIES_SHROOMISH },
-    { 29, 29, SPECIES_SKITTY },
-    { 36, 36, SPECIES_SPRIGATITO },
-    { 34, 34, SPECIES_TREECKO },
-    { 31, 31, SPECIES_HAPPINY },
-    { 34, 34, SPECIES_TYNAMO },
-    { 31, 31, SPECIES_CARNIVINE },
-    { 37, 37, SPECIES_YAMPER },
-    { 37, 37, SPECIES_PICHU },
-    { 40, 40, SPECIES_KECLEON },
-    { 40, 40, SPECIES_KOMALA },
+    { 32, 32, SPECIES_WINGULL },
+    { 31, 31, SPECIES_MILTANK },
+    { 29, 29, SPECIES_KOMALA },
+    { 36, 36, SPECIES_PLUSLE },
+    { 34, 34, SPECIES_SNIVY },
+    { 31, 31, SPECIES_GROOKEY },
+    { 34, 34, SPECIES_DUNSPARCE },
+    { 31, 31, SPECIES_BOUFFALANT },
+    { 37, 37, SPECIES_SHINX },
+    { 37, 37, SPECIES_WHISMUR },
+    { 40, 40, SPECIES_ZANGOOSE },
+    { 40, 40, SPECIES_FURFROU },
 };
 
 const struct WildPokemonInfo sThreeIslandBondBridge_FireRed_Evening_LandMonsInfo = { 21, sThreeIslandBondBridge_FireRed_Evening_LandMons };
 
 const struct WildPokemon sThreeIslandBondBridge_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_SNORUNT },
-    { 20, 35, SPECIES_WAILMER },
-    { 35, 40, SPECIES_SPHEAL },
-    { 35, 40, SPECIES_WINGULL },
-    { 35, 40, SPECIES_WIGLETT },
+    { 5, 20, SPECIES_PIPLUP },
+    { 20, 35, SPECIES_TYMPOLE },
+    { 35, 40, SPECIES_SNOM },
+    { 35, 40, SPECIES_FROAKIE },
+    { 35, 40, SPECIES_MANTYKE },
 };
 
 const struct WildPokemonInfo sThreeIslandBondBridge_FireRed_Evening_WaterMonsInfo = { 2, sThreeIslandBondBridge_FireRed_Evening_WaterMons };
@@ -13451,29 +13451,29 @@ const struct WildPokemonInfo sThreeIslandBondBridge_FireRed_Evening_WaterMonsInf
 #ifdef FIRERED
 const struct WildPokemon sThreeIslandBondBridge_FireRed_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_RALTS },
-    { 31, 31, SPECIES_GIRAFARIG },
-    { 29, 29, SPECIES_CLEFFA },
-    { 36, 36, SPECIES_AZURILL },
-    { 34, 34, SPECIES_MORELULL },
-    { 31, 31, SPECIES_SPRITZEE },
-    { 34, 34, SPECIES_COTTONEE },
-    { 31, 31, SPECIES_MORELULL },
-    { 37, 37, SPECIES_GIRAFARIG },
-    { 37, 37, SPECIES_IGGLYBUFF },
-    { 40, 40, SPECIES_ESPURR },
-    { 40, 40, SPECIES_CUTIEFLY },
+    { 32, 32, SPECIES_SPRITZEE },
+    { 31, 31, SPECIES_CLEFFA },
+    { 29, 29, SPECIES_CUTIEFLY },
+    { 36, 36, SPECIES_ORANGURU },
+    { 34, 34, SPECIES_GIRAFARIG },
+    { 31, 31, SPECIES_COTTONEE },
+    { 34, 34, SPECIES_TOGEPI },
+    { 31, 31, SPECIES_FIDOUGH },
+    { 37, 37, SPECIES_MORELULL },
+    { 37, 37, SPECIES_FLABEBE },
+    { 40, 40, SPECIES_INDEEDEE_M },
+    { 40, 40, SPECIES_COMFEY },
 };
 
 const struct WildPokemonInfo sThreeIslandBondBridge_FireRed_Night_LandMonsInfo = { 21, sThreeIslandBondBridge_FireRed_Night_LandMons };
 
 const struct WildPokemon sThreeIslandBondBridge_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SLOWPOKE },
-    { 20, 35, SPECIES_SNEASEL },
+    { 5, 20, SPECIES_CARVANHA },
+    { 20, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_SLOWPOKE },
     { 35, 40, SPECIES_SKRELP },
-    { 35, 40, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sThreeIslandBondBridge_FireRed_Night_WaterMonsInfo = { 2, sThreeIslandBondBridge_FireRed_Night_WaterMons };
@@ -13529,29 +13529,29 @@ const struct WildPokemonInfo sThreeIslandBondBridge_LeafGreen_FishingMonsInfo = 
 #ifdef LEAFGREEN
 const struct WildPokemon sThreeIslandBondBridge_LeafGreen_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_TREECKO },
-    { 31, 31, SPECIES_SHROOMISH },
-    { 29, 29, SPECIES_SKITTY },
-    { 36, 36, SPECIES_SPRIGATITO },
-    { 34, 34, SPECIES_TREECKO },
-    { 31, 31, SPECIES_HAPPINY },
-    { 34, 34, SPECIES_TYNAMO },
-    { 31, 31, SPECIES_CARNIVINE },
-    { 37, 37, SPECIES_YAMPER },
-    { 37, 37, SPECIES_PICHU },
-    { 40, 40, SPECIES_KECLEON },
-    { 40, 40, SPECIES_KOMALA },
+    { 32, 32, SPECIES_WINGULL },
+    { 31, 31, SPECIES_MILTANK },
+    { 29, 29, SPECIES_KOMALA },
+    { 36, 36, SPECIES_PLUSLE },
+    { 34, 34, SPECIES_SNIVY },
+    { 31, 31, SPECIES_GROOKEY },
+    { 34, 34, SPECIES_DUNSPARCE },
+    { 31, 31, SPECIES_BOUFFALANT },
+    { 37, 37, SPECIES_SHINX },
+    { 37, 37, SPECIES_WHISMUR },
+    { 40, 40, SPECIES_ZANGOOSE },
+    { 40, 40, SPECIES_FURFROU },
 };
 
 const struct WildPokemonInfo sThreeIslandBondBridge_LeafGreen_Evening_LandMonsInfo = { 21, sThreeIslandBondBridge_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sThreeIslandBondBridge_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_SNORUNT },
-    { 20, 35, SPECIES_WAILMER },
-    { 35, 40, SPECIES_SPHEAL },
-    { 35, 40, SPECIES_WINGULL },
-    { 35, 40, SPECIES_WIGLETT },
+    { 5, 20, SPECIES_PIPLUP },
+    { 20, 35, SPECIES_TYMPOLE },
+    { 35, 40, SPECIES_SNOM },
+    { 35, 40, SPECIES_FROAKIE },
+    { 35, 40, SPECIES_MANTYKE },
 };
 
 const struct WildPokemonInfo sThreeIslandBondBridge_LeafGreen_Evening_WaterMonsInfo = { 2, sThreeIslandBondBridge_LeafGreen_Evening_WaterMons };
@@ -13560,29 +13560,29 @@ const struct WildPokemonInfo sThreeIslandBondBridge_LeafGreen_Evening_WaterMonsI
 #ifdef LEAFGREEN
 const struct WildPokemon sThreeIslandBondBridge_LeafGreen_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_RALTS },
-    { 31, 31, SPECIES_GIRAFARIG },
-    { 29, 29, SPECIES_CLEFFA },
-    { 36, 36, SPECIES_AZURILL },
-    { 34, 34, SPECIES_MORELULL },
-    { 31, 31, SPECIES_SPRITZEE },
-    { 34, 34, SPECIES_COTTONEE },
-    { 31, 31, SPECIES_MORELULL },
-    { 37, 37, SPECIES_GIRAFARIG },
-    { 37, 37, SPECIES_IGGLYBUFF },
-    { 40, 40, SPECIES_ESPURR },
-    { 40, 40, SPECIES_CUTIEFLY },
+    { 32, 32, SPECIES_SPRITZEE },
+    { 31, 31, SPECIES_CLEFFA },
+    { 29, 29, SPECIES_CUTIEFLY },
+    { 36, 36, SPECIES_ORANGURU },
+    { 34, 34, SPECIES_GIRAFARIG },
+    { 31, 31, SPECIES_COTTONEE },
+    { 34, 34, SPECIES_TOGEPI },
+    { 31, 31, SPECIES_FIDOUGH },
+    { 37, 37, SPECIES_MORELULL },
+    { 37, 37, SPECIES_FLABEBE },
+    { 40, 40, SPECIES_INDEEDEE_M },
+    { 40, 40, SPECIES_COMFEY },
 };
 
 const struct WildPokemonInfo sThreeIslandBondBridge_LeafGreen_Night_LandMonsInfo = { 21, sThreeIslandBondBridge_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sThreeIslandBondBridge_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SLOWPOKE },
-    { 20, 35, SPECIES_SNEASEL },
+    { 5, 20, SPECIES_CARVANHA },
+    { 20, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_SLOWPOKE },
     { 35, 40, SPECIES_SKRELP },
-    { 35, 40, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sThreeIslandBondBridge_LeafGreen_Night_WaterMonsInfo = { 2, sThreeIslandBondBridge_LeafGreen_Night_WaterMons };
@@ -13611,18 +13611,18 @@ const struct WildPokemonInfo sThreeIslandPort_FireRed_LandMonsInfo = { 1, sThree
 #ifdef FIRERED
 const struct WildPokemon sThreeIslandPort_FireRed_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_PLUSLE },
-    { 15, 15, SPECIES_PINSIR },
+    { 15, 15, SPECIES_AUDINO },
+    { 15, 15, SPECIES_ROOKIDEE },
     { 10, 10, SPECIES_SMOLIV },
-    { 10, 10, SPECIES_ELECTRIKE },
-    { 20, 20, SPECIES_PACHIRISU },
-    { 20, 20, SPECIES_BUNEARY },
-    { 25, 25, SPECIES_LECHONK },
-    { 30, 30, SPECIES_GLAMEOW },
-    { 25, 25, SPECIES_BUNNELBY },
-    { 30, 30, SPECIES_LILLIPUP },
-    { 5, 5, SPECIES_TANDEMAUS },
-    { 35, 35, SPECIES_PATRAT },
+    { 10, 10, SPECIES_SPRIGATITO },
+    { 20, 20, SPECIES_BLITZLE },
+    { 20, 20, SPECIES_KECLEON },
+    { 25, 25, SPECIES_PAWMI },
+    { 30, 30, SPECIES_PATRAT },
+    { 25, 25, SPECIES_LICKITUNG },
+    { 30, 30, SPECIES_MINUN },
+    { 5, 5, SPECIES_TADBULB },
+    { 35, 35, SPECIES_CAPSAKID },
 };
 
 const struct WildPokemonInfo sThreeIslandPort_FireRed_Evening_LandMonsInfo = { 1, sThreeIslandPort_FireRed_Evening_LandMons };
@@ -13632,17 +13632,17 @@ const struct WildPokemonInfo sThreeIslandPort_FireRed_Evening_LandMonsInfo = { 1
 const struct WildPokemon sThreeIslandPort_FireRed_Night_LandMons[] =
 {
     { 15, 15, SPECIES_SWIRLIX },
-    { 15, 15, SPECIES_PONYTA_GALAR },
-    { 10, 10, SPECIES_MUNNA },
+    { 15, 15, SPECIES_CARVANHA },
     { 10, 10, SPECIES_AZURILL },
+    { 10, 10, SPECIES_SNUBBULL },
+    { 20, 20, SPECIES_MIME_JR },
     { 20, 20, SPECIES_SWIRLIX },
-    { 20, 20, SPECIES_MILCERY },
     { 25, 25, SPECIES_WYNAUT },
-    { 30, 30, SPECIES_DEDENNE },
-    { 25, 25, SPECIES_TOGEPI },
-    { 30, 30, SPECIES_SLOWPOKE_GALAR },
-    { 5, 5, SPECIES_CLEFFA },
-    { 35, 35, SPECIES_SNUBBULL },
+    { 30, 30, SPECIES_SPOINK },
+    { 25, 25, SPECIES_MORELULL },
+    { 30, 30, SPECIES_ESPURR },
+    { 5, 5, SPECIES_RALTS },
+    { 35, 35, SPECIES_CUTIEFLY },
 };
 
 const struct WildPokemonInfo sThreeIslandPort_FireRed_Night_LandMonsInfo = { 1, sThreeIslandPort_FireRed_Night_LandMons };
@@ -13671,18 +13671,18 @@ const struct WildPokemonInfo sThreeIslandPort_LeafGreen_LandMonsInfo = { 1, sThr
 #ifdef LEAFGREEN
 const struct WildPokemon sThreeIslandPort_LeafGreen_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_PLUSLE },
-    { 15, 15, SPECIES_PINSIR },
+    { 15, 15, SPECIES_AUDINO },
+    { 15, 15, SPECIES_ROOKIDEE },
     { 10, 10, SPECIES_SMOLIV },
-    { 10, 10, SPECIES_ELECTRIKE },
-    { 20, 20, SPECIES_PACHIRISU },
-    { 20, 20, SPECIES_BUNEARY },
-    { 25, 25, SPECIES_LECHONK },
-    { 30, 30, SPECIES_GLAMEOW },
-    { 25, 25, SPECIES_BUNNELBY },
-    { 30, 30, SPECIES_LILLIPUP },
-    { 5, 5, SPECIES_TANDEMAUS },
-    { 35, 35, SPECIES_PATRAT },
+    { 10, 10, SPECIES_SPRIGATITO },
+    { 20, 20, SPECIES_BLITZLE },
+    { 20, 20, SPECIES_KECLEON },
+    { 25, 25, SPECIES_PAWMI },
+    { 30, 30, SPECIES_PATRAT },
+    { 25, 25, SPECIES_LICKITUNG },
+    { 30, 30, SPECIES_MINUN },
+    { 5, 5, SPECIES_TADBULB },
+    { 35, 35, SPECIES_CAPSAKID },
 };
 
 const struct WildPokemonInfo sThreeIslandPort_LeafGreen_Evening_LandMonsInfo = { 1, sThreeIslandPort_LeafGreen_Evening_LandMons };
@@ -13692,17 +13692,17 @@ const struct WildPokemonInfo sThreeIslandPort_LeafGreen_Evening_LandMonsInfo = {
 const struct WildPokemon sThreeIslandPort_LeafGreen_Night_LandMons[] =
 {
     { 15, 15, SPECIES_SWIRLIX },
-    { 15, 15, SPECIES_PONYTA_GALAR },
-    { 10, 10, SPECIES_MUNNA },
+    { 15, 15, SPECIES_CARVANHA },
     { 10, 10, SPECIES_AZURILL },
+    { 10, 10, SPECIES_SNUBBULL },
+    { 20, 20, SPECIES_MIME_JR },
     { 20, 20, SPECIES_SWIRLIX },
-    { 20, 20, SPECIES_MILCERY },
     { 25, 25, SPECIES_WYNAUT },
-    { 30, 30, SPECIES_DEDENNE },
-    { 25, 25, SPECIES_TOGEPI },
-    { 30, 30, SPECIES_SLOWPOKE_GALAR },
-    { 5, 5, SPECIES_CLEFFA },
-    { 35, 35, SPECIES_SNUBBULL },
+    { 30, 30, SPECIES_SPOINK },
+    { 25, 25, SPECIES_MORELULL },
+    { 30, 30, SPECIES_ESPURR },
+    { 5, 5, SPECIES_RALTS },
+    { 35, 35, SPECIES_CUTIEFLY },
 };
 
 const struct WildPokemonInfo sThreeIslandPort_LeafGreen_Night_LandMonsInfo = { 1, sThreeIslandPort_LeafGreen_Night_LandMons };
@@ -13740,10 +13740,10 @@ const struct WildPokemonInfo sFiveIslandResortGorgeous_FireRed_FishingMonsInfo =
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandResortGorgeous_FireRed_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_FINNEON },
-    { 5, 15, SPECIES_FEEBAS },
-    { 35, 40, SPECIES_DARUMAKA_GALAR },
-    { 35, 40, SPECIES_LUVDISC },
+    { 5, 35, SPECIES_WINGULL },
+    { 5, 15, SPECIES_FINNEON },
+    { 35, 40, SPECIES_DELIBIRD },
+    { 35, 40, SPECIES_SNORUNT },
     { 35, 40, SPECIES_SQUIRTLE },
 };
 
@@ -13753,10 +13753,10 @@ const struct WildPokemonInfo sFiveIslandResortGorgeous_FireRed_Evening_WaterMons
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandResortGorgeous_FireRed_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_FRILLISH },
-    { 5, 15, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SKRELP },
+    { 5, 35, SPECIES_MAREANIE },
+    { 5, 15, SPECIES_FRILLISH },
+    { 35, 40, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_SLOWPOKE },
     { 35, 40, SPECIES_QWILFISH },
 };
 
@@ -13795,10 +13795,10 @@ const struct WildPokemonInfo sFiveIslandResortGorgeous_LeafGreen_FishingMonsInfo
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandResortGorgeous_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_FINNEON },
-    { 5, 15, SPECIES_FEEBAS },
-    { 35, 40, SPECIES_DARUMAKA_GALAR },
-    { 35, 40, SPECIES_LUVDISC },
+    { 5, 35, SPECIES_WINGULL },
+    { 5, 15, SPECIES_FINNEON },
+    { 35, 40, SPECIES_DELIBIRD },
+    { 35, 40, SPECIES_SNORUNT },
     { 35, 40, SPECIES_SQUIRTLE },
 };
 
@@ -13808,10 +13808,10 @@ const struct WildPokemonInfo sFiveIslandResortGorgeous_LeafGreen_Evening_WaterMo
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandResortGorgeous_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_FRILLISH },
-    { 5, 15, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SKRELP },
+    { 5, 35, SPECIES_MAREANIE },
+    { 5, 15, SPECIES_FRILLISH },
+    { 35, 40, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_SLOWPOKE },
     { 35, 40, SPECIES_QWILFISH },
 };
 
@@ -13850,11 +13850,11 @@ const struct WildPokemonInfo sFiveIslandWaterLabyrinth_FireRed_FishingMonsInfo =
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandWaterLabyrinth_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_DELIBIRD },
-    { 5, 15, SPECIES_CHINCHOU },
-    { 35, 40, SPECIES_MANTYKE },
-    { 35, 40, SPECIES_FROAKIE },
-    { 35, 40, SPECIES_CRYOGONAL },
+    { 5, 20, SPECIES_LOTAD },
+    { 5, 15, SPECIES_VULPIX_ALOLA },
+    { 35, 40, SPECIES_CHINCHOU },
+    { 35, 40, SPECIES_BUIZEL },
+    { 35, 40, SPECIES_OSHAWOTT },
 };
 
 const struct WildPokemonInfo sFiveIslandWaterLabyrinth_FireRed_Evening_WaterMonsInfo = { 2, sFiveIslandWaterLabyrinth_FireRed_Evening_WaterMons };
@@ -13863,11 +13863,11 @@ const struct WildPokemonInfo sFiveIslandWaterLabyrinth_FireRed_Evening_WaterMons
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandWaterLabyrinth_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SNEASEL },
-    { 5, 15, SPECIES_SLOWPOKE },
+    { 5, 20, SPECIES_SMOOCHUM },
+    { 5, 15, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_SKRELP },
+    { 35, 40, SPECIES_FRILLISH },
     { 35, 40, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_SMOOCHUM },
 };
 
 const struct WildPokemonInfo sFiveIslandWaterLabyrinth_FireRed_Night_WaterMonsInfo = { 2, sFiveIslandWaterLabyrinth_FireRed_Night_WaterMons };
@@ -13905,11 +13905,11 @@ const struct WildPokemonInfo sFiveIslandWaterLabyrinth_LeafGreen_FishingMonsInfo
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandWaterLabyrinth_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_DELIBIRD },
-    { 5, 15, SPECIES_CHINCHOU },
-    { 35, 40, SPECIES_MANTYKE },
-    { 35, 40, SPECIES_FROAKIE },
-    { 35, 40, SPECIES_CRYOGONAL },
+    { 5, 35, SPECIES_LOTAD },
+    { 5, 15, SPECIES_VULPIX_ALOLA },
+    { 35, 40, SPECIES_CHINCHOU },
+    { 35, 40, SPECIES_BUIZEL },
+    { 35, 40, SPECIES_OSHAWOTT },
 };
 
 const struct WildPokemonInfo sFiveIslandWaterLabyrinth_LeafGreen_Evening_WaterMonsInfo = { 2, sFiveIslandWaterLabyrinth_LeafGreen_Evening_WaterMons };
@@ -13918,11 +13918,11 @@ const struct WildPokemonInfo sFiveIslandWaterLabyrinth_LeafGreen_Evening_WaterMo
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandWaterLabyrinth_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_SNEASEL },
-    { 5, 15, SPECIES_SLOWPOKE },
+    { 5, 35, SPECIES_SMOOCHUM },
+    { 5, 15, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_SKRELP },
+    { 35, 40, SPECIES_FRILLISH },
     { 35, 40, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_SMOOCHUM },
 };
 
 const struct WildPokemonInfo sFiveIslandWaterLabyrinth_LeafGreen_Night_WaterMonsInfo = { 2, sFiveIslandWaterLabyrinth_LeafGreen_Night_WaterMons };
@@ -13978,29 +13978,29 @@ const struct WildPokemonInfo sFiveIslandMeadow_FireRed_FishingMonsInfo = { 20, s
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandMeadow_FireRed_Evening_LandMons[] =
 {
-    { 44, 44, SPECIES_LICKITUNG },
-    { 10, 10, SPECIES_MANTYKE },
-    { 48, 48, SPECIES_KOMALA },
-    { 10, 10, SPECIES_ZANGOOSE },
-    { 15, 15, SPECIES_BOUFFALANT },
-    { 41, 41, SPECIES_STANTLER },
-    { 15, 15, SPECIES_MARACTUS },
-    { 41, 41, SPECIES_MILTANK },
-    { 50, 50, SPECIES_PINECO },
-    { 47, 47, SPECIES_SHINX },
+    { 44, 44, SPECIES_WURMPLE },
+    { 10, 10, SPECIES_FURFROU },
+    { 48, 48, SPECIES_HAPPINY },
+    { 10, 10, SPECIES_SENTRET },
+    { 15, 15, SPECIES_TREECKO },
+    { 41, 41, SPECIES_PORYGON },
+    { 15, 15, SPECIES_STANTLER },
+    { 41, 41, SPECIES_YUNGOOS },
+    { 50, 50, SPECIES_TURTWIG },
+    { 47, 47, SPECIES_WOOLOO },
     { 50, 50, SPECIES_CARNIVINE },
-    { 50, 50, SPECIES_STANTLER },
+    { 50, 50, SPECIES_MILTANK },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_FireRed_Evening_LandMonsInfo = { 21, sFiveIslandMeadow_FireRed_Evening_LandMons };
 
 const struct WildPokemon sFiveIslandMeadow_FireRed_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_SNOM },
-    { 5, 15, SPECIES_STARYU },
-    { 35, 40, SPECIES_DEWPIDER },
-    { 35, 40, SPECIES_FINIZEN },
+    { 5, 35, SPECIES_QUAXLY },
+    { 5, 15, SPECIES_CLAMPERL },
     { 35, 40, SPECIES_VANILLITE },
+    { 35, 40, SPECIES_ARROKUDA },
+    { 35, 40, SPECIES_FINIZEN },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_FireRed_Evening_WaterMonsInfo = { 2, sFiveIslandMeadow_FireRed_Evening_WaterMons };
@@ -14009,29 +14009,29 @@ const struct WildPokemonInfo sFiveIslandMeadow_FireRed_Evening_WaterMonsInfo = {
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandMeadow_FireRed_Night_LandMons[] =
 {
-    { 44, 44, SPECIES_SPOINK },
+    { 44, 44, SPECIES_CLEFFA },
     { 10, 10, SPECIES_ORANGURU },
     { 48, 48, SPECIES_FIDOUGH },
-    { 10, 10, SPECIES_ELGYEM },
-    { 15, 15, SPECIES_MIME_JR },
-    { 41, 41, SPECIES_COMFEY },
-    { 15, 15, SPECIES_HATENNA },
-    { 41, 41, SPECIES_COTTONEE },
-    { 50, 50, SPECIES_GIRAFARIG },
+    { 10, 10, SPECIES_IGGLYBUFF },
+    { 15, 15, SPECIES_MUNNA },
+    { 41, 41, SPECIES_ELGYEM },
+    { 15, 15, SPECIES_AZURILL },
+    { 41, 41, SPECIES_SLOWPOKE_GALAR },
+    { 50, 50, SPECIES_PONYTA_GALAR },
     { 47, 47, SPECIES_DEDENNE },
-    { 50, 50, SPECIES_ORANGURU },
-    { 50, 50, SPECIES_KLEFKI },
+    { 50, 50, SPECIES_COTTONEE },
+    { 50, 50, SPECIES_MILCERY },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_FireRed_Night_LandMonsInfo = { 21, sFiveIslandMeadow_FireRed_Night_LandMons };
 
 const struct WildPokemon sFiveIslandMeadow_FireRed_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_MAREANIE },
-    { 5, 15, SPECIES_SNEASEL },
+    { 5, 35, SPECIES_FRILLISH },
+    { 5, 15, SPECIES_QWILFISH },
     { 35, 40, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SKRELP },
+    { 35, 40, SPECIES_SLOWPOKE },
+    { 35, 40, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_FireRed_Night_WaterMonsInfo = { 2, sFiveIslandMeadow_FireRed_Night_WaterMons };
@@ -14087,29 +14087,29 @@ const struct WildPokemonInfo sFiveIslandMeadow_LeafGreen_FishingMonsInfo = { 20,
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandMeadow_LeafGreen_Evening_LandMons[] =
 {
-    { 44, 44, SPECIES_LICKITUNG },
-    { 10, 10, SPECIES_MANTYKE },
-    { 48, 48, SPECIES_KOMALA },
-    { 10, 10, SPECIES_ZANGOOSE },
-    { 15, 15, SPECIES_BOUFFALANT },
-    { 41, 41, SPECIES_STANTLER },
-    { 15, 15, SPECIES_MARACTUS },
-    { 41, 41, SPECIES_MILTANK },
-    { 50, 50, SPECIES_PINECO },
-    { 47, 47, SPECIES_SHINX },
+    { 44, 44, SPECIES_WURMPLE },
+    { 10, 10, SPECIES_FURFROU },
+    { 48, 48, SPECIES_HAPPINY },
+    { 10, 10, SPECIES_SENTRET },
+    { 15, 15, SPECIES_TREECKO },
+    { 41, 41, SPECIES_PORYGON },
+    { 15, 15, SPECIES_STANTLER },
+    { 41, 41, SPECIES_YUNGOOS },
+    { 50, 50, SPECIES_TURTWIG },
+    { 47, 47, SPECIES_WOOLOO },
     { 50, 50, SPECIES_CARNIVINE },
-    { 50, 50, SPECIES_STANTLER },
+    { 50, 50, SPECIES_MILTANK },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_LeafGreen_Evening_LandMonsInfo = { 21, sFiveIslandMeadow_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sFiveIslandMeadow_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_SNOM },
-    { 5, 15, SPECIES_STARYU },
-    { 35, 40, SPECIES_DEWPIDER },
-    { 35, 40, SPECIES_FINIZEN },
+    { 5, 35, SPECIES_QUAXLY },
+    { 5, 15, SPECIES_CLAMPERL },
     { 35, 40, SPECIES_VANILLITE },
+    { 35, 40, SPECIES_ARROKUDA },
+    { 35, 40, SPECIES_FINIZEN },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_LeafGreen_Evening_WaterMonsInfo = { 2, sFiveIslandMeadow_LeafGreen_Evening_WaterMons };
@@ -14118,29 +14118,29 @@ const struct WildPokemonInfo sFiveIslandMeadow_LeafGreen_Evening_WaterMonsInfo =
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandMeadow_LeafGreen_Night_LandMons[] =
 {
-    { 44, 44, SPECIES_SPOINK },
+    { 44, 44, SPECIES_CLEFFA },
     { 10, 10, SPECIES_ORANGURU },
     { 48, 48, SPECIES_FIDOUGH },
-    { 10, 10, SPECIES_ELGYEM },
-    { 15, 15, SPECIES_MIME_JR },
-    { 41, 41, SPECIES_COMFEY },
-    { 15, 15, SPECIES_HATENNA },
-    { 41, 41, SPECIES_COTTONEE },
-    { 50, 50, SPECIES_GIRAFARIG },
+    { 10, 10, SPECIES_IGGLYBUFF },
+    { 15, 15, SPECIES_MUNNA },
+    { 41, 41, SPECIES_ELGYEM },
+    { 15, 15, SPECIES_AZURILL },
+    { 41, 41, SPECIES_SLOWPOKE_GALAR },
+    { 50, 50, SPECIES_PONYTA_GALAR },
     { 47, 47, SPECIES_DEDENNE },
-    { 50, 50, SPECIES_ORANGURU },
-    { 50, 50, SPECIES_KLEFKI },
+    { 50, 50, SPECIES_COTTONEE },
+    { 50, 50, SPECIES_MILCERY },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_LeafGreen_Night_LandMonsInfo = { 21, sFiveIslandMeadow_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sFiveIslandMeadow_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_MAREANIE },
-    { 5, 15, SPECIES_SNEASEL },
+    { 5, 35, SPECIES_FRILLISH },
+    { 5, 15, SPECIES_QWILFISH },
     { 35, 40, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SKRELP },
+    { 35, 40, SPECIES_SLOWPOKE },
+    { 35, 40, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_LeafGreen_Night_WaterMonsInfo = { 2, sFiveIslandMeadow_LeafGreen_Night_WaterMons };
@@ -14196,29 +14196,29 @@ const struct WildPokemonInfo sFiveIslandMemorialPillar_FireRed_FishingMonsInfo =
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandMemorialPillar_FireRed_Evening_LandMons[] =
 {
-    { 10, 10, SPECIES_ELECTRIKE },
-    { 12, 12, SPECIES_YUNGOOS },
-    { 8, 8, SPECIES_DEWPIDER },
-    { 14, 14, SPECIES_KRICKETOT },
-    { 10, 10, SPECIES_TYNAMO },
-    { 12, 12, SPECIES_MAREEP },
-    { 16, 16, SPECIES_WOOLOO },
-    { 6, 6, SPECIES_SUNKERN },
-    { 8, 8, SPECIES_PICHU },
-    { 14, 14, SPECIES_SWABLU },
-    { 8, 8, SPECIES_SMOLIV },
-    { 14, 14, SPECIES_ROOKIDEE },
+    { 10, 10, SPECIES_AIPOM },
+    { 12, 12, SPECIES_FOMANTIS },
+    { 8, 8, SPECIES_GRUBBIN },
+    { 14, 14, SPECIES_LEDYBA },
+    { 10, 10, SPECIES_SKWOVET },
+    { 12, 12, SPECIES_FLETCHLING },
+    { 16, 16, SPECIES_MAREEP },
+    { 6, 6, SPECIES_AIPOM },
+    { 8, 8, SPECIES_STARLY },
+    { 14, 14, SPECIES_BOUNSWEET },
+    { 8, 8, SPECIES_SKIDDO },
+    { 14, 14, SPECIES_TADBULB },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_FireRed_Evening_LandMonsInfo = { 21, sFiveIslandMemorialPillar_FireRed_Evening_LandMons };
 
 const struct WildPokemon sFiveIslandMemorialPillar_FireRed_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_SURSKIT },
-    { 5, 15, SPECIES_CLAUNCHER },
-    { 35, 40, SPECIES_WINGULL },
-    { 35, 40, SPECIES_SQUIRTLE },
-    { 35, 40, SPECIES_CUBCHOO },
+    { 5, 35, SPECIES_CETODDLE },
+    { 5, 15, SPECIES_CUBCHOO },
+    { 35, 40, SPECIES_LUVDISC },
+    { 35, 40, SPECIES_WIMPOD },
+    { 35, 40, SPECIES_WIGLETT },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_FireRed_Evening_WaterMonsInfo = { 2, sFiveIslandMemorialPillar_FireRed_Evening_WaterMons };
@@ -14227,29 +14227,29 @@ const struct WildPokemonInfo sFiveIslandMemorialPillar_FireRed_Evening_WaterMons
 #ifdef FIRERED
 const struct WildPokemon sFiveIslandMemorialPillar_FireRed_Night_LandMons[] =
 {
-    { 10, 10, SPECIES_GULPIN },
-    { 12, 12, SPECIES_HATENNA },
-    { 8, 8, SPECIES_MORELULL },
-    { 14, 14, SPECIES_ESPURR },
     { 10, 10, SPECIES_SPOINK },
-    { 12, 12, SPECIES_WYNAUT },
-    { 16, 16, SPECIES_ELGYEM },
-    { 6, 6, SPECIES_GOTHITA },
-    { 8, 8, SPECIES_AZURILL },
-    { 14, 14, SPECIES_SWIRLIX },
-    { 8, 8, SPECIES_SPRITZEE },
-    { 14, 14, SPECIES_SLOWPOKE_GALAR },
+    { 12, 12, SPECIES_SNUBBULL },
+    { 8, 8, SPECIES_HATENNA },
+    { 14, 14, SPECIES_CLEFFA },
+    { 10, 10, SPECIES_FLITTLE },
+    { 12, 12, SPECIES_GOTHITA },
+    { 16, 16, SPECIES_SOLOSIS },
+    { 6, 6, SPECIES_SPRITZEE },
+    { 8, 8, SPECIES_CHINGLING },
+    { 14, 14, SPECIES_FLABEBE },
+    { 8, 8, SPECIES_SPOINK },
+    { 14, 14, SPECIES_MIME_JR },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_FireRed_Night_LandMonsInfo = { 21, sFiveIslandMemorialPillar_FireRed_Night_LandMons };
 
 const struct WildPokemon sFiveIslandMemorialPillar_FireRed_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_SLOWPOKE },
-    { 5, 15, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 5, 35, SPECIES_CARVANHA },
+    { 5, 15, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_SKRELP },
+    { 35, 40, SPECIES_SKRELP },
+    { 35, 40, SPECIES_SMOOCHUM },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_FireRed_Night_WaterMonsInfo = { 2, sFiveIslandMemorialPillar_FireRed_Night_WaterMons };
@@ -14305,29 +14305,29 @@ const struct WildPokemonInfo sFiveIslandMemorialPillar_LeafGreen_FishingMonsInfo
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandMemorialPillar_LeafGreen_Evening_LandMons[] =
 {
-    { 10, 10, SPECIES_ELECTRIKE },
-    { 12, 12, SPECIES_YUNGOOS },
-    { 8, 8, SPECIES_DEWPIDER },
-    { 14, 14, SPECIES_KRICKETOT },
-    { 10, 10, SPECIES_TYNAMO },
-    { 12, 12, SPECIES_MAREEP },
-    { 16, 16, SPECIES_WOOLOO },
-    { 6, 6, SPECIES_SUNKERN },
-    { 8, 8, SPECIES_PICHU },
-    { 14, 14, SPECIES_SWABLU },
-    { 8, 8, SPECIES_SMOLIV },
-    { 14, 14, SPECIES_ROOKIDEE },
+    { 10, 10, SPECIES_AIPOM },
+    { 12, 12, SPECIES_FOMANTIS },
+    { 8, 8, SPECIES_GRUBBIN },
+    { 14, 14, SPECIES_LEDYBA },
+    { 10, 10, SPECIES_SKWOVET },
+    { 12, 12, SPECIES_FLETCHLING },
+    { 16, 16, SPECIES_MAREEP },
+    { 6, 6, SPECIES_AIPOM },
+    { 8, 8, SPECIES_STARLY },
+    { 14, 14, SPECIES_BOUNSWEET },
+    { 8, 8, SPECIES_SKIDDO },
+    { 14, 14, SPECIES_TADBULB },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_LeafGreen_Evening_LandMonsInfo = { 21, sFiveIslandMemorialPillar_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sFiveIslandMemorialPillar_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_SURSKIT },
-    { 5, 15, SPECIES_CLAUNCHER },
-    { 35, 40, SPECIES_WINGULL },
-    { 35, 40, SPECIES_SQUIRTLE },
-    { 35, 40, SPECIES_CUBCHOO },
+    { 5, 35, SPECIES_CETODDLE },
+    { 5, 15, SPECIES_CUBCHOO },
+    { 35, 40, SPECIES_LUVDISC },
+    { 35, 40, SPECIES_WIMPOD },
+    { 35, 40, SPECIES_WIGLETT },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_LeafGreen_Evening_WaterMonsInfo = { 2, sFiveIslandMemorialPillar_LeafGreen_Evening_WaterMons };
@@ -14336,29 +14336,29 @@ const struct WildPokemonInfo sFiveIslandMemorialPillar_LeafGreen_Evening_WaterMo
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIslandMemorialPillar_LeafGreen_Night_LandMons[] =
 {
-    { 10, 10, SPECIES_GULPIN },
-    { 12, 12, SPECIES_HATENNA },
-    { 8, 8, SPECIES_MORELULL },
-    { 14, 14, SPECIES_ESPURR },
     { 10, 10, SPECIES_SPOINK },
-    { 12, 12, SPECIES_WYNAUT },
-    { 16, 16, SPECIES_ELGYEM },
-    { 6, 6, SPECIES_GOTHITA },
-    { 8, 8, SPECIES_AZURILL },
-    { 14, 14, SPECIES_SWIRLIX },
-    { 8, 8, SPECIES_SPRITZEE },
-    { 14, 14, SPECIES_SLOWPOKE_GALAR },
+    { 12, 12, SPECIES_SNUBBULL },
+    { 8, 8, SPECIES_HATENNA },
+    { 14, 14, SPECIES_CLEFFA },
+    { 10, 10, SPECIES_FLITTLE },
+    { 12, 12, SPECIES_GOTHITA },
+    { 16, 16, SPECIES_SOLOSIS },
+    { 6, 6, SPECIES_SPRITZEE },
+    { 8, 8, SPECIES_CHINGLING },
+    { 14, 14, SPECIES_FLABEBE },
+    { 8, 8, SPECIES_SPOINK },
+    { 14, 14, SPECIES_MIME_JR },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_LeafGreen_Night_LandMonsInfo = { 21, sFiveIslandMemorialPillar_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sFiveIslandMemorialPillar_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_SLOWPOKE },
-    { 5, 15, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 5, 35, SPECIES_CARVANHA },
+    { 5, 15, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_SKRELP },
+    { 35, 40, SPECIES_SKRELP },
+    { 35, 40, SPECIES_SMOOCHUM },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_LeafGreen_Night_WaterMonsInfo = { 2, sFiveIslandMemorialPillar_LeafGreen_Night_WaterMons };
@@ -14396,11 +14396,11 @@ const struct WildPokemonInfo sSixIslandOutcastIsland_FireRed_FishingMonsInfo = {
 #ifdef FIRERED
 const struct WildPokemon sSixIslandOutcastIsland_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_DARMANITAN_GALAR_ZEN },
-    { 20, 35, SPECIES_CRAMORANT },
-    { 35, 40, SPECIES_ARCTOZOLT },
-    { 35, 40, SPECIES_MANTYKE },
-    { 35, 40, SPECIES_VANILLITE },
+    { 5, 20, SPECIES_ARCTOZOLT },
+    { 20, 35, SPECIES_EISCUE_ICE },
+    { 35, 40, SPECIES_ARCTOVISH },
+    { 35, 40, SPECIES_DUCKLETT },
+    { 35, 40, SPECIES_WAILMER },
 };
 
 const struct WildPokemonInfo sSixIslandOutcastIsland_FireRed_Evening_WaterMonsInfo = { 2, sSixIslandOutcastIsland_FireRed_Evening_WaterMons };
@@ -14409,11 +14409,11 @@ const struct WildPokemonInfo sSixIslandOutcastIsland_FireRed_Evening_WaterMonsIn
 #ifdef FIRERED
 const struct WildPokemon sSixIslandOutcastIsland_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_VELUZA },
+    { 5, 20, SPECIES_BASCULEGION_M },
     { 20, 35, SPECIES_BRUXISH },
     { 35, 40, SPECIES_VELUZA },
-    { 35, 40, SPECIES_BRUXISH },
-    { 35, 40, SPECIES_VELUZA },
+    { 35, 40, SPECIES_BASCULEGION_M },
+    { 35, 40, SPECIES_BASCULEGION_M },
 };
 
 const struct WildPokemonInfo sSixIslandOutcastIsland_FireRed_Night_WaterMonsInfo = { 2, sSixIslandOutcastIsland_FireRed_Night_WaterMons };
@@ -14451,11 +14451,11 @@ const struct WildPokemonInfo sSixIslandOutcastIsland_LeafGreen_FishingMonsInfo =
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandOutcastIsland_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_DARMANITAN_GALAR_ZEN },
-    { 20, 35, SPECIES_CRAMORANT },
-    { 35, 40, SPECIES_ARCTOZOLT },
-    { 35, 40, SPECIES_MANTYKE },
-    { 35, 40, SPECIES_VANILLITE },
+    { 5, 20, SPECIES_ARCTOZOLT },
+    { 20, 35, SPECIES_EISCUE_ICE },
+    { 35, 40, SPECIES_ARCTOVISH },
+    { 35, 40, SPECIES_DUCKLETT },
+    { 35, 40, SPECIES_WAILMER },
 };
 
 const struct WildPokemonInfo sSixIslandOutcastIsland_LeafGreen_Evening_WaterMonsInfo = { 2, sSixIslandOutcastIsland_LeafGreen_Evening_WaterMons };
@@ -14464,11 +14464,11 @@ const struct WildPokemonInfo sSixIslandOutcastIsland_LeafGreen_Evening_WaterMons
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandOutcastIsland_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_VELUZA },
+    { 5, 20, SPECIES_BASCULEGION_M },
     { 20, 35, SPECIES_BRUXISH },
     { 35, 40, SPECIES_VELUZA },
-    { 35, 40, SPECIES_BRUXISH },
-    { 35, 40, SPECIES_VELUZA },
+    { 35, 40, SPECIES_BASCULEGION_M },
+    { 35, 40, SPECIES_BASCULEGION_M },
 };
 
 const struct WildPokemonInfo sSixIslandOutcastIsland_LeafGreen_Night_WaterMonsInfo = { 2, sSixIslandOutcastIsland_LeafGreen_Night_WaterMons };
@@ -14506,11 +14506,11 @@ const struct WildPokemonInfo sSixIslandGreenPath_FireRed_FishingMonsInfo = { 20,
 #ifdef FIRERED
 const struct WildPokemon sSixIslandGreenPath_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_WIGLETT },
-    { 20, 35, SPECIES_PANPOUR },
-    { 35, 40, SPECIES_ALOMOMOLA },
-    { 35, 40, SPECIES_WIMPOD },
-    { 35, 40, SPECIES_VULPIX_ALOLA },
+    { 5, 20, SPECIES_DEWPIDER },
+    { 20, 35, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 35, 40, SPECIES_BASCULIN_RED_STRIPED },
+    { 35, 40, SPECIES_FEEBAS },
+    { 35, 40, SPECIES_CRYOGONAL },
 };
 
 const struct WildPokemonInfo sSixIslandGreenPath_FireRed_Evening_WaterMonsInfo = { 2, sSixIslandGreenPath_FireRed_Evening_WaterMons };
@@ -14519,11 +14519,11 @@ const struct WildPokemonInfo sSixIslandGreenPath_FireRed_Evening_WaterMonsInfo =
 #ifdef FIRERED
 const struct WildPokemon sSixIslandGreenPath_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SNEASEL },
-    { 20, 35, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_VELUZA },
-    { 35, 40, SPECIES_SLOWPOKE },
+    { 5, 20, SPECIES_BRUXISH },
+    { 20, 35, SPECIES_VELUZA },
+    { 35, 40, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_MAREANIE },
 };
 
 const struct WildPokemonInfo sSixIslandGreenPath_FireRed_Night_WaterMonsInfo = { 2, sSixIslandGreenPath_FireRed_Night_WaterMons };
@@ -14561,11 +14561,11 @@ const struct WildPokemonInfo sSixIslandGreenPath_LeafGreen_FishingMonsInfo = { 2
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandGreenPath_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_WIGLETT },
-    { 20, 35, SPECIES_PANPOUR },
-    { 35, 40, SPECIES_ALOMOMOLA },
-    { 35, 40, SPECIES_WIMPOD },
-    { 35, 40, SPECIES_VULPIX_ALOLA },
+    { 5, 20, SPECIES_DEWPIDER },
+    { 20, 35, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 35, 40, SPECIES_BASCULIN_RED_STRIPED },
+    { 35, 40, SPECIES_FEEBAS },
+    { 35, 40, SPECIES_CRYOGONAL },
 };
 
 const struct WildPokemonInfo sSixIslandGreenPath_LeafGreen_Evening_WaterMonsInfo = { 2, sSixIslandGreenPath_LeafGreen_Evening_WaterMons };
@@ -14574,11 +14574,11 @@ const struct WildPokemonInfo sSixIslandGreenPath_LeafGreen_Evening_WaterMonsInfo
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandGreenPath_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SNEASEL },
-    { 20, 35, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_VELUZA },
-    { 35, 40, SPECIES_SLOWPOKE },
+    { 5, 20, SPECIES_BRUXISH },
+    { 20, 35, SPECIES_VELUZA },
+    { 35, 40, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_MAREANIE },
 };
 
 const struct WildPokemonInfo sSixIslandGreenPath_LeafGreen_Night_WaterMonsInfo = { 2, sSixIslandGreenPath_LeafGreen_Night_WaterMons };
@@ -14634,17 +14634,17 @@ const struct WildPokemonInfo sSixIslandWaterPath_FireRed_FishingMonsInfo = { 20,
 #ifdef FIRERED
 const struct WildPokemon sSixIslandWaterPath_FireRed_Evening_LandMons[] =
 {
-    { 44, 44, SPECIES_LECHONK },
-    { 10, 10, SPECIES_SUNKERN },
+    { 44, 44, SPECIES_TURTWIG },
+    { 10, 10, SPECIES_VOLBEAT },
     { 44, 44, SPECIES_SLAKOTH },
-    { 48, 48, SPECIES_HOPPIP },
-    { 15, 15, SPECIES_HAPPINY },
-    { 41, 41, SPECIES_EMOLGA },
-    { 48, 48, SPECIES_TAROUNTULA },
-    { 41, 41, SPECIES_SLAKOTH },
-    { 50, 50, SPECIES_MARACTUS },
-    { 47, 47, SPECIES_YAMPER },
-    { 50, 50, SPECIES_GRUBBIN },
+    { 48, 48, SPECIES_TEDDIURSA },
+    { 15, 15, SPECIES_KRICKETOT },
+    { 41, 41, SPECIES_VOLTORB_HISUI },
+    { 48, 48, SPECIES_SKITTY },
+    { 41, 41, SPECIES_TAROUNTULA },
+    { 50, 50, SPECIES_WATTREL },
+    { 47, 47, SPECIES_GROOKEY },
+    { 50, 50, SPECIES_TYNAMO },
     { 50, 50, SPECIES_SLAKOTH },
 };
 
@@ -14652,11 +14652,11 @@ const struct WildPokemonInfo sSixIslandWaterPath_FireRed_Evening_LandMonsInfo = 
 
 const struct WildPokemon sSixIslandWaterPath_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_SOBBLE },
-    { 20, 35, SPECIES_CETODDLE },
-    { 35, 40, SPECIES_SURSKIT },
-    { 35, 40, SPECIES_DARUMAKA_GALAR },
-    { 35, 40, SPECIES_CORPHISH },
+    { 5, 20, SPECIES_OSHAWOTT },
+    { 20, 35, SPECIES_WAILMER },
+    { 35, 40, SPECIES_POPPLIO },
+    { 35, 40, SPECIES_CLAUNCHER },
+    { 35, 40, SPECIES_MUDKIP },
 };
 
 const struct WildPokemonInfo sSixIslandWaterPath_FireRed_Evening_WaterMonsInfo = { 2, sSixIslandWaterPath_FireRed_Evening_WaterMons };
@@ -14665,29 +14665,29 @@ const struct WildPokemonInfo sSixIslandWaterPath_FireRed_Evening_WaterMonsInfo =
 #ifdef FIRERED
 const struct WildPokemon sSixIslandWaterPath_FireRed_Night_LandMons[] =
 {
-    { 44, 44, SPECIES_RALTS },
-    { 10, 10, SPECIES_IGGLYBUFF },
-    { 44, 44, SPECIES_TOGEPI },
-    { 48, 48, SPECIES_MILCERY },
-    { 15, 15, SPECIES_FLITTLE },
-    { 41, 41, SPECIES_CLEFFA },
-    { 48, 48, SPECIES_CUTIEFLY },
-    { 41, 41, SPECIES_MIME_JR },
-    { 50, 50, SPECIES_MUNNA },
-    { 47, 47, SPECIES_SNUBBULL },
-    { 50, 50, SPECIES_SOLOSIS },
-    { 50, 50, SPECIES_SIGILYPH },
+    { 44, 44, SPECIES_GIRAFARIG },
+    { 10, 10, SPECIES_COMFEY },
+    { 44, 44, SPECIES_INDEEDEE_M },
+    { 48, 48, SPECIES_TOGEPI },
+    { 15, 15, SPECIES_SNUBBULL },
+    { 41, 41, SPECIES_INDEEDEE_M },
+    { 48, 48, SPECIES_FLABEBE },
+    { 41, 41, SPECIES_SOLOSIS },
+    { 50, 50, SPECIES_TOGEPI },
+    { 47, 47, SPECIES_MORELULL },
+    { 50, 50, SPECIES_HATENNA },
+    { 50, 50, SPECIES_ORANGURU },
 };
 
 const struct WildPokemonInfo sSixIslandWaterPath_FireRed_Night_LandMonsInfo = { 21, sSixIslandWaterPath_FireRed_Night_LandMons };
 
 const struct WildPokemon sSixIslandWaterPath_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_BRUXISH },
-    { 20, 35, SPECIES_SKRELP },
-    { 35, 40, SPECIES_CARVANHA },
+    { 5, 20, SPECIES_VELUZA },
+    { 20, 35, SPECIES_QWILFISH },
     { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sSixIslandWaterPath_FireRed_Night_WaterMonsInfo = { 2, sSixIslandWaterPath_FireRed_Night_WaterMons };
@@ -14743,17 +14743,17 @@ const struct WildPokemonInfo sSixIslandWaterPath_LeafGreen_FishingMonsInfo = { 2
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandWaterPath_LeafGreen_Evening_LandMons[] =
 {
-    { 44, 44, SPECIES_LECHONK },
-    { 10, 10, SPECIES_SUNKERN },
+    { 44, 44, SPECIES_TURTWIG },
+    { 10, 10, SPECIES_VOLBEAT },
     { 44, 44, SPECIES_SLAKOTH },
-    { 48, 48, SPECIES_HOPPIP },
-    { 15, 15, SPECIES_HAPPINY },
-    { 41, 41, SPECIES_EMOLGA },
-    { 48, 48, SPECIES_TAROUNTULA },
-    { 41, 41, SPECIES_SLAKOTH },
-    { 50, 50, SPECIES_MARACTUS },
-    { 47, 47, SPECIES_YAMPER },
-    { 50, 50, SPECIES_GRUBBIN },
+    { 48, 48, SPECIES_TEDDIURSA },
+    { 15, 15, SPECIES_KRICKETOT },
+    { 41, 41, SPECIES_VOLTORB_HISUI },
+    { 48, 48, SPECIES_SKITTY },
+    { 41, 41, SPECIES_TAROUNTULA },
+    { 50, 50, SPECIES_WATTREL },
+    { 47, 47, SPECIES_GROOKEY },
+    { 50, 50, SPECIES_TYNAMO },
     { 50, 50, SPECIES_SLAKOTH },
 };
 
@@ -14761,11 +14761,11 @@ const struct WildPokemonInfo sSixIslandWaterPath_LeafGreen_Evening_LandMonsInfo 
 
 const struct WildPokemon sSixIslandWaterPath_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_SOBBLE },
-    { 20, 35, SPECIES_CETODDLE },
-    { 35, 40, SPECIES_SURSKIT },
-    { 35, 40, SPECIES_DARUMAKA_GALAR },
-    { 35, 40, SPECIES_CORPHISH },
+    { 5, 20, SPECIES_OSHAWOTT },
+    { 20, 35, SPECIES_WAILMER },
+    { 35, 40, SPECIES_POPPLIO },
+    { 35, 40, SPECIES_CLAUNCHER },
+    { 35, 40, SPECIES_MUDKIP },
 };
 
 const struct WildPokemonInfo sSixIslandWaterPath_LeafGreen_Evening_WaterMonsInfo = { 2, sSixIslandWaterPath_LeafGreen_Evening_WaterMons };
@@ -14774,29 +14774,29 @@ const struct WildPokemonInfo sSixIslandWaterPath_LeafGreen_Evening_WaterMonsInfo
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandWaterPath_LeafGreen_Night_LandMons[] =
 {
-    { 44, 44, SPECIES_RALTS },
-    { 10, 10, SPECIES_IGGLYBUFF },
-    { 44, 44, SPECIES_TOGEPI },
-    { 48, 48, SPECIES_MILCERY },
-    { 15, 15, SPECIES_FLITTLE },
-    { 41, 41, SPECIES_CLEFFA },
-    { 48, 48, SPECIES_CUTIEFLY },
-    { 41, 41, SPECIES_MIME_JR },
-    { 50, 50, SPECIES_MUNNA },
-    { 47, 47, SPECIES_SNUBBULL },
-    { 50, 50, SPECIES_SOLOSIS },
-    { 50, 50, SPECIES_SIGILYPH },
+    { 44, 44, SPECIES_GIRAFARIG },
+    { 10, 10, SPECIES_COMFEY },
+    { 44, 44, SPECIES_INDEEDEE_M },
+    { 48, 48, SPECIES_TOGEPI },
+    { 15, 15, SPECIES_SNUBBULL },
+    { 41, 41, SPECIES_INDEEDEE_M },
+    { 48, 48, SPECIES_FLABEBE },
+    { 41, 41, SPECIES_SOLOSIS },
+    { 50, 50, SPECIES_TOGEPI },
+    { 47, 47, SPECIES_MORELULL },
+    { 50, 50, SPECIES_HATENNA },
+    { 50, 50, SPECIES_ORANGURU },
 };
 
 const struct WildPokemonInfo sSixIslandWaterPath_LeafGreen_Night_LandMonsInfo = { 21, sSixIslandWaterPath_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sSixIslandWaterPath_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_BRUXISH },
-    { 20, 35, SPECIES_SKRELP },
-    { 35, 40, SPECIES_CARVANHA },
+    { 5, 20, SPECIES_VELUZA },
+    { 20, 35, SPECIES_QWILFISH },
     { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sSixIslandWaterPath_LeafGreen_Night_WaterMonsInfo = { 2, sSixIslandWaterPath_LeafGreen_Night_WaterMons };
@@ -14852,29 +14852,29 @@ const struct WildPokemonInfo sSixIslandRuinValley_FireRed_FishingMonsInfo = { 20
 #ifdef FIRERED
 const struct WildPokemon sSixIslandRuinValley_FireRed_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_ROWLET },
-    { 44, 44, SPECIES_FLETCHLING },
-    { 18, 18, SPECIES_DUCKLETT },
-    { 15, 15, SPECIES_COMBEE },
-    { 49, 49, SPECIES_LEDYBA },
-    { 43, 43, SPECIES_PIDOVE },
-    { 25, 25, SPECIES_TAILLOW },
-    { 41, 41, SPECIES_YANMA },
-    { 20, 20, SPECIES_HOOTHOOT },
-    { 49, 49, SPECIES_WATTREL },
-    { 20, 20, SPECIES_FLETCHLING },
-    { 52, 52, SPECIES_CHATOT },
+    { 15, 15, SPECIES_EMOLGA },
+    { 44, 44, SPECIES_FARFETCHD },
+    { 18, 18, SPECIES_SWABLU },
+    { 15, 15, SPECIES_YANMA },
+    { 49, 49, SPECIES_ROWLET },
+    { 43, 43, SPECIES_ROOKIDEE },
+    { 25, 25, SPECIES_EMOLGA },
+    { 41, 41, SPECIES_HOOTHOOT },
+    { 20, 20, SPECIES_TAILLOW },
+    { 49, 49, SPECIES_SQUAWKABILLY_GREEN },
+    { 20, 20, SPECIES_PIDOVE },
+    { 52, 52, SPECIES_HOPPIP },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_FireRed_Evening_LandMonsInfo = { 21, sSixIslandRuinValley_FireRed_Evening_LandMons };
 
 const struct WildPokemon sSixIslandRuinValley_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_PYUKUMUKU },
-    { 10, 20, SPECIES_BERGMITE },
-    { 15, 25, SPECIES_LUVDISC },
-    { 20, 25, SPECIES_CLAMPERL },
-    { 20, 25, SPECIES_SNOVER },
+    { 5, 20, SPECIES_VULPIX_ALOLA },
+    { 10, 20, SPECIES_DEWPIDER },
+    { 15, 25, SPECIES_DARUMAKA_GALAR },
+    { 20, 25, SPECIES_BINACLE },
+    { 20, 25, SPECIES_CORPHISH },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_FireRed_Evening_WaterMonsInfo = { 2, sSixIslandRuinValley_FireRed_Evening_WaterMons };
@@ -14883,28 +14883,28 @@ const struct WildPokemonInfo sSixIslandRuinValley_FireRed_Evening_WaterMonsInfo 
 #ifdef FIRERED
 const struct WildPokemon sSixIslandRuinValley_FireRed_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_DRIFLOON },
-    { 44, 44, SPECIES_WOOBAT },
+    { 15, 15, SPECIES_VULLABY },
+    { 44, 44, SPECIES_SIGILYPH },
     { 18, 18, SPECIES_NATU },
     { 15, 15, SPECIES_VULLABY },
-    { 49, 49, SPECIES_MAWILE },
-    { 43, 43, SPECIES_TINKATINK },
-    { 25, 25, SPECIES_KLEFKI },
+    { 49, 49, SPECIES_NATU },
+    { 43, 43, SPECIES_SANDILE },
+    { 25, 25, SPECIES_HONEDGE },
     { 41, 41, SPECIES_SIGILYPH },
-    { 20, 20, SPECIES_SANDYGAST },
-    { 49, 49, SPECIES_GOLETT },
-    { 20, 20, SPECIES_YAMASK_GALAR },
-    { 52, 52, SPECIES_SNEASEL_HISUI },
+    { 20, 20, SPECIES_GHOLDENGO },
+    { 49, 49, SPECIES_WOOBAT },
+    { 20, 20, SPECIES_VAROOM },
+    { 52, 52, SPECIES_BALTOY },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_FireRed_Night_LandMonsInfo = { 21, sSixIslandRuinValley_FireRed_Night_LandMons };
 
 const struct WildPokemon sSixIslandRuinValley_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SMOOCHUM },
-    { 10, 20, SPECIES_QWILFISH },
-    { 15, 25, SPECIES_CARVANHA },
-    { 20, 25, SPECIES_SNEASEL },
+    { 5, 20, SPECIES_CARVANHA },
+    { 10, 20, SPECIES_SNEASEL },
+    { 15, 25, SPECIES_QWILFISH },
+    { 20, 25, SPECIES_SMOOCHUM },
     { 20, 25, SPECIES_SKRELP },
 };
 
@@ -14961,29 +14961,29 @@ const struct WildPokemonInfo sSixIslandRuinValley_LeafGreen_FishingMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandRuinValley_LeafGreen_Evening_LandMons[] =
 {
-    { 15, 15, SPECIES_ROWLET },
-    { 44, 44, SPECIES_FLETCHLING },
-    { 18, 18, SPECIES_DUCKLETT },
-    { 15, 15, SPECIES_COMBEE },
-    { 49, 49, SPECIES_LEDYBA },
-    { 43, 43, SPECIES_PIDOVE },
-    { 25, 25, SPECIES_TAILLOW },
-    { 41, 41, SPECIES_YANMA },
-    { 20, 20, SPECIES_HOOTHOOT },
-    { 49, 49, SPECIES_WATTREL },
-    { 20, 20, SPECIES_FLETCHLING },
-    { 52, 52, SPECIES_CHATOT },
+    { 15, 15, SPECIES_EMOLGA },
+    { 44, 44, SPECIES_FARFETCHD },
+    { 18, 18, SPECIES_SWABLU },
+    { 15, 15, SPECIES_YANMA },
+    { 49, 49, SPECIES_ROWLET },
+    { 43, 43, SPECIES_ROOKIDEE },
+    { 25, 25, SPECIES_EMOLGA },
+    { 41, 41, SPECIES_HOOTHOOT },
+    { 20, 20, SPECIES_TAILLOW },
+    { 49, 49, SPECIES_SQUAWKABILLY_GREEN },
+    { 20, 20, SPECIES_PIDOVE },
+    { 52, 52, SPECIES_HOPPIP },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_LeafGreen_Evening_LandMonsInfo = { 21, sSixIslandRuinValley_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sSixIslandRuinValley_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_PYUKUMUKU },
-    { 10, 20, SPECIES_BERGMITE },
-    { 15, 25, SPECIES_LUVDISC },
-    { 20, 25, SPECIES_CLAMPERL },
-    { 20, 25, SPECIES_SNOVER },
+    { 5, 20, SPECIES_VULPIX_ALOLA },
+    { 10, 20, SPECIES_DEWPIDER },
+    { 15, 25, SPECIES_DARUMAKA_GALAR },
+    { 20, 25, SPECIES_BINACLE },
+    { 20, 25, SPECIES_CORPHISH },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_LeafGreen_Evening_WaterMonsInfo = { 2, sSixIslandRuinValley_LeafGreen_Evening_WaterMons };
@@ -14992,28 +14992,28 @@ const struct WildPokemonInfo sSixIslandRuinValley_LeafGreen_Evening_WaterMonsInf
 #ifdef LEAFGREEN
 const struct WildPokemon sSixIslandRuinValley_LeafGreen_Night_LandMons[] =
 {
-    { 15, 15, SPECIES_DRIFLOON },
-    { 44, 44, SPECIES_WOOBAT },
+    { 15, 15, SPECIES_VULLABY },
+    { 44, 44, SPECIES_SIGILYPH },
     { 18, 18, SPECIES_NATU },
     { 15, 15, SPECIES_VULLABY },
-    { 49, 49, SPECIES_MAWILE },
-    { 43, 43, SPECIES_TINKATINK },
-    { 25, 25, SPECIES_KLEFKI },
+    { 49, 49, SPECIES_NATU },
+    { 43, 43, SPECIES_SANDILE },
+    { 25, 25, SPECIES_HONEDGE },
     { 41, 41, SPECIES_SIGILYPH },
-    { 20, 20, SPECIES_SANDYGAST },
-    { 49, 49, SPECIES_GOLETT },
-    { 20, 20, SPECIES_YAMASK_GALAR },
-    { 52, 52, SPECIES_SNEASEL_HISUI },
+    { 20, 20, SPECIES_GHOLDENGO },
+    { 49, 49, SPECIES_WOOBAT },
+    { 20, 20, SPECIES_VAROOM },
+    { 52, 52, SPECIES_BALTOY },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_LeafGreen_Night_LandMonsInfo = { 21, sSixIslandRuinValley_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sSixIslandRuinValley_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SMOOCHUM },
-    { 10, 20, SPECIES_QWILFISH },
-    { 15, 25, SPECIES_CARVANHA },
-    { 20, 25, SPECIES_SNEASEL },
+    { 5, 20, SPECIES_CARVANHA },
+    { 10, 20, SPECIES_SNEASEL },
+    { 15, 25, SPECIES_QWILFISH },
+    { 20, 25, SPECIES_SMOOCHUM },
     { 20, 25, SPECIES_SKRELP },
 };
 
@@ -15052,10 +15052,10 @@ const struct WildPokemonInfo sSevenIslandTrainerTower_FireRed_FishingMonsInfo = 
 #ifdef FIRERED
 const struct WildPokemon sSevenIslandTrainerTower_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_CLAUNCHER },
-    { 20, 35, SPECIES_FINNEON },
-    { 35, 40, SPECIES_PIPLUP },
-    { 35, 40, SPECIES_TYMPOLE },
+    { 5, 20, SPECIES_BUIZEL },
+    { 20, 35, SPECIES_VANILLITE },
+    { 35, 40, SPECIES_LOTAD },
+    { 35, 40, SPECIES_CETODDLE },
     { 35, 40, SPECIES_FINIZEN },
 };
 
@@ -15065,9 +15065,9 @@ const struct WildPokemonInfo sSevenIslandTrainerTower_FireRed_Evening_WaterMonsI
 #ifdef FIRERED
 const struct WildPokemon sSevenIslandTrainerTower_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SLOWPOKE },
-    { 20, 35, SPECIES_VELUZA },
-    { 35, 40, SPECIES_BRUXISH },
+    { 5, 20, SPECIES_BASCULEGION_M },
+    { 20, 35, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_SLOWPOKE },
     { 35, 40, SPECIES_VELUZA },
     { 35, 40, SPECIES_MAREANIE },
 };
@@ -15107,10 +15107,10 @@ const struct WildPokemonInfo sSevenIslandTrainerTower_LeafGreen_FishingMonsInfo 
 #ifdef LEAFGREEN
 const struct WildPokemon sSevenIslandTrainerTower_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_CLAUNCHER },
-    { 20, 35, SPECIES_FINNEON },
-    { 35, 40, SPECIES_PIPLUP },
-    { 35, 40, SPECIES_TYMPOLE },
+    { 5, 20, SPECIES_BUIZEL },
+    { 20, 35, SPECIES_VANILLITE },
+    { 35, 40, SPECIES_LOTAD },
+    { 35, 40, SPECIES_CETODDLE },
     { 35, 40, SPECIES_FINIZEN },
 };
 
@@ -15120,9 +15120,9 @@ const struct WildPokemonInfo sSevenIslandTrainerTower_LeafGreen_Evening_WaterMon
 #ifdef LEAFGREEN
 const struct WildPokemon sSevenIslandTrainerTower_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_SLOWPOKE },
-    { 20, 35, SPECIES_VELUZA },
-    { 35, 40, SPECIES_BRUXISH },
+    { 5, 20, SPECIES_BASCULEGION_M },
+    { 20, 35, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_SLOWPOKE },
     { 35, 40, SPECIES_VELUZA },
     { 35, 40, SPECIES_MAREANIE },
 };
@@ -15154,17 +15154,17 @@ const struct WildPokemonInfo sSevenIslandSevaultCanyonEntrance_FireRed_LandMonsI
 const struct WildPokemon sSevenIslandSevaultCanyonEntrance_FireRed_Evening_LandMons[] =
 {
     { 44, 44, SPECIES_CHATOT },
-    { 10, 10, SPECIES_ROOKIDEE },
-    { 10, 10, SPECIES_HOPPIP },
-    { 48, 48, SPECIES_FARFETCHD },
-    { 15, 15, SPECIES_PIKIPEK },
+    { 10, 10, SPECIES_FLETCHLING },
+    { 10, 10, SPECIES_DUCKLETT },
+    { 48, 48, SPECIES_RUFFLET },
+    { 15, 15, SPECIES_SWABLU },
+    { 41, 41, SPECIES_CHATOT },
+    { 50, 50, SPECIES_FARFETCHD },
     { 41, 41, SPECIES_TROPIUS },
-    { 50, 50, SPECIES_WATTREL },
-    { 41, 41, SPECIES_HOPPIP },
-    { 15, 15, SPECIES_CHATOT },
-    { 47, 47, SPECIES_HOOTHOOT },
-    { 15, 15, SPECIES_STARLY },
-    { 50, 50, SPECIES_RUFFLET },
+    { 15, 15, SPECIES_PIKIPEK },
+    { 47, 47, SPECIES_COMBEE },
+    { 15, 15, SPECIES_FLETCHLING },
+    { 50, 50, SPECIES_SQUAWKABILLY_GREEN },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyonEntrance_FireRed_Evening_LandMonsInfo = { 21, sSevenIslandSevaultCanyonEntrance_FireRed_Evening_LandMons };
@@ -15173,18 +15173,18 @@ const struct WildPokemonInfo sSevenIslandSevaultCanyonEntrance_FireRed_Evening_L
 #ifdef FIRERED
 const struct WildPokemon sSevenIslandSevaultCanyonEntrance_FireRed_Night_LandMons[] =
 {
-    { 44, 44, SPECIES_SNEASEL_HISUI },
-    { 10, 10, SPECIES_VAROOM },
-    { 10, 10, SPECIES_WOOPER_PALDEA },
-    { 48, 48, SPECIES_DRIFLOON },
-    { 15, 15, SPECIES_BALTOY },
+    { 44, 44, SPECIES_TINKATINK },
+    { 10, 10, SPECIES_DRIFLOON },
+    { 10, 10, SPECIES_VULLABY },
+    { 48, 48, SPECIES_KLEFKI },
+    { 15, 15, SPECIES_PAWNIARD },
     { 41, 41, SPECIES_BRONZOR },
-    { 50, 50, SPECIES_MAWILE },
-    { 41, 41, SPECIES_HONEDGE },
+    { 50, 50, SPECIES_TINKATINK },
+    { 41, 41, SPECIES_BOMBIRDIER },
+    { 15, 15, SPECIES_MAWILE },
+    { 47, 47, SPECIES_SNEASEL_HISUI },
     { 15, 15, SPECIES_MURKROW },
-    { 47, 47, SPECIES_NATU },
-    { 15, 15, SPECIES_VULLABY },
-    { 50, 50, SPECIES_PAWNIARD },
+    { 50, 50, SPECIES_MURKROW },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyonEntrance_FireRed_Night_LandMonsInfo = { 21, sSevenIslandSevaultCanyonEntrance_FireRed_Night_LandMons };
@@ -15214,17 +15214,17 @@ const struct WildPokemonInfo sSevenIslandSevaultCanyonEntrance_LeafGreen_LandMon
 const struct WildPokemon sSevenIslandSevaultCanyonEntrance_LeafGreen_Evening_LandMons[] =
 {
     { 44, 44, SPECIES_CHATOT },
-    { 10, 10, SPECIES_ROOKIDEE },
-    { 10, 10, SPECIES_HOPPIP },
-    { 48, 48, SPECIES_FARFETCHD },
-    { 15, 15, SPECIES_PIKIPEK },
+    { 10, 10, SPECIES_FLETCHLING },
+    { 10, 10, SPECIES_DUCKLETT },
+    { 48, 48, SPECIES_RUFFLET },
+    { 15, 15, SPECIES_SWABLU },
+    { 41, 41, SPECIES_CHATOT },
+    { 50, 50, SPECIES_FARFETCHD },
     { 41, 41, SPECIES_TROPIUS },
-    { 50, 50, SPECIES_WATTREL },
-    { 41, 41, SPECIES_HOPPIP },
-    { 15, 15, SPECIES_CHATOT },
-    { 47, 47, SPECIES_HOOTHOOT },
-    { 15, 15, SPECIES_STARLY },
-    { 50, 50, SPECIES_RUFFLET },
+    { 15, 15, SPECIES_PIKIPEK },
+    { 47, 47, SPECIES_COMBEE },
+    { 15, 15, SPECIES_FLETCHLING },
+    { 50, 50, SPECIES_SQUAWKABILLY_GREEN },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyonEntrance_LeafGreen_Evening_LandMonsInfo = { 21, sSevenIslandSevaultCanyonEntrance_LeafGreen_Evening_LandMons };
@@ -15233,18 +15233,18 @@ const struct WildPokemonInfo sSevenIslandSevaultCanyonEntrance_LeafGreen_Evening
 #ifdef LEAFGREEN
 const struct WildPokemon sSevenIslandSevaultCanyonEntrance_LeafGreen_Night_LandMons[] =
 {
-    { 44, 44, SPECIES_SNEASEL_HISUI },
-    { 10, 10, SPECIES_VAROOM },
-    { 10, 10, SPECIES_WOOPER_PALDEA },
-    { 48, 48, SPECIES_DRIFLOON },
-    { 15, 15, SPECIES_BALTOY },
+    { 44, 44, SPECIES_TINKATINK },
+    { 10, 10, SPECIES_DRIFLOON },
+    { 10, 10, SPECIES_VULLABY },
+    { 48, 48, SPECIES_KLEFKI },
+    { 15, 15, SPECIES_PAWNIARD },
     { 41, 41, SPECIES_BRONZOR },
-    { 50, 50, SPECIES_MAWILE },
-    { 41, 41, SPECIES_HONEDGE },
+    { 50, 50, SPECIES_TINKATINK },
+    { 41, 41, SPECIES_BOMBIRDIER },
+    { 15, 15, SPECIES_MAWILE },
+    { 47, 47, SPECIES_SNEASEL_HISUI },
     { 15, 15, SPECIES_MURKROW },
-    { 47, 47, SPECIES_NATU },
-    { 15, 15, SPECIES_VULLABY },
-    { 50, 50, SPECIES_PAWNIARD },
+    { 50, 50, SPECIES_MURKROW },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyonEntrance_LeafGreen_Night_LandMonsInfo = { 21, sSevenIslandSevaultCanyonEntrance_LeafGreen_Night_LandMons };
@@ -15284,18 +15284,18 @@ const struct WildPokemonInfo sSevenIslandSevaultCanyon_FireRed_RockSmashMonsInfo
 #ifdef FIRERED
 const struct WildPokemon sSevenIslandSevaultCanyon_FireRed_Evening_LandMons[] =
 {
-    { 46, 46, SPECIES_YANMA },
-    { 15, 15, SPECIES_HOOTHOOT },
-    { 46, 46, SPECIES_BARBOACH },
-    { 50, 50, SPECIES_ROOKIDEE },
-    { 52, 52, SPECIES_YANMA },
-    { 43, 43, SPECIES_TAILLOW },
-    { 54, 54, SPECIES_PIKIPEK },
-    { 30, 30, SPECIES_COMBEE },
-    { 15, 15, SPECIES_SWABLU },
-    { 49, 49, SPECIES_EMOLGA },
-    { 20, 20, SPECIES_FARFETCHD },
-    { 52, 52, SPECIES_PIDOVE },
+    { 46, 46, SPECIES_HOOTHOOT },
+    { 15, 15, SPECIES_PIDOVE },
+    { 46, 46, SPECIES_PIKIPEK },
+    { 50, 50, SPECIES_STARLY },
+    { 52, 52, SPECIES_HOOTHOOT },
+    { 43, 43, SPECIES_WATTREL },
+    { 54, 54, SPECIES_TAILLOW },
+    { 30, 30, SPECIES_SWABLU },
+    { 15, 15, SPECIES_RUFFLET },
+    { 49, 49, SPECIES_LEDYBA },
+    { 20, 20, SPECIES_ORICORIO_BAILE },
+    { 52, 52, SPECIES_TROPIUS },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyon_FireRed_Evening_LandMonsInfo = { 21, sSevenIslandSevaultCanyon_FireRed_Evening_LandMons };
@@ -15304,18 +15304,18 @@ const struct WildPokemonInfo sSevenIslandSevaultCanyon_FireRed_Evening_LandMonsI
 #ifdef FIRERED
 const struct WildPokemon sSevenIslandSevaultCanyon_FireRed_Night_LandMons[] =
 {
-    { 46, 46, SPECIES_PAWNIARD },
-    { 15, 15, SPECIES_SANDILE },
-    { 46, 46, SPECIES_WOOBAT },
-    { 50, 50, SPECIES_TINKATINK },
-    { 52, 52, SPECIES_BOMBIRDIER },
-    { 43, 43, SPECIES_BALTOY },
-    { 54, 54, SPECIES_BRONZOR },
-    { 30, 30, SPECIES_VULLABY },
-    { 15, 15, SPECIES_BOMBIRDIER },
-    { 49, 49, SPECIES_VAROOM },
-    { 20, 20, SPECIES_GOLETT },
+    { 46, 46, SPECIES_MAWILE },
+    { 15, 15, SPECIES_MAWILE },
+    { 46, 46, SPECIES_YAMASK_GALAR },
+    { 50, 50, SPECIES_CROAGUNK },
     { 52, 52, SPECIES_MEDITITE },
+    { 43, 43, SPECIES_TINKATINK },
+    { 54, 54, SPECIES_SANDYGAST },
+    { 30, 30, SPECIES_GHOLDENGO },
+    { 15, 15, SPECIES_VULLABY },
+    { 49, 49, SPECIES_WOOBAT },
+    { 20, 20, SPECIES_HONEDGE },
+    { 52, 52, SPECIES_SNEASEL_HISUI },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyon_FireRed_Night_LandMonsInfo = { 21, sSevenIslandSevaultCanyon_FireRed_Night_LandMons };
@@ -15355,18 +15355,18 @@ const struct WildPokemonInfo sSevenIslandSevaultCanyon_LeafGreen_RockSmashMonsIn
 #ifdef LEAFGREEN
 const struct WildPokemon sSevenIslandSevaultCanyon_LeafGreen_Evening_LandMons[] =
 {
-    { 46, 46, SPECIES_YANMA },
-    { 15, 15, SPECIES_HOOTHOOT },
-    { 46, 46, SPECIES_BARBOACH },
-    { 50, 50, SPECIES_ROOKIDEE },
-    { 52, 52, SPECIES_YANMA },
-    { 43, 43, SPECIES_TAILLOW },
-    { 54, 54, SPECIES_PIKIPEK },
-    { 50, 50, SPECIES_COMBEE },
-    { 15, 15, SPECIES_SWABLU },
-    { 49, 49, SPECIES_EMOLGA },
-    { 20, 20, SPECIES_FARFETCHD },
-    { 52, 52, SPECIES_PIDOVE },
+    { 46, 46, SPECIES_HOOTHOOT },
+    { 15, 15, SPECIES_PIDOVE },
+    { 46, 46, SPECIES_PIKIPEK },
+    { 50, 50, SPECIES_STARLY },
+    { 52, 52, SPECIES_HOOTHOOT },
+    { 43, 43, SPECIES_WATTREL },
+    { 54, 54, SPECIES_TAILLOW },
+    { 50, 50, SPECIES_SWABLU },
+    { 15, 15, SPECIES_RUFFLET },
+    { 49, 49, SPECIES_LEDYBA },
+    { 20, 20, SPECIES_ORICORIO_BAILE },
+    { 52, 52, SPECIES_TROPIUS },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyon_LeafGreen_Evening_LandMonsInfo = { 21, sSevenIslandSevaultCanyon_LeafGreen_Evening_LandMons };
@@ -15375,18 +15375,18 @@ const struct WildPokemonInfo sSevenIslandSevaultCanyon_LeafGreen_Evening_LandMon
 #ifdef LEAFGREEN
 const struct WildPokemon sSevenIslandSevaultCanyon_LeafGreen_Night_LandMons[] =
 {
-    { 46, 46, SPECIES_PAWNIARD },
-    { 15, 15, SPECIES_SANDILE },
-    { 46, 46, SPECIES_WOOBAT },
-    { 50, 50, SPECIES_TINKATINK },
-    { 52, 52, SPECIES_BOMBIRDIER },
-    { 43, 43, SPECIES_BALTOY },
-    { 54, 54, SPECIES_BRONZOR },
-    { 50, 50, SPECIES_VULLABY },
-    { 15, 15, SPECIES_BOMBIRDIER },
-    { 49, 49, SPECIES_VAROOM },
-    { 20, 20, SPECIES_GOLETT },
+    { 46, 46, SPECIES_MAWILE },
+    { 15, 15, SPECIES_MAWILE },
+    { 46, 46, SPECIES_YAMASK_GALAR },
+    { 50, 50, SPECIES_CROAGUNK },
     { 52, 52, SPECIES_MEDITITE },
+    { 43, 43, SPECIES_TINKATINK },
+    { 54, 54, SPECIES_SANDYGAST },
+    { 50, 50, SPECIES_GHOLDENGO },
+    { 15, 15, SPECIES_VULLABY },
+    { 49, 49, SPECIES_WOOBAT },
+    { 20, 20, SPECIES_HONEDGE },
+    { 52, 52, SPECIES_SNEASEL_HISUI },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyon_LeafGreen_Night_LandMonsInfo = { 21, sSevenIslandSevaultCanyon_LeafGreen_Night_LandMons };
@@ -15473,18 +15473,18 @@ const struct WildPokemonInfo sRoute1_FireRed_LandMonsInfo = { 21, sRoute1_FireRe
 #ifdef FIRERED
 const struct WildPokemon sRoute1_FireRed_Evening_LandMons[] =
 {
-    { 3, 3, SPECIES_BIDOOF },
-    { 3, 3, SPECIES_FOMANTIS },
-    { 3, 3, SPECIES_WURMPLE },
-    { 3, 3, SPECIES_BUNEARY },
-    { 2, 2, SPECIES_SKWOVET },
-    { 2, 2, SPECIES_ZIGZAGOON },
+    { 3, 3, SPECIES_PICHU },
+    { 3, 3, SPECIES_TANDEMAUS },
     { 3, 3, SPECIES_SHROOMISH },
-    { 3, 3, SPECIES_AIPOM },
-    { 4, 4, SPECIES_TADBULB },
-    { 4, 4, SPECIES_PATRAT },
-    { 5, 5, SPECIES_BLITZLE },
-    { 4, 4, SPECIES_ILLUMISE },
+    { 3, 3, SPECIES_JOLTIK },
+    { 2, 2, SPECIES_WURMPLE },
+    { 2, 2, SPECIES_ELEKID },
+    { 3, 3, SPECIES_GOSSIFLEUR },
+    { 3, 3, SPECIES_WHISMUR },
+    { 4, 4, SPECIES_NYMBLE },
+    { 4, 4, SPECIES_SCATTERBUG },
+    { 5, 5, SPECIES_DEERLING_SPRING },
+    { 4, 4, SPECIES_SMOLIV },
 };
 
 const struct WildPokemonInfo sRoute1_FireRed_Evening_LandMonsInfo = { 21, sRoute1_FireRed_Evening_LandMons };
@@ -15493,18 +15493,18 @@ const struct WildPokemonInfo sRoute1_FireRed_Evening_LandMonsInfo = { 21, sRoute
 #ifdef FIRERED
 const struct WildPokemon sRoute1_FireRed_Night_LandMons[] =
 {
-    { 3, 3, SPECIES_SPOINK },
+    { 3, 3, SPECIES_SKORUPI },
+    { 3, 3, SPECIES_WOOPER_PALDEA },
     { 3, 3, SPECIES_CHINGLING },
-    { 3, 3, SPECIES_FIDOUGH },
-    { 3, 3, SPECIES_ESPURR },
-    { 2, 2, SPECIES_MUNNA },
-    { 2, 2, SPECIES_MILCERY },
-    { 3, 3, SPECIES_CLEFFA },
     { 3, 3, SPECIES_CUTIEFLY },
-    { 4, 4, SPECIES_SPOINK },
-    { 4, 4, SPECIES_MIME_JR },
-    { 5, 5, SPECIES_SPRITZEE },
+    { 2, 2, SPECIES_FLITTLE },
+    { 2, 2, SPECIES_GOTHITA },
+    { 3, 3, SPECIES_MILCERY },
+    { 3, 3, SPECIES_WYNAUT },
     { 4, 4, SPECIES_AZURILL },
+    { 4, 4, SPECIES_COTTONEE },
+    { 5, 5, SPECIES_FIDOUGH },
+    { 4, 4, SPECIES_ESPURR },
 };
 
 const struct WildPokemonInfo sRoute1_FireRed_Night_LandMonsInfo = { 21, sRoute1_FireRed_Night_LandMons };
@@ -15533,18 +15533,18 @@ const struct WildPokemonInfo sRoute1_LeafGreen_LandMonsInfo = { 21, sRoute1_Leaf
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute1_LeafGreen_Evening_LandMons[] =
 {
-    { 3, 3, SPECIES_BIDOOF },
-    { 3, 3, SPECIES_FOMANTIS },
-    { 3, 3, SPECIES_WURMPLE },
-    { 3, 3, SPECIES_BUNEARY },
-    { 2, 2, SPECIES_SKWOVET },
-    { 2, 2, SPECIES_ZIGZAGOON },
+    { 3, 3, SPECIES_PICHU },
+    { 3, 3, SPECIES_TANDEMAUS },
     { 3, 3, SPECIES_SHROOMISH },
-    { 3, 3, SPECIES_AIPOM },
-    { 4, 4, SPECIES_TADBULB },
-    { 4, 4, SPECIES_PATRAT },
-    { 5, 5, SPECIES_BLITZLE },
-    { 4, 4, SPECIES_ILLUMISE },
+    { 3, 3, SPECIES_JOLTIK },
+    { 2, 2, SPECIES_WURMPLE },
+    { 2, 2, SPECIES_ELEKID },
+    { 3, 3, SPECIES_GOSSIFLEUR },
+    { 3, 3, SPECIES_WHISMUR },
+    { 4, 4, SPECIES_NYMBLE },
+    { 4, 4, SPECIES_SCATTERBUG },
+    { 5, 5, SPECIES_DEERLING_SPRING },
+    { 4, 4, SPECIES_SMOLIV },
 };
 
 const struct WildPokemonInfo sRoute1_LeafGreen_Evening_LandMonsInfo = { 21, sRoute1_LeafGreen_Evening_LandMons };
@@ -15553,18 +15553,18 @@ const struct WildPokemonInfo sRoute1_LeafGreen_Evening_LandMonsInfo = { 21, sRou
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute1_LeafGreen_Night_LandMons[] =
 {
-    { 3, 3, SPECIES_SPOINK },
+    { 3, 3, SPECIES_SKORUPI },
+    { 3, 3, SPECIES_WOOPER_PALDEA },
     { 3, 3, SPECIES_CHINGLING },
-    { 3, 3, SPECIES_FIDOUGH },
-    { 3, 3, SPECIES_ESPURR },
-    { 2, 2, SPECIES_MUNNA },
-    { 2, 2, SPECIES_MILCERY },
-    { 3, 3, SPECIES_CLEFFA },
     { 3, 3, SPECIES_CUTIEFLY },
-    { 4, 4, SPECIES_SPOINK },
-    { 4, 4, SPECIES_MIME_JR },
-    { 5, 5, SPECIES_SPRITZEE },
+    { 2, 2, SPECIES_FLITTLE },
+    { 2, 2, SPECIES_GOTHITA },
+    { 3, 3, SPECIES_MILCERY },
+    { 3, 3, SPECIES_WYNAUT },
     { 4, 4, SPECIES_AZURILL },
+    { 4, 4, SPECIES_COTTONEE },
+    { 5, 5, SPECIES_FIDOUGH },
+    { 4, 4, SPECIES_ESPURR },
 };
 
 const struct WildPokemonInfo sRoute1_LeafGreen_Night_LandMonsInfo = { 21, sRoute1_LeafGreen_Night_LandMons };
@@ -15593,18 +15593,18 @@ const struct WildPokemonInfo sRoute2_FireRed_LandMonsInfo = { 21, sRoute2_FireRe
 #ifdef FIRERED
 const struct WildPokemon sRoute2_FireRed_Evening_LandMons[] =
 {
-    { 3, 3, SPECIES_MAREEP },
-    { 3, 3, SPECIES_WOOLOO },
-    { 4, 4, SPECIES_LEDYBA },
-    { 4, 4, SPECIES_SEEDOT },
-    { 2, 2, SPECIES_BIDOOF },
+    { 3, 3, SPECIES_BLITZLE },
+    { 3, 3, SPECIES_WATTREL },
+    { 4, 4, SPECIES_LARVESTA },
+    { 4, 4, SPECIES_SNOVER },
+    { 2, 2, SPECIES_GLAMEOW },
     { 2, 2, SPECIES_LECHONK },
-    { 5, 5, SPECIES_PAWMI },
-    { 5, 5, SPECIES_LILLIPUP },
-    { 4, 4, SPECIES_WHISMUR },
-    { 4, 4, SPECIES_SKITTY },
-    { 5, 5, SPECIES_JOLTIK },
-    { 5, 5, SPECIES_SKIDDO },
+    { 5, 5, SPECIES_BUNEARY },
+    { 5, 5, SPECIES_YUNGOOS },
+    { 4, 4, SPECIES_KARRABLAST },
+    { 4, 4, SPECIES_BUNNELBY },
+    { 5, 5, SPECIES_ZIGZAGOON },
+    { 5, 5, SPECIES_SEWADDLE },
 };
 
 const struct WildPokemonInfo sRoute2_FireRed_Evening_LandMonsInfo = { 21, sRoute2_FireRed_Evening_LandMons };
@@ -15613,18 +15613,18 @@ const struct WildPokemonInfo sRoute2_FireRed_Evening_LandMonsInfo = { 21, sRoute
 #ifdef FIRERED
 const struct WildPokemon sRoute2_FireRed_Night_LandMons[] =
 {
-    { 3, 3, SPECIES_FIDOUGH },
-    { 3, 3, SPECIES_RALTS },
-    { 4, 4, SPECIES_FLITTLE },
+    { 3, 3, SPECIES_IGGLYBUFF },
+    { 3, 3, SPECIES_SPRITZEE },
+    { 4, 4, SPECIES_SWIRLIX },
     { 4, 4, SPECIES_SLOWPOKE_GALAR },
-    { 2, 2, SPECIES_COTTONEE },
-    { 2, 2, SPECIES_GOTHITA },
-    { 5, 5, SPECIES_SOLOSIS },
+    { 2, 2, SPECIES_MUNNA },
+    { 2, 2, SPECIES_RALTS },
+    { 5, 5, SPECIES_CLEFFA },
     { 5, 5, SPECIES_IGGLYBUFF },
-    { 4, 4, SPECIES_HATENNA },
-    { 4, 4, SPECIES_SNUBBULL },
-    { 5, 5, SPECIES_SWIRLIX },
-    { 5, 5, SPECIES_CHINGLING },
+    { 4, 4, SPECIES_ELGYEM },
+    { 4, 4, SPECIES_SWIRLIX },
+    { 5, 5, SPECIES_RATTATA_ALOLA },
+    { 5, 5, SPECIES_CLEFFA },
 };
 
 const struct WildPokemonInfo sRoute2_FireRed_Night_LandMonsInfo = { 21, sRoute2_FireRed_Night_LandMons };
@@ -15653,18 +15653,18 @@ const struct WildPokemonInfo sRoute2_LeafGreen_LandMonsInfo = { 21, sRoute2_Leaf
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute2_LeafGreen_Evening_LandMons[] =
 {
-    { 3, 3, SPECIES_MAREEP },
-    { 3, 3, SPECIES_WOOLOO },
-    { 4, 4, SPECIES_LEDYBA },
-    { 4, 4, SPECIES_SEEDOT },
-    { 2, 2, SPECIES_BIDOOF },
+    { 3, 3, SPECIES_BLITZLE },
+    { 3, 3, SPECIES_WATTREL },
+    { 4, 4, SPECIES_LARVESTA },
+    { 4, 4, SPECIES_SNOVER },
+    { 2, 2, SPECIES_GLAMEOW },
     { 2, 2, SPECIES_LECHONK },
-    { 5, 5, SPECIES_PAWMI },
-    { 5, 5, SPECIES_LILLIPUP },
-    { 4, 4, SPECIES_WHISMUR },
-    { 4, 4, SPECIES_SKITTY },
-    { 5, 5, SPECIES_JOLTIK },
-    { 5, 5, SPECIES_SKIDDO },
+    { 5, 5, SPECIES_BUNEARY },
+    { 5, 5, SPECIES_YUNGOOS },
+    { 4, 4, SPECIES_KARRABLAST },
+    { 4, 4, SPECIES_BUNNELBY },
+    { 5, 5, SPECIES_ZIGZAGOON },
+    { 5, 5, SPECIES_SEWADDLE },
 };
 
 const struct WildPokemonInfo sRoute2_LeafGreen_Evening_LandMonsInfo = { 21, sRoute2_LeafGreen_Evening_LandMons };
@@ -15673,18 +15673,18 @@ const struct WildPokemonInfo sRoute2_LeafGreen_Evening_LandMonsInfo = { 21, sRou
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute2_LeafGreen_Night_LandMons[] =
 {
-    { 3, 3, SPECIES_FIDOUGH },
-    { 3, 3, SPECIES_RALTS },
-    { 4, 4, SPECIES_FLITTLE },
+    { 3, 3, SPECIES_IGGLYBUFF },
+    { 3, 3, SPECIES_SPRITZEE },
+    { 4, 4, SPECIES_SWIRLIX },
     { 4, 4, SPECIES_SLOWPOKE_GALAR },
-    { 2, 2, SPECIES_COTTONEE },
-    { 2, 2, SPECIES_GOTHITA },
-    { 5, 5, SPECIES_SOLOSIS },
+    { 2, 2, SPECIES_MUNNA },
+    { 2, 2, SPECIES_RALTS },
+    { 5, 5, SPECIES_CLEFFA },
     { 5, 5, SPECIES_IGGLYBUFF },
-    { 4, 4, SPECIES_HATENNA },
-    { 4, 4, SPECIES_SNUBBULL },
-    { 5, 5, SPECIES_SWIRLIX },
-    { 5, 5, SPECIES_CHINGLING },
+    { 4, 4, SPECIES_ELGYEM },
+    { 4, 4, SPECIES_SWIRLIX },
+    { 5, 5, SPECIES_RATTATA_ALOLA },
+    { 5, 5, SPECIES_CLEFFA },
 };
 
 const struct WildPokemonInfo sRoute2_LeafGreen_Night_LandMonsInfo = { 21, sRoute2_LeafGreen_Night_LandMons };
@@ -15713,18 +15713,18 @@ const struct WildPokemonInfo sRoute3_FireRed_LandMonsInfo = { 21, sRoute3_FireRe
 #ifdef FIRERED
 const struct WildPokemon sRoute3_FireRed_Evening_LandMons[] =
 {
-    { 6, 6, SPECIES_AIPOM },
-    { 6, 6, SPECIES_TANDEMAUS },
-    { 7, 7, SPECIES_SNOM },
-    { 7, 7, SPECIES_LICKITUNG },
-    { 6, 6, SPECIES_MINCCINO },
-    { 7, 7, SPECIES_ELECTRIKE },
-    { 8, 8, SPECIES_YUNGOOS },
-    { 3, 3, SPECIES_BUNNELBY },
-    { 7, 7, SPECIES_SMEARGLE },
-    { 5, 5, SPECIES_BOUNSWEET },
-    { 6, 6, SPECIES_VOLTORB_HISUI },
-    { 7, 7, SPECIES_TANDEMAUS },
+    { 6, 6, SPECIES_BUNNELBY },
+    { 6, 6, SPECIES_SMEARGLE },
+    { 7, 7, SPECIES_KARRABLAST },
+    { 7, 7, SPECIES_SEEDOT },
+    { 6, 6, SPECIES_WOOLOO },
+    { 7, 7, SPECIES_BLITZLE },
+    { 8, 8, SPECIES_CAPSAKID },
+    { 3, 3, SPECIES_LICKITUNG },
+    { 7, 7, SPECIES_FOMANTIS },
+    { 5, 5, SPECIES_PETILIL },
+    { 6, 6, SPECIES_HELIOPTILE },
+    { 7, 7, SPECIES_CACNEA },
 };
 
 const struct WildPokemonInfo sRoute3_FireRed_Evening_LandMonsInfo = { 21, sRoute3_FireRed_Evening_LandMons };
@@ -15733,18 +15733,18 @@ const struct WildPokemonInfo sRoute3_FireRed_Evening_LandMonsInfo = { 21, sRoute
 #ifdef FIRERED
 const struct WildPokemon sRoute3_FireRed_Night_LandMons[] =
 {
-    { 6, 6, SPECIES_ESPURR },
-    { 6, 6, SPECIES_BALTOY },
-    { 7, 7, SPECIES_FIDOUGH },
+    { 6, 6, SPECIES_HATENNA },
+    { 6, 6, SPECIES_RALTS },
+    { 7, 7, SPECIES_SLOWPOKE_GALAR },
     { 7, 7, SPECIES_ELGYEM },
-    { 6, 6, SPECIES_MORELULL },
-    { 7, 7, SPECIES_WYNAUT },
-    { 8, 8, SPECIES_IMPIDIMP },
-    { 3, 3, SPECIES_MILCERY },
-    { 7, 7, SPECIES_GOTHITA },
-    { 5, 5, SPECIES_PHANTUMP },
-    { 6, 6, SPECIES_ESPURR },
-    { 7, 7, SPECIES_MIME_JR },
+    { 6, 6, SPECIES_FIDOUGH },
+    { 7, 7, SPECIES_IGGLYBUFF },
+    { 8, 8, SPECIES_MILCERY },
+    { 3, 3, SPECIES_SNUBBULL },
+    { 7, 7, SPECIES_HATENNA },
+    { 5, 5, SPECIES_ESPURR },
+    { 6, 6, SPECIES_FLITTLE },
+    { 7, 7, SPECIES_MORELULL },
 };
 
 const struct WildPokemonInfo sRoute3_FireRed_Night_LandMonsInfo = { 21, sRoute3_FireRed_Night_LandMons };
@@ -15773,18 +15773,18 @@ const struct WildPokemonInfo sRoute3_LeafGreen_LandMonsInfo = { 21, sRoute3_Leaf
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute3_LeafGreen_Evening_LandMons[] =
 {
-    { 6, 6, SPECIES_AIPOM },
-    { 6, 6, SPECIES_TANDEMAUS },
-    { 7, 7, SPECIES_SNOM },
-    { 7, 7, SPECIES_LICKITUNG },
-    { 6, 6, SPECIES_MINCCINO },
-    { 7, 7, SPECIES_ELECTRIKE },
-    { 8, 8, SPECIES_YUNGOOS },
-    { 3, 3, SPECIES_BUNNELBY },
-    { 7, 7, SPECIES_SMEARGLE },
-    { 5, 5, SPECIES_BOUNSWEET },
-    { 6, 6, SPECIES_VOLTORB_HISUI },
-    { 7, 7, SPECIES_TANDEMAUS },
+    { 6, 6, SPECIES_BUNNELBY },
+    { 6, 6, SPECIES_SMEARGLE },
+    { 7, 7, SPECIES_KARRABLAST },
+    { 7, 7, SPECIES_SEEDOT },
+    { 6, 6, SPECIES_WOOLOO },
+    { 7, 7, SPECIES_BLITZLE },
+    { 8, 8, SPECIES_CAPSAKID },
+    { 3, 3, SPECIES_LICKITUNG },
+    { 7, 7, SPECIES_FOMANTIS },
+    { 5, 5, SPECIES_PETILIL },
+    { 6, 6, SPECIES_HELIOPTILE },
+    { 7, 7, SPECIES_CACNEA },
 };
 
 const struct WildPokemonInfo sRoute3_LeafGreen_Evening_LandMonsInfo = { 21, sRoute3_LeafGreen_Evening_LandMons };
@@ -15793,18 +15793,18 @@ const struct WildPokemonInfo sRoute3_LeafGreen_Evening_LandMonsInfo = { 21, sRou
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute3_LeafGreen_Night_LandMons[] =
 {
-    { 6, 6, SPECIES_ESPURR },
-    { 6, 6, SPECIES_BALTOY },
-    { 7, 7, SPECIES_FIDOUGH },
+    { 6, 6, SPECIES_HATENNA },
+    { 6, 6, SPECIES_RALTS },
+    { 7, 7, SPECIES_SLOWPOKE_GALAR },
     { 7, 7, SPECIES_ELGYEM },
-    { 6, 6, SPECIES_MORELULL },
-    { 7, 7, SPECIES_WYNAUT },
-    { 8, 8, SPECIES_IMPIDIMP },
-    { 3, 3, SPECIES_MILCERY },
-    { 7, 7, SPECIES_GOTHITA },
-    { 5, 5, SPECIES_PHANTUMP },
-    { 6, 6, SPECIES_ESPURR },
-    { 7, 7, SPECIES_MIME_JR },
+    { 6, 6, SPECIES_FIDOUGH },
+    { 7, 7, SPECIES_IGGLYBUFF },
+    { 8, 8, SPECIES_MILCERY },
+    { 3, 3, SPECIES_SNUBBULL },
+    { 7, 7, SPECIES_HATENNA },
+    { 5, 5, SPECIES_ESPURR },
+    { 6, 6, SPECIES_FLITTLE },
+    { 7, 7, SPECIES_MORELULL },
 };
 
 const struct WildPokemonInfo sRoute3_LeafGreen_Night_LandMonsInfo = { 21, sRoute3_LeafGreen_Night_LandMons };
@@ -15860,29 +15860,29 @@ const struct WildPokemonInfo sRoute4_FireRed_FishingMonsInfo = { 20, sRoute4_Fir
 #ifdef FIRERED
 const struct WildPokemon sRoute4_FireRed_Evening_LandMons[] =
 {
-    { 10, 10, SPECIES_BLITZLE },
-    { 10, 10, SPECIES_GLAMEOW },
-    { 6, 6, SPECIES_VOLTORB_HISUI },
-    { 10, 10, SPECIES_FOMANTIS },
-    { 8, 8, SPECIES_SPINDA },
-    { 8, 8, SPECIES_ELEKID },
-    { 12, 12, SPECIES_CACNEA },
-    { 12, 12, SPECIES_CAPSAKID },
-    { 10, 10, SPECIES_SENTRET },
-    { 8, 8, SPECIES_PANSAGE },
-    { 12, 12, SPECIES_HELIOPTILE },
-    { 12, 12, SPECIES_GOSSIFLEUR },
+    { 10, 10, SPECIES_BUNEARY },
+    { 10, 10, SPECIES_SPINDA },
+    { 6, 6, SPECIES_LITLEO },
+    { 10, 10, SPECIES_SNOM },
+    { 8, 8, SPECIES_YAMPER },
+    { 8, 8, SPECIES_PAWMI },
+    { 12, 12, SPECIES_SHELMET },
+    { 12, 12, SPECIES_SHINX },
+    { 10, 10, SPECIES_ELECTRIKE },
+    { 8, 8, SPECIES_MINCCINO },
+    { 12, 12, SPECIES_ILLUMISE },
+    { 12, 12, SPECIES_TANDEMAUS },
 };
 
 const struct WildPokemonInfo sRoute4_FireRed_Evening_LandMonsInfo = { 21, sRoute4_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute4_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_WAILMER },
-    { 10, 20, SPECIES_ARROKUDA },
-    { 20, 30, SPECIES_DEWPIDER },
-    { 30, 35, SPECIES_POPPLIO },
-    { 35, 40, SPECIES_TOTODILE },
+    { 5, 10, SPECIES_LUVDISC },
+    { 10, 20, SPECIES_SPHEAL },
+    { 20, 30, SPECIES_CHEWTLE },
+    { 30, 35, SPECIES_PIPLUP },
+    { 35, 40, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sRoute4_FireRed_Evening_WaterMonsInfo = { 2, sRoute4_FireRed_Evening_WaterMons };
@@ -15891,28 +15891,28 @@ const struct WildPokemonInfo sRoute4_FireRed_Evening_WaterMonsInfo = { 2, sRoute
 #ifdef FIRERED
 const struct WildPokemon sRoute4_FireRed_Night_LandMons[] =
 {
-    { 10, 10, SPECIES_BUDEW },
-    { 10, 10, SPECIES_FLITTLE },
-    { 6, 6, SPECIES_HATENNA },
-    { 10, 10, SPECIES_SLOWPOKE_GALAR },
-    { 8, 8, SPECIES_COTTONEE },
-    { 8, 8, SPECIES_IGGLYBUFF },
-    { 12, 12, SPECIES_FIDOUGH },
-    { 12, 12, SPECIES_INKAY },
-    { 10, 10, SPECIES_SPRITZEE },
-    { 8, 8, SPECIES_AZURILL },
-    { 12, 12, SPECIES_RALTS },
+    { 10, 10, SPECIES_ESPURR },
+    { 10, 10, SPECIES_SPOINK },
+    { 6, 6, SPECIES_AZURILL },
+    { 10, 10, SPECIES_MEOWTH_ALOLA },
+    { 8, 8, SPECIES_WYNAUT },
+    { 8, 8, SPECIES_CHINGLING },
+    { 12, 12, SPECIES_FLABEBE },
     { 12, 12, SPECIES_CUTIEFLY },
+    { 10, 10, SPECIES_MUNNA },
+    { 8, 8, SPECIES_SOLOSIS },
+    { 12, 12, SPECIES_BUDEW },
+    { 12, 12, SPECIES_MIME_JR },
 };
 
 const struct WildPokemonInfo sRoute4_FireRed_Night_LandMonsInfo = { 21, sRoute4_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute4_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SMOOCHUM },
-    { 10, 20, SPECIES_SNEASEL },
-    { 20, 30, SPECIES_FRILLISH },
-    { 30, 35, SPECIES_SKRELP },
+    { 5, 10, SPECIES_FRILLISH },
+    { 10, 20, SPECIES_SMOOCHUM },
+    { 20, 30, SPECIES_QWILFISH },
+    { 30, 35, SPECIES_FRILLISH },
     { 35, 40, SPECIES_SLOWPOKE },
 };
 
@@ -15969,29 +15969,29 @@ const struct WildPokemonInfo sRoute4_LeafGreen_FishingMonsInfo = { 20, sRoute4_L
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute4_LeafGreen_Evening_LandMons[] =
 {
-    { 10, 10, SPECIES_BLITZLE },
-    { 10, 10, SPECIES_GLAMEOW },
-    { 6, 6, SPECIES_VOLTORB_HISUI },
-    { 10, 10, SPECIES_FOMANTIS },
-    { 8, 8, SPECIES_SPINDA },
-    { 8, 8, SPECIES_ELEKID },
-    { 12, 12, SPECIES_CACNEA },
-    { 12, 12, SPECIES_CAPSAKID },
-    { 10, 10, SPECIES_SENTRET },
-    { 8, 8, SPECIES_PANSAGE },
-    { 12, 12, SPECIES_HELIOPTILE },
-    { 12, 12, SPECIES_GOSSIFLEUR },
+    { 10, 10, SPECIES_BUNEARY },
+    { 10, 10, SPECIES_SPINDA },
+    { 6, 6, SPECIES_LITLEO },
+    { 10, 10, SPECIES_SNOM },
+    { 8, 8, SPECIES_YAMPER },
+    { 8, 8, SPECIES_PAWMI },
+    { 12, 12, SPECIES_SHELMET },
+    { 12, 12, SPECIES_SHINX },
+    { 10, 10, SPECIES_ELECTRIKE },
+    { 8, 8, SPECIES_MINCCINO },
+    { 12, 12, SPECIES_ILLUMISE },
+    { 12, 12, SPECIES_TANDEMAUS },
 };
 
 const struct WildPokemonInfo sRoute4_LeafGreen_Evening_LandMonsInfo = { 21, sRoute4_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute4_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_WAILMER },
-    { 10, 20, SPECIES_ARROKUDA },
-    { 20, 30, SPECIES_DEWPIDER },
-    { 30, 35, SPECIES_POPPLIO },
-    { 35, 40, SPECIES_TOTODILE },
+    { 5, 10, SPECIES_LUVDISC },
+    { 10, 20, SPECIES_SPHEAL },
+    { 20, 30, SPECIES_CHEWTLE },
+    { 30, 35, SPECIES_PIPLUP },
+    { 35, 40, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sRoute4_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute4_LeafGreen_Evening_WaterMons };
@@ -16000,28 +16000,28 @@ const struct WildPokemonInfo sRoute4_LeafGreen_Evening_WaterMonsInfo = { 2, sRou
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute4_LeafGreen_Night_LandMons[] =
 {
-    { 10, 10, SPECIES_BUDEW },
-    { 10, 10, SPECIES_FLITTLE },
-    { 6, 6, SPECIES_HATENNA },
-    { 10, 10, SPECIES_SLOWPOKE_GALAR },
-    { 8, 8, SPECIES_COTTONEE },
-    { 8, 8, SPECIES_IGGLYBUFF },
-    { 12, 12, SPECIES_FIDOUGH },
-    { 12, 12, SPECIES_INKAY },
-    { 10, 10, SPECIES_SPRITZEE },
-    { 8, 8, SPECIES_AZURILL },
-    { 12, 12, SPECIES_RALTS },
+    { 10, 10, SPECIES_ESPURR },
+    { 10, 10, SPECIES_SPOINK },
+    { 6, 6, SPECIES_AZURILL },
+    { 10, 10, SPECIES_MEOWTH_ALOLA },
+    { 8, 8, SPECIES_WYNAUT },
+    { 8, 8, SPECIES_CHINGLING },
+    { 12, 12, SPECIES_FLABEBE },
     { 12, 12, SPECIES_CUTIEFLY },
+    { 10, 10, SPECIES_MUNNA },
+    { 8, 8, SPECIES_SOLOSIS },
+    { 12, 12, SPECIES_BUDEW },
+    { 12, 12, SPECIES_MIME_JR },
 };
 
 const struct WildPokemonInfo sRoute4_LeafGreen_Night_LandMonsInfo = { 21, sRoute4_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute4_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SMOOCHUM },
-    { 10, 20, SPECIES_SNEASEL },
-    { 20, 30, SPECIES_FRILLISH },
-    { 30, 35, SPECIES_SKRELP },
+    { 5, 10, SPECIES_FRILLISH },
+    { 10, 20, SPECIES_SMOOCHUM },
+    { 20, 30, SPECIES_QWILFISH },
+    { 30, 35, SPECIES_FRILLISH },
     { 35, 40, SPECIES_SLOWPOKE },
 };
 
@@ -16051,18 +16051,18 @@ const struct WildPokemonInfo sRoute5_FireRed_LandMonsInfo = { 21, sRoute5_FireRe
 #ifdef FIRERED
 const struct WildPokemon sRoute5_FireRed_Evening_LandMons[] =
 {
-    { 10, 10, SPECIES_YAMPER },
-    { 13, 13, SPECIES_CACNEA },
-    { 13, 13, SPECIES_LOTAD },
-    { 12, 12, SPECIES_GLAMEOW },
-    { 15, 15, SPECIES_PETILIL },
-    { 15, 15, SPECIES_NYMBLE },
+    { 10, 10, SPECIES_TYNAMO },
+    { 13, 13, SPECIES_CHERUBI },
+    { 13, 13, SPECIES_ANORITH },
+    { 12, 12, SPECIES_BURMY_PLANT },
+    { 15, 15, SPECIES_CHERUBI },
+    { 15, 15, SPECIES_PANSAGE },
+    { 16, 16, SPECIES_GRUBBIN },
+    { 16, 16, SPECIES_PINECO },
+    { 15, 15, SPECIES_RELLOR },
+    { 14, 14, SPECIES_SHROOMISH },
+    { 15, 15, SPECIES_PICHU },
     { 16, 16, SPECIES_SPINDA },
-    { 16, 16, SPECIES_HELIOPTILE },
-    { 15, 15, SPECIES_BOUNSWEET },
-    { 14, 14, SPECIES_ILLUMISE },
-    { 15, 15, SPECIES_ELEKID },
-    { 16, 16, SPECIES_TADBULB },
 };
 
 const struct WildPokemonInfo sRoute5_FireRed_Evening_LandMonsInfo = { 21, sRoute5_FireRed_Evening_LandMons };
@@ -16071,18 +16071,18 @@ const struct WildPokemonInfo sRoute5_FireRed_Evening_LandMonsInfo = { 21, sRoute
 #ifdef FIRERED
 const struct WildPokemon sRoute5_FireRed_Night_LandMons[] =
 {
-    { 10, 10, SPECIES_BELLSPROUT },
-    { 13, 13, SPECIES_MUNNA },
-    { 13, 13, SPECIES_RATTATA_ALOLA },
-    { 12, 12, SPECIES_CLEFFA },
-    { 15, 15, SPECIES_WYNAUT },
-    { 15, 15, SPECIES_MASCHIFF },
-    { 16, 16, SPECIES_SPOINK },
+    { 10, 10, SPECIES_ELGYEM },
+    { 13, 13, SPECIES_GRIMER_ALOLA },
+    { 13, 13, SPECIES_PURRLOIN },
+    { 12, 12, SPECIES_COTTONEE },
+    { 15, 15, SPECIES_SPRITZEE },
+    { 15, 15, SPECIES_GOTHITA },
+    { 16, 16, SPECIES_PUMPKABOO_AVERAGE },
     { 16, 16, SPECIES_SNUBBULL },
-    { 15, 15, SPECIES_POOCHYENA },
-    { 14, 14, SPECIES_SOLOSIS },
-    { 15, 15, SPECIES_SWIRLIX },
-    { 16, 16, SPECIES_FOONGUS },
+    { 15, 15, SPECIES_SHROODLE },
+    { 14, 14, SPECIES_ELGYEM },
+    { 15, 15, SPECIES_PHANTUMP },
+    { 16, 16, SPECIES_RATTATA_ALOLA },
 };
 
 const struct WildPokemonInfo sRoute5_FireRed_Night_LandMonsInfo = { 21, sRoute5_FireRed_Night_LandMons };
@@ -16111,18 +16111,18 @@ const struct WildPokemonInfo sRoute5_LeafGreen_LandMonsInfo = { 21, sRoute5_Leaf
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute5_LeafGreen_Evening_LandMons[] =
 {
-    { 10, 10, SPECIES_YAMPER },
-    { 13, 13, SPECIES_CACNEA },
-    { 13, 13, SPECIES_LOTAD },
-    { 12, 12, SPECIES_GLAMEOW },
-    { 15, 15, SPECIES_PETILIL },
-    { 15, 15, SPECIES_NYMBLE },
+    { 10, 10, SPECIES_TYNAMO },
+    { 13, 13, SPECIES_CHERUBI },
+    { 13, 13, SPECIES_ANORITH },
+    { 12, 12, SPECIES_BURMY_PLANT },
+    { 15, 15, SPECIES_CHERUBI },
+    { 15, 15, SPECIES_PANSAGE },
+    { 16, 16, SPECIES_GRUBBIN },
+    { 16, 16, SPECIES_PINECO },
+    { 15, 15, SPECIES_RELLOR },
+    { 14, 14, SPECIES_SHROOMISH },
+    { 15, 15, SPECIES_PICHU },
     { 16, 16, SPECIES_SPINDA },
-    { 16, 16, SPECIES_HELIOPTILE },
-    { 15, 15, SPECIES_BOUNSWEET },
-    { 14, 14, SPECIES_ILLUMISE },
-    { 15, 15, SPECIES_ELEKID },
-    { 16, 16, SPECIES_TADBULB },
 };
 
 const struct WildPokemonInfo sRoute5_LeafGreen_Evening_LandMonsInfo = { 21, sRoute5_LeafGreen_Evening_LandMons };
@@ -16131,18 +16131,18 @@ const struct WildPokemonInfo sRoute5_LeafGreen_Evening_LandMonsInfo = { 21, sRou
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute5_LeafGreen_Night_LandMons[] =
 {
-    { 10, 10, SPECIES_BELLSPROUT },
-    { 13, 13, SPECIES_MUNNA },
-    { 13, 13, SPECIES_RATTATA_ALOLA },
-    { 12, 12, SPECIES_CLEFFA },
-    { 15, 15, SPECIES_WYNAUT },
-    { 15, 15, SPECIES_MASCHIFF },
-    { 16, 16, SPECIES_SPOINK },
+    { 10, 10, SPECIES_ELGYEM },
+    { 13, 13, SPECIES_GRIMER_ALOLA },
+    { 13, 13, SPECIES_PURRLOIN },
+    { 12, 12, SPECIES_COTTONEE },
+    { 15, 15, SPECIES_SPRITZEE },
+    { 15, 15, SPECIES_GOTHITA },
+    { 16, 16, SPECIES_PUMPKABOO_AVERAGE },
     { 16, 16, SPECIES_SNUBBULL },
-    { 15, 15, SPECIES_POOCHYENA },
-    { 14, 14, SPECIES_SOLOSIS },
-    { 15, 15, SPECIES_SWIRLIX },
-    { 16, 16, SPECIES_FOONGUS },
+    { 15, 15, SPECIES_SHROODLE },
+    { 14, 14, SPECIES_ELGYEM },
+    { 15, 15, SPECIES_PHANTUMP },
+    { 16, 16, SPECIES_RATTATA_ALOLA },
 };
 
 const struct WildPokemonInfo sRoute5_LeafGreen_Night_LandMonsInfo = { 21, sRoute5_LeafGreen_Night_LandMons };
@@ -16198,29 +16198,29 @@ const struct WildPokemonInfo sRoute6_FireRed_FishingMonsInfo = { 20, sRoute6_Fir
 #ifdef FIRERED
 const struct WildPokemon sRoute6_FireRed_Evening_LandMons[] =
 {
-    { 10, 10, SPECIES_BUNNELBY },
-    { 13, 13, SPECIES_GOSSIFLEUR },
-    { 13, 13, SPECIES_GEODUDE_ALOLA },
-    { 12, 12, SPECIES_CHERUBI },
-    { 15, 15, SPECIES_YUNGOOS },
-    { 15, 15, SPECIES_SHINX },
-    { 16, 16, SPECIES_LITLEO },
-    { 16, 16, SPECIES_PICHU },
-    { 15, 15, SPECIES_TAROUNTULA },
-    { 14, 14, SPECIES_GLAMEOW },
+    { 10, 10, SPECIES_SHINX },
+    { 13, 13, SPECIES_WHISMUR },
+    { 13, 13, SPECIES_MANTYKE },
+    { 12, 12, SPECIES_SMEARGLE },
     { 15, 15, SPECIES_LILLIPUP },
-    { 16, 16, SPECIES_VOLBEAT },
+    { 15, 15, SPECIES_VOLBEAT },
+    { 16, 16, SPECIES_SENTRET },
+    { 16, 16, SPECIES_BIDOOF },
+    { 15, 15, SPECIES_SUNKERN },
+    { 14, 14, SPECIES_PATRAT },
+    { 15, 15, SPECIES_BLIPBUG },
+    { 16, 16, SPECIES_MINCCINO },
 };
 
 const struct WildPokemonInfo sRoute6_FireRed_Evening_LandMonsInfo = { 21, sRoute6_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute6_FireRed_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_CHINCHOU },
-    { 20, 25, SPECIES_LOTAD },
-    { 25, 30, SPECIES_DELIBIRD },
-    { 30, 35, SPECIES_CRYOGONAL },
-    { 35, 40, SPECIES_OSHAWOTT },
+    { 20, 25, SPECIES_PANPOUR },
+    { 20, 25, SPECIES_WISHIWASHI_SOLO },
+    { 25, 30, SPECIES_CUBCHOO },
+    { 30, 35, SPECIES_TYMPOLE },
+    { 35, 40, SPECIES_FROAKIE },
 };
 
 const struct WildPokemonInfo sRoute6_FireRed_Evening_WaterMonsInfo = { 2, sRoute6_FireRed_Evening_WaterMons };
@@ -16229,29 +16229,29 @@ const struct WildPokemonInfo sRoute6_FireRed_Evening_WaterMonsInfo = { 2, sRoute
 #ifdef FIRERED
 const struct WildPokemon sRoute6_FireRed_Night_LandMons[] =
 {
-    { 10, 10, SPECIES_CUTIEFLY },
-    { 13, 13, SPECIES_BRAMBLIN },
+    { 10, 10, SPECIES_VENIPEDE },
+    { 13, 13, SPECIES_TRUBBISH },
     { 13, 13, SPECIES_NICKIT },
-    { 12, 12, SPECIES_CHINGLING },
-    { 15, 15, SPECIES_MORELULL },
-    { 15, 15, SPECIES_ELGYEM },
-    { 16, 16, SPECIES_SPOINK },
-    { 16, 16, SPECIES_BRAMBLIN },
-    { 15, 15, SPECIES_MILCERY },
-    { 14, 14, SPECIES_CUTIEFLY },
-    { 15, 15, SPECIES_WYNAUT },
-    { 16, 16, SPECIES_MASCHIFF },
+    { 12, 12, SPECIES_FLITTLE },
+    { 15, 15, SPECIES_IGGLYBUFF },
+    { 15, 15, SPECIES_ZORUA_HISUI },
+    { 16, 16, SPECIES_BUDEW },
+    { 16, 16, SPECIES_SOLOSIS },
+    { 15, 15, SPECIES_HATENNA },
+    { 14, 14, SPECIES_MILCERY },
+    { 15, 15, SPECIES_SKORUPI },
+    { 16, 16, SPECIES_FOONGUS },
 };
 
 const struct WildPokemonInfo sRoute6_FireRed_Night_LandMonsInfo = { 21, sRoute6_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute6_FireRed_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_QWILFISH },
     { 20, 25, SPECIES_CARVANHA },
-    { 25, 30, SPECIES_SMOOCHUM },
-    { 30, 35, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_FRILLISH },
+    { 20, 25, SPECIES_SKRELP },
+    { 25, 30, SPECIES_MAREANIE },
+    { 30, 35, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_SKRELP },
 };
 
 const struct WildPokemonInfo sRoute6_FireRed_Night_WaterMonsInfo = { 2, sRoute6_FireRed_Night_WaterMons };
@@ -16307,29 +16307,29 @@ const struct WildPokemonInfo sRoute6_LeafGreen_FishingMonsInfo = { 20, sRoute6_L
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute6_LeafGreen_Evening_LandMons[] =
 {
-    { 10, 10, SPECIES_BUNNELBY },
-    { 13, 13, SPECIES_GOSSIFLEUR },
-    { 13, 13, SPECIES_GEODUDE_ALOLA },
-    { 12, 12, SPECIES_CHERUBI },
-    { 15, 15, SPECIES_YUNGOOS },
-    { 15, 15, SPECIES_SHINX },
-    { 16, 16, SPECIES_LITLEO },
-    { 16, 16, SPECIES_PICHU },
-    { 15, 15, SPECIES_TAROUNTULA },
-    { 14, 14, SPECIES_GLAMEOW },
+    { 10, 10, SPECIES_SHINX },
+    { 13, 13, SPECIES_WHISMUR },
+    { 13, 13, SPECIES_MANTYKE },
+    { 12, 12, SPECIES_SMEARGLE },
     { 15, 15, SPECIES_LILLIPUP },
-    { 16, 16, SPECIES_VOLBEAT },
+    { 15, 15, SPECIES_VOLBEAT },
+    { 16, 16, SPECIES_SENTRET },
+    { 16, 16, SPECIES_BIDOOF },
+    { 15, 15, SPECIES_SUNKERN },
+    { 14, 14, SPECIES_PATRAT },
+    { 15, 15, SPECIES_BLIPBUG },
+    { 16, 16, SPECIES_MINCCINO },
 };
 
 const struct WildPokemonInfo sRoute6_LeafGreen_Evening_LandMonsInfo = { 21, sRoute6_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute6_LeafGreen_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_CHINCHOU },
-    { 20, 25, SPECIES_LOTAD },
-    { 25, 30, SPECIES_DELIBIRD },
-    { 30, 35, SPECIES_CRYOGONAL },
-    { 35, 40, SPECIES_OSHAWOTT },
+    { 20, 25, SPECIES_PANPOUR },
+    { 20, 25, SPECIES_WISHIWASHI_SOLO },
+    { 25, 30, SPECIES_CUBCHOO },
+    { 30, 35, SPECIES_TYMPOLE },
+    { 35, 40, SPECIES_FROAKIE },
 };
 
 const struct WildPokemonInfo sRoute6_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute6_LeafGreen_Evening_WaterMons };
@@ -16338,29 +16338,29 @@ const struct WildPokemonInfo sRoute6_LeafGreen_Evening_WaterMonsInfo = { 2, sRou
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute6_LeafGreen_Night_LandMons[] =
 {
-    { 10, 10, SPECIES_CUTIEFLY },
-    { 13, 13, SPECIES_BRAMBLIN },
+    { 10, 10, SPECIES_VENIPEDE },
+    { 13, 13, SPECIES_TRUBBISH },
     { 13, 13, SPECIES_NICKIT },
-    { 12, 12, SPECIES_CHINGLING },
-    { 15, 15, SPECIES_MORELULL },
-    { 15, 15, SPECIES_ELGYEM },
-    { 16, 16, SPECIES_SPOINK },
-    { 16, 16, SPECIES_BRAMBLIN },
-    { 15, 15, SPECIES_MILCERY },
-    { 14, 14, SPECIES_CUTIEFLY },
-    { 15, 15, SPECIES_WYNAUT },
-    { 16, 16, SPECIES_MASCHIFF },
+    { 12, 12, SPECIES_FLITTLE },
+    { 15, 15, SPECIES_IGGLYBUFF },
+    { 15, 15, SPECIES_ZORUA_HISUI },
+    { 16, 16, SPECIES_BUDEW },
+    { 16, 16, SPECIES_SOLOSIS },
+    { 15, 15, SPECIES_HATENNA },
+    { 14, 14, SPECIES_MILCERY },
+    { 15, 15, SPECIES_SKORUPI },
+    { 16, 16, SPECIES_FOONGUS },
 };
 
 const struct WildPokemonInfo sRoute6_LeafGreen_Night_LandMonsInfo = { 21, sRoute6_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute6_LeafGreen_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_QWILFISH },
     { 20, 25, SPECIES_CARVANHA },
-    { 25, 30, SPECIES_SMOOCHUM },
-    { 30, 35, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_FRILLISH },
+    { 20, 25, SPECIES_SKRELP },
+    { 25, 30, SPECIES_MAREANIE },
+    { 30, 35, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_SKRELP },
 };
 
 const struct WildPokemonInfo sRoute6_LeafGreen_Night_WaterMonsInfo = { 2, sRoute6_LeafGreen_Night_WaterMons };
@@ -16390,17 +16390,17 @@ const struct WildPokemonInfo sRoute7_FireRed_LandMonsInfo = { 21, sRoute7_FireRe
 const struct WildPokemon sRoute7_FireRed_Evening_LandMons[] =
 {
     { 19, 19, SPECIES_KECLEON },
-    { 17, 17, SPECIES_SPINDA },
-    { 19, 19, SPECIES_ANORITH },
-    { 18, 18, SPECIES_KECLEON },
-    { 22, 22, SPECIES_PINSIR },
-    { 22, 22, SPECIES_PLUSLE },
-    { 18, 18, SPECIES_MINUN },
-    { 20, 20, SPECIES_PACHIRISU },
-    { 17, 17, SPECIES_PINCURCHIN },
-    { 19, 19, SPECIES_DUNSPARCE },
-    { 17, 17, SPECIES_MUNCHLAX },
+    { 17, 17, SPECIES_LILLIPUP },
+    { 19, 19, SPECIES_STARLY },
+    { 18, 18, SPECIES_PLUSLE },
+    { 22, 22, SPECIES_PACHIRISU },
+    { 22, 22, SPECIES_PINCURCHIN },
+    { 18, 18, SPECIES_MUNCHLAX },
     { 20, 20, SPECIES_AUDINO },
+    { 17, 17, SPECIES_CASTFORM_NORMAL },
+    { 19, 19, SPECIES_PINSIR },
+    { 17, 17, SPECIES_DUNSPARCE },
+    { 20, 20, SPECIES_KECLEON },
 };
 
 const struct WildPokemonInfo sRoute7_FireRed_Evening_LandMonsInfo = { 21, sRoute7_FireRed_Evening_LandMons };
@@ -16409,18 +16409,18 @@ const struct WildPokemonInfo sRoute7_FireRed_Evening_LandMonsInfo = { 21, sRoute
 #ifdef FIRERED
 const struct WildPokemon sRoute7_FireRed_Night_LandMons[] =
 {
-    { 19, 19, SPECIES_CHINGLING },
-    { 17, 17, SPECIES_SKRELP },
+    { 19, 19, SPECIES_CUTIEFLY },
+    { 17, 17, SPECIES_DEDENNE },
     { 19, 19, SPECIES_PONYTA_GALAR },
     { 18, 18, SPECIES_DEDENNE },
     { 22, 22, SPECIES_PONYTA_GALAR },
-    { 22, 22, SPECIES_PONYTA_GALAR },
-    { 18, 18, SPECIES_ROTOM },
-    { 20, 20, SPECIES_QWILFISH_HISUI },
-    { 17, 17, SPECIES_DEDENNE },
-    { 19, 19, SPECIES_ZORUA },
-    { 17, 17, SPECIES_TOXEL },
-    { 20, 20, SPECIES_AZURILL },
+    { 22, 22, SPECIES_STUNKY },
+    { 18, 18, SPECIES_POOCHYENA },
+    { 20, 20, SPECIES_MORPEKO_FULL_BELLY },
+    { 17, 17, SPECIES_MUNNA },
+    { 19, 19, SPECIES_GOTHITA },
+    { 17, 17, SPECIES_IMPIDIMP },
+    { 20, 20, SPECIES_SPOINK },
 };
 
 const struct WildPokemonInfo sRoute7_FireRed_Night_LandMonsInfo = { 21, sRoute7_FireRed_Night_LandMons };
@@ -16450,17 +16450,17 @@ const struct WildPokemonInfo sRoute7_LeafGreen_LandMonsInfo = { 21, sRoute7_Leaf
 const struct WildPokemon sRoute7_LeafGreen_Evening_LandMons[] =
 {
     { 19, 19, SPECIES_KECLEON },
-    { 17, 17, SPECIES_SPINDA },
-    { 19, 19, SPECIES_ANORITH },
-    { 18, 18, SPECIES_KECLEON },
-    { 22, 22, SPECIES_PINSIR },
-    { 22, 22, SPECIES_PLUSLE },
-    { 18, 18, SPECIES_MINUN },
-    { 20, 20, SPECIES_PACHIRISU },
-    { 17, 17, SPECIES_PINCURCHIN },
-    { 19, 19, SPECIES_DUNSPARCE },
-    { 17, 17, SPECIES_MUNCHLAX },
+    { 17, 17, SPECIES_LILLIPUP },
+    { 19, 19, SPECIES_STARLY },
+    { 18, 18, SPECIES_PLUSLE },
+    { 22, 22, SPECIES_PACHIRISU },
+    { 22, 22, SPECIES_PINCURCHIN },
+    { 18, 18, SPECIES_MUNCHLAX },
     { 20, 20, SPECIES_AUDINO },
+    { 17, 17, SPECIES_CASTFORM_NORMAL },
+    { 19, 19, SPECIES_PINSIR },
+    { 17, 17, SPECIES_DUNSPARCE },
+    { 20, 20, SPECIES_KECLEON },
 };
 
 const struct WildPokemonInfo sRoute7_LeafGreen_Evening_LandMonsInfo = { 21, sRoute7_LeafGreen_Evening_LandMons };
@@ -16469,18 +16469,18 @@ const struct WildPokemonInfo sRoute7_LeafGreen_Evening_LandMonsInfo = { 21, sRou
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute7_LeafGreen_Night_LandMons[] =
 {
-    { 19, 19, SPECIES_CHINGLING },
-    { 17, 17, SPECIES_SKRELP },
+    { 19, 19, SPECIES_CUTIEFLY },
+    { 17, 17, SPECIES_DEDENNE },
     { 19, 19, SPECIES_PONYTA_GALAR },
     { 18, 18, SPECIES_DEDENNE },
     { 22, 22, SPECIES_PONYTA_GALAR },
-    { 22, 22, SPECIES_PONYTA_GALAR },
-    { 18, 18, SPECIES_ROTOM },
-    { 20, 20, SPECIES_QWILFISH_HISUI },
-    { 17, 17, SPECIES_DEDENNE },
-    { 19, 19, SPECIES_ZORUA },
-    { 17, 17, SPECIES_TOXEL },
-    { 20, 20, SPECIES_AZURILL },
+    { 22, 22, SPECIES_STUNKY },
+    { 18, 18, SPECIES_POOCHYENA },
+    { 20, 20, SPECIES_MORPEKO_FULL_BELLY },
+    { 17, 17, SPECIES_MUNNA },
+    { 19, 19, SPECIES_GOTHITA },
+    { 17, 17, SPECIES_IMPIDIMP },
+    { 20, 20, SPECIES_SPOINK },
 };
 
 const struct WildPokemonInfo sRoute7_LeafGreen_Night_LandMonsInfo = { 21, sRoute7_LeafGreen_Night_LandMons };
@@ -16509,18 +16509,18 @@ const struct WildPokemonInfo sRoute8_FireRed_LandMonsInfo = { 21, sRoute8_FireRe
 #ifdef FIRERED
 const struct WildPokemon sRoute8_FireRed_Evening_LandMons[] =
 {
-    { 18, 18, SPECIES_TYNAMO },
-    { 18, 18, SPECIES_KRICKETOT },
-    { 16, 16, SPECIES_DELIBIRD },
-    { 20, 20, SPECIES_FLETCHLING },
-    { 20, 20, SPECIES_PATRAT },
-    { 17, 17, SPECIES_SKITTY },
-    { 17, 17, SPECIES_YAMPER },
-    { 19, 19, SPECIES_BUNEARY },
-    { 17, 17, SPECIES_ZIGZAGOON },
-    { 15, 15, SPECIES_PANSAGE },
-    { 17, 17, SPECIES_WHISMUR },
-    { 18, 18, SPECIES_JOLTIK },
+    { 18, 18, SPECIES_BIDOOF },
+    { 18, 18, SPECIES_GLAMEOW },
+    { 16, 16, SPECIES_KRICKETOT },
+    { 20, 20, SPECIES_PIDOVE },
+    { 20, 20, SPECIES_BLIPBUG },
+    { 17, 17, SPECIES_BURMY_PLANT },
+    { 17, 17, SPECIES_RELLOR },
+    { 19, 19, SPECIES_PATRAT },
+    { 17, 17, SPECIES_BOUNSWEET },
+    { 15, 15, SPECIES_SKITTY },
+    { 17, 17, SPECIES_SMOLIV },
+    { 18, 18, SPECIES_HOPPIP },
 };
 
 const struct WildPokemonInfo sRoute8_FireRed_Evening_LandMonsInfo = { 21, sRoute8_FireRed_Evening_LandMons };
@@ -16529,18 +16529,18 @@ const struct WildPokemonInfo sRoute8_FireRed_Evening_LandMonsInfo = { 21, sRoute
 #ifdef FIRERED
 const struct WildPokemon sRoute8_FireRed_Night_LandMons[] =
 {
-    { 18, 18, SPECIES_GOTHITA },
-    { 18, 18, SPECIES_BUDEW },
-    { 16, 16, SPECIES_TRUBBISH },
-    { 20, 20, SPECIES_ZORUA_HISUI },
-    { 20, 20, SPECIES_SOLOSIS },
+    { 18, 18, SPECIES_SNUBBULL },
+    { 18, 18, SPECIES_RALTS },
+    { 16, 16, SPECIES_SPRITZEE },
+    { 20, 20, SPECIES_ESPURR },
+    { 20, 20, SPECIES_WYNAUT },
+    { 17, 17, SPECIES_SPINARAK },
+    { 17, 17, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 19, 19, SPECIES_SALANDIT },
+    { 17, 17, SPECIES_MORELULL },
+    { 15, 15, SPECIES_MIME_JR },
     { 17, 17, SPECIES_GRIMER_ALOLA },
-    { 17, 17, SPECIES_IMPIDIMP },
-    { 19, 19, SPECIES_MIME_JR },
-    { 17, 17, SPECIES_SPRITZEE },
-    { 15, 15, SPECIES_GULPIN },
-    { 17, 17, SPECIES_POOCHYENA },
-    { 18, 18, SPECIES_CHINGLING },
+    { 18, 18, SPECIES_MASCHIFF },
 };
 
 const struct WildPokemonInfo sRoute8_FireRed_Night_LandMonsInfo = { 21, sRoute8_FireRed_Night_LandMons };
@@ -16569,18 +16569,18 @@ const struct WildPokemonInfo sRoute8_LeafGreen_LandMonsInfo = { 21, sRoute8_Leaf
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute8_LeafGreen_Evening_LandMons[] =
 {
-    { 18, 18, SPECIES_TYNAMO },
-    { 18, 18, SPECIES_KRICKETOT },
-    { 16, 16, SPECIES_DELIBIRD },
-    { 20, 20, SPECIES_FLETCHLING },
-    { 20, 20, SPECIES_PATRAT },
-    { 17, 17, SPECIES_SKITTY },
-    { 17, 17, SPECIES_YAMPER },
-    { 19, 19, SPECIES_BUNEARY },
-    { 17, 17, SPECIES_ZIGZAGOON },
-    { 15, 15, SPECIES_PANSAGE },
-    { 17, 17, SPECIES_WHISMUR },
-    { 18, 18, SPECIES_JOLTIK },
+    { 18, 18, SPECIES_BIDOOF },
+    { 18, 18, SPECIES_GLAMEOW },
+    { 16, 16, SPECIES_KRICKETOT },
+    { 20, 20, SPECIES_PIDOVE },
+    { 20, 20, SPECIES_BLIPBUG },
+    { 17, 17, SPECIES_BURMY_PLANT },
+    { 17, 17, SPECIES_RELLOR },
+    { 19, 19, SPECIES_PATRAT },
+    { 17, 17, SPECIES_BOUNSWEET },
+    { 15, 15, SPECIES_SKITTY },
+    { 17, 17, SPECIES_SMOLIV },
+    { 18, 18, SPECIES_HOPPIP },
 };
 
 const struct WildPokemonInfo sRoute8_LeafGreen_Evening_LandMonsInfo = { 21, sRoute8_LeafGreen_Evening_LandMons };
@@ -16589,18 +16589,18 @@ const struct WildPokemonInfo sRoute8_LeafGreen_Evening_LandMonsInfo = { 21, sRou
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute8_LeafGreen_Night_LandMons[] =
 {
-    { 18, 18, SPECIES_GOTHITA },
-    { 18, 18, SPECIES_BUDEW },
-    { 16, 16, SPECIES_TRUBBISH },
-    { 20, 20, SPECIES_ZORUA_HISUI },
-    { 20, 20, SPECIES_SOLOSIS },
+    { 18, 18, SPECIES_SNUBBULL },
+    { 18, 18, SPECIES_RALTS },
+    { 16, 16, SPECIES_SPRITZEE },
+    { 20, 20, SPECIES_ESPURR },
+    { 20, 20, SPECIES_WYNAUT },
+    { 17, 17, SPECIES_SPINARAK },
+    { 17, 17, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 19, 19, SPECIES_SALANDIT },
+    { 17, 17, SPECIES_MORELULL },
+    { 15, 15, SPECIES_MIME_JR },
     { 17, 17, SPECIES_GRIMER_ALOLA },
-    { 17, 17, SPECIES_IMPIDIMP },
-    { 19, 19, SPECIES_MIME_JR },
-    { 17, 17, SPECIES_SPRITZEE },
-    { 15, 15, SPECIES_GULPIN },
-    { 17, 17, SPECIES_POOCHYENA },
-    { 18, 18, SPECIES_CHINGLING },
+    { 18, 18, SPECIES_MASCHIFF },
 };
 
 const struct WildPokemonInfo sRoute8_LeafGreen_Night_LandMonsInfo = { 21, sRoute8_LeafGreen_Night_LandMons };
@@ -16629,18 +16629,18 @@ const struct WildPokemonInfo sRoute9_FireRed_LandMonsInfo = { 21, sRoute9_FireRe
 #ifdef FIRERED
 const struct WildPokemon sRoute9_FireRed_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_PICHU },
-    { 16, 16, SPECIES_WHISMUR },
-    { 11, 11, SPECIES_LARVESTA },
-    { 15, 15, SPECIES_RELLOR },
-    { 13, 13, SPECIES_FOMANTIS },
-    { 14, 14, SPECIES_WURMPLE },
-    { 17, 17, SPECIES_LARVESTA },
-    { 17, 17, SPECIES_KRICKETOT },
-    { 14, 14, SPECIES_LEDYBA },
-    { 13, 13, SPECIES_SEWADDLE },
-    { 14, 14, SPECIES_PETILIL },
-    { 17, 17, SPECIES_SUNKERN },
+    { 16, 16, SPECIES_TADBULB },
+    { 16, 16, SPECIES_PATRAT },
+    { 11, 11, SPECIES_SUNKERN },
+    { 15, 15, SPECIES_CHERUBI },
+    { 13, 13, SPECIES_SHELMET },
+    { 14, 14, SPECIES_CACNEA },
+    { 17, 17, SPECIES_SKWOVET },
+    { 17, 17, SPECIES_VOLBEAT },
+    { 14, 14, SPECIES_WHISMUR },
+    { 13, 13, SPECIES_SMEARGLE },
+    { 14, 14, SPECIES_PAWMI },
+    { 17, 17, SPECIES_NYMBLE },
 };
 
 const struct WildPokemonInfo sRoute9_FireRed_Evening_LandMonsInfo = { 21, sRoute9_FireRed_Evening_LandMons };
@@ -16649,18 +16649,18 @@ const struct WildPokemonInfo sRoute9_FireRed_Evening_LandMonsInfo = { 21, sRoute
 #ifdef FIRERED
 const struct WildPokemon sRoute9_FireRed_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_PURRLOIN },
-    { 16, 16, SPECIES_QWILFISH },
-    { 11, 11, SPECIES_RATTATA_ALOLA },
-    { 15, 15, SPECIES_HATENNA },
-    { 13, 13, SPECIES_SALANDIT },
-    { 14, 14, SPECIES_SNUBBULL },
-    { 17, 17, SPECIES_GOTHITA },
-    { 17, 17, SPECIES_COTTONEE },
-    { 14, 14, SPECIES_IGGLYBUFF },
-    { 13, 13, SPECIES_NICKIT },
-    { 14, 14, SPECIES_STUNKY },
-    { 17, 17, SPECIES_BELLSPROUT },
+    { 16, 16, SPECIES_SPRITZEE },
+    { 16, 16, SPECIES_GOLETT },
+    { 11, 11, SPECIES_GULPIN },
+    { 15, 15, SPECIES_ZIGZAGOON_GALAR },
+    { 13, 13, SPECIES_ZORUA },
+    { 14, 14, SPECIES_CLEFFA },
+    { 17, 17, SPECIES_SWIRLIX },
+    { 17, 17, SPECIES_MEOWTH_ALOLA },
+    { 14, 14, SPECIES_COTTONEE },
+    { 13, 13, SPECIES_FLABEBE },
+    { 14, 14, SPECIES_BELLSPROUT },
+    { 17, 17, SPECIES_AZURILL },
 };
 
 const struct WildPokemonInfo sRoute9_FireRed_Night_LandMonsInfo = { 21, sRoute9_FireRed_Night_LandMons };
@@ -16689,18 +16689,18 @@ const struct WildPokemonInfo sRoute9_LeafGreen_LandMonsInfo = { 21, sRoute9_Leaf
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute9_LeafGreen_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_PICHU },
-    { 16, 16, SPECIES_WHISMUR },
-    { 11, 11, SPECIES_LARVESTA },
-    { 15, 15, SPECIES_RELLOR },
-    { 13, 13, SPECIES_FOMANTIS },
-    { 14, 14, SPECIES_WURMPLE },
-    { 17, 17, SPECIES_LARVESTA },
-    { 17, 17, SPECIES_KRICKETOT },
-    { 14, 14, SPECIES_LEDYBA },
-    { 13, 13, SPECIES_SEWADDLE },
-    { 14, 14, SPECIES_PETILIL },
-    { 17, 17, SPECIES_SUNKERN },
+    { 16, 16, SPECIES_TADBULB },
+    { 16, 16, SPECIES_PATRAT },
+    { 11, 11, SPECIES_SUNKERN },
+    { 15, 15, SPECIES_CHERUBI },
+    { 13, 13, SPECIES_SHELMET },
+    { 14, 14, SPECIES_CACNEA },
+    { 17, 17, SPECIES_SKWOVET },
+    { 17, 17, SPECIES_VOLBEAT },
+    { 14, 14, SPECIES_WHISMUR },
+    { 13, 13, SPECIES_SMEARGLE },
+    { 14, 14, SPECIES_PAWMI },
+    { 17, 17, SPECIES_NYMBLE },
 };
 
 const struct WildPokemonInfo sRoute9_LeafGreen_Evening_LandMonsInfo = { 21, sRoute9_LeafGreen_Evening_LandMons };
@@ -16709,18 +16709,18 @@ const struct WildPokemonInfo sRoute9_LeafGreen_Evening_LandMonsInfo = { 21, sRou
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute9_LeafGreen_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_PURRLOIN },
-    { 16, 16, SPECIES_QWILFISH },
-    { 11, 11, SPECIES_RATTATA_ALOLA },
-    { 15, 15, SPECIES_HATENNA },
-    { 13, 13, SPECIES_SALANDIT },
-    { 14, 14, SPECIES_SNUBBULL },
-    { 17, 17, SPECIES_GOTHITA },
-    { 17, 17, SPECIES_COTTONEE },
-    { 14, 14, SPECIES_IGGLYBUFF },
-    { 13, 13, SPECIES_NICKIT },
-    { 14, 14, SPECIES_STUNKY },
-    { 17, 17, SPECIES_BELLSPROUT },
+    { 16, 16, SPECIES_SPRITZEE },
+    { 16, 16, SPECIES_GOLETT },
+    { 11, 11, SPECIES_GULPIN },
+    { 15, 15, SPECIES_ZIGZAGOON_GALAR },
+    { 13, 13, SPECIES_ZORUA },
+    { 14, 14, SPECIES_CLEFFA },
+    { 17, 17, SPECIES_SWIRLIX },
+    { 17, 17, SPECIES_MEOWTH_ALOLA },
+    { 14, 14, SPECIES_COTTONEE },
+    { 13, 13, SPECIES_FLABEBE },
+    { 14, 14, SPECIES_BELLSPROUT },
+    { 17, 17, SPECIES_AZURILL },
 };
 
 const struct WildPokemonInfo sRoute9_LeafGreen_Night_LandMonsInfo = { 21, sRoute9_LeafGreen_Night_LandMons };
@@ -16776,29 +16776,29 @@ const struct WildPokemonInfo sRoute10_FireRed_FishingMonsInfo = { 20, sRoute10_F
 #ifdef FIRERED
 const struct WildPokemon sRoute10_FireRed_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_BUNEARY },
-    { 16, 16, SPECIES_PATRAT },
-    { 11, 11, SPECIES_SWABLU },
-    { 15, 15, SPECIES_BUNNELBY },
-    { 13, 13, SPECIES_PAWMI },
-    { 14, 14, SPECIES_WOOLOO },
-    { 17, 17, SPECIES_TANDEMAUS },
-    { 17, 17, SPECIES_LICKITUNG },
-    { 14, 14, SPECIES_CACNEA },
-    { 13, 13, SPECIES_AIPOM },
-    { 14, 14, SPECIES_VOLTORB_HISUI },
-    { 17, 17, SPECIES_TYNAMO },
+    { 16, 16, SPECIES_ELECTRIKE },
+    { 16, 16, SPECIES_DEERLING_SPRING },
+    { 11, 11, SPECIES_SKIDDO },
+    { 15, 15, SPECIES_PANSAGE },
+    { 13, 13, SPECIES_TADBULB },
+    { 14, 14, SPECIES_LECHONK },
+    { 17, 17, SPECIES_LILLIPUP },
+    { 17, 17, SPECIES_AIPOM },
+    { 14, 14, SPECIES_BUNNELBY },
+    { 13, 13, SPECIES_DEERLING_SPRING },
+    { 14, 14, SPECIES_YAMPER },
+    { 17, 17, SPECIES_SHROOMISH },
 };
 
 const struct WildPokemonInfo sRoute10_FireRed_Evening_LandMonsInfo = { 21, sRoute10_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute10_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_BUIZEL },
-    { 10, 20, SPECIES_SPHEAL },
-    { 20, 30, SPECIES_STARYU },
-    { 30, 35, SPECIES_SNORUNT },
-    { 35, 40, SPECIES_SNOM },
+    { 5, 10, SPECIES_SNOM },
+    { 10, 20, SPECIES_ARROKUDA },
+    { 20, 30, SPECIES_QUAXLY },
+    { 30, 35, SPECIES_DUCKLETT },
+    { 35, 40, SPECIES_SOBBLE },
 };
 
 const struct WildPokemonInfo sRoute10_FireRed_Evening_WaterMonsInfo = { 2, sRoute10_FireRed_Evening_WaterMons };
@@ -16807,29 +16807,29 @@ const struct WildPokemonInfo sRoute10_FireRed_Evening_WaterMonsInfo = { 2, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute10_FireRed_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_ELGYEM },
-    { 16, 16, SPECIES_GRIMER_ALOLA },
-    { 11, 11, SPECIES_FOONGUS },
-    { 15, 15, SPECIES_SPINARAK },
-    { 13, 13, SPECIES_SKORUPI },
+    { 16, 16, SPECIES_RALTS },
+    { 16, 16, SPECIES_CHINGLING },
+    { 11, 11, SPECIES_VENIPEDE },
+    { 15, 15, SPECIES_HOUNDOUR },
+    { 13, 13, SPECIES_PURRLOIN },
     { 14, 14, SPECIES_INKAY },
-    { 17, 17, SPECIES_PURRLOIN },
-    { 17, 17, SPECIES_SWIRLIX },
-    { 14, 14, SPECIES_ELGYEM },
-    { 13, 13, SPECIES_ESPURR },
-    { 14, 14, SPECIES_MEOWTH_ALOLA },
-    { 17, 17, SPECIES_MORELULL },
+    { 17, 17, SPECIES_BRAMBLIN },
+    { 17, 17, SPECIES_FIDOUGH },
+    { 14, 14, SPECIES_SLOWPOKE_GALAR },
+    { 13, 13, SPECIES_CUTIEFLY },
+    { 14, 14, SPECIES_TOXEL },
+    { 17, 17, SPECIES_MILCERY },
 };
 
 const struct WildPokemonInfo sRoute10_FireRed_Night_LandMonsInfo = { 21, sRoute10_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute10_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SNEASEL },
-    { 10, 20, SPECIES_SKRELP },
-    { 20, 30, SPECIES_SLOWPOKE },
-    { 30, 35, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_MAREANIE },
+    { 5, 10, SPECIES_SMOOCHUM },
+    { 10, 20, SPECIES_CARVANHA },
+    { 20, 30, SPECIES_FRILLISH },
+    { 30, 35, SPECIES_QWILFISH },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute10_FireRed_Night_WaterMonsInfo = { 2, sRoute10_FireRed_Night_WaterMons };
@@ -16885,29 +16885,29 @@ const struct WildPokemonInfo sRoute10_LeafGreen_FishingMonsInfo = { 20, sRoute10
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute10_LeafGreen_Evening_LandMons[] =
 {
-    { 16, 16, SPECIES_BUNEARY },
-    { 16, 16, SPECIES_PATRAT },
-    { 11, 11, SPECIES_SWABLU },
-    { 15, 15, SPECIES_BUNNELBY },
-    { 13, 13, SPECIES_PAWMI },
-    { 14, 14, SPECIES_WOOLOO },
-    { 17, 17, SPECIES_TANDEMAUS },
-    { 17, 17, SPECIES_LICKITUNG },
-    { 14, 14, SPECIES_CACNEA },
-    { 13, 13, SPECIES_AIPOM },
-    { 14, 14, SPECIES_VOLTORB_HISUI },
-    { 17, 17, SPECIES_TYNAMO },
+    { 16, 16, SPECIES_ELECTRIKE },
+    { 16, 16, SPECIES_DEERLING_SPRING },
+    { 11, 11, SPECIES_SKIDDO },
+    { 15, 15, SPECIES_PANSAGE },
+    { 13, 13, SPECIES_TADBULB },
+    { 14, 14, SPECIES_LECHONK },
+    { 17, 17, SPECIES_LILLIPUP },
+    { 17, 17, SPECIES_AIPOM },
+    { 14, 14, SPECIES_BUNNELBY },
+    { 13, 13, SPECIES_DEERLING_SPRING },
+    { 14, 14, SPECIES_YAMPER },
+    { 17, 17, SPECIES_SHROOMISH },
 };
 
 const struct WildPokemonInfo sRoute10_LeafGreen_Evening_LandMonsInfo = { 21, sRoute10_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute10_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_BUIZEL },
-    { 10, 20, SPECIES_SPHEAL },
-    { 20, 30, SPECIES_STARYU },
-    { 30, 35, SPECIES_SNORUNT },
-    { 35, 40, SPECIES_SNOM },
+    { 5, 10, SPECIES_SNOM },
+    { 10, 20, SPECIES_ARROKUDA },
+    { 20, 30, SPECIES_QUAXLY },
+    { 30, 35, SPECIES_DUCKLETT },
+    { 35, 40, SPECIES_SOBBLE },
 };
 
 const struct WildPokemonInfo sRoute10_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute10_LeafGreen_Evening_WaterMons };
@@ -16916,29 +16916,29 @@ const struct WildPokemonInfo sRoute10_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute10_LeafGreen_Night_LandMons[] =
 {
-    { 16, 16, SPECIES_ELGYEM },
-    { 16, 16, SPECIES_GRIMER_ALOLA },
-    { 11, 11, SPECIES_FOONGUS },
-    { 15, 15, SPECIES_SPINARAK },
-    { 13, 13, SPECIES_SKORUPI },
+    { 16, 16, SPECIES_RALTS },
+    { 16, 16, SPECIES_CHINGLING },
+    { 11, 11, SPECIES_VENIPEDE },
+    { 15, 15, SPECIES_HOUNDOUR },
+    { 13, 13, SPECIES_PURRLOIN },
     { 14, 14, SPECIES_INKAY },
-    { 17, 17, SPECIES_PURRLOIN },
-    { 17, 17, SPECIES_SWIRLIX },
-    { 14, 14, SPECIES_ELGYEM },
-    { 13, 13, SPECIES_ESPURR },
-    { 14, 14, SPECIES_MEOWTH_ALOLA },
-    { 17, 17, SPECIES_MORELULL },
+    { 17, 17, SPECIES_BRAMBLIN },
+    { 17, 17, SPECIES_FIDOUGH },
+    { 14, 14, SPECIES_SLOWPOKE_GALAR },
+    { 13, 13, SPECIES_CUTIEFLY },
+    { 14, 14, SPECIES_TOXEL },
+    { 17, 17, SPECIES_MILCERY },
 };
 
 const struct WildPokemonInfo sRoute10_LeafGreen_Night_LandMonsInfo = { 21, sRoute10_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute10_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SNEASEL },
-    { 10, 20, SPECIES_SKRELP },
-    { 20, 30, SPECIES_SLOWPOKE },
-    { 30, 35, SPECIES_CARVANHA },
-    { 35, 40, SPECIES_MAREANIE },
+    { 5, 10, SPECIES_SMOOCHUM },
+    { 10, 20, SPECIES_CARVANHA },
+    { 20, 30, SPECIES_FRILLISH },
+    { 30, 35, SPECIES_QWILFISH },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute10_LeafGreen_Night_WaterMonsInfo = { 2, sRoute10_LeafGreen_Night_WaterMons };
@@ -16994,29 +16994,29 @@ const struct WildPokemonInfo sRoute11_FireRed_FishingMonsInfo = { 20, sRoute11_F
 #ifdef FIRERED
 const struct WildPokemon sRoute11_FireRed_Evening_LandMons[] =
 {
-    { 14, 14, SPECIES_TADBULB },
-    { 15, 15, SPECIES_MINCCINO },
-    { 12, 12, SPECIES_SEEDOT },
-    { 13, 13, SPECIES_ELECTRIKE },
-    { 11, 11, SPECIES_MINCCINO },
-    { 13, 13, SPECIES_LECHONK },
-    { 15, 15, SPECIES_SMOLIV },
-    { 17, 17, SPECIES_NYMBLE },
-    { 12, 12, SPECIES_CAPSAKID },
-    { 15, 15, SPECIES_SKWOVET },
-    { 12, 12, SPECIES_GRUBBIN },
-    { 15, 15, SPECIES_SHROOMISH },
+    { 14, 14, SPECIES_PAWMI },
+    { 15, 15, SPECIES_WOOLOO },
+    { 12, 12, SPECIES_ILLUMISE },
+    { 13, 13, SPECIES_ROOKIDEE },
+    { 11, 11, SPECIES_COMBEE },
+    { 13, 13, SPECIES_BLITZLE },
+    { 15, 15, SPECIES_HELIOPTILE },
+    { 17, 17, SPECIES_SEEDOT },
+    { 12, 12, SPECIES_WOOLOO },
+    { 15, 15, SPECIES_ZIGZAGOON },
+    { 12, 12, SPECIES_ELEKID },
+    { 15, 15, SPECIES_GOSSIFLEUR },
 };
 
 const struct WildPokemonInfo sRoute11_FireRed_Evening_LandMonsInfo = { 21, sRoute11_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute11_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_FROAKIE },
-    { 10, 20, SPECIES_DUCKLETT },
-    { 20, 30, SPECIES_QUAXLY },
-    { 30, 35, SPECIES_MUDKIP },
-    { 35, 40, SPECIES_CHEWTLE },
+    { 5, 10, SPECIES_WIGLETT },
+    { 10, 20, SPECIES_BERGMITE },
+    { 20, 30, SPECIES_WIMPOD },
+    { 30, 35, SPECIES_STARYU },
+    { 35, 40, SPECIES_FEEBAS },
 };
 
 const struct WildPokemonInfo sRoute11_FireRed_Evening_WaterMonsInfo = { 2, sRoute11_FireRed_Evening_WaterMons };
@@ -17025,29 +17025,29 @@ const struct WildPokemonInfo sRoute11_FireRed_Evening_WaterMonsInfo = { 2, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute11_FireRed_Night_LandMons[] =
 {
-    { 14, 14, SPECIES_HOUNDOUR },
-    { 15, 15, SPECIES_SLOWPOKE_GALAR },
-    { 12, 12, SPECIES_HOUNDOUR },
-    { 13, 13, SPECIES_VENIPEDE },
-    { 11, 11, SPECIES_FLITTLE },
-    { 13, 13, SPECIES_ZIGZAGOON_GALAR },
-    { 15, 15, SPECIES_RALTS },
-    { 17, 17, SPECIES_MUNNA },
-    { 12, 12, SPECIES_PHANTUMP },
-    { 15, 15, SPECIES_FIDOUGH },
-    { 12, 12, SPECIES_SHROODLE },
+    { 14, 14, SPECIES_POOCHYENA },
     { 15, 15, SPECIES_CLEFFA },
+    { 12, 12, SPECIES_FOONGUS },
+    { 13, 13, SPECIES_TRUBBISH },
+    { 11, 11, SPECIES_VAROOM },
+    { 13, 13, SPECIES_MIME_JR },
+    { 15, 15, SPECIES_RALTS },
+    { 17, 17, SPECIES_POOCHYENA },
+    { 12, 12, SPECIES_SNUBBULL },
+    { 15, 15, SPECIES_ELGYEM },
+    { 12, 12, SPECIES_GOTHITA },
+    { 15, 15, SPECIES_CUTIEFLY },
 };
 
 const struct WildPokemonInfo sRoute11_FireRed_Night_LandMonsInfo = { 21, sRoute11_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute11_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_CARVANHA },
-    { 10, 20, SPECIES_QWILFISH },
-    { 20, 30, SPECIES_SLOWPOKE },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_MAREANIE },
+    { 5, 10, SPECIES_SNEASEL },
+    { 10, 20, SPECIES_MAREANIE },
+    { 20, 30, SPECIES_SKRELP },
+    { 30, 35, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sRoute11_FireRed_Night_WaterMonsInfo = { 2, sRoute11_FireRed_Night_WaterMons };
@@ -17103,29 +17103,29 @@ const struct WildPokemonInfo sRoute11_LeafGreen_FishingMonsInfo = { 20, sRoute11
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute11_LeafGreen_Evening_LandMons[] =
 {
-    { 14, 14, SPECIES_TADBULB },
-    { 15, 15, SPECIES_MINCCINO },
-    { 12, 12, SPECIES_SEEDOT },
-    { 13, 13, SPECIES_ELECTRIKE },
-    { 11, 11, SPECIES_MINCCINO },
-    { 13, 13, SPECIES_LECHONK },
-    { 15, 15, SPECIES_SMOLIV },
-    { 17, 17, SPECIES_NYMBLE },
-    { 12, 12, SPECIES_CAPSAKID },
-    { 15, 15, SPECIES_SKWOVET },
-    { 12, 12, SPECIES_GRUBBIN },
-    { 15, 15, SPECIES_SHROOMISH },
+    { 14, 14, SPECIES_PAWMI },
+    { 15, 15, SPECIES_WOOLOO },
+    { 12, 12, SPECIES_ILLUMISE },
+    { 13, 13, SPECIES_ROOKIDEE },
+    { 11, 11, SPECIES_COMBEE },
+    { 13, 13, SPECIES_BLITZLE },
+    { 15, 15, SPECIES_HELIOPTILE },
+    { 17, 17, SPECIES_SEEDOT },
+    { 12, 12, SPECIES_WOOLOO },
+    { 15, 15, SPECIES_ZIGZAGOON },
+    { 12, 12, SPECIES_ELEKID },
+    { 15, 15, SPECIES_GOSSIFLEUR },
 };
 
 const struct WildPokemonInfo sRoute11_LeafGreen_Evening_LandMonsInfo = { 21, sRoute11_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute11_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_FROAKIE },
-    { 10, 20, SPECIES_DUCKLETT },
-    { 20, 30, SPECIES_QUAXLY },
-    { 30, 35, SPECIES_MUDKIP },
-    { 35, 40, SPECIES_CHEWTLE },
+    { 5, 10, SPECIES_WIGLETT },
+    { 10, 20, SPECIES_BERGMITE },
+    { 20, 30, SPECIES_WIMPOD },
+    { 30, 35, SPECIES_STARYU },
+    { 35, 40, SPECIES_FEEBAS },
 };
 
 const struct WildPokemonInfo sRoute11_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute11_LeafGreen_Evening_WaterMons };
@@ -17134,29 +17134,29 @@ const struct WildPokemonInfo sRoute11_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute11_LeafGreen_Night_LandMons[] =
 {
-    { 14, 14, SPECIES_HOUNDOUR },
-    { 15, 15, SPECIES_SLOWPOKE_GALAR },
-    { 12, 12, SPECIES_HOUNDOUR },
-    { 13, 13, SPECIES_VENIPEDE },
-    { 11, 11, SPECIES_FLITTLE },
-    { 13, 13, SPECIES_ZIGZAGOON_GALAR },
-    { 15, 15, SPECIES_RALTS },
-    { 17, 17, SPECIES_MUNNA },
-    { 12, 12, SPECIES_PHANTUMP },
-    { 15, 15, SPECIES_FIDOUGH },
-    { 12, 12, SPECIES_SHROODLE },
+    { 14, 14, SPECIES_POOCHYENA },
     { 15, 15, SPECIES_CLEFFA },
+    { 12, 12, SPECIES_FOONGUS },
+    { 13, 13, SPECIES_TRUBBISH },
+    { 11, 11, SPECIES_VAROOM },
+    { 13, 13, SPECIES_MIME_JR },
+    { 15, 15, SPECIES_RALTS },
+    { 17, 17, SPECIES_POOCHYENA },
+    { 12, 12, SPECIES_SNUBBULL },
+    { 15, 15, SPECIES_ELGYEM },
+    { 12, 12, SPECIES_GOTHITA },
+    { 15, 15, SPECIES_CUTIEFLY },
 };
 
 const struct WildPokemonInfo sRoute11_LeafGreen_Night_LandMonsInfo = { 21, sRoute11_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute11_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_CARVANHA },
-    { 10, 20, SPECIES_QWILFISH },
-    { 20, 30, SPECIES_SLOWPOKE },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_MAREANIE },
+    { 5, 10, SPECIES_SNEASEL },
+    { 10, 20, SPECIES_MAREANIE },
+    { 20, 30, SPECIES_SKRELP },
+    { 30, 35, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sRoute11_LeafGreen_Night_WaterMonsInfo = { 2, sRoute11_LeafGreen_Night_WaterMons };
@@ -17212,29 +17212,29 @@ const struct WildPokemonInfo sRoute12_FireRed_FishingMonsInfo = { 60, sRoute12_F
 #ifdef FIRERED
 const struct WildPokemon sRoute12_FireRed_Evening_LandMons[] =
 {
-    { 24, 24, SPECIES_GROOKEY },
-    { 24, 24, SPECIES_CAPSAKID },
-    { 22, 22, SPECIES_CHINCHOU },
-    { 23, 23, SPECIES_CHIKORITA },
-    { 25, 25, SPECIES_TURTWIG },
-    { 26, 26, SPECIES_PORYGON },
-    { 26, 26, SPECIES_CHESPIN },
-    { 27, 27, SPECIES_SPRIGATITO },
+    { 24, 24, SPECIES_MINUN },
+    { 24, 24, SPECIES_LICKITUNG },
+    { 22, 22, SPECIES_PINECO },
     { 23, 23, SPECIES_EEVEE },
-    { 28, 28, SPECIES_TEDDIURSA },
+    { 25, 25, SPECIES_MINUN },
+    { 26, 26, SPECIES_CHESPIN },
+    { 26, 26, SPECIES_SPRIGATITO },
+    { 27, 27, SPECIES_SNIVY },
     { 23, 23, SPECIES_TREECKO },
-    { 30, 30, SPECIES_SNIVY },
+    { 28, 28, SPECIES_CHIKORITA },
+    { 23, 23, SPECIES_HAPPINY },
+    { 30, 30, SPECIES_PORYGON },
 };
 
 const struct WildPokemonInfo sRoute12_FireRed_Evening_LandMonsInfo = { 21, sRoute12_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute12_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_FEEBAS },
-    { 10, 20, SPECIES_TIRTOUGA },
-    { 20, 30, SPECIES_LUVDISC },
-    { 30, 35, SPECIES_SNOM },
-    { 35, 40, SPECIES_WIGLETT },
+    { 5, 10, SPECIES_SURSKIT },
+    { 10, 20, SPECIES_CRYOGONAL },
+    { 20, 30, SPECIES_MANTYKE },
+    { 30, 35, SPECIES_SNOVER },
+    { 35, 40, SPECIES_PYUKUMUKU },
 };
 
 const struct WildPokemonInfo sRoute12_FireRed_Evening_WaterMonsInfo = { 2, sRoute12_FireRed_Evening_WaterMons };
@@ -17243,29 +17243,29 @@ const struct WildPokemonInfo sRoute12_FireRed_Evening_WaterMonsInfo = { 2, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute12_FireRed_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_WYNAUT },
     { 24, 24, SPECIES_TOGEPI },
-    { 22, 22, SPECIES_BULBASAUR },
-    { 23, 23, SPECIES_TOGEPI },
-    { 25, 25, SPECIES_TOGEPI },
-    { 26, 26, SPECIES_SABLEYE },
-    { 26, 26, SPECIES_DEDENNE },
-    { 27, 27, SPECIES_BULBASAUR },
+    { 24, 24, SPECIES_TOGEPI },
+    { 22, 22, SPECIES_SABLEYE },
     { 23, 23, SPECIES_ROTOM },
-    { 28, 28, SPECIES_QWILFISH_HISUI },
+    { 25, 25, SPECIES_DEDENNE },
+    { 26, 26, SPECIES_QWILFISH_HISUI },
+    { 26, 26, SPECIES_BULBASAUR },
+    { 27, 27, SPECIES_TOGEPI },
     { 23, 23, SPECIES_PONYTA_GALAR },
-    { 30, 30, SPECIES_PAWNIARD },
+    { 28, 28, SPECIES_SPRITZEE },
+    { 23, 23, SPECIES_TOGEPI },
+    { 30, 30, SPECIES_ZORUA_HISUI },
 };
 
 const struct WildPokemonInfo sRoute12_FireRed_Night_LandMonsInfo = { 21, sRoute12_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute12_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SKRELP },
-    { 10, 20, SPECIES_FRILLISH },
+    { 5, 10, SPECIES_QWILFISH },
+    { 10, 20, SPECIES_SNEASEL },
     { 20, 30, SPECIES_SMOOCHUM },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute12_FireRed_Night_WaterMonsInfo = { 2, sRoute12_FireRed_Night_WaterMons };
@@ -17321,29 +17321,29 @@ const struct WildPokemonInfo sRoute12_LeafGreen_FishingMonsInfo = { 60, sRoute12
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute12_LeafGreen_Evening_LandMons[] =
 {
-    { 24, 24, SPECIES_GROOKEY },
-    { 24, 24, SPECIES_CAPSAKID },
-    { 22, 22, SPECIES_CHINCHOU },
-    { 23, 23, SPECIES_CHIKORITA },
-    { 25, 25, SPECIES_TURTWIG },
-    { 26, 26, SPECIES_PORYGON },
-    { 26, 26, SPECIES_CHESPIN },
-    { 27, 27, SPECIES_SPRIGATITO },
+    { 24, 24, SPECIES_MINUN },
+    { 24, 24, SPECIES_LICKITUNG },
+    { 22, 22, SPECIES_PINECO },
     { 23, 23, SPECIES_EEVEE },
-    { 28, 28, SPECIES_TEDDIURSA },
+    { 25, 25, SPECIES_MINUN },
+    { 26, 26, SPECIES_CHESPIN },
+    { 26, 26, SPECIES_SPRIGATITO },
+    { 27, 27, SPECIES_SNIVY },
     { 23, 23, SPECIES_TREECKO },
-    { 30, 30, SPECIES_SNIVY },
+    { 28, 28, SPECIES_CHIKORITA },
+    { 23, 23, SPECIES_HAPPINY },
+    { 30, 30, SPECIES_PORYGON },
 };
 
 const struct WildPokemonInfo sRoute12_LeafGreen_Evening_LandMonsInfo = { 21, sRoute12_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute12_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_FEEBAS },
-    { 10, 20, SPECIES_TIRTOUGA },
-    { 20, 30, SPECIES_LUVDISC },
-    { 30, 35, SPECIES_SNOM },
-    { 35, 40, SPECIES_WIGLETT },
+    { 5, 10, SPECIES_SURSKIT },
+    { 10, 20, SPECIES_CRYOGONAL },
+    { 20, 30, SPECIES_MANTYKE },
+    { 30, 35, SPECIES_SNOVER },
+    { 35, 40, SPECIES_PYUKUMUKU },
 };
 
 const struct WildPokemonInfo sRoute12_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute12_LeafGreen_Evening_WaterMons };
@@ -17352,29 +17352,29 @@ const struct WildPokemonInfo sRoute12_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute12_LeafGreen_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_WYNAUT },
     { 24, 24, SPECIES_TOGEPI },
-    { 22, 22, SPECIES_BULBASAUR },
-    { 23, 23, SPECIES_TOGEPI },
-    { 25, 25, SPECIES_TOGEPI },
-    { 26, 26, SPECIES_SABLEYE },
-    { 26, 26, SPECIES_DEDENNE },
-    { 27, 27, SPECIES_BULBASAUR },
+    { 24, 24, SPECIES_TOGEPI },
+    { 22, 22, SPECIES_SABLEYE },
     { 23, 23, SPECIES_ROTOM },
-    { 28, 28, SPECIES_QWILFISH_HISUI },
+    { 25, 25, SPECIES_DEDENNE },
+    { 26, 26, SPECIES_QWILFISH_HISUI },
+    { 26, 26, SPECIES_BULBASAUR },
+    { 27, 27, SPECIES_TOGEPI },
     { 23, 23, SPECIES_PONYTA_GALAR },
-    { 30, 30, SPECIES_PAWNIARD },
+    { 28, 28, SPECIES_SPRITZEE },
+    { 23, 23, SPECIES_TOGEPI },
+    { 30, 30, SPECIES_ZORUA_HISUI },
 };
 
 const struct WildPokemonInfo sRoute12_LeafGreen_Night_LandMonsInfo = { 21, sRoute12_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute12_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SKRELP },
-    { 10, 20, SPECIES_FRILLISH },
+    { 5, 10, SPECIES_QWILFISH },
+    { 10, 20, SPECIES_SNEASEL },
     { 20, 30, SPECIES_SMOOCHUM },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute12_LeafGreen_Night_WaterMonsInfo = { 2, sRoute12_LeafGreen_Night_WaterMons };
@@ -17430,29 +17430,29 @@ const struct WildPokemonInfo sRoute13_FireRed_FishingMonsInfo = { 20, sRoute13_F
 #ifdef FIRERED
 const struct WildPokemon sRoute13_FireRed_Evening_LandMons[] =
 {
-    { 24, 24, SPECIES_PINCURCHIN },
-    { 24, 24, SPECIES_SMEARGLE },
-    { 22, 22, SPECIES_TAILLOW },
-    { 27, 27, SPECIES_GROOKEY },
-    { 25, 25, SPECIES_KECLEON },
-    { 26, 26, SPECIES_TURTWIG },
-    { 26, 26, SPECIES_SKIDDO },
-    { 25, 25, SPECIES_PLUSLE },
-    { 29, 29, SPECIES_GROOKEY },
-    { 28, 28, SPECIES_SIZZLIPEDE },
-    { 29, 29, SPECIES_HAPPINY },
-    { 30, 30, SPECIES_PINSIR },
+    { 24, 24, SPECIES_PLUSLE },
+    { 24, 24, SPECIES_SNIVY },
+    { 22, 22, SPECIES_VOLTORB_HISUI },
+    { 27, 27, SPECIES_TURTWIG },
+    { 25, 25, SPECIES_SPRIGATITO },
+    { 26, 26, SPECIES_PLUSLE },
+    { 26, 26, SPECIES_JOLTIK },
+    { 25, 25, SPECIES_TEDDIURSA },
+    { 29, 29, SPECIES_SENTRET },
+    { 28, 28, SPECIES_CHATOT },
+    { 29, 29, SPECIES_PICHU },
+    { 30, 30, SPECIES_LITLEO },
 };
 
 const struct WildPokemonInfo sRoute13_FireRed_Evening_LandMonsInfo = { 21, sRoute13_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute13_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_CRYOGONAL },
-    { 10, 20, SPECIES_CLAMPERL },
-    { 20, 30, SPECIES_SWINUB },
-    { 30, 35, SPECIES_SURSKIT },
-    { 35, 40, SPECIES_CORSOLA },
+    { 5, 10, SPECIES_TOTODILE },
+    { 10, 20, SPECIES_SNORUNT },
+    { 20, 30, SPECIES_DELIBIRD },
+    { 30, 35, SPECIES_CLAMPERL },
+    { 35, 40, SPECIES_WINGULL },
 };
 
 const struct WildPokemonInfo sRoute13_FireRed_Evening_WaterMonsInfo = { 2, sRoute13_FireRed_Evening_WaterMons };
@@ -17461,28 +17461,28 @@ const struct WildPokemonInfo sRoute13_FireRed_Evening_WaterMonsInfo = { 2, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute13_FireRed_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_ZIGZAGOON_GALAR },
-    { 24, 24, SPECIES_IMPIDIMP },
-    { 22, 22, SPECIES_WYNAUT },
-    { 27, 27, SPECIES_ZIGZAGOON_GALAR },
-    { 25, 25, SPECIES_MUNNA },
-    { 26, 26, SPECIES_BUDEW },
-    { 26, 26, SPECIES_GULPIN },
-    { 25, 25, SPECIES_SHROODLE },
-    { 29, 29, SPECIES_DRIFLOON },
-    { 28, 28, SPECIES_CROAGUNK },
-    { 29, 29, SPECIES_FIDOUGH },
-    { 30, 30, SPECIES_MURKROW },
+    { 24, 24, SPECIES_COTTONEE },
+    { 24, 24, SPECIES_GOLETT },
+    { 22, 22, SPECIES_SCRAGGY },
+    { 27, 27, SPECIES_PAWNIARD },
+    { 25, 25, SPECIES_SANDILE },
+    { 26, 26, SPECIES_BELLSPROUT },
+    { 26, 26, SPECIES_NICKIT },
+    { 25, 25, SPECIES_BALTOY },
+    { 29, 29, SPECIES_BRONZOR },
+    { 28, 28, SPECIES_STUNKY },
+    { 29, 29, SPECIES_PHANTUMP },
+    { 30, 30, SPECIES_INKAY },
 };
 
 const struct WildPokemonInfo sRoute13_FireRed_Night_LandMonsInfo = { 21, sRoute13_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute13_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_CARVANHA },
+    { 5, 10, SPECIES_SMOOCHUM },
     { 10, 20, SPECIES_SLOWPOKE },
-    { 20, 30, SPECIES_SKRELP },
-    { 30, 35, SPECIES_MAREANIE },
+    { 20, 30, SPECIES_MAREANIE },
+    { 30, 35, SPECIES_SKRELP },
     { 35, 40, SPECIES_QWILFISH },
 };
 
@@ -17539,29 +17539,29 @@ const struct WildPokemonInfo sRoute13_LeafGreen_FishingMonsInfo = { 20, sRoute13
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute13_LeafGreen_Evening_LandMons[] =
 {
-    { 24, 24, SPECIES_PINCURCHIN },
-    { 24, 24, SPECIES_SMEARGLE },
-    { 22, 22, SPECIES_TAILLOW },
-    { 27, 27, SPECIES_GROOKEY },
-    { 25, 25, SPECIES_KECLEON },
-    { 26, 26, SPECIES_TURTWIG },
-    { 26, 26, SPECIES_SKIDDO },
-    { 25, 25, SPECIES_PLUSLE },
-    { 29, 29, SPECIES_GROOKEY },
-    { 28, 28, SPECIES_SIZZLIPEDE },
-    { 29, 29, SPECIES_HAPPINY },
-    { 30, 30, SPECIES_PINSIR },
+    { 24, 24, SPECIES_PLUSLE },
+    { 24, 24, SPECIES_SNIVY },
+    { 22, 22, SPECIES_VOLTORB_HISUI },
+    { 27, 27, SPECIES_TURTWIG },
+    { 25, 25, SPECIES_SPRIGATITO },
+    { 26, 26, SPECIES_PLUSLE },
+    { 26, 26, SPECIES_JOLTIK },
+    { 25, 25, SPECIES_TEDDIURSA },
+    { 29, 29, SPECIES_SENTRET },
+    { 28, 28, SPECIES_CHATOT },
+    { 29, 29, SPECIES_PICHU },
+    { 30, 30, SPECIES_LITLEO },
 };
 
 const struct WildPokemonInfo sRoute13_LeafGreen_Evening_LandMonsInfo = { 21, sRoute13_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute13_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_CRYOGONAL },
-    { 10, 20, SPECIES_CLAMPERL },
-    { 20, 30, SPECIES_SWINUB },
-    { 30, 35, SPECIES_SURSKIT },
-    { 35, 40, SPECIES_CORSOLA },
+    { 5, 10, SPECIES_TOTODILE },
+    { 10, 20, SPECIES_SNORUNT },
+    { 20, 30, SPECIES_DELIBIRD },
+    { 30, 35, SPECIES_CLAMPERL },
+    { 35, 40, SPECIES_WINGULL },
 };
 
 const struct WildPokemonInfo sRoute13_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute13_LeafGreen_Evening_WaterMons };
@@ -17570,28 +17570,28 @@ const struct WildPokemonInfo sRoute13_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute13_LeafGreen_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_ZIGZAGOON_GALAR },
-    { 24, 24, SPECIES_IMPIDIMP },
-    { 22, 22, SPECIES_WYNAUT },
-    { 27, 27, SPECIES_ZIGZAGOON_GALAR },
-    { 25, 25, SPECIES_MUNNA },
-    { 26, 26, SPECIES_BUDEW },
-    { 26, 26, SPECIES_GULPIN },
-    { 25, 25, SPECIES_SHROODLE },
-    { 29, 29, SPECIES_DRIFLOON },
-    { 28, 28, SPECIES_CROAGUNK },
-    { 29, 29, SPECIES_FIDOUGH },
-    { 30, 30, SPECIES_MURKROW },
+    { 24, 24, SPECIES_COTTONEE },
+    { 24, 24, SPECIES_GOLETT },
+    { 22, 22, SPECIES_SCRAGGY },
+    { 27, 27, SPECIES_PAWNIARD },
+    { 25, 25, SPECIES_SANDILE },
+    { 26, 26, SPECIES_BELLSPROUT },
+    { 26, 26, SPECIES_NICKIT },
+    { 25, 25, SPECIES_BALTOY },
+    { 29, 29, SPECIES_BRONZOR },
+    { 28, 28, SPECIES_STUNKY },
+    { 29, 29, SPECIES_PHANTUMP },
+    { 30, 30, SPECIES_INKAY },
 };
 
 const struct WildPokemonInfo sRoute13_LeafGreen_Night_LandMonsInfo = { 21, sRoute13_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute13_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_CARVANHA },
+    { 5, 10, SPECIES_SMOOCHUM },
     { 10, 20, SPECIES_SLOWPOKE },
-    { 20, 30, SPECIES_SKRELP },
-    { 30, 35, SPECIES_MAREANIE },
+    { 20, 30, SPECIES_MAREANIE },
+    { 30, 35, SPECIES_SKRELP },
     { 35, 40, SPECIES_QWILFISH },
 };
 
@@ -17622,17 +17622,17 @@ const struct WildPokemonInfo sRoute14_FireRed_LandMonsInfo = { 21, sRoute14_Fire
 const struct WildPokemon sRoute14_FireRed_Evening_LandMons[] =
 {
     { 24, 24, SPECIES_CHIKORITA },
-    { 24, 24, SPECIES_WATTREL },
-    { 22, 22, SPECIES_COMBEE },
-    { 23, 23, SPECIES_SEEDOT },
-    { 27, 27, SPECIES_SPRIGATITO },
-    { 26, 26, SPECIES_PINECO },
-    { 26, 26, SPECIES_CHESPIN },
-    { 30, 30, SPECIES_PINCURCHIN },
-    { 23, 23, SPECIES_EEVEE },
-    { 29, 29, SPECIES_BLIPBUG },
-    { 23, 23, SPECIES_CHIKORITA },
-    { 29, 29, SPECIES_GOSSIFLEUR },
+    { 24, 24, SPECIES_ROWLET },
+    { 22, 22, SPECIES_TAILLOW },
+    { 23, 23, SPECIES_TURTWIG },
+    { 27, 27, SPECIES_FARFETCHD },
+    { 26, 26, SPECIES_SUNKERN },
+    { 26, 26, SPECIES_CHIKORITA },
+    { 30, 30, SPECIES_PINSIR },
+    { 23, 23, SPECIES_SCATTERBUG },
+    { 29, 29, SPECIES_SIZZLIPEDE },
+    { 23, 23, SPECIES_SKIDDO },
+    { 29, 29, SPECIES_PORYGON },
 };
 
 const struct WildPokemonInfo sRoute14_FireRed_Evening_LandMonsInfo = { 21, sRoute14_FireRed_Evening_LandMons };
@@ -17641,18 +17641,18 @@ const struct WildPokemonInfo sRoute14_FireRed_Evening_LandMonsInfo = { 21, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute14_FireRed_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_TOGEPI },
-    { 24, 24, SPECIES_NATU },
-    { 22, 22, SPECIES_SCRAGGY },
-    { 23, 23, SPECIES_COTTONEE },
-    { 27, 27, SPECIES_TOXEL },
-    { 26, 26, SPECIES_TRUBBISH },
-    { 26, 26, SPECIES_MILCERY },
-    { 30, 30, SPECIES_SANDILE },
-    { 23, 23, SPECIES_RALTS },
-    { 29, 29, SPECIES_ELGYEM },
-    { 23, 23, SPECIES_NICKIT },
-    { 29, 29, SPECIES_DEDENNE },
+    { 24, 24, SPECIES_FLABEBE },
+    { 24, 24, SPECIES_WYNAUT },
+    { 22, 22, SPECIES_RATTATA_ALOLA },
+    { 23, 23, SPECIES_GULPIN },
+    { 27, 27, SPECIES_SPOINK },
+    { 26, 26, SPECIES_MEOWTH_ALOLA },
+    { 26, 26, SPECIES_TOXEL },
+    { 30, 30, SPECIES_FIDOUGH },
+    { 23, 23, SPECIES_MUNNA },
+    { 29, 29, SPECIES_SHROODLE },
+    { 23, 23, SPECIES_WOOPER_PALDEA },
+    { 29, 29, SPECIES_DRIFLOON },
 };
 
 const struct WildPokemonInfo sRoute14_FireRed_Night_LandMonsInfo = { 21, sRoute14_FireRed_Night_LandMons };
@@ -17682,17 +17682,17 @@ const struct WildPokemonInfo sRoute14_LeafGreen_LandMonsInfo = { 21, sRoute14_Le
 const struct WildPokemon sRoute14_LeafGreen_Evening_LandMons[] =
 {
     { 24, 24, SPECIES_CHIKORITA },
-    { 24, 24, SPECIES_WATTREL },
-    { 22, 22, SPECIES_COMBEE },
-    { 23, 23, SPECIES_SEEDOT },
-    { 27, 27, SPECIES_SPRIGATITO },
-    { 26, 26, SPECIES_PINECO },
-    { 26, 26, SPECIES_CHESPIN },
-    { 30, 30, SPECIES_PINCURCHIN },
-    { 23, 23, SPECIES_EEVEE },
-    { 29, 29, SPECIES_BLIPBUG },
-    { 23, 23, SPECIES_CHIKORITA },
-    { 29, 29, SPECIES_GOSSIFLEUR },
+    { 24, 24, SPECIES_ROWLET },
+    { 22, 22, SPECIES_TAILLOW },
+    { 23, 23, SPECIES_TURTWIG },
+    { 27, 27, SPECIES_FARFETCHD },
+    { 26, 26, SPECIES_SUNKERN },
+    { 26, 26, SPECIES_CHIKORITA },
+    { 30, 30, SPECIES_PINSIR },
+    { 23, 23, SPECIES_SCATTERBUG },
+    { 29, 29, SPECIES_SIZZLIPEDE },
+    { 23, 23, SPECIES_SKIDDO },
+    { 29, 29, SPECIES_PORYGON },
 };
 
 const struct WildPokemonInfo sRoute14_LeafGreen_Evening_LandMonsInfo = { 21, sRoute14_LeafGreen_Evening_LandMons };
@@ -17701,18 +17701,18 @@ const struct WildPokemonInfo sRoute14_LeafGreen_Evening_LandMonsInfo = { 21, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute14_LeafGreen_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_TOGEPI },
-    { 24, 24, SPECIES_NATU },
-    { 22, 22, SPECIES_SCRAGGY },
-    { 23, 23, SPECIES_COTTONEE },
-    { 27, 27, SPECIES_TOXEL },
-    { 26, 26, SPECIES_TRUBBISH },
-    { 26, 26, SPECIES_MILCERY },
-    { 30, 30, SPECIES_SANDILE },
-    { 23, 23, SPECIES_RALTS },
-    { 29, 29, SPECIES_ELGYEM },
-    { 23, 23, SPECIES_NICKIT },
-    { 29, 29, SPECIES_DEDENNE },
+    { 24, 24, SPECIES_FLABEBE },
+    { 24, 24, SPECIES_WYNAUT },
+    { 22, 22, SPECIES_RATTATA_ALOLA },
+    { 23, 23, SPECIES_GULPIN },
+    { 27, 27, SPECIES_SPOINK },
+    { 26, 26, SPECIES_MEOWTH_ALOLA },
+    { 26, 26, SPECIES_TOXEL },
+    { 30, 30, SPECIES_FIDOUGH },
+    { 23, 23, SPECIES_MUNNA },
+    { 29, 29, SPECIES_SHROODLE },
+    { 23, 23, SPECIES_WOOPER_PALDEA },
+    { 29, 29, SPECIES_DRIFLOON },
 };
 
 const struct WildPokemonInfo sRoute14_LeafGreen_Night_LandMonsInfo = { 21, sRoute14_LeafGreen_Night_LandMons };
@@ -17741,18 +17741,18 @@ const struct WildPokemonInfo sRoute15_FireRed_LandMonsInfo = { 21, sRoute15_Fire
 #ifdef FIRERED
 const struct WildPokemon sRoute15_FireRed_Evening_LandMons[] =
 {
-    { 24, 24, SPECIES_MINUN },
-    { 24, 24, SPECIES_PANSAGE },
-    { 22, 22, SPECIES_LILEEP },
-    { 27, 27, SPECIES_BLITZLE },
-    { 25, 25, SPECIES_DUNSPARCE },
-    { 26, 26, SPECIES_BIDOOF },
-    { 26, 26, SPECIES_AUDINO },
-    { 25, 25, SPECIES_MUNCHLAX },
-    { 29, 29, SPECIES_ROWLET },
-    { 28, 28, SPECIES_MINUN },
-    { 29, 29, SPECIES_SENTRET },
-    { 30, 30, SPECIES_TREECKO },
+    { 24, 24, SPECIES_PACHIRISU },
+    { 24, 24, SPECIES_YUNGOOS },
+    { 22, 22, SPECIES_GOSSIFLEUR },
+    { 27, 27, SPECIES_SHINX },
+    { 25, 25, SPECIES_PETILIL },
+    { 26, 26, SPECIES_KARRABLAST },
+    { 26, 26, SPECIES_GLAMEOW },
+    { 25, 25, SPECIES_YANMA },
+    { 29, 29, SPECIES_GRUBBIN },
+    { 28, 28, SPECIES_CASTFORM_NORMAL },
+    { 29, 29, SPECIES_KRICKETOT },
+    { 30, 30, SPECIES_TANDEMAUS },
 };
 
 const struct WildPokemonInfo sRoute15_FireRed_Evening_LandMonsInfo = { 21, sRoute15_FireRed_Evening_LandMons };
@@ -17761,18 +17761,18 @@ const struct WildPokemonInfo sRoute15_FireRed_Evening_LandMonsInfo = { 21, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute15_FireRed_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_IGGLYBUFF },
-    { 24, 24, SPECIES_SANDYGAST },
-    { 22, 22, SPECIES_PONYTA_GALAR },
-    { 27, 27, SPECIES_SLOWPOKE_GALAR },
-    { 25, 25, SPECIES_INKAY },
-    { 26, 26, SPECIES_QWILFISH_HISUI },
-    { 26, 26, SPECIES_AZURILL },
-    { 25, 25, SPECIES_FLITTLE },
-    { 29, 29, SPECIES_TOGEPI },
-    { 28, 28, SPECIES_MASCHIFF },
-    { 29, 29, SPECIES_CHINGLING },
-    { 30, 30, SPECIES_FOONGUS },
+    { 24, 24, SPECIES_SOLOSIS },
+    { 24, 24, SPECIES_SNEASEL },
+    { 22, 22, SPECIES_BULBASAUR },
+    { 27, 27, SPECIES_PONYTA_GALAR },
+    { 25, 25, SPECIES_MASCHIFF },
+    { 26, 26, SPECIES_BUDEW },
+    { 26, 26, SPECIES_CHINGLING },
+    { 25, 25, SPECIES_DEDENNE },
+    { 29, 29, SPECIES_SOLOSIS },
+    { 28, 28, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 29, 29, SPECIES_HATENNA },
+    { 30, 30, SPECIES_FLABEBE },
 };
 
 const struct WildPokemonInfo sRoute15_FireRed_Night_LandMonsInfo = { 21, sRoute15_FireRed_Night_LandMons };
@@ -17801,18 +17801,18 @@ const struct WildPokemonInfo sRoute15_LeafGreen_LandMonsInfo = { 21, sRoute15_Le
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute15_LeafGreen_Evening_LandMons[] =
 {
-    { 24, 24, SPECIES_MINUN },
-    { 24, 24, SPECIES_PANSAGE },
-    { 22, 22, SPECIES_LILEEP },
-    { 27, 27, SPECIES_BLITZLE },
-    { 25, 25, SPECIES_DUNSPARCE },
-    { 26, 26, SPECIES_BIDOOF },
-    { 26, 26, SPECIES_AUDINO },
-    { 25, 25, SPECIES_MUNCHLAX },
-    { 29, 29, SPECIES_ROWLET },
-    { 28, 28, SPECIES_MINUN },
-    { 29, 29, SPECIES_SENTRET },
-    { 30, 30, SPECIES_TREECKO },
+    { 24, 24, SPECIES_PACHIRISU },
+    { 24, 24, SPECIES_YUNGOOS },
+    { 22, 22, SPECIES_GOSSIFLEUR },
+    { 27, 27, SPECIES_SHINX },
+    { 25, 25, SPECIES_PETILIL },
+    { 26, 26, SPECIES_KARRABLAST },
+    { 26, 26, SPECIES_GLAMEOW },
+    { 25, 25, SPECIES_YANMA },
+    { 29, 29, SPECIES_GRUBBIN },
+    { 28, 28, SPECIES_CASTFORM_NORMAL },
+    { 29, 29, SPECIES_KRICKETOT },
+    { 30, 30, SPECIES_TANDEMAUS },
 };
 
 const struct WildPokemonInfo sRoute15_LeafGreen_Evening_LandMonsInfo = { 21, sRoute15_LeafGreen_Evening_LandMons };
@@ -17821,18 +17821,18 @@ const struct WildPokemonInfo sRoute15_LeafGreen_Evening_LandMonsInfo = { 21, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute15_LeafGreen_Night_LandMons[] =
 {
-    { 24, 24, SPECIES_IGGLYBUFF },
-    { 24, 24, SPECIES_SANDYGAST },
-    { 22, 22, SPECIES_PONYTA_GALAR },
-    { 27, 27, SPECIES_SLOWPOKE_GALAR },
-    { 25, 25, SPECIES_INKAY },
-    { 26, 26, SPECIES_QWILFISH_HISUI },
-    { 26, 26, SPECIES_AZURILL },
-    { 25, 25, SPECIES_FLITTLE },
-    { 29, 29, SPECIES_TOGEPI },
-    { 28, 28, SPECIES_MASCHIFF },
-    { 29, 29, SPECIES_CHINGLING },
-    { 30, 30, SPECIES_FOONGUS },
+    { 24, 24, SPECIES_SOLOSIS },
+    { 24, 24, SPECIES_SNEASEL },
+    { 22, 22, SPECIES_BULBASAUR },
+    { 27, 27, SPECIES_PONYTA_GALAR },
+    { 25, 25, SPECIES_MASCHIFF },
+    { 26, 26, SPECIES_BUDEW },
+    { 26, 26, SPECIES_CHINGLING },
+    { 25, 25, SPECIES_DEDENNE },
+    { 29, 29, SPECIES_SOLOSIS },
+    { 28, 28, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 29, 29, SPECIES_HATENNA },
+    { 30, 30, SPECIES_FLABEBE },
 };
 
 const struct WildPokemonInfo sRoute15_LeafGreen_Night_LandMonsInfo = { 21, sRoute15_LeafGreen_Night_LandMons };
@@ -17861,18 +17861,18 @@ const struct WildPokemonInfo sRoute16_FireRed_LandMonsInfo = { 21, sRoute16_Fire
 #ifdef FIRERED
 const struct WildPokemon sRoute16_FireRed_Evening_LandMons[] =
 {
-    { 20, 20, SPECIES_DUNSPARCE },
-    { 18, 18, SPECIES_SKITTY },
-    { 18, 18, SPECIES_SEWADDLE },
+    { 20, 20, SPECIES_HAPPINY },
+    { 18, 18, SPECIES_TREECKO },
+    { 18, 18, SPECIES_PETILIL },
     { 20, 20, SPECIES_SNIVY },
-    { 22, 22, SPECIES_SMEARGLE },
-    { 20, 20, SPECIES_PACHIRISU },
-    { 22, 22, SPECIES_TEDDIURSA },
-    { 22, 22, SPECIES_MAREEP },
-    { 18, 18, SPECIES_PORYGON },
-    { 23, 23, SPECIES_CACNEA },
-    { 18, 18, SPECIES_FLETCHLING },
-    { 25, 25, SPECIES_AIPOM },
+    { 22, 22, SPECIES_WURMPLE },
+    { 20, 20, SPECIES_LICKITUNG },
+    { 22, 22, SPECIES_CHESPIN },
+    { 22, 22, SPECIES_BIDOOF },
+    { 18, 18, SPECIES_TYNAMO },
+    { 23, 23, SPECIES_MAREEP },
+    { 18, 18, SPECIES_GROOKEY },
+    { 25, 25, SPECIES_ROWLET },
 };
 
 const struct WildPokemonInfo sRoute16_FireRed_Evening_LandMonsInfo = { 21, sRoute16_FireRed_Evening_LandMons };
@@ -17882,17 +17882,17 @@ const struct WildPokemonInfo sRoute16_FireRed_Evening_LandMonsInfo = { 21, sRout
 const struct WildPokemon sRoute16_FireRed_Night_LandMons[] =
 {
     { 20, 20, SPECIES_NICKIT },
-    { 18, 18, SPECIES_ZORUA_HISUI },
-    { 18, 18, SPECIES_VENIPEDE },
-    { 20, 20, SPECIES_ROTOM },
-    { 22, 22, SPECIES_MIME_JR },
-    { 20, 20, SPECIES_GRIMER_ALOLA },
-    { 22, 22, SPECIES_RATTATA_ALOLA },
-    { 22, 22, SPECIES_PHANTUMP },
-    { 18, 18, SPECIES_PURRLOIN },
-    { 23, 23, SPECIES_MAWILE },
-    { 18, 18, SPECIES_SKORUPI },
-    { 25, 25, SPECIES_ZORUA },
+    { 18, 18, SPECIES_IMPIDIMP },
+    { 18, 18, SPECIES_SALANDIT },
+    { 20, 20, SPECIES_MORPEKO_FULL_BELLY },
+    { 22, 22, SPECIES_SLOWPOKE_GALAR },
+    { 20, 20, SPECIES_BRAMBLIN },
+    { 22, 22, SPECIES_COTTONEE },
+    { 22, 22, SPECIES_PURRLOIN },
+    { 18, 18, SPECIES_SABLEYE },
+    { 23, 23, SPECIES_AZURILL },
+    { 18, 18, SPECIES_ZIGZAGOON_GALAR },
+    { 25, 25, SPECIES_ROTOM },
 };
 
 const struct WildPokemonInfo sRoute16_FireRed_Night_LandMonsInfo = { 21, sRoute16_FireRed_Night_LandMons };
@@ -17921,18 +17921,18 @@ const struct WildPokemonInfo sRoute16_LeafGreen_LandMonsInfo = { 21, sRoute16_Le
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute16_LeafGreen_Evening_LandMons[] =
 {
-    { 20, 20, SPECIES_DUNSPARCE },
-    { 18, 18, SPECIES_SKITTY },
-    { 18, 18, SPECIES_SEWADDLE },
+    { 20, 20, SPECIES_HAPPINY },
+    { 18, 18, SPECIES_TREECKO },
+    { 18, 18, SPECIES_PETILIL },
     { 20, 20, SPECIES_SNIVY },
-    { 22, 22, SPECIES_SMEARGLE },
-    { 20, 20, SPECIES_PACHIRISU },
-    { 22, 22, SPECIES_TEDDIURSA },
-    { 22, 22, SPECIES_MAREEP },
-    { 18, 18, SPECIES_PORYGON },
-    { 23, 23, SPECIES_CACNEA },
-    { 18, 18, SPECIES_FLETCHLING },
-    { 25, 25, SPECIES_AIPOM },
+    { 22, 22, SPECIES_WURMPLE },
+    { 20, 20, SPECIES_LICKITUNG },
+    { 22, 22, SPECIES_CHESPIN },
+    { 22, 22, SPECIES_BIDOOF },
+    { 18, 18, SPECIES_TYNAMO },
+    { 23, 23, SPECIES_MAREEP },
+    { 18, 18, SPECIES_GROOKEY },
+    { 25, 25, SPECIES_ROWLET },
 };
 
 const struct WildPokemonInfo sRoute16_LeafGreen_Evening_LandMonsInfo = { 21, sRoute16_LeafGreen_Evening_LandMons };
@@ -17942,17 +17942,17 @@ const struct WildPokemonInfo sRoute16_LeafGreen_Evening_LandMonsInfo = { 21, sRo
 const struct WildPokemon sRoute16_LeafGreen_Night_LandMons[] =
 {
     { 20, 20, SPECIES_NICKIT },
-    { 18, 18, SPECIES_ZORUA_HISUI },
-    { 18, 18, SPECIES_VENIPEDE },
-    { 20, 20, SPECIES_ROTOM },
-    { 22, 22, SPECIES_MIME_JR },
-    { 20, 20, SPECIES_GRIMER_ALOLA },
-    { 22, 22, SPECIES_RATTATA_ALOLA },
-    { 22, 22, SPECIES_PHANTUMP },
-    { 18, 18, SPECIES_PURRLOIN },
-    { 23, 23, SPECIES_MAWILE },
-    { 18, 18, SPECIES_SKORUPI },
-    { 25, 25, SPECIES_ZORUA },
+    { 18, 18, SPECIES_IMPIDIMP },
+    { 18, 18, SPECIES_SALANDIT },
+    { 20, 20, SPECIES_MORPEKO_FULL_BELLY },
+    { 22, 22, SPECIES_SLOWPOKE_GALAR },
+    { 20, 20, SPECIES_BRAMBLIN },
+    { 22, 22, SPECIES_COTTONEE },
+    { 22, 22, SPECIES_PURRLOIN },
+    { 18, 18, SPECIES_SABLEYE },
+    { 23, 23, SPECIES_AZURILL },
+    { 18, 18, SPECIES_ZIGZAGOON_GALAR },
+    { 25, 25, SPECIES_ROTOM },
 };
 
 const struct WildPokemonInfo sRoute16_LeafGreen_Night_LandMonsInfo = { 21, sRoute16_LeafGreen_Night_LandMons };
@@ -17981,18 +17981,18 @@ const struct WildPokemonInfo sRoute17_FireRed_LandMonsInfo = { 21, sRoute17_Fire
 #ifdef FIRERED
 const struct WildPokemon sRoute17_FireRed_Evening_LandMons[] =
 {
-    { 20, 20, SPECIES_TEDDIURSA },
-    { 24, 24, SPECIES_SPRIGATITO },
-    { 22, 22, SPECIES_RUFFLET },
-    { 26, 26, SPECIES_TAILLOW },
-    { 25, 25, SPECIES_SEWADDLE },
-    { 27, 27, SPECIES_SKIDDO },
-    { 28, 28, SPECIES_WOOLOO },
-    { 29, 29, SPECIES_EMOLGA },
-    { 22, 22, SPECIES_LARVESTA },
-    { 25, 25, SPECIES_TANDEMAUS },
-    { 22, 22, SPECIES_LICKITUNG },
-    { 27, 27, SPECIES_PANSAGE },
+    { 20, 20, SPECIES_CHESPIN },
+    { 24, 24, SPECIES_PINSIR },
+    { 22, 22, SPECIES_SEEDOT },
+    { 26, 26, SPECIES_SEWADDLE },
+    { 25, 25, SPECIES_DUNSPARCE },
+    { 27, 27, SPECIES_PINCURCHIN },
+    { 28, 28, SPECIES_TAROUNTULA },
+    { 29, 29, SPECIES_EEVEE },
+    { 22, 22, SPECIES_AUDINO },
+    { 25, 25, SPECIES_MUNCHLAX },
+    { 22, 22, SPECIES_MINUN },
+    { 27, 27, SPECIES_FOMANTIS },
 };
 
 const struct WildPokemonInfo sRoute17_FireRed_Evening_LandMonsInfo = { 21, sRoute17_FireRed_Evening_LandMons };
@@ -18001,18 +18001,18 @@ const struct WildPokemonInfo sRoute17_FireRed_Evening_LandMonsInfo = { 21, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute17_FireRed_Night_LandMons[] =
 {
-    { 20, 20, SPECIES_PONYTA_GALAR },
-    { 24, 24, SPECIES_SPRITZEE },
-    { 22, 22, SPECIES_SOLOSIS },
-    { 26, 26, SPECIES_YAMASK_GALAR },
-    { 25, 25, SPECIES_ZORUA_HISUI },
-    { 27, 27, SPECIES_GOTHITA },
-    { 28, 28, SPECIES_IGGLYBUFF },
-    { 29, 29, SPECIES_BELLSPROUT },
-    { 22, 22, SPECIES_SNEASEL_HISUI },
-    { 25, 25, SPECIES_BULBASAUR },
-    { 22, 22, SPECIES_MEOWTH_ALOLA },
-    { 27, 27, SPECIES_TINKATINK },
+    { 20, 20, SPECIES_GOTHITA },
+    { 24, 24, SPECIES_NATU },
+    { 22, 22, SPECIES_IGGLYBUFF },
+    { 26, 26, SPECIES_MORELULL },
+    { 25, 25, SPECIES_SWIRLIX },
+    { 27, 27, SPECIES_QWILFISH_HISUI },
+    { 28, 28, SPECIES_SKORUPI },
+    { 29, 29, SPECIES_SPINARAK },
+    { 22, 22, SPECIES_ESPURR },
+    { 25, 25, SPECIES_HOUNDOUR },
+    { 22, 22, SPECIES_GRIMER_ALOLA },
+    { 27, 27, SPECIES_VENIPEDE },
 };
 
 const struct WildPokemonInfo sRoute17_FireRed_Night_LandMonsInfo = { 21, sRoute17_FireRed_Night_LandMons };
@@ -18041,18 +18041,18 @@ const struct WildPokemonInfo sRoute17_LeafGreen_LandMonsInfo = { 21, sRoute17_Le
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute17_LeafGreen_Evening_LandMons[] =
 {
-    { 20, 20, SPECIES_TEDDIURSA },
-    { 24, 24, SPECIES_SPRIGATITO },
-    { 22, 22, SPECIES_RUFFLET },
-    { 26, 26, SPECIES_TAILLOW },
-    { 25, 25, SPECIES_SEWADDLE },
-    { 27, 27, SPECIES_SKIDDO },
-    { 28, 28, SPECIES_WOOLOO },
-    { 29, 29, SPECIES_EMOLGA },
-    { 22, 22, SPECIES_LARVESTA },
-    { 25, 25, SPECIES_TANDEMAUS },
-    { 22, 22, SPECIES_LICKITUNG },
-    { 27, 27, SPECIES_PANSAGE },
+    { 20, 20, SPECIES_CHESPIN },
+    { 24, 24, SPECIES_PINSIR },
+    { 22, 22, SPECIES_SEEDOT },
+    { 26, 26, SPECIES_SEWADDLE },
+    { 25, 25, SPECIES_DUNSPARCE },
+    { 27, 27, SPECIES_PINCURCHIN },
+    { 28, 28, SPECIES_TAROUNTULA },
+    { 29, 29, SPECIES_EEVEE },
+    { 22, 22, SPECIES_AUDINO },
+    { 25, 25, SPECIES_MUNCHLAX },
+    { 22, 22, SPECIES_MINUN },
+    { 27, 27, SPECIES_FOMANTIS },
 };
 
 const struct WildPokemonInfo sRoute17_LeafGreen_Evening_LandMonsInfo = { 21, sRoute17_LeafGreen_Evening_LandMons };
@@ -18061,18 +18061,18 @@ const struct WildPokemonInfo sRoute17_LeafGreen_Evening_LandMonsInfo = { 21, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute17_LeafGreen_Night_LandMons[] =
 {
-    { 20, 20, SPECIES_PONYTA_GALAR },
-    { 24, 24, SPECIES_SPRITZEE },
-    { 22, 22, SPECIES_SOLOSIS },
-    { 26, 26, SPECIES_YAMASK_GALAR },
-    { 25, 25, SPECIES_ZORUA_HISUI },
-    { 27, 27, SPECIES_GOTHITA },
-    { 28, 28, SPECIES_IGGLYBUFF },
-    { 29, 29, SPECIES_BELLSPROUT },
-    { 22, 22, SPECIES_SNEASEL_HISUI },
-    { 25, 25, SPECIES_BULBASAUR },
-    { 22, 22, SPECIES_MEOWTH_ALOLA },
-    { 27, 27, SPECIES_TINKATINK },
+    { 20, 20, SPECIES_GOTHITA },
+    { 24, 24, SPECIES_NATU },
+    { 22, 22, SPECIES_IGGLYBUFF },
+    { 26, 26, SPECIES_MORELULL },
+    { 25, 25, SPECIES_SWIRLIX },
+    { 27, 27, SPECIES_QWILFISH_HISUI },
+    { 28, 28, SPECIES_SKORUPI },
+    { 29, 29, SPECIES_SPINARAK },
+    { 22, 22, SPECIES_ESPURR },
+    { 25, 25, SPECIES_HOUNDOUR },
+    { 22, 22, SPECIES_GRIMER_ALOLA },
+    { 27, 27, SPECIES_VENIPEDE },
 };
 
 const struct WildPokemonInfo sRoute17_LeafGreen_Night_LandMonsInfo = { 21, sRoute17_LeafGreen_Night_LandMons };
@@ -18101,18 +18101,18 @@ const struct WildPokemonInfo sRoute18_FireRed_LandMonsInfo = { 21, sRoute18_Fire
 #ifdef FIRERED
 const struct WildPokemon sRoute18_FireRed_Evening_LandMons[] =
 {
-    { 20, 20, SPECIES_EEVEE },
-    { 24, 24, SPECIES_NYMBLE },
+    { 20, 20, SPECIES_DUNSPARCE },
+    { 24, 24, SPECIES_SKITTY },
     { 22, 22, SPECIES_PIKIPEK },
-    { 26, 26, SPECIES_MINUN },
-    { 25, 25, SPECIES_SMEARGLE },
-    { 25, 25, SPECIES_CHATOT },
-    { 28, 28, SPECIES_SPRIGATITO },
+    { 26, 26, SPECIES_ELECTRIKE },
+    { 25, 25, SPECIES_BUNEARY },
+    { 25, 25, SPECIES_EMOLGA },
+    { 28, 28, SPECIES_SPINDA },
     { 29, 29, SPECIES_VOLTORB_HISUI },
-    { 22, 22, SPECIES_BOUNSWEET },
-    { 27, 27, SPECIES_FARFETCHD },
-    { 22, 22, SPECIES_PINECO },
-    { 29, 29, SPECIES_JOLTIK },
+    { 22, 22, SPECIES_TREECKO },
+    { 27, 27, SPECIES_PACHIRISU },
+    { 22, 22, SPECIES_HAPPINY },
+    { 29, 29, SPECIES_YUNGOOS },
 };
 
 const struct WildPokemonInfo sRoute18_FireRed_Evening_LandMonsInfo = { 21, sRoute18_FireRed_Evening_LandMons };
@@ -18121,18 +18121,18 @@ const struct WildPokemonInfo sRoute18_FireRed_Evening_LandMonsInfo = { 21, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute18_FireRed_Night_LandMons[] =
 {
-    { 20, 20, SPECIES_CLEFFA },
-    { 24, 24, SPECIES_SNUBBULL },
-    { 22, 22, SPECIES_MORELULL },
-    { 26, 26, SPECIES_WOOBAT },
-    { 25, 25, SPECIES_HATENNA },
-    { 25, 25, SPECIES_SPINARAK },
-    { 28, 28, SPECIES_BRAMBLIN },
-    { 29, 29, SPECIES_SABLEYE },
-    { 22, 22, SPECIES_CUTIEFLY },
-    { 27, 27, SPECIES_WOOPER_PALDEA },
-    { 22, 22, SPECIES_CLEFFA },
-    { 29, 29, SPECIES_STUNKY },
+    { 20, 20, SPECIES_QWILFISH_HISUI },
+    { 24, 24, SPECIES_ZORUA },
+    { 22, 22, SPECIES_PUMPKABOO_AVERAGE },
+    { 26, 26, SPECIES_FLITTLE },
+    { 25, 25, SPECIES_WYNAUT },
+    { 25, 25, SPECIES_SOLOSIS },
+    { 28, 28, SPECIES_SHROODLE },
+    { 29, 29, SPECIES_SANDYGAST },
+    { 22, 22, SPECIES_STUNKY },
+    { 27, 27, SPECIES_SPOINK },
+    { 22, 22, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 29, 29, SPECIES_VENIPEDE },
 };
 
 const struct WildPokemonInfo sRoute18_FireRed_Night_LandMonsInfo = { 21, sRoute18_FireRed_Night_LandMons };
@@ -18161,18 +18161,18 @@ const struct WildPokemonInfo sRoute18_LeafGreen_LandMonsInfo = { 21, sRoute18_Le
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute18_LeafGreen_Evening_LandMons[] =
 {
-    { 20, 20, SPECIES_EEVEE },
-    { 24, 24, SPECIES_NYMBLE },
+    { 20, 20, SPECIES_DUNSPARCE },
+    { 24, 24, SPECIES_SKITTY },
     { 22, 22, SPECIES_PIKIPEK },
-    { 26, 26, SPECIES_MINUN },
-    { 25, 25, SPECIES_SMEARGLE },
-    { 25, 25, SPECIES_CHATOT },
-    { 28, 28, SPECIES_SPRIGATITO },
+    { 26, 26, SPECIES_ELECTRIKE },
+    { 25, 25, SPECIES_BUNEARY },
+    { 25, 25, SPECIES_EMOLGA },
+    { 28, 28, SPECIES_SPINDA },
     { 29, 29, SPECIES_VOLTORB_HISUI },
-    { 22, 22, SPECIES_BOUNSWEET },
-    { 27, 27, SPECIES_FARFETCHD },
-    { 22, 22, SPECIES_PINECO },
-    { 29, 29, SPECIES_JOLTIK },
+    { 22, 22, SPECIES_TREECKO },
+    { 27, 27, SPECIES_PACHIRISU },
+    { 22, 22, SPECIES_HAPPINY },
+    { 29, 29, SPECIES_YUNGOOS },
 };
 
 const struct WildPokemonInfo sRoute18_LeafGreen_Evening_LandMonsInfo = { 21, sRoute18_LeafGreen_Evening_LandMons };
@@ -18181,18 +18181,18 @@ const struct WildPokemonInfo sRoute18_LeafGreen_Evening_LandMonsInfo = { 21, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute18_LeafGreen_Night_LandMons[] =
 {
-    { 20, 20, SPECIES_CLEFFA },
-    { 24, 24, SPECIES_SNUBBULL },
-    { 22, 22, SPECIES_MORELULL },
-    { 26, 26, SPECIES_WOOBAT },
-    { 25, 25, SPECIES_HATENNA },
-    { 25, 25, SPECIES_SPINARAK },
-    { 28, 28, SPECIES_BRAMBLIN },
-    { 29, 29, SPECIES_SABLEYE },
-    { 22, 22, SPECIES_CUTIEFLY },
-    { 27, 27, SPECIES_WOOPER_PALDEA },
-    { 22, 22, SPECIES_CLEFFA },
-    { 29, 29, SPECIES_STUNKY },
+    { 20, 20, SPECIES_QWILFISH_HISUI },
+    { 24, 24, SPECIES_ZORUA },
+    { 22, 22, SPECIES_PUMPKABOO_AVERAGE },
+    { 26, 26, SPECIES_FLITTLE },
+    { 25, 25, SPECIES_WYNAUT },
+    { 25, 25, SPECIES_SOLOSIS },
+    { 28, 28, SPECIES_SHROODLE },
+    { 29, 29, SPECIES_SANDYGAST },
+    { 22, 22, SPECIES_STUNKY },
+    { 27, 27, SPECIES_SPOINK },
+    { 22, 22, SPECIES_POLTCHAGEIST_COUNTERFEIT },
+    { 29, 29, SPECIES_VENIPEDE },
 };
 
 const struct WildPokemonInfo sRoute18_LeafGreen_Night_LandMonsInfo = { 21, sRoute18_LeafGreen_Night_LandMons };
@@ -18230,11 +18230,11 @@ const struct WildPokemonInfo sRoute19_FireRed_FishingMonsInfo = { 20, sRoute19_F
 #ifdef FIRERED
 const struct WildPokemon sRoute19_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_VANILLITE },
-    { 10, 20, SPECIES_BUIZEL },
-    { 20, 30, SPECIES_PANPOUR },
-    { 30, 35, SPECIES_CHEWTLE },
-    { 35, 40, SPECIES_SANDSHREW_ALOLA },
+    { 5, 10, SPECIES_SQUIRTLE },
+    { 10, 20, SPECIES_FINNEON },
+    { 20, 30, SPECIES_SHELLOS_WEST },
+    { 30, 35, SPECIES_LOTAD },
+    { 35, 40, SPECIES_CLAUNCHER },
 };
 
 const struct WildPokemonInfo sRoute19_FireRed_Evening_WaterMonsInfo = { 2, sRoute19_FireRed_Evening_WaterMons };
@@ -18243,11 +18243,11 @@ const struct WildPokemonInfo sRoute19_FireRed_Evening_WaterMonsInfo = { 2, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute19_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_FRILLISH },
-    { 10, 20, SPECIES_SKRELP },
+    { 5, 10, SPECIES_SNEASEL },
+    { 10, 20, SPECIES_FRILLISH },
     { 20, 30, SPECIES_CARVANHA },
-    { 30, 35, SPECIES_SLOWPOKE },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sRoute19_FireRed_Night_WaterMonsInfo = { 2, sRoute19_FireRed_Night_WaterMons };
@@ -18285,11 +18285,11 @@ const struct WildPokemonInfo sRoute19_LeafGreen_FishingMonsInfo = { 20, sRoute19
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute19_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_VANILLITE },
-    { 10, 20, SPECIES_BUIZEL },
-    { 20, 30, SPECIES_PANPOUR },
-    { 30, 35, SPECIES_CHEWTLE },
-    { 35, 40, SPECIES_SANDSHREW_ALOLA },
+    { 5, 10, SPECIES_SQUIRTLE },
+    { 10, 20, SPECIES_FINNEON },
+    { 20, 30, SPECIES_SHELLOS_WEST },
+    { 30, 35, SPECIES_LOTAD },
+    { 35, 40, SPECIES_CLAUNCHER },
 };
 
 const struct WildPokemonInfo sRoute19_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute19_LeafGreen_Evening_WaterMons };
@@ -18298,11 +18298,11 @@ const struct WildPokemonInfo sRoute19_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute19_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_FRILLISH },
-    { 10, 20, SPECIES_SKRELP },
+    { 5, 10, SPECIES_SNEASEL },
+    { 10, 20, SPECIES_FRILLISH },
     { 20, 30, SPECIES_CARVANHA },
-    { 30, 35, SPECIES_SLOWPOKE },
-    { 35, 40, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sRoute19_LeafGreen_Night_WaterMonsInfo = { 2, sRoute19_LeafGreen_Night_WaterMons };
@@ -18340,11 +18340,11 @@ const struct WildPokemonInfo sRoute20_FireRed_FishingMonsInfo = { 20, sRoute20_F
 #ifdef FIRERED
 const struct WildPokemon sRoute20_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_SQUIRTLE },
-    { 10, 20, SPECIES_DARUMAKA_GALAR },
-    { 20, 30, SPECIES_FROAKIE },
-    { 30, 35, SPECIES_WIMPOD },
-    { 35, 40, SPECIES_WINGULL },
+    { 5, 10, SPECIES_TYMPOLE },
+    { 10, 20, SPECIES_BUIZEL },
+    { 20, 30, SPECIES_CRYOGONAL },
+    { 30, 35, SPECIES_LUVDISC },
+    { 35, 40, SPECIES_DUCKLETT },
 };
 
 const struct WildPokemonInfo sRoute20_FireRed_Evening_WaterMonsInfo = { 2, sRoute20_FireRed_Evening_WaterMons };
@@ -18354,10 +18354,10 @@ const struct WildPokemonInfo sRoute20_FireRed_Evening_WaterMonsInfo = { 2, sRout
 const struct WildPokemon sRoute20_FireRed_Night_WaterMons[] =
 {
     { 5, 10, SPECIES_MAREANIE },
-    { 10, 20, SPECIES_SNEASEL },
-    { 20, 30, SPECIES_QWILFISH },
-    { 30, 35, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 10, 20, SPECIES_SLOWPOKE },
+    { 20, 30, SPECIES_SNEASEL },
+    { 30, 35, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_SKRELP },
 };
 
 const struct WildPokemonInfo sRoute20_FireRed_Night_WaterMonsInfo = { 2, sRoute20_FireRed_Night_WaterMons };
@@ -18395,11 +18395,11 @@ const struct WildPokemonInfo sRoute20_LeafGreen_FishingMonsInfo = { 20, sRoute20
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute20_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_SQUIRTLE },
-    { 10, 20, SPECIES_DARUMAKA_GALAR },
-    { 20, 30, SPECIES_FROAKIE },
-    { 30, 35, SPECIES_WIMPOD },
-    { 35, 40, SPECIES_WINGULL },
+    { 5, 10, SPECIES_TYMPOLE },
+    { 10, 20, SPECIES_BUIZEL },
+    { 20, 30, SPECIES_CRYOGONAL },
+    { 30, 35, SPECIES_LUVDISC },
+    { 35, 40, SPECIES_DUCKLETT },
 };
 
 const struct WildPokemonInfo sRoute20_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute20_LeafGreen_Evening_WaterMons };
@@ -18409,10 +18409,10 @@ const struct WildPokemonInfo sRoute20_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 const struct WildPokemon sRoute20_LeafGreen_Night_WaterMons[] =
 {
     { 5, 10, SPECIES_MAREANIE },
-    { 10, 20, SPECIES_SNEASEL },
-    { 20, 30, SPECIES_QWILFISH },
-    { 30, 35, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 10, 20, SPECIES_SLOWPOKE },
+    { 20, 30, SPECIES_SNEASEL },
+    { 30, 35, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_SKRELP },
 };
 
 const struct WildPokemonInfo sRoute20_LeafGreen_Night_WaterMonsInfo = { 2, sRoute20_LeafGreen_Night_WaterMons };
@@ -18468,29 +18468,29 @@ const struct WildPokemonInfo sRoute21North_FireRed_FishingMonsInfo = { 20, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute21North_FireRed_Evening_LandMons[] =
 {
-    { 22, 22, SPECIES_HAPPINY },
-    { 23, 23, SPECIES_TURTWIG },
-    { 24, 24, SPECIES_RELLOR },
-    { 21, 21, SPECIES_CHIKORITA },
-    { 25, 25, SPECIES_PACHIRISU },
-    { 20, 20, SPECIES_PAWMI },
-    { 19, 19, SPECIES_SNIVY },
-    { 26, 26, SPECIES_TAROUNTULA },
-    { 18, 18, SPECIES_SPINDA },
-    { 27, 27, SPECIES_GOSSIFLEUR },
-    { 17, 17, SPECIES_LILLIPUP },
-    { 28, 28, SPECIES_PATRAT },
+    { 22, 22, SPECIES_PINCURCHIN },
+    { 23, 23, SPECIES_CACNEA },
+    { 24, 24, SPECIES_SHELMET },
+    { 21, 21, SPECIES_CAPSAKID },
+    { 25, 25, SPECIES_ILLUMISE },
+    { 20, 20, SPECIES_KECLEON },
+    { 19, 19, SPECIES_PINECO },
+    { 26, 26, SPECIES_LARVESTA },
+    { 18, 18, SPECIES_APPLIN },
+    { 27, 27, SPECIES_YAMPER },
+    { 17, 17, SPECIES_WHISMUR },
+    { 28, 28, SPECIES_TANDEMAUS },
 };
 
 const struct WildPokemonInfo sRoute21North_FireRed_Evening_LandMonsInfo = { 14, sRoute21North_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute21North_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_CUBCHOO },
-    { 10, 20, SPECIES_CLAUNCHER },
-    { 20, 30, SPECIES_CORPHISH },
-    { 30, 35, SPECIES_CETODDLE },
-    { 35, 40, SPECIES_PIPLUP },
+    { 5, 10, SPECIES_CHEWTLE },
+    { 10, 20, SPECIES_MUDKIP },
+    { 20, 30, SPECIES_SNOVER },
+    { 30, 35, SPECIES_WISHIWASHI_SOLO },
+    { 35, 40, SPECIES_FINNEON },
 };
 
 const struct WildPokemonInfo sRoute21North_FireRed_Evening_WaterMonsInfo = { 2, sRoute21North_FireRed_Evening_WaterMons };
@@ -18499,29 +18499,29 @@ const struct WildPokemonInfo sRoute21North_FireRed_Evening_WaterMonsInfo = { 2, 
 #ifdef FIRERED
 const struct WildPokemon sRoute21North_FireRed_Night_LandMons[] =
 {
-    { 22, 22, SPECIES_DEDENNE },
-    { 23, 23, SPECIES_GOLETT },
-    { 24, 24, SPECIES_POOCHYENA },
-    { 21, 21, SPECIES_SANDYGAST },
-    { 25, 25, SPECIES_SPOINK },
-    { 20, 20, SPECIES_HOUNDOUR },
-    { 19, 19, SPECIES_ESPURR },
-    { 26, 26, SPECIES_SALANDIT },
-    { 18, 18, SPECIES_SWIRLIX },
-    { 27, 27, SPECIES_MEOWTH_ALOLA },
-    { 17, 17, SPECIES_DEDENNE },
-    { 28, 28, SPECIES_HATENNA },
+    { 22, 22, SPECIES_PONYTA_GALAR },
+    { 23, 23, SPECIES_BELLSPROUT },
+    { 24, 24, SPECIES_ESPURR },
+    { 21, 21, SPECIES_GULPIN },
+    { 25, 25, SPECIES_SKORUPI },
+    { 20, 20, SPECIES_FLITTLE },
+    { 19, 19, SPECIES_BULBASAUR },
+    { 26, 26, SPECIES_PUMPKABOO_AVERAGE },
+    { 18, 18, SPECIES_PONYTA_GALAR },
+    { 27, 27, SPECIES_SPRITZEE },
+    { 17, 17, SPECIES_ZORUA_HISUI },
+    { 28, 28, SPECIES_ZORUA },
 };
 
 const struct WildPokemonInfo sRoute21North_FireRed_Night_LandMonsInfo = { 14, sRoute21North_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute21North_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SLOWPOKE },
-    { 10, 20, SPECIES_SKRELP },
-    { 20, 30, SPECIES_CARVANHA },
-    { 30, 35, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_QWILFISH },
+    { 5, 10, SPECIES_QWILFISH },
+    { 10, 20, SPECIES_FRILLISH },
+    { 20, 30, SPECIES_QWILFISH },
+    { 30, 35, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute21North_FireRed_Night_WaterMonsInfo = { 2, sRoute21North_FireRed_Night_WaterMons };
@@ -18577,29 +18577,29 @@ const struct WildPokemonInfo sRoute21North_LeafGreen_FishingMonsInfo = { 20, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute21North_LeafGreen_Evening_LandMons[] =
 {
-    { 22, 22, SPECIES_HAPPINY },
-    { 23, 23, SPECIES_TURTWIG },
-    { 24, 24, SPECIES_RELLOR },
-    { 21, 21, SPECIES_CHIKORITA },
-    { 25, 25, SPECIES_PACHIRISU },
-    { 20, 20, SPECIES_PAWMI },
-    { 19, 19, SPECIES_SNIVY },
-    { 26, 26, SPECIES_TAROUNTULA },
-    { 18, 18, SPECIES_SPINDA },
-    { 27, 27, SPECIES_GOSSIFLEUR },
-    { 17, 17, SPECIES_LILLIPUP },
-    { 28, 28, SPECIES_PATRAT },
+    { 22, 22, SPECIES_PINCURCHIN },
+    { 23, 23, SPECIES_CACNEA },
+    { 24, 24, SPECIES_SHELMET },
+    { 21, 21, SPECIES_CAPSAKID },
+    { 25, 25, SPECIES_ILLUMISE },
+    { 20, 20, SPECIES_KECLEON },
+    { 19, 19, SPECIES_PINECO },
+    { 26, 26, SPECIES_LARVESTA },
+    { 18, 18, SPECIES_APPLIN },
+    { 27, 27, SPECIES_YAMPER },
+    { 17, 17, SPECIES_WHISMUR },
+    { 28, 28, SPECIES_TANDEMAUS },
 };
 
 const struct WildPokemonInfo sRoute21North_LeafGreen_Evening_LandMonsInfo = { 14, sRoute21North_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute21North_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_CUBCHOO },
-    { 10, 20, SPECIES_CLAUNCHER },
-    { 20, 30, SPECIES_CORPHISH },
-    { 30, 35, SPECIES_CETODDLE },
-    { 35, 40, SPECIES_PIPLUP },
+    { 5, 10, SPECIES_CHEWTLE },
+    { 10, 20, SPECIES_MUDKIP },
+    { 20, 30, SPECIES_SNOVER },
+    { 30, 35, SPECIES_WISHIWASHI_SOLO },
+    { 35, 40, SPECIES_FINNEON },
 };
 
 const struct WildPokemonInfo sRoute21North_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute21North_LeafGreen_Evening_WaterMons };
@@ -18608,29 +18608,29 @@ const struct WildPokemonInfo sRoute21North_LeafGreen_Evening_WaterMonsInfo = { 2
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute21North_LeafGreen_Night_LandMons[] =
 {
-    { 22, 22, SPECIES_DEDENNE },
-    { 23, 23, SPECIES_GOLETT },
-    { 24, 24, SPECIES_POOCHYENA },
-    { 21, 21, SPECIES_SANDYGAST },
-    { 25, 25, SPECIES_SPOINK },
-    { 20, 20, SPECIES_HOUNDOUR },
-    { 19, 19, SPECIES_ESPURR },
-    { 26, 26, SPECIES_SALANDIT },
-    { 18, 18, SPECIES_SWIRLIX },
-    { 27, 27, SPECIES_MEOWTH_ALOLA },
-    { 17, 17, SPECIES_DEDENNE },
-    { 28, 28, SPECIES_HATENNA },
+    { 22, 22, SPECIES_PONYTA_GALAR },
+    { 23, 23, SPECIES_BELLSPROUT },
+    { 24, 24, SPECIES_ESPURR },
+    { 21, 21, SPECIES_GULPIN },
+    { 25, 25, SPECIES_SKORUPI },
+    { 20, 20, SPECIES_FLITTLE },
+    { 19, 19, SPECIES_BULBASAUR },
+    { 26, 26, SPECIES_PUMPKABOO_AVERAGE },
+    { 18, 18, SPECIES_PONYTA_GALAR },
+    { 27, 27, SPECIES_SPRITZEE },
+    { 17, 17, SPECIES_ZORUA_HISUI },
+    { 28, 28, SPECIES_ZORUA },
 };
 
 const struct WildPokemonInfo sRoute21North_LeafGreen_Night_LandMonsInfo = { 14, sRoute21North_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute21North_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SLOWPOKE },
-    { 10, 20, SPECIES_SKRELP },
-    { 20, 30, SPECIES_CARVANHA },
-    { 30, 35, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_QWILFISH },
+    { 5, 10, SPECIES_QWILFISH },
+    { 10, 20, SPECIES_FRILLISH },
+    { 20, 30, SPECIES_QWILFISH },
+    { 30, 35, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute21North_LeafGreen_Night_WaterMonsInfo = { 2, sRoute21North_LeafGreen_Night_WaterMons };
@@ -18686,29 +18686,29 @@ const struct WildPokemonInfo sRoute21South_FireRed_FishingMonsInfo = { 20, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute21South_FireRed_Evening_LandMons[] =
 {
-    { 22, 22, SPECIES_PACHIRISU },
-    { 23, 23, SPECIES_SNIVY },
-    { 24, 24, SPECIES_STARLY },
-    { 21, 21, SPECIES_GLAMEOW },
-    { 25, 25, SPECIES_MAREEP },
-    { 20, 20, SPECIES_RELLOR },
-    { 19, 19, SPECIES_MINCCINO },
-    { 26, 26, SPECIES_VOLBEAT },
-    { 18, 18, SPECIES_WURMPLE },
-    { 27, 27, SPECIES_GRUBBIN },
-    { 17, 17, SPECIES_SWABLU },
-    { 28, 28, SPECIES_TYNAMO },
+    { 22, 22, SPECIES_GROOKEY },
+    { 23, 23, SPECIES_MINCCINO },
+    { 24, 24, SPECIES_SCATTERBUG },
+    { 21, 21, SPECIES_SPRIGATITO },
+    { 25, 25, SPECIES_SHELMET },
+    { 20, 20, SPECIES_PORYGON },
+    { 19, 19, SPECIES_GLIGAR },
+    { 26, 26, SPECIES_KECLEON },
+    { 18, 18, SPECIES_SKWOVET },
+    { 27, 27, SPECIES_TYNAMO },
+    { 17, 17, SPECIES_PIKIPEK },
+    { 28, 28, SPECIES_LITLEO },
 };
 
 const struct WildPokemonInfo sRoute21South_FireRed_Evening_LandMonsInfo = { 14, sRoute21South_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute21South_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_DELIBIRD },
-    { 10, 20, SPECIES_SPHEAL },
-    { 20, 30, SPECIES_SNORUNT },
-    { 30, 35, SPECIES_WOOPER },
-    { 35, 40, SPECIES_MANTYKE },
+    { 5, 10, SPECIES_BINACLE },
+    { 10, 20, SPECIES_ARROKUDA },
+    { 20, 30, SPECIES_BERGMITE },
+    { 30, 35, SPECIES_WIMPOD },
+    { 35, 40, SPECIES_DEWPIDER },
 };
 
 const struct WildPokemonInfo sRoute21South_FireRed_Evening_WaterMonsInfo = { 2, sRoute21South_FireRed_Evening_WaterMons };
@@ -18717,29 +18717,29 @@ const struct WildPokemonInfo sRoute21South_FireRed_Evening_WaterMonsInfo = { 2, 
 #ifdef FIRERED
 const struct WildPokemon sRoute21South_FireRed_Night_LandMons[] =
 {
-    { 22, 22, SPECIES_SPRITZEE },
-    { 23, 23, SPECIES_SPINARAK },
-    { 24, 24, SPECIES_ZORUA },
-    { 21, 21, SPECIES_MUNNA },
-    { 25, 25, SPECIES_DRIFLOON },
-    { 20, 20, SPECIES_MAWILE },
-    { 19, 19, SPECIES_SPOINK },
-    { 26, 26, SPECIES_NICKIT },
-    { 18, 18, SPECIES_BRONZOR },
-    { 27, 27, SPECIES_MORELULL },
-    { 17, 17, SPECIES_BELLSPROUT },
-    { 28, 28, SPECIES_SNEASEL_HISUI },
+    { 22, 22, SPECIES_NATU },
+    { 23, 23, SPECIES_SANDILE },
+    { 24, 24, SPECIES_QWILFISH_HISUI },
+    { 21, 21, SPECIES_TOGEPI },
+    { 25, 25, SPECIES_SANDILE },
+    { 20, 20, SPECIES_MEOWTH_ALOLA },
+    { 19, 19, SPECIES_MUNNA },
+    { 26, 26, SPECIES_NATU },
+    { 18, 18, SPECIES_SNUBBULL },
+    { 27, 27, SPECIES_TOXEL },
+    { 17, 17, SPECIES_RALTS },
+    { 28, 28, SPECIES_MAWILE },
 };
 
 const struct WildPokemonInfo sRoute21South_FireRed_Night_LandMonsInfo = { 14, sRoute21South_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute21South_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SNEASEL },
-    { 10, 20, SPECIES_FRILLISH },
-    { 20, 30, SPECIES_QWILFISH },
-    { 30, 35, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_SKRELP },
+    { 5, 10, SPECIES_CARVANHA },
+    { 10, 20, SPECIES_MAREANIE },
+    { 20, 30, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_SKRELP },
+    { 35, 40, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sRoute21South_FireRed_Night_WaterMonsInfo = { 2, sRoute21South_FireRed_Night_WaterMons };
@@ -18795,29 +18795,29 @@ const struct WildPokemonInfo sRoute21South_LeafGreen_FishingMonsInfo = { 20, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute21South_LeafGreen_Evening_LandMons[] =
 {
-    { 22, 22, SPECIES_PACHIRISU },
-    { 23, 23, SPECIES_SNIVY },
-    { 24, 24, SPECIES_STARLY },
-    { 21, 21, SPECIES_GLAMEOW },
-    { 25, 25, SPECIES_MAREEP },
-    { 20, 20, SPECIES_RELLOR },
-    { 19, 19, SPECIES_MINCCINO },
-    { 26, 26, SPECIES_VOLBEAT },
-    { 18, 18, SPECIES_WURMPLE },
-    { 27, 27, SPECIES_GRUBBIN },
-    { 17, 17, SPECIES_SWABLU },
-    { 28, 28, SPECIES_TYNAMO },
+    { 22, 22, SPECIES_GROOKEY },
+    { 23, 23, SPECIES_MINCCINO },
+    { 24, 24, SPECIES_SCATTERBUG },
+    { 21, 21, SPECIES_SPRIGATITO },
+    { 25, 25, SPECIES_SHELMET },
+    { 20, 20, SPECIES_PORYGON },
+    { 19, 19, SPECIES_GLIGAR },
+    { 26, 26, SPECIES_KECLEON },
+    { 18, 18, SPECIES_SKWOVET },
+    { 27, 27, SPECIES_TYNAMO },
+    { 17, 17, SPECIES_PIKIPEK },
+    { 28, 28, SPECIES_LITLEO },
 };
 
 const struct WildPokemonInfo sRoute21South_LeafGreen_Evening_LandMonsInfo = { 14, sRoute21South_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute21South_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_DELIBIRD },
-    { 10, 20, SPECIES_SPHEAL },
-    { 20, 30, SPECIES_SNORUNT },
-    { 30, 35, SPECIES_WOOPER },
-    { 35, 40, SPECIES_MANTYKE },
+    { 5, 10, SPECIES_BINACLE },
+    { 10, 20, SPECIES_ARROKUDA },
+    { 20, 30, SPECIES_BERGMITE },
+    { 30, 35, SPECIES_WIMPOD },
+    { 35, 40, SPECIES_DEWPIDER },
 };
 
 const struct WildPokemonInfo sRoute21South_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute21South_LeafGreen_Evening_WaterMons };
@@ -18826,29 +18826,29 @@ const struct WildPokemonInfo sRoute21South_LeafGreen_Evening_WaterMonsInfo = { 2
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute21South_LeafGreen_Night_LandMons[] =
 {
-    { 22, 22, SPECIES_SPRITZEE },
-    { 23, 23, SPECIES_SPINARAK },
-    { 24, 24, SPECIES_ZORUA },
-    { 21, 21, SPECIES_MUNNA },
-    { 25, 25, SPECIES_DRIFLOON },
-    { 20, 20, SPECIES_MAWILE },
-    { 19, 19, SPECIES_SPOINK },
-    { 26, 26, SPECIES_NICKIT },
-    { 18, 18, SPECIES_BRONZOR },
-    { 27, 27, SPECIES_MORELULL },
-    { 17, 17, SPECIES_BELLSPROUT },
-    { 28, 28, SPECIES_SNEASEL_HISUI },
+    { 22, 22, SPECIES_NATU },
+    { 23, 23, SPECIES_SANDILE },
+    { 24, 24, SPECIES_QWILFISH_HISUI },
+    { 21, 21, SPECIES_TOGEPI },
+    { 25, 25, SPECIES_SANDILE },
+    { 20, 20, SPECIES_MEOWTH_ALOLA },
+    { 19, 19, SPECIES_MUNNA },
+    { 26, 26, SPECIES_NATU },
+    { 18, 18, SPECIES_SNUBBULL },
+    { 27, 27, SPECIES_TOXEL },
+    { 17, 17, SPECIES_RALTS },
+    { 28, 28, SPECIES_MAWILE },
 };
 
 const struct WildPokemonInfo sRoute21South_LeafGreen_Night_LandMonsInfo = { 14, sRoute21South_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute21South_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SNEASEL },
-    { 10, 20, SPECIES_FRILLISH },
-    { 20, 30, SPECIES_QWILFISH },
-    { 30, 35, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_SKRELP },
+    { 5, 10, SPECIES_CARVANHA },
+    { 10, 20, SPECIES_MAREANIE },
+    { 20, 30, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_SKRELP },
+    { 35, 40, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sRoute21South_LeafGreen_Night_WaterMonsInfo = { 2, sRoute21South_LeafGreen_Night_WaterMons };
@@ -18904,29 +18904,29 @@ const struct WildPokemonInfo sRoute22_FireRed_FishingMonsInfo = { 20, sRoute22_F
 #ifdef FIRERED
 const struct WildPokemon sRoute22_FireRed_Evening_LandMons[] =
 {
-    { 3, 3, SPECIES_PAWMI },
-    { 3, 3, SPECIES_ZIGZAGOON },
-    { 4, 4, SPECIES_SURSKIT },
-    { 4, 4, SPECIES_ELECTRIKE },
-    { 2, 2, SPECIES_ELEKID },
-    { 2, 2, SPECIES_HELIOPTILE },
-    { 3, 3, SPECIES_PETILIL },
-    { 5, 5, SPECIES_SHROOMISH },
-    { 5, 5, SPECIES_SHINX },
+    { 3, 3, SPECIES_ELEKID },
+    { 3, 3, SPECIES_SENTRET },
+    { 4, 4, SPECIES_HOPPIP },
+    { 4, 4, SPECIES_YUNGOOS },
+    { 2, 2, SPECIES_TAROUNTULA },
+    { 2, 2, SPECIES_WURMPLE },
+    { 3, 3, SPECIES_SCATTERBUG },
+    { 5, 5, SPECIES_ROOKIDEE },
+    { 5, 5, SPECIES_LICKITUNG },
+    { 5, 5, SPECIES_BUNNELBY },
     { 5, 5, SPECIES_CHERUBI },
-    { 5, 5, SPECIES_BLITZLE },
-    { 5, 5, SPECIES_PIKIPEK },
+    { 5, 5, SPECIES_SHROOMISH },
 };
 
 const struct WildPokemonInfo sRoute22_FireRed_Evening_LandMonsInfo = { 21, sRoute22_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute22_FireRed_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_TOTODILE },
-    { 20, 25, SPECIES_SOBBLE },
-    { 25, 30, SPECIES_DEWPIDER },
-    { 30, 35, SPECIES_AMAURA },
-    { 35, 40, SPECIES_FEEBAS },
+    { 20, 25, SPECIES_SHELLOS_WEST },
+    { 20, 25, SPECIES_PANPOUR },
+    { 25, 30, SPECIES_SURSKIT },
+    { 30, 35, SPECIES_WAILMER },
+    { 35, 40, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sRoute22_FireRed_Evening_WaterMonsInfo = { 2, sRoute22_FireRed_Evening_WaterMons };
@@ -18935,29 +18935,29 @@ const struct WildPokemonInfo sRoute22_FireRed_Evening_WaterMonsInfo = { 2, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute22_FireRed_Night_LandMons[] =
 {
-    { 3, 3, SPECIES_WOOBAT },
-    { 3, 3, SPECIES_STUNKY },
-    { 4, 4, SPECIES_GULPIN },
-    { 4, 4, SPECIES_SKORUPI },
-    { 2, 2, SPECIES_SOLOSIS },
+    { 3, 3, SPECIES_FIDOUGH },
+    { 3, 3, SPECIES_MILCERY },
+    { 4, 4, SPECIES_CLEFFA },
+    { 4, 4, SPECIES_YAMASK_GALAR },
     { 2, 2, SPECIES_WOOBAT },
-    { 3, 3, SPECIES_SANDYGAST },
+    { 2, 2, SPECIES_VULLABY },
+    { 3, 3, SPECIES_ELGYEM },
+    { 5, 5, SPECIES_SWIRLIX },
+    { 5, 5, SPECIES_ZIGZAGOON_GALAR },
+    { 5, 5, SPECIES_DRIFLOON },
     { 5, 5, SPECIES_HOUNDOUR },
-    { 5, 5, SPECIES_NATU },
-    { 5, 5, SPECIES_IGGLYBUFF },
-    { 5, 5, SPECIES_ZORUA_HISUI },
-    { 5, 5, SPECIES_SHROODLE },
+    { 5, 5, SPECIES_GRIMER_ALOLA },
 };
 
 const struct WildPokemonInfo sRoute22_FireRed_Night_LandMonsInfo = { 21, sRoute22_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute22_FireRed_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_FRILLISH },
     { 20, 25, SPECIES_MAREANIE },
-    { 25, 30, SPECIES_SLOWPOKE },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_CARVANHA },
+    { 20, 25, SPECIES_SNEASEL },
+    { 25, 30, SPECIES_FRILLISH },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute22_FireRed_Night_WaterMonsInfo = { 2, sRoute22_FireRed_Night_WaterMons };
@@ -19013,29 +19013,29 @@ const struct WildPokemonInfo sRoute22_LeafGreen_FishingMonsInfo = { 20, sRoute22
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute22_LeafGreen_Evening_LandMons[] =
 {
-    { 3, 3, SPECIES_PAWMI },
-    { 3, 3, SPECIES_ZIGZAGOON },
-    { 4, 4, SPECIES_SURSKIT },
-    { 4, 4, SPECIES_ELECTRIKE },
-    { 2, 2, SPECIES_ELEKID },
-    { 2, 2, SPECIES_HELIOPTILE },
-    { 3, 3, SPECIES_PETILIL },
-    { 5, 5, SPECIES_SHROOMISH },
-    { 5, 5, SPECIES_SHINX },
+    { 3, 3, SPECIES_ELEKID },
+    { 3, 3, SPECIES_SENTRET },
+    { 4, 4, SPECIES_HOPPIP },
+    { 4, 4, SPECIES_YUNGOOS },
+    { 2, 2, SPECIES_TAROUNTULA },
+    { 2, 2, SPECIES_WURMPLE },
+    { 3, 3, SPECIES_SCATTERBUG },
+    { 5, 5, SPECIES_ROOKIDEE },
+    { 5, 5, SPECIES_LICKITUNG },
+    { 5, 5, SPECIES_BUNNELBY },
     { 5, 5, SPECIES_CHERUBI },
-    { 5, 5, SPECIES_BLITZLE },
-    { 5, 5, SPECIES_PIKIPEK },
+    { 5, 5, SPECIES_SHROOMISH },
 };
 
 const struct WildPokemonInfo sRoute22_LeafGreen_Evening_LandMonsInfo = { 21, sRoute22_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute22_LeafGreen_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_TOTODILE },
-    { 20, 25, SPECIES_SOBBLE },
-    { 25, 30, SPECIES_DEWPIDER },
-    { 30, 35, SPECIES_AMAURA },
-    { 35, 40, SPECIES_FEEBAS },
+    { 20, 25, SPECIES_SHELLOS_WEST },
+    { 20, 25, SPECIES_PANPOUR },
+    { 25, 30, SPECIES_SURSKIT },
+    { 30, 35, SPECIES_WAILMER },
+    { 35, 40, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sRoute22_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute22_LeafGreen_Evening_WaterMons };
@@ -19044,29 +19044,29 @@ const struct WildPokemonInfo sRoute22_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute22_LeafGreen_Night_LandMons[] =
 {
-    { 3, 3, SPECIES_WOOBAT },
-    { 3, 3, SPECIES_STUNKY },
-    { 4, 4, SPECIES_GULPIN },
-    { 4, 4, SPECIES_SKORUPI },
-    { 2, 2, SPECIES_SOLOSIS },
+    { 3, 3, SPECIES_FIDOUGH },
+    { 3, 3, SPECIES_MILCERY },
+    { 4, 4, SPECIES_CLEFFA },
+    { 4, 4, SPECIES_YAMASK_GALAR },
     { 2, 2, SPECIES_WOOBAT },
-    { 3, 3, SPECIES_SANDYGAST },
+    { 2, 2, SPECIES_VULLABY },
+    { 3, 3, SPECIES_ELGYEM },
+    { 5, 5, SPECIES_SWIRLIX },
+    { 5, 5, SPECIES_ZIGZAGOON_GALAR },
+    { 5, 5, SPECIES_DRIFLOON },
     { 5, 5, SPECIES_HOUNDOUR },
-    { 5, 5, SPECIES_NATU },
-    { 5, 5, SPECIES_IGGLYBUFF },
-    { 5, 5, SPECIES_ZORUA_HISUI },
-    { 5, 5, SPECIES_SHROODLE },
+    { 5, 5, SPECIES_GRIMER_ALOLA },
 };
 
 const struct WildPokemonInfo sRoute22_LeafGreen_Night_LandMonsInfo = { 21, sRoute22_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute22_LeafGreen_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_FRILLISH },
     { 20, 25, SPECIES_MAREANIE },
-    { 25, 30, SPECIES_SLOWPOKE },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_CARVANHA },
+    { 20, 25, SPECIES_SNEASEL },
+    { 25, 30, SPECIES_FRILLISH },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute22_LeafGreen_Night_WaterMonsInfo = { 2, sRoute22_LeafGreen_Night_WaterMons };
@@ -19122,17 +19122,17 @@ const struct WildPokemonInfo sRoute23_FireRed_FishingMonsInfo = { 20, sRoute23_F
 #ifdef FIRERED
 const struct WildPokemon sRoute23_FireRed_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_PINECO },
-    { 40, 40, SPECIES_KOMALA },
+    { 32, 32, SPECIES_CHINCHOU },
+    { 40, 40, SPECIES_MILTANK },
     { 34, 34, SPECIES_STANTLER },
-    { 34, 34, SPECIES_MILTANK },
-    { 32, 32, SPECIES_BOUFFALANT },
+    { 34, 34, SPECIES_ACCELGOR },
+    { 32, 32, SPECIES_CARNIVINE },
     { 34, 34, SPECIES_ZANGOOSE },
+    { 42, 42, SPECIES_FURFROU },
+    { 44, 44, SPECIES_MARACTUS },
+    { 32, 32, SPECIES_BOUFFALANT },
     { 42, 42, SPECIES_KOMALA },
-    { 44, 44, SPECIES_CARNIVINE },
     { 32, 32, SPECIES_STANTLER },
-    { 42, 42, SPECIES_BOUFFALANT },
-    { 32, 32, SPECIES_ZANGOOSE },
     { 44, 44, SPECIES_BOUFFALANT },
 };
 
@@ -19140,11 +19140,11 @@ const struct WildPokemonInfo sRoute23_FireRed_Evening_LandMonsInfo = { 21, sRout
 
 const struct WildPokemon sRoute23_FireRed_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_OSHAWOTT },
-    { 20, 25, SPECIES_MUDKIP },
-    { 25, 30, SPECIES_ARROKUDA },
-    { 30, 35, SPECIES_SNOVER },
-    { 35, 40, SPECIES_TYMPOLE },
+    { 20, 25, SPECIES_DELIBIRD },
+    { 20, 25, SPECIES_VULPIX_ALOLA },
+    { 25, 30, SPECIES_OSHAWOTT },
+    { 30, 35, SPECIES_SWINUB },
+    { 35, 40, SPECIES_KABUTO },
 };
 
 const struct WildPokemonInfo sRoute23_FireRed_Evening_WaterMonsInfo = { 2, sRoute23_FireRed_Evening_WaterMons };
@@ -19153,28 +19153,28 @@ const struct WildPokemonInfo sRoute23_FireRed_Evening_WaterMonsInfo = { 2, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute23_FireRed_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_MILCERY },
-    { 40, 40, SPECIES_COMFEY },
+    { 32, 32, SPECIES_MEDITITE },
+    { 40, 40, SPECIES_GIRAFARIG },
+    { 34, 34, SPECIES_COMFEY },
     { 34, 34, SPECIES_ORANGURU },
-    { 34, 34, SPECIES_GIRAFARIG },
-    { 32, 32, SPECIES_COMFEY },
-    { 34, 34, SPECIES_SPIRITOMB },
-    { 42, 42, SPECIES_COMFEY },
-    { 44, 44, SPECIES_GIRAFARIG },
-    { 32, 32, SPECIES_ORANGURU },
-    { 42, 42, SPECIES_SEVIPER },
-    { 32, 32, SPECIES_COMFEY },
-    { 44, 44, SPECIES_SEVIPER },
+    { 32, 32, SPECIES_MIMIKYU_DISGUISED },
+    { 34, 34, SPECIES_ORANGURU },
+    { 42, 42, SPECIES_INDEEDEE_M },
+    { 44, 44, SPECIES_COMFEY },
+    { 32, 32, SPECIES_GIRAFARIG },
+    { 42, 42, SPECIES_GIRAFARIG },
+    { 32, 32, SPECIES_INDEEDEE_M },
+    { 44, 44, SPECIES_SIGILYPH },
 };
 
 const struct WildPokemonInfo sRoute23_FireRed_Night_LandMonsInfo = { 21, sRoute23_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute23_FireRed_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_QWILFISH },
     { 20, 25, SPECIES_SKRELP },
+    { 20, 25, SPECIES_CARVANHA },
     { 25, 30, SPECIES_CARVANHA },
-    { 30, 35, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_SKRELP },
     { 35, 40, SPECIES_SNEASEL },
 };
 
@@ -19231,17 +19231,17 @@ const struct WildPokemonInfo sRoute23_LeafGreen_FishingMonsInfo = { 20, sRoute23
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute23_LeafGreen_Evening_LandMons[] =
 {
-    { 32, 32, SPECIES_PINECO },
-    { 40, 40, SPECIES_KOMALA },
+    { 32, 32, SPECIES_CHINCHOU },
+    { 40, 40, SPECIES_MILTANK },
     { 34, 34, SPECIES_STANTLER },
-    { 34, 34, SPECIES_MILTANK },
-    { 32, 32, SPECIES_BOUFFALANT },
+    { 34, 34, SPECIES_ACCELGOR },
+    { 32, 32, SPECIES_CARNIVINE },
     { 34, 34, SPECIES_ZANGOOSE },
+    { 42, 42, SPECIES_FURFROU },
+    { 44, 44, SPECIES_MARACTUS },
+    { 32, 32, SPECIES_BOUFFALANT },
     { 42, 42, SPECIES_KOMALA },
-    { 44, 44, SPECIES_CARNIVINE },
     { 32, 32, SPECIES_STANTLER },
-    { 42, 42, SPECIES_BOUFFALANT },
-    { 32, 32, SPECIES_ZANGOOSE },
     { 44, 44, SPECIES_BOUFFALANT },
 };
 
@@ -19249,11 +19249,11 @@ const struct WildPokemonInfo sRoute23_LeafGreen_Evening_LandMonsInfo = { 21, sRo
 
 const struct WildPokemon sRoute23_LeafGreen_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_OSHAWOTT },
-    { 20, 25, SPECIES_MUDKIP },
-    { 25, 30, SPECIES_ARROKUDA },
-    { 30, 35, SPECIES_SNOVER },
-    { 35, 40, SPECIES_TYMPOLE },
+    { 20, 25, SPECIES_DELIBIRD },
+    { 20, 25, SPECIES_VULPIX_ALOLA },
+    { 25, 30, SPECIES_OSHAWOTT },
+    { 30, 35, SPECIES_SWINUB },
+    { 35, 40, SPECIES_KABUTO },
 };
 
 const struct WildPokemonInfo sRoute23_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute23_LeafGreen_Evening_WaterMons };
@@ -19262,28 +19262,28 @@ const struct WildPokemonInfo sRoute23_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute23_LeafGreen_Night_LandMons[] =
 {
-    { 32, 32, SPECIES_MILCERY },
-    { 40, 40, SPECIES_COMFEY },
+    { 32, 32, SPECIES_MEDITITE },
+    { 40, 40, SPECIES_GIRAFARIG },
+    { 34, 34, SPECIES_COMFEY },
     { 34, 34, SPECIES_ORANGURU },
-    { 34, 34, SPECIES_GIRAFARIG },
-    { 32, 32, SPECIES_COMFEY },
-    { 34, 34, SPECIES_SPIRITOMB },
-    { 42, 42, SPECIES_COMFEY },
-    { 44, 44, SPECIES_GIRAFARIG },
-    { 32, 32, SPECIES_ORANGURU },
-    { 42, 42, SPECIES_SEVIPER },
-    { 32, 32, SPECIES_COMFEY },
-    { 44, 44, SPECIES_SEVIPER },
+    { 32, 32, SPECIES_MIMIKYU_DISGUISED },
+    { 34, 34, SPECIES_ORANGURU },
+    { 42, 42, SPECIES_INDEEDEE_M },
+    { 44, 44, SPECIES_COMFEY },
+    { 32, 32, SPECIES_GIRAFARIG },
+    { 42, 42, SPECIES_GIRAFARIG },
+    { 32, 32, SPECIES_INDEEDEE_M },
+    { 44, 44, SPECIES_SIGILYPH },
 };
 
 const struct WildPokemonInfo sRoute23_LeafGreen_Night_LandMonsInfo = { 21, sRoute23_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute23_LeafGreen_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_QWILFISH },
     { 20, 25, SPECIES_SKRELP },
+    { 20, 25, SPECIES_CARVANHA },
     { 25, 30, SPECIES_CARVANHA },
-    { 30, 35, SPECIES_SMOOCHUM },
+    { 30, 35, SPECIES_SKRELP },
     { 35, 40, SPECIES_SNEASEL },
 };
 
@@ -19340,29 +19340,29 @@ const struct WildPokemonInfo sRoute24_FireRed_FishingMonsInfo = { 20, sRoute24_F
 #ifdef FIRERED
 const struct WildPokemon sRoute24_FireRed_Evening_LandMons[] =
 {
-    { 7, 7, SPECIES_ELEKID },
-    { 7, 7, SPECIES_CHERUBI },
-    { 11, 11, SPECIES_SNOVER },
-    { 12, 12, SPECIES_BUNEARY },
-    { 13, 13, SPECIES_RUFFLET },
-    { 10, 10, SPECIES_ROOKIDEE },
-    { 13, 13, SPECIES_SENTRET },
-    { 14, 14, SPECIES_SEEDOT },
-    { 8, 8, SPECIES_WHISMUR },
-    { 8, 8, SPECIES_SUNKERN },
-    { 8, 8, SPECIES_LITLEO },
-    { 12, 12, SPECIES_BLIPBUG },
+    { 7, 7, SPECIES_MAREEP },
+    { 7, 7, SPECIES_ZIGZAGOON },
+    { 11, 11, SPECIES_SEWADDLE },
+    { 12, 12, SPECIES_KARRABLAST },
+    { 13, 13, SPECIES_KRICKETOT },
+    { 10, 10, SPECIES_LECHONK },
+    { 13, 13, SPECIES_BLIPBUG },
+    { 14, 14, SPECIES_MAREEP },
+    { 8, 8, SPECIES_PICHU },
+    { 8, 8, SPECIES_FOMANTIS },
+    { 8, 8, SPECIES_PETILIL },
+    { 12, 12, SPECIES_VOLBEAT },
 };
 
 const struct WildPokemonInfo sRoute24_FireRed_Evening_LandMonsInfo = { 21, sRoute24_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute24_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_VULPIX_ALOLA },
-    { 10, 20, SPECIES_FINIZEN },
+    { 5, 10, SPECIES_MANTYKE },
+    { 10, 20, SPECIES_VANILLITE },
     { 20, 30, SPECIES_PYUKUMUKU },
-    { 30, 35, SPECIES_BERGMITE },
-    { 35, 40, SPECIES_WAILMER },
+    { 30, 35, SPECIES_WOOPER },
+    { 35, 40, SPECIES_SQUIRTLE },
 };
 
 const struct WildPokemonInfo sRoute24_FireRed_Evening_WaterMonsInfo = { 2, sRoute24_FireRed_Evening_WaterMons };
@@ -19371,29 +19371,29 @@ const struct WildPokemonInfo sRoute24_FireRed_Evening_WaterMonsInfo = { 2, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute24_FireRed_Night_LandMons[] =
 {
-    { 7, 7, SPECIES_COTTONEE },
-    { 7, 7, SPECIES_ZIGZAGOON_GALAR },
-    { 11, 11, SPECIES_CLEFFA },
-    { 12, 12, SPECIES_BALTOY },
-    { 13, 13, SPECIES_SPRITZEE },
-    { 10, 10, SPECIES_COTTONEE },
-    { 13, 13, SPECIES_STUNKY },
-    { 14, 14, SPECIES_VULLABY },
-    { 8, 8, SPECIES_ELGYEM },
-    { 8, 8, SPECIES_GOTHITA },
+    { 7, 7, SPECIES_MORELULL },
+    { 7, 7, SPECIES_AZURILL },
+    { 11, 11, SPECIES_POOCHYENA },
+    { 12, 12, SPECIES_GOTHITA },
+    { 13, 13, SPECIES_GOLETT },
+    { 10, 10, SPECIES_SLOWPOKE_GALAR },
+    { 13, 13, SPECIES_WOOPER_PALDEA },
+    { 14, 14, SPECIES_MIME_JR },
+    { 8, 8, SPECIES_SCRAGGY },
+    { 8, 8, SPECIES_MORELULL },
     { 8, 8, SPECIES_TRUBBISH },
-    { 12, 12, SPECIES_IMPIDIMP },
+    { 12, 12, SPECIES_COTTONEE },
 };
 
 const struct WildPokemonInfo sRoute24_FireRed_Night_LandMonsInfo = { 21, sRoute24_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute24_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_FRILLISH },
-    { 10, 20, SPECIES_MAREANIE },
-    { 20, 30, SPECIES_SLOWPOKE },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_FRILLISH },
+    { 5, 10, SPECIES_QWILFISH },
+    { 10, 20, SPECIES_FRILLISH },
+    { 20, 30, SPECIES_MAREANIE },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute24_FireRed_Night_WaterMonsInfo = { 2, sRoute24_FireRed_Night_WaterMons };
@@ -19449,29 +19449,29 @@ const struct WildPokemonInfo sRoute24_LeafGreen_FishingMonsInfo = { 20, sRoute24
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute24_LeafGreen_Evening_LandMons[] =
 {
-    { 7, 7, SPECIES_ELEKID },
-    { 7, 7, SPECIES_CHERUBI },
-    { 11, 11, SPECIES_SNOVER },
-    { 12, 12, SPECIES_BUNEARY },
-    { 13, 13, SPECIES_RUFFLET },
-    { 10, 10, SPECIES_ROOKIDEE },
-    { 13, 13, SPECIES_SENTRET },
-    { 14, 14, SPECIES_SEEDOT },
-    { 8, 8, SPECIES_WHISMUR },
-    { 8, 8, SPECIES_SUNKERN },
-    { 8, 8, SPECIES_LITLEO },
-    { 12, 12, SPECIES_BLIPBUG },
+    { 7, 7, SPECIES_MAREEP },
+    { 7, 7, SPECIES_ZIGZAGOON },
+    { 11, 11, SPECIES_SEWADDLE },
+    { 12, 12, SPECIES_KARRABLAST },
+    { 13, 13, SPECIES_KRICKETOT },
+    { 10, 10, SPECIES_LECHONK },
+    { 13, 13, SPECIES_BLIPBUG },
+    { 14, 14, SPECIES_MAREEP },
+    { 8, 8, SPECIES_PICHU },
+    { 8, 8, SPECIES_FOMANTIS },
+    { 8, 8, SPECIES_PETILIL },
+    { 12, 12, SPECIES_VOLBEAT },
 };
 
 const struct WildPokemonInfo sRoute24_LeafGreen_Evening_LandMonsInfo = { 21, sRoute24_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute24_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_VULPIX_ALOLA },
-    { 10, 20, SPECIES_FINIZEN },
+    { 5, 10, SPECIES_MANTYKE },
+    { 10, 20, SPECIES_VANILLITE },
     { 20, 30, SPECIES_PYUKUMUKU },
-    { 30, 35, SPECIES_BERGMITE },
-    { 35, 40, SPECIES_WAILMER },
+    { 30, 35, SPECIES_WOOPER },
+    { 35, 40, SPECIES_SQUIRTLE },
 };
 
 const struct WildPokemonInfo sRoute24_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute24_LeafGreen_Evening_WaterMons };
@@ -19480,29 +19480,29 @@ const struct WildPokemonInfo sRoute24_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute24_LeafGreen_Night_LandMons[] =
 {
-    { 7, 7, SPECIES_COTTONEE },
-    { 7, 7, SPECIES_ZIGZAGOON_GALAR },
-    { 11, 11, SPECIES_CLEFFA },
-    { 12, 12, SPECIES_BALTOY },
-    { 13, 13, SPECIES_SPRITZEE },
-    { 10, 10, SPECIES_COTTONEE },
-    { 13, 13, SPECIES_STUNKY },
-    { 14, 14, SPECIES_VULLABY },
-    { 8, 8, SPECIES_ELGYEM },
-    { 8, 8, SPECIES_GOTHITA },
+    { 7, 7, SPECIES_MORELULL },
+    { 7, 7, SPECIES_AZURILL },
+    { 11, 11, SPECIES_POOCHYENA },
+    { 12, 12, SPECIES_GOTHITA },
+    { 13, 13, SPECIES_GOLETT },
+    { 10, 10, SPECIES_SLOWPOKE_GALAR },
+    { 13, 13, SPECIES_WOOPER_PALDEA },
+    { 14, 14, SPECIES_MIME_JR },
+    { 8, 8, SPECIES_SCRAGGY },
+    { 8, 8, SPECIES_MORELULL },
     { 8, 8, SPECIES_TRUBBISH },
-    { 12, 12, SPECIES_IMPIDIMP },
+    { 12, 12, SPECIES_COTTONEE },
 };
 
 const struct WildPokemonInfo sRoute24_LeafGreen_Night_LandMonsInfo = { 21, sRoute24_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute24_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_FRILLISH },
-    { 10, 20, SPECIES_MAREANIE },
-    { 20, 30, SPECIES_SLOWPOKE },
-    { 30, 35, SPECIES_SNEASEL },
-    { 35, 40, SPECIES_FRILLISH },
+    { 5, 10, SPECIES_QWILFISH },
+    { 10, 20, SPECIES_FRILLISH },
+    { 20, 30, SPECIES_MAREANIE },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sRoute24_LeafGreen_Night_WaterMonsInfo = { 2, sRoute24_LeafGreen_Night_WaterMons };
@@ -19558,29 +19558,29 @@ const struct WildPokemonInfo sRoute25_FireRed_FishingMonsInfo = { 20, sRoute25_F
 #ifdef FIRERED
 const struct WildPokemon sRoute25_FireRed_Evening_LandMons[] =
 {
-    { 8, 8, SPECIES_SHINX },
-    { 8, 8, SPECIES_HELIOPTILE },
-    { 13, 13, SPECIES_WINGULL },
-    { 14, 14, SPECIES_SMOLIV },
-    { 13, 13, SPECIES_FOMANTIS },
-    { 11, 11, SPECIES_SKITTY },
-    { 11, 11, SPECIES_NYMBLE },
-    { 12, 12, SPECIES_COMBEE },
-    { 9, 9, SPECIES_YAMPER },
-    { 9, 9, SPECIES_ZIGZAGOON },
-    { 9, 9, SPECIES_TADBULB },
-    { 13, 13, SPECIES_PIDOVE },
+    { 8, 8, SPECIES_YAMPER },
+    { 8, 8, SPECIES_SKWOVET },
+    { 13, 13, SPECIES_DELIBIRD },
+    { 14, 14, SPECIES_MINCCINO },
+    { 13, 13, SPECIES_JOLTIK },
+    { 11, 11, SPECIES_RUFFLET },
+    { 11, 11, SPECIES_GOSSIFLEUR },
+    { 12, 12, SPECIES_SUNKERN },
+    { 9, 9, SPECIES_SKITTY },
+    { 9, 9, SPECIES_DEERLING_SPRING },
+    { 9, 9, SPECIES_LEDYBA },
+    { 13, 13, SPECIES_SEWADDLE },
 };
 
 const struct WildPokemonInfo sRoute25_FireRed_Evening_LandMonsInfo = { 21, sRoute25_FireRed_Evening_LandMons };
 
 const struct WildPokemon sRoute25_FireRed_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_KABUTO },
-    { 20, 25, SPECIES_BARBOACH },
-    { 25, 30, SPECIES_QUAXLY },
-    { 30, 35, SPECIES_POPPLIO },
-    { 35, 40, SPECIES_LOTAD },
+    { 20, 25, SPECIES_WIGLETT },
+    { 20, 25, SPECIES_SANDSHREW_ALOLA },
+    { 25, 30, SPECIES_FROAKIE },
+    { 30, 35, SPECIES_QUAXLY },
+    { 35, 40, SPECIES_SOBBLE },
 };
 
 const struct WildPokemonInfo sRoute25_FireRed_Evening_WaterMonsInfo = { 2, sRoute25_FireRed_Evening_WaterMons };
@@ -19589,29 +19589,29 @@ const struct WildPokemonInfo sRoute25_FireRed_Evening_WaterMonsInfo = { 2, sRout
 #ifdef FIRERED
 const struct WildPokemon sRoute25_FireRed_Night_LandMons[] =
 {
-    { 8, 8, SPECIES_SLOWPOKE_GALAR },
-    { 8, 8, SPECIES_YAMASK_GALAR },
-    { 13, 13, SPECIES_MASCHIFF },
-    { 14, 14, SPECIES_PURRLOIN },
-    { 13, 13, SPECIES_SWIRLIX },
-    { 11, 11, SPECIES_VAROOM },
-    { 11, 11, SPECIES_TINKATINK },
-    { 12, 12, SPECIES_PHANTUMP },
-    { 9, 9, SPECIES_MIME_JR },
-    { 9, 9, SPECIES_FLITTLE },
-    { 9, 9, SPECIES_SCRAGGY },
-    { 13, 13, SPECIES_WOOPER_PALDEA },
+    { 8, 8, SPECIES_CHINGLING },
+    { 8, 8, SPECIES_CROAGUNK },
+    { 13, 13, SPECIES_PAWNIARD },
+    { 14, 14, SPECIES_SALANDIT },
+    { 13, 13, SPECIES_NICKIT },
+    { 11, 11, SPECIES_PURRLOIN },
+    { 11, 11, SPECIES_BRONZOR },
+    { 12, 12, SPECIES_BALTOY },
+    { 9, 9, SPECIES_BUDEW },
+    { 9, 9, SPECIES_PHANTUMP },
+    { 9, 9, SPECIES_INKAY },
+    { 13, 13, SPECIES_CHINGLING },
 };
 
 const struct WildPokemonInfo sRoute25_FireRed_Night_LandMonsInfo = { 21, sRoute25_FireRed_Night_LandMons };
 
 const struct WildPokemon sRoute25_FireRed_Night_WaterMons[] =
 {
+    { 20, 25, SPECIES_QWILFISH },
     { 20, 25, SPECIES_MAREANIE },
-    { 20, 25, SPECIES_SLOWPOKE },
-    { 25, 30, SPECIES_SMOOCHUM },
-    { 30, 35, SPECIES_SKRELP },
-    { 35, 40, SPECIES_QWILFISH },
+    { 25, 30, SPECIES_CARVANHA },
+    { 30, 35, SPECIES_FRILLISH },
+    { 35, 40, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sRoute25_FireRed_Night_WaterMonsInfo = { 2, sRoute25_FireRed_Night_WaterMons };
@@ -19667,29 +19667,29 @@ const struct WildPokemonInfo sRoute25_LeafGreen_FishingMonsInfo = { 20, sRoute25
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute25_LeafGreen_Evening_LandMons[] =
 {
-    { 8, 8, SPECIES_SHINX },
-    { 8, 8, SPECIES_HELIOPTILE },
-    { 13, 13, SPECIES_WINGULL },
-    { 14, 14, SPECIES_SMOLIV },
-    { 13, 13, SPECIES_FOMANTIS },
-    { 11, 11, SPECIES_SKITTY },
-    { 11, 11, SPECIES_NYMBLE },
-    { 12, 12, SPECIES_COMBEE },
-    { 9, 9, SPECIES_YAMPER },
-    { 9, 9, SPECIES_ZIGZAGOON },
-    { 9, 9, SPECIES_TADBULB },
-    { 13, 13, SPECIES_PIDOVE },
+    { 8, 8, SPECIES_YAMPER },
+    { 8, 8, SPECIES_SKWOVET },
+    { 13, 13, SPECIES_DELIBIRD },
+    { 14, 14, SPECIES_MINCCINO },
+    { 13, 13, SPECIES_JOLTIK },
+    { 11, 11, SPECIES_RUFFLET },
+    { 11, 11, SPECIES_GOSSIFLEUR },
+    { 12, 12, SPECIES_SUNKERN },
+    { 9, 9, SPECIES_SKITTY },
+    { 9, 9, SPECIES_DEERLING_SPRING },
+    { 9, 9, SPECIES_LEDYBA },
+    { 13, 13, SPECIES_SEWADDLE },
 };
 
 const struct WildPokemonInfo sRoute25_LeafGreen_Evening_LandMonsInfo = { 21, sRoute25_LeafGreen_Evening_LandMons };
 
 const struct WildPokemon sRoute25_LeafGreen_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_KABUTO },
-    { 20, 25, SPECIES_BARBOACH },
-    { 25, 30, SPECIES_QUAXLY },
-    { 30, 35, SPECIES_POPPLIO },
-    { 35, 40, SPECIES_LOTAD },
+    { 20, 25, SPECIES_WIGLETT },
+    { 20, 25, SPECIES_SANDSHREW_ALOLA },
+    { 25, 30, SPECIES_FROAKIE },
+    { 30, 35, SPECIES_QUAXLY },
+    { 35, 40, SPECIES_SOBBLE },
 };
 
 const struct WildPokemonInfo sRoute25_LeafGreen_Evening_WaterMonsInfo = { 2, sRoute25_LeafGreen_Evening_WaterMons };
@@ -19698,29 +19698,29 @@ const struct WildPokemonInfo sRoute25_LeafGreen_Evening_WaterMonsInfo = { 2, sRo
 #ifdef LEAFGREEN
 const struct WildPokemon sRoute25_LeafGreen_Night_LandMons[] =
 {
-    { 8, 8, SPECIES_SLOWPOKE_GALAR },
-    { 8, 8, SPECIES_YAMASK_GALAR },
-    { 13, 13, SPECIES_MASCHIFF },
-    { 14, 14, SPECIES_PURRLOIN },
-    { 13, 13, SPECIES_SWIRLIX },
-    { 11, 11, SPECIES_VAROOM },
-    { 11, 11, SPECIES_TINKATINK },
-    { 12, 12, SPECIES_PHANTUMP },
-    { 9, 9, SPECIES_MIME_JR },
-    { 9, 9, SPECIES_FLITTLE },
-    { 9, 9, SPECIES_SCRAGGY },
-    { 13, 13, SPECIES_WOOPER_PALDEA },
+    { 8, 8, SPECIES_CHINGLING },
+    { 8, 8, SPECIES_CROAGUNK },
+    { 13, 13, SPECIES_PAWNIARD },
+    { 14, 14, SPECIES_SALANDIT },
+    { 13, 13, SPECIES_NICKIT },
+    { 11, 11, SPECIES_PURRLOIN },
+    { 11, 11, SPECIES_BRONZOR },
+    { 12, 12, SPECIES_BALTOY },
+    { 9, 9, SPECIES_BUDEW },
+    { 9, 9, SPECIES_PHANTUMP },
+    { 9, 9, SPECIES_INKAY },
+    { 13, 13, SPECIES_CHINGLING },
 };
 
 const struct WildPokemonInfo sRoute25_LeafGreen_Night_LandMonsInfo = { 21, sRoute25_LeafGreen_Night_LandMons };
 
 const struct WildPokemon sRoute25_LeafGreen_Night_WaterMons[] =
 {
+    { 20, 25, SPECIES_QWILFISH },
     { 20, 25, SPECIES_MAREANIE },
-    { 20, 25, SPECIES_SLOWPOKE },
-    { 25, 30, SPECIES_SMOOCHUM },
-    { 30, 35, SPECIES_SKRELP },
-    { 35, 40, SPECIES_QWILFISH },
+    { 25, 30, SPECIES_CARVANHA },
+    { 30, 35, SPECIES_FRILLISH },
+    { 35, 40, SPECIES_SNEASEL },
 };
 
 const struct WildPokemonInfo sRoute25_LeafGreen_Night_WaterMonsInfo = { 2, sRoute25_LeafGreen_Night_WaterMons };
@@ -19758,11 +19758,11 @@ const struct WildPokemonInfo sPalletTown_FireRed_FishingMonsInfo = { 10, sPallet
 #ifdef FIRERED
 const struct WildPokemon sPalletTown_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_FINNEON },
-    { 10, 20, SPECIES_DUCKLETT },
-    { 20, 30, SPECIES_CHINCHOU },
-    { 30, 35, SPECIES_STARYU },
-    { 35, 40, SPECIES_SNOVER },
+    { 5, 10, SPECIES_CORSOLA },
+    { 10, 20, SPECIES_CORPHISH },
+    { 20, 30, SPECIES_CUBCHOO },
+    { 30, 35, SPECIES_PIPLUP },
+    { 35, 40, SPECIES_CLAMPERL },
 };
 
 const struct WildPokemonInfo sPalletTown_FireRed_Evening_WaterMonsInfo = { 1, sPalletTown_FireRed_Evening_WaterMons };
@@ -19771,10 +19771,10 @@ const struct WildPokemonInfo sPalletTown_FireRed_Evening_WaterMonsInfo = { 1, sP
 #ifdef FIRERED
 const struct WildPokemon sPalletTown_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_CARVANHA },
-    { 10, 20, SPECIES_FRILLISH },
-    { 20, 30, SPECIES_MAREANIE },
-    { 30, 35, SPECIES_QWILFISH },
+    { 5, 10, SPECIES_SMOOCHUM },
+    { 10, 20, SPECIES_SLOWPOKE },
+    { 20, 30, SPECIES_SKRELP },
+    { 30, 35, SPECIES_SKRELP },
     { 35, 40, SPECIES_SLOWPOKE },
 };
 
@@ -19813,11 +19813,11 @@ const struct WildPokemonInfo sPalletTown_LeafGreen_FishingMonsInfo = { 10, sPall
 #ifdef LEAFGREEN
 const struct WildPokemon sPalletTown_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_FINNEON },
-    { 10, 20, SPECIES_DUCKLETT },
-    { 20, 30, SPECIES_CHINCHOU },
-    { 30, 35, SPECIES_STARYU },
-    { 35, 40, SPECIES_SNOVER },
+    { 5, 10, SPECIES_CORSOLA },
+    { 10, 20, SPECIES_CORPHISH },
+    { 20, 30, SPECIES_CUBCHOO },
+    { 30, 35, SPECIES_PIPLUP },
+    { 35, 40, SPECIES_CLAMPERL },
 };
 
 const struct WildPokemonInfo sPalletTown_LeafGreen_Evening_WaterMonsInfo = { 1, sPalletTown_LeafGreen_Evening_WaterMons };
@@ -19826,10 +19826,10 @@ const struct WildPokemonInfo sPalletTown_LeafGreen_Evening_WaterMonsInfo = { 1, 
 #ifdef LEAFGREEN
 const struct WildPokemon sPalletTown_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_CARVANHA },
-    { 10, 20, SPECIES_FRILLISH },
-    { 20, 30, SPECIES_MAREANIE },
-    { 30, 35, SPECIES_QWILFISH },
+    { 5, 10, SPECIES_SMOOCHUM },
+    { 10, 20, SPECIES_SLOWPOKE },
+    { 20, 30, SPECIES_SKRELP },
+    { 30, 35, SPECIES_SKRELP },
     { 35, 40, SPECIES_SLOWPOKE },
 };
 
@@ -19868,11 +19868,11 @@ const struct WildPokemonInfo sViridianCity_FireRed_FishingMonsInfo = { 10, sViri
 #ifdef FIRERED
 const struct WildPokemon sViridianCity_FireRed_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_CORPHISH },
-    { 20, 25, SPECIES_CETODDLE },
-    { 25, 30, SPECIES_VULPIX_ALOLA },
-    { 30, 35, SPECIES_TOTODILE },
-    { 35, 40, SPECIES_BERGMITE },
+    { 20, 25, SPECIES_OMANYTE },
+    { 20, 25, SPECIES_SPHEAL },
+    { 25, 30, SPECIES_FEEBAS },
+    { 30, 35, SPECIES_AMAURA },
+    { 35, 40, SPECIES_WINGULL },
 };
 
 const struct WildPokemonInfo sViridianCity_FireRed_Evening_WaterMonsInfo = { 1, sViridianCity_FireRed_Evening_WaterMons };
@@ -19881,10 +19881,10 @@ const struct WildPokemonInfo sViridianCity_FireRed_Evening_WaterMonsInfo = { 1, 
 #ifdef FIRERED
 const struct WildPokemon sViridianCity_FireRed_Night_WaterMons[] =
 {
+    { 20, 25, SPECIES_FRILLISH },
     { 20, 25, SPECIES_SNEASEL },
-    { 20, 25, SPECIES_CARVANHA },
-    { 25, 30, SPECIES_SKRELP },
-    { 30, 35, SPECIES_SMOOCHUM },
+    { 25, 30, SPECIES_CARVANHA },
+    { 30, 35, SPECIES_MAREANIE },
     { 35, 40, SPECIES_QWILFISH },
 };
 
@@ -19923,11 +19923,11 @@ const struct WildPokemonInfo sViridianCity_LeafGreen_FishingMonsInfo = { 10, sVi
 #ifdef LEAFGREEN
 const struct WildPokemon sViridianCity_LeafGreen_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_CORPHISH },
-    { 20, 25, SPECIES_CETODDLE },
-    { 25, 30, SPECIES_VULPIX_ALOLA },
-    { 30, 35, SPECIES_TOTODILE },
-    { 35, 40, SPECIES_BERGMITE },
+    { 20, 25, SPECIES_OMANYTE },
+    { 20, 25, SPECIES_SPHEAL },
+    { 25, 30, SPECIES_FEEBAS },
+    { 30, 35, SPECIES_AMAURA },
+    { 35, 40, SPECIES_WINGULL },
 };
 
 const struct WildPokemonInfo sViridianCity_LeafGreen_Evening_WaterMonsInfo = { 1, sViridianCity_LeafGreen_Evening_WaterMons };
@@ -19936,10 +19936,10 @@ const struct WildPokemonInfo sViridianCity_LeafGreen_Evening_WaterMonsInfo = { 1
 #ifdef LEAFGREEN
 const struct WildPokemon sViridianCity_LeafGreen_Night_WaterMons[] =
 {
+    { 20, 25, SPECIES_FRILLISH },
     { 20, 25, SPECIES_SNEASEL },
-    { 20, 25, SPECIES_CARVANHA },
-    { 25, 30, SPECIES_SKRELP },
-    { 30, 35, SPECIES_SMOOCHUM },
+    { 25, 30, SPECIES_CARVANHA },
+    { 30, 35, SPECIES_MAREANIE },
     { 35, 40, SPECIES_QWILFISH },
 };
 
@@ -19978,11 +19978,11 @@ const struct WildPokemonInfo sCeruleanCity_FireRed_FishingMonsInfo = { 10, sCeru
 #ifdef FIRERED
 const struct WildPokemon sCeruleanCity_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_FEEBAS },
-    { 10, 20, SPECIES_WIGLETT },
-    { 20, 30, SPECIES_AMAURA },
-    { 30, 35, SPECIES_CUBCHOO },
-    { 35, 40, SPECIES_CLAUNCHER },
+    { 5, 10, SPECIES_BARBOACH },
+    { 10, 20, SPECIES_TIRTOUGA },
+    { 20, 30, SPECIES_CETODDLE },
+    { 30, 35, SPECIES_FINIZEN },
+    { 35, 40, SPECIES_DARUMAKA_GALAR },
 };
 
 const struct WildPokemonInfo sCeruleanCity_FireRed_Evening_WaterMonsInfo = { 1, sCeruleanCity_FireRed_Evening_WaterMons };
@@ -19992,10 +19992,10 @@ const struct WildPokemonInfo sCeruleanCity_FireRed_Evening_WaterMonsInfo = { 1, 
 const struct WildPokemon sCeruleanCity_FireRed_Night_WaterMons[] =
 {
     { 5, 10, SPECIES_SMOOCHUM },
-    { 10, 20, SPECIES_SLOWPOKE },
-    { 20, 30, SPECIES_SNEASEL },
-    { 30, 35, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_CARVANHA },
+    { 10, 20, SPECIES_CARVANHA },
+    { 20, 30, SPECIES_SLOWPOKE },
+    { 30, 35, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sCeruleanCity_FireRed_Night_WaterMonsInfo = { 1, sCeruleanCity_FireRed_Night_WaterMons };
@@ -20033,11 +20033,11 @@ const struct WildPokemonInfo sCeruleanCity_LeafGreen_FishingMonsInfo = { 10, sCe
 #ifdef LEAFGREEN
 const struct WildPokemon sCeruleanCity_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_FEEBAS },
-    { 10, 20, SPECIES_WIGLETT },
-    { 20, 30, SPECIES_AMAURA },
-    { 30, 35, SPECIES_CUBCHOO },
-    { 35, 40, SPECIES_CLAUNCHER },
+    { 5, 10, SPECIES_BARBOACH },
+    { 10, 20, SPECIES_TIRTOUGA },
+    { 20, 30, SPECIES_CETODDLE },
+    { 30, 35, SPECIES_FINIZEN },
+    { 35, 40, SPECIES_DARUMAKA_GALAR },
 };
 
 const struct WildPokemonInfo sCeruleanCity_LeafGreen_Evening_WaterMonsInfo = { 1, sCeruleanCity_LeafGreen_Evening_WaterMons };
@@ -20047,10 +20047,10 @@ const struct WildPokemonInfo sCeruleanCity_LeafGreen_Evening_WaterMonsInfo = { 1
 const struct WildPokemon sCeruleanCity_LeafGreen_Night_WaterMons[] =
 {
     { 5, 10, SPECIES_SMOOCHUM },
-    { 10, 20, SPECIES_SLOWPOKE },
-    { 20, 30, SPECIES_SNEASEL },
-    { 30, 35, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_CARVANHA },
+    { 10, 20, SPECIES_CARVANHA },
+    { 20, 30, SPECIES_SLOWPOKE },
+    { 30, 35, SPECIES_SNEASEL },
+    { 35, 40, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sCeruleanCity_LeafGreen_Night_WaterMonsInfo = { 1, sCeruleanCity_LeafGreen_Night_WaterMons };
@@ -20088,11 +20088,11 @@ const struct WildPokemonInfo sVermilionCity_FireRed_FishingMonsInfo = { 10, sVer
 #ifdef FIRERED
 const struct WildPokemon sVermilionCity_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_MUDKIP },
-    { 10, 20, SPECIES_WIMPOD },
-    { 20, 30, SPECIES_SQUIRTLE },
-    { 30, 35, SPECIES_MANTYKE },
-    { 35, 40, SPECIES_TYMPOLE },
+    { 5, 10, SPECIES_SNOM },
+    { 10, 20, SPECIES_TOTODILE },
+    { 20, 30, SPECIES_SNORUNT },
+    { 30, 35, SPECIES_STARYU },
+    { 35, 40, SPECIES_POPPLIO },
 };
 
 const struct WildPokemonInfo sVermilionCity_FireRed_Evening_WaterMonsInfo = { 1, sVermilionCity_FireRed_Evening_WaterMons };
@@ -20101,10 +20101,10 @@ const struct WildPokemonInfo sVermilionCity_FireRed_Evening_WaterMonsInfo = { 1,
 #ifdef FIRERED
 const struct WildPokemon sVermilionCity_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SKRELP },
-    { 10, 20, SPECIES_MAREANIE },
+    { 5, 10, SPECIES_FRILLISH },
+    { 10, 20, SPECIES_SKRELP },
     { 20, 30, SPECIES_MAREANIE },
-    { 30, 35, SPECIES_SNEASEL },
+    { 30, 35, SPECIES_SMOOCHUM },
     { 35, 40, SPECIES_FRILLISH },
 };
 
@@ -20143,11 +20143,11 @@ const struct WildPokemonInfo sVermilionCity_LeafGreen_FishingMonsInfo = { 10, sV
 #ifdef LEAFGREEN
 const struct WildPokemon sVermilionCity_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_MUDKIP },
-    { 10, 20, SPECIES_WIMPOD },
-    { 20, 30, SPECIES_SQUIRTLE },
-    { 30, 35, SPECIES_MANTYKE },
-    { 35, 40, SPECIES_TYMPOLE },
+    { 5, 10, SPECIES_SNOM },
+    { 10, 20, SPECIES_TOTODILE },
+    { 20, 30, SPECIES_SNORUNT },
+    { 30, 35, SPECIES_STARYU },
+    { 35, 40, SPECIES_POPPLIO },
 };
 
 const struct WildPokemonInfo sVermilionCity_LeafGreen_Evening_WaterMonsInfo = { 1, sVermilionCity_LeafGreen_Evening_WaterMons };
@@ -20156,10 +20156,10 @@ const struct WildPokemonInfo sVermilionCity_LeafGreen_Evening_WaterMonsInfo = { 
 #ifdef LEAFGREEN
 const struct WildPokemon sVermilionCity_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SKRELP },
-    { 10, 20, SPECIES_MAREANIE },
+    { 5, 10, SPECIES_FRILLISH },
+    { 10, 20, SPECIES_SKRELP },
     { 20, 30, SPECIES_MAREANIE },
-    { 30, 35, SPECIES_SNEASEL },
+    { 30, 35, SPECIES_SMOOCHUM },
     { 35, 40, SPECIES_FRILLISH },
 };
 
@@ -20198,11 +20198,11 @@ const struct WildPokemonInfo sCeladonCity_FireRed_FishingMonsInfo = { 10, sCelad
 #ifdef FIRERED
 const struct WildPokemon sCeladonCity_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_CLAMPERL },
-    { 10, 20, SPECIES_ARROKUDA },
-    { 20, 30, SPECIES_CHEWTLE },
-    { 30, 40, SPECIES_SOBBLE },
-    { 30, 40, SPECIES_SANDSHREW_ALOLA },
+    { 5, 10, SPECIES_SURSKIT },
+    { 10, 20, SPECIES_FEEBAS },
+    { 20, 30, SPECIES_SPHEAL },
+    { 30, 40, SPECIES_CORSOLA },
+    { 30, 40, SPECIES_TIRTOUGA },
 };
 
 const struct WildPokemonInfo sCeladonCity_FireRed_Evening_WaterMonsInfo = { 1, sCeladonCity_FireRed_Evening_WaterMons };
@@ -20211,11 +20211,11 @@ const struct WildPokemonInfo sCeladonCity_FireRed_Evening_WaterMonsInfo = { 1, s
 #ifdef FIRERED
 const struct WildPokemon sCeladonCity_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SMOOCHUM },
+    { 5, 10, SPECIES_MAREANIE },
     { 10, 20, SPECIES_QWILFISH },
-    { 20, 30, SPECIES_SLOWPOKE },
-    { 30, 40, SPECIES_CARVANHA },
+    { 20, 30, SPECIES_CARVANHA },
     { 30, 40, SPECIES_SKRELP },
+    { 30, 40, SPECIES_SMOOCHUM },
 };
 
 const struct WildPokemonInfo sCeladonCity_FireRed_Night_WaterMonsInfo = { 1, sCeladonCity_FireRed_Night_WaterMons };
@@ -20253,11 +20253,11 @@ const struct WildPokemonInfo sCeladonCity_LeafGreen_FishingMonsInfo = { 10, sCel
 #ifdef LEAFGREEN
 const struct WildPokemon sCeladonCity_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_CLAMPERL },
-    { 10, 20, SPECIES_ARROKUDA },
-    { 20, 30, SPECIES_CHEWTLE },
-    { 30, 40, SPECIES_SOBBLE },
-    { 30, 40, SPECIES_SANDSHREW_ALOLA },
+    { 5, 10, SPECIES_SURSKIT },
+    { 10, 20, SPECIES_FEEBAS },
+    { 20, 30, SPECIES_SPHEAL },
+    { 30, 40, SPECIES_CORSOLA },
+    { 30, 40, SPECIES_TIRTOUGA },
 };
 
 const struct WildPokemonInfo sCeladonCity_LeafGreen_Evening_WaterMonsInfo = { 1, sCeladonCity_LeafGreen_Evening_WaterMons };
@@ -20266,11 +20266,11 @@ const struct WildPokemonInfo sCeladonCity_LeafGreen_Evening_WaterMonsInfo = { 1,
 #ifdef LEAFGREEN
 const struct WildPokemon sCeladonCity_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SMOOCHUM },
+    { 5, 10, SPECIES_MAREANIE },
     { 10, 20, SPECIES_QWILFISH },
-    { 20, 30, SPECIES_SLOWPOKE },
-    { 30, 40, SPECIES_CARVANHA },
+    { 20, 30, SPECIES_CARVANHA },
     { 30, 40, SPECIES_SKRELP },
+    { 30, 40, SPECIES_SMOOCHUM },
 };
 
 const struct WildPokemonInfo sCeladonCity_LeafGreen_Night_WaterMonsInfo = { 1, sCeladonCity_LeafGreen_Night_WaterMons };
@@ -20308,11 +20308,11 @@ const struct WildPokemonInfo sFuchsiaCity_FireRed_FishingMonsInfo = { 10, sFuchs
 #ifdef FIRERED
 const struct WildPokemon sFuchsiaCity_FireRed_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_SWINUB },
-    { 20, 25, SPECIES_DELIBIRD },
-    { 25, 30, SPECIES_PIPLUP },
-    { 30, 35, SPECIES_KABUTO },
-    { 35, 40, SPECIES_QUAXLY },
+    { 20, 25, SPECIES_BARBOACH },
+    { 20, 25, SPECIES_CLAMPERL },
+    { 25, 30, SPECIES_DEWPIDER },
+    { 30, 35, SPECIES_VULPIX_ALOLA },
+    { 35, 40, SPECIES_FINIZEN },
 };
 
 const struct WildPokemonInfo sFuchsiaCity_FireRed_Evening_WaterMonsInfo = { 1, sFuchsiaCity_FireRed_Evening_WaterMons };
@@ -20321,11 +20321,11 @@ const struct WildPokemonInfo sFuchsiaCity_FireRed_Evening_WaterMonsInfo = { 1, s
 #ifdef FIRERED
 const struct WildPokemon sFuchsiaCity_FireRed_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_SMOOCHUM },
-    { 20, 25, SPECIES_SKRELP },
-    { 25, 30, SPECIES_SNEASEL },
-    { 30, 35, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 20, 25, SPECIES_SNEASEL },
+    { 20, 25, SPECIES_SLOWPOKE },
+    { 25, 30, SPECIES_QWILFISH },
+    { 30, 35, SPECIES_SLOWPOKE },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sFuchsiaCity_FireRed_Night_WaterMonsInfo = { 1, sFuchsiaCity_FireRed_Night_WaterMons };
@@ -20363,11 +20363,11 @@ const struct WildPokemonInfo sFuchsiaCity_LeafGreen_FishingMonsInfo = { 10, sFuc
 #ifdef LEAFGREEN
 const struct WildPokemon sFuchsiaCity_LeafGreen_Evening_WaterMons[] =
 {
-    { 20, 25, SPECIES_SWINUB },
-    { 20, 25, SPECIES_DELIBIRD },
-    { 25, 30, SPECIES_PIPLUP },
-    { 30, 35, SPECIES_KABUTO },
-    { 35, 40, SPECIES_QUAXLY },
+    { 20, 25, SPECIES_BARBOACH },
+    { 20, 25, SPECIES_CLAMPERL },
+    { 25, 30, SPECIES_DEWPIDER },
+    { 30, 35, SPECIES_VULPIX_ALOLA },
+    { 35, 40, SPECIES_FINIZEN },
 };
 
 const struct WildPokemonInfo sFuchsiaCity_LeafGreen_Evening_WaterMonsInfo = { 1, sFuchsiaCity_LeafGreen_Evening_WaterMons };
@@ -20376,11 +20376,11 @@ const struct WildPokemonInfo sFuchsiaCity_LeafGreen_Evening_WaterMonsInfo = { 1,
 #ifdef LEAFGREEN
 const struct WildPokemon sFuchsiaCity_LeafGreen_Night_WaterMons[] =
 {
-    { 20, 25, SPECIES_SMOOCHUM },
-    { 20, 25, SPECIES_SKRELP },
-    { 25, 30, SPECIES_SNEASEL },
-    { 30, 35, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_MAREANIE },
+    { 20, 25, SPECIES_SNEASEL },
+    { 20, 25, SPECIES_SLOWPOKE },
+    { 25, 30, SPECIES_QWILFISH },
+    { 30, 35, SPECIES_SLOWPOKE },
+    { 35, 40, SPECIES_FRILLISH },
 };
 
 const struct WildPokemonInfo sFuchsiaCity_LeafGreen_Night_WaterMonsInfo = { 1, sFuchsiaCity_LeafGreen_Night_WaterMons };
@@ -20418,11 +20418,11 @@ const struct WildPokemonInfo sCinnabarIsland_FireRed_FishingMonsInfo = { 10, sCi
 #ifdef FIRERED
 const struct WildPokemon sCinnabarIsland_FireRed_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_WOOPER },
-    { 10, 20, SPECIES_POPPLIO },
-    { 20, 30, SPECIES_CHINCHOU },
-    { 30, 35, SPECIES_LOTAD },
-    { 35, 40, SPECIES_PYUKUMUKU },
+    { 5, 10, SPECIES_SNOM },
+    { 10, 20, SPECIES_QUAXLY },
+    { 20, 30, SPECIES_BINACLE },
+    { 30, 35, SPECIES_CRYOGONAL },
+    { 35, 40, SPECIES_CUBCHOO },
 };
 
 const struct WildPokemonInfo sCinnabarIsland_FireRed_Evening_WaterMonsInfo = { 1, sCinnabarIsland_FireRed_Evening_WaterMons };
@@ -20431,11 +20431,11 @@ const struct WildPokemonInfo sCinnabarIsland_FireRed_Evening_WaterMonsInfo = { 1
 #ifdef FIRERED
 const struct WildPokemon sCinnabarIsland_FireRed_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SLOWPOKE },
-    { 10, 20, SPECIES_FRILLISH },
-    { 20, 30, SPECIES_CARVANHA },
-    { 30, 35, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_CARVANHA },
+    { 5, 10, SPECIES_CARVANHA },
+    { 10, 20, SPECIES_MAREANIE },
+    { 20, 30, SPECIES_SNEASEL },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_SKRELP },
 };
 
 const struct WildPokemonInfo sCinnabarIsland_FireRed_Night_WaterMonsInfo = { 1, sCinnabarIsland_FireRed_Night_WaterMons };
@@ -20473,11 +20473,11 @@ const struct WildPokemonInfo sCinnabarIsland_LeafGreen_FishingMonsInfo = { 10, s
 #ifdef LEAFGREEN
 const struct WildPokemon sCinnabarIsland_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 10, SPECIES_WOOPER },
-    { 10, 20, SPECIES_POPPLIO },
-    { 20, 30, SPECIES_CHINCHOU },
-    { 30, 35, SPECIES_LOTAD },
-    { 35, 40, SPECIES_PYUKUMUKU },
+    { 5, 10, SPECIES_SNOM },
+    { 10, 20, SPECIES_QUAXLY },
+    { 20, 30, SPECIES_BINACLE },
+    { 30, 35, SPECIES_CRYOGONAL },
+    { 35, 40, SPECIES_CUBCHOO },
 };
 
 const struct WildPokemonInfo sCinnabarIsland_LeafGreen_Evening_WaterMonsInfo = { 1, sCinnabarIsland_LeafGreen_Evening_WaterMons };
@@ -20486,11 +20486,11 @@ const struct WildPokemonInfo sCinnabarIsland_LeafGreen_Evening_WaterMonsInfo = {
 #ifdef LEAFGREEN
 const struct WildPokemon sCinnabarIsland_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 10, SPECIES_SLOWPOKE },
-    { 10, 20, SPECIES_FRILLISH },
-    { 20, 30, SPECIES_CARVANHA },
-    { 30, 35, SPECIES_MAREANIE },
-    { 35, 40, SPECIES_CARVANHA },
+    { 5, 10, SPECIES_CARVANHA },
+    { 10, 20, SPECIES_MAREANIE },
+    { 20, 30, SPECIES_SNEASEL },
+    { 30, 35, SPECIES_SMOOCHUM },
+    { 35, 40, SPECIES_SKRELP },
 };
 
 const struct WildPokemonInfo sCinnabarIsland_LeafGreen_Night_WaterMonsInfo = { 1, sCinnabarIsland_LeafGreen_Night_WaterMons };
@@ -20528,11 +20528,11 @@ const struct WildPokemonInfo sOneIsland_FireRed_FishingMonsInfo = { 10, sOneIsla
 #ifdef FIRERED
 const struct WildPokemon sOneIsland_FireRed_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_DONDOZO },
+    { 5, 20, SPECIES_DARMANITAN_GALAR_ZEN },
     { 20, 35, SPECIES_ARCTOZOLT },
-    { 35, 40, SPECIES_CRAMORANT },
-    { 35, 40, SPECIES_ARCTOVISH },
-    { 35, 40, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 35, 40, SPECIES_TAUROS_PALDEA_AQUA },
+    { 35, 40, SPECIES_ALOMOMOLA },
+    { 35, 40, SPECIES_DONDOZO },
 };
 
 const struct WildPokemonInfo sOneIsland_FireRed_Evening_WaterMonsInfo = { 1, sOneIsland_FireRed_Evening_WaterMons };
@@ -20541,11 +20541,11 @@ const struct WildPokemonInfo sOneIsland_FireRed_Evening_WaterMonsInfo = { 1, sOn
 #ifdef FIRERED
 const struct WildPokemon sOneIsland_FireRed_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_BRUXISH },
-    { 20, 35, SPECIES_BRUXISH },
-    { 35, 40, SPECIES_VELUZA },
-    { 35, 40, SPECIES_VELUZA },
+    { 5, 20, SPECIES_BASCULEGION_M },
+    { 20, 35, SPECIES_BASCULEGION_M },
     { 35, 40, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_VELUZA },
+    { 35, 40, SPECIES_VELUZA },
 };
 
 const struct WildPokemonInfo sOneIsland_FireRed_Night_WaterMonsInfo = { 1, sOneIsland_FireRed_Night_WaterMons };
@@ -20583,11 +20583,11 @@ const struct WildPokemonInfo sOneIsland_LeafGreen_FishingMonsInfo = { 10, sOneIs
 #ifdef LEAFGREEN
 const struct WildPokemon sOneIsland_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 20, SPECIES_DONDOZO },
+    { 5, 20, SPECIES_DARMANITAN_GALAR_ZEN },
     { 20, 35, SPECIES_ARCTOZOLT },
-    { 35, 40, SPECIES_CRAMORANT },
-    { 35, 40, SPECIES_ARCTOVISH },
-    { 35, 40, SPECIES_DARMANITAN_GALAR_ZEN },
+    { 35, 40, SPECIES_TAUROS_PALDEA_AQUA },
+    { 35, 40, SPECIES_ALOMOMOLA },
+    { 35, 40, SPECIES_DONDOZO },
 };
 
 const struct WildPokemonInfo sOneIsland_LeafGreen_Evening_WaterMonsInfo = { 1, sOneIsland_LeafGreen_Evening_WaterMons };
@@ -20596,11 +20596,11 @@ const struct WildPokemonInfo sOneIsland_LeafGreen_Evening_WaterMonsInfo = { 1, s
 #ifdef LEAFGREEN
 const struct WildPokemon sOneIsland_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 20, SPECIES_BRUXISH },
-    { 20, 35, SPECIES_BRUXISH },
-    { 35, 40, SPECIES_VELUZA },
-    { 35, 40, SPECIES_VELUZA },
+    { 5, 20, SPECIES_BASCULEGION_M },
+    { 20, 35, SPECIES_BASCULEGION_M },
     { 35, 40, SPECIES_BRUXISH },
+    { 35, 40, SPECIES_VELUZA },
+    { 35, 40, SPECIES_VELUZA },
 };
 
 const struct WildPokemonInfo sOneIsland_LeafGreen_Night_WaterMonsInfo = { 1, sOneIsland_LeafGreen_Night_WaterMons };
@@ -20638,11 +20638,11 @@ const struct WildPokemonInfo sFourIsland_FireRed_FishingMonsInfo = { 20, sFourIs
 #ifdef FIRERED
 const struct WildPokemon sFourIsland_FireRed_Evening_WaterMons[] =
 {
-    { 5, 15, SPECIES_PANPOUR },
-    { 5, 35, SPECIES_DUCKLETT },
-    { 15, 25, SPECIES_FINIZEN },
-    { 15, 25, SPECIES_SNORUNT },
-    { 15, 25, SPECIES_CORSOLA },
+    { 5, 15, SPECIES_CORPHISH },
+    { 5, 35, SPECIES_PANPOUR },
+    { 15, 25, SPECIES_WIGLETT },
+    { 15, 25, SPECIES_SNOVER },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFourIsland_FireRed_Evening_WaterMonsInfo = { 2, sFourIsland_FireRed_Evening_WaterMons };
@@ -20651,11 +20651,11 @@ const struct WildPokemonInfo sFourIsland_FireRed_Evening_WaterMonsInfo = { 2, sF
 #ifdef FIRERED
 const struct WildPokemon sFourIsland_FireRed_Night_WaterMons[] =
 {
-    { 5, 15, SPECIES_SMOOCHUM },
-    { 5, 35, SPECIES_SLOWPOKE },
-    { 15, 25, SPECIES_QWILFISH },
-    { 15, 25, SPECIES_SKRELP },
+    { 5, 15, SPECIES_SNEASEL },
+    { 5, 35, SPECIES_CARVANHA },
+    { 15, 25, SPECIES_SMOOCHUM },
     { 15, 25, SPECIES_FRILLISH },
+    { 15, 25, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sFourIsland_FireRed_Night_WaterMonsInfo = { 2, sFourIsland_FireRed_Night_WaterMons };
@@ -20693,11 +20693,11 @@ const struct WildPokemonInfo sFourIsland_LeafGreen_FishingMonsInfo = { 20, sFour
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIsland_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 15, SPECIES_PANPOUR },
-    { 5, 35, SPECIES_DUCKLETT },
-    { 15, 25, SPECIES_FINIZEN },
-    { 15, 25, SPECIES_SNORUNT },
-    { 15, 25, SPECIES_CORSOLA },
+    { 5, 15, SPECIES_CORPHISH },
+    { 5, 35, SPECIES_PANPOUR },
+    { 15, 25, SPECIES_WIGLETT },
+    { 15, 25, SPECIES_SNOVER },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFourIsland_LeafGreen_Evening_WaterMonsInfo = { 2, sFourIsland_LeafGreen_Evening_WaterMons };
@@ -20706,11 +20706,11 @@ const struct WildPokemonInfo sFourIsland_LeafGreen_Evening_WaterMonsInfo = { 2, 
 #ifdef LEAFGREEN
 const struct WildPokemon sFourIsland_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 15, SPECIES_SMOOCHUM },
-    { 5, 35, SPECIES_SLOWPOKE },
-    { 15, 25, SPECIES_QWILFISH },
-    { 15, 25, SPECIES_SKRELP },
+    { 5, 15, SPECIES_SNEASEL },
+    { 5, 35, SPECIES_CARVANHA },
+    { 15, 25, SPECIES_SMOOCHUM },
     { 15, 25, SPECIES_FRILLISH },
+    { 15, 25, SPECIES_SLOWPOKE },
 };
 
 const struct WildPokemonInfo sFourIsland_LeafGreen_Night_WaterMonsInfo = { 2, sFourIsland_LeafGreen_Night_WaterMons };
@@ -20748,11 +20748,11 @@ const struct WildPokemonInfo sFiveIsland_FireRed_FishingMonsInfo = { 10, sFiveIs
 #ifdef FIRERED
 const struct WildPokemon sFiveIsland_FireRed_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_VANILLITE },
-    { 5, 15, SPECIES_DARUMAKA_GALAR },
-    { 35, 40, SPECIES_BINACLE },
+    { 5, 35, SPECIES_LUVDISC },
+    { 5, 15, SPECIES_KABUTO },
+    { 35, 40, SPECIES_OMANYTE },
+    { 35, 40, SPECIES_CLAUNCHER },
     { 35, 40, SPECIES_WAILMER },
-    { 35, 40, SPECIES_STARYU },
 };
 
 const struct WildPokemonInfo sFiveIsland_FireRed_Evening_WaterMonsInfo = { 1, sFiveIsland_FireRed_Evening_WaterMons };
@@ -20761,11 +20761,11 @@ const struct WildPokemonInfo sFiveIsland_FireRed_Evening_WaterMonsInfo = { 1, sF
 #ifdef FIRERED
 const struct WildPokemon sFiveIsland_FireRed_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_SNEASEL },
-    { 5, 15, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_SNEASEL },
+    { 5, 35, SPECIES_QWILFISH },
+    { 5, 15, SPECIES_SKRELP },
+    { 35, 40, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sFiveIsland_FireRed_Night_WaterMonsInfo = { 1, sFiveIsland_FireRed_Night_WaterMons };
@@ -20803,11 +20803,11 @@ const struct WildPokemonInfo sFiveIsland_LeafGreen_FishingMonsInfo = { 10, sFive
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIsland_LeafGreen_Evening_WaterMons[] =
 {
-    { 5, 35, SPECIES_VANILLITE },
-    { 5, 15, SPECIES_DARUMAKA_GALAR },
-    { 35, 40, SPECIES_BINACLE },
+    { 5, 35, SPECIES_LUVDISC },
+    { 5, 15, SPECIES_KABUTO },
+    { 35, 40, SPECIES_OMANYTE },
+    { 35, 40, SPECIES_CLAUNCHER },
     { 35, 40, SPECIES_WAILMER },
-    { 35, 40, SPECIES_STARYU },
 };
 
 const struct WildPokemonInfo sFiveIsland_LeafGreen_Evening_WaterMonsInfo = { 1, sFiveIsland_LeafGreen_Evening_WaterMons };
@@ -20816,11 +20816,11 @@ const struct WildPokemonInfo sFiveIsland_LeafGreen_Evening_WaterMonsInfo = { 1, 
 #ifdef LEAFGREEN
 const struct WildPokemon sFiveIsland_LeafGreen_Night_WaterMons[] =
 {
-    { 5, 35, SPECIES_SNEASEL },
-    { 5, 15, SPECIES_QWILFISH },
-    { 35, 40, SPECIES_FRILLISH },
-    { 35, 40, SPECIES_SMOOCHUM },
-    { 35, 40, SPECIES_SNEASEL },
+    { 5, 35, SPECIES_QWILFISH },
+    { 5, 15, SPECIES_SKRELP },
+    { 35, 40, SPECIES_MAREANIE },
+    { 35, 40, SPECIES_CARVANHA },
+    { 35, 40, SPECIES_QWILFISH },
 };
 
 const struct WildPokemonInfo sFiveIsland_LeafGreen_Night_WaterMonsInfo = { 1, sFiveIsland_LeafGreen_Night_WaterMons };

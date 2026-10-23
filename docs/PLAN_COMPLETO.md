@@ -62,6 +62,9 @@ retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
 
 - [x] **ARTE-0:** investigar fuentes y crear conceptos originales de mochila y Pokédex.
   Referencias, archivos y procedencia: [RECURSOS_MENU.md](RECURSOS_MENU.md).
+- [x] **POKÉMON-1025:** todas las especies obtenibles: salvajes de generaciones 2–9 por
+  `encounters.py` y 117 legendarios/singulares/Ultraentes/paradójicos en 28 misiones de saga
+  con ubicaciones especiales ([LEYENDAS.md](LEYENDAS.md)). Falta recorrido a pie de las 64 ubicaciones.
 - [x] **ARTE-1:** iconos 16×16 nativos para el menú principal y la cabecera de Misiones:
   nueve del Kenney 1-Bit Pack (CC0) y una Poké Ball propia, como máscaras de 1 bit
   pintadas con roles del tema (`RFUI_DrawIcon`). Capturas claro/oscuro/selección revisadas.

@@ -18,7 +18,8 @@ class QuestEngineTests(unittest.TestCase):
         compiler = shutil.which("cc")
         self.assertIsNotNone(compiler, "Run in the verification container with a host C compiler")
         engine = ROOT / "src/rf_quests.c"
-        source = engine.read_text(encoding="utf-8") + (ROOT / "src/data/rf_quests.h").read_text(encoding="utf-8")
+        source = (engine.read_text(encoding="utf-8") + (ROOT / "src/data/rf_quests.h").read_text(encoding="utf-8")
+                  + (ROOT / "src/data/rf_quests_legends.h").read_text(encoding="utf-8"))
         species = sorted(set(re.findall(r"\bSPECIES_[A-Z0-9_]+", source)) - {"SPECIES_NONE"})
         items = sorted(set(re.findall(r"\bITEM_[A-Z0-9_]+", source)) - {"ITEM_NONE"})
         maps = sorted(set(re.findall(r"\bMAP_[A-Z0-9_]+", source)) - {"MAP_GROUP", "MAP_NUM"})
@@ -47,6 +48,15 @@ typedef int32_t bool32;
 #define MAP_NUM(x) ((x) & 255)
 #define FLAG_SYS_POKEDEX_GET 1
 #define FLAG_IS_CHAMPION 2
+#define FLAG_BADGE01_GET 3
+#define FLAG_BADGE02_GET 4
+#define FLAG_BADGE03_GET 5
+#define FLAG_BADGE04_GET 6
+#define FLAG_BADGE05_GET 7
+#define FLAG_BADGE06_GET 8
+#define FLAG_BADGE07_GET 9
+#define FLAG_BADGE08_GET 10
+#define FLAG_SYS_GAME_CLEAR 11
 #include "constants/rf_quests.h"
 DECLARATIONS
 enum {MON_DATA_SPECIES, MON_DATA_IS_EGG};
@@ -78,7 +88,8 @@ static struct SaveBlock1 world;
 struct SaveBlock3 *gSaveBlock3Ptr = &save;
 struct SaveBlock1 *gSaveBlock1Ptr = &world;
 struct Pokemon gParties[1][PARTY_SIZE];
-static bool32 dex, champion, room;
+static bool32 dex, champion, room, sagaCaught;
+bool32 RFLegends_IsSagaCaught(u32 saga) {(void)saga; return sagaCaught;}
 static u16 bag[256];
 bool32 FlagGet(u16 flag) {return flag == FLAG_SYS_POKEDEX_GET ? dex : champion;}
 u32 GetMonData(struct Pokemon *mon, u32 field) {return field == MON_DATA_SPECIES ? mon->species : mon->egg;}
@@ -246,6 +257,18 @@ int main(void)
             ancestor = sRFQuests[ancestor].prerequisite;
         }
     }
+    // Legendary sagas: locked by their flag, ready only once the saga is caught, then claimable.
+    champion = FALSE;
+    assert(!RFQuests_IsUnlocked(RF_QUEST_LEGEND_00));
+    champion = TRUE;
+    assert(RFQuests_Accept(RF_QUEST_LEGEND_00));
+    RFQuests_Refresh();
+    assert(RFQuests_GetState(RF_QUEST_LEGEND_00) == RF_QUEST_ACTIVE);
+    sagaCaught = TRUE;
+    RFQuests_Refresh();
+    assert(RFQuests_GetState(RF_QUEST_LEGEND_00) == RF_QUEST_READY);
+    assert(RFQuests_Claim(RF_QUEST_LEGEND_00));
+    sagaCaught = FALSE;
     struct SaveBlock3 snapshot = save;
     RFQuests_Refresh();
     assert(memcmp(&snapshot, &save, sizeof(save)) == 0);

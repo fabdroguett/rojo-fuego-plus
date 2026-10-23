@@ -20,6 +20,7 @@ enum QuestCondition
     QUEST_REVIVED_FOSSIL,
     QUEST_EVENT,
     QUEST_DELIVER_ITEM,
+    QUEST_LEGENDS, // argument: legend saga; ready once every legend of the saga is caught
 };
 
 struct RFQuest

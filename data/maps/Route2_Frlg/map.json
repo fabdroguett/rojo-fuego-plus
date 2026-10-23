@@ -118,6 +118,20 @@
       "y": 85,
       "target_local_id": "LOCALID_VIRIDIAN_BORDER_TREE",
       "target_map": "MAP_VIRIDIAN_CITY"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VIRIZION)",
+      "x": 17,
+      "y": 76,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RF_EventScript_Legend_005",
+      "flag": "0"
     }
   ],
   "warp_events": [

@@ -2,6 +2,7 @@
 #include "event_data.h"
 #include "item.h"
 #include "pokemon.h"
+#include "rf_legends.h"
 #include "rf_quests.h"
 #include "constants/opponents_frlg.h"
 
@@ -87,6 +88,8 @@ static bool32 QuestObjectiveMet(const struct RFQuest *quest)
             return PartyHasSpecies(SPECIES_OMANYTE) || PartyHasSpecies(SPECIES_OMASTAR)
                 || PartyHasSpecies(SPECIES_KABUTO) || PartyHasSpecies(SPECIES_KABUTOPS);
         return FALSE;
+    case QUEST_LEGENDS:
+        return RFLegends_IsSagaCaught(quest->argument);
     }
     return FALSE;
 }
