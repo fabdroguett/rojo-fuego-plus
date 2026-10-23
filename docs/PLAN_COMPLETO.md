@@ -12,6 +12,19 @@ Una casilla pendiente puede requerir implementación, completar una integración
 validar código existente. No cuenta como terminada solo porque compile. Las funciones
 repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 
+## Punto de reanudación
+
+Sesión cerrada el 23-10-2026 a petición del usuario para continuar después. Último código
+jugable subido: `7a96f850` en `rojo-fuego`. ROM de iniciales ya entregada y verificada;
+esta actualización es documental. Detalles de ROM, hash, pruebas, entorno y pendientes:
+[CONTINUIDAD.md](CONTINUIDAD.md).
+
+**Al retomar: ARTE-1**, seleccionar y adaptar iconos 16×16 desde las fuentes de Internet
+investigadas, registrar licencias/créditos e integrar una familia coherente en el menú.
+Después ARTE-2 (mochila) → ARTE-3 (Pokédex HGSS) → ARTE-4/5 (resto y verificación).
+No repetir el selector de iniciales ni la investigación ya completada. Mantener pendientes
+las pruebas integrales de apodo, primera batalla, guardado/carga y Android.
+
 ## Estado consolidado al 23-10-2026
 
 Nueva ampliación solicitada: [selector de 54 iniciales](INICIALES.md), 27 oficiales de
@@ -29,7 +42,8 @@ Punto jugable anterior: [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md), código 
 | Preparación | Editor EV/IV con confirmación/cancelación, recordador de preevoluciones, clave de bayas y ocho tutores por medalla | Servicios de Centros, herramientas, formas/fusiones y zonas de entrenamiento |
 | Almacenamiento | SAVE-1 medido y documentado; 14 cajas / 420 plazas | SAVE-2 y SAVE-3: banco, migración y recuperación antes de habilitar más cajas |
 | Verificación | 18 pruebas automáticas, recorridos mGBA, ROM de avance sin fixtures y arranque hasta el mapa | Regresión integral, partidas antiguas/nuevas completas y Android |
-| Recursos visuales | Búsqueda de recursos y dos conceptos propios de mochila/Pokédex guardados | Adaptación a píxeles/paletas nativos e integración; la ROM actual conserva los gráficos anteriores |
+| Iniciales | 54 opciones/18 grupos; normal/oculta, confirmación, cancelación y escenas de Oak probadas | Recorrido integral de nueva partida, apodo, guardado/carga y Android; rival conserva Kanto |
+| Recursos visuales | 28 fuentes de Internet y dos conceptos propios de mochila/Pokédex guardados | Adaptación a píxeles/paletas nativos e integración; la ROM actual conserva los gráficos anteriores |
 
 No se calcula el porcentaje global contando casillas: las tareas tienen tamaños distintos.
 43/350 expresa únicamente avance de contenido de misiones, no del proyecto completo.
@@ -258,7 +272,9 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
 - [ ] Ampliar interacción del seguidor: comentarios por zona/estado/eventos y acciones de campo.
 - [ ] Crear vivienda y decoración en Paleta: recuerdos de logros, plantas y muñecos.
 - [ ] Añadir protagonistas, ropa, cabello y colores con sprites completos para todas las acciones.
-- [ ] Añadir selector de iniciales por región, compatible con historia, rival y primeras rutas.
+- [x] Añadir selector de iniciales por región: 54 opciones, normal/oculta e integración
+  con Oak y las ramas del rival; [detalle y límites](INICIALES.md). La regresión integral
+  de primeras rutas/batalla, apodo y guardado/carga queda en ENTREGA.
 - [ ] Añadir estaciones seleccionables o del reloj simulado: paletas, encuentros y misiones
   recuperables; evitar contenido perdido por calendario.
 - [ ] Crear fondos propios para encuentros legendarios importantes.
