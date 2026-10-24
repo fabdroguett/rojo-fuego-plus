@@ -54,6 +54,18 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+#if RF_SUMMARY_SCREEN
+// Rojo Fuego+: rf_summary_screen.c provides the public summary screen; this one stays as a fallback.
+#define ShowPokemonSummaryScreen Legacy_ShowPokemonSummaryScreen
+#define ShowSelectMovePokemonSummaryScreen Legacy_ShowSelectMovePokemonSummaryScreen
+#define GetMoveSlotToReplace Legacy_GetMoveSlotToReplace
+#define SummaryScreen_SetAnimDelayTaskId Legacy_SummaryScreen_SetAnimDelayTaskId
+void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void));
+void ShowSelectMovePokemonSummaryScreen(struct Pokemon *mons, u8 monIndex, void (*callback)(void), u16 newMove);
+u8 GetMoveSlotToReplace(void);
+void SummaryScreen_SetAnimDelayTaskId(u8 taskId);
+#endif
+
 // Screen titles (upper left)
 #define PSS_LABEL_WINDOW_POKEMON_INFO_TITLE 0
 #define PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE 1

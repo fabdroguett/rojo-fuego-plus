@@ -2,6 +2,7 @@
 #define GUARD_CONFIG_SUMMARY_SCREEN_H
 
 // Settings
+#define RF_SUMMARY_SCREEN                TRUE   // Rojo Fuego+: rf_summary_screen.c replaces this screen; FALSE restores pokemon_summary_screen.c.
 #define P_SUMMARY_SCREEN_NATURE_COLORS   TRUE   // If TRUE, nature-based stat boosts and reductions will be red and blue in the summary screen.
 #define P_SUMMARY_SCREEN_RENAME          TRUE   // If TRUE, an option to change Pokémon nicknames replaces the cancel prompt on the summary screen info page.
 

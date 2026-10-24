@@ -6,6 +6,35 @@ Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
 
 ## Punto guardado para retomar
 
+**Pantalla de datos del Pokémon rehecha desde cero (23-10-2026 22:30).** Pedido: reestructurar
+estado, características y movimientos "desde 0" con la misma información o más, con margen y
+relleno en todos los textos. `src/rf_summary_screen.c` implementa la API pública
+(`ShowPokemonSummaryScreen`, `ShowSelectMovePokemonSummaryScreen`, `GetMoveSlotToReplace`,
+`SummaryScreen_SetAnimDelayTaskId`); la pantalla antigua sigue compilada como `Legacy_*`
+(`RF_SUMMARY_SCREEN` en `config/summary_screen.h`). Un único lienzo de 30×20 teselas con paneles
+RF del tema activo; sprites para Pokémon, Poké Ball, marcas, tipos y categoría.
+- Páginas: DATOS (especie, tipos, objeto, naturaleza con menta y efecto, habilidad), VALORES
+  (Valor/Base/IV/EV a la vez, totales, EXP y lo que falta), MOVIMIENTOS (tipo, PP con aviso,
+  detalle con categoría/potencia/precisión/descripción; A para detalle y reordenar, START para el
+  recordador), MEMORIA (EO, ID, cintas, Poké Ball, encuentro, amistad, carácter por IV, Poder Oculto,
+  teratipo). Columna fija: nº nacional, variocolor, nombre/sexo, nivel, estado, PS con barra.
+- Conserva: intercambio de movimientos con PP extra, olvidar movimiento (fila NUEVO, aviso de MO),
+  apodo, recordador, cajas, combate multi, socios, Huevos (solo DATOS) y modos bloqueados.
+- Fallo encontrado y corregido durante la prueba: el icono de categoría se creaba con la animación 0
+  (`DAMAGE_CATEGORY_NONE`, entrada NULL) y en combate terminaba en salto a basura y reinicio.
+- Endurecimiento: `ResetSpriteData` cancela `Task_AnimateAfterDelay` y `Task_HandleMonAnimation`
+  pendientes (guardan punteros a sprites que se liberan ahí), descontando el contador de KO.
+- Validado en mGBA: 4 páginas en claro/oscuro, cursor, intercambio, aprender 5.º movimiento (devuelve
+  la ranura elegida), Pokémon con estado y objeto, Huevo, apertura desde el equipo en el mapa con
+  reordenamiento posterior correcto, y 16 combinaciones de apertura en combate sin reinicios ni fallos
+  de memoria propios (`battle_stress.py` en el scratchpad; harness de depuración que imprime PC/LR).
+  No probado: apertura desde el PC, recordador y apodo de punta a punta.
+- **Fallos previos detectados, sin resolver:** accesos inválidos durante la intro de partida nueva al
+  pulsar A seguido (fotograma ~1901 en `Task_HandleMonAnimation`, ~2810 en sprites de la pantalla de
+  nombre) y al entrar en combate (`VBlankCB_Slice`). Candidatos al reinicio aleatorio del usuario.
+- ROM `build_artifacts/releases/20261023-223009/` SHA-256 `2844a02a…c351`, copiada al Escritorio;
+  respaldo de la anterior como `Rojo Fuego Plus (respaldo 20261023-1919).gba`.
+
 **Tema de color configurable (23-10-2026 20:23).** Pedido: Pokédex "con esteroides", otra paleta
 (carmesí o azur), otra fuente general y colores configurables en todos los menús RF.
 - `rf_ui_theme.c`: tabla `sThemeColors[tema][día/noche][rol]` con seis temas (MENTA, CARMESÍ,

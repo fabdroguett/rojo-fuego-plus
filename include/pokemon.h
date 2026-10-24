@@ -936,6 +936,7 @@ const u8 *GetTrainerPartnerName(void);
 void BattleAnimateFrontSprite(struct Sprite *sprite, enum Species species, bool8 noCry, u8 panMode);
 void DoMonFrontSpriteAnimation(struct Sprite *sprite, enum Species species, bool8 noCry, u8 panModeAnimFlag);
 void PokemonSummaryDoMonAnimation(struct Sprite *sprite, enum Species species, bool8 oneFrame);
+void CancelMonAnimationDelayTasks(void);
 void StopPokemonAnimationDelayTask(void);
 void BattleAnimateBackSprite(struct Sprite *sprite, enum Species species);
 u8 GetOpposingLinkMultiBattlerId(bool8 rightSide, u8 multiplayerId);

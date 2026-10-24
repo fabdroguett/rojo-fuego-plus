@@ -5507,6 +5507,20 @@ static void Task_AnimateAfterDelay(u8 taskId)
     }
 }
 
+// Rojo Fuego+: a battle Pokémon whose animation is delayed keeps its sprite pointer in this task.
+// Once ResetSpriteData frees that sprite (party or summary screen opened mid-battle), launching
+// the animation would drive whatever sprite now uses the slot; see CancelMonAnimationTasks.
+void CancelMonAnimationDelayTasks(void)
+{
+    u32 taskId;
+
+    for (taskId = 0; taskId < NUM_TASKS; taskId++)
+    {
+        if (gTasks[taskId].isActive && gTasks[taskId].func == Task_AnimateAfterDelay)
+            DestroyTask(taskId);
+    }
+}
+
 static void Task_PokemonSummaryAnimateAfterDelay(u8 taskId)
 {
     if (--gTasks[taskId].sAnimDelay == 0)

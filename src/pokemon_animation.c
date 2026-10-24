@@ -533,6 +533,25 @@ static void Task_HandleMonAnimation(u8 taskId)
     }
 }
 
+// Rojo Fuego+: these tasks keep a pointer to a battle sprite. ResetSpriteData (the party or
+// summary screen opened during a battle) frees that sprite and its slot is reused, so a task
+// still running would rewrite an unrelated sprite's callback and the game would jump to
+// garbage. Finish them as their animation's end would, keeping the KO counter in step.
+void CancelMonAnimationTasks(void)
+{
+    u32 taskId;
+
+    for (taskId = 0; taskId < NUM_TASKS; taskId++)
+    {
+        if (gTasks[taskId].isActive && gTasks[taskId].func == Task_HandleMonAnimation)
+        {
+            if (gBattleStruct != NULL && gBattleStruct->battlerKOAnimsRunning > 0)
+                gBattleStruct->battlerKOAnimsRunning--;
+            DestroyTask(taskId);
+        }
+    }
+}
+
 void LaunchAnimationTaskForFrontSprite(struct Sprite *sprite, enum AnimFunctionIDs frontAnimId)
 {
     u8 taskId = CreateTask(Task_HandleMonAnimation, 128);

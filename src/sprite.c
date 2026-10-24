@@ -6,6 +6,8 @@
 #include "string_util.h"
 #include "text.h"
 #include "battle_anim.h"
+#include "pokemon.h"
+#include "pokemon_animation.h"
 #include "test/test.h"
 
 #define MAX_SPRITE_COPY_REQUESTS 64
@@ -275,6 +277,9 @@ EWRAM_DATA bool8 gAffineAnimsDisabled = FALSE;
 
 void ResetSpriteData(void)
 {
+    // Battle animation tasks hold pointers to the sprites freed here.
+    CancelMonAnimationDelayTasks();
+    CancelMonAnimationTasks();
     ResetOamRange(0, 128);
     sOamDummyIndex = 0;
     ResetAllSprites();

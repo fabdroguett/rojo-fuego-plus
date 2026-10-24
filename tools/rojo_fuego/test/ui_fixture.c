@@ -12,6 +12,7 @@
 #include "constants/species.h"
 #include "constants/maps.h"
 #include "pokemon_summary_screen.h"
+#include "daycare.h"
 #include "pokemon_storage_system.h"
 #include "item_menu.h"
 #include "item.h"
@@ -205,6 +206,34 @@ void RFUiFixture_Summary(void)
     CalculatePlayerPartyCount();
     SetMainCallback1(NULL);
     ShowPokemonSummaryScreen(SUMMARY_MODE_NORMAL, gParties[B_TRAINER_PLAYER], 0, 0, CB2_ReturnToField);
+}
+
+// Learning a fifth move: the summary opens on the moves page to choose the move to forget.
+void RFUiFixture_SummaryLearn(void)
+{
+    ZeroPlayerPartyMons();
+    CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_BULBASAUR, 10, 31);
+    CalculatePlayerPartyCount();
+    SetMainCallback1(NULL);
+    ShowSelectMovePokemonSummaryScreen(gParties[B_TRAINER_PLAYER], 0, CB2_ReturnToField, MOVE_RAZOR_LEAF);
+}
+
+// A shiny, poisoned Pokémon holding an item, followed by an Egg, to page through both.
+void RFUiFixture_SummaryVaried(void)
+{
+    u16 item = ITEM_LEFTOVERS;
+    u32 status = STATUS1_POISON;
+    bool8 shiny = TRUE;
+
+    ZeroPlayerPartyMons();
+    CreateRandomMonWithIVs(&gParties[B_TRAINER_PLAYER][0], SPECIES_CHARIZARD, 50, 31);
+    SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_HELD_ITEM, &item);
+    SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_STATUS, &status);
+    SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_IS_SHINY, &shiny);
+    CreateEgg(&gParties[B_TRAINER_PLAYER][1], SPECIES_PICHU, TRUE);
+    CalculatePlayerPartyCount();
+    SetMainCallback1(NULL);
+    ShowPokemonSummaryScreen(SUMMARY_MODE_NORMAL, gParties[B_TRAINER_PLAYER], 0, 1, CB2_ReturnToField);
 }
 
 void RFUiFixture_Bag(void)

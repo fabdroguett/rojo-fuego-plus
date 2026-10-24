@@ -195,6 +195,7 @@ enum AnimFunctionIDs
 
 enum BackAnim GetSpeciesBackAnimSet(enum Species species);
 void LaunchAnimationTaskForFrontSprite(struct Sprite *sprite, enum AnimFunctionIDs frontAnimId);
+void CancelMonAnimationTasks(void);
 void StartMonSummaryAnimation(struct Sprite *sprite, enum AnimFunctionIDs frontAnimId);
 void LaunchAnimationTaskForBackSprite(struct Sprite *sprite, enum BackAnim backAnimSet);
 void SetSpriteCB_MonAnimDummy(struct Sprite *sprite);
