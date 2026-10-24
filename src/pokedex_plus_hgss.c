@@ -2465,6 +2465,12 @@ static enum Move GetSelectedMove(enum Species species, u32 selected)
     return MOVE_NONE; //It should never get here but it allows us to visually see errors
 }
 
+// How a move is learnt, right-aligned in the method column of the moves panel.
+static void RFDex_PrintMoveMethod(const u8 *text, u8 y)
+{
+    PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, text, 18 * 8 - 2 - GetStringWidth(FONT_SMALL, text, 0), y);
+}
+
 static void PrintStatsScreen_Moves_Top(u8 taskId)
 {
     u8 moves_x = 5;
@@ -2483,15 +2489,22 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
     //Calculate and retrieve correct move from the arrays
     if (selected < sPokedexView->numEggMoves)
     {
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_ThreeDashes, moves_x + 113, moves_y + 9);
+        RFDex_PrintMoveMethod(COMPOUND_STRING("HUEVO"), moves_y + 9);
         item = ITEM_LUCKY_EGG;
     }
     else if (selected < (sPokedexView->numLevelUpMoves + sPokedexView->numEggMoves))
     {
         u32 level = GetSpeciesLevelUpLearnset(species)[selected - sPokedexView->numEggMoves].level;
-        ConvertIntToDecimalStringN(gStringVar1, level, STR_CONV_MODE_LEFT_ALIGN, 3); //Move learn lvl
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, sText_Stats_MoveLevel, moves_x + 113, moves_y + 3); //Level text
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x + 113, moves_y + 14); //Print level
+        if (level == 0) // learnt when evolving
+        {
+            RFDex_PrintMoveMethod(COMPOUND_STRING("EVOL."), moves_y + 9);
+        }
+        else
+        {
+            ConvertIntToDecimalStringN(gStringVar1, level, STR_CONV_MODE_LEFT_ALIGN, 3); //Move learn lvl
+            PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, sText_Stats_MoveLevel, moves_x + 113, moves_y + 3); //Level text
+            PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x + 113, moves_y + 14); //Print level
+        }
         item = ITEM_RARE_CANDY;
     }
     else if (move)
@@ -2505,12 +2518,18 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
         if (TMHMItemId)
         {
             CopyItemName(TMHMItemId, gStringVar1); //TM name
-            PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x + 113, moves_y + 9);
+            if (gStringVar1[1] == CHAR_M && (gStringVar1[0] == CHAR_T || gStringVar1[0] == CHAR_H))
+            {
+                // Spanish machine names: TM -> MT, HM -> MO
+                gStringVar1[1] = gStringVar1[0] == CHAR_T ? CHAR_T : CHAR_O;
+                gStringVar1[0] = CHAR_M;
+            }
+            RFDex_PrintMoveMethod(gStringVar1, moves_y + 9);
             item = TMHMItemId;
         }
         else
         {
-            PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gText_ThreeDashes, moves_x + 113, moves_y + 9);
+            RFDex_PrintMoveMethod(COMPOUND_STRING("TUTOR"), moves_y + 9);
             item = ITEM_TEACHY_TV;
         }
     }
@@ -2524,17 +2543,9 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
     StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 20);
     PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar3, moves_x, moves_y + 17);
 
-    //Draw move type icon
-    if (gTasks[taskId].data[5] == 0)
-    {
-        SetTypeIconPosAndPal(GetMoveType(move), moves_x + 146, moves_y + 17, 0);
-        SetSpriteInvisibility(1, TRUE);
-    }
-    else
-    {
-        SetTypeIconPosAndPal(NUMBER_OF_MON_TYPES + GetMoveContestCategory(move), moves_x + 146, moves_y + 17, 1);
-        SetSpriteInvisibility(0, TRUE);
-    }
+    //Draw move type icon (Rojo Fuego+: on both views; the A view no longer shows contest data)
+    SetTypeIconPosAndPal(GetMoveType(move), moves_x + 146, moves_y + 17, 0);
+    SetSpriteInvisibility(1, TRUE);
 
     //Egg/TM/Level/Tutor Item Icon
     gTasks[taskId].data[3] = AddItemIconSprite(ITEM_TAG, ITEM_TAG, item);
@@ -2559,11 +2570,22 @@ static void PrintStatsScreen_Moves_Description(u8 taskId)
     if (gTasks[taskId].data[5] == 0)
     {
         StringCopy(gStringVar4, GetMoveDescription(move));
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_DESCRIPTION, gStringVar4, moves_x, moves_y);
+        if (moves_x + GetStringWidth(FONT_SMALL, gStringVar4, 0) <= 18 * 8 - 2)
+            PrintStatsScreenTextSmall(WIN_STATS_MOVES_DESCRIPTION, gStringVar4, moves_x, moves_y);
+        else // long descriptions: the narrower font keeps them inside the box
+            PrintStatsScreenTextSmallNarrower(WIN_STATS_MOVES_DESCRIPTION, gStringVar4, moves_x, moves_y);
     }
-    else
+    else // Rojo Fuego+: battle details instead of contest data (FireRed has no contests)
     {
-        StringCopy(gStringVar4, gContestEffects[GetMoveContestEffect(move)].description);
+        static const u8 *const categories[] = {
+            [DAMAGE_CATEGORY_PHYSICAL] = COMPOUND_STRING("FÍSICA"),
+            [DAMAGE_CATEGORY_SPECIAL] = COMPOUND_STRING("ESPECIAL"),
+            [DAMAGE_CATEGORY_STATUS] = COMPOUND_STRING("DE ESTADO"),
+        };
+
+        StringCopy(gStringVar4, COMPOUND_STRING("CATEGORÍA: "));
+        StringAppend(gStringVar4, categories[GetMoveCategory(move)]);
+        StringAppend(gStringVar4, MoveMakesContact(move) ? COMPOUND_STRING("\nHACE CONTACTO") : COMPOUND_STRING("\nSIN CONTACTO"));
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_DESCRIPTION, gStringVar4, moves_x, moves_y);
     }
 }
@@ -2580,8 +2602,8 @@ static void PrintStatsScreen_Moves_BottomText(u8 taskId)
     }
     else
     {
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gText_Appeal,  moves_x, moves_y);
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gText_Jam,  moves_x + 66, moves_y);
+        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, COMPOUND_STRING("PP"),  moves_x, moves_y);
+        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, COMPOUND_STRING("PRIOR."),  moves_x + 66, moves_y);
     }
 }
 
@@ -2589,11 +2611,6 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
 {
     u8 moves_x = 8;
     u8 moves_y = 3;
-
-    //Contest
-    u8 contest_effectValue;
-    u8 contest_appeal = 0;
-    u8 contest_jam = 0;
 
     enum Species species = NationalPokedexNumToSpeciesForm(sPokedexListItem->dexNum);
     enum Move move = GetSelectedMove(species, sPokedexView->moveSelected);
@@ -2619,26 +2636,18 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
             ConvertIntToDecimalStringN(gStringVar1, accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1,  moves_x + 114, moves_y);
     }
-    else //Appeal + Jam
+    else //PP + priority
     {
-        DestroyCategoryIcon();
-        //Appeal
-        contest_effectValue = gContestEffects[GetMoveContestEffect(move)].appeal;
-        if (contest_effectValue != 0xFF)
-            contest_appeal = contest_effectValue / 10;
-        ConvertIntToDecimalStringN(gStringVar1, contest_appeal, STR_CONV_MODE_RIGHT_ALIGN, 1);
-        StringCopy(gStringVar2, sText_PlusSymbol);
-        StringAppend(gStringVar2, gStringVar1);
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar2, moves_x + 45, moves_y);
+        s32 priority = GetMovePriority(move);
 
-        //Jam
-        contest_effectValue = gContestEffects[GetMoveContestEffect(move)].jam;
-        if (contest_effectValue != 0xFF)
-            contest_jam = contest_effectValue / 10;
-        ConvertIntToDecimalStringN(gStringVar1, contest_jam, STR_CONV_MODE_RIGHT_ALIGN, 1);
-        StringCopy(gStringVar2, sText_Stats_Minus);
+        DestroyCategoryIcon();
+        ConvertIntToDecimalStringN(gStringVar1, GetMovePP(move), STR_CONV_MODE_RIGHT_ALIGN, 3);
+        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 45, moves_y);
+
+        StringCopy(gStringVar2, priority < 0 ? sText_Stats_Minus : sText_PlusSymbol);
+        ConvertIntToDecimalStringN(gStringVar1, priority < 0 ? -priority : priority, STR_CONV_MODE_LEFT_ALIGN, 1);
         StringAppend(gStringVar2, gStringVar1);
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar2,  moves_x + 119, moves_y);
+        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar2, moves_x + 119, moves_y);
     }
 }
 

@@ -33,8 +33,13 @@ numérica, pasos de eclosión (`eggCycles` × 128 con `P_EGG_CYCLE_LENGTH` Gen 8
 (WIN_STATS_LEFT pasa a 12 tiles de alto y los `baseBlock` siguientes suben 48), sexos en porcentaje
 y colores invertidos de la barra de navegación en modo oscuro. ROM
 `build_artifacts/releases/20261024-110309/` SHA-256 `76d8b03a…09ec`, en el Escritorio (respaldo
-`Rojo Fuego Plus (respaldo 20261024-0927).gba`). Siguiente: DEX-6 Movimientos completos (también
-traducir APPEAL/JAM del gráfico de movimientos).
+`Rojo Fuego Plus (respaldo 20261024-0927).gba`).
+
+**DEX-6 Movimientos (24-10-2026 12:30).** `pokedex_plus_hgss.c`: `RFDex_PrintMoveMethod` (método a la
+derecha: NV., EVOL. para nivel 0, MT/MO, TUTOR, HUEVO); vista A con categoría/contacto y PP/PRIOR. en
+lugar de APPEAL/JAM; icono de tipo en ambas vistas; descripciones largas en `FONT_SMALL_NARROWER`.
+ROM `build_artifacts/releases/20261024-122902/` SHA-256 `0d76f257…b44b`, en el Escritorio (respaldo
+`Rojo Fuego Plus (respaldo 20261024-1103).gba`). Siguiente: DEX-7 Variocolor/formas.
 
 **Pantalla de datos del Pokémon rehecha desde cero (23-10-2026 22:30).** Pedido: reestructurar
 estado, características y movimientos "desde 0" con la misma información o más, con margen y

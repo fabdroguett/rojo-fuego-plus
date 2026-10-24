@@ -100,7 +100,10 @@ retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
     DATOS (A): EV como "+1", amistad en número, HUEVO en pasos reales de la guardería, fila
     GRUPOS HUEVO con sus grupos debajo (ventana izquierda ampliada a 12 tiles), sexos en
     porcentaje (♂87,5% ♀12,5%, SIN SEXO) y barra "A VER / MOVS." legible en modo oscuro.
-  - [ ] **DEX-6 Movimientos completos:** nivel, MT/MO, tutor y huevo con su método visible.
+  - [x] **DEX-6 Movimientos completos:** nivel, MT/MO, tutor y huevo con su método visible.
+    Método en texto alineado a la derecha (NV. n, EVOL., MT/MO, TUTOR, HUEVO). La vista A ya no
+    muestra concursos: categoría, contacto, PP y prioridad. Descripciones largas con fuente
+    estrecha. Pendiente de datos: nombres y descripciones de movimientos en inglés.
   - [ ] **DEX-7 Variocolor y formas:** alternar sprite shiny y macho/hembra en la ficha.
   - [ ] **DEX-8 Evoluciones:** cadena completa con ramas, método claro y estado visto/capturado.
   - [ ] **DEX-9 Progreso:** vistos/capturados de 1025, por generación y legendarios por saga.
