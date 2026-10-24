@@ -210,17 +210,21 @@ void RFUiFixture_Summary(void)
 }
 
 // Area screen cases, listed alphabetically: an evolution (Ivysaur), a daytime wild Pokémon
-// (Pidgey), an evening-only one on Route 1 (Tandemaus) and a saga legend (Uxie).
+// (Pidgey), many resistances (Skarmory), an evening-only one on Route 1 (Tandemaus) and a saga
+// legend (Uxie).
 void RFUiFixture_PokedexArea(void)
 {
-    static const u16 species[] = {SPECIES_IVYSAUR, SPECIES_PIDGEY, SPECIES_TANDEMAUS, SPECIES_UXIE};
+    static const u16 species[] = {SPECIES_IVYSAUR, SPECIES_PIDGEY, SPECIES_SKARMORY, SPECIES_TANDEMAUS, SPECIES_UXIE};
     u32 i;
 
     FlagSet(FLAG_SYS_POKEDEX_GET);
     EnableNationalPokedex();
     gSaveBlock2Ptr->pokedex.mode = DEX_MODE_NATIONAL;
     for (i = 0; i < ARRAY_COUNT(species); i++)
+    {
         GetSetPokedexFlag(SpeciesToNationalPokedexNum(species[i]), FLAG_SET_SEEN);
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(species[i]), FLAG_SET_CAUGHT);
+    }
     gSaveBlock2Ptr->pokedex.order = ORDER_ALPHABETICAL;
     SetMainCallback1(NULL);
     CB2_OpenPokedex();

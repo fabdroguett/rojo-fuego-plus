@@ -20,7 +20,13 @@ a la franja horaria con la especie al abrir ÁREA; si no hay zona salvaje, rótu
 la saga resaltado vía `RFLegends_FindSpecies`), EVOLUCIÓN o DESCONOCIDA. Fixture
 `RFUiFixture_PokedexArea` (Ivysaur, Pidgey, Tandemaus, Uxie en la Nacional). ROM
 `build_artifacts/releases/20261024-021033/` SHA-256 `a0a3f549…3ae0`, en el Escritorio (respaldo
-`Rojo Fuego Plus (respaldo 20261024-0000).gba`). Siguiente: DEX-4 Debilidades.
+`Rojo Fuego Plus (respaldo 20261024-0000).gba`).
+
+**DEX-4 Debilidades (24-10-2026 09:30).** `pokedex_plus_hgss.c`: `sRFInfoShowMatchups` (A en INFO),
+`RFDex_LayoutMatchups` con `GetTypeModifier` para los dos tipos, aviso "A DEBILIDADES/DESCRIPCIÓN"
+bajo el sprite (`RF_INFO_HINT_TOP`). Fixture `RFUiFixture_PokedexArea` suma Skarmory. ROM
+`build_artifacts/releases/20261024-092730/` SHA-256 `94f0ddf1…1df3`, en el Escritorio (respaldo
+`Rojo Fuego Plus (respaldo 20261024-0210).gba`). Siguiente: DEX-5 Crianza y EV.
 
 **Pantalla de datos del Pokémon rehecha desde cero (23-10-2026 22:30).** Pedido: reestructurar
 estado, características y movimientos "desde 0" con la misma información o más, con margen y

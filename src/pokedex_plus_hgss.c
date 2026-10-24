@@ -232,6 +232,16 @@ static void PrintStatsScreen_Left(u8 taskId);
 static void PrintStatsScreen_Abilities(u8 taskId);
 static void PrintInfoScreenTextWhite(const u8* str, u8 left, u8 top);
 static void PrintInfoScreenTextSmall(const u8* str, u8 fontId, u8 left, u8 top);
+
+// Rojo Fuego+ (DEX-4): A on the INFO page swaps the description for the species' type matchups.
+// The choice stays while scrolling through the list.
+static EWRAM_DATA bool8 sRFInfoShowMatchups = FALSE;
+#define RF_INFO_BOX_TOP 93
+#define RF_INFO_HINT_TOP 75 // "A: DEBILIDADES", under the sprite
+#define RF_INFO_BOX_LINES 5
+#define RF_INFO_BOX_LINE 13
+static void RFDex_PrintInfoBox(enum Species species, u32 owned, u32 newEntry);
+static void RFDex_PrintInfoHint(void);
 static void Task_LoadEvolutionScreen(u8 taskId);
 static void Task_HandleEvolutionScreenInput(u8 taskId);
 static void Task_SwitchScreensFromEvolutionScreen(u8 taskId);
@@ -1519,7 +1529,17 @@ bool32 TryHandleInfoScreenInput_HGSS(u8 taskId)
     if (!POKEDEX_PLUS_HGSS)
         return FALSE;
 
-    if (POKEDEX_PLUS_HGSS && ((JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))))
+    if (JOY_NEW(A_BUTTON) && sPokedexListItem->owned)
+    {
+        enum Species species = NationalPokedexNumToSpeciesForm(sPokedexListItem->dexNum);
+
+        sRFInfoShowMatchups ^= TRUE;
+        RFDex_PrintInfoHint();
+        RFDex_PrintInfoBox(species, TRUE, FALSE);
+        CopyWindowToVram(0, COPYWIN_GFX);
+        PlaySE(SE_DEX_PAGE);
+    }
+    else if (POKEDEX_PLUS_HGSS && ((JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))))
     {
         sPokedexView->selectedScreen = AREA_SCREEN;
         BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 0x10, RGB_BLACK);
@@ -1856,6 +1876,102 @@ static void CreateTypeIconSprites(void)
 }
 
 // u32 value is re-used, but passed as a bool that's TRUE if national dex is enabled
+static const u8 *const sRFTypeNames[NUMBER_OF_MON_TYPES][2] =
+{
+    [TYPE_NORMAL] = {COMPOUND_STRING("NORMAL"), COMPOUND_STRING("NOR")},
+    [TYPE_FIGHTING] = {COMPOUND_STRING("LUCHA"), COMPOUND_STRING("LUC")},
+    [TYPE_FLYING] = {COMPOUND_STRING("VOLADOR"), COMPOUND_STRING("VOL")},
+    [TYPE_POISON] = {COMPOUND_STRING("VENENO"), COMPOUND_STRING("VEN")},
+    [TYPE_GROUND] = {COMPOUND_STRING("TIERRA"), COMPOUND_STRING("TIE")},
+    [TYPE_ROCK] = {COMPOUND_STRING("ROCA"), COMPOUND_STRING("ROC")},
+    [TYPE_BUG] = {COMPOUND_STRING("BICHO"), COMPOUND_STRING("BIC")},
+    [TYPE_GHOST] = {COMPOUND_STRING("FANTASMA"), COMPOUND_STRING("FAN")},
+    [TYPE_STEEL] = {COMPOUND_STRING("ACERO"), COMPOUND_STRING("ACE")},
+    [TYPE_FIRE] = {COMPOUND_STRING("FUEGO"), COMPOUND_STRING("FUE")},
+    [TYPE_WATER] = {COMPOUND_STRING("AGUA"), COMPOUND_STRING("AGU")},
+    [TYPE_GRASS] = {COMPOUND_STRING("PLANTA"), COMPOUND_STRING("PLA")},
+    [TYPE_ELECTRIC] = {COMPOUND_STRING("ELÉCTRICO"), COMPOUND_STRING("ELÉ")},
+    [TYPE_PSYCHIC] = {COMPOUND_STRING("PSÍQUICO"), COMPOUND_STRING("PSÍ")},
+    [TYPE_ICE] = {COMPOUND_STRING("HIELO"), COMPOUND_STRING("HIE")},
+    [TYPE_DRAGON] = {COMPOUND_STRING("DRAGÓN"), COMPOUND_STRING("DRA")},
+    [TYPE_DARK] = {COMPOUND_STRING("SINIESTRO"), COMPOUND_STRING("SIN")},
+    [TYPE_FAIRY] = {COMPOUND_STRING("HADA"), COMPOUND_STRING("HAD")},
+};
+
+// Lays out (or, with print FALSE, only counts) the matchup rows; returns the lines used.
+static u32 RFDex_LayoutMatchups(enum Species species, u32 abbreviated, bool32 print)
+{
+    static const uq4_12_t multipliers[] = {UQ_4_12(4.0), UQ_4_12(2.0), UQ_4_12(0.5), UQ_4_12(0.25), UQ_4_12(0.0)};
+    static const u8 *const labels[] = {
+        COMPOUND_STRING("×4"), COMPOUND_STRING("×2"), COMPOUND_STRING("×0,5"),
+        COMPOUND_STRING("×0,25"), COMPOUND_STRING("×0"),
+    };
+    enum Type type1 = GetSpeciesType(species, 0), type2 = GetSpeciesType(species, 1);
+    u32 row, atk, line = 0;
+    const u32 left = 8, names = 40, right = DISPLAY_WIDTH - 10;
+
+    for (row = 0; row < ARRAY_COUNT(multipliers); row++)
+    {
+        u32 x = names, count = 0;
+
+        for (atk = TYPE_NORMAL; atk < NUMBER_OF_MON_TYPES; atk++)
+        {
+            uq4_12_t mod;
+            u32 width;
+
+            if (sRFTypeNames[atk][0] == NULL)
+                continue;
+            mod = GetTypeModifier(atk, type1);
+            if (type2 != type1)
+                mod = uq4_12_multiply(mod, GetTypeModifier(atk, type2));
+            if (mod != multipliers[row])
+                continue;
+            width = GetStringWidth(FONT_SMALL, sRFTypeNames[atk][abbreviated], 0);
+            if (count == 0)
+            {
+                if (print)
+                    PrintInfoScreenTextSmall(labels[row], FONT_SMALL, left, RF_INFO_BOX_TOP + line * RF_INFO_BOX_LINE);
+            }
+            else if (x + width > right)
+            {
+                x = names;
+                line++;
+            }
+            if (print && line < RF_INFO_BOX_LINES)
+                PrintInfoScreenTextSmall(sRFTypeNames[atk][abbreviated], FONT_SMALL, x, RF_INFO_BOX_TOP + line * RF_INFO_BOX_LINE);
+            x += width + 6;
+            count++;
+        }
+        if (count != 0)
+            line++;
+    }
+    return line;
+}
+
+static void RFDex_PrintInfoHint(void)
+{
+    FillWindowPixelRect(0, PIXEL_FILL(0), 0, RF_INFO_HINT_TOP, 100, 12);
+    PrintInfoScreenTextSmall(sRFInfoShowMatchups ? COMPOUND_STRING("{A_BUTTON} DESCRIPCIÓN") : COMPOUND_STRING("{A_BUTTON} DEBILIDADES"), FONT_SMALL, 4, RF_INFO_HINT_TOP);
+}
+
+// Fills the INFO page's lower box: the Pokédex description or the type matchups.
+static void RFDex_PrintInfoBox(enum Species species, u32 owned, u32 newEntry)
+{
+    const u8 *description;
+
+    FillWindowPixelRect(0, PIXEL_FILL(0), 0, RF_INFO_BOX_TOP - 1, DISPLAY_WIDTH, RF_INFO_BOX_LINES * RF_INFO_BOX_LINE + 2);
+    if (owned && !newEntry && sRFInfoShowMatchups)
+    {
+        RFDex_LayoutMatchups(species, RFDex_LayoutMatchups(species, FALSE, FALSE) > RF_INFO_BOX_LINES, TRUE);
+        return;
+    }
+    if (owned)
+        description = GetSpeciesPokedexDescription(species);
+    else
+        description = sExpandedPlaceholder_PokedexDescription;
+    PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, 0xF0), RF_INFO_BOX_TOP);
+}
+
 static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
 {
     u8 str[16];
@@ -1863,7 +1979,6 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     enum Species species;
     const u8 *name;
     const u8 *category;
-    const u8 *description;
     u8 digitCount = (NATIONAL_DEX_COUNT > 999 && value != 0) ? 4 : 3;
 
     if (value == 0)
@@ -1889,11 +2004,9 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     }
     PrintInfoScreenText(category, 123, 31);
     PrintMonMeasurements(species,owned);
-    if (owned)
-        description = GetSpeciesPokedexDescription(species);
-    else
-        description = sExpandedPlaceholder_PokedexDescription;
-    PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, 0xF0), 93);
+    RFDex_PrintInfoBox(species, owned, newEntry);
+    if (owned && !newEntry)
+        RFDex_PrintInfoHint();
 
     //Type Icon(s)
     if (owned)
