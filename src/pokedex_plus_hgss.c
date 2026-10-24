@@ -368,6 +368,27 @@ static const struct SpritePalette sInterfaceSpritePalette[] =
     {0}
 };
 
+// HP/AT/DE/SA/SD/SP beside the list's stat bars: black on light grey reads as boxes on the
+// night panel, so at night they take the theme's text and shadow.
+static void RFDex_ThemeStatBarText(void)
+{
+    static const u16 tags[] = {TAG_STAT_BAR, TAG_STAT_BAR_BG};
+    u16 ink = RF_UI_NIGHT_TEXT, shadow = RF_UI_NIGHT_SHADOW;
+    u32 i;
+
+    if (!KeySystem_IsOn(KEY_DARK_MODE))
+        return;
+    for (i = 0; i < ARRAY_COUNT(tags); i++)
+    {
+        u8 pal = IndexOfSpritePaletteTag(tags[i]);
+        if (pal < 16)
+        {
+            LoadPalette(&ink, OBJ_PLTT_ID(pal) + COLOR_ID_FONT, sizeof(ink));
+            LoadPalette(&shadow, OBJ_PLTT_ID(pal) + COLOR_ID_FONT_SHADOW, sizeof(shadow));
+        }
+    }
+}
+
 // Counters and stat labels are OBJ graphics, independent of the BG text bank.
 static void RFLoadDexSpriteText(void)
 {
@@ -618,13 +639,54 @@ static void RFLoadDexChrome(void)
     u16 colors[ARRAY_COUNT(roles)];
     u16 border = RFUI_Color(dark, RF_ROLE_EDGE);
     u16 text = RFUI_Color(dark, RF_ROLE_TEXT);
+    u16 logo = RFUI_Color(dark, dark ? RF_ROLE_TEXT : RF_ROLE_PANEL); // POKé DEX letters (make_dex_labels.py)
     u32 i;
 
     for (i = 0; i < ARRAY_COUNT(roles); i++)
         colors[i] = RFUI_Color(dark, roles[i]);
     LoadPalette(colors, BG_PLTT_ID(0) + 1, sizeof(colors));
+    LoadPalette(&logo, BG_PLTT_ID(0) + 12, sizeof(logo));
     LoadPalette(&border, BG_PLTT_ID(0) + 14, sizeof(border));
     LoadPalette(&text, BG_PLTT_ID(0) + 15, sizeof(text));
+}
+
+// Rojo Fuego+: the screen tabs, in Spanish, drawn over the tilemap's English tab strip in the
+// screen's top text window (bank 0 = RFLoadDexChrome colours). Forms share the EVO tab.
+void RFDex_DrawTabs(u8 windowId, u8 page)
+{
+    static const u8 order[] = {INFO_SCREEN, AREA_SCREEN, STATS_SCREEN, EVO_SCREEN, CRY_SCREEN, SIZE_SCREEN};
+    static const u8 *const names[] = {
+        COMPOUND_STRING("INFO"), COMPOUND_STRING("ÁREA"), COMPOUND_STRING("DATOS"),
+        COMPOUND_STRING("EVOL."), COMPOUND_STRING("GRITO"), COMPOUND_STRING("TAMAÑO"),
+    };
+    bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
+    u32 i, x = 4, textWidth = 0, pad;
+
+    if (page == FORMS_SCREEN)
+        page = EVO_SCREEN;
+    for (i = 0; i < ARRAY_COUNT(names); i++)
+        textWidth += GetStringWidth(FONT_SMALL, names[i], 0);
+    pad = (DISPLAY_WIDTH - 8 - 2 * (ARRAY_COUNT(names) - 1) - textWidth) / (2 * ARRAY_COUNT(names));
+    RFUI_FillRect(windowId, 9, 0, 0, DISPLAY_WIDTH, 16);
+    for (i = 0; i < ARRAY_COUNT(names); i++)
+    {
+        bool32 active = order[i] == page;
+        u32 width = GetStringWidth(FONT_SMALL, names[i], 0) + 2 * pad;
+        // Active: gold (light: the selected-row gold, dark: the accent gold) with contrasting ink;
+        // inactive: the bar with high-contrast ink.
+        u8 fill = active ? (dark ? 11 : 3) : 7;
+        const u8 colors[3] = {fill, active ? (dark ? 9 : 15) : (dark ? 15 : 1), fill};
+
+        RFUI_DrawPanel(windowId, x, 1, width, 14, fill, 10);
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, x + pad, 2, colors, TEXT_SKIP_DRAW, names[i]);
+        x += width + 2;
+    }
+}
+
+static void RFDex_ClearWindowWithTabs(u8 windowId, u8 page)
+{
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
+    RFDex_DrawTabs(windowId, page);
 }
 
 #define tLoadScreenTaskId data[0]
@@ -713,6 +775,7 @@ static bool8 LoadPokedexListPage(u8 page)
         LoadCompressedSpriteSheet(&sInterfaceSpriteSheet[HGSS_DECAPPED]);
         LoadSpritePalette(&sInterfaceSpritePalette[KeySystem_IsOn(KEY_DARK_MODE)]);
         LoadSpritePalettes(sStatBarSpritePal);
+        RFDex_ThemeStatBarText();
         RFLoadDexSpriteText();
         CreateInterfaceSprites(page);
         gMain.state++;
@@ -1369,7 +1432,7 @@ bool32 Task_TryLoadInfoScreen_HGSS(u8 taskId)
         break;
     case 1:
         LoadTilesetTilemapHGSS(INFO_SCREEN);
-        FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+        RFDex_ClearWindowWithTabs(WIN_INFO, INFO_SCREEN);
         PutWindowTilemap(WIN_INFO);
         PutWindowTilemap(WIN_FOOTPRINT);
         DrawFootprint(WIN_FOOTPRINT, NationalPokedexNumToSpeciesForm(sPokedexListItem->dexNum));
@@ -1608,7 +1671,7 @@ void Task_DisplayCaughtMonDexPageHGSS(u8 taskId)
             sPokedexView->formSpecies = 0;
 
         LoadTilesetTilemapHGSS(INFO_SCREEN);
-        FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+        RFDex_ClearWindowWithTabs(WIN_INFO, INFO_SCREEN);
         PutWindowTilemap(WIN_INFO);
         PutWindowTilemap(WIN_FOOTPRINT);
         DrawFootprint(WIN_FOOTPRINT, species);
@@ -1945,6 +2008,8 @@ static void ResetStatsWindows(void)
     for (i = 0; i < ARRAY_COUNT(sStatsScreen_WindowTemplates); i++)
     {
         FillWindowPixelBuffer(i, PIXEL_FILL(0));
+        if (i == WIN_STATS_TOPBAR)
+            RFDex_DrawTabs(i, STATS_SCREEN);
         PutWindowTilemap(i);
         CopyWindowToVram(i, COPYWIN_FULL);
     }
@@ -3154,7 +3219,7 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         break;
     case 1:
         LoadTilesetTilemapHGSS(EVO_SCREEN);
-        FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+        RFDex_ClearWindowWithTabs(WIN_INFO, EVO_SCREEN);
         PutWindowTilemap(WIN_INFO);
         CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
         FillWindowPixelBuffer(WIN_NAVIGATION_BUTTONS, PIXEL_FILL(0));
@@ -4093,7 +4158,7 @@ static void Task_LoadFormsScreen(u8 taskId)
         break;
     case 1:
         LoadTilesetTilemapHGSS(FORMS_SCREEN);
-        FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+        RFDex_ClearWindowWithTabs(WIN_INFO, FORMS_SCREEN);
         PutWindowTilemap(WIN_INFO);
         CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
         FillWindowPixelBuffer(WIN_NAVIGATION_BUTTONS, PIXEL_FILL(0));
@@ -4402,7 +4467,7 @@ bool32 TryLoadCryScreen_HGSS(u8 taskId)
         break;
     case 1:
         LoadTilesetTilemapHGSS(CRY_SCREEN);
-        FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+        RFDex_ClearWindowWithTabs(WIN_INFO, CRY_SCREEN);
         PutWindowTilemap(WIN_INFO);
         PutWindowTilemap(WIN_VU_METER);
         PutWindowTilemap(WIN_CRY_WAVE);
@@ -4539,7 +4604,7 @@ bool32 TryLoadSizeScreen_HGSS(u8 taskId)
         break;
     case 1:
         LoadTilesetTilemapHGSS(SIZE_SCREEN);
-        FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+        RFDex_ClearWindowWithTabs(WIN_INFO, SIZE_SCREEN);
         PutWindowTilemap(WIN_INFO);
         gMain.state++;
         break;
@@ -4728,6 +4793,7 @@ bool32 TryLoadSearchMenu_HGSS(u8 taskId)
         LoadCompressedSpriteSheet(&sInterfaceSpriteSheet[HGSS_DECAPPED]);
         LoadSpritePalette(&sInterfaceSpritePalette[KeySystem_IsOn(KEY_DARK_MODE)]);
         LoadSpritePalettes(sStatBarSpritePal);
+        RFDex_ThemeStatBarText();
         RFLoadDexSpriteText();
         CreateSearchParameterScrollArrows(taskId);
         for (i = 0; i < NUM_TASK_DATA; i++)

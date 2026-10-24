@@ -22,5 +22,6 @@ void HandleCreateStatBars_HGSS(void);
 void HandleCreateStatBarsDPAD_HGSS(void);
 void HandleCaughtMonPageTypeIcons_HGSS(void);
 bool32 TryHandleCaughtMonPageFlicker_HGSS(u8 taskId);
+void RFDex_DrawTabs(u8 windowId, u8 page);
 
 #endif // GUARD_POKEDEX_PLUS_HGSS_H

@@ -28,6 +28,8 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "config/pokedex_plus_hgss.h"
+#include "pokedex_common.h"
+#include "pokedex_plus_hgss.h"
 
 // There are two types of indicators for the area screen to show where a Pokémon can occur:
 // - Area glows, which highlight any of the maps in MAP_GROUP_TOWNS_AND_ROUTES that have the species.
@@ -247,6 +249,35 @@ static const struct WindowTemplate sTimeOfDayWindowLabelTemplates[] =
         .baseBlock = 0x240
     }
 };
+
+// Rojo Fuego+: Spanish screen tabs over the HGSS tab strip, after the label windows' tiles.
+static EWRAM_DATA u8 sRFTabsWindowId = 0;
+
+static void RFDex_ShowAreaTabs(void)
+{
+    static const struct WindowTemplate tabs =
+    {
+        .bg = LABEL_WINDOW_BG, .tilemapLeft = 0, .tilemapTop = 0, .width = 30, .height = 2,
+        .paletteNum = 0, .baseBlock = 0x260,
+    };
+
+    sRFTabsWindowId = AddWindow(&tabs);
+    if (sRFTabsWindowId == WINDOW_NONE)
+        return;
+    FillWindowPixelBuffer(sRFTabsWindowId, PIXEL_FILL(0));
+    RFDex_DrawTabs(sRFTabsWindowId, AREA_SCREEN);
+    PutWindowTilemap(sRFTabsWindowId);
+    CopyWindowToVram(sRFTabsWindowId, COPYWIN_FULL);
+}
+
+static void RFDex_HideAreaTabs(void)
+{
+    if (sRFTabsWindowId == WINDOW_NONE)
+        return;
+    ClearWindowTilemap(sRFTabsWindowId);
+    RemoveWindow(sRFTabsWindowId);
+    sRFTabsWindowId = WINDOW_NONE;
+}
 
 static void ResetDrawAreaGlowState(void)
 {
@@ -713,6 +744,7 @@ void DisplayPokedexAreaScreen(enum Species species, u8 *screenSwitchState, enum 
     u8 taskId;
 
     sPokedexAreaScreen = AllocZeroed(sizeof(*sPokedexAreaScreen));
+    sRFTabsWindowId = WINDOW_NONE;
     sPokedexAreaScreen->species = species;
     sPokedexAreaScreen->screenSwitchState = screenSwitchState;
     sPokedexAreaScreen->areaState = areaState;
@@ -786,7 +818,10 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
             DoScheduledBgTilemapCopiesToVram();
         }
         if (POKEDEX_PLUS_HGSS)
+        {
             LoadHGSSScreenSelectBarSubmenu();
+            RFDex_ShowAreaTabs();
+        }
         ShowBg(2);
         ShowBg(3); // TryShowPokedexAreaMap will have done this already
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
@@ -914,6 +949,8 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         if (gPaletteFade.active)
             return;
         DestroyAreaScreenSprites();
+        if (POKEDEX_PLUS_HGSS)
+            RFDex_HideAreaTabs();
         if (OW_TIME_OF_DAY_ENCOUNTERS)
         {
             ClearAreaWindowLabel(DEX_AREA_LABEL_TIME_OF_DAY);

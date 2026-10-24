@@ -78,9 +78,11 @@ retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
   "esa Pokédex pero mejorada a full, con más funcionalidades"). Se conserva la base HGSS
   (lista, búsqueda, área, estadísticas, evoluciones, formas, grito, tamaño) y se amplía.
   No sustituir un atlas por una ilustración completa del dispositivo. Entregas comprobables:
-  - [ ] **DEX-1 Piel:** paletas claro/oscuro del concepto (rojo, petróleo, menta, dorado)
-    y rótulos de los atlas redibujados en español (pestañas, MENÚ/BUSCAR, KANTO/NACIONAL,
-    VISTOS/CAPT., botones de búsqueda).
+  - [x] **DEX-1 Piel:** colores del tema seleccionable (Claves → Tema de color) y rótulos en
+    español: pestañas INFO/ÁREA/DATOS/EVOL./GRITO/TAMAÑO dibujadas sobre la barra inglesa en la
+    ventana superior de cada pantalla (`RFDex_DrawTabs`), MENÚ/BUSCAR, VIST./CAPT., NACIONAL y
+    PS/AT/DF/AE/DE/VE regenerados por `tools/rojo_fuego/make_dex_labels.py`; logo y rótulos de
+    estadísticas legibles en oscuro. Pendientes para DEX-2: botones del menú de búsqueda.
   - [ ] **DEX-2 Textos:** cadenas de pantalla en español (estadísticas, crianza, captura,
     movimientos, evoluciones, tamaño, búsqueda).
   - [ ] **DEX-3 Área real:** rutas/zonas y franja día/tarde/noche desde los datos de
