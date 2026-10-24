@@ -3,6 +3,7 @@
 #include "main.h"
 #include "pokemon.h"
 #include "pokedex.h"
+#include "pokedex_common.h"
 #include "wild_encounter.h"
 #include "battle_setup.h"
 #include "overworld.h"
@@ -206,6 +207,23 @@ void RFUiFixture_Summary(void)
     CalculatePlayerPartyCount();
     SetMainCallback1(NULL);
     ShowPokemonSummaryScreen(SUMMARY_MODE_NORMAL, gParties[B_TRAINER_PLAYER], 0, 0, CB2_ReturnToField);
+}
+
+// Area screen cases, listed alphabetically: an evolution (Ivysaur), a daytime wild Pokémon
+// (Pidgey), an evening-only one on Route 1 (Tandemaus) and a saga legend (Uxie).
+void RFUiFixture_PokedexArea(void)
+{
+    static const u16 species[] = {SPECIES_IVYSAUR, SPECIES_PIDGEY, SPECIES_TANDEMAUS, SPECIES_UXIE};
+    u32 i;
+
+    FlagSet(FLAG_SYS_POKEDEX_GET);
+    EnableNationalPokedex();
+    gSaveBlock2Ptr->pokedex.mode = DEX_MODE_NATIONAL;
+    for (i = 0; i < ARRAY_COUNT(species); i++)
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(species[i]), FLAG_SET_SEEN);
+    gSaveBlock2Ptr->pokedex.order = ORDER_ALPHABETICAL;
+    SetMainCallback1(NULL);
+    CB2_OpenPokedex();
 }
 
 // Learning a fifth move: the summary opens on the moves page to choose the move to forget.

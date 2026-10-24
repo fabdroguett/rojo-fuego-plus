@@ -42,6 +42,19 @@ bool32 RFLegends_IsObjectHidden(const u8 *script)
     return FALSE;
 }
 
+// The saga legend of this species, or NULL.
+const struct RFLegend *RFLegends_FindSpecies(u16 species)
+{
+    u32 i;
+
+    for (i = 0; i < RF_LEGEND_COUNT; i++)
+    {
+        if (sRFLegends[i].species == species)
+            return &sRFLegends[i];
+    }
+    return NULL;
+}
+
 bool32 RFLegends_IsSagaCaught(u32 saga)
 {
     u32 i, quest = RF_QUEST_LEGEND_00 + saga, found = 0;

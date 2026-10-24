@@ -30,6 +30,7 @@
 #include "config/pokedex_plus_hgss.h"
 #include "pokedex_common.h"
 #include "pokedex_plus_hgss.h"
+#include "rf_legends.h"
 
 // There are two types of indicators for the area screen to show where a Pokémon can occur:
 // - Area glows, which highlight any of the maps in MAP_GROUP_TOWNS_AND_ROUTES that have the species.
@@ -118,7 +119,19 @@ struct
 
 EWRAM_DATA u8 gAreaTimeOfDay = 0;
 
+// Rojo Fuego+: why a species has no wild area right now, shown in the area label.
+enum
+{
+    RF_AREA_FOUND,
+    RF_AREA_UNKNOWN,
+    RF_AREA_LEGEND,    // saga legend: its map is highlighted
+    RF_AREA_EVOLUTION, // only obtained by evolving
+};
+static EWRAM_DATA u8 sRFAreaReason = 0;
+
+
 static void FindMapsWithMon(enum Species);
+static void RFArea_ExplainNoWildArea(enum Species species);
 static void BuildAreaGlowTilemap(void);
 static void SetAreaHasMon(u16, u16);
 static void SetSpecialMapHasMon(u16, u16);
@@ -329,6 +342,7 @@ static void FindMapsWithMon(enum Species species)
 
     sPokedexAreaScreen->numOverworldAreas = 0;
     sPokedexAreaScreen->numSpecialAreas = 0;
+    sRFAreaReason = RF_AREA_FOUND;
 
     // Check if this species should be hidden from the area map.
     // This only applies to Wynaut, to hide the encounters on Mirage Island.
@@ -401,6 +415,76 @@ static void FindMapsWithMon(enum Species species)
             roamerLocation->regionMapSectionId = Overworld_GetMapHeaderByGroupAndId(roamerLocation->mapGroup, roamerLocation->mapNum)->regionMapSectionId;
             sPokedexAreaScreen->numOverworldAreas++;
         }
+    }
+
+    if (!sPokedexAreaScreen->numOverworldAreas && !sPokedexAreaScreen->numSpecialAreas)
+        RFArea_ExplainNoWildArea(species);
+}
+
+static bool32 RFArea_IsWildAt(enum Species species, u32 timeOfDay)
+{
+    enum RegionMapType regionMapType = GetRegionMapType(gMapHeader.regionMapSectionId);
+    u32 i;
+
+    for (i = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(MAP_UNDEFINED); i++)
+    {
+        u32 sectionId = Overworld_GetMapHeaderByGroupAndId(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum)->regionMapSectionId;
+        if (GetRegionMapType(sectionId) == regionMapType
+         && MapHasSpecies(&gWildMonHeaders[i].encounterTypes[timeOfDay], sectionId, species))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static void SetMapHasMon(u16 mapGroup, u16 mapNum);
+
+// Called when the wild tables have nothing at the selected time of day. On opening the screen it
+// moves to a time of day that has the species; otherwise it explains how the species is obtained.
+static void RFArea_ExplainNoWildArea(enum Species species)
+{
+    const struct RFLegend *legend = RFLegends_FindSpecies(species);
+    u32 time;
+
+    if (OW_TIME_OF_DAY_ENCOUNTERS && sPokedexAreaScreen->areaState == DEX_SHOW_AREA_SCREEN)
+    {
+        for (time = 0; time < TIMES_OF_DAY_COUNT; time++)
+        {
+            if (time != gAreaTimeOfDay && RFArea_IsWildAt(species, time))
+            {
+                gAreaTimeOfDay = time;
+                sPokedexAreaScreen->areaState = DEX_UPDATE_AREA_SCREEN; // retry only once
+                FindMapsWithMon(species);
+                sPokedexAreaScreen->areaState = DEX_SHOW_AREA_SCREEN;
+                return;
+            }
+        }
+    }
+    if (legend != NULL)
+    {
+        sRFAreaReason = RF_AREA_LEGEND;
+        SetMapHasMon(legend->map >> 8, legend->map & 0xFF);
+    }
+    else if (GetSpeciesPreEvolution(species) != SPECIES_NONE)
+    {
+        sRFAreaReason = RF_AREA_EVOLUTION;
+    }
+    else
+    {
+        sRFAreaReason = RF_AREA_UNKNOWN;
+    }
+}
+
+static void SetMapHasMon(u16 mapGroup, u16 mapNum)
+{
+    switch (mapGroup)
+    {
+    case MAP_GROUP_TOWNS_AND_ROUTES:
+    case MAP_GROUP_TOWNS_AND_ROUTES_FRLG:
+        SetAreaHasMon(mapGroup, mapNum);
+        break;
+    default:
+        SetSpecialMapHasMon(mapGroup, mapNum);
+        break;
     }
 }
 
@@ -708,10 +792,15 @@ static void ShowEncounterInfoLabel(void)
 
 static void ShowAreaUnknownLabel(void)
 {
-    static const u8 gText_AreaUnknown[] = _("DESCONOCIDA");
-    int stringXPos = GetStringCenterAlignXOffset(FONT_NORMAL, gText_AreaUnknown, 80);
+    static const u8 *const texts[] = {
+        [RF_AREA_UNKNOWN] = COMPOUND_STRING("DESCONOCIDA"),
+        [RF_AREA_LEGEND] = COMPOUND_STRING("LEYENDA"),
+        [RF_AREA_EVOLUTION] = COMPOUND_STRING("EVOLUCIÓN"),
+    };
+    const u8 *text = texts[sRFAreaReason == RF_AREA_FOUND ? RF_AREA_UNKNOWN : sRFAreaReason];
+    int stringXPos = GetStringCenterAlignXOffset(FONT_NORMAL, text, 80);
 
-    PrintAreaLabelText(gText_AreaUnknown, DEX_AREA_LABEL_AREA_UNKNOWN, stringXPos);
+    PrintAreaLabelText(text, DEX_AREA_LABEL_AREA_UNKNOWN, stringXPos);
 }
 
 static void ClearAreaWindowLabel(enum PokedexAreaLabels labelId)
@@ -734,7 +823,7 @@ static void PrintAreaLabelText(const u8 *text, enum PokedexAreaLabels labelId, i
 
 bool32 ShouldShowAreaUnknownLabel(void)
 {
-    return !sPokedexAreaScreen->numOverworldAreas && !sPokedexAreaScreen->numSpecialAreas;
+    return sRFAreaReason != RF_AREA_FOUND;
 }
 
 #define tState data[0]

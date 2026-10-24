@@ -88,8 +88,11 @@ retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
     DESCONOCIDA), búsqueda (descripciones, modos, colores) y unidades métricas (`UNITS`).
     Botones de búsqueda redibujados (BUSCAR/LISTA/SALIR, LETRA/COLOR/TIPO/ORDEN/MODO; OK se queda).
     Falta solo contenido de datos: nombres de tipo y categorías/descripciones de especie.
-  - [ ] **DEX-3 Área real:** rutas/zonas y franja día/tarde/noche desde los datos de
+  - [x] **DEX-3 Área real:** rutas/zonas y franja día/tarde/noche desde los datos de
     `encounters.py`; legendarios con su misión de saga y ubicación (`legends.py`).
+    Al abrir ÁREA, si la franja actual no tiene la especie salta a la primera franja que la tenga;
+    sin zona salvaje, el rótulo dice LEYENDA (y resalta el mapa de su saga), EVOLUCIÓN o
+    DESCONOCIDA. `legends.py` emite el `MAP_*` de cada leyenda en `sRFLegends`.
   - [ ] **DEX-4 Debilidades:** tabla de tipos de la especie (×4, ×2, ×½, ×¼, inmune).
   - [ ] **DEX-5 Crianza y EV:** grupos huevo, sexos, eclosión y EV, legibles y completos.
   - [ ] **DEX-6 Movimientos completos:** nivel, MT/MO, tutor y huevo con su método visible.

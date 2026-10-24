@@ -13,7 +13,14 @@ NACIONAL, PS AT DF AE DE VE), logo en el índice 12 (claro en ambos temas), esta
 lista con texto del tema de noche, búsqueda con el fondo del tema (índice 3) y textos de la Pokédex
 en español; `UNITS` pasa a métrico. ROM `build_artifacts/releases/20261023-231623/` SHA-256
 `9c7c56b7…a12c`, copiada al Escritorio (respaldo `Rojo Fuego Plus (respaldo 20261023-2230).gba`).
-Siguiente: botones dibujados de la búsqueda, luego DEX-3 (área real con `encounters.py` y sagas).
+Botones de la búsqueda en español (commit ec167a83).
+
+**DEX-3 Área real (24-10-2026 02:10).** `pokedex_area_screen.c`: `RFArea_ExplainNoWildArea` salta
+a la franja horaria con la especie al abrir ÁREA; si no hay zona salvaje, rótulo LEYENDA (mapa de
+la saga resaltado vía `RFLegends_FindSpecies`), EVOLUCIÓN o DESCONOCIDA. Fixture
+`RFUiFixture_PokedexArea` (Ivysaur, Pidgey, Tandemaus, Uxie en la Nacional). ROM
+`build_artifacts/releases/20261024-021033/` SHA-256 `a0a3f549…3ae0`, en el Escritorio (respaldo
+`Rojo Fuego Plus (respaldo 20261024-0000).gba`). Siguiente: DEX-4 Debilidades.
 
 **Pantalla de datos del Pokémon rehecha desde cero (23-10-2026 22:30).** Pedido: reestructurar
 estado, características y movimientos "desde 0" con la misma información o más, con margen y
