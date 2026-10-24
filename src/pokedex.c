@@ -687,23 +687,23 @@ static const u8 sText_UnkHeightMetric[] = _("???.? m");
 static const u8 sText_UnkWeight[] = _("????.? lbs.");
 static const u8 sText_UnkWeightMetric[] = _("???.? kg.");
 static const u8 sText_PokedexRegistration[] = _("POKéDEX registration completed.");
-static const u8 sText_HTHeight[] = _("HT");
-static const u8 sText_WTWeight[] = _("WT");
-static const u8 sText_SearchingPleaseWait[] = _("Searching…\nPlease wait.");
-static const u8 sText_SearchCompleted[] = _("Search completed.");
-static const u8 sText_NoMatchingPkmnWereFound[] = _("No matching POKéMON were found.");
-static const u8 sText_SearchForPkmnBasedOnParameters[] = _("Search for POKéMON based on\nselected parameters.");
-static const u8 sText_SwitchPokedexListings[] = _("Switch POKéDEX listings.");
-static const u8 sText_ReturnToPokedex[] = _("Return to the POKéDEX.");
-static const u8 sText_SelectPokedexMode[] = _("Select the POKéDEX mode.");
-static const u8 sText_SelectPokedexListingMode[] = _("Select the POKéDEX listing mode.");
-static const u8 sText_ListByFirstLetter[] = _("List by the first letter in the name.\nSpotted POKéMON only.");
-static const u8 sText_ListByBodyColor[] = _("List by body color.\nSpotted POKéMON only.");
-static const u8 sText_ListByType[] = _("List by type.\nOwned POKéMON only.");
-static const u8 sText_ExecuteSearchSwitch[] = _("Execute search/switch.");
+static const u8 sText_HTHeight[] = _("ALT");
+static const u8 sText_WTWeight[] = _("PESO");
+static const u8 sText_SearchingPleaseWait[] = _("Buscando…\nUn momento.");
+static const u8 sText_SearchCompleted[] = _("Búsqueda terminada.");
+static const u8 sText_NoMatchingPkmnWereFound[] = _("No hay Pokémon que coincidan.");
+static const u8 sText_SearchForPkmnBasedOnParameters[] = _("Busca Pokémon según los\ncriterios elegidos.");
+static const u8 sText_SwitchPokedexListings[] = _("Cambia la lista de la Pokédex.");
+static const u8 sText_ReturnToPokedex[] = _("Vuelve a la Pokédex.");
+static const u8 sText_SelectPokedexMode[] = _("Elige el modo de la Pokédex.");
+static const u8 sText_SelectPokedexListingMode[] = _("Elige cómo se ordena la lista.");
+static const u8 sText_ListByFirstLetter[] = _("Por la inicial del nombre.\nSolo Pokémon vistos.");
+static const u8 sText_ListByBodyColor[] = _("Por el color del cuerpo.\nSolo Pokémon vistos.");
+static const u8 sText_ListByType[] = _("Por tipo.\nSolo Pokémon capturados.");
+static const u8 sText_ExecuteSearchSwitch[] = _("Buscar o cambiar la lista.");
 static const u8 sText_DexEmptyString[] = _("");
-static const u8 sText_DexSearchDontSpecify[] = _("DON'T SPECIFY.");
-static const u8 sText_DexSearchTypeNone[] = _("NONE");
+static const u8 sText_DexSearchDontSpecify[] = _("SIN FILTRO");
+static const u8 sText_DexSearchTypeNone[] = _("NINGUNO");
 
 ALIGNED(4) static const u8 sExpandedPlaceholder_PokedexDescription[] = _("");
 
@@ -1181,19 +1181,19 @@ static const u8 sSearchMovementMap_ShiftHoennDex[SEARCH_COUNT][4] =
 
 static const struct SearchOptionText sDexModeOptions[] =
 {
-    [DEX_MODE_HOENN]    = {COMPOUND_STRING("HOENN region's POKéDEX"),   COMPOUND_STRING("HOENN DEX")},
-    [DEX_MODE_NATIONAL] = {COMPOUND_STRING("National edition POKéDEX"), COMPOUND_STRING("NATIONAL DEX")},
+    [DEX_MODE_HOENN]    = {COMPOUND_STRING("Pokédex regional"),   COMPOUND_STRING("REGIONAL")},
+    [DEX_MODE_NATIONAL] = {COMPOUND_STRING("Pokédex nacional"), COMPOUND_STRING("NACIONAL")},
     {},
 };
 
 static const struct SearchOptionText sDexOrderOptions[] =
 {
-    [ORDER_NUMERICAL]    = {COMPOUND_STRING("POKéMON are listed according to their\nnumber."),               COMPOUND_STRING("NUMERICAL MODE")},
-    [ORDER_ALPHABETICAL] = {COMPOUND_STRING("Spotted and owned POKéMON are listed\nalphabetically."),        COMPOUND_STRING("A TO Z MODE")},
-    [ORDER_HEAVIEST]     = {COMPOUND_STRING("Owned POKéMON are listed from the\nheaviest to the lightest."), COMPOUND_STRING("HEAVIEST MODE")},
-    [ORDER_LIGHTEST]     = {COMPOUND_STRING("Owned POKéMON are listed from the\nlightest to the heaviest."), COMPOUND_STRING("LIGHTEST MODE")},
-    [ORDER_TALLEST]      = {COMPOUND_STRING("Owned POKéMON are listed from the\ntallest to the smallest."),  COMPOUND_STRING("TALLEST MODE")},
-    [ORDER_SMALLEST]     = {COMPOUND_STRING("Owned POKéMON are listed from the\nsmallest to the tallest."),  COMPOUND_STRING("SMALLEST MODE")},
+    [ORDER_NUMERICAL]    = {COMPOUND_STRING("Pokémon ordenados por su\nnúmero."),               COMPOUND_STRING("POR NÚMERO")},
+    [ORDER_ALPHABETICAL] = {COMPOUND_STRING("Pokémon vistos y capturados en\norden alfabético."),        COMPOUND_STRING("DE LA A A LA Z")},
+    [ORDER_HEAVIEST]     = {COMPOUND_STRING("Pokémon capturados del más\npesado al más ligero."), COMPOUND_STRING("MÁS PESADO")},
+    [ORDER_LIGHTEST]     = {COMPOUND_STRING("Pokémon capturados del más\nligero al más pesado."), COMPOUND_STRING("MÁS LIGERO")},
+    [ORDER_TALLEST]      = {COMPOUND_STRING("Pokémon capturados del más\nalto al más bajo."),  COMPOUND_STRING("MÁS ALTO")},
+    [ORDER_SMALLEST]     = {COMPOUND_STRING("Pokémon capturados del más\nbajo al más alto."),  COMPOUND_STRING("MÁS BAJO")},
     {},
 };
 
@@ -1215,16 +1215,16 @@ static const struct SearchOptionText sDexSearchNameOptions[] =
 static const struct SearchOptionText sDexSearchColorOptions[] =
 {
     {sText_DexEmptyString, sText_DexSearchDontSpecify},
-    [BODY_COLOR_RED + 1]    = {sText_DexEmptyString, COMPOUND_STRING("RED")},
-    [BODY_COLOR_BLUE + 1]   = {sText_DexEmptyString, COMPOUND_STRING("BLUE")},
-    [BODY_COLOR_YELLOW + 1] = {sText_DexEmptyString, COMPOUND_STRING("YELLOW")},
-    [BODY_COLOR_GREEN + 1]  = {sText_DexEmptyString, COMPOUND_STRING("GREEN")},
-    [BODY_COLOR_BLACK + 1]  = {sText_DexEmptyString, COMPOUND_STRING("BLACK")},
-    [BODY_COLOR_BROWN + 1]  = {sText_DexEmptyString, COMPOUND_STRING("BROWN")},
-    [BODY_COLOR_PURPLE + 1] = {sText_DexEmptyString, COMPOUND_STRING("PURPLE")},
-    [BODY_COLOR_GRAY + 1]   = {sText_DexEmptyString, COMPOUND_STRING("GRAY")},
-    [BODY_COLOR_WHITE + 1]  = {sText_DexEmptyString, COMPOUND_STRING("WHITE")},
-    [BODY_COLOR_PINK + 1]   = {sText_DexEmptyString, COMPOUND_STRING("PINK")},
+    [BODY_COLOR_RED + 1]    = {sText_DexEmptyString, COMPOUND_STRING("ROJO")},
+    [BODY_COLOR_BLUE + 1]   = {sText_DexEmptyString, COMPOUND_STRING("AZUL")},
+    [BODY_COLOR_YELLOW + 1] = {sText_DexEmptyString, COMPOUND_STRING("AMARILLO")},
+    [BODY_COLOR_GREEN + 1]  = {sText_DexEmptyString, COMPOUND_STRING("VERDE")},
+    [BODY_COLOR_BLACK + 1]  = {sText_DexEmptyString, COMPOUND_STRING("NEGRO")},
+    [BODY_COLOR_BROWN + 1]  = {sText_DexEmptyString, COMPOUND_STRING("MARRÓN")},
+    [BODY_COLOR_PURPLE + 1] = {sText_DexEmptyString, COMPOUND_STRING("MORADO")},
+    [BODY_COLOR_GRAY + 1]   = {sText_DexEmptyString, COMPOUND_STRING("GRIS")},
+    [BODY_COLOR_WHITE + 1]  = {sText_DexEmptyString, COMPOUND_STRING("BLANCO")},
+    [BODY_COLOR_PINK + 1]   = {sText_DexEmptyString, COMPOUND_STRING("ROSA")},
     {},
 };
 

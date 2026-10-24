@@ -6,6 +6,15 @@ Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
 
 ## Punto guardado para retomar
 
+**Pokédex DEX-1 y DEX-2 (23-10-2026 23:16).** Pestañas en español dibujadas sobre la barra
+HGSS (`RFDex_DrawTabs`, también en ÁREA con ventana propia en 0x260 de BG1), rótulos de sprites y
+de la lista regenerados por `tools/rojo_fuego/make_dex_labels.py` (MENÚ/BUSCAR, VIST./CAPT.,
+NACIONAL, PS AT DF AE DE VE), logo en el índice 12 (claro en ambos temas), estadísticas de la
+lista con texto del tema de noche, búsqueda con el fondo del tema (índice 3) y textos de la Pokédex
+en español; `UNITS` pasa a métrico. ROM `build_artifacts/releases/20261023-231623/` SHA-256
+`9c7c56b7…a12c`, copiada al Escritorio (respaldo `Rojo Fuego Plus (respaldo 20261023-2230).gba`).
+Siguiente: botones dibujados de la búsqueda, luego DEX-3 (área real con `encounters.py` y sagas).
+
 **Pantalla de datos del Pokémon rehecha desde cero (23-10-2026 22:30).** Pedido: reestructurar
 estado, características y movimientos "desde 0" con la misma información o más, con margen y
 relleno en todos los textos. `src/rf_summary_screen.c` implementa la API pública
