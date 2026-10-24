@@ -69,19 +69,20 @@ static const u8 sText_Stats_Defense[] = _("DEF");
 static const u8 sText_Stats_Speed[] = _("VEL");
 static const u8 sText_Stats_SpAttack[] = _("AT.E");
 static const u8 sText_Stats_SpDefense[] = _("DF.E");
-static const u8 sText_Stats_EV_Plus1[] = _("{UP_ARROW_2}");
-static const u8 sText_Stats_EV_Plus2[] = _("{UP_ARROW_2}{UP_ARROW_2}");
-static const u8 sText_Stats_EV_Plus3[] = _("{UP_ARROW_2}{UP_ARROW_2}{UP_ARROW_2}");
+static const u8 sText_Stats_EV_Plus1[] = _("+1");
+static const u8 sText_Stats_EV_Plus2[] = _("+2");
+static const u8 sText_Stats_EV_Plus3[] = _("+3");
 static const u8 sText_Stats_EvStr1Str2[] = _("{STR_VAR_1}{STR_VAR_2}");
 static const u8 sText_Stats_MoveSelectedMax[] = _("{STR_VAR_1} / {STR_VAR_2}");
 static const u8 sText_Stats_MoveLevel[] = _("NV.");
-static const u8 sText_Stats_Gender_0[] = _("♂");
-static const u8 sText_Stats_Gender_12_5[] = _("♀ 1/7 ♂"); //_("♀ 12.5 / 87.5 ♂");
-static const u8 sText_Stats_Gender_25[] = _("♀ 1/3 ♂");     //_("♀ 25 / 75 ♂");
-static const u8 sText_Stats_Gender_50[] = _("♀ 1/1 ♂");     //_("♀ 50 / 50 ♂");
-static const u8 sText_Stats_Gender_75[] = _("♀ 3/1 ♂");     //_("♀ 75 / 25 ♂");
-static const u8 sText_Stats_Gender_87_5[] = _("♀ 7/1 ♂");
-static const u8 sText_Stats_Gender_100[] = _("♀");
+static const u8 sText_Stats_Gender_0[] = _("♂100%");
+static const u8 sText_Stats_Gender_12_5[] = _("♂87,5% ♀12,5%");
+static const u8 sText_Stats_Gender_25[] = _("♂75% ♀25%");
+static const u8 sText_Stats_Gender_50[] = _("♂50% ♀50%");
+static const u8 sText_Stats_Gender_75[] = _("♂25% ♀75%");
+static const u8 sText_Stats_Gender_87_5[] = _("♂12,5% ♀87,5%");
+static const u8 sText_Stats_Gender_100[] = _("♀100%");
+static const u8 sText_Stats_Genderless[] = _("SIN SEXO");
 static const u8 sText_Stats_CatchRate[] = _("CAPT{0x5B}: ");
 static const u8 sText_Stats_CatchRate_Legend[] = _("LEGEND.");
 static const u8 sText_Stats_CatchRate_VeryHard[] = _("M.DIFÍC.");
@@ -90,17 +91,10 @@ static const u8 sText_Stats_CatchRate_Medium[] = _("MEDIA");
 static const u8 sText_Stats_CatchRate_Relaxed[] = _("FÁCIL");
 static const u8 sText_Stats_CatchRate_Easy[] = _("M.FÁCIL");
 static const u8 sText_Stats_ExpYield[] = _("EXP DA: ");
-static const u8 sText_Stats_EggCycles[] = _("ECLOSIÓN:");
-static const u8 sText_Stats_EggCycles_VeryFast[] = _("{EMOJI_BOLT}{EMOJI_DIZZYEGG}");
-static const u8 sText_Stats_EggCycles_Fast[] = _("{EMOJI_DIZZYEGG}");
-static const u8 sText_Stats_EggCycles_Normal[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
-static const u8 sText_Stats_EggCycles_Slow[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
+static const u8 sText_Stats_EggCycles[] = _("HUEVO");
+static const u8 sText_Stats_EggGroups[] = _("GRUPOS HUEVO");
 static const u8 sText_Stats_Growthrate[] = _("CREC.: ");
 static const u8 sText_Stats_Friendship[] = _("AMISTAD:");
-static const u8 sText_Stats_Friendship_BigAnger[] = _("{EMOJI_BIGANGER}");
-static const u8 sText_Stats_Friendship_Neutral[] = _("{EMOJI_NEUTRAL}");
-static const u8 sText_Stats_Friendship_Happy[] = _("{EMOJI_HAPPY}");
-static const u8 sText_Stats_Friendship_BigSmile[] = _("{EMOJI_BIGSMILE}");
 static const u8 sText_Stats_MEDIUM_FAST[] = _("MED.RÁP.");
 static const u8 sText_Stats_ERRATIC[] = _("ERRÁTICO");
 static const u8 sText_Stats_FLUCTUATING[] = _("FLUCTÚA");
@@ -537,7 +531,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .tilemapLeft = 0,
         .tilemapTop = 6,
         .width = 12,
-        .height = 8,
+        .height = 12, // Rojo Fuego+: the whole panel, room for the egg groups row
         .paletteNum = 0,
         .baseBlock = 1 + 60 + 40 + 48,
     },
@@ -549,7 +543,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 12,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 1 + 60 + 40 + 48 + 96,
+        .baseBlock = 1 + 60 + 40 + 48 + 144,
     },
     [WIN_STATS_MOVES_TOP] =
     {
@@ -559,7 +553,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 18,
         .height = 4,
         .paletteNum = 0,
-        .baseBlock = 1 + 60 + 40 + 48 + 96 + 24,
+        .baseBlock = 1 + 60 + 40 + 48 + 144 + 24,
     },
     [WIN_STATS_MOVES_DESCRIPTION] =
     {
@@ -569,7 +563,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 18,
         .height = 4,
         .paletteNum = 0,
-        .baseBlock = 1 + 60 + 40 + 48 + 96 + 24 + 72,
+        .baseBlock = 1 + 60 + 40 + 48 + 144 + 24 + 72,
     },
     [WIN_STATS_MOVES_BOTTOM] =
     {
@@ -579,7 +573,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 18,
         .height = 2,
         .paletteNum = 0,
-        .baseBlock = 1 + 60 + 40 + 48 + 96 + 24 + 72 + 72,
+        .baseBlock = 1 + 60 + 40 + 48 + 144 + 24 + 72 + 72,
     },
     [WIN_STATS_ABILITIES] =
     {
@@ -589,7 +583,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 18,
         .height = 8,
         .paletteNum = 0,
-        .baseBlock = 1 + 60 + 40 + 48 + 96 + 24 + 72 + 72 + 36,
+        .baseBlock = 1 + 60 + 40 + 48 + 144 + 24 + 72 + 72 + 36,
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -2096,15 +2090,19 @@ static void DestroyCategoryIcon(void)
 //*                                  *
 //************************************
 static const u8 sStatsPageNavigationTextColor[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
+// Dark mode inverts the text box palette (slot 15): white is the dark fill, dark gray the light ink.
+static const u8 sStatsPageNavigationTextColor_Dark[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE};
 
 static void StatsPage_PrintNavigationButtons(void)
 {
     u8 x = 9;
     u8 y = 0;
+    const u8 *colors = KeySystem_IsOn(KEY_DARK_MODE) ? sStatsPageNavigationTextColor_Dark : sStatsPageNavigationTextColor;
+
     if (!HGSS_DECAPPED)
-        AddTextPrinterParameterized3(WIN_STATS_NAVIGATION_BUTTONS, 0, x, y, sStatsPageNavigationTextColor, 0, sText_Stats_Buttons);
+        AddTextPrinterParameterized3(WIN_STATS_NAVIGATION_BUTTONS, 0, x, y, colors, 0, sText_Stats_Buttons);
     else
-        AddTextPrinterParameterized3(WIN_STATS_NAVIGATION_BUTTONS, 0, x, y, sStatsPageNavigationTextColor, 0, sText_Stats_Buttons_Decapped);
+        AddTextPrinterParameterized3(WIN_STATS_NAVIGATION_BUTTONS, 0, x, y, colors, 0, sText_Stats_Buttons_Decapped);
 
     PutWindowTilemap(WIN_STATS_NAVIGATION_BUTTONS);
     CopyWindowToVram(WIN_STATS_NAVIGATION_BUTTONS, 3);
@@ -2652,6 +2650,7 @@ static void PrintStatsScreen_NameGender(u8 taskId, u32 num, u32 value)
     u8 base_x = 38;
     u8 base_y = 0;
     u8 gender_x, gender_y;
+    const u8 *gender;
 
     //Name
     const u8 *name = GetSpeciesName(species);
@@ -2673,31 +2672,38 @@ static void PrintStatsScreen_NameGender(u8 taskId, u32 num, u32 value)
     gender_y = base_y + 20;
     switch (sPokedexView->sPokemonStats.genderRatio)
     {
-    case 0:
-        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, sText_Stats_Gender_0, gender_x, gender_y);
+    case MON_MALE:
+        gender = sText_Stats_Gender_0;
         break;
     case 31:
-        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, sText_Stats_Gender_12_5, gender_x, gender_y);
+        gender = sText_Stats_Gender_12_5;
         break;
     case 63:
-        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, sText_Stats_Gender_25, gender_x, gender_y);
+        gender = sText_Stats_Gender_25;
         break;
     case 127:
-        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, sText_Stats_Gender_50, gender_x, gender_y);
+        gender = sText_Stats_Gender_50;
         break;
     case 191:
-        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, sText_Stats_Gender_75, gender_x, gender_y);
+        gender = sText_Stats_Gender_75;
         break;
     case 223:
-        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, sText_Stats_Gender_87_5, gender_x, gender_y);
+        gender = sText_Stats_Gender_87_5;
         break;
-    case 254:
-        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, sText_Stats_Gender_100, gender_x, gender_y);
+    case MON_FEMALE:
+        gender = sText_Stats_Gender_100;
+        break;
+    case MON_GENDERLESS:
+        gender = sText_Stats_Genderless;
         break;
     default:
-        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, gText_ThreeDashes, gender_x, gender_y);
+        gender = gText_ThreeDashes;
         break;
     }
+    if (GetStringWidth(FONT_SMALL, gender, 0) <= STATS_PAGE_SPECIES_MAX_WIDTH)
+        PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, gender, gender_x, gender_y);
+    else
+        PrintStatsScreenTextSmallNarrower(WIN_STATS_NAME_GENDER, gender, gender_x, gender_y);
 }
 
 static u8 PrintMonStatsToggle_DifferentEVsColumn(u8 differentEVs)
@@ -2975,27 +2981,7 @@ static void PrintStatsScreen_Left(u8 taskId)
 
         //Friendship
         PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_Friendship, base_x, base_y + base_y_offset*base_i);
-        switch (sPokedexView->sPokemonStats.friendship)
-        {
-        case 35:
-            StringCopy(strEV, sText_Stats_Friendship_BigAnger);
-            break;
-        case 70:
-            StringCopy(strEV, sText_Stats_Friendship_Neutral);
-            break;
-        case 90:
-            StringCopy(strEV, sText_Stats_Friendship_Happy);
-            break;
-        case 100:
-            StringCopy(strEV, sText_Stats_Friendship_Happy);
-            break;
-        case 140:
-            StringCopy(strEV, sText_Stats_Friendship_BigSmile);
-            break;
-        default:
-            ConvertIntToDecimalStringN(strEV, sPokedexView->sPokemonStats.friendship, STR_CONV_MODE_RIGHT_ALIGN, 3);
-            break;
-        }
+        ConvertIntToDecimalStringN(strEV, sPokedexView->sPokemonStats.friendship, STR_CONV_MODE_LEFT_ALIGN, 3);
         align_x = GetStringRightAlignXOffset(0, strEV, total_x);
         PrintStatsScreenTextSmall(WIN_STATS_LEFT, strEV, align_x, base_y + base_y_offset*base_i);
         base_i++;
@@ -3004,33 +2990,20 @@ static void PrintStatsScreen_Left(u8 taskId)
         if (sPokedexView->sPokemonStats.eggGroup1 == EGG_GROUP_NO_EGGS_DISCOVERED || sPokedexView->sPokemonStats.eggGroup2 == EGG_GROUP_NO_EGGS_DISCOVERED) //Species without eggs (legendaries etc)
         {
             PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_EggCycles, base_x, base_y + base_y_offset*base_i);
-            PrintStatsScreenTextSmall(WIN_STATS_LEFT, gText_ThreeDashes, 78, base_y + base_y_offset*base_i);
+            PrintStatsScreenTextSmall(WIN_STATS_LEFT, gText_ThreeDashes, GetStringRightAlignXOffset(FONT_SMALL, gText_ThreeDashes, total_x), base_y + base_y_offset*base_i);
         }
         else
         {
             PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_EggCycles, base_x, base_y + base_y_offset*base_i);
-            if (sPokedexView->sPokemonStats.eggCycles <= 10)
-            {
-                StringCopy(strEV, sText_Stats_EggCycles_VeryFast);
-                align_x = 76;
-            }
-            else if (sPokedexView->sPokemonStats.eggCycles <= 20)
-            {
-                StringCopy(strEV, sText_Stats_EggCycles_Fast);
-                align_x = 85;
-            }
-            else if (sPokedexView->sPokemonStats.eggCycles <= 30)
-            {
-                StringCopy(strEV, sText_Stats_EggCycles_Normal);
-                align_x = 76;
-            }
-            else
-            {
-                StringCopy(strEV, sText_Stats_EggCycles_Slow);
-                align_x = 67;
-            }
+            // Steps to hatch, as the Day Care counts them
+            ConvertIntToDecimalStringN(strEV, sPokedexView->sPokemonStats.eggCycles * (P_EGG_CYCLE_LENGTH >= GEN_8 ? 128 : 256), STR_CONV_MODE_LEFT_ALIGN, 5);
+            StringAppend(strEV, COMPOUND_STRING(" p."));
+            align_x = GetStringRightAlignXOffset(FONT_SMALL, strEV, total_x);
             PrintStatsScreenTextSmall(WIN_STATS_LEFT, strEV, align_x, base_y + base_y_offset*base_i);
         }
+        base_i++;
+
+        PrintStatsScreenTextSmall(WIN_STATS_LEFT, sText_Stats_EggGroups, base_x, base_y + base_y_offset*base_i);
         base_i++;
 
         //Egg group 1
@@ -3140,8 +3113,10 @@ static void PrintStatsScreen_Left(u8 taskId)
                 break;
             }
             StringExpandPlaceholders(gStringVar3, sText_Stats_eggGroup_Groups);
-            align_x = GetStringRightAlignXOffset(0, gStringVar3, total_x);
-            PrintStatsScreenTextSmall(WIN_STATS_LEFT, gStringVar3, base_x, base_y + base_y_offset*base_i);
+            if (base_x + GetStringWidth(FONT_SMALL, gStringVar3, 0) <= total_x)
+                PrintStatsScreenTextSmall(WIN_STATS_LEFT, gStringVar3, base_x, base_y + base_y_offset*base_i);
+            else
+                PrintStatsScreenTextSmallNarrower(WIN_STATS_LEFT, gStringVar3, base_x, base_y + base_y_offset*base_i);
         }
         else
         {

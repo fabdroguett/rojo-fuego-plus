@@ -26,7 +26,15 @@ la saga resaltado vía `RFLegends_FindSpecies`), EVOLUCIÓN o DESCONOCIDA. Fixtu
 `RFDex_LayoutMatchups` con `GetTypeModifier` para los dos tipos, aviso "A DEBILIDADES/DESCRIPCIÓN"
 bajo el sprite (`RF_INFO_HINT_TOP`). Fixture `RFUiFixture_PokedexArea` suma Skarmory. ROM
 `build_artifacts/releases/20261024-092730/` SHA-256 `94f0ddf1…1df3`, en el Escritorio (respaldo
-`Rojo Fuego Plus (respaldo 20261024-0210).gba`). Siguiente: DEX-5 Crianza y EV.
+`Rojo Fuego Plus (respaldo 20261024-0210).gba`).
+
+**DEX-5 Crianza y EV (24-10-2026 11:05).** `pokedex_plus_hgss.c`, vista A de DATOS: EV "+N", amistad
+numérica, pasos de eclosión (`eggCycles` × 128 con `P_EGG_CYCLE_LENGTH` Gen 8+), título GRUPOS HUEVO
+(WIN_STATS_LEFT pasa a 12 tiles de alto y los `baseBlock` siguientes suben 48), sexos en porcentaje
+y colores invertidos de la barra de navegación en modo oscuro. ROM
+`build_artifacts/releases/20261024-110309/` SHA-256 `76d8b03a…09ec`, en el Escritorio (respaldo
+`Rojo Fuego Plus (respaldo 20261024-0927).gba`). Siguiente: DEX-6 Movimientos completos (también
+traducir APPEAL/JAM del gráfico de movimientos).
 
 **Pantalla de datos del Pokémon rehecha desde cero (23-10-2026 22:30).** Pedido: reestructurar
 estado, características y movimientos "desde 0" con la misma información o más, con margen y

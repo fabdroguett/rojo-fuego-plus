@@ -96,7 +96,10 @@ retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
   - [x] **DEX-4 Debilidades:** tabla de tipos de la especie (×4, ×2, ×½, ×¼, inmune).
     En INFO, A alterna descripción y debilidades (×4, ×2, ×0,5, ×0,25, ×0) con nombres de tipo en
     español; si no caben, usa abreviaturas. La elección se mantiene al recorrer la lista.
-  - [ ] **DEX-5 Crianza y EV:** grupos huevo, sexos, eclosión y EV, legibles y completos.
+  - [x] **DEX-5 Crianza y EV:** grupos huevo, sexos, eclosión y EV, legibles y completos.
+    DATOS (A): EV como "+1", amistad en número, HUEVO en pasos reales de la guardería, fila
+    GRUPOS HUEVO con sus grupos debajo (ventana izquierda ampliada a 12 tiles), sexos en
+    porcentaje (♂87,5% ♀12,5%, SIN SEXO) y barra "A VER / MOVS." legible en modo oscuro.
   - [ ] **DEX-6 Movimientos completos:** nivel, MT/MO, tutor y huevo con su método visible.
   - [ ] **DEX-7 Variocolor y formas:** alternar sprite shiny y macho/hembra en la ficha.
   - [ ] **DEX-8 Evoluciones:** cadena completa con ramas, método claro y estado visto/capturado.
