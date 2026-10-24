@@ -83,11 +83,11 @@ retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
     ventana superior de cada pantalla (`RFDex_DrawTabs`), MENÚ/BUSCAR, VIST./CAPT., NACIONAL y
     PS/AT/DF/AE/DE/VE regenerados por `tools/rojo_fuego/make_dex_labels.py`; logo y rótulos de
     estadísticas legibles en oscuro. Pendientes para DEX-2: botones del menú de búsqueda.
-  - [~] **DEX-2 Textos:** hecho: estadísticas, captura, crianza (grupos huevo), crecimiento,
+  - [x] **DEX-2 Textos:** hecho: estadísticas, captura, crianza (grupos huevo), crecimiento,
     botones, evoluciones y sus condiciones, formas, grito, tamaño, área (franja horaria,
     DESCONOCIDA), búsqueda (descripciones, modos, colores) y unidades métricas (`UNITS`).
-    Falta: botones dibujados del menú de búsqueda (SEARCH/SHIFT/CANCEL, NAME/COLOR/TYPE/ORDER,
-    OK), nombres de tipo y categorías/descripciones de especie (datos, no interfaz).
+    Botones de búsqueda redibujados (BUSCAR/LISTA/SALIR, LETRA/COLOR/TIPO/ORDEN/MODO; OK se queda).
+    Falta solo contenido de datos: nombres de tipo y categorías/descripciones de especie.
   - [ ] **DEX-3 Área real:** rutas/zonas y franja día/tarde/noche desde los datos de
     `encounters.py`; legendarios con su misión de saga y ubicación (`legends.py`).
   - [ ] **DEX-4 Debilidades:** tabla de tipos de la especie (×4, ×2, ×½, ×¼, inmune).

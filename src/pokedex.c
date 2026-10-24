@@ -1230,7 +1230,7 @@ static const struct SearchOptionText sDexSearchColorOptions[] =
 
 static const struct SearchOptionText sDexSearchTypeOptions[] =
 {
-    {sText_DexEmptyString, gTypesInfo[TYPE_NONE].name},
+    {sText_DexEmptyString, sText_DexSearchTypeNone},
     {sText_DexEmptyString, gTypesInfo[TYPE_NORMAL].name},
     {sText_DexEmptyString, gTypesInfo[TYPE_FIGHTING].name},
     {sText_DexEmptyString, gTypesInfo[TYPE_FLYING].name},

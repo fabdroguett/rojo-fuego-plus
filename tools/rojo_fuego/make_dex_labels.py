@@ -41,6 +41,21 @@ LOGO_ROWS, LOGO_COLS, LOGO_BOX, LOGO_INK = (0, 1, 2), (12, 24), (22, 78, 4, 21),
 STAT_SHEET = ROOT / "graphics/pokedex/hgss/stat_bars.png"
 STAT_LABELS = ["PS", "AT", "DF", "AE", "DE", "VE"]
 STAT_INK, STAT_SHADOW = 14, 15
+# Search screen buttons (tileset_menu_search.png through tilemap_search_screen_national.bin; the
+# highlight only switches palette banks). Text box in screen pixels: x0, x1, top row of capitals;
+# fill and shadow colours are read from the button itself. OK stays OK.
+SEARCH_SHEET = ROOT / "graphics/pokedex/hgss/tileset_menu_search.png"
+SEARCH_TILEMAP = ROOT / "graphics/pokedex/hgss/tilemap_search_screen_national.bin"
+SEARCH_INK = 3
+SIDE_SHARED_X = 32
+# Shadow colour per button, as in the original artwork: 9 on the green top bar (fill 8), 11 on the
+# orange side buttons (fill 10).
+SEARCH_SHADOWS = {"BUSCAR": 9, "LISTA": 9, "SALIR": 9, "LETRA": 11, "COLOR": 11, "TIPO": 11, "ORDEN": 11, "MODO": 11}
+SEARCH_LABELS = [
+    ("BUSCAR", 5, 35, 4), ("LISTA", 53, 83, 4), ("SALIR", 101, 131, 4),
+    # Side buttons stop at x 32: their right-edge tiles (175, 190) are shared between rows.
+    ("LETRA", 5, 32, 20), ("COLOR", 5, 32, 36), ("TIPO", 5, 32, 52), ("ORDEN", 5, 32, 68), ("MODO", 5, 32, 84),
+]
 LETTER_C = [" FF4", "F44 ", "F4  ", "F4  ", "F4  ", "F4  ", "4FF4", " 44 "]
 
 
@@ -116,6 +131,21 @@ def list_strip_coords(rows=STRIP_ROWS, cols=STRIP_COLS):
     return coords
 
 
+def screen_coords(tilemap, x0, x1, y0, y1, sheet_tiles_wide=16):
+    """Screen (x, y) -> sheet (x, y) through a 32-wide tilemap, honouring tile flips."""
+    data = tilemap.read_bytes()
+    entries = struct.unpack(f"<{len(data) // 2}H", data)
+    coords = {}
+    for y in range(y0, y1):
+        for x in range(x0, x1):
+            entry = entries[(y // 8) * 32 + x // 8]
+            tile = entry & 0x3FF
+            tx = 7 - x % 8 if entry & 0x400 else x % 8
+            ty = 7 - y % 8 if entry & 0x800 else y % 8
+            coords[(x, y)] = ((tile % sheet_tiles_wide) * 8 + tx, (tile // sheet_tiles_wide) * 8 + ty)
+    return coords
+
+
 def main():
     data = json.loads(FONT.read_text(encoding="utf-8"))
     glyphs, baseline = data["glyphs"], data["baseline"]
@@ -155,8 +185,23 @@ def main():
             pixels[y][x] = 0
         draw_text(pixels, coords, text, STAT_INK, STAT_SHADOW, 0, 11, top, glyphs, baseline, condensed=True)
     write_png(STAT_SHEET, palette, pixels)
+
+    _, _, palette, pixels = read_png(SEARCH_SHEET)
+    for text, x0, x1, top in SEARCH_LABELS:
+        coords = screen_coords(SEARCH_TILEMAP, x0, x1, top, top + 8)
+        # The row above the capitals is plain button fill; the text rows hold more shadow than fill.
+        sx, sy = screen_coords(SEARCH_TILEMAP, x0 + 4, x0 + 5, top - 1, top)[(x0 + 4, top - 1)]
+        fill = pixels[sy][sx]
+        erase = coords
+        if x1 == SIDE_SHARED_X:  # the English words reached into the shared edge tiles
+            erase = {**coords, **screen_coords(SEARCH_TILEMAP, SIDE_SHARED_X, SIDE_SHARED_X + 4, top, top + 8)}
+        for sx, sy in erase.values():
+            pixels[sy][sx] = fill
+        draw_text(pixels, coords, text, SEARCH_INK, SEARCH_SHADOWS[text], x0, x1, top, glyphs, baseline)
+    write_png(SEARCH_SHEET, palette, pixels)
     print("Pokédex labels: " + ", ".join(l[3] for l in LABELS.values()) + ", NACIONAL, "
-          + ", ".join(t for t, _, _ in STRIP_LABELS) + ", " + " ".join(STAT_LABELS))
+          + ", ".join(t for t, _, _ in STRIP_LABELS) + ", " + " ".join(STAT_LABELS) + ", "
+          + ", ".join(t for t, _, _, _ in SEARCH_LABELS))
 
 
 if __name__ == "__main__":
