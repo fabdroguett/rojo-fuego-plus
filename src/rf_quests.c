@@ -2,6 +2,7 @@
 #include "event_data.h"
 #include "item.h"
 #include "pokemon.h"
+#include "pokedex.h"
 #include "rf_legends.h"
 #include "rf_quests.h"
 #include "constants/opponents_frlg.h"
@@ -66,32 +67,44 @@ static bool32 PartyHasSpecies(u32 species)
     return FALSE;
 }
 
-static bool32 QuestObjectiveMet(const struct RFQuest *quest)
+static bool32 QuestConditionMet(u32 condition, u32 argument, u32 alternative)
 {
-    switch (quest->condition)
+    switch (condition)
     {
     case QUEST_VISIT:
-        return gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(quest->argument)
-            && gSaveBlock1Ptr->location.mapNum == MAP_NUM(quest->argument);
+        return gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(argument)
+            && gSaveBlock1Ptr->location.mapNum == MAP_NUM(argument);
     case QUEST_PARTY_EITHER:
-        return PartyHasSpecies(quest->argument) || PartyHasSpecies(quest->alternative);
+        return PartyHasSpecies(argument) || PartyHasSpecies(alternative);
     case QUEST_PARTY_BOTH:
-        return PartyHasSpecies(quest->argument) && PartyHasSpecies(quest->alternative);
+        return PartyHasSpecies(argument) && PartyHasSpecies(alternative);
     case QUEST_ITEM_OR_FOSSIL:
     case QUEST_REVIVED_FOSSIL:
         // Fossils already revived must remain eligible; nothing is consumed or removed.
-        if (quest->condition != QUEST_REVIVED_FOSSIL
-         && (CheckBagHasItem(quest->argument, 1)
-          || (quest->alternative != ITEM_NONE && CheckBagHasItem(quest->alternative, 1))))
+        if (condition != QUEST_REVIVED_FOSSIL
+         && (CheckBagHasItem(argument, 1)
+          || (alternative != ITEM_NONE && CheckBagHasItem(alternative, 1))))
             return TRUE;
-        if (quest->argument == ITEM_HELIX_FOSSIL)
+        if (argument == ITEM_HELIX_FOSSIL)
             return PartyHasSpecies(SPECIES_OMANYTE) || PartyHasSpecies(SPECIES_OMASTAR)
                 || PartyHasSpecies(SPECIES_KABUTO) || PartyHasSpecies(SPECIES_KABUTOPS);
         return FALSE;
     case QUEST_LEGENDS:
-        return RFLegends_IsSagaCaught(quest->argument);
+        return RFLegends_IsSagaCaught(argument);
+    case QUEST_DEX_CAUGHT:
+        return GetSetPokedexFlag(SpeciesToNationalPokedexNum(argument), FLAG_GET_CAUGHT);
+    case QUEST_COLLECT_ITEM:
+        return CheckBagHasItem(argument, 1);
     }
     return FALSE;
+}
+
+static bool32 QuestObjectiveMet(const struct RFQuest *quest)
+{
+    if (!QuestConditionMet(quest->condition, quest->argument, quest->alternative))
+        return FALSE;
+    return quest->objectiveCount < 2
+        || QuestConditionMet(quest->secondaryCondition, quest->secondaryArgument, quest->secondaryAlternative);
 }
 
 static void CheckQuestObjectives(void)
@@ -166,6 +179,46 @@ bool32 RFQuests_DeliverItem(u32 id)
         return FALSE;
     SetQuestState(id, RF_QUEST_READY);
     return TRUE;
+}
+
+u32 RFQuests_NotifyItemCollected(u32 item)
+{
+    u32 i, completed = 0;
+
+    if (!IS_FRLG || !FlagGet(FLAG_SYS_POKEDEX_GET))
+        return 0;
+    EnsureQuestSave();
+    for (i = 0; i < RF_QUEST_COUNT; i++)
+    {
+        const struct RFQuest *quest = &sRFQuests[i];
+        if (quest->condition == QUEST_COLLECT_ITEM && quest->argument == item
+         && RFQuests_GetState(i) == RF_QUEST_ACTIVE)
+        {
+            SetQuestState(i, RF_QUEST_READY);
+            completed++;
+        }
+    }
+    return completed;
+}
+
+u32 RFQuests_NotifyItemUsed(u32 item)
+{
+    u32 i, completed = 0;
+
+    if (!IS_FRLG || !FlagGet(FLAG_SYS_POKEDEX_GET))
+        return 0;
+    EnsureQuestSave();
+    for (i = 0; i < RF_QUEST_COUNT; i++)
+    {
+        const struct RFQuest *quest = &sRFQuests[i];
+        if (quest->condition == QUEST_USE_ITEM && quest->argument == item
+         && RFQuests_GetState(i) == RF_QUEST_ACTIVE)
+        {
+            SetQuestState(i, RF_QUEST_READY);
+            completed++;
+        }
+    }
+    return completed;
 }
 
 bool32 RFQuests_Accept(u32 id)

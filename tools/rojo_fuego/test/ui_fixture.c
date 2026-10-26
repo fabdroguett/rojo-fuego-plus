@@ -189,11 +189,23 @@ void RFUiFixture_Summary(void)
 void RFUiFixture_Bag(void)
 {
     AddBagItem(ITEM_POTION, 5);
+    AddBagItem(ITEM_RARE_CANDY, 2);
+    AddBagItem(ITEM_X_ATTACK, 1);
+    AddBagItem(ITEM_FIRE_STONE, 1);
+    AddBagItem(ITEM_LEFTOVERS, 1);
+    AddBagItem(ITEM_NUGGET, 1);
+    AddBagItem(ITEM_ESCAPE_ROPE, 1);
     AddBagItem(ITEM_POKE_BALL, 10);
     AddBagItem(ITEM_TM01, 1);
     AddBagItem(ITEM_ORAN_BERRY, 3);
     SetMainCallback1(NULL);
     GoToBagMenu(ITEMMENULOCATION_FIELD, 0, CB2_ReturnToField);
+}
+
+void RFUiFixture_BagFemale(void)
+{
+    gSaveBlock2Ptr->playerGender = 1;
+    RFUiFixture_Bag();
 }
 
 void RFUiFixture_Quests(void)

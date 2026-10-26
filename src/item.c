@@ -12,6 +12,7 @@
 #include "strings.h"
 #include "load_save.h"
 #include "item_use.h"
+#include "rf_quests.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
 #include "graphics.h"
@@ -65,8 +66,24 @@ const struct TmHmIndexKey gTMHMItemMoveIds[NUM_ALL_MACHINES + 1] =
 
 static inline struct ItemSlot NONNULL BagPocket_GetSlotDataGeneric(struct BagPocket *pocket, u32 pocketPos)
 {
+    if (pocketPos >= pocket->capacity)
+        return (struct ItemSlot){ITEM_NONE, 0};
+
     if (IS_FRLG && pocket->id == POCKET_ITEMS && pocket->itemSlots == gSaveBlock1Ptr->bag.items && pocketPos >= BAG_ITEMS_COUNT)
     {
+        if (pocketPos >= BAG_ITEMS_COUNT + RF_BAG_EXTRA_ITEMS_COUNT)
+        {
+            u32 extraPos = pocketPos - BAG_ITEMS_COUNT - RF_BAG_EXTRA_ITEMS_COUNT;
+            if (gSaveBlock1Ptr->rfBagExtraItemsV2Magic != 0x42414732)
+            {
+                memset(gSaveBlock1Ptr->rfBagExtraItemsV2, 0, sizeof(gSaveBlock1Ptr->rfBagExtraItemsV2));
+                gSaveBlock1Ptr->rfBagExtraItemsV2Magic = 0x42414732;
+            }
+            return (struct ItemSlot) {
+                .itemId = gSaveBlock1Ptr->rfBagExtraItemsV2[extraPos].itemId,
+                .quantity = gSaveBlock1Ptr->rfBagExtraItemsV2[extraPos].quantity,
+            };
+        }
         if (gSaveBlock3Ptr->rfBagSaveMagic != 0x42414731)
         {
             memset(gSaveBlock3Ptr->rfBagExtraItems, 0, sizeof(gSaveBlock3Ptr->rfBagExtraItems));
@@ -93,8 +110,20 @@ static inline struct ItemSlot NONNULL BagPocket_GetSlotDataPC(struct BagPocket *
 
 static inline void NONNULL BagPocket_SetSlotDataGeneric(struct BagPocket *pocket, u32 pocketPos, struct ItemSlot newSlot)
 {
+    if (pocketPos >= pocket->capacity)
+        return;
+
     if (IS_FRLG && pocket->id == POCKET_ITEMS && pocket->itemSlots == gSaveBlock1Ptr->bag.items && pocketPos >= BAG_ITEMS_COUNT)
     {
+        if (pocketPos >= BAG_ITEMS_COUNT + RF_BAG_EXTRA_ITEMS_COUNT)
+        {
+            u32 extraPos = pocketPos - BAG_ITEMS_COUNT - RF_BAG_EXTRA_ITEMS_COUNT;
+            // Initialize only the appended block; offsets of existing save fields stay fixed.
+            BagPocket_GetSlotDataGeneric(pocket, pocketPos);
+            gSaveBlock1Ptr->rfBagExtraItemsV2[extraPos].itemId = newSlot.itemId;
+            gSaveBlock1Ptr->rfBagExtraItemsV2[extraPos].quantity = newSlot.quantity;
+            return;
+        }
         // Initialize old save padding through the reader before writing a slot.
         BagPocket_GetSlotDataGeneric(pocket, pocketPos);
         gSaveBlock3Ptr->rfBagExtraItems[pocketPos - BAG_ITEMS_COUNT].itemId = newSlot.itemId;
@@ -382,15 +411,21 @@ static bool32 NONNULL BagPocket_AddItem(struct BagPocket *pocket, enum Item item
 
 bool32 AddBagItem(enum Item itemId, u16 count)
 {
+    bool32 added;
+
     itemId = SanitizeBagItemId(itemId);
     if (itemId == ITEM_NONE)
         return FALSE;
 
     // check Battle Pyramid Bag
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG) == TRUE)
-        return AddPyramidBagItem(itemId, count);
+        added = AddPyramidBagItem(itemId, count);
+    else
+        added = BagPocket_AddItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
 
-    return BagPocket_AddItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
+    if (added)
+        RFQuests_NotifyItemCollected(itemId);
+    return added;
 }
 
 static bool32 NONNULL BagPocket_RemoveItem(struct BagPocket *pocket, enum Item itemId, u16 count)
@@ -624,6 +659,8 @@ void ClearBag(void)
     CpuFastFill(0, &gSaveBlock1Ptr->bag, sizeof(struct Bag));
     memset(gSaveBlock3Ptr->rfBagExtraItems, 0, sizeof(gSaveBlock3Ptr->rfBagExtraItems));
     gSaveBlock3Ptr->rfBagSaveMagic = 0x42414731;
+    memset(gSaveBlock1Ptr->rfBagExtraItemsV2, 0, sizeof(gSaveBlock1Ptr->rfBagExtraItemsV2));
+    gSaveBlock1Ptr->rfBagExtraItemsV2Magic = 0x42414732;
 }
 
 static inline u16 NONNULL BagPocket_CountTotalItemQuantity(struct BagPocket *pocket, enum Item itemId)

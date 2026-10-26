@@ -58,7 +58,7 @@ static const u8 sText_OakNoRunningFromATrainer[] = _("OAK: No! There's no runnin
 static const u8 sText_TheTrainerThat[] = _("The TRAINER that makes the other\nTRAINER's POKéMON faint by lowering\ltheir HP to “0,” wins.\p");
 static const u8 sText_TryBattling[] = _("But rather than talking about it,\nyou'll learn more from experience.\pTry battling and see for yourself.\p");
 static const u8 sText_WinEarnsPrizeMoney[] = _("OAK: Hm! Excellent!\pIf you win, you earn prize money,\nand your POKéMON will grow!\pBattle other TRAINERS and make\nyour POKéMON strong!\p");
-static const u8 gText_WhatWillOldManDo[] = _("What will the\nold man do?");
+static const u8 gText_WhatWillOldManDo[] = _("¿Qué hará el\nanciano?");
 
 static void (*const sOakOldManBufferCommands[CONTROLLER_CMDS_COUNT])(enum BattlerId battler) =
 {
@@ -775,7 +775,7 @@ static void OakOldManHandleChooseAction(enum BattlerId battler)
 
     gBattlerControllerFuncs[battler] = HandleChooseActionAfterDma3;
     BattlePutTextOnWindow(gText_EmptyString3, B_WIN_MSG);
-    BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
+    DrawStandardBattleActionMenu();
     for (i = 0; i < MAX_MON_MOVES; ++i)
         ActionSelectionDestroyCursorAt((u8)i);
     ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
@@ -786,7 +786,7 @@ static void OakOldManHandleChooseAction(enum BattlerId battler)
     }
     else
         BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillOldManDo);
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
+    DrawBattleActionPrompt(gDisplayedStringBattle);
 }
 
 static void OakHandleChooseMove_WaitDma3(enum BattlerId battler)

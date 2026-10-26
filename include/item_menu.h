@@ -62,6 +62,7 @@ struct BagPosition
     MainCallback exitCallback;
     u8 location;
     u8 pocket;
+    u8 itemCategory; // Temporary subfilter for the general Items pocket.
     u16 pocketSwitchArrowPos;
     u16 cursorPosition[POCKETS_COUNT];
     u16 scrollPosition[POCKETS_COUNT];
@@ -105,7 +106,7 @@ void CB2_BagMenuFromBattle(void);
 void UpdatePocketListPosition(u8 pocketId);
 void CB2_ReturnToBagMenuPocket(void);
 void CB2_BagMenuFromStartMenu(void);
-u8 GetItemListPosition(u8 pocketId);
+u16 GetItemListPosition(u8 pocketId);
 bool8 UseRegisteredKeyItemOnField(void);
 void CB2_GoToSellMenu(void);
 void GoToBagMenu(u8 location, u8 pocket, MainCallback exitCallback);

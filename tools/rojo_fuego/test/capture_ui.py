@@ -1,22 +1,21 @@
 """Capture native frames from an explicitly linked, disposable UI fixture ROM.
 
-Requires running rojo-fuego-check container and /tmp/rf-mgba-harness.
+Requires Ubuntu WSL with /work and /tmp/rf-mgba-harness (see docs/ENTORNO_WSL.md).
 Never use this fixture ROM as a release. See UI_VALIDATION.md.
 """
 from pathlib import Path
 import subprocess
 import sys
 
+from runtime import run as environment
+
+
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "build_artifacts/ui"
 OUT.mkdir(parents=True, exist_ok=True)
 
 
-def docker(*args, **kwargs):
-    return subprocess.run(["docker", *args], check=True, **kwargs)
-
-
-nm = docker("exec", "-w", "/work", "rojo-fuego-check", "arm-none-eabi-nm",
+nm = environment("exec", "-w", "/work", "rojo-fuego-check", "arm-none-eabi-nm",
             "pokefirered.elf", capture_output=True, text=True).stdout
 symbols = {p[2]: int(p[0], 16) for line in nm.splitlines() if len(p := line.split()) == 3}
 base = "run 600\nmash T 30\nrun 180\nmash A 3900\nmash B 240\nrun 60\n"
@@ -34,7 +33,12 @@ cases = {
     "options": ("Options", "run 240\n" + shot("options") + "hold > 1\nrun 30\n" + shot("options-changed") + "hold B 1\nrun 180\n" + shot("options-closed")),
     "trainer": ("Trainer", "run 240\n" + shot("trainer") + "hold A 1\nrun 240\n" + shot("trainer-back") + "hold B 1\nrun 180\n" + shot("trainer-closed")),
     "pokedex": ("Pokedex", "run 240\n" + shot("pokedex")
-                + "hold A 1\nrun 240\n" + shot("pokedex-info")),
+                + "hold A 1\nrun 240\n" + shot("pokedex-info")
+                + "hold > 1\nrun 90\n" + shot("pokedex-area")
+                + "hold > 1\nrun 90\n" + shot("pokedex-stats")
+                + "hold > 1\nrun 90\n" + shot("pokedex-evolution")
+                + "hold > 1\nrun 90\n" + shot("pokedex-cry")
+                + "hold > 1\nrun 90\n" + shot("pokedex-size")),
     "field-party": ("FieldParty", "run 240\n" + shot("field-party")
                     + "hold D 1\nrun 60\n" + shot("field-party-focus")
                     + "hold A 1\nrun 60\n" + shot("field-party-action")
@@ -56,7 +60,16 @@ cases = {
     "summary": ("Summary", "run 180\n" + shot("summary")
                 + "hold > 1\nrun 60\n" + shot("stats")
                 + "hold > 1\nrun 60\n" + shot("moves")),
-    "bag": ("Bag", "run 180\n" + shot("bag") + "hold > 1\nrun 90\n" + shot("bag-balls") + "hold > 1\nrun 90\n" + shot("bag-tm") + "hold < 1\nrun 90\nhold < 1\nrun 90\nhold A 1\nrun 40\n" + shot("bag-actions")),
+    "bag": ("Bag", "run 180\n" + shot("bag")
+            + "hold R 1\nrun 30\n" + shot("bag-medicine")
+            + "hold R 1\nrun 30\n" + shot("bag-battle")
+            + "hold R 1\nrun 30\n" + shot("bag-evolution")
+            + "hold R 1\nrun 30\n" + shot("bag-held")
+            + "hold R 1\nrun 30\n" + shot("bag-treasure")
+            + "hold R 1\nrun 30\n" + shot("bag-other")
+            + "hold R 1\nrun 30\nhold > 1\nrun 90\n" + shot("bag-balls")
+            + "hold > 1\nrun 90\n" + shot("bag-tm")
+            + "hold < 1\nrun 90\nhold < 1\nrun 90\nhold A 1\nrun 40\n" + shot("bag-actions")),
     "quests": ("Quests", "run 60\n" + shot("quests") + "hold B 1\nrun 30\n" + shot("quests-closed")),
     "keys": ("Keys", "run 60\n" + shot("keys") + "hold B 1\nrun 30\n" + shot("keys-closed")),
     "pc": ("PC", "run 60\n" + shot("pc-menu") + "hold D 1\nrun 10\nhold D 1\nrun 10\nhold A 1\nrun 240\n" + shot("pc")),
@@ -73,6 +86,8 @@ cases = {
     "popup": ("WildIntimidate", "run 300\nhold A 1\nrun 20\nhold A 1\nrun 20\n" + "".join(shot(f"popup-{n}") + "run 25\n" for n in range(1, 9))),
     "battle": ("Wild", "run 500\nhold A 1\nrun 240\n" + shot("battle-actions")
                + "hold A 1\nrun 60\n" + shot("battle-moves")
+               + "hold D 1\nrun 20\n" + shot("battle-moves-down")
+               + "hold > 1\nrun 20\n" + shot("battle-moves-down-right")
                + "hold > 1\nrun 20\n" + shot("battle-moves-focus")),
     "party": ("Wild", "run 500\nhold A 1\nrun 240\nhold D 1\nrun 6\nhold A 1\nrun 240\n" + shot("party")
               + "hold D 1\nrun 10\n" + shot("party-move")
@@ -81,6 +96,12 @@ cases = {
               + "hold A 1\nrun 240\n" + shot("party-switch")
               + f'r8 {symbols["gBattlerPartyIndexes"]:08x}\n'),
 }
+cases["bag-female"] = ("BagFemale", cases["bag"][1].replace("bag", "bag-female"))
+cases["pokedex-search"] = ("Pokedex", "run 240\n" + shot("pokedex-search-main")
+                            + "hold S 1\nrun 240\n" + shot("pokedex-search-menu"))
+cases["pokedex-forms"] = ("Pokedex", "run 240\nhold A 1\nrun 240\n"
+                           "hold > 1\nrun 90\nhold > 1\nrun 90\nhold > 1\nrun 120\n"
+                           "hold T 1\nrun 180\n" + shot("pokedex-forms"))
 
 selected = sys.argv[1:] or list(cases)
 cases["party-slow"] = cases["party"]
@@ -106,8 +127,8 @@ for case in selected:
             script = script.replace(f"/tmp/rf-ui-{mode}-", f"/tmp/rf-ui-{mode}-slow-")
         path = OUT / f"{case}-{mode}.txt"
         path.write_text(script)
-        docker("cp", str(path), "rojo-fuego-check:/tmp/rf-ui.txt")
-        result = docker("exec", "rojo-fuego-check", "/tmp/rf-mgba-harness",
+        environment("cp", str(path), "rojo-fuego-check:/tmp/rf-ui.txt")
+        result = environment("exec", "rojo-fuego-check", "/tmp/rf-mgba-harness",
                         "/work/pokefirered.gba", "/tmp/rf-ui.txt", capture_output=True, text=True)
         (OUT / f"{case}-{mode}.log").write_text(result.stdout)
         if case in ("party", "party-slow", "faint", "field-party"):
@@ -116,6 +137,6 @@ for case in selected:
             if line.startswith("shot "):
                 remote = line.split()[1]
                 ppm = OUT / Path(remote).name
-                docker("cp", "rojo-fuego-check:" + remote, str(ppm))
+                environment("cp", "rojo-fuego-check:" + remote, str(ppm))
                 subprocess.run([sys.executable, str(Path(__file__).with_name("ppm2png.py")), str(ppm)], check=True)
         print(case, mode, result.stdout.strip(), flush=True)

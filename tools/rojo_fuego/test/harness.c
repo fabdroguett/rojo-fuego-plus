@@ -117,7 +117,11 @@ int main(int argc, char **argv)
             void *st = malloc(sz);
             FILE *f = fopen(a, "rb");
             if (!f) { fprintf(stderr, "no state %s\n", a); return 1; }
-            fread(st, 1, sz, f); fclose(f);
+            if (fread(st, 1, sz, f) != sz) {
+                fprintf(stderr, "incomplete state %s\n", a);
+                fclose(f); free(st); return 1;
+            }
+            fclose(f);
             core->loadState(core, st); free(st);
         }
         fflush(stdout);

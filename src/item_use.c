@@ -306,7 +306,8 @@ void ItemUseOutOfBattle_OmniUpgrade(u8 taskId)
     else
     {
         PlaySE(SE_EXP_MAX);
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (RemoveBagItem(gSpecialVar_ItemId, 1))
+            RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
         UpdatePocketItemList(GetItemPocket(gSpecialVar_ItemId));
         UpdatePocketListPosition(GetItemPocket(gSpecialVar_ItemId));
         OmniRing_GetStatusString(gStringVar4);
@@ -394,6 +395,7 @@ void ItemUseOutOfBattle_RFRefill(u8 taskId)
     else
     {
         *charges = maximum;
+        RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
         PlaySE(SE_USE_ITEM);
         UpdatePocketItemList(GetItemPocket(gSpecialVar_ItemId));
         UpdatePocketListPosition(GetItemPocket(gSpecialVar_ItemId));
@@ -939,7 +941,8 @@ void ItemUseOutOfBattle_Berry(u8 taskId)
 
 static void ItemUseOnFieldCB_Berry(u8 taskId)
 {
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    if (RemoveBagItem(gSpecialVar_ItemId, 1))
+        RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
     LockPlayerFieldControls();
     ScriptContext_SetupScript(BerryTree_EventScript_ItemUsePlantBerry);
     DestroyTask(taskId);
@@ -1100,7 +1103,8 @@ static void UseTMHM(u8 taskId)
 
 static void RemoveUsedItem(void)
 {
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    if (RemoveBagItem(gSpecialVar_ItemId, 1))
+        RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
     CopyItemName(gSpecialVar_ItemId, gStringVar2);
     StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
     if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
@@ -1234,6 +1238,7 @@ static void ItemUseOnFieldCB_EscapeRope(u8 taskId)
     Overworld_ResetStateAfterDigEscRope();
     if (I_KEY_ESCAPE_ROPE < GEN_8)
         RemoveBagItem(gSpecialVar_ItemId, 1);
+    RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
 
     CopyItemName(gSpecialVar_ItemId, gStringVar2);
     StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
@@ -1583,7 +1588,8 @@ void Task_UseHoneyOnField(u8 taskId)
 static void ItemUseOnFieldCB_Honey(u8 taskId)
 {
     Overworld_ResetStateAfterDigEscRope();
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    if (RemoveBagItem(gSpecialVar_ItemId, 1))
+        RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
     CopyItemName(gSpecialVar_ItemId, gStringVar2);
     StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
     DisplayItemMessageOnField(taskId, gStringVar4, Task_UseHoneyOnField);

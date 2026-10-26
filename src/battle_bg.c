@@ -168,63 +168,63 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 35,
-        .width = 14,
+        .width = 12,
         .height = 4,
-        .paletteNum = 0,
-        .baseBlock = 0x01c0,
+        .paletteNum = 10,
+        .baseBlock = 0x0190,
     },
     [B_WIN_ACTION_MENU] = {
         .bg = 0,
-        .tilemapLeft = 17,
+        .tilemapLeft = 13,
         .tilemapTop = 35,
-        .width = 12,
+        .width = 16,
         .height = 4,
-        .paletteNum = 5,
-        .baseBlock = 0x0190,
+        .paletteNum = 12,
+        .baseBlock = 0x01c0,
     },
     [B_WIN_MOVE_NAME_1] = {
         .bg = 0,
-        .tilemapLeft = 2,
+        .tilemapLeft = 1,
         .tilemapTop = 55,
-        .width = 16,    //for z move names
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
+        .paletteNum = 12,
         .baseBlock = 0x0300,
     },
     [B_WIN_MOVE_NAME_2] = {
         .bg = 0,
         .tilemapLeft = 11,
         .tilemapTop = 55,
-        .width = 8,
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x0318,
+        .paletteNum = 13,
+        .baseBlock = 0x0314,
     },
     [B_WIN_MOVE_NAME_3] = {
         .bg = 0,
-        .tilemapLeft = 2,
+        .tilemapLeft = 1,
         .tilemapTop = 57,
-        .width = 16,    //for z effect descriptions
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
+        .paletteNum = 14,
         .baseBlock = 0x0328,
     },
     [B_WIN_MOVE_NAME_4] = {
         .bg = 0,
         .tilemapLeft = 11,
         .tilemapTop = 57,
-        .width = 8,
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x0340,
+        .paletteNum = 15,
+        .baseBlock = 0x033c,
     },
     [B_WIN_PP] = {
         .bg = 0,
         .tilemapLeft = 21,
         .tilemapTop = 55,
-        .width = 4,
-        .height = 2,
-        .paletteNum = 5,
+        .width = 8,
+        .height = 4,
+        .paletteNum = 10,
         .baseBlock = 0x0290,
     },
     [B_WIN_DUMMY] = {
@@ -234,16 +234,16 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .width = 0,
         .height = 0,
         .paletteNum = 5,
-        .baseBlock = 0x0298,
+        .baseBlock = 0x02b0,
     },
     [B_WIN_PP_REMAINING] = {
         .bg = 0,
-        .tilemapLeft = 25,
+        .tilemapLeft = 24,
         .tilemapTop = 55,
         .width = 4,
         .height = 2,
         .paletteNum = 5,
-        .baseBlock = 0x0298,
+        .baseBlock = 0x02b0,
     },
     [B_WIN_MOVE_TYPE] = {
         .bg = 0,
@@ -252,7 +252,7 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 5,
-        .baseBlock = 0x02a0,
+        .baseBlock = 0x02b8,
     },
     [B_WIN_SWITCH_PROMPT] = {
         .bg = 0,
@@ -261,7 +261,7 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .width = 8,
         .height = 4,
         .paletteNum = 5,
-        .baseBlock = 0x02b0,
+        .baseBlock = 0x02c8,
     },
     [B_WIN_YESNO] = {
         .bg = 0,
@@ -350,7 +350,7 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .tilemapTop = 2,
         .width = 6,
         .height = 2,
-        .paletteNum = 0,
+        .paletteNum = 5,
         .baseBlock = 0x00a0,
     },
     [B_WIN_VS_OUTCOME_LEFT] = {
@@ -359,7 +359,7 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .tilemapTop = 2,
         .width = 7,
         .height = 2,
-        .paletteNum = 0,
+        .paletteNum = 5,
         .baseBlock = 0x00a0,
     },
     [B_WIN_VS_OUTCOME_RIGHT] = {
@@ -378,7 +378,7 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .width = 18,
         .height = 6,
         .paletteNum = 5,
-        .baseBlock = 0x0350,
+        .baseBlock = 0x0368,
     },
     [B_CATCH_OR_NOT] = {
         .bg = 0,
@@ -407,63 +407,63 @@ static const struct WindowTemplate sKantoTutorialBattleWindowTemplates[] =
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 35,
-        .width = 14,
+        .width = 12,
         .height = 4,
-        .paletteNum = 0,
-        .baseBlock = 0x01c0,
+        .paletteNum = 10,
+        .baseBlock = 0x0190,
     },
     [B_WIN_ACTION_MENU] = {
         .bg = 0,
-        .tilemapLeft = 17,
+        .tilemapLeft = 13,
         .tilemapTop = 35,
-        .width = 12,
+        .width = 16,
         .height = 4,
-        .paletteNum = 5,
-        .baseBlock = 0x0190,
+        .paletteNum = 12,
+        .baseBlock = 0x01c0,
     },
     [B_WIN_MOVE_NAME_1] = {
         .bg = 0,
-        .tilemapLeft = 2,
+        .tilemapLeft = 1,
         .tilemapTop = 55,
-        .width = 16,    //for z move names
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
+        .paletteNum = 12,
         .baseBlock = 0x0300,
     },
     [B_WIN_MOVE_NAME_2] = {
         .bg = 0,
         .tilemapLeft = 11,
         .tilemapTop = 55,
-        .width = 8,
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x0318,
+        .paletteNum = 13,
+        .baseBlock = 0x0314,
     },
     [B_WIN_MOVE_NAME_3] = {
         .bg = 0,
-        .tilemapLeft = 2,
+        .tilemapLeft = 1,
         .tilemapTop = 57,
-        .width = 16,    //for z effect descriptions
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
+        .paletteNum = 14,
         .baseBlock = 0x0328,
     },
     [B_WIN_MOVE_NAME_4] = {
         .bg = 0,
         .tilemapLeft = 11,
         .tilemapTop = 57,
-        .width = 8,
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x0340,
+        .paletteNum = 15,
+        .baseBlock = 0x033c,
     },
     [B_WIN_PP] = {
         .bg = 0,
         .tilemapLeft = 21,
         .tilemapTop = 55,
-        .width = 4,
-        .height = 2,
-        .paletteNum = 5,
+        .width = 8,
+        .height = 4,
+        .paletteNum = 10,
         .baseBlock = 0x0290,
     },
     [B_WIN_DUMMY] = {
@@ -473,16 +473,16 @@ static const struct WindowTemplate sKantoTutorialBattleWindowTemplates[] =
         .width = 0,
         .height = 0,
         .paletteNum = 5,
-        .baseBlock = 0x0298,
+        .baseBlock = 0x02b0,
     },
     [B_WIN_PP_REMAINING] = {
         .bg = 0,
-        .tilemapLeft = 25,
+        .tilemapLeft = 24,
         .tilemapTop = 55,
         .width = 4,
         .height = 2,
         .paletteNum = 5,
-        .baseBlock = 0x0298,
+        .baseBlock = 0x02b0,
     },
     [B_WIN_MOVE_TYPE] = {
         .bg = 0,
@@ -491,7 +491,7 @@ static const struct WindowTemplate sKantoTutorialBattleWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 5,
-        .baseBlock = 0x02a0,
+        .baseBlock = 0x02b8,
     },
     [B_WIN_SWITCH_PROMPT] = {
         .bg = 0,
@@ -500,7 +500,7 @@ static const struct WindowTemplate sKantoTutorialBattleWindowTemplates[] =
         .width = 8,
         .height = 4,
         .paletteNum = 5,
-        .baseBlock = 0x02b0,
+        .baseBlock = 0x02c8,
     },
     [B_WIN_YESNO] = {
         .bg = 0,
@@ -617,7 +617,7 @@ static const struct WindowTemplate sKantoTutorialBattleWindowTemplates[] =
         .width = 18,
         .height = 6,
         .paletteNum = 5,
-        .baseBlock = 0x0350,
+        .baseBlock = 0x0368,
     },
     [B_WIN_OAK_OLD_MAN] = {
         .bg = 0,
@@ -646,63 +646,63 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 35,
-        .width = 14,
+        .width = 12,
         .height = 4,
-        .paletteNum = 0,
-        .baseBlock = 0x01c0,
+        .paletteNum = 10,
+        .baseBlock = 0x0190,
     },
     [B_WIN_ACTION_MENU] = {
         .bg = 0,
-        .tilemapLeft = 17,
+        .tilemapLeft = 13,
         .tilemapTop = 35,
-        .width = 12,
+        .width = 16,
         .height = 4,
-        .paletteNum = 5,
-        .baseBlock = 0x0190,
+        .paletteNum = 12,
+        .baseBlock = 0x01c0,
     },
     [B_WIN_MOVE_NAME_1] = {
         .bg = 0,
-        .tilemapLeft = 2,
+        .tilemapLeft = 1,
         .tilemapTop = 55,
-        .width = 8,
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
+        .paletteNum = 12,
         .baseBlock = 0x0300,
     },
     [B_WIN_MOVE_NAME_2] = {
         .bg = 0,
         .tilemapLeft = 11,
         .tilemapTop = 55,
-        .width = 8,
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x0310,
+        .paletteNum = 13,
+        .baseBlock = 0x0314,
     },
     [B_WIN_MOVE_NAME_3] = {
         .bg = 0,
-        .tilemapLeft = 2,
+        .tilemapLeft = 1,
         .tilemapTop = 57,
-        .width = 8,
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x0320,
+        .paletteNum = 14,
+        .baseBlock = 0x0328,
     },
     [B_WIN_MOVE_NAME_4] = {
         .bg = 0,
         .tilemapLeft = 11,
         .tilemapTop = 57,
-        .width = 8,
+        .width = 10,
         .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x0330,
+        .paletteNum = 15,
+        .baseBlock = 0x033c,
     },
     [B_WIN_PP] = {
         .bg = 0,
         .tilemapLeft = 21,
         .tilemapTop = 55,
-        .width = 4,
-        .height = 2,
-        .paletteNum = 5,
+        .width = 8,
+        .height = 4,
+        .paletteNum = 10,
         .baseBlock = 0x0290,
     },
     [B_WIN_DUMMY] = {
@@ -712,16 +712,16 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .width = 0,
         .height = 0,
         .paletteNum = 5,
-        .baseBlock = 0x0298,
+        .baseBlock = 0x02b0,
     },
     [B_WIN_PP_REMAINING] = {
         .bg = 0,
-        .tilemapLeft = 25,
+        .tilemapLeft = 24,
         .tilemapTop = 55,
         .width = 4,
         .height = 2,
         .paletteNum = 5,
-        .baseBlock = 0x0298,
+        .baseBlock = 0x02b0,
     },
     [B_WIN_MOVE_TYPE] = {
         .bg = 0,
@@ -730,7 +730,7 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 5,
-        .baseBlock = 0x02a0,
+        .baseBlock = 0x02b8,
     },
     [B_WIN_SWITCH_PROMPT] = {
         .bg = 0,
@@ -739,7 +739,7 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .width = 8,
         .height = 4,
         .paletteNum = 5,
-        .baseBlock = 0x02b0,
+        .baseBlock = 0x02c8,
     },
     [B_WIN_YESNO] = {
         .bg = 0,
@@ -847,7 +847,7 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .width = 18,
         .height = 6,
         .paletteNum = 5,
-        .baseBlock = 0x0350,
+        .baseBlock = 0x0368,
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -970,38 +970,69 @@ void InitBattleBgsVideo(void)
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON | DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
 }
 
-// Rojo Fuego+ dark mode (Key System, from Pokémon SoulGold): the battle textbox and menus in dark
-// colors. Only the box and frame colors change; the text keeps its own colors.
-static const struct { u8 index; u16 color; } sDarkModeTextboxColors[] =
+struct BattleUiPaletteColor
 {
-    {15, RF_UI_NIGHT_PANEL},    // message box
-    {13, RF_UI_NIGHT_EDGE},  // frame
-    {12, RF_UI_NIGHT_EDGE}, // frame light
-    {14, RF_UI_NIGHT_GROUND},   // frame shadow
+    u8 index;
+    u16 color;
+};
+
+// Battle surfaces follow the shared Rojo Fuego+ ink/panel roles in both themes.
+// Sprite, type, HP, status, and environment palettes are deliberately untouched.
+static const struct BattleUiPaletteColor sDarkBattleTextboxColors[] =
+{
+    {15, RF_UI_NIGHT_PANEL},
+    {13, RF_UI_NIGHT_EDGE},
+    {12, RF_UI_NIGHT_EDGE},
+    {14, RF_UI_NIGHT_GROUND},
+    {9, RF_UI_NIGHT_GROUND},
+};
+static const struct BattleUiPaletteColor sDayBattleTextboxColors[] =
+{
+    {15, RF_UI_DAY_PANEL},
+    {13, RF_UI_DAY_EDGE},
+    {12, RF_UI_DAY_EDGE},
+    {14, RF_UI_DAY_GROUND},
+    {9, RF_UI_BATTLE_FRAME_DAY},
 };
 
 // Action and move menus: window border palette (1) and menu text palette (5)
-static const struct { u8 index; u16 color; } sDarkModeMenuColors[] =
+static const struct BattleUiPaletteColor sDarkBattleMenuColors[] =
 {
-    {16 * 1 + 14, RF_UI_NIGHT_PANEL},    // window background
-    {16 * 1 + 2,  RF_UI_NIGHT_TEXT}, // text
-    {16 * 1 + 8,  RF_UI_NIGHT_SHADOW}, // text shadow
-    {16 * 5 + 14, RF_UI_NIGHT_PANEL},    // menu background
-    {16 * 5 + 12, RF_UI_NIGHT_TEXT}, // menu text
-    {16 * 5 + 13, RF_UI_NIGHT_TEXT}, // menu text
-    {16 * 5 + 15, RF_UI_NIGHT_SHADOW}, // menu text shadow
+    {16 * 1 + 14, RF_UI_NIGHT_PANEL},
+    {16 * 1 + 13, RF_UI_NIGHT_EDGE},
+    {16 * 1 + 12, RF_UI_NIGHT_EDGE},
+    {16 * 1 + 2, RF_UI_NIGHT_TEXT},
+    {16 * 1 + 8, RF_UI_NIGHT_SHADOW},
+    {16 * 5 + 14, RF_UI_NIGHT_PANEL},
+    {16 * 5 + 12, RF_UI_NIGHT_TEXT},
+    {16 * 5 + 13, RF_UI_NIGHT_TEXT},
+    {16 * 5 + 11, RF_UI_GOLD},
+    {16 * 5 + 15, RF_UI_NIGHT_SHADOW},
+};
+static const struct BattleUiPaletteColor sDayBattleMenuColors[] =
+{
+    {16 * 1 + 14, RF_UI_DAY_PANEL},
+    {16 * 1 + 13, RF_UI_DAY_EDGE},
+    {16 * 1 + 12, RF_UI_DAY_EDGE},
+    {16 * 1 + 2, RF_UI_DAY_TEXT},
+    {16 * 1 + 8, RF_UI_DAY_SHADOW},
+    {16 * 5 + 14, RF_UI_DAY_PANEL},
+    {16 * 5 + 12, RF_UI_DAY_TEXT},
+    {16 * 5 + 13, RF_UI_DAY_TEXT},
+    {16 * 5 + 11, RF_UI_GOLD},
+    {16 * 5 + 15, RF_UI_DAY_SHADOW},
 };
 
-// Selected action/move cell: the menu text palette (5) on a gold fill. Index 14 is the cell,
+// Selected action/move cell: high-contrast mint fill, dark ink and a gold cursor. Index 14 is the cell,
 // 12/13 the ink, 15 its shadow; the cursor arrow tile uses 1 as its ground and 2/8 as ink.
 static void LoadBattleSelectedCellPalette(void)
 {
-    bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
     u16 colors[16];
-    u16 ink = RGB(2, 7, 8), shadow = dark ? RGB(22, 16, 2) : RGB(25, 20, 6);
+    u16 ink = RF_UI_NIGHT_GROUND, shadow = RF_UI_NIGHT_EDGE;
 
     CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(5)], colors, sizeof(colors));
-    colors[14] = colors[1] = dark ? RF_UI_GOLD : RGB(31, 27, 12); // 1: arrow tile ground
+    colors[14] = RF_UI_BATTLE_SELECTED;
+    colors[1] = RF_UI_GOLD; // arrow tile ground
     colors[12] = colors[13] = colors[2] = ink;
     colors[15] = colors[8] = shadow;
     LoadPalette(colors, BG_PLTT_ID(RF_UI_BATTLE_SELECTED_PAL), sizeof(colors));
@@ -1012,11 +1043,9 @@ void LoadBattleMenuWindowGfx(void)
     LoadUserWindowBorderGfx(2, 0x12, BG_PLTT_ID(1));
     LoadUserWindowBorderGfx(2, 0x22, BG_PLTT_ID(1));
     LoadPalette(gBattleWindowTextPalette, BG_PLTT_ID(5), PLTT_SIZE_4BPP);
-    if (KeySystem_IsOn(KEY_DARK_MODE))
-    {
-        for (u32 i = 0; i < ARRAY_COUNT(sDarkModeMenuColors); i++)
-            LoadPalette(&sDarkModeMenuColors[i].color, BG_PLTT_ID(0) + sDarkModeMenuColors[i].index, PLTT_SIZEOF(1));
-    }
+    const struct BattleUiPaletteColor *menuColors = KeySystem_IsOn(KEY_DARK_MODE) ? sDarkBattleMenuColors : sDayBattleMenuColors;
+    for (u32 i = 0; i < ARRAY_COUNT(sDarkBattleMenuColors); i++)
+        LoadPalette(&menuColors[i].color, BG_PLTT_ID(0) + menuColors[i].index, PLTT_SIZEOF(1));
     LoadBattleSelectedCellPalette();
 
     if ((gBattleTypeFlags & (BATTLE_TYPE_ARENA | BATTLE_TYPE_POKEDUDE))
@@ -1037,13 +1066,13 @@ void DrawMainBattleBackground(void)
 
 void LoadBattleTextboxPalette(void)
 {
+    bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
+    const struct BattleUiPaletteColor *colors = dark ? sDarkBattleTextboxColors : sDayBattleTextboxColors;
     u32 i;
 
     LoadPalette(gBattleTextboxPalette, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
-    if (!KeySystem_IsOn(KEY_DARK_MODE))
-        return;
-    for (i = 0; i < ARRAY_COUNT(sDarkModeTextboxColors); i++)
-        LoadPalette(&sDarkModeTextboxColors[i].color, BG_PLTT_ID(0) + sDarkModeTextboxColors[i].index, PLTT_SIZEOF(1));
+    for (i = 0; i < ARRAY_COUNT(sDarkBattleTextboxColors); i++)
+        LoadPalette(&colors[i].color, BG_PLTT_ID(0) + colors[i].index, PLTT_SIZEOF(1));
 }
 
 void LoadBattleTextboxAndBackground(void)

@@ -19,6 +19,7 @@
 #include "config_changes.h"
 #include "party_menu.h"
 #include "pokemon.h"
+#include "rf_quests.h"
 #include "international_string_util.h"
 #include "item.h"
 #include "util.h"
@@ -866,7 +867,10 @@ void HandleAction_ThrowBall(void)
     gBattle_BG0_Y = 0;
     gLastUsedItem = gBallToDisplay;
     if (!GetItemImportance(gLastUsedItem))
+    {
         RemoveBagItem(gLastUsedItem, 1);
+        RFQuests_NotifyItemUsed(gLastUsedItem);
+    }
     gBattlescriptCurrInstr = BattleScript_BallThrow;
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }

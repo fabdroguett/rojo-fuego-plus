@@ -78,8 +78,10 @@
 #define RF_QUEST_LEGEND_25 68
 #define RF_QUEST_LEGEND_26 69
 #define RF_QUEST_LEGEND_27 70
-#define RF_QUEST_COUNT 71
 // END legends
+#define RF_QUEST_EXTRA_FIRST 71
+#define RF_QUEST_EXTRA_COUNT 279
+#define RF_QUEST_COUNT 350
 #define RF_QUEST_CHAPTER_COUNT 9
 
 // Event IDs are also used by map scripts; never reorder shipped values.

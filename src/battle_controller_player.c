@@ -52,6 +52,8 @@
 #include "type_icons.h"
 #include "pokedex.h"
 #include "test/battle.h"
+#include "key_system.h"
+#include "data/rf_battle_icons.h"
 
 static void PlayerHandleLoadMonSprite(enum BattlerId battler);
 static void PlayerHandleDrawTrainerPic(enum BattlerId battler);
@@ -84,6 +86,7 @@ static void MoveSelectionDisplayPPNumber(enum BattlerId battler);
 static void MoveSelectionDisplayPPString(enum BattlerId battler);
 static void MoveSelectionDisplayMoveType(enum BattlerId battler);
 static void MoveSelectionDisplayMoveNames(enum BattlerId battler);
+static enum Type GetMoveMenuDisplayType(enum BattlerId battler, enum Move move);
 static void TryMoveSelectionDisplayMoveDescription(enum BattlerId battler);
 static void MoveSelectionDisplayMoveDescription(enum BattlerId battler);
 static void MoveSelectionDisplayStatStages(enum BattlerId battler);
@@ -1670,6 +1673,179 @@ static void PlayerHandleYesNoInput(enum BattlerId battler)
     }
 }
 
+// Rojo Fuego+ battle menus. Each action/move card owns a BG palette (12-15) so its colour icon
+// keeps its own ramp; the prompt and the move info card share palette 10. Selecting a card only
+// rewrites its palette (mint fill, gold cursor), so moving the cursor never redraws tiles.
+#define RF_BATTLE_PANEL_PAL     10
+#define RF_BATTLE_CELL_PAL(i)   (12 + (i))
+#define RF_CELL_OUTSIDE         9   // textbox frame colour around the rounded cards
+#define RF_CELL_EDGE            6
+#define RF_CELL_CURSOR          7
+#define RF_CELL_FILL            14
+#define RF_CELL_HEIGHT          16
+#define RF_CELL_TEXT_X          20
+#define RF_MOVE_CELL_WIDTH      (10 * TILE_WIDTH)
+#define RF_ACTION_CELL_WIDTH    (8 * TILE_WIDTH)
+#define RF_ACTION_MENU_LEFT     13
+#define RF_ACTION_MENU_TOP      35
+
+enum
+{
+    RF_CELL_IDLE,
+    RF_CELL_SELECTED,
+    RF_CELL_HELD, // move picked up for rearranging
+};
+
+static const u8 sBattleCellTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_4, TEXT_DYNAMIC_COLOR_6};
+static u8 sBattleMoveCellIcons[MAX_MON_MOVES];
+static u8 sBattleActionCellIcons[4];
+
+static void LoadBattleCellPalette(u32 bank, u32 icon, u32 state)
+{
+    u16 colors[16];
+
+    CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(state == RF_CELL_SELECTED ? RF_UI_BATTLE_SELECTED_PAL : 5)], colors, sizeof(colors));
+    colors[RF_CELL_OUTSIDE] = gPlttBufferUnfaded[BG_PLTT_ID(0) + RF_CELL_OUTSIDE];
+    colors[RF_CELL_EDGE] = state == RF_CELL_HELD ? RF_UI_GOLD
+                         : (KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_EDGE : RF_UI_DAY_EDGE);
+    colors[RF_CELL_CURSOR] = state == RF_CELL_IDLE ? colors[RF_CELL_FILL] : RF_UI_GOLD;
+    if (icon >= RF_BATTLE_ICON_COUNT)
+        icon = TYPE_NORMAL;
+    CpuCopy16(sRFBattleIconRamps[icon], &colors[1], sizeof(sRFBattleIconRamps[icon]));
+    LoadPalette(colors, BG_PLTT_ID(bank), sizeof(colors));
+}
+
+// Rounded card on a filled interior, leaving a 1px frame-coloured gap on its right and bottom so
+// neighbouring cards never merge into a double line.
+static void DrawBattleCell(u8 window, u32 x, u32 y, u32 width, u32 height)
+{
+    u32 right = x + width - 2, bottom = y + height - 2;
+
+    RFUI_FillRect(window, RF_CELL_FILL, x + 1, y + 1, width - 3, height - 3);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, x + width - 1, y, 1, height);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, x, y + height - 1, width, 1);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, x, y, 2, 1);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, x, y + 1, 1, 1);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, right - 1, y, 2, 1);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, right, y + 1, 1, 1);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, x, bottom, 2, 1);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, x, bottom - 1, 1, 1);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, right - 1, bottom, 2, 1);
+    RFUI_FillRect(window, RF_CELL_OUTSIDE, right, bottom - 1, 1, 1);
+    RFUI_DrawRing(window, x, y, width - 1, height - 1, RF_CELL_EDGE);
+}
+
+// Cursor arrow (invisible while idle: its colour equals the fill) and the 12x12 colour icon.
+static void DrawBattleCellIcon(u8 window, u32 icon, u32 x, u32 y)
+{
+    static const u8 sCursorWidths[] = {1, 2, 3, 2, 1};
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sCursorWidths); i++)
+        RFUI_FillRect(window, RF_CELL_CURSOR, x + 2, y + 5 + i, sCursorWidths[i], 1);
+    if (icon >= RF_BATTLE_ICON_COUNT)
+        icon = TYPE_NORMAL;
+    BlitBitmapRectToWindow(window, sRFBattleIconGfx, 0, icon * 16, 16, RF_BATTLE_ICON_COUNT * 16, x + 4, y, 16, 16);
+}
+
+// Prints a one-line label, switching to a narrower font and then an ellipsis when it does not fit.
+static void PrintBattleCellLabel(u8 window, const u8 *text, u32 x, u32 y, u32 maxWidth, u32 font)
+{
+    u8 buffer[40];
+    u32 length;
+
+    if (GetStringWidth(font, text, 0) > maxWidth)
+        font = FONT_NARROWER;
+    if (GetStringWidth(font, text, 0) > maxWidth)
+    {
+        StringCopyN(buffer, text, sizeof(buffer) - 2);
+        buffer[sizeof(buffer) - 2] = EOS;
+        length = StringLength(buffer);
+        while (length > 0 && GetStringWidth(font, buffer, 0) + GetStringWidth(font, COMPOUND_STRING("…"), 0) > maxWidth)
+            buffer[--length] = EOS;
+        buffer[length++] = CHAR_ELLIPSIS;
+        buffer[length] = EOS;
+        text = buffer;
+    }
+    AddTextPrinterParameterized3(window, font, x, y, sBattleCellTextColors, TEXT_SKIP_DRAW, text);
+}
+
+void DrawBattleActionMenu(const u8 *const *labels, const u8 *icons)
+{
+    u16 *tilemap = GetBgTilemapBuffer(0);
+    u32 i, row, col;
+
+    FillWindowPixelBuffer(B_WIN_ACTION_MENU, PIXEL_FILL(RF_CELL_OUTSIDE));
+    for (i = 0; i < ARRAY_COUNT(sBattleActionCellIcons); i++)
+    {
+        u32 x = RF_ACTION_CELL_WIDTH * (i & 1), y = RF_CELL_HEIGHT * (i >> 1);
+
+        sBattleActionCellIcons[i] = icons[i];
+        DrawBattleCell(B_WIN_ACTION_MENU, x, y, RF_ACTION_CELL_WIDTH, RF_CELL_HEIGHT);
+        DrawBattleCellIcon(B_WIN_ACTION_MENU, icons[i], x, y);
+        PrintBattleCellLabel(B_WIN_ACTION_MENU, labels[i], x + RF_CELL_TEXT_X, y + 1,
+                             RF_ACTION_CELL_WIDTH - RF_CELL_TEXT_X - 3, FONT_NORMAL);
+        LoadBattleCellPalette(RF_BATTLE_CELL_PAL(i), icons[i], RF_CELL_IDLE);
+    }
+    PutWindowTilemap(B_WIN_ACTION_MENU);
+    // One window, four palettes: retint each card's 8x2 tiles.
+    for (i = 0; i < ARRAY_COUNT(sBattleActionCellIcons); i++)
+    {
+        for (row = 0; row < 2; row++)
+        {
+            for (col = 0; col < RF_ACTION_CELL_WIDTH / TILE_WIDTH; col++)
+            {
+                u32 index = (RF_ACTION_MENU_TOP + 2 * (i >> 1) + row) * 32
+                          + RF_ACTION_MENU_LEFT + (RF_ACTION_CELL_WIDTH / TILE_WIDTH) * (i & 1) + col;
+                tilemap[index] = (tilemap[index] & 0x0FFF) | (RF_BATTLE_CELL_PAL(i) << 12);
+            }
+        }
+    }
+    CopyWindowToVram(B_WIN_ACTION_MENU, COPYWIN_FULL);
+}
+
+static const u8 *const sBattleActionLabels[] =
+{
+    COMPOUND_STRING("Luchar"),
+    COMPOUND_STRING("Bolsa"),
+    COMPOUND_STRING("Equipo"),
+    COMPOUND_STRING("Huir"),
+};
+static const u8 sBattleActionIcons[] = {TYPE_FIGHTING, RF_BATTLE_ICON_BAG, RF_BATTLE_ICON_BALL, RF_BATTLE_ICON_RUN};
+
+void DrawStandardBattleActionMenu(void)
+{
+    DrawBattleActionMenu(sBattleActionLabels, sBattleActionIcons);
+}
+
+static const u8 *const sSafariActionLabels[] =
+{
+    COMPOUND_STRING("Bola"),
+    COMPOUND_STRING("Cebo"),
+    COMPOUND_STRING("Roca"),
+    COMPOUND_STRING("Huir"),
+};
+static const u8 sSafariActionIcons[] = {RF_BATTLE_ICON_BALL, TYPE_GRASS, TYPE_ROCK, RF_BATTLE_ICON_RUN};
+
+void DrawSafariBattleActionMenu(void)
+{
+    DrawBattleActionMenu(sSafariActionLabels, sSafariActionIcons);
+}
+
+// "¿Qué hará / X?" card to the left of the command grid.
+void DrawBattleActionPrompt(const u8 *text)
+{
+    u32 width = WindowWidthPx(B_WIN_ACTION_PROMPT), height = 4 * TILE_HEIGHT;
+    u32 font = GetFontIdToFit(text, FONT_NORMAL, 0, width - 9);
+
+    FillWindowPixelBuffer(B_WIN_ACTION_PROMPT, PIXEL_FILL(RF_CELL_OUTSIDE));
+    DrawBattleCell(B_WIN_ACTION_PROMPT, 0, 0, width, height);
+    AddTextPrinterParameterized3(B_WIN_ACTION_PROMPT, font, 5, 1, sBattleCellTextColors, TEXT_SKIP_DRAW, text);
+    LoadBattleCellPalette(RF_BATTLE_PANEL_PAL, TYPE_NORMAL, RF_CELL_IDLE);
+    PutWindowTilemap(B_WIN_ACTION_PROMPT);
+    CopyWindowToVram(B_WIN_ACTION_PROMPT, COPYWIN_FULL);
+}
+
 static void MoveSelectionDisplayMoveNames(enum BattlerId battler)
 {
     s32 i;
@@ -1678,135 +1854,85 @@ static void MoveSelectionDisplayMoveNames(enum BattlerId battler)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        MoveSelectionDestroyCursorAt(i);
-        if (IsGimmickSelected(battler, GIMMICK_DYNAMAX) || GetActiveGimmick(battler) == GIMMICK_DYNAMAX)
-            StringCopy(gDisplayedStringBattle, GetMoveName(GetMaxMove(battler, moveInfo->moves[i])));
-        else
-            StringCopy(gDisplayedStringBattle, GetMoveName(moveInfo->moves[i]));
-        // Prints on windows B_WIN_MOVE_NAME_1, B_WIN_MOVE_NAME_2, B_WIN_MOVE_NAME_3, B_WIN_MOVE_NAME_4
-        BattlePutTextOnWindow(gDisplayedStringBattle, i + B_WIN_MOVE_NAME_1);
+        u32 windowId = i + B_WIN_MOVE_NAME_1;
+        enum Type type = TYPE_MYSTERY;
+
+        FillWindowPixelBuffer(windowId, PIXEL_FILL(RF_CELL_OUTSIDE));
+        DrawBattleCell(windowId, 0, 0, RF_MOVE_CELL_WIDTH, RF_CELL_HEIGHT);
         if (moveInfo->moves[i] != MOVE_NONE)
+        {
+            if (IsGimmickSelected(battler, GIMMICK_DYNAMAX) || GetActiveGimmick(battler) == GIMMICK_DYNAMAX)
+                StringCopy(gDisplayedStringBattle, GetMoveName(GetMaxMove(battler, moveInfo->moves[i])));
+            else
+                StringCopy(gDisplayedStringBattle, GetMoveName(moveInfo->moves[i]));
+            type = GetMoveMenuDisplayType(battler, moveInfo->moves[i]);
+            DrawBattleCellIcon(windowId, type, 0, 0);
+            // The right edge stays free for the effectiveness marker of the selected move.
+            PrintBattleCellLabel(windowId, gDisplayedStringBattle, RF_CELL_TEXT_X, 1,
+                                 RF_MOVE_CELL_WIDTH - RF_CELL_TEXT_X - 11, FONT_NARROW);
             gNumberOfMovesToChoose++;
+        }
+        sBattleMoveCellIcons[i] = type;
+        LoadBattleCellPalette(RF_BATTLE_CELL_PAL(i), type, RF_CELL_IDLE);
+        PutWindowTilemap(windowId);
+        CopyWindowToVram(windowId, COPYWIN_FULL);
     }
+}
+
+// Info card beside the move grid: PP of the selected move and a tag in its type colours.
+static void MoveSelectionDisplayMoveInfo(enum BattlerId battler)
+{
+    static const u8 sPPColors[] = {TEXT_COLOR_TRANSPARENT, 12, 11};
+    static const u8 sTagColors[] = {TEXT_COLOR_TRANSPARENT, 5, 1};
+    struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
+    enum Move move = moveInfo->moves[gMoveSelectionCursor[battler]];
+    enum Type type = GetMoveMenuDisplayType(battler, move);
+    u32 width = WindowWidthPx(B_WIN_PP), font, textWidth;
+    u8 ppText[8], *ppEnd;
+
+    if (type <= TYPE_NONE || type >= NUMBER_OF_MON_TYPES)
+        type = TYPE_MYSTERY;
+    SetPPNumbersPaletteInMoveSelection(battler);
+    LoadBattleCellPalette(RF_BATTLE_PANEL_PAL, type, RF_CELL_IDLE);
+    FillWindowPixelBuffer(B_WIN_PP, PIXEL_FILL(RF_CELL_OUTSIDE));
+    DrawBattleCell(B_WIN_PP, 0, 0, width, 4 * TILE_HEIGHT);
+
+    AddTextPrinterParameterized3(B_WIN_PP, FONT_NARROW, 5, 1, sBattleCellTextColors, TEXT_SKIP_DRAW, gText_MoveInterfacePP);
+    if (gBattleResources->bufferA[battler][2] != TRUE)
+    {
+        ppEnd = ConvertIntToDecimalStringN(ppText, moveInfo->currentPP[gMoveSelectionCursor[battler]], STR_CONV_MODE_LEFT_ALIGN, 2);
+        *(ppEnd++) = CHAR_SLASH;
+        ConvertIntToDecimalStringN(ppEnd, moveInfo->maxPP[gMoveSelectionCursor[battler]], STR_CONV_MODE_LEFT_ALIGN, 2);
+        textWidth = GetStringWidth(FONT_NARROW, ppText, 0);
+        AddTextPrinterParameterized3(B_WIN_PP, FONT_NARROW, width - 6 - textWidth, 1, sPPColors, TEXT_SKIP_DRAW, ppText);
+    }
+
+    // Type tag: rounded pill in the type's base colour, its highlight as ink.
+    RFUI_FillRect(B_WIN_PP, 3, 5, 16, width - 12, 11);
+    RFUI_FillRect(B_WIN_PP, 3, 4, 17, width - 10, 9);
+    RFUI_FillRect(B_WIN_PP, 2, 5, 26, width - 12, 1);
+    font = GetFontIdToFit(gTypesInfo[type].name, FONT_SMALL, 0, width - 14);
+    textWidth = GetStringWidth(font, gTypesInfo[type].name, 0);
+    AddTextPrinterParameterized3(B_WIN_PP, font, (width - textWidth) / 2 - 1, 15, sTagColors, TEXT_SKIP_DRAW, gTypesInfo[type].name);
+
+    PutWindowTilemap(B_WIN_PP);
+    CopyWindowToVram(B_WIN_PP, COPYWIN_FULL);
 }
 
 static void MoveSelectionDisplayPPString(enum BattlerId battler)
 {
-    StringCopy(gDisplayedStringBattle, gText_MoveInterfacePP);
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP);
+    // "PP" is part of the info card drawn by MoveSelectionDisplayMoveInfo.
+    (void)battler;
 }
 
 static void MoveSelectionDisplayPPNumber(enum BattlerId battler)
 {
-    u8 *txtPtr;
-    struct ChooseMoveStruct *moveInfo;
-
-    if (gBattleResources->bufferA[battler][2] == TRUE) // check if we didn't want to display PP number
-        return;
-
-    SetPPNumbersPaletteInMoveSelection(battler);
-    moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
-    txtPtr = ConvertIntToDecimalStringN(gDisplayedStringBattle, moveInfo->currentPP[gMoveSelectionCursor[battler]], STR_CONV_MODE_RIGHT_ALIGN, 2);
-    *(txtPtr)++ = CHAR_SLASH;
-    ConvertIntToDecimalStringN(txtPtr, moveInfo->maxPP[gMoveSelectionCursor[battler]], STR_CONV_MODE_RIGHT_ALIGN, 2);
-
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP_REMAINING);
+    MoveSelectionDisplayMoveInfo(battler);
 }
 
-// Rojo Fuego+: the move's type as its coloured badge plus the damage category icon, in place of
-// "TYPE/Grass". They show only while this battler is choosing a move on the move menu, so the
-// switch prompt and the L description never sit under them.
-#define TAG_RF_MOVE_TYPE_PAL_0 0xE724 // + 0..2: the three gMoveTypes_Pal banks (types use 13..15)
-#define TAG_RF_MOVE_TYPE_TILES 0xE727
-#define RF_MOVE_TYPE_ROW_Y     (57 * 8 - DISPLAY_HEIGHT * 2)
-#define sBadgeBattler data[0]
-
-static EWRAM_DATA u8 sMoveTypeBadgeSpriteId = 0; // validated by IsMoveBadgeSprite
-static EWRAM_DATA u8 sMoveCategoryBadgeSpriteId = 0;
-
-static void SpriteCB_MoveTypeBadge(struct Sprite *sprite)
+static enum Type GetMoveMenuDisplayType(enum BattlerId battler, enum Move move)
 {
-    sprite->invisible = gBattlerControllerFuncs[sprite->sBadgeBattler] != HandleInputChooseMove
-                     || gBattle_BG0_Y != DISPLAY_HEIGHT * 2 || gBattle_BG0_X != 0
-                     || gBattleStruct->descriptionSubmenu;
-}
-
-static bool32 IsMoveBadgeSprite(u8 spriteId)
-{
-    return spriteId < MAX_SPRITES && gSprites[spriteId].inUse && gSprites[spriteId].callback == SpriteCB_MoveTypeBadge;
-}
-
-static u8 CreateMoveBadgeSprite(const struct SpriteTemplate *template, s16 x, enum BattlerId battler)
-{
-    u8 spriteId = CreateSprite(template, x, RF_MOVE_TYPE_ROW_Y + 8, 0);
-
-    if (spriteId == MAX_SPRITES)
-        return MAX_SPRITES;
-    gSprites[spriteId].oam.priority = 0;
-    gSprites[spriteId].callback = SpriteCB_MoveTypeBadge;
-    gSprites[spriteId].sBadgeBattler = battler;
-    return spriteId;
-}
-
-static bool32 ShowMoveTypeBadges(enum BattlerId battler, enum Type type, enum DamageCategory category)
-{
-    u32 i, paletteNum, tileStart;
-    u8 *gfx;
-
-    if (!IsMoveBadgeSprite(sMoveTypeBadgeSpriteId))
-    {
-        // One badge frame of VRAM (8 tiles), not the whole 24-frame sheet: battle OBJ VRAM is tight.
-        struct SpriteSheet sheet = {(const void *)gMoveTypes_Pal, 0x100, TAG_RF_MOVE_TYPE_TILES};
-        struct SpriteTemplate template = gSpriteTemplate_MoveTypes;
-
-        for (i = 0; i < 3; i++)
-        {
-            struct SpritePalette palette = {&gMoveTypes_Pal[i * 16], TAG_RF_MOVE_TYPE_PAL_0 + i};
-            if (LoadSpritePalette(&palette) == 0xFF)
-                return FALSE;
-        }
-        if (GetSpriteTileStartByTag(TAG_RF_MOVE_TYPE_TILES) == 0xFFFF && LoadSpriteSheet(&sheet) == 0)
-            return FALSE;
-        template.tileTag = TAG_RF_MOVE_TYPE_TILES;
-        template.paletteTag = TAG_RF_MOVE_TYPE_PAL_0;
-        template.anims = gDummySpriteAnimTable;
-        sMoveTypeBadgeSpriteId = CreateMoveBadgeSprite(&template, 168 + 4 + 16, battler);
-        if (sMoveTypeBadgeSpriteId == MAX_SPRITES)
-            return FALSE;
-    }
-    if (!IsMoveBadgeSprite(sMoveCategoryBadgeSpriteId))
-        sMoveCategoryBadgeSpriteId = CreateMoveBadgeSprite(&gSpriteTemplate_CategoryIcons, 168 + 44 + 8, battler);
-
-    paletteNum = IndexOfSpritePaletteTag(TAG_RF_MOVE_TYPE_PAL_0 + gTypesInfo[type].palette - 13);
-    tileStart = GetSpriteTileStartByTag(TAG_RF_MOVE_TYPE_TILES);
-    gfx = AllocUnchecked((NUMBER_OF_MON_TYPES + CONTEST_CATEGORIES_COUNT) * 0x100);
-    if (paletteNum == 0xFF || tileStart == 0xFFFF || gfx == NULL)
-    {
-        Free(gfx);
-        DestroySprite(&gSprites[sMoveTypeBadgeSpriteId]);
-        sMoveTypeBadgeSpriteId = MAX_SPRITES;
-        return FALSE;
-    }
-    DecompressDataWithHeaderWram(gMoveTypes_Gfx, gfx);
-    CpuCopy32(gfx + type * 0x100, (void *)(OBJ_VRAM0 + tileStart * TILE_SIZE_4BPP), 0x100);
-    Free(gfx);
-    gSprites[sMoveTypeBadgeSpriteId].oam.paletteNum = paletteNum;
-    gSprites[sMoveTypeBadgeSpriteId].sBadgeBattler = battler;
-    if (IsMoveBadgeSprite(sMoveCategoryBadgeSpriteId))
-    {
-        StartSpriteAnim(&gSprites[sMoveCategoryBadgeSpriteId], category);
-        gSprites[sMoveCategoryBadgeSpriteId].sBadgeBattler = battler;
-    }
-    return TRUE;
-}
-
-static void MoveSelectionDisplayMoveType(enum BattlerId battler)
-{
-    u8 *txtPtr, *end;
     enum Species speciesId = gBattleMons[battler].species;
-    struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
-    txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-    enum Move move = moveInfo->moves[gMoveSelectionCursor[battler]];
     enum Type type = GetMoveType(move);
     enum BattleMoveEffects effect = GetMoveEffect(move);
 
@@ -1838,15 +1964,13 @@ static void MoveSelectionDisplayMoveType(enum BattlerId battler)
         struct Pokemon *mon = GetBattlerMon(battler);
         type = CheckDynamicMoveType(mon, move, battler, MON_IN_BATTLE);
     }
-    if (ShowMoveTypeBadges(battler, type, GetBattleMoveCategory(move)))
-    {
-        BattlePutTextOnWindow(COMPOUND_STRING(""), B_WIN_MOVE_TYPE);
-        return;
-    }
-    end = StringCopy(txtPtr, gTypesInfo[type].name);
+    return type;
+}
 
-    PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
+static void MoveSelectionDisplayMoveType(enum BattlerId battler)
+{
+    // The type tag lives in the info card, refreshed together with the PP.
+    (void)battler;
 }
 
 // Rojo Fuego+: appends "At+2 Ve-1 ..." for every stat stage that is not neutral
@@ -1975,66 +2099,34 @@ static void MoveSelectionDisplayMoveDescription(enum BattlerId battler)
 
 // Rojo Fuego+: the selected action/move is a gold cell (arrow column + label), as in the start
 // menu. Only the palette bits of the BG0 tilemap change; the printed text stays as it is.
-static void RepaintBattleMenuCell(u32 x, u32 y, u32 width, u32 palette)
-{
-    u16 *tilemap = GetBgTilemapBuffer(0);
-    u32 row, column;
-
-    for (row = y; row < y + 2; row++)
-    {
-        for (column = x; column < x + width; column++)
-            tilemap[row * 32 + column] = (tilemap[row * 32 + column] & 0x0FFF) | (palette << 12);
-    }
-}
-
-#define MOVE_CELL_X(pos)     (9 * ((pos) & 1) + 1)
-#define MOVE_CELL_Y(pos)     (55 + ((pos) & 2))
-#define ACTION_CELL_X(pos)   (7 * ((pos) & 1) + 16)
-#define ACTION_CELL_Y(pos)   (35 + ((pos) & 2))
-#define ACTION_CELL_W(pos)   (((pos) & 1) ? 6 : 7)
-
 void MoveSelectionCreateCursorAt(u8 cursorPosition, u8 baseTileNum)
 {
-    u16 src[2];
-    src[0] = baseTileNum + 1;
-    src[1] = baseTileNum + 2;
-
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, MOVE_CELL_X(cursorPosition), MOVE_CELL_Y(cursorPosition), 1, 2, 0x11);
-    RepaintBattleMenuCell(MOVE_CELL_X(cursorPosition), MOVE_CELL_Y(cursorPosition), 9, RF_UI_BATTLE_SELECTED_PAL);
-    CopyBgTilemapBufferToVram(0);
+    if (cursorPosition >= MAX_MON_MOVES)
+        return;
+    // baseTileNum 29 marks the move picked up for rearranging; 0 and 27 are the live cursor.
+    LoadBattleCellPalette(RF_BATTLE_CELL_PAL(cursorPosition), sBattleMoveCellIcons[cursorPosition],
+                          baseTileNum == 29 ? RF_CELL_HELD : RF_CELL_SELECTED);
 }
 
 void MoveSelectionDestroyCursorAt(u8 cursorPosition)
 {
-    u16 src[2];
-    src[0] = 0x1016;
-    src[1] = 0x1016;
-
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, MOVE_CELL_X(cursorPosition), MOVE_CELL_Y(cursorPosition), 1, 2, 0x11);
-    RepaintBattleMenuCell(MOVE_CELL_X(cursorPosition) + 1, MOVE_CELL_Y(cursorPosition), 8, 5);
-    CopyBgTilemapBufferToVram(0);
+    if (cursorPosition >= MAX_MON_MOVES)
+        return;
+    LoadBattleCellPalette(RF_BATTLE_CELL_PAL(cursorPosition), sBattleMoveCellIcons[cursorPosition], RF_CELL_IDLE);
 }
 
 void ActionSelectionCreateCursorAt(u8 cursorPosition, u8 baseTileNum)
 {
-    u16 src[2];
-    src[0] = 1;
-    src[1] = 2;
-
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, ACTION_CELL_X(cursorPosition), ACTION_CELL_Y(cursorPosition), 1, 2, 0x11);
-    RepaintBattleMenuCell(ACTION_CELL_X(cursorPosition), ACTION_CELL_Y(cursorPosition), ACTION_CELL_W(cursorPosition), RF_UI_BATTLE_SELECTED_PAL);
-    CopyBgTilemapBufferToVram(0);
+    if (cursorPosition >= ARRAY_COUNT(sBattleActionCellIcons))
+        return;
+    LoadBattleCellPalette(RF_BATTLE_CELL_PAL(cursorPosition), sBattleActionCellIcons[cursorPosition], RF_CELL_SELECTED);
 }
 
 void ActionSelectionDestroyCursorAt(u8 cursorPosition)
 {
-    u16 src[2];
-    src[0] = 0x1016;
-    src[1] = 0x1016;
-
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, ACTION_CELL_X(cursorPosition), ACTION_CELL_Y(cursorPosition), 1, 2, 0x11);
-    RepaintBattleMenuCell(ACTION_CELL_X(cursorPosition) + 1, ACTION_CELL_Y(cursorPosition), ACTION_CELL_W(cursorPosition) - 1, 5);
-    CopyBgTilemapBufferToVram(0);
+    if (cursorPosition >= ARRAY_COUNT(sBattleActionCellIcons))
+        return;
+    LoadBattleCellPalette(RF_BATTLE_CELL_PAL(cursorPosition), sBattleActionCellIcons[cursorPosition], RF_CELL_IDLE);
 }
 
 void CB2_SetUpReshowBattleScreenAfterMenu(void)
@@ -2204,7 +2296,7 @@ static void PlayerHandleChooseAction(enum BattlerId battler)
 
     gBattlerControllerFuncs[battler] = HandleChooseActionAfterDma3;
     BattleTv_ClearExplosionFaintCause();
-    BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
+    DrawStandardBattleActionMenu();
 
     for (i = 0; i < 4; i++)
         ActionSelectionDestroyCursorAt(i);
@@ -2217,7 +2309,7 @@ static void PlayerHandleChooseAction(enum BattlerId battler)
     enum BattlerId partner = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
     if (B_SHOW_PARTNER_TARGET && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && IsBattlerAlive(partner))
     {
-        StringCopy(gStringVar1, COMPOUND_STRING("Partner will use:\n"));
+        StringCopy(gStringVar1, COMPOUND_STRING("Compañero:\n"));
         enum Move move = GetBattlerChosenMove(partner);
         StringAppend(gStringVar1, GetMoveName(move));
         enum MoveTarget moveTarget = GetBattlerMoveSelectionTargetType(partner, move);
@@ -2248,11 +2340,11 @@ static void PlayerHandleChooseAction(enum BattlerId battler)
         {
             StringAppend(gStringVar1, COMPOUND_STRING(" {V_D_ARROW}{V_D_ARROW}"));
         }
-        BattlePutTextOnWindow(gStringVar1, B_WIN_ACTION_PROMPT);
+        DrawBattleActionPrompt(gStringVar1);
     }
     else
     {
-        BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
+        DrawBattleActionPrompt(gDisplayedStringBattle);
     }
 }
 
@@ -2625,46 +2717,46 @@ static u32 CheckTargetTypeEffectiveness(enum BattlerId battler)
 
 static void MoveSelectionDisplayMoveEffectiveness(u32 foeEffectiveness, enum BattlerId battler)
 {
-    static const u8 noIcon[] =  _("");
-    static const u8 effectiveIcon[] =  _("{CIRCLE_HOLLOW}");
-    static const u8 extremeleyEffectiveIcon[] =  _("{STAR}");
-    static const u8 superEffectiveIcon[] =  _("{CIRCLE_DOT}");
-    static const u8 notVeryEffectiveIcon[] =  _("{TRIANGLE}");
-    static const u8 mostlyIneffectiveIcon[] =  _("{TRIANGLE_UPSIDE_DOWN}");
-    static const u8 immuneIcon[] =  _("{BIG_MULT_X}");
+    static const u8 sNormalGlyph[] = {0x6, 0x9, 0x9, 0x6};
+    static const u8 sStrongGlyph[] = {0x2, 0x7, 0x7, 0x2};
+    static const u8 sWeakGlyph[] = {0x7, 0x5, 0x2, 0x0};
+    static const u8 sIneffectiveGlyph[] = {0x5, 0x2, 0x2, 0x5};
+    const u8 *glyph = NULL;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
-    u8 *txtPtr;
-
-    txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfacePP);
+    u32 i, row, col;
+    u8 windowId;
 
     if (!IsBattleMoveStatus(moveInfo->moves[gMoveSelectionCursor[battler]]))
     {
         switch (foeEffectiveness)
         {
         case EFFECTIVENESS_EXTREMELY_EFFECTIVE:
-            StringCopy(txtPtr, extremeleyEffectiveIcon);
-            break;
-        case EFFECTIVENESS_SUPER_EFFECTIVE:
-            StringCopy(txtPtr, superEffectiveIcon);
-            break;
+        case EFFECTIVENESS_SUPER_EFFECTIVE:     glyph = sStrongGlyph; break;
         case EFFECTIVENESS_NOT_VERY_EFFECTIVE:
-            StringCopy(txtPtr, notVeryEffectiveIcon);
-            break;
-        case EFFECTIVENESS_MOSTLY_INEFFECTIVE:
-            StringCopy(txtPtr, mostlyIneffectiveIcon);
-            break;
-        case EFFECTIVENESS_NO_EFFECT:
-            StringCopy(txtPtr, immuneIcon);
-            break;
-        case EFFECTIVENESS_NORMAL:
-            StringCopy(txtPtr, effectiveIcon);
-            break;
-        default:
+        case EFFECTIVENESS_MOSTLY_INEFFECTIVE:  glyph = sWeakGlyph; break;
+        case EFFECTIVENESS_NO_EFFECT:           glyph = sIneffectiveGlyph; break;
+        case EFFECTIVENESS_NORMAL:              glyph = sNormalGlyph; break;
         case EFFECTIVENESS_CANNOT_VIEW:
-            StringCopy(txtPtr, noIcon);
-            break;
+        default:                                glyph = NULL; break;
         }
     }
 
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP);
+    // The right edge of each move card is reserved for the selected move's effectiveness.
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        windowId = i + B_WIN_MOVE_NAME_1;
+        RFUI_FillRect(windowId, RF_CELL_FILL, RF_MOVE_CELL_WIDTH - 10, 4, 6, 8);
+        if (i == gMoveSelectionCursor[battler] && glyph != NULL)
+        {
+            for (row = 0; row < 4; row++)
+            {
+                for (col = 0; col < 4; col++)
+                {
+                    if (glyph[row] & (0x8 >> col))
+                        RFUI_FillRect(windowId, 13, RF_MOVE_CELL_WIDTH - 9 + col, 5 + row, 1, 1);
+                }
+            }
+        }
+        CopyWindowToVram(windowId, COPYWIN_GFX);
+    }
 }

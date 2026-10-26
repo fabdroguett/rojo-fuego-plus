@@ -123,6 +123,8 @@ struct ListBuffer2 {
 struct TempWallyBag {
     struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT];
     u8 rfBagExtraItems[sizeof(gSaveBlock3Ptr->rfBagExtraItems)];
+    u8 rfBagExtraItemsV2[sizeof(gSaveBlock1Ptr->rfBagExtraItemsV2)];
+    u32 rfBagExtraItemsV2Magic;
     struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
     u16 cursorPosition[POCKETS_COUNT];
     u16 scrollPosition[POCKETS_COUNT];
@@ -137,9 +139,13 @@ static bool8 LoadBagMenu_Graphics(void);
 static void LoadBagMenuTextWindows(void);
 static void AllocateBagItemListBuffers(void);
 static void LoadBagItemListBuffers(u8);
+static bool8 BagMenu_ItemMatchesCategory(enum Item, enum Pocket);
 static void PrintPocketNames(const u8 *, const u8 *);
 static void CopyPocketNameToWindow(u32);
 static void DrawPocketIndicatorSquare(u8, bool8);
+static void BagMenu_DrawItemCategories(void);
+static void BagMenu_DrawFooter(void);
+static void BagMenu_SwitchItemCategory(u8, s8);
 static void CreatePocketScrollArrowPair(void);
 static void CreatePocketSwitchArrowPair(void);
 static void DestroyPocketSwitchArrowPair(void);
@@ -158,6 +164,7 @@ static void ReturnToItemList(u8);
 static void PrintItemQuantity(u8, s16);
 static u8 BagMenu_AddWindow(u8);
 static u8 GetSwitchBagPocketDirection(void);
+static u8 GetSwitchBagCategoryDirection(void);
 static void SwitchBagPocket(u8, s16, bool16);
 static bool8 CanSwapItems(void);
 static void StartItemSwap(u8 taskId);
@@ -399,10 +406,10 @@ static const struct YesNoFuncTable sYesNoSellItemFunctions = {ConfirmSell, Cance
 static const struct ScrollArrowsTemplate sBagScrollArrowsTemplate = {
     .firstArrowType = SCROLL_ARROW_LEFT,
     .firstX = 144,
-    .firstY = 16,
+    .firstY = 6,
     .secondArrowType = SCROLL_ARROW_RIGHT,
     .secondX = 224,
-    .secondY = 16,
+    .secondY = 6,
     .fullyUpThreshold = -1,
     .fullyDownThreshold = -1,
     .tileTag = TAG_BAG_SCROLL_ARROW,
@@ -452,7 +459,9 @@ static const struct WindowTemplate sDefaultBagWindows[] =
     [WIN_POCKET_NAME] = {
         .bg = 0,
         .tilemapLeft = 19,
-        .tilemapTop = 1,
+        // The pocket title shares the bag header with the screen title. Keep it
+        // above the seven category tabs instead of drawing through their labels.
+        .tilemapTop = 0,
         .width = 8,
         .height = 2,
         .paletteNum = 1,
@@ -590,9 +599,33 @@ EWRAM_DATA enum Item gSpecialVar_ItemId = 0;
 static EWRAM_DATA struct TempWallyBag *sTempWallyBag = 0;
 static EWRAM_DATA u8 sRFBagChromeWindow = 0;
 
+enum RFBagItemCategory
+{
+    RF_BAG_CATEGORY_ALL,
+    RF_BAG_CATEGORY_MEDICINE,
+    RF_BAG_CATEGORY_BATTLE,
+    RF_BAG_CATEGORY_EVOLUTION,
+    RF_BAG_CATEGORY_HELD,
+    RF_BAG_CATEGORY_TREASURE,
+    RF_BAG_CATEGORY_OTHER,
+    RF_BAG_CATEGORY_COUNT,
+};
+
+static const u8 *const sRFBagItemCategoryNames[RF_BAG_CATEGORY_COUNT] =
+{
+    [RF_BAG_CATEGORY_ALL] = COMPOUND_STRING("TODO"),
+    [RF_BAG_CATEGORY_MEDICINE] = COMPOUND_STRING("CURA"),
+    [RF_BAG_CATEGORY_BATTLE] = COMPOUND_STRING("BAT."),
+    [RF_BAG_CATEGORY_EVOLUTION] = COMPOUND_STRING("EVOL"),
+    [RF_BAG_CATEGORY_HELD] = COMPOUND_STRING("EQU."),
+    [RF_BAG_CATEGORY_TREASURE] = COMPOUND_STRING("TES."),
+    [RF_BAG_CATEGORY_OTHER] = COMPOUND_STRING("OTR."),
+};
+
 void ResetBagScrollPositions(void)
 {
     gBagPosition.pocket = POCKET_ITEMS;
+    gBagPosition.itemCategory = RF_BAG_CATEGORY_ALL;
     memset(gBagPosition.cursorPosition, 0, sizeof(gBagPosition.cursorPosition));
     memset(gBagPosition.scrollPosition, 0, sizeof(gBagPosition.scrollPosition));
 }
@@ -801,6 +834,7 @@ static bool8 SetupBagMenu(void)
                 DrawPocketIndicatorSquare(pocket, FALSE);
         }
         DrawPocketIndicatorSquare(gBagPosition.pocket, TRUE);
+        BagMenu_DrawItemCategories();
         gMain.state++;
         break;
     case 14:
@@ -947,37 +981,91 @@ static void AllocateBagItemListBuffers(void)
     sListBuffer2 = Alloc(sizeof(*sListBuffer2));
 }
 
+static bool8 BagMenu_ItemMatchesCategory(enum Item itemId, enum Pocket pocketId)
+{
+    enum ItemSortType type;
+
+    if (pocketId != POCKET_ITEMS || gBagPosition.itemCategory == RF_BAG_CATEGORY_ALL
+     || gBagPosition.location == ITEMMENULOCATION_WALLY)
+        return TRUE;
+
+    type = gItemsInfo[itemId].sortType;
+    switch (gBagPosition.itemCategory)
+    {
+    case RF_BAG_CATEGORY_MEDICINE:
+        return type == ITEM_TYPE_LEVEL_UP_ITEM
+            || type == ITEM_TYPE_HEALTH_RECOVERY
+            || type == ITEM_TYPE_STATUS_RECOVERY
+            || type == ITEM_TYPE_PP_RECOVERY
+            || type == ITEM_TYPE_NATURE_MINT
+            || type == ITEM_TYPE_STAT_BOOST_DRINK
+            || type == ITEM_TYPE_STAT_BOOST_FEATHER
+            || type == ITEM_TYPE_STAT_BOOST_MOCHI;
+    case RF_BAG_CATEGORY_BATTLE:
+        return type == ITEM_TYPE_BATTLE_ITEM
+            || type == ITEM_TYPE_FLUTE
+            || type == ITEM_TYPE_X_ITEM
+            || type == ITEM_TYPE_AUX_ITEM
+            || type == ITEM_TYPE_GEM;
+    case RF_BAG_CATEGORY_EVOLUTION:
+        return type == ITEM_TYPE_EVOLUTION_STONE || type == ITEM_TYPE_EVOLUTION_ITEM;
+    case RF_BAG_CATEGORY_HELD:
+        return type == ITEM_TYPE_SPECIAL_HELD_ITEM
+            || type == ITEM_TYPE_MEGA_STONE
+            || type == ITEM_TYPE_Z_CRYSTAL
+            || type == ITEM_TYPE_HELD_ITEM
+            || type == ITEM_TYPE_TYPE_BOOST_HELD_ITEM
+            || type == ITEM_TYPE_CONTEST_HELD_ITEM
+            || type == ITEM_TYPE_EV_BOOST_HELD_ITEM
+            || type == ITEM_TYPE_PLATE
+            || type == ITEM_TYPE_MEMORY
+            || type == ITEM_TYPE_DRIVE
+            || type == ITEM_TYPE_INCENSE
+            || type == ITEM_TYPE_NECTAR;
+    case RF_BAG_CATEGORY_TREASURE:
+        return type == ITEM_TYPE_SELLABLE
+            || type == ITEM_TYPE_RELIC
+            || type == ITEM_TYPE_FOSSIL
+            || type == ITEM_TYPE_SHARD
+            || type == ITEM_TYPE_MAIL
+            || type == ITEM_TYPE_TERA_SHARD;
+    case RF_BAG_CATEGORY_OTHER:
+        return type == ITEM_TYPE_FIELD_USE
+            || type == ITEM_TYPE_UNCATEGORIZED
+            || type == ITEM_TYPE_GROWTH;
+    default:
+        return TRUE;
+    }
+}
+
 static void LoadBagItemListBuffers(u8 pocketId)
 {
-    u16 i;
+    u16 i, listIndex = 0;
     struct ListMenuItem *subBuffer;
 
-    if (!gBagMenu->hideCloseBagText)
+    for (i = 0; i < gBagPockets[pocketId].capacity && listIndex < MAX_POCKET_ITEMS - 1; i++)
     {
-        for (i = 0; i < gBagMenu->numItemStacks[pocketId] - 1; i++)
-        {
-            GetItemNameFromPocket(sListBuffer2->name[i], GetBagItemId(pocketId, i));
-            subBuffer = sListBuffer1->subBuffers;
-            subBuffer[i].name = sListBuffer2->name[i];
-            subBuffer[i].id = i;
-        }
-        StringCopy(sListBuffer2->name[i], gText_CloseBag);
+        enum Item itemId = GetBagItemId(pocketId, i);
+        if (itemId == ITEM_NONE || !BagMenu_ItemMatchesCategory(itemId, pocketId))
+            continue;
+
+        GetItemNameFromPocket(sListBuffer2->name[listIndex], itemId);
         subBuffer = sListBuffer1->subBuffers;
-        subBuffer[i].name = sListBuffer2->name[i];
-        subBuffer[i].id = LIST_CANCEL;
+        subBuffer[listIndex].name = sListBuffer2->name[listIndex];
+        subBuffer[listIndex].id = i;
+        listIndex++;
     }
-    else
+
+    if (!gBagMenu->hideCloseBagText && listIndex < MAX_POCKET_ITEMS)
     {
-        for (i = 0; i < gBagMenu->numItemStacks[pocketId]; i++)
-        {
-            GetItemNameFromPocket(sListBuffer2->name[i], GetBagItemId(pocketId, i));
-            subBuffer = sListBuffer1->subBuffers;
-            subBuffer[i].name = sListBuffer2->name[i];
-            subBuffer[i].id = i;
-        }
+        StringCopy(sListBuffer2->name[listIndex], gText_CloseBag);
+        subBuffer = sListBuffer1->subBuffers;
+        subBuffer[listIndex].name = sListBuffer2->name[listIndex];
+        subBuffer[listIndex].id = LIST_CANCEL;
+        listIndex++;
     }
     gMultiuseListMenuTemplate = sItemListMenu;
-    gMultiuseListMenuTemplate.totalItems = gBagMenu->numItemStacks[pocketId];
+    gMultiuseListMenuTemplate.totalItems = listIndex;
     gMultiuseListMenuTemplate.items = sListBuffer1->subBuffers;
     gMultiuseListMenuTemplate.maxShowed = gBagMenu->numShownItems[pocketId];
 }
@@ -1218,8 +1306,12 @@ void UpdatePocketItemList(enum Pocket pocketId)
 
     gBagMenu->numItemStacks[pocketId] = 0;
 
-    for (u32 i = 0; i < pocket->capacity && BagPocket_GetSlotData(pocket, i).itemId; i++)
-        gBagMenu->numItemStacks[pocketId]++;
+    for (u32 i = 0; i < pocket->capacity; i++)
+    {
+        enum Item itemId = BagPocket_GetSlotData(pocket, i).itemId;
+        if (itemId != ITEM_NONE && BagMenu_ItemMatchesCategory(itemId, pocketId))
+            gBagMenu->numItemStacks[pocketId]++;
+    }
 
     if (!gBagMenu->hideCloseBagText)
         gBagMenu->numItemStacks[pocketId]++;
@@ -1256,9 +1348,10 @@ static void InitPocketScrollPositions(void)
         SetCursorScrollWithinListBounds(&gBagPosition.scrollPosition[i], &gBagPosition.cursorPosition[i], gBagMenu->numShownItems[i], gBagMenu->numItemStacks[i], MAX_ITEMS_SHOWN);
 }
 
-u8 GetItemListPosition(u8 pocketId)
+u16 GetItemListPosition(u8 pocketId)
 {
-    return gBagPosition.scrollPosition[pocketId] + gBagPosition.cursorPosition[pocketId];
+    u16 row = gBagPosition.scrollPosition[pocketId] + gBagPosition.cursorPosition[pocketId];
+    return gMultiuseListMenuTemplate.items[row].id;
 }
 
 void DisplayItemMessage(u8 taskId, u8 fontId, const u8 *str, TaskFunc callback)
@@ -1316,6 +1409,13 @@ static void Task_BagMenu_HandleInput(u8 taskId)
 
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE && !gPaletteFade.active)
     {
+        u8 categoryDirection = GetSwitchBagCategoryDirection();
+        if (categoryDirection != SWITCH_POCKET_NONE)
+        {
+            PlaySE(SE_SELECT);
+            BagMenu_SwitchItemCategory(taskId, categoryDirection == SWITCH_POCKET_RIGHT ? 1 : -1);
+            return;
+        }
         switch (GetSwitchBagPocketDirection())
         {
         case SWITCH_POCKET_LEFT:
@@ -1340,6 +1440,11 @@ static void Task_BagMenu_HandleInput(u8 taskId)
             }
             else if (JOY_NEW(START_BUTTON))
             {
+                if (gBagPosition.pocket == POCKET_ITEMS && gBagPosition.itemCategory != RF_BAG_CATEGORY_ALL)
+                {
+                    PlaySE(SE_FAILURE);
+                    break;
+                }
                 if ((gBagMenu->numItemStacks[gBagPosition.pocket] - 1) <= 1) //can't sort with 0 or 1 item in bag
                 {
                     static const u8 sText_NothingToSort[] = _("There's nothing to sort!");
@@ -1350,13 +1455,13 @@ static void Task_BagMenu_HandleInput(u8 taskId)
                 else
                 {
                     struct ItemSlot tempItem;
-                    data[1] = GetItemListPosition(gBagPosition.pocket);
+                    u16 selectedSlot = GetItemListPosition(gBagPosition.pocket);
+                    if (selectedSlot == LIST_CANCEL)
+                        break;
+                    data[1] = selectedSlot;
                     tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, data[1]);
                     data[2] = tempItem.quantity;
-                    if (gBagPosition.cursorPosition[gBagPosition.pocket] == gBagMenu->numItemStacks[gBagPosition.pocket])
-                        break;
-                    else
-                        gSpecialVar_ItemId = tempItem.itemId;
+                    gSpecialVar_ItemId = tempItem.itemId;
 
                     PlaySE(SE_SELECT);
                     BagDestroyPocketScrollArrowPair();
@@ -1418,16 +1523,30 @@ static u8 GetSwitchBagPocketDirection(void)
     if (gBagMenu->pocketSwitchDisabled)
         return SWITCH_POCKET_NONE;
     LRKeys = GetLRKeysPressed();
-    if (JOY_NEW(DPAD_LEFT) || LRKeys == MENU_L_PRESSED)
+    if (JOY_NEW(DPAD_LEFT) || (gBagPosition.pocket != POCKET_ITEMS && LRKeys == MENU_L_PRESSED))
     {
         PlaySE(SE_SELECT);
         return SWITCH_POCKET_LEFT;
     }
-    if (JOY_NEW(DPAD_RIGHT) || LRKeys == MENU_R_PRESSED)
+    if (JOY_NEW(DPAD_RIGHT) || (gBagPosition.pocket != POCKET_ITEMS && LRKeys == MENU_R_PRESSED))
     {
         PlaySE(SE_SELECT);
         return SWITCH_POCKET_RIGHT;
     }
+    return SWITCH_POCKET_NONE;
+}
+
+static u8 GetSwitchBagCategoryDirection(void)
+{
+    if (gBagPosition.pocket != POCKET_ITEMS || gBagPosition.location == ITEMMENULOCATION_WALLY
+     || gBagMenu->pocketSwitchDisabled || MenuHelpers_IsLinkActive())
+        return SWITCH_POCKET_NONE;
+
+    // Category navigation is available in every button layout; L/R remain dedicated here.
+    if (JOY_NEW(L_BUTTON))
+        return SWITCH_POCKET_LEFT;
+    if (JOY_NEW(R_BUTTON))
+        return SWITCH_POCKET_RIGHT;
     return SWITCH_POCKET_NONE;
 }
 
@@ -1523,6 +1642,7 @@ static void Task_SwitchBagPocket(u8 taskId)
         ChangeBagPocketId(&gBagPosition.pocket, tPocketSwitchDir);
         LoadBagItemListBuffers(gBagPosition.pocket);
         tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, gBagPosition.scrollPosition[gBagPosition.pocket], gBagPosition.cursorPosition[gBagPosition.pocket]);
+        BagMenu_DrawItemCategories();
         PutWindowTilemap(WIN_DESCRIPTION);
         PutWindowTilemap(WIN_POCKET_NAME);
         ScheduleBgCopyTilemapToVram(0);
@@ -1546,8 +1666,8 @@ static void DrawPocketIndicatorSquare(u8 x, bool8 isCurrentPocket)
 {
     if (sRFBagChromeWindow != WINDOW_NONE)
     {
-        FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(isCurrentPocket ? 9 : 6), 88 + x * 8, 23, 5, 2);
-        CopyWindowToVram(sRFBagChromeWindow, COPYWIN_GFX);
+        // The moving pocket name and bag sprite already identify the pocket.
+        // The legacy marker row occupied the same pixels as the category tabs.
         return;
     }
     if (!isCurrentPocket)
@@ -1557,12 +1677,98 @@ static void DrawPocketIndicatorSquare(u8 x, bool8 isCurrentPocket)
     ScheduleBgCopyTilemapToVram(2);
 }
 
+static void BagMenu_DrawItemCategories(void)
+{
+    u32 i;
+    static const u8 CATEGORY_X = 69;
+    static const u8 CATEGORY_SPACING = 24;
+    static const u8 *const FILTER_HINT = COMPOUND_STRING("FILTROS: SOLO OBJETOS");
+    static const u8 mutedInk[] = {0, 5, 3};
+    static const u8 selectedInk[] = {0, 4, 3};
+    bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
+
+    if (sRFBagChromeWindow == WINDOW_NONE)
+        return;
+
+    FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(1), CATEGORY_X, 15, 169, 13);
+    if (gBagPosition.pocket != POCKET_ITEMS || gBagPosition.location == ITEMMENULOCATION_WALLY)
+    {
+        RFUI_PrintFitted(sRFBagChromeWindow, FILTER_HINT, CATEGORY_X, 17, 166, mutedInk);
+        CopyWindowToVram(sRFBagChromeWindow, COPYWIN_GFX);
+        BagMenu_DrawFooter();
+        return;
+    }
+    for (i = 0; i < RF_BAG_CATEGORY_COUNT; i++)
+    {
+        u8 x = CATEGORY_X + i * CATEGORY_SPACING;
+        bool8 selected = gBagPosition.itemCategory == i;
+        if (selected)
+            FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(dark ? 9 : 8), x, 15, 22, 13);
+        RFUI_PrintFitted(sRFBagChromeWindow, sRFBagItemCategoryNames[i], x, 17, 22,
+            selected ? selectedInk : mutedInk);
+    }
+    CopyWindowToVram(sRFBagChromeWindow, COPYWIN_GFX);
+    BagMenu_DrawFooter();
+}
+
+static void BagMenu_DrawFooter(void)
+{
+    static const u8 *const itemPocketHint = COMPOUND_STRING("{L_BUTTON}/{R_BUTTON} Filtrar  {A_BUTTON} Elegir  {B_BUTTON} Atrás");
+    static const u8 *const otherPocketHint = COMPOUND_STRING("{L_BUTTON}/{R_BUTTON} Bolsillo  {A_BUTTON} Elegir  {B_BUTTON} Atrás");
+    static const u8 *const wallyHint = COMPOUND_STRING("{A_BUTTON} Elegir  {B_BUTTON} Atrás");
+    const u8 *hint;
+
+    if (sRFBagChromeWindow == WINDOW_NONE)
+        return;
+
+    if (gBagPosition.location == ITEMMENULOCATION_WALLY)
+        hint = wallyHint;
+    else if (gBagPosition.pocket == POCKET_ITEMS)
+        hint = itemPocketHint;
+    else
+        hint = otherPocketHint;
+
+    FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(1), 0, 146, 240, 14);
+    FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(6), 0, 146, 240, 1);
+    RFUI_PrintFitted(sRFBagChromeWindow, hint, 4, 148, 232, (const u8[]){0, 2, 3});
+    CopyWindowToVram(sRFBagChromeWindow, COPYWIN_GFX);
+}
+
+static void BagMenu_SwitchItemCategory(u8 taskId, s8 direction)
+{
+    s16 *data = gTasks[taskId].data;
+    u16 *scrollPos = &gBagPosition.scrollPosition[POCKET_ITEMS];
+    u16 *cursorPos = &gBagPosition.cursorPosition[POCKET_ITEMS];
+
+    ListMenuGetScrollAndRow(tListTaskId, scrollPos, cursorPos);
+    DestroyListMenuTask(tListTaskId, scrollPos, cursorPos);
+    BagDestroyPocketScrollArrowPair();
+
+    if (direction < 0)
+        gBagPosition.itemCategory = (gBagPosition.itemCategory + RF_BAG_CATEGORY_COUNT - 1) % RF_BAG_CATEGORY_COUNT;
+    else
+        gBagPosition.itemCategory = (gBagPosition.itemCategory + 1) % RF_BAG_CATEGORY_COUNT;
+    *scrollPos = 0;
+    *cursorPos = 0;
+
+    UpdatePocketItemList(POCKET_ITEMS);
+    UpdatePocketListPosition(POCKET_ITEMS);
+    LoadBagItemListBuffers(POCKET_ITEMS);
+    tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+    BagMenu_DrawItemCategories();
+    CreatePocketScrollArrowPair();
+    CreatePocketSwitchArrowPair();
+    ScheduleBgCopyTilemapToVram(0);
+}
+
 static bool8 CanSwapItems(void)
 {
     // Swaps can only be done from the field or in battle (as opposed to while selling items, for example)
     if (gBagPosition.location == ITEMMENULOCATION_FIELD
      || gBagPosition.location == ITEMMENULOCATION_BATTLE)
     {
+        if (gBagPosition.pocket == POCKET_ITEMS && gBagPosition.itemCategory != RF_BAG_CATEGORY_ALL)
+            return FALSE;
         // TMHMs and berries are numbered, and so may not be swapped
         if (gBagPosition.pocket != POCKET_TM_HM
          && gBagPosition.pocket != POCKET_BERRIES)
@@ -2475,8 +2681,13 @@ static void PrepareBagForWallyTutorial(void)
     u32 i;
 
     sTempWallyBag = AllocZeroed(sizeof(*sTempWallyBag));
+    if (sTempWallyBag == NULL)
+        return;
+    BagPocket_GetSlotData(&gBagPockets[POCKET_ITEMS], BAG_ITEMS_COUNT + RF_BAG_EXTRA_ITEMS_COUNT);
     memcpy(sTempWallyBag->bagPocket_Items, gSaveBlock1Ptr->bag.items, sizeof(gSaveBlock1Ptr->bag.items));
     memcpy(sTempWallyBag->rfBagExtraItems, gSaveBlock3Ptr->rfBagExtraItems, sizeof(sTempWallyBag->rfBagExtraItems));
+    memcpy(sTempWallyBag->rfBagExtraItemsV2, gSaveBlock1Ptr->rfBagExtraItemsV2, sizeof(sTempWallyBag->rfBagExtraItemsV2));
+    sTempWallyBag->rfBagExtraItemsV2Magic = gSaveBlock1Ptr->rfBagExtraItemsV2Magic;
     memcpy(sTempWallyBag->bagPocket_PokeBalls, gSaveBlock1Ptr->bag.pokeBalls, sizeof(gSaveBlock1Ptr->bag.pokeBalls));
     sTempWallyBag->pocket = gBagPosition.pocket;
     for (i = 0; i < POCKETS_COUNT; i++)
@@ -2486,6 +2697,8 @@ static void PrepareBagForWallyTutorial(void)
     }
     memset(gSaveBlock1Ptr->bag.items, 0, sizeof(gSaveBlock1Ptr->bag.items));
     memset(gSaveBlock3Ptr->rfBagExtraItems, 0, sizeof(gSaveBlock3Ptr->rfBagExtraItems));
+    memset(gSaveBlock1Ptr->rfBagExtraItemsV2, 0, sizeof(gSaveBlock1Ptr->rfBagExtraItemsV2));
+    gSaveBlock1Ptr->rfBagExtraItemsV2Magic = 0x42414732;
     memset(gSaveBlock1Ptr->bag.pokeBalls, 0, sizeof(gSaveBlock1Ptr->bag.pokeBalls));
     ResetBagScrollPositions();
 }
@@ -2496,6 +2709,8 @@ static void RestoreBagAfterWallyTutorial(void)
 
     memcpy(gSaveBlock1Ptr->bag.items, sTempWallyBag->bagPocket_Items, sizeof(sTempWallyBag->bagPocket_Items));
     memcpy(gSaveBlock3Ptr->rfBagExtraItems, sTempWallyBag->rfBagExtraItems, sizeof(sTempWallyBag->rfBagExtraItems));
+    memcpy(gSaveBlock1Ptr->rfBagExtraItemsV2, sTempWallyBag->rfBagExtraItemsV2, sizeof(sTempWallyBag->rfBagExtraItemsV2));
+    gSaveBlock1Ptr->rfBagExtraItemsV2Magic = sTempWallyBag->rfBagExtraItemsV2Magic;
     memcpy(gSaveBlock1Ptr->bag.pokeBalls, sTempWallyBag->bagPocket_PokeBalls, sizeof(sTempWallyBag->bagPocket_PokeBalls));
     gBagPosition.pocket = sTempWallyBag->pocket;
     for (i = 0; i < POCKETS_COUNT; i++)
@@ -2667,7 +2882,7 @@ static void LoadBagMenuTextWindows(void)
         RFUI_DrawPanel(sRFBagChromeWindow, 134, 29, 106, 73, 1, 6);
         RFUI_DrawPanel(sRFBagChromeWindow, 134, 103, 106, 44, 1, 6);
         AddTextPrinterParameterized3(sRFBagChromeWindow, FONT_NORMAL, 8, 5, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("MOCHILA"));
-        AddTextPrinterParameterized3(sRFBagChromeWindow, FONT_SMALL, 4, 148, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("{A_BUTTON} Elegir  {SELECT_BUTTON} Ordenar  {B_BUTTON} Atrás"));
+        BagMenu_DrawItemCategories();
         PutWindowTilemap(sRFBagChromeWindow);
         CopyWindowToVram(sRFBagChromeWindow, COPYWIN_FULL);
     }

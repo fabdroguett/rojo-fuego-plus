@@ -53,6 +53,7 @@
 #include "key_system.h"
 #include "player_pc.h"
 #include "pokemon.h"
+#include "rf_quests.h"
 #include "pokemon_icon.h"
 #include "pokemon_jump.h"
 #include "pokemon_storage_system.h"
@@ -5049,8 +5050,8 @@ void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
         gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
         gPartyMenuUseExitCallback = TRUE;
         PlaySE(SE_SELECT);
-        if (!IsItemFlute(gSpecialVar_ItemId))
-            RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (!IsItemFlute(gSpecialVar_ItemId) && RemoveBagItem(gSpecialVar_ItemId, 1))
+            RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
     }
@@ -5117,7 +5118,8 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
         if (!IsItemFlute(item))
         {
             PlaySE(SE_USE_ITEM);
-            RemoveBagItem(item, 1);
+            if (RemoveBagItem(item, 1))
+                RFQuests_NotifyItemUsed(item);
         }
         else
         {
@@ -5222,7 +5224,8 @@ void Task_AbilityCapsule(u8 taskId)
         break;
     case 5:
         SetMonData(&gParties[B_TRAINER_PLAYER][tMonId], MON_DATA_ABILITY_NUM, &tAbilityNum);
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (RemoveBagItem(gSpecialVar_ItemId, 1))
+            RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
         Achievement_AddToCounter(ACH_COUNTER_CAPSULES, 1); // Rojo Fuego+
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
@@ -5308,7 +5311,8 @@ void Task_AbilityPatch(u8 taskId)
         break;
     case 5:
         SetMonData(&gParties[B_TRAINER_PLAYER][tMonId], MON_DATA_ABILITY_NUM, &tAbilityNum);
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (RemoveBagItem(gSpecialVar_ItemId, 1))
+            RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
         Achievement_AddToCounter(ACH_COUNTER_CAPSULES, 1); // Rojo Fuego+
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
@@ -5410,7 +5414,8 @@ void Task_Mint(u8 taskId)
     case 5:
         SetMonData(&gParties[B_TRAINER_PLAYER][tMonId], MON_DATA_HIDDEN_NATURE, &tNewNature);
         CalculateMonStats(&gParties[B_TRAINER_PLAYER][tMonId]);
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (RemoveBagItem(gSpecialVar_ItemId, 1))
+            RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
         Achievement_AddToCounter(ACH_COUNTER_MINTS, 1); // Rojo Fuego+
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
@@ -5729,7 +5734,8 @@ static void TryUseItemOnMove(u8 taskId)
             gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
             gBattleStruct->itemMoveIndex[gBattlerInMenuId] = ptr->data1;
             gPartyMenuUseExitCallback = TRUE;
-            RemoveBagItem(gSpecialVar_ItemId, 1);
+            if (RemoveBagItem(gSpecialVar_ItemId, 1))
+                RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
         }
@@ -5753,7 +5759,8 @@ static void TryUseItemOnMove(u8 taskId)
         {
             gPartyMenuUseExitCallback = TRUE;
             PlaySE(SE_USE_ITEM);
-            RemoveBagItem(item, 1);
+            if (RemoveBagItem(item, 1))
+                RFQuests_NotifyItemUsed(item);
             move = GetMonData(mon, MON_DATA_MOVE1 + *moveSlot);
             StringCopy(gStringVar1, GetMoveName(move));
             GetMedicineItemEffectMessage(item, 0);
@@ -6111,7 +6118,8 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         if (targetSpecies != SPECIES_NONE)
         {
             GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, DO_EVO);
-            RemoveBagItem(gSpecialVar_ItemId, 1);
+            if (RemoveBagItem(gSpecialVar_ItemId, 1))
+                RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
             FreePartyPointers();
             gCB2_AfterEvolution = gPartyMenu.exitCallback;
             BeginEvolutionScene(mon, targetSpecies, canStopEvo, gPartyMenu.slotId);
@@ -6133,7 +6141,8 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         sFinalLevel = GetMonData(mon, MON_DATA_LEVEL);
         gPartyMenuUseExitCallback = TRUE;
         UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (RemoveBagItem(gSpecialVar_ItemId, 1))
+            RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
         GetMonNickname(mon, gStringVar1);
         if (sFinalLevel > sInitialLevel)
         {
@@ -6396,7 +6405,8 @@ void Task_DynamaxCandy(u8 taskId)
     case 3:
         tDynamaxLevel++;
         SetMonData(&gParties[B_TRAINER_PLAYER][tMonId], MON_DATA_DYNAMAX_LEVEL, &tDynamaxLevel);
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (RemoveBagItem(gSpecialVar_ItemId, 1))
+            RFQuests_NotifyItemUsed(gSpecialVar_ItemId);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
     }

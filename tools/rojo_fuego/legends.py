@@ -398,7 +398,7 @@ def main():
     text = constants.read_text(encoding="utf-8")
     block = ["// BEGIN legends (tools/rojo_fuego/legends.py)"]
     block += [f"#define RF_QUEST_LEGEND_{s:02d} {FIRST_QUEST + s}" for s in range(sagas)]
-    block += [f"#define RF_QUEST_COUNT {FIRST_QUEST + sagas}", "// END legends"]
+    block += ["// END legends"]
     if "// BEGIN legends" in text:
         text = re.sub(r"// BEGIN legends.*?// END legends", "\n".join(block), text, flags=re.S)
     else:

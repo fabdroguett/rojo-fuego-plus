@@ -8,13 +8,19 @@ con respaldo de la versión anterior; las pruebas completas de menús y partidas
 
 - Diario accesible con **START → R**, después de recibir la Pokédex, o mediante el objeto
   **Diario**. Un ayudante del laboratorio de Oak entrega el objeto, también en el postgame.
-- **43 misiones** implementadas en seis capítulos: museo y fósiles, reliquias de Sete,
-  investigación de Oak, refugios de Kanto, vida y hábitats, cuidado y evolución. El plan de contenido sigue siendo 350 misiones; no están todas hechas.
+- **350 misiones** implementadas: 43 encargos originales, 28 sagas legendarias y 279
+  encargos extendidos (259 objetivos de Pokédex, 10 de recogida, 10 de uso exitoso y 9 con
+  dos requisitos). Los objetivos de Pokédex consultan el registro persistente.
 - **A** acepta o reclama; **SELECT** sigue una misión; **L/R** cambia de capítulo; **START** muestra el premio; **B** sale.
   La cabecera muestra las misiones reclamadas y el total del capítulo.
   El seguimiento abre el capítulo y la fila correspondientes al regresar al diario.
 - Estados persistentes: disponible, aceptada, objetivo cumplido y premio reclamado.
   Se reservan 500 identificadores estables en 125 bytes; los ID publicados no deben reordenarse.
+- Los IDs 71–349 se generan desde `tools/rojo_fuego/extra_quests.py`; `QUEST_DEX_CAUGHT`
+  comprueba la especie en la Pokédex nacional y no necesita guardar progreso adicional.
+- `QUEST_COLLECT_ITEM` se activa con una adquisición correcta en la mochila; `QUEST_USE_ITEM`
+  se notifica desde los caminos exitosos de uso en campo, combate y menú de equipo. Las misiones
+  compuestas consultan ambas condiciones y no exigen progreso intermedio guardado.
 - Las visitas cuentan después de aceptar el encargo. Las investigaciones de especies revisan
   el equipo, excluyen huevos y reconocen formas como Unown. Los fósiles evolucionados también
   sirven para la investigación correspondiente. Ningún ejemplar se consume.

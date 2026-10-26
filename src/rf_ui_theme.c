@@ -20,10 +20,10 @@ void RFUI_LoadPalette(u32 bank, bool32 dark)
     };
     static const u16 day[16] =
     {
-        RGB(23,28,25), RGB(27,31,27), RGB(2,7,8), RGB(22,27,24),
-        RGB(23,28,25), RGB(8,15,14), RGB(11,21,19), RGB(4,15,10),
-        RGB(30,26,11), RGB(17,11,2), RGB(2,7,8), RGB(27,31,27),
-        RGB(11,21,19), RGB(8,15,14), RGB(23,28,25), RGB(2,7,8),
+        RF_UI_DAY_GROUND, RF_UI_DAY_PANEL, RF_UI_DAY_TEXT, RF_UI_DAY_SHADOW,
+        RF_UI_DAY_GROUND, RF_UI_DAY_MUTED, RF_UI_DAY_EDGE, RGB(4, 15, 10),
+        RF_UI_DAY_SELECTED, RF_UI_DAY_INDICATOR, RF_UI_DAY_TEXT, RF_UI_DAY_PANEL,
+        RF_UI_DAY_EDGE, RF_UI_DAY_MUTED, RF_UI_DAY_GROUND, RF_UI_DAY_TEXT,
     };
     if (bank < 16)
         LoadPalette(dark ? night : day, BG_PLTT_ID(bank), PLTT_SIZE_4BPP);
@@ -36,7 +36,7 @@ static EWRAM_DATA bool8 sFieldOverlayActive = FALSE;
 
 void RFUI_BeginFieldOverlay(void)
 {
-    u16 ground = KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_GROUND : RGB(23, 28, 25);
+    u16 ground = KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_GROUND : RF_UI_DAY_GROUND;
 
     if (!sFieldOverlayActive)
     {
@@ -176,14 +176,20 @@ void RFUI_ThemeHealthboxPalette(u32 paletteNum)
     static const u8 slots[] = {1, 2, 3, 4, 6, 8};
     static const u16 night[] = {
         RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_SHADOW,
-        RF_UI_SELECTED, RF_UI_NIGHT_EDGE, RF_UI_SELECTED,
+        RF_UI_GOLD, RF_UI_NIGHT_EDGE, RF_UI_SELECTED,
     };
+    static const u16 day[] = {
+        RF_UI_DAY_TEXT, RF_UI_DAY_PANEL, RF_UI_DAY_SHADOW,
+        RF_UI_DAY_INDICATOR, RF_UI_DAY_EDGE, RF_UI_DAY_SHADOW,
+    };
+    const u16 *colors;
     u32 i;
 
-    if (paletteNum >= 16 || !KeySystem_IsOn(KEY_DARK_MODE))
+    if (paletteNum >= 16)
         return;
+    colors = KeySystem_IsOn(KEY_DARK_MODE) ? night : day;
     for (i = 0; i < ARRAY_COUNT(slots); i++)
-        LoadPalette(&night[i], OBJ_PLTT_ID(paletteNum) + slots[i], PLTT_SIZEOF(1));
+        LoadPalette(&colors[i], OBJ_PLTT_ID(paletteNum) + slots[i], PLTT_SIZEOF(1));
 }
 
 // Standard text windows share indices 1 (paper), 2 (ink), 3 (shadow).

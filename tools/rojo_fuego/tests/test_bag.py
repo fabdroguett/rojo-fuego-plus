@@ -35,6 +35,7 @@ typedef int bool32;
 #define FALSE 0
 #define BAG_ITEMS_COUNT 30
 #define RF_BAG_EXTRA_ITEMS_COUNT 30
+#define RF_BAG_EXTRA_ITEMS_V2_COUNT 20
 #define MAX_BAG_ITEM_CAPACITY 999
 #define min(a,b) ((a) < (b) ? (a) : (b))
 #define Free free
@@ -46,9 +47,10 @@ enum Pocket {POCKET_ITEMS, POCKET_KEY_ITEMS, POCKET_POKE_BALLS, POCKET_TM_HM, PO
 enum Item {ITEM_NONE, ITEM_TEST = 1};
 struct ItemSlot {u16 itemId; u16 quantity;};
 struct BagPocket {struct ItemSlot *itemSlots; u16 capacity; enum Pocket id;};
-struct SaveBlock1 {struct {struct ItemSlot items[30]; struct ItemSlot keys[30];} bag;};
+struct SaveBlock1 {struct {struct ItemSlot items[30]; struct ItemSlot keys[30];} bag;
+                  u32 rfBagExtraItemsV2Magic; struct ItemSlot rfBagExtraItemsV2[20];};
 struct SaveBlock2 {u32 encryptionKey;};
-struct SaveBlock3 {u32 rfBagSaveMagic; struct ItemSlot rfBagExtraItems[30];};
+struct SaveBlock3 {u32 rfBagSaveMagic; struct ItemSlot rfBagExtraItems[30]; u32 rfLootSaveMagic;};
 static struct SaveBlock1 save1;
 static struct SaveBlock2 save2;
 static struct SaveBlock3 save3;
@@ -98,15 +100,24 @@ int main(void)
     struct ItemSlot keySnapshot[30];
     memcpy(keySnapshot, save1.bag.keys, sizeof(keySnapshot));
     memset(&save3, 0xA5, sizeof(save3));
+    save3.rfLootSaveMagic = 0x4C4F4F54;
+    *p = (struct BagPocket){save1.bag.items, 80, POCKET_ITEMS};
     assert(BagPocket_GetSlotData(p, 30).itemId == ITEM_NONE);
     assert(save3.rfBagSaveMagic == 0x42414731);
+    assert(BagPocket_GetSlotData(p, 60).itemId == ITEM_NONE);
+    assert(save1.rfBagExtraItemsV2Magic == 0x42414732);
+    assert(save3.rfLootSaveMagic == 0x4C4F4F54);
     BagPocket_SetSlotData(p, 29, (struct ItemSlot){1, 500});
     BagPocket_SetSlotData(p, 30, (struct ItemSlot){1, 500});
     BagPocket_SetSlotData(p, 59, (struct ItemSlot){2, 999});
+    BagPocket_SetSlotData(p, 60, (struct ItemSlot){3, 400});
+    BagPocket_SetSlotData(p, 79, (struct ItemSlot){4, 999});
     assert(Total(p, 1) == 1000);
+    assert(Total(p, 3) == 400 && Total(p, 4) == 999);
     ApplyNewEncryptionKeyToBagItems(0xABCD);
     save2.encryptionKey = 0xABCD;
     assert(Total(p, 1) == 1000);
+    assert(Total(p, 3) == 400 && Total(p, 4) == 999);
     assert(Total(p, 2) == 999);
     assert(memcmp(keySnapshot, save1.bag.keys, sizeof(keySnapshot)) == 0);
     assert(BagPocket_RemoveItem(p, 1, 750));
@@ -114,14 +125,18 @@ int main(void)
     assert(Total(p, 2) == 999);
     assert(!BagPocket_RemoveItem(p, 1, 251));
     assert(Total(p, 1) == 250);
+    p->capacity = 60;
     struct SaveBlock3 snapshot = save3;
+    struct SaveBlock1 snapshot1 = save1;
     BagPocket_SetSlotData(p, 60, (struct ItemSlot){2, 1});
-    assert(BagPocket_GetSlotData(p, 60).itemId == ITEM_NONE);
+    assert(BagPocket_GetSlotData(p, 80).itemId == ITEM_NONE);
     assert(memcmp(&snapshot, &save3, sizeof(save3)) == 0);
-    for (u32 i = 0; i < 60; i++) BagPocket_SetSlotData(p, i, (struct ItemSlot){0});
-    for (u32 i = 1; i <= 60; i++) assert(BagPocket_AddItem(p, i, 1));
-    assert(!BagPocket_AddItem(p, 61, 1));
-    for (u32 i = 1; i <= 60; i++) assert(Total(p, i) == 1);
+    assert(memcmp(&snapshot1, &save1, sizeof(save1)) == 0);
+    p->capacity = 80;
+    for (u32 i = 0; i < 80; i++) BagPocket_SetSlotData(p, i, (struct ItemSlot){0});
+    for (u32 i = 1; i <= 80; i++) assert(BagPocket_AddItem(p, i, 1));
+    assert(!BagPocket_AddItem(p, 81, 1));
+    for (u32 i = 1; i <= 80; i++) assert(Total(p, i) == 1);
     allocationFails = TRUE;
     assert(!BagPocket_AddItem(p, 1, 1));
     assert(!BagPocket_RemoveItem(p, 1, 1));
@@ -151,7 +166,7 @@ int main(void)
     struct ItemSlot first = BagPocket_GetSlotData(p, 0);
     RemoveBagItemFromSlot(p, 0, first.quantity + 1);
     assert(BagPocket_GetSlotData(p, 0).quantity == first.quantity);
-    RemoveBagItemFromSlot(p, 60, 1);
+    RemoveBagItemFromSlot(p, 79, 1);
     return 0;
 }
 '''

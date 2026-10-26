@@ -2,8 +2,10 @@
 from pathlib import Path
 import json
 import struct
-import subprocess
 import sys
+
+from runtime import run as environment
+
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "build_artifacts/progression"
@@ -13,11 +15,7 @@ if berries_off:
 OUT.mkdir(parents=True, exist_ok=True)
 
 
-def docker(*args, **kwargs):
-    return subprocess.run(["docker", *args], check=True, **kwargs)
-
-
-nm = docker("exec", "rojo-fuego-check", "arm-none-eabi-nm", "/work/pokefirered.elf",
+nm = environment("exec", "rojo-fuego-check", "arm-none-eabi-nm", "/work/pokefirered.elf",
             capture_output=True, text=True).stdout
 symbols = {p[2]: int(p[0], 16) for line in nm.splitlines() if len(p := line.split()) == 3}
 assert "RFProgress_Traveler" in symbols, "Requires the explicitly linked disposable fixture"
@@ -50,13 +48,13 @@ script = ("run 600\nmash T 30\nrun 180\nmash A 3900\nmash B 240\nrun 60\n"
           + f'dump {symbols["gRFSaveLayout"]:08x} 34 /tmp/rf-save-layout.bin\n')
 path = OUT / "traveler.txt"
 path.write_text(script, encoding="utf-8")
-docker("cp", str(path), "rojo-fuego-check:/tmp/rf-progression.txt")
-result = docker("exec", "rojo-fuego-check", "/tmp/rf-mgba-harness",
+environment("cp", str(path), "rojo-fuego-check:/tmp/rf-progression.txt")
+result = environment("exec", "rojo-fuego-check", "/tmp/rf-mgba-harness",
                 "/work/pokefirered.gba", "/tmp/rf-progression.txt", capture_output=True, text=True)
 (OUT / "traveler.log").write_text(result.stdout, encoding="utf-8")
 for name in ("rf-progress-intro.ppm", "rf-progress-end.ppm", "rf-save-layout.bin",
              "rf-relearner.ppm", "rf-relearner-learned.ppm", "rf-rematch.ppm", "rf-rematch-debug.bin"):
-    docker("cp", "rojo-fuego-check:/tmp/" + name, str(OUT / name))
+    environment("cp", "rojo-fuego-check:/tmp/" + name, str(OUT / name))
 layout = dict(zip(("SaveBlock1", "SaveBlock2", "SaveBlock3", "BoxPokemon", "Pokemon",
                    "PokemonStorage", "boxes_offset", "box_names_offset", "wallpapers_offset",
                    "fusions_offset", "sector_data", "SaveBlock3_capacity", "storage_capacity"),

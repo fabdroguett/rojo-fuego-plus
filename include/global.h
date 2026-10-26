@@ -308,6 +308,8 @@ struct SaveBlock3
     u8 rfLegendCaught[RF_LEGEND_BYTES]; // Rojo Fuego+ legendary sagas (rf_legends.c): one bit per legend
 }; /* max size 1624 bytes */
 
+STATIC_ASSERT(sizeof(struct SaveBlock3) <= 1624, SaveBlock3FitsFireRedSaveSectors);
+
 extern struct SaveBlock3 *gSaveBlock3Ptr;
 
 struct Pokedex
@@ -1244,8 +1246,13 @@ struct SaveBlock1
     u8 rivalName[PLAYER_NAME_LENGTH + 1];
     struct DaycareMon route5DayCareMon;
 #endif
+    // Append-only v2 bag capacity; SaveBlock3 has no room for another extension.
+    u32 rfBagExtraItemsV2Magic;
+    struct { u16 itemId; u16 quantity; } rfBagExtraItemsV2[RF_BAG_EXTRA_ITEMS_V2_COUNT];
     // sizeof: 0x3???
 };
+
+STATIC_ASSERT(sizeof(struct SaveBlock1) <= 15872, SaveBlock1FitsFireRedSaveSectors);
 
 extern struct SaveBlock1 *gSaveBlock1Ptr;
 

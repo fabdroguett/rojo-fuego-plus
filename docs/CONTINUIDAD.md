@@ -1,8 +1,43 @@
 # Continuidad de ejecución
 
-Actualización: 23-10-2026. Sesión cerrada a petición del usuario para continuar después.
-Al retomar, ejecutar el siguiente paso de este archivo dentro del alcance de
-[PLAN_COMPLETO.md](PLAN_COMPLETO.md); el plan completo sigue abierto.
+Actualización: 26-10-2026. Continuar el trabajo abierto de [PLAN_COMPLETO.md](PLAN_COMPLETO.md);
+Ubuntu 24.04 en WSL es el entorno de compilación activo y Docker permanece apagado.
+
+Actualización 26-10-2026: el catálogo ya tiene **350 misiones** (IDs 0–349); el validador
+confirma referencias, textos y prerrequisitos, y la ROM compila en Ubuntu. El motor ya incluye
+captura persistente, recogida de objetos, uso exitoso y objetivos de dos requisitos, sin cambios
+de interfaz.
+
+## Mochila ampliada y ROM validada (26-10-2026)
+
+- El bolsillo de objetos pasa de 60 a **80 espacios**: 30 del guardado original, 30 de la
+  extensión existente y 20 nuevos. Los 84 bytes nuevos se anexan al final de SaveBlock1,
+  con magic independiente; no se desplazan offsets de datos existentes. La compilación
+  impone los límites de tamaño serializado de SaveBlock1 y SaveBlock3.
+- Se añadieron siete filtros navegables con L/R: TODO, CURA, COMB, EVO, EQU, TES y OTR.
+  La clasificación usa `sortType`; cambiar categorías conserva los espacios físicos y
+  ordenar se desactiva bajo filtros. El control L/R funciona también con la configuración
+  normal de botones. Las capturas mGBA confirman las siete listas en tema claro/oscuro y
+  la navegación posterior a Balls y MT; material en `build_artifacts/ui/`.
+- `tools/rojo_fuego/tests/test_bag.py` cubre slots 60 y 79, inicialización de los dos bloques,
+  límites, cifrado y remoción; las 18 pruebas nativas y los 71 datos de misiones pasan.
+- `wsl.ps1 check` enlaza el ELF sin generar ROM. `wsl.ps1 build` genera la ROM limpia y
+  `verify_release.py` la inicia hasta el mapa con el harness mGBA. Entrega local:
+  `build_artifacts/releases/20261026-111139/pokefirered.gba`, 32 MiB, código BPRE,
+  SHA-256 `92d69f4ed913dbdda32b518a2b5ca5aba7e34af5788b0cb42981afb57668b4b1`.
+- La ROM no lleva fixtures. No se copió al Escritorio ni se modificó ninguna partida real.
+- ARTE-2 parcial: la paleta común de las hojas masculina/femenina ahora usa rojos, oro y
+  sombra petróleo. Se mantienen tamaño 64×384, los seis cuadros y la animación. Capturas
+  mGBA verifican ambos sprites, categorías y bolsillos en claro/oscuro. Falta redibujar la
+  silueta con el concepto original, conservando los seis cuadros.
+- ARTE-3 validado: mGBA muestra lista, búsqueda, hábitat, estadísticas, evoluciones, formas,
+  grito y tamaño del atlas HGSS. ARTE-4: inicio, equipo, PC, Misiones, Claves y tienda se
+  revisaron en ambos temas; faltan variantes iconográficas propias para algunas pantallas.
+  Capturas en `build_artifacts/ui/`.
+- Pruebas finales: `wsl.ps1 test` → 18/18 y 71 misiones válidas; `verify_release.py` confirma
+  arranque hasta el mapa. WSL queda sin el fixture de interfaz en `src/`.
+- Siguiente paso visual: redibujar las seis poses del sprite de mochila en formato nativo
+  (ARTE-2); luego continuar la implementación de menú y presentación del plan completo.
 
 ## Punto guardado para retomar
 
@@ -109,6 +144,19 @@ Los conceptos todavía no son recursos indexados nativos y no están integrados 
 
 ## Entorno actual
 
+**Cambio solicitado el 26-10-2026: trabajar directamente en Ubuntu WSL, con Docker apagado.**
+Distribución `Ubuntu-24.04`, fuentes en la carpeta Windows habitual y copia compilable en
+`/work`. Comandos, dependencias y verificadores: [ENTORNO_WSL.md](ENTORNO_WSL.md).
+Usar `./tools/rojo_fuego/wsl.ps1 check`, `test` y `build` desde PowerShell (dos trabajos por
+defecto). Los verificadores Python usan Ubuntu; `RF_TEST_BACKEND=docker` conserva el entorno
+anterior. No arrancar Docker para continuar el plan. Las instrucciones de contenedor que
+siguen son históricas; las fixtures se preparan ahora en `/work` de Ubuntu.
+Validado: enlace ELF, 18 pruebas nativas, catálogo de 71 misiones, sincronización incremental,
+ROM sin fixtures y arranque hasta el mapa en mGBA. ROM de comprobación en
+`build_artifacts/wsl/pokefirered.gba`; informe `build_artifacts/releases/20261026-093902/`.
+La ROM del Escritorio no se reemplazó. Los avisos de metadatos PNG se detallan en la guía.
+Ubuntu queda encendido porque hay procesos de otro proyecto en la misma distribución.
+
 Fuentes del host en `/source` (solo lectura), copia compilable en `/work`, contenedor
 `rojo-fuego-check`. Las fuentes temporales de fixtures se retiraron de `/work/src` antes
 de reenlazar y generar la ROM de producción. Nunca entregar las ROM de fixtures.
@@ -119,8 +167,8 @@ las capturas del selector están en `build_artifacts/ui/starters/` (`report.json
 reproducible: `tools/rojo_fuego/test/capture_starters.py`, con fixture temporal según
 `tools/rojo_fuego/test/UI_VALIDATION.md`. La entrega vigente es
 `build_artifacts/releases/20261023-114921/`; la de `20261023-111358/` es anterior.
-Docker Desktop y el contenedor quedaron apagados. No arrancarlos para una actualización
-solo documental; al modificar código, iniciarlos y sincronizar archivos del host a `/work`.
+Docker Desktop y el contenedor permanecen apagados. Ubuntu WSL es el entorno activo;
+no detener la distro porque allí hay procesos de otro proyecto.
 
 Para reproducir: copiar las fuentes/herramientas actualizadas a `/work`, ejecutar allí
 `bash tools/rojo_fuego/test/build_progression_fixture.sh`, y ejecutar desde Windows
@@ -129,28 +177,27 @@ símbolos/estados al cambiar el enlace. Ver también `test/UI_VALIDATION.md`.
 
 ## Siguiente acción concreta
 
-1. **ARTE-2: siguiente trabajo al retomar.** Mochila de seis cuadros 64×64 a partir de los
-   conceptos de `menu_art_v2`, luego ARTE-3 (Pokédex HGSS) y ARTE-4/5. Para nuevos iconos,
-   añadir el índice de la hoja Kenney al script y regenerar; no editar `rf_menu_icons.h`.
-   Candidatos pendientes: estados de misiones (bloqueada/lista/completada), Claves y DexNav,
-   cuyo pie con glifos no cabe aún en 232 px.
-2. Seguir **ARTE-3 → ARTE-4/5** con verificación de cada integración.
-3. Después continuar SERVICIOS con preparación visible en Centros Pokémon (naturaleza/habilidades/
-   crianza) y herramientas unificadas, reutilizando mentas y parches existentes.
-4. Auditar laboratorio de formas/fusiones y zonas de entrenamiento; SAVE-2 sigue aislado hasta cerrar sectores
-   y migración. No rehacer sistemas existentes.
-5. Mantener validador, pruebas nativas y recorrido de emulador apropiados a cada cambio.
-6. Actualizar este archivo y subir código, documentación y recursos fuente propios en cada
-   punto estable; mantener ROMs y guardados fuera de Git.
+1. Completar ARTE-2: redibujar las seis poses de mochila para que coincidan con el concepto,
+   conservando ambas variantes, la animación, las categorías y el contraste claro/oscuro.
+2. Extender ARTE-4 con iconografía propia para equipo, PC, Claves y tienda, validando tema,
+   selección y desactivación.
+3. Cerrar ARTE-5 con captura mGBA tras integrar el sprite; validar ROM limpia y memoria/VRAM.
+4. Continuar SERVICIOS con preparación en Centros Pokémon y herramientas unificadas, reutilizando
+   mentas, parches y tutores existentes.
+5. Mantener SAVE-2 separado hasta cerrar sectores y migración; completar regresión integral de
+   apodo, primera batalla, guardado/carga y Android.
+6. Registrar cada paquete validado aquí y en PLAN_COMPLETO.md; conservar ROMs y guardados fuera de Git.
 
 ## Límites y pendientes que no deben perderse
 
 - Iniciales: las 54 entregas y escenas de elección están comprobadas; el rival conserva
   equipos de Kanto. Quedan para regresión integral el recorrido de partida nueva hasta
   la primera batalla, apodo, guardado/carga y Android. No afirmar que ya se probaron.
-- Assets: 28 fuentes investigadas; menús externos y conceptos propios todavía sin
-  importar a sus atlas nativos. No marcar ARTE-1–5 como terminados por tener referencias.
-- Misiones: 43/350; faltan 307. Cajas: 14/420 plazas; SAVE-2/3 pendientes.
+- Assets: ARTE-1 y 3 validados; ARTE-2 parcial (paleta integrada, silueta por redibujar);
+  ARTE-4 tiene revisión visual pero falta integrar variantes; ARTE-5 se repite tras esos cambios.
+- Misiones: 350/350; el catálogo extendido combina Pokédex, recogida, uso exitoso y requisitos
+  dobles. La distribución narrativa completa sigue pendiente. Cajas: 14/420 plazas; SAVE-2/3
+  pendientes.
 - Noa: el caso original de desobediencia continúa sin diagnóstico confirmado.
 
 La fixture de revancha usa un NPC generado y estadísticas sintéticas altas para garantizar
@@ -160,4 +207,4 @@ detectaron una invocación sin NPC y una derrota; no se atribuyen a fallos del j
 Antes de una ROM de entrega retirar individualmente las fixtures de `/work/src`, reenlazar
 con flags normales, comprobar ausencia de `RFProgress_`/`RFUiFixture_`, respaldar la ROM local
 anterior y verificar cabecera/arranque. Nunca subir ROMs, `.sav`, `build/` o ramas de respaldo
-que contengan binarios. Apagar Docker al cerrar el trabajo.
+que contengan binarios. Mantener Docker apagado y Ubuntu WSL disponible para continuar.

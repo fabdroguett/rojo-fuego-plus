@@ -57,3 +57,10 @@ Trabajo pendiente ARTE-1–5 en [PLAN_COMPLETO.md](PLAN_COMPLETO.md): iconos nat
 mochila, adaptación de atlas HGSS, familia de menús relacionados y pruebas reales de integración.
 Revisar claro/oscuro, selección, bolsillos, listas vacías, texto largo y retorno al mapa.
 Las funciones existentes del DexNav/Pokédex y las protecciones de callbacks se conservan.
+
+Actualización 26-10-2026: la paleta del sprite de mochila se adaptó a rojo, oro y sombra
+petróleo en `graphics/bag/bag.pal`. Conserva ambas hojas indexadas de 64×384 y sus seis
+cuadros; se verificaron con filtros, bolsillos y temas claro/oscuro en mGBA. El atlas HGSS
+ya integrado se revisó en lista, búsqueda, hábitat, estadísticas, evoluciones, formas, grito
+y tamaño. Pendiente de ARTE-2: redibujar las seis poses con la silueta del concepto, en
+formato de 4 bits y manteniendo la animación existente.

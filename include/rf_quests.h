@@ -2,6 +2,7 @@
 #define GUARD_RF_QUESTS_H
 
 #include "constants/rf_quests.h"
+#include "constants/rf_quests_extra.h"
 
 enum RFQuestState
 {
@@ -21,6 +22,9 @@ enum QuestCondition
     QUEST_EVENT,
     QUEST_DELIVER_ITEM,
     QUEST_LEGENDS, // argument: legend saga; ready once every legend of the saga is caught
+    QUEST_DEX_CAUGHT, // argument: species; ready once it has been caught at least once
+    QUEST_COLLECT_ITEM, // argument: item; ready while the item is in the bag
+    QUEST_USE_ITEM, // argument: item; completed by a successful item-use path
 };
 
 struct RFQuest
@@ -35,6 +39,10 @@ struct RFQuest
     u8 rewardCount;
     u8 condition;
     u8 chapter;
+    u8 objectiveCount; // 0/1: primary only; 2: primary AND secondary
+    u8 secondaryCondition;
+    u16 secondaryArgument;
+    u16 secondaryAlternative;
 };
 
 const struct RFQuest *RFQuests_GetCatalog(void);
@@ -47,6 +55,8 @@ enum RFQuestState RFQuests_GetState(u32 id);
 bool32 RFQuests_IsUnlocked(u32 id);
 u32 RFQuests_NotifyEvent(u32 event, u32 argument);
 bool32 RFQuests_DeliverItem(u32 id);
+u32 RFQuests_NotifyItemCollected(u32 item);
+u32 RFQuests_NotifyItemUsed(u32 item);
 void RFQuests_OnBattleEnd(void);
 void Script_RF_QuestNotify(void);
 void Script_RF_QuestDeliver(void);

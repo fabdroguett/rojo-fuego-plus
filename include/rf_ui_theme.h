@@ -12,7 +12,18 @@
 #define RF_UI_NIGHT_SHADOW RGB(0, 3, 4)
 #define RF_UI_SELECTED RGB(4, 14, 14)
 #define RF_UI_GOLD RGB(31, 25, 6)
-#define RF_UI_BATTLE_SELECTED_PAL 11 // BG bank for the gold battle menu cell (free in battle)
+#define RF_UI_FIRE_ACCENT RGB(30, 12, 10)
+#define RF_UI_BATTLE_SELECTED RGB(14, 27, 21)
+#define RF_UI_BATTLE_FRAME_DAY RGB(5, 14, 14) // battle textbox ground around the menu cards
+#define RF_UI_DAY_GROUND RGB(23, 28, 25)
+#define RF_UI_DAY_PANEL RGB(27, 31, 27)
+#define RF_UI_DAY_EDGE RGB(11, 21, 19)
+#define RF_UI_DAY_TEXT RGB(2, 7, 8)
+#define RF_UI_DAY_MUTED RGB(8, 15, 14)
+#define RF_UI_DAY_SHADOW RGB(22, 27, 24)
+#define RF_UI_DAY_SELECTED RGB(30, 26, 11)
+#define RF_UI_DAY_INDICATOR RGB(17, 11, 2)
+#define RF_UI_BATTLE_SELECTED_PAL 11 // BG bank for the mint battle menu cell (free in battle)
 void RFUI_LoadPalette(u32 bank, bool32 dark);
 void RFUI_LoadWindowPalette(const u16 *palette, u32 offset);
 void RFUI_ThemeHealthboxPalette(u32 paletteNum);

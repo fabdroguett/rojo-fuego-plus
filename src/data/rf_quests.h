@@ -301,4 +301,5 @@ static const struct RFQuest sRFQuests[] =
         .rewardItem = ITEM_BOTTLE_CAP, .rewardCount = 1, .chapter = 2,
     },
 #include "rf_quests_legends.h"
+#include "rf_quests_extra.h"
 };

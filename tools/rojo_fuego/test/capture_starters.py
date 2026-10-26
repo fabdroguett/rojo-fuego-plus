@@ -7,18 +7,16 @@ from pathlib import Path
 import json
 import re
 import struct
-import subprocess
+
+from runtime import output as environment
+
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "build_artifacts/ui/starters"
 OUT.mkdir(parents=True, exist_ok=True)
 
 
-def docker(*args):
-    return subprocess.check_output(["docker", *args], text=True)
-
-
-symbols = {p[2]: int(p[0], 16) for line in docker(
+symbols = {p[2]: int(p[0], 16) for line in environment(
     "exec", "rojo-fuego-check", "arm-none-eabi-nm", "/work/pokefirered.elf").splitlines()
     if len(p := line.split()) == 3}
 
@@ -67,22 +65,22 @@ script += ("load /tmp/rf-starter-lab.ss\n" + callback("RFUiFixture_StarterScript
 script += callback("RFUiFixture_StarterDay") + "run 120\nshot /tmp/rf-starter-day.ppm\n"
 path = OUT / "commands.txt"
 path.write_text(script)
-docker("cp", str(path), "rojo-fuego-check:/tmp/rf-starter-tests.txt")
-log = docker("exec", "rojo-fuego-check", "/tmp/rf-mgba-harness", "/work/pokefirered.gba", "/tmp/rf-starter-tests.txt")
+environment("cp", str(path), "rojo-fuego-check:/tmp/rf-starter-tests.txt")
+log = environment("exec", "rojo-fuego-check", "/tmp/rf-mgba-harness", "/work/pokefirered.gba", "/tmp/rf-starter-tests.txt")
 (OUT / "emulator.log").write_text(log)
 report = []
 for tag, name, expected in cases:
     target = OUT / f"{tag}.bin"
-    docker("cp", f"rojo-fuego-check:/tmp/rf-starter-{tag}.bin", str(target))
+    environment("cp", f"rojo-fuego-check:/tmp/rf-starter-{tag}.bin", str(target))
     actual = list(struct.unpack("<5H", target.read_bytes()))
     assert actual == expected, (name, actual, expected)
     report.append({"species": name, "result": actual})
     if tag.endswith("-0"):
-        docker("cp", f"rojo-fuego-check:/tmp/rf-starter-{tag}.ppm", str(OUT / f"{tag}.ppm"))
+        environment("cp", f"rojo-fuego-check:/tmp/rf-starter-{tag}.ppm", str(OUT / f"{tag}.ppm"))
 for tag in ("lab", "day", "confirm"):
-    docker("cp", f"rojo-fuego-check:/tmp/rf-starter-{tag}.ppm", str(OUT / f"{tag}.ppm"))
+    environment("cp", f"rojo-fuego-check:/tmp/rf-starter-{tag}.ppm", str(OUT / f"{tag}.ppm"))
 target = OUT / "cancel.bin"
-docker("cp", "rojo-fuego-check:/tmp/rf-starter-cancel.bin", str(target))
+environment("cp", "rojo-fuego-check:/tmp/rf-starter-cancel.bin", str(target))
 cancel = list(struct.unpack("<5H", target.read_bytes()))
 assert cancel[0] == 0 and cancel[3] == 2, cancel
 (OUT / "report.json").write_text(json.dumps({"choices": report, "cancel": cancel}, indent=2))

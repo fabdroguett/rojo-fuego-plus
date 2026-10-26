@@ -3,16 +3,15 @@ from pathlib import Path
 import subprocess
 import sys
 
+from runtime import run as environment
+
+
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "build_artifacts/training"
 OUT.mkdir(parents=True, exist_ok=True)
 
 
-def docker(*args, **kwargs):
-    return subprocess.run(["docker", *args], check=True, **kwargs)
-
-
-nm = docker("exec", "rojo-fuego-check", "arm-none-eabi-nm", "/work/pokefirered.elf",
+nm = environment("exec", "rojo-fuego-check", "arm-none-eabi-nm", "/work/pokefirered.elf",
             capture_output=True, text=True).stdout
 symbols = {p[2]: int(p[0], 16) for line in nm.splitlines() if len(p := line.split()) == 3}
 assert "RFTrainingFixture_Begin" in symbols, "Requires the disposable training fixture"
@@ -62,15 +61,15 @@ script = ("" if phase in ("begin", "all") else "load /tmp/rf-training.ss\n") + p
 script += f"shot /tmp/rf-training-{phase}.ppm\nsave /tmp/rf-training.ss\n"
 path = OUT / f"{phase}.txt"
 path.write_text(script, encoding="utf-8")
-docker("cp", str(path), "rojo-fuego-check:/tmp/rf-training.txt")
-result = docker("exec", "rojo-fuego-check", "/tmp/rf-mgba-harness", "/work/pokefirered.gba",
+environment("cp", str(path), "rojo-fuego-check:/tmp/rf-training.txt")
+result = environment("exec", "rojo-fuego-check", "/tmp/rf-mgba-harness", "/work/pokefirered.gba",
                 "/tmp/rf-training.txt", capture_output=True, text=True)
 (OUT / f"{phase}.log").write_text(result.stdout, encoding="utf-8")
 for line in script.splitlines():
     if line.startswith("shot "):
         remote = line.split()[1]
         path = OUT / Path(remote).name
-        docker("cp", "rojo-fuego-check:" + remote, str(path))
+        environment("cp", "rojo-fuego-check:" + remote, str(path))
         subprocess.run([sys.executable, str(Path(__file__).with_name("ppm2png.py")), str(path)], check=True)
 print(phase, result.stdout, flush=True)
 if phase == "all":

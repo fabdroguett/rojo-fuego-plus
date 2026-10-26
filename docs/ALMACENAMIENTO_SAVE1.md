@@ -58,3 +58,11 @@ de persistencia. No prometer más plazas contando con que las cajas estén parci
 Los nuevos eventos de misiones no agregan campos persistentes: usan los dos bits ya reservados
 para cada misión. Noa agrega ocho bytes al final de SaveBlock3, con magic de inicialización
 independiente; no se cambian offsets de campos anteriores.
+
+La mochila de FireRed mantiene sus 30 espacios originales en SaveBlock1 y 30 adicionales
+en la extensión previa de SaveBlock3. La capacidad nueva añade 20 espacios (84 bytes con
+magic) al final de SaveBlock1, usando la holgura medida de ese bloque; no inserta campos ni
+desplaza offsets existentes. Cada extensión tiene magic propio y se inicializa sin borrar
+los objetos de la otra. Una aserción de compilación limita SaveBlock1 a los 15872 bytes
+serializados, y otra mantiene SaveBlock3 bajo 1624 bytes. Los espacios adicionales se
+validan en `tools/rojo_fuego/tests/test_bag.py`.

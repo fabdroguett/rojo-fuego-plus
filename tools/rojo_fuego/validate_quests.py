@@ -10,9 +10,12 @@ def validate():
     constants = (ROOT / "include/constants/rf_quests.h").read_text(encoding="utf-8")
     values = {name: int(value) for name, value in
               re.findall(r"^#define (RF_QUEST_\w+)\s+(\d+)\s*$", constants, re.M)}
+    extra_constants = (ROOT / "include/constants/rf_quests_extra.h").read_text(encoding="utf-8")
+    values.update({name: int(value) for name, value in
+                   re.findall(r"^#define (RF_QUEST_\w+)\s+(\d+)\s*$", extra_constants, re.M)})
     count, chapters = values["RF_QUEST_COUNT"], values["RF_QUEST_CHAPTER_COUNT"]
     source = "\n".join((ROOT / "src/data" / name).read_text(encoding="utf-8")
-                       for name in ("rf_quests.h", "rf_quests_legends.h"))
+                       for name in ("rf_quests.h", "rf_quests_legends.h", "rf_quests_extra.h"))
     entries = re.findall(r"\[(RF_QUEST_\w+)\]\s*=\s*\{(.*?)\n    \},", source, re.S)
     errors, catalogue, ids = [], {}, set()
     symbols = "\n".join((ROOT / "include/constants" / path).read_text(encoding="utf-8")
@@ -48,6 +51,19 @@ def validate():
                 fail(name, "delivery requires an item and explicit quantity")
             elif not 1 <= int(fields["alternative"]) <= 999:
                 fail(name, "invalid delivery quantity")
+        if fields.get("condition") in ("QUEST_COLLECT_ITEM", "QUEST_USE_ITEM") \
+                and not fields.get("argument", "").startswith("ITEM_"):
+            fail(name, "item objective requires an item ID")
+        if fields.get("objectiveCount") == "2":
+            secondary = fields.get("secondaryCondition")
+            if secondary not in {"QUEST_VISIT", "QUEST_PARTY_EITHER", "QUEST_PARTY_BOTH",
+                                 "QUEST_ITEM_OR_FOSSIL", "QUEST_REVIVED_FOSSIL",
+                                 "QUEST_DEX_CAUGHT", "QUEST_COLLECT_ITEM"}:
+                fail(name, "secondary objective must be checkable without a transient event")
+            if "secondaryArgument" not in fields:
+                fail(name, "missing secondary objective argument")
+        elif any(field in fields for field in ("secondaryCondition", "secondaryArgument", "secondaryAlternative")):
+            fail(name, "secondary objective fields require objectiveCount = 2")
         for symbol in re.findall(r"\b(?:ITEM|SPECIES|MAP|TRAINER|RF_QUEST_EVENT)_\w+", body):
             if symbol not in known:
                 fail(name, f"unknown reference {symbol}")

@@ -19,7 +19,8 @@ class QuestEngineTests(unittest.TestCase):
         self.assertIsNotNone(compiler, "Run in the verification container with a host C compiler")
         engine = ROOT / "src/rf_quests.c"
         source = (engine.read_text(encoding="utf-8") + (ROOT / "src/data/rf_quests.h").read_text(encoding="utf-8")
-                  + (ROOT / "src/data/rf_quests_legends.h").read_text(encoding="utf-8"))
+                  + (ROOT / "src/data/rf_quests_legends.h").read_text(encoding="utf-8")
+                  + (ROOT / "src/data/rf_quests_extra.h").read_text(encoding="utf-8"))
         species = sorted(set(re.findall(r"\bSPECIES_[A-Z0-9_]+", source)) - {"SPECIES_NONE"})
         items = sorted(set(re.findall(r"\bITEM_[A-Z0-9_]+", source)) - {"ITEM_NONE"})
         maps = sorted(set(re.findall(r"\bMAP_[A-Z0-9_]+", source)) - {"MAP_GROUP", "MAP_NUM"})
@@ -33,9 +34,13 @@ class QuestEngineTests(unittest.TestCase):
 #include <string.h>
 #include <assert.h>
 typedef uint8_t u8;
+typedef int8_t s8;
 typedef uint16_t u16;
+typedef int16_t s16;
 typedef uint32_t u32;
+typedef int32_t s32;
 typedef int32_t bool32;
+typedef int16_t bool16;
 #define TRUE 1
 #define FALSE 0
 #define IS_FRLG 1
@@ -43,9 +48,12 @@ typedef int32_t bool32;
 #define B_TRAINER_PLAYER 0
 #define ARRAY_COUNT(x) (sizeof(x) / sizeof((x)[0]))
 #define STATIC_ASSERT(x, name) _Static_assert(x, #name)
+#define ALIGNED(n) __attribute__((aligned(n)))
 #define COMPOUND_STRING(x) ((const u8 *)(x))
 #define MAP_GROUP(x) ((x) >> 8)
 #define MAP_NUM(x) ((x) & 255)
+#define FLAG_GET_CAUGHT 1
+#define GUARD_POKEDEX_H
 #define FLAG_SYS_POKEDEX_GET 1
 #define FLAG_IS_CHAMPION 2
 #define FLAG_BADGE01_GET 3
@@ -59,6 +67,9 @@ typedef int32_t bool32;
 #define FLAG_SYS_GAME_CLEAR 11
 #include "constants/rf_quests.h"
 DECLARATIONS
+enum NationalDexOrder {NATIONAL_DEX_ORDER_TEST};
+u8 GetSetPokedexFlag(enum NationalDexOrder species, u8 caseID);
+enum NationalDexOrder SpeciesToNationalPokedexNum(enum Species species);
 enum {MON_DATA_SPECIES, MON_DATA_IS_EGG};
 struct Pokemon {u16 species; u8 egg;};
 struct SaveBlock3 {
@@ -93,6 +104,8 @@ bool32 RFLegends_IsSagaCaught(u32 saga) {(void)saga; return sagaCaught;}
 static u16 bag[256];
 bool32 FlagGet(u16 flag) {return flag == FLAG_SYS_POKEDEX_GET ? dex : champion;}
 u32 GetMonData(struct Pokemon *mon, u32 field) {return field == MON_DATA_SPECIES ? mon->species : mon->egg;}
+u8 GetSetPokedexFlag(enum NationalDexOrder species, u8 caseID) {(void)species; (void)caseID; return dex;}
+enum NationalDexOrder SpeciesToNationalPokedexNum(enum Species species) {return (enum NationalDexOrder)species;}
 u32 MockBaseSpecies(u32 species) {return species == 10000 ? SPECIES_UNOWN : species;}
 bool32 CheckBagHasItem(enum Item item, u16 count) {return bag[item] >= count;}
 bool32 AddBagItem(enum Item item, u16 count) {if (!room) return FALSE; bag[item] += count; return TRUE;}

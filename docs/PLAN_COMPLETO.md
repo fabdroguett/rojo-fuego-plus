@@ -1,6 +1,6 @@
 # Plan completo de Rojo Fuego Plus
 
-Actualizado: 23-10-2026. El usuario pide completar el plan e incorporar **también para
+Actualizado: 26-10-2026. El usuario pide completar el plan e incorporar **también para
 implementación todas las ideas recogidas en IDEAS_OTROS_HACKS.md**. Este documento es la
 lista de ejecución vigente; ROJO_FUEGO_PLAN.md conserva el historial y las decisiones técnicas,
 e IDEAS_OTROS_HACKS.md conserva las referencias y el razonamiento de las adaptaciones.
@@ -12,14 +12,13 @@ Una casilla pendiente puede requerir implementación, completar una integración
 validar código existente. No cuenta como terminada solo porque compile. Las funciones
 repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 
-## Punto de reanudación
+## Punto de reanudación (26-10-2026)
 
-Sesión cerrada el 23-10-2026 a petición del usuario para continuar después. Último código
-jugable subido: `7a96f850` en `rojo-fuego`. ROM de iniciales ya entregada y verificada;
-esta actualización es documental. Detalles de ROM, hash, pruebas, entorno y pendientes:
-[CONTINUIDAD.md](CONTINUIDAD.md).
+Continuar ARTE-2: conservar las categorías y la paleta de mochila y redibujar su sprite
+de seis poses en formato nativo. ARTE-3 quedó validado; ARTE-4 tiene revisión de pantallas
+pero aún faltan variantes iconográficas. ARTE-5 verificó esta ROM limpia; repetir tras el redibujo.
 
-**Al retomar: ARTE-2** (mochila) → ARTE-3 (Pokédex HGSS) → ARTE-4/5 (resto y verificación).
+**Siguiente:** terminar la silueta de mochila → cerrar ARTE-5 tras la integración final → continuar SERVICIOS.
 ARTE-1 quedó integrado el 23-10-2026: iconos Kenney 1-Bit (CC0) en menú principal y Misiones,
 selector de iniciales rediseñado y pintado rápido de paneles; ver CONTINUIDAD.md.
 No repetir el selector de iniciales ni la investigación ya completada. Mantener pendientes
@@ -37,16 +36,17 @@ Punto jugable anterior: [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md), código 
 
 | Área | Avance comprobado | Pendiente para cerrar |
 |---|---|---|
-| Misiones | 43 implementadas, catálogo validado; cadena de diálogo/entrega/Noa/informe y revancha de Brock probadas | 307 misiones, más tipos de objetivos, cadenas y recorrido del contenido restante |
+| Misiones | 350 implementadas; IDs 0–349; captura, recogida, uso exitoso de objetos y requisitos dobles funcionan | Revisar cadenas y el contenido del plan; añadir objetivos funcionales cuando cada encargo lo requiera |
 | Noa | Victoria, premio, limpieza de reglas y conservación de premio pendiente comprobados con pruebas nativas y mGBA | Diagnosticar el caso original con desobediencia; ampliar pruebas de guardado y calendario |
 | Preparación | Editor EV/IV con confirmación/cancelación, recordador de preevoluciones, clave de bayas y ocho tutores por medalla | Servicios de Centros, herramientas, formas/fusiones y zonas de entrenamiento |
 | Almacenamiento | SAVE-1 medido y documentado; 14 cajas / 420 plazas | SAVE-2 y SAVE-3: banco, migración y recuperación antes de habilitar más cajas |
 | Verificación | 18 pruebas automáticas, recorridos mGBA, ROM de avance sin fixtures y arranque hasta el mapa | Regresión integral, partidas antiguas/nuevas completas y Android |
 | Iniciales | 54 opciones/18 grupos; normal/oculta, confirmación, cancelación y escenas de Oak probadas | Recorrido integral de nueva partida, apodo, guardado/carga y Android; rival conserva Kanto |
-| Recursos visuales | 28 fuentes de Internet y dos conceptos propios de mochila/Pokédex guardados | Adaptación a píxeles/paletas nativos e integración; la ROM actual conserva los gráficos anteriores |
+| Recursos visuales | 28 fuentes, dos conceptos propios, paleta de mochila integrada y Pokédex HGSS revisada | Redibujar la silueta de mochila en formato nativo y seguir nuevas variantes visuales |
+| Mochila | 80 espacios, siete filtros y paleta nueva en sprites masculino/femenino; filtros y menús pasan en mGBA | Reemplazar el arte de las seis poses sin perder animación ni legibilidad |
 
 No se calcula el porcentaje global contando casillas: las tareas tienen tamaños distintos.
-43/350 expresa únicamente avance de contenido de misiones, no del proyecto completo.
+350/350 expresa únicamente el catálogo de misiones, no la finalización del proyecto completo.
 
 ### Selector de iniciales completado y siguiente prioridad: arte
 
@@ -60,6 +60,14 @@ Nuevo pedido del usuario: buscar mejores sprites para mochila, Pokédex y otros 
 crearlos. Se incorpora como trabajo **ARTE**, después de la base ya comprobada y antes de
 retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
 
+Pedido adicional: ampliar la capacidad de la mochila y agregar categorías. La capacidad
+del bolsillo de objetos ya subió de 60 a 80 espacios; las categorías Todo, Curación,
+Combate, Evolución, Equipo, Tesoros y Otros filtran ese bolsillo con L/R. Se guardan
+20 espacios en una extensión versionada al final de SaveBlock1, conservando los offsets
+anteriores; SAVE-1 documenta la medición de espacio y la compilación comprueba el límite.
+Las vistas nuevas no alteran la disposición de los objetos y desactivan el ordenamiento
+mientras hay un filtro activo. Falta comprobar la navegación en emulador.
+
 - [x] **ARTE-0:** investigar fuentes y crear conceptos originales de mochila y Pokédex.
   Referencias, archivos y procedencia: [RECURSOS_MENU.md](RECURSOS_MENU.md).
 - [x] **POKÉMON-1025:** todas las especies obtenibles: salvajes de generaciones 2–9 por
@@ -71,11 +79,17 @@ retomar SERVICIOS. No depende de ampliar cajas ni de completar las 350 misiones.
   Variantes mayores quedan para ARTE-4 donde cada pantalla las necesite.
 - [ ] **ARTE-2:** construir los cuadros de mochila, respetando los recursos de 64×384 y
   sus seis cuadros de 64×64; comprobar bolsillos, selección y ambos recursos existentes.
-- [ ] **ARTE-3:** adaptar la Pokédex HGSS y sus atlas/tilemaps, conservando lista, búsqueda,
+  La paleta roja/petróleo ya se integró en las hojas masculina y femenina; seis cuadros,
+  categorías, bolsillos y temas claro/oscuro se revisaron en mGBA. Falta redibujar la
+  silueta completa para que coincida con los conceptos propios.
+- [x] **ARTE-3:** adaptar la Pokédex HGSS y sus atlas/tilemaps, conservando lista, búsqueda,
   hábitats, estadísticas, evoluciones, formas, grito y tamaño. No sustituir un atlas por
-  una ilustración completa del dispositivo.
+  una ilustración completa del dispositivo. El atlas HGSS y estas vistas ya estaban
+  integrados; recorrido visual revisado en mGBA en ambos temas.
 - [ ] **ARTE-4:** extender la familia visual a equipo, PC, misiones, claves y tienda;
   validar claridad de cada icono y estados seleccionado/desactivado en claro y oscuro.
+  Capturas mGBA de las pantallas existentes revisadas en ambos temas; faltan variantes
+  iconográficas propias para equipo, PC, Claves y tienda.
 - [ ] **ARTE-5:** integrar y verificar en mGBA; compilar sin advertencias, revisar VRAM,
   regresiones de navegación y retorno al mapa. Generar nueva ROM local cuando esté validado.
 
@@ -153,8 +167,8 @@ existente empieza como implementado cuando hay evidencia, sin marcarlo validado 
 |---|---|---|
 | BASE | Parcial; victoria/premio de Noa validados y premio pendiente corregido | Mantener la reproducción de desobediencia como investigación separada; ampliar regresión al tocar cada sistema |
 | SAVE-1 | Medición y estrategia documentadas | Seguir ALMACENAMIENTO_SAVE1.md; inventariar sectores 30/31 antes del prototipo SAVE-2 |
-| EVENTOS | Implementados diálogo, entrega y victoria; primera cadena validada en mGBA | Completar captura/recogida/uso y objetivos múltiples; conservar IDs 0–42 |
-| Validadores de contenido | Implementado; 43 entradas pasan | Ejecutar validate_quests.py al ampliar catálogos; comprobar ajuste real de textos en emulador |
+| EVENTOS | Diálogo, entrega, victoria, captura, recogida, uso exitoso y objetivos dobles integrados | Extender eventos y cambios de mundo para las campañas narrativas pendientes |
+| Validadores de contenido | Implementado; 350 entradas y rutas de obtención de especies verificadas | Ejecutar validate_quests.py al ampliar catálogos; comprobar ajuste real de textos en emulador |
 | SERVICIOS | Editor EV/IV, reaprendizaje, bayas y ocho tutores por medalla comprobados | Completar servicios de preparación y herramientas |
 | ARTE | Conceptos creados; recursos de referencia registrados | Adaptar a formato GBA antes de integrar; prioridad vigente del usuario |
 
@@ -198,13 +212,16 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
 
 ## 3. Misiones, personajes y colecciones
 
-- [ ] Completar **350 misiones únicas**: 43 implementadas, 307 restantes. Mantener IDs estables.
-  Distribución objetivo: personajes 70, exploración 60, Oak/hábitats 60, rescates 45,
-  combate 50, legendarios/posjuego 40 y finales con objetivos propios 25.
-- [ ] Añadir objetivos por diálogo, captura, combate, recogida, entrega y uso de objetos;
+- [x] Completar un catálogo funcional de **350 misiones**, IDs 0–349: 43 encargos originales,
+  28 sagas y 279 encargos extendidos (259 Pokédex, 10 recogida, 10 uso, 9 dobles).
+- [ ] Completar la distribución narrativa propuesta: personajes 70, exploración 60,
+  Oak/hábitats 60, rescates 45, combate 50, legendarios/posjuego 40 y finales 25;
+  reemplazar encargos genéricos por cadenas con consecuencias y desenlaces.
+- [x] Añadir objetivos por diálogo, captura, combate, recogida, entrega y uso de objetos;
   cadenas con cambios visibles, seguimiento y pistas para retomar partidas.
-  Diálogo, entrega explícita y victoria ya están integrados; faltan captura, recogida,
-  uso y objetivos múltiples. Los estados finales usan los bits de misión existentes.
+  Diálogo, entrega explícita, victoria, captura persistente, recogida, uso exitoso y dos
+  requisitos consultables ya están integrados. Los estados finales usan los bits existentes;
+  los usos exitosos se registran al consumir/aplicar el objeto, sin guardar progreso adicional.
 - [ ] Completar diario por capítulos, filtros de zona/dificultad/disponibilidad, progreso,
   coleccionables individuales y ocultación del contenido aún no descubierto.
 - [ ] Crear campaña de artefactos entre museo de Plateada y Sete: pistas, fragmentos,
