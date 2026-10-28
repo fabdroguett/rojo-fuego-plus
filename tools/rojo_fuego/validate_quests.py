@@ -55,8 +55,8 @@ def validate():
         if fields.get("condition") == "QUEST_COUNT":
             if not fields.get("argument", "").startswith("RF_QUEST_EVENT_"):
                 fail(name, "counted objective requires an RF_QUEST_EVENT_* argument")
-            if not fields.get("target", "").isdigit() or not 2 <= int(fields["target"]) <= 63:
-                fail(name, "counted objective requires target 2..63")
+            if not fields.get("target", "").isdigit() or not 1 <= int(fields["target"]) <= 63:
+                fail(name, "counted objective requires target 1..63")
             # A dual-type catch reports both types, and map 0 is a real map: these need a filter.
             if fields.get("argument") in ("RF_QUEST_EVENT_CATCH_MAP", "RF_QUEST_EVENT_CATCH_TYPE") \
                     and fields.get("alternative", "0") == "0":

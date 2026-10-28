@@ -38,6 +38,13 @@ def warp(keyname):
     toward='>' if lx<a['x'] else '<' if lx>a['x'] else 'D' if ly<a['y'] else 'U'
     return param(1,a['actor'])+call('WarpActor',240)+call('FaceActor',30)+f'hold {toward} 3\nrun 30\n'
 def inspect(): return call('Read',1)+''.join(read(i) for i in (0,1,2,3,4,5,7,8,9,10,11,12,13,14,15))
+def look(*indices): return call('Read',1)+''.join(read(i) for i in indices)
+SPECIES={n:int(v) for n,v in re.findall(r'\b(SPECIES_[A-Z0-9_]+)\s*=\s*(\d+)',(ROOT/'include/constants/species.h').read_text(encoding='utf-8'))}
+def wild(species,level):
+    # Mewtwo (Lv. 100, Psychic first) wins with A; B clears the closing messages.
+    return param(4,SPECIES[species])+param(5,level)+call('WildBattle',60)+'mash A 1800\nmash B 600\nrun 120\n'
+# Batch C1: CENSO DE LA HIERBA ALTA is 414-421, LA ESCUELA DEL CAMINO is 422-429.
+C1_CENSUS,C1_SCHOOL=414,422
 
 cases={
     'offer-cancel':(prepare(350,'alma',0)+warp('alma')+key('A')+shot('offer')+'mash B 1200\nrun 60\n'+shot('offer-cancel')+inspect(),{0:0,12:1,13:0}),
@@ -66,6 +73,19 @@ cases={
     'ready-notice':(prepare(0,'alma')+param(1,actors['alma']['actor'])+call('WarpActor',1)+''.join('run 60\n'+shot(f'ready-notice-{i}') for i in range(8))+inspect(),{0:2}),
     # Entering the map of the tracked scene (351, Edda in Mt. Moon B2F) shows "OBJETIVO AQUÍ".
     'here-notice':(prepare(351,'edda')+param(1,actors['edda']['actor'])+call('WarpActor',1)+''.join('run 60\n'+shot(f'here-notice-{i}') for i in range(8))+inspect(),{0:1}),
+    # C1 field objectives through real gameplay: seeing Pikachu in a wild battle, a real wild win,
+    # the evolution scene and the egg hatch scene each move their quest to READY.
+    'c1-seen':(prepare(C1_CENSUS+2,'olmo')+warp('olmo')+wild('SPECIES_PIKACHU',3)+key('A',480)+shot('c1-seen-report')+key('A',300)+'mash B 900\nrun 60\n'+look(0,12),{0:3,12:1}),
+    'c1-wild-win':(prepare(C1_CENSUS+3,'olmo')+param(4,7)+call('SetProgress')+wild('SPECIES_RATTATA',2)+look(0,23),{0:2,23:8}),
+    'c1-evolve':(prepare(C1_CENSUS+5,'vito')+param(4,1)+call('SetProgress')+param(4,SPECIES['SPECIES_CATERPIE'])+param(5,SPECIES['SPECIES_METAPOD'])+call('Evolve',60)+'mash A 1500\nrun 300\n'+shot('c1-evolve')+look(0,23),{0:2,23:2}),
+    'c1-hatch':(prepare(C1_CENSUS+6,'nerea')+param(4,SPECIES['SPECIES_TOGEPI'])+call('Hatch',60)+'mash B 2400\nrun 120\n'+shot('c1-hatch')+look(0),{0:2}),
+    # Cora joins Oak's lab only after the census is handed in; the final grants the composite reward.
+    'c1-cora-hidden':(prepare(C1_CENSUS+7,'ada')+warp('ada')+param(1,actors['cora_lab']['actor'])+look(0,12),{0:1,12:0}),
+    'c1-census-final':(prepare(C1_CENSUS+7,'ada')+call('ZeroMoney')+warp('ada')+key('A',480)+'mash B 900\nrun 60\n'+shot('c1-census-final')+warp('cora_lab')+shot('c1-cora-visible')+look(0,12,20,21),{0:3,12:1,20:5000,21:1}),
+    # The school: Quim's battle, the decision (YES) and a later offer that follows it.
+    'c1-quim':(prepare(C1_SCHOOL+2,'quim')+warp('quim')+key('A',480)+shot('c1-quim-offer')+key('A',300)+'mash A 3600\nmash B 900\nrun 120\n'+look(0),{0:3}),
+    'c1-choice':(prepare(C1_SCHOOL+3,'tano')+warp('tano')+key('A',480)+shot('c1-choice-question')+key('A',300)+shot('c1-choice-ending')+'mash B 900\nrun 60\n'+look(0,22),{0:3,22:1}),
+    'c1-alt-offer':(prepare(C1_SCHOOL+4,'tano',0)+param(4,0)+call('SetChoice')+warp('tano')+key('A',480)+shot('c1-alt-offer')+'mash B 900\nrun 60\n'+look(0,22),{0:0,22:1}),
     # Flash round-trip of story fields and the quest extension (decisions, counters, IDs 500+),
     # then an older save whose extension magic is garbage. SaveBlock3 is 1620 of 1624 bytes.
     'save':(call('SaveRoundTrip',600)+shot('save-restored')+inspect(),{2:0x15555,3:2,4:1,5:77,8:1620,14:1,15:1}),
@@ -83,6 +103,7 @@ for a in data['actors']:
     keyname=a['key'];q=350;mode=0
     if keyname.startswith('clue_'): q=350+int(keyname.split('_')[1]);mode=1
     if keyname=='home_cubone': q=373;mode=2
+    if keyname=='cora_lab': q=C1_CENSUS+7;mode=2 # visible once the census is handed in
     survey+=prepare(q,keyname,mode)+warp(keyname)+shot('actor-'+keyname)+call('Read',1)+read(12)
 cases['actors']=(survey,{})
 
@@ -109,8 +130,8 @@ for name in args.case or list(cases):
         passed=checks==expected
         if name=='actors':
             observed_actors=[int(v,16) for ad,v in matches if int(ad,16)==result+12*4]
-            passed=len(observed_actors)==55 and all(v==1 for v in observed_actors)
-            checks={'actorsFound':sum(v==1 for v in observed_actors),'actorsExpected':55}
+            passed=len(observed_actors)==len(data['actors']) and all(v==1 for v in observed_actors)
+            checks={'actorsFound':sum(v==1 for v in observed_actors),'actorsExpected':len(data['actors'])}
         entry=dict(case=name,theme=theme,passed=passed,checks=checks)
         entry['observed']={i:observed.get(result+i*4) for i in range(20) if result+i*4 in observed}
         report.append(entry)

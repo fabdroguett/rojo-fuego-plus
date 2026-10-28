@@ -42,14 +42,7 @@ static const u8 *const sChapterNames[] =
     COMPOUND_STRING("LEYENDAS DE KANTO"),
     COMPOUND_STRING("LEYENDAS DEL MUNDO"),
     COMPOUND_STRING("ULTRAENTES Y PARADOJAS"),
-    COMPOUND_STRING("MEMORIA DE KANTO"),
-    COMPOUND_STRING("LA RED Y SUS VOCES"),
-    COMPOUND_STRING("UNA PUERTA ABIERTA"),
-    COMPOUND_STRING("CUADERNOS DE CAMPO"),
-    COMPOUND_STRING("NADIE SE QUEDA ATRÁS"),
-    COMPOUND_STRING("CAMINOS QUE SE CRUZAN"),
-    COMPOUND_STRING("LO QUE DEVUELVE EL MAR"),
-    COMPOUND_STRING("EL CAMINO DE VUELTA"),
+#include "data/rf_story_chapters.h"
 };
 STATIC_ASSERT(ARRAY_COUNT(sChapterNames) == QUEST_CHAPTERS, RFQuestChapterNames);
 static const u8 *const sStatusNames[] =
@@ -84,7 +77,10 @@ static void DrawQuestDetails(const u8 *message)
     const u8 *status = sQuestSelected < RF_QUEST_COUNT ? sStatusNames[state] : COMPOUND_STRING("Sin encargos");
     const u8 *body = COMPOUND_STRING("Sin encargos para este filtro.\nIzq./Der.: cambia de filtro.\nL/R: cambia de capítulo.");
     if (sQuestSelected < RF_QUEST_COUNT && (unlocked || state != RF_QUEST_AVAILABLE))
-        body = RFStory_Hint(sQuestSelected);
+    {
+        RFStory_CopyHint(sQuestSelected, gStringVar4);
+        body = gStringVar4;
+    }
     if (message == NULL && unlocked && state == RF_QUEST_AVAILABLE && RFStory_GiverHint(sQuestSelected) != NULL)
     {
         // Authored scenes are offered in person, so the journal names who gives them.
@@ -290,7 +286,12 @@ static void Task_QuestMenu(u8 taskId)
                 DrawQuestDetails(NULL);
                 return;
             }
-            RFQuests_Accept(input);
+            if (!RFQuests_Accept(input) && RFQuests_CounterSlotsFull())
+            {
+                PlaySE(SE_FAILURE);
+                DrawQuestDetails(COMPOUND_STRING("Ya sigues cuatro encargos con recuento.\nTermina uno para aceptar este."));
+                return;
+            }
         }
         else if (state == RF_QUEST_CLAIMED)
         {

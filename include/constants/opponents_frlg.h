@@ -656,8 +656,9 @@
 #define TRAINER_RF_STORY_3 642
 #define TRAINER_RF_STORY_4 643
 #define TRAINER_RF_STORY_5 644
+#define TRAINER_RF_STORY_6 645
 // END RF STORY
-#define TRAINERS_COUNT_FRLG                      645
+#define TRAINERS_COUNT_FRLG                      646
 #define MAX_TRAINERS_COUNT_FRLG                  768
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_FRLG_H

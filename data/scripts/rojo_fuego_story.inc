@@ -7,6 +7,7 @@ RFStory_Actor_0::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -20,6 +21,7 @@ RFStory_Actor_1::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -33,6 +35,7 @@ RFStory_Actor_2::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -46,6 +49,7 @@ RFStory_Actor_3::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -59,6 +63,7 @@ RFStory_Actor_4::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -71,6 +76,7 @@ RFStory_Actor_5::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -84,6 +90,7 @@ RFStory_Actor_6::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -97,6 +104,7 @@ RFStory_Actor_7::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -110,6 +118,7 @@ RFStory_Actor_8::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -123,6 +132,7 @@ RFStory_Actor_9::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	goto_if_eq VAR_0x8005, 360, RFStory_Battle_10
 	msgbox gStringVar4
@@ -137,6 +147,7 @@ RFStory_Actor_10::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -149,6 +160,7 @@ RFStory_Actor_11::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -162,6 +174,7 @@ RFStory_Actor_12::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -175,6 +188,7 @@ RFStory_Actor_13::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -188,6 +202,7 @@ RFStory_Actor_14::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -201,6 +216,7 @@ RFStory_Actor_15::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -214,6 +230,7 @@ RFStory_Actor_16::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -227,6 +244,7 @@ RFStory_Actor_17::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -240,6 +258,7 @@ RFStory_Actor_18::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -253,6 +272,7 @@ RFStory_Actor_19::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -266,6 +286,7 @@ RFStory_Actor_20::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -279,6 +300,7 @@ RFStory_Actor_21::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -292,6 +314,7 @@ RFStory_Actor_22::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -305,6 +328,7 @@ RFStory_Actor_23::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -318,6 +342,7 @@ RFStory_Actor_24::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -331,6 +356,7 @@ RFStory_Actor_25::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -344,6 +370,7 @@ RFStory_Actor_26::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -357,6 +384,7 @@ RFStory_Actor_27::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	goto_if_eq VAR_0x8005, 391, RFStory_Battle_41
 	msgbox gStringVar4
@@ -371,6 +399,7 @@ RFStory_Actor_28::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	goto_if_eq VAR_0x8005, 393, RFStory_Battle_43
 	msgbox gStringVar4
@@ -385,6 +414,7 @@ RFStory_Actor_29::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	goto_if_eq VAR_0x8005, 395, RFStory_Battle_45
 	msgbox gStringVar4
@@ -399,6 +429,7 @@ RFStory_Actor_30::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	goto_if_eq VAR_0x8005, 397, RFStory_Battle_47
 	msgbox gStringVar4
@@ -413,6 +444,7 @@ RFStory_Actor_31::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -425,6 +457,7 @@ RFStory_Actor_32::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -437,6 +470,7 @@ RFStory_Actor_33::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -450,6 +484,7 @@ RFStory_Actor_34::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	goto_if_eq VAR_0x8005, 412, RFStory_Battle_62
 	msgbox gStringVar4
@@ -464,6 +499,7 @@ RFStory_Actor_35::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -477,6 +513,7 @@ RFStory_Actor_36::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -489,6 +526,7 @@ RFStory_Actor_37::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -501,6 +539,7 @@ RFStory_Actor_38::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -513,6 +552,7 @@ RFStory_Actor_39::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -525,6 +565,7 @@ RFStory_Actor_40::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -537,6 +578,7 @@ RFStory_Actor_41::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -549,6 +591,7 @@ RFStory_Actor_42::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -561,6 +604,7 @@ RFStory_Actor_43::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -573,6 +617,7 @@ RFStory_Actor_44::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -585,6 +630,7 @@ RFStory_Actor_45::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -597,6 +643,7 @@ RFStory_Actor_46::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -609,6 +656,7 @@ RFStory_Actor_47::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -621,6 +669,7 @@ RFStory_Actor_48::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -633,6 +682,7 @@ RFStory_Actor_49::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -645,6 +695,7 @@ RFStory_Actor_50::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -657,6 +708,7 @@ RFStory_Actor_51::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -669,6 +721,7 @@ RFStory_Actor_52::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -681,6 +734,7 @@ RFStory_Actor_53::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
 	msgbox gStringVar4
 	release
@@ -694,7 +748,121 @@ RFStory_Actor_54::
 	goto_if_eq VAR_RESULT, 1, RFStory_Offer
 	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
 	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_55::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 55
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_56::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 56
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_57::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 57
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_58::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 58
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_59::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 59
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_60::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 60
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_61::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 61
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_62::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 62
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 424, RFStory_Battle_74
 	msgbox gStringVar4
 	release
 	end
@@ -727,6 +895,12 @@ RFStory_Puzzle::
 	msgbox gStringVar4, MSGBOX_YESNO
 	callnative Script_RFStoryPuzzle
 	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	msgbox gStringVar4
+	release
+	end
+RFStory_Choice::
+	msgbox gStringVar4, MSGBOX_YESNO
+	callnative Script_RFStoryChoice
 	msgbox gStringVar4
 	release
 	end
@@ -783,6 +957,15 @@ RFStory_Battle_62::
 	goto_if_eq VAR_RESULT, NO, RFStory_Bye
 	trainerbattle_single TRAINER_RF_STORY_5, RFStory_BattleIntro, RFStory_BattleLost
 	setvar VAR_0x8005, 412
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_74::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_6, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 424
 	callnative Script_RFStoryBattleWon
 	msgbox gStringVar4
 	release

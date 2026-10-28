@@ -356,13 +356,23 @@ class QuestEngineTests(unittest.TestCase):
         source = (engine.read_text(encoding="utf-8") + (ROOT / "src/data/rf_quests.h").read_text(encoding="utf-8")
                   + (ROOT / "src/data/rf_quests_legends.h").read_text(encoding="utf-8")
                   + (ROOT / "src/data/rf_quests_extra.h").read_text(encoding="utf-8")
-                  + (ROOT / "src/data/rf_quests_story.h").read_text(encoding="utf-8"))
+                  + (ROOT / "src/data/rf_quests_story.h").read_text(encoding="utf-8")
+                  + (ROOT / "src/data/rf_quest_links.h").read_text(encoding="utf-8"))
         species = sorted(set(re.findall(r"\bSPECIES_[A-Z0-9_]+", source)) - {"SPECIES_NONE"})
         items = sorted(set(re.findall(r"\bITEM_[A-Z0-9_]+", source)) - {"ITEM_NONE"})
         maps = sorted(set(re.findall(r"\bMAP_[A-Z0-9_]+", source)) - {"MAP_GROUP", "MAP_NUM", "MAP_OFFSET"})
         declarations = "enum Species {SPECIES_NONE, " + ", ".join(species) + "};\n"
         declarations += "enum Item {ITEM_NONE, " + ", ".join(items) + "};\n"
         declarations += "\n".join(f"#define {name} {1000 + i}" for i, name in enumerate(maps))
+        types = sorted(set(re.findall(r"\bTYPE_[A-Z]+\b", source)) - {"TYPE_NONE"})
+        declarations += "\nenum Type {TYPE_NONE, " + ", ".join(types) + "};\n"
+        real_ach = dict(re.findall(r"^#define (ACH_\w+) (\d+)",
+                                   (ROOT / "include/constants/rf_achievements.h").read_text(encoding="utf-8"), re.M))
+        declarations += "".join(f"#define {name} {real_ach[name]}\n"
+                                for name in sorted(set(re.findall(r"\bACH_[A-Z0-9_]+", source))))
+        # Story actor scripts referenced by the generated visibility rows.
+        declarations += "".join(f"const unsigned char {name}[] = {{0}};\n"
+                                for name in sorted(set(re.findall(r"\bRFStory_Actor_\d+", source))))
         global_header = r'''
 #ifndef MOCK_GLOBAL_H
 #define MOCK_GLOBAL_H

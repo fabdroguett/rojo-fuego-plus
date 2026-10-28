@@ -1,5 +1,20 @@
 # Continuidad de ejecución
 
+## Misiones: Fase C, lote 1 (28-10-2026)
+
+430 misiones; campañas «Censo de la hierba alta» (414–421) y «La escuela del camino» (422–429).
+- `story_content.py`: `actor2`, `CHOICES` (bit 0 = `escuela_exigencia`), escenas `field`/`choice`,
+  `alt_offer`/`alt_ending`, `bonus`, `visible_after`. Entrenador nuevo `TRAINER_RF_STORY_6` (Quim).
+- `rf_story.c`: progreso en pistas, mensaje de contadores llenos, `Script_RFStoryChoice`.
+  `rf_quest_menu.c`: nombres de capítulo generados (`src/data/rf_story_chapters.h`).
+- Generador de actores: entradas por conexión solo si ambos lados son transitables; `MapGrid`
+  lee atributos de 32 bits en layouts `frlg`; respaldo con Surf (solo la baliza del Pilar Recuerdo).
+  20 actores ya enviados cambiaron de casilla; se revisaron los 63 en capturas mGBA.
+- Pendiente detectado: 23 objetos de legendarios en casillas no transitables según la clasificación
+  corregida: FiveIsland_Meadow (070), FiveIsland_MemorialPillar (044), FiveIsland_ResortGorgeous (055, 073), FourIsland_IcefallCave_B1F (023, 108: botón de Fuerza), OneIsland_KindleRoad (032), OneIsland_TreasureBeach (027, 074), Route13 (008), Route17 (012, 110), Route18 (013), Route21_North (054), Route21_South (087), Route23 (080), SevenIsland_TanobyRuins (049, 067), SixIsland_GreenPath (041, 104), SixIsland_OutcastIsland (035, 106), SixIsland_WaterPath (033). Regenerar con `legends.py` cambiará sus posiciones; validar a pie.
+- mGBA: 56/56 (casos c1-seen, c1-wild-win, c1-evolve, c1-hatch, c1-cora-hidden, c1-census-final,
+  c1-quim, c1-choice, c1-alt-offer). La captura en combate no tiene recorrido real (prueba C).
+
 ## Misiones: Fase B (28-10-2026)
 
 Rama `fase-a-misiones`: Fase A en `7240f629` y Fase B en el commit que añade este apartado. Motor descrito en

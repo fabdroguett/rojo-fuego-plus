@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 import re
 import textwrap
-from story_content import ACTORS, CAMPAIGNS, CLUES, TRAINERS, CONTRACTS, PLACES
+from story_content import ACTORS, ACTORS_V2, CAMPAIGNS, CHOICES, CLUES, TRAINERS, CONTRACTS, PLACES
 from legends import MapGrid, behaviors, tileset_attribute_files
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -57,16 +57,48 @@ def scripted_traffic(grid):
     return traffic
 
 
-def find_spot(grid, occupied):
-    """Check collision, elevation, reachability and that an NPC cannot seal a passage."""
+def crossable(grid, x, y, surf):
+    if grid.walkable(x,y): return True
+    return surf and 0<=x<grid.w and 0<=y<grid.h and grid.collision(x,y)==0 and grid.behavior(x,y) in SURFABLE
+
+
+def connection_seeds(grid, open_grid, surf=False):
+    """Border tiles a player can actually walk in from: walkable on both sides of the connection.
+
+    Treating a whole border as an entrance made land behind water or cliffs look reachable
+    (e.g. the plateau of Cerulean Cave next to the Route 24 connection).
+    """
+    seeds=set()
+    for c in grid.data.get('connections') or []:
+        other=open_grid(c['map'])
+        if other is None:
+            continue
+        d,offset=c['direction'],c['offset']
+        if d in ('up','down'):
+            y,oy=(0,other.h-1) if d=='up' else (grid.h-1,0)
+            seeds.update((x,y) for x in range(grid.w) if crossable(grid,x,y,surf) and crossable(other,x-offset,oy,surf))
+        elif d in ('left','right'):
+            x,ox=(0,other.w-1) if d=='left' else (grid.w-1,0)
+            seeds.update((x,y) for y in range(grid.h) if crossable(grid,x,y,surf) and crossable(other,ox,y-offset,surf))
+    return seeds
+
+
+SURFABLE={'MB_POND_WATER','MB_DEEP_WATER','MB_OCEAN_WATER','MB_FAST_WATER','MB_SEMI_DEEP_WATER','MB_CYCLING_ROAD_WATER'}
+
+
+def find_spot(grid, occupied, open_grid, surf=False):
+    """Check collision, elevation, reachability and that an NPC cannot seal a passage.
+
+    surf=True also lets the player reach land by water (maps only reachable with Surf). The
+    actor and its landing tile always stand on walkable land.
+    """
+    def passable(x,y):
+        if grid.walkable(x,y): return True
+        return surf and 0<=x<grid.w and 0<=y<grid.h and grid.collision(x,y)==0 and grid.behavior(x,y) in SURFABLE
     warps={(o['x'],o['y']) for o in grid.data.get('warp_events',[])}
     triggers={(o['x'],o['y']) for kind in ('coord_events','bg_events') for o in grid.data.get(kind,[])}
     traffic=scripted_traffic(grid)
-    seeds=set(warps)
-    for c in grid.data.get('connections') or []:
-        d=c['direction']
-        if d in ('up','down'): seeds.update((x,0 if d=='up' else grid.h-1) for x in range(grid.w))
-        if d in ('left','right'): seeds.update((0 if d=='left' else grid.w-1,y) for y in range(grid.h))
+    seeds=set(warps)|connection_seeds(grid,open_grid,surf)
     def reachable(blocked):
         seen=set(); queue=deque(p for p in seeds if 0<=p[0]<grid.w and 0<=p[1]<grid.h and p not in blocked)
         while queue:
@@ -75,9 +107,11 @@ def find_spot(grid, occupied):
             seen.add(p)
             x,y=p
             for n in ((x-1,y),(x+1,y),(x,y-1),(x,y+1)):
-                if n in seen or n in blocked or not grid.walkable(*n): continue
+                if n in seen or n in blocked or not passable(*n): continue
                 a,b=grid.elevation(*p),grid.elevation(*n)
-                if a!=b and a not in (0,15) and b not in (0,15): continue
+                # Getting on and off the water crosses elevations; walking does not.
+                shore=surf and (not grid.walkable(*p) or not grid.walkable(*n))
+                if a!=b and a not in (0,15) and b not in (0,15) and not shore: continue
                 queue.append(n)
         return seen
     before=reachable(occupied)
@@ -86,7 +120,7 @@ def find_spot(grid, occupied):
         if not grid.walkable(x,y): continue
         if x<1 or y<1 or x>=grid.w-1 or y>=grid.h-1 or (x,y) in triggers or (x,y) in traffic: continue
         if any(abs(x-a)+abs(y-b)<2 for a,b in warps|triggers|occupied): continue
-        neighbours=[n for n in ((x-1,y),(x+1,y),(x,y-1),(x,y+1)) if n in before and n not in occupied]
+        neighbours=[n for n in ((x-1,y),(x+1,y),(x,y-1),(x,y+1)) if n in before and n not in occupied and grid.walkable(*n)]
         if len(neighbours)<2: continue
         distance=min((abs(x-a)+abs(y-b) for a,b in occupied),default=8)
         # Prefer open tiles near entrances rather than inaccessible corners of large maps.
@@ -99,16 +133,24 @@ def find_spot(grid, occupied):
     raise ValueError(f'{grid.folder}: every candidate would cut a path')
 
 
+def replace_block(text, name, lines):
+    """Replace the generated rows between BEGIN/END markers, keeping the hand-written rest."""
+    begin=re.search(rf'^([ \t]*)// BEGIN {name} \(story_campaigns.py\)\n',text,re.M)
+    end=re.search(rf'^[ \t]*// END {name}\n',text,re.M)
+    assert begin and end and begin.end()<=end.start(),name
+    return text[:begin.end()]+''.join(begin.group(1)+line+'\n' for line in lines)+text[end.start():]
+
+
 def main():
     quests=[]
-    for chapter,(_,_,rows) in enumerate(CAMPAIGNS):
+    chapter_names=[]
+    for chapter,(title,_,rows) in enumerate(CAMPAIGNS):
         assert len(rows)==8
+        chapter_names.append(title)
         for row in rows: quests.append(dict(row,chapter=9+chapter,id=FIRST+len(quests)))
-    assert len(quests)==64
+    assert len(quests)==8*len(CAMPAIGNS) and FIRST+len(quests)<=650
+    campaign_start={title:FIRST+8*i for i,(title,_,_) in enumerate(CAMPAIGNS)}
     actors={k:dict(v) for k,v in ACTORS.items()}
-    for a in actors.values():
-        if a['gfx']=='OBJ_EVENT_GFX_HIKER': a['gfx']='OBJ_EVENT_GFX_HIKER_FRLG'
-    for key in ('alma','edda','ada'): actors[key]['gfx']='OBJ_EVENT_GFX_WOMAN_1_FRLG'
     clue_bits={}; bit=0
     # Shipped evidence bits are explicit; future campaigns must not shift this layout.
     clue_base={2:0,13:3,21:6,60:9,50:14}
@@ -121,6 +163,19 @@ def main():
         clue_bits[FIRST+offset]=mask
     assert bit<=32
     actors['home_cubone']=dict(name='Cubone del refugio',place='LavenderTown_VolunteerPokemonHouse',greeting='El pequeño del refugio se acerca por voluntad propia. Inés mantiene la puerta abierta para sus paseos.',gfx='OBJ_EVENT_GFX_SPECIES(CUBONE)',after=FIRST+23)
+    # Later actors come last so the IDs, labels and local IDs of shipped actors never shift.
+    for key,a in ACTORS_V2.items():
+        assert key not in actors,key
+        actors[key]=dict(a)
+    for a in actors.values():
+        if a['gfx']=='OBJ_EVENT_GFX_HIKER': a['gfx']='OBJ_EVENT_GFX_HIKER_FRLG'
+    for key in ('alma','edda','ada'): actors[key]['gfx']='OBJ_EVENT_GFX_WOMAN_1_FRLG'
+    # Quest-state visibility (rf_quest_links.h) for actors that appear after a campaign step.
+    visible={}
+    for key,a in actors.items():
+        if a.get('visible_after'):
+            title,row=a['visible_after']
+            visible[key]=campaign_start[title]+row
     actor_ids={k:i for i,k in enumerate(actors)}
     layouts={x['id']:x for x in json.loads((ROOT/'data/layouts/layouts.json').read_text(encoding='utf-8'))['layouts'] if x}
     attrs,mb=tileset_attribute_files(),behaviors()
@@ -139,6 +194,15 @@ def main():
         if len(kept)!=len(data.get('object_events',[])):
             data['object_events']=kept
             write(path.relative_to(ROOT),json.dumps(data,ensure_ascii=False,indent=2))
+    folders={json.loads(path.read_text(encoding='utf-8'))['id']:path.parent.name for path in (ROOT/'data/maps').glob('*/map.json')}
+    grids={}
+    def open_grid(map_id):
+        folder=folders.get(map_id)
+        if folder is None or not (ROOT/'data/maps'/folder/'map.json').exists():
+            return None
+        if folder not in grids:
+            grids[folder]=MapGrid(folder,layouts,attrs,mb)
+        return grids[folder]
     for folder,keys in by_map.items():
         grid=MapGrid(folder,layouts,attrs,mb)
         data=grid.data
@@ -146,15 +210,23 @@ def main():
         occupied={(o['x'],o['y']) for o in data['object_events']}
         for key in keys:
             a=actors[key]
-            x,y,elevation,landing=find_spot(grid,occupied)
+            try:
+                x,y,elevation,landing=find_spot(grid,occupied,open_grid)
+                a['surf']=False
+            except ValueError:
+                # Only some sea maps need this; their scenes are post-game, when Surf is available.
+                x,y,elevation,landing=find_spot(grid,occupied,open_grid,surf=True)
+                a['surf']=True
+                print(f'note: {key} in {folder} is reached by surfing')
             occupied.add((x,y))
             local=len(data['object_events'])+1
             a.update(x=x,y=y,landing=landing,local_id=local)
             data['object_events'].append(dict(local_id=f'LOCALID_RF_STORY_{actor_ids[key]}',type='object',graphics_id=a['gfx'],x=x,y=y,elevation=elevation if elevation not in (0,15) else 3,movement_type='MOVEMENT_TYPE_FACE_DOWN',movement_range_x=0,movement_range_y=0,trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',script=PREFIX+str(actor_ids[key]),flag='0'))
-            placements.append(dict(key=key,actor=actor_ids[key],map=a['map'],folder=folder,x=x,y=y,landing=landing,localId=local))
+            placements.append(dict(key=key,actor=actor_ids[key],map=a['map'],folder=folder,x=x,y=y,landing=landing,localId=local,surf=a['surf']))
         assert len(data['object_events'])<=64,folder
         write(Path('data/maps')/folder/'map.json',json.dumps(data,ensure_ascii=False,indent=2))
-    const=['#ifndef GUARD_CONSTANTS_RF_STORY_H','#define GUARD_CONSTANTS_RF_STORY_H',f'#define RF_STORY_FIRST {FIRST}',f'#define RF_STORY_COUNT {len(quests)}',f'#define RF_STORY_ACTOR_COUNT {len(actors)}','#define RF_STORY_CHAPTER_FIRST 9','#define RF_STORY_EVENT 4']
+    const=['#ifndef GUARD_CONSTANTS_RF_STORY_H','#define GUARD_CONSTANTS_RF_STORY_H',f'#define RF_STORY_FIRST {FIRST}',f'#define RF_STORY_COUNT {len(quests)}',f'#define RF_STORY_ACTOR_COUNT {len(actors)}','#define RF_STORY_CHAPTER_FIRST 9','#define RF_STORY_EVENT 4','#define RF_STORY_NO_CHOICE 0xFF']
+    const += [f'#define RF_STORY_CHOICE_{key.upper()} {bit}' for key,bit in CHOICES.items()]
     const += [f'#define RF_STORY_ACTOR_{key.upper()} {i}' for key,i in actor_ids.items()]
     const += [f'#define RF_QUEST_STORY_{i:03d} {FIRST+i}' for i in range(len(quests))]
     const+=['#endif']
@@ -184,12 +256,18 @@ def main():
             definitions.append('static const struct RFStoryRace sRace_%d = {%d, COMPOUND_STRING(%s), COMPOUND_STRING(%s), COMPOUND_STRING(%s)};'
                                %(i,q['seconds'],quoted(start,pages=True),quoted(late,pages=True),quoted(restart,pages=True)))
     definitions+=['static const struct RFStoryScene sScenes[] = {']
-    kinds={'talk':'RF_STORY_TALK','delivery':'RF_STORY_DELIVERY','clues':'RF_STORY_CLUES','battle':'RF_STORY_BATTLE','race':'RF_STORY_RACE','puzzle':'RF_STORY_PUZZLE'}
+    kinds={'talk':'RF_STORY_TALK','delivery':'RF_STORY_DELIVERY','clues':'RF_STORY_CLUES','battle':'RF_STORY_BATTLE','race':'RF_STORY_RACE','puzzle':'RF_STORY_PUZZLE','field':'RF_STORY_FIELD','choice':'RF_STORY_CHOICE'}
     for i,q in enumerate(quests):
         condition='QUEST_EVENT';argument='RF_STORY_EVENT';alternative=str(q['id'])
         extra=''
         if q['kind']=='delivery':
             condition='QUEST_DELIVER_ITEM';argument,alternative=q['proof'];alternative=str(alternative)
+        elif q['kind']=='field':
+            # Completed in the field by the quest engine; the target only receives the report.
+            goal=q['goal'];condition=goal[0];argument=goal[1];alternative='0'
+            if condition=='QUEST_COUNT':
+                alternative=goal[2]
+                extra=f'        .target = {goal[3]},\n'
         elif isinstance(q['proof'],tuple):
             c,a,b=q['proof']
             extra=f'        .objectiveCount = 2, .secondaryCondition = {c}, .secondaryArgument = {a}, .secondaryAlternative = {b},\n'
@@ -200,7 +278,12 @@ def main():
         trainer=f'TRAINER_RF_STORY_{q["proof"]}' if q['kind']=='battle' else '0'
         puzzle=(f'sPuzzle_{i}',len(q['questions'])) if q['questions'] else ('NULL',0)
         race=f'&sRace_{i}' if q['seconds'] else 'NULL'
-        definitions.append('    {%d, %d, %s, %s, 0x%08X, %s, %s, %s, %d, %s},'%(actor_ids[q['giver']],actor_ids[q['target']],kinds[q['kind']],trainer,clue_bits.get(q['id'],0),f'COMPOUND_STRING({quoted(q["offer"],pages=True)})',f'COMPOUND_STRING({quoted(q["ending"],pages=True)})',puzzle[0],puzzle[1],race))
+        def text(value, pages=True):
+            return f'COMPOUND_STRING({quoted(value,pages=pages)})' if value else 'NULL'
+        if q['question']:
+            assert len(textwrap.wrap(q['question'],32))<=2,(q['name'],q['question'])
+        choice=f"RF_STORY_CHOICE_{q['choice'].upper()}" if q['choice'] else 'RF_STORY_NO_CHOICE'
+        definitions.append('    {%d, %d, %s, %s, 0x%08X, %s, %s, %s, %d, %s, %s, %s, %s, %s},'%(actor_ids[q['giver']],actor_ids[q['target']],kinds[q['kind']],trainer,clue_bits.get(q['id'],0),text(q['offer']),text(q['ending']),puzzle[0],puzzle[1],race,choice,text(q['question'],False),text(q['alt_offer']),text(q['alt_ending'])))
     definitions+=['};','static const struct RFStoryContract sContracts[] = {']
     for key,title,item,count,reward,qty,unlock in CONTRACTS:
         definitions.append(f'    {{{actor_ids[key]}, {FIRST+unlock}, {item}, {count}, {reward}, {qty}, COMPOUND_STRING({quoted(title)})}},')
@@ -210,11 +293,26 @@ def main():
     header=ROOT/'include/constants/rf_quests.h'
     text=header.read_text(encoding='utf-8')
     text=re.sub(r'#define RF_QUEST_COUNT \d+',f'#define RF_QUEST_COUNT {FIRST+len(quests)}',text)
-    text=re.sub(r'#define RF_QUEST_CHAPTER_COUNT \d+','#define RF_QUEST_CHAPTER_COUNT 17',text)
+    text=re.sub(r'#define RF_QUEST_CHAPTER_COUNT \d+',f'#define RF_QUEST_CHAPTER_COUNT {9+len(CAMPAIGNS)}',text)
     write(header.relative_to(ROOT),text)
+    write('src/data/rf_story_chapters.h','\n'.join(['// Generated by story_campaigns.py: journal chapters of the authored campaigns.']
+                                                  +[f'    COMPOUND_STRING({quoted(name)}),' for name in chapter_names]))
+    # Composite rewards and quest-state visibility live in rf_quest_links.h, between markers.
+    links=(ROOT/'src/data/rf_quest_links.h').read_text(encoding='utf-8')
+    bonuses=[]
+    for q in quests:
+        if q['bonus']:
+            fields=', '.join(f'.{k} = {v}' for k,v in q['bonus'].items())
+            bonuses.append(f'{{.quest = RF_QUEST_STORY_{q["id"]-FIRST:03d}, {fields}}},')
+    objects=[f'{{.script = {PREFIX}{actor_ids[k]}, .quest = RF_QUEST_STORY_{qid-FIRST:03d}, .minState = 3, .maxState = 3}},'
+             for k,qid in visible.items()]
+    links=replace_block(links,'STORY EXTERNS',[f'extern const u8 {PREFIX}{actor_ids[k]}[];' for k in visible])
+    links=replace_block(links,'STORY BONUSES',bonuses)
+    links=replace_block(links,'STORY OBJECTS',objects)
+    write('src/data/rf_quest_links.h',links)
     script=['@ Authored stories. Generated by tools/rojo_fuego/story_campaigns.py.']
     for key,a in actors.items():
-        script += [f'{PREFIX}{actor_ids[key]}::','\tlock',*(['\tfaceplayer'] if a['gfx']!='OBJ_EVENT_GFX_ITEM_BALL' else []),f'\tsetvar VAR_0x8004, {actor_ids[key]}','\tcallnative Script_RFStoryPrepare','\tgoto_if_eq VAR_RESULT, 1, RFStory_Offer','\tgoto_if_eq VAR_RESULT, 2, RFStory_Confirm','\tgoto_if_eq VAR_RESULT, 3, RFStory_Puzzle']
+        script += [f'{PREFIX}{actor_ids[key]}::','\tlock',*(['\tfaceplayer'] if a['gfx']!='OBJ_EVENT_GFX_ITEM_BALL' else []),f'\tsetvar VAR_0x8004, {actor_ids[key]}','\tcallnative Script_RFStoryPrepare','\tgoto_if_eq VAR_RESULT, 1, RFStory_Offer','\tgoto_if_eq VAR_RESULT, 2, RFStory_Confirm','\tgoto_if_eq VAR_RESULT, 3, RFStory_Puzzle','\tgoto_if_eq VAR_RESULT, 5, RFStory_Choice']
         script+=['\tgoto_if_ne VAR_RESULT, 4, RFStory_ShowText']
         for i,q in enumerate(quests):
             if q['kind']=='battle' and q['target']==key:
@@ -223,6 +321,7 @@ def main():
     script += ['RFStory_ShowText::','\tmsgbox gStringVar4','\tcallnative Script_RFStoryAfterText','\tgoto_if_eq VAR_0x8007, 1, RFStory_RemoveMarker','\trelease','\tend','RFStory_RemoveMarker::','\tremoveobject VAR_LAST_TALKED','\trelease','\tend','RFStory_Offer::','\tmsgbox gStringVar4, MSGBOX_YESNO','\tgoto_if_eq VAR_RESULT, NO, RFStory_Bye','\tcallnative Script_RFStoryAccept','\tmsgbox gStringVar4','\trelease','\tend',
                'RFStory_Confirm::','\tmsgbox gStringVar4, MSGBOX_YESNO','\tgoto_if_eq VAR_RESULT, NO, RFStory_Bye','\tcallnative Script_RFStoryConfirm','\tmsgbox gStringVar4','\trelease','\tend',
                'RFStory_Puzzle::','\tmsgbox gStringVar4, MSGBOX_YESNO','\tcallnative Script_RFStoryPuzzle','\tgoto_if_eq VAR_RESULT, 3, RFStory_Puzzle','\tmsgbox gStringVar4','\trelease','\tend',
+               'RFStory_Choice::','\tmsgbox gStringVar4, MSGBOX_YESNO','\tcallnative Script_RFStoryChoice','\tmsgbox gStringVar4','\trelease','\tend',
                'RFStory_Bye::','\trelease','\tend']
     for i,q in enumerate(quests):
         if q['kind']=='battle':
@@ -253,7 +352,7 @@ def main():
         fixture.append('    {%s,%d,%d,%d,%d,%d,%s},'%(a['map'],a['x'],a['y'],a['landing'][0],a['landing'][1],a['local_id'],PREFIX+str(actor_ids[key])))
     fixture+=['};']
     write('tools/rojo_fuego/test/story_fixture_actors.h','\n'.join(fixture))
-    print(f'Generated {len(quests)} authored quests, {len(actors)} actors, {bit} clues, {len(TRAINERS)} trainer teams; IDs 350–413.')
+    print(f'Generated {len(quests)} authored quests, {len(actors)} actors, {bit} clues, {len(TRAINERS)} trainer teams; IDs {FIRST}–{FIRST+len(quests)-1}.')
 
 
 if __name__=='__main__': main()

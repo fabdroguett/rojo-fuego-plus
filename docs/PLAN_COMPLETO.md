@@ -12,6 +12,24 @@ Una casilla pendiente puede requerir implementación, completar una integración
 validar código existente. No cuenta como terminada solo porque compile. Las funciones
 repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 
+## Misiones: Fase C, lote 1 (28-10-2026)
+
+**430 misiones** (IDs 0–429). Dos campañas nuevas de 8 escenas que usan el motor de la Fase B:
+- **CENSO DE LA HIERBA ALTA** (414–421, Oak/hábitats): capturas en el Bosque Verde, observar a
+  Pikachu, victorias contra salvajes, capturas de tipo Agua, evoluciones, eclosión y entrega final
+  con premio compuesto; Cora se queda en el laboratorio de Oak.
+- **LA ESCUELA DEL CAMINO** (422–429, combate/personajes): victorias contra entrenadores, combate
+  con Quim, decisión exigencia/paciencia que cambia textos posteriores, medallas y logro de 50 victorias.
+
+Al validarlas se corrigieron dos fallos del generador de actores que afectaban a campañas ya
+enviadas: bordes de conexión dados por transitables aunque al otro lado hubiera agua o acantilado,
+y atributos de tiles de FireRed leídos como de 16 bits. 20 actores existentes se recolocaron en tierra
+alcanzable (p. ej. Leila estaba en la meseta de la cueva Celeste y Hana en el agua de Carmín).
+**Pendiente:** 23 legendarios de `legends.py` siguen en agua o sobre un botón de Fuerza (ver CONTINUIDAD).
+
+**Siguiente:** recolocar esos legendarios con la clasificación corregida; lote 2 reconvirtiendo
+registros genéricos (con migración de los IDs que cambien de significado).
+
 ## Misiones: Fase B implementada (28-10-2026)
 
 Motor ampliado sin contenido nuevo todavía; referencia para autores en [MOTOR_MISIONES.md](MOTOR_MISIONES.md).

@@ -4,6 +4,11 @@ Dialogue is deliberately separate from engine code and from the short journal ob
 No legendary, fossil, party member or main-story NPC is removed by these stories.
 """
 ACTORS = {}
+# Actors added after the first eight campaigns. The generator places them after the clue
+# markers and Cubone, so existing actor IDs, script labels and local IDs never shift.
+ACTORS_V2 = {}
+# Story decisions: stable bit numbers in SaveBlock3 (rfQuestChoices). Never renumber.
+CHOICES = {'escuela_exigencia': 0}
 PLACES = {
  'PewterCity_Museum_1F':'Museo de Plateada, planta 1', 'Route4':'Ruta 4',
  'MtMoon_B2F':'Monte Moon, sótano 2', 'OneIsland_PokemonCenter_1F':'Centro Pokémon de Isla Uno',
@@ -24,11 +29,18 @@ PLACES = {
  'Route22':'Ruta 22', 'CinnabarIsland_PokemonLab_ExperimentRoom':'Laboratorio de Canela',
  'PokemonTower_5F':'Torre Pokémon, planta 5', 'PokemonTower_6F':'Torre Pokémon, planta 6',
  'PokemonTower_7F':'Torre Pokémon, planta 7',
+ 'Route2':'Ruta 2', 'Route24':'Ruta 24', 'FourIsland':'Isla Cuatro', 'PewterCity':'Ciudad Plateada',
 }
 
 
 def actor(key, name, place, greeting, gfx='OBJ_EVENT_GFX_SCIENTIST'):
     ACTORS[key] = dict(name=name, place=place, greeting=greeting, gfx=gfx)
+    return key
+
+
+def actor2(key, name, place, greeting, gfx='OBJ_EVENT_GFX_SCIENTIST', visible_after=None):
+    """visible_after: index of a campaign row; the actor appears once that quest is claimed."""
+    ACTORS_V2[key] = dict(name=name, place=place, greeting=greeting, gfx=gfx, visible_after=visible_after)
     return key
 
 
@@ -71,12 +83,35 @@ actor('belen','Belén','SixIsland_GreenPath','Una expedición termina cuando tod
 actor('riel','Riel','Route22','Entrenamos orientación entre dos puestos. Si pierdes el ritmo, vuelve a empezar.', 'OBJ_EVENT_GFX_HIKER')
 
 
+# Batch C1 (28-10-2026): census of habitats and a school for trainers.
+actor2('cora','Cora','Route2','Cuento quién vive en cada ruta. Un número sin contexto no protege a nadie.', 'OBJ_EVENT_GFX_WOMAN_1_FRLG')
+actor2('olmo','Olmo','ViridianForest','Cuido este bosque desde hace años. Aprendí a no hacer ruido antes que a hablar.', 'OBJ_EVENT_GFX_HIKER')
+actor2('vito','Vito','Route24','Los ríos llevan noticias de una ruta a otra. Solo hay que saber leerlas.')
+actor2('nerea','Nerea','FourIsland','En la guardería vemos los primeros días de cada Pokémon. Son los que más se recuerdan.', 'OBJ_EVENT_GFX_WOMAN_1_FRLG')
+actor2('cora_lab','Cora','PalletTown_ProfessorOaksLab','El censo no se cierra nunca: cada estación cambia una columna. Gracias por empezarlo conmigo.', 'OBJ_EVENT_GFX_WOMAN_1_FRLG', visible_after=('CENSO DE LA HIERBA ALTA', 7))
+actor2('tano','Tano','PewterCity','Gané muchas medallas. Ahora intento que mis alumnos aprendan antes que yo a levantarse.', 'OBJ_EVENT_GFX_HIKER')
+actor2('pia','Pía','Route3','Cada derrota me pesa. Tano dice que es porque todavía no las anoto bien.', 'OBJ_EVENT_GFX_WOMAN_1_FRLG')
+actor2('quim','Quim','CeruleanCity','Todo combate cabe en mi cuaderno. Bueno, casi todo.')
+
+
 def q(name, giver, target, objective, offer, ending, *, kind='talk', proof=None, flag='0', reward='ITEM_GREAT_BALL', quantity=2,
-      questions=(), seconds=0):
-    """questions: (yes/no question, expected answer) for puzzles; seconds: race time limit."""
+      questions=(), seconds=0, goal=None, choice=None, question=None, alt_offer=None, alt_ending=None, bonus=None):
+    """questions: (yes/no question, expected answer) for puzzles; seconds: race time limit.
+
+    goal: field objective checked by the quest engine, reported to the target afterwards:
+      ('QUEST_COUNT', event, filter, target), ('QUEST_DEX_SEEN', species), ('QUEST_BADGES', n)
+      or ('QUEST_ACHIEVEMENT', achievement).
+    choice: key of CHOICES. A 'choice' scene asks `question` and sets the bit on YES; any scene
+      with a choice shows alt_offer/alt_ending once the bit is set.
+    bonus: composite reward fields for rf_quest_links.h (item, itemCount, money, flag, achievement).
+    """
     assert (kind=='puzzle')==bool(questions) and (kind=='race')==bool(seconds),name
+    assert (kind=='field')==bool(goal) and (kind=='choice')==bool(question),name
+    assert choice is None or choice in CHOICES,name
+    assert (alt_offer is None and alt_ending is None) or choice,name
     return dict(name=name,giver=giver,target=target,objective=objective,offer=offer,ending=ending,
-                kind=kind,proof=proof,flag=flag,reward=reward,quantity=quantity,questions=list(questions),seconds=seconds)
+                kind=kind,proof=proof,flag=flag,reward=reward,quantity=quantity,questions=list(questions),seconds=seconds,
+                goal=goal,choice=choice,question=question,alt_offer=alt_offer,alt_ending=alt_ending,bonus=bonus)
 
 
 CAMPAIGNS = [
@@ -167,6 +202,27 @@ q('Un relevo en Camino Verde','gael','belen','Lleva el informe a Belén en Camin
 q('Saber cuándo regresar','belen','gael','Gana la práctica de regreso con Gael.','Gael simula el último encuentro de una expedición. Es un combate voluntario con tu equipo habitual; puedes volver a prepararte si pierdes.','Gael da por finalizada la práctica. La prueba no exigía agotar recursos, sino reconocer cuándo prepararse mejor.',kind='battle',proof=5),
 q('Volver con los demás','gael','lina','Cierra el cuaderno con Lina en Ciudad Verde.','Entrega a Lina el cuaderno de orientación y expediciones. Cada participante ha confirmado su regreso; falta cerrar el registro común.','Lina archiva la ruta, los cinco sellos y el regreso del grupo. La campaña termina con todas las personas localizadas y encargos diarios opcionales.',reward='ITEM_RARE_CANDY',quantity=3),
 ]),
+
+('CENSO DE LA HIERBA ALTA','Ada y cuatro guardas cuentan quién vive hoy en cada ruta para cuidar hábitats que cambian.',[
+q('Una libreta en blanco','ada','cora','Habla con Cora en Ruta 2.','Oak quiere saber qué Pokémon viven hoy en cada ruta, no solo cuáles vivían cuando escribió sus libros. Cora empezará el censo en Ruta 2; preséntate allí.','Cora te entrega una libreta con columnas vacías. Cada cifra deberá salir de algo que hayas visto o registrado tú.',flag='FLAG_BADGE01_GET'),
+q('Tres huellas del bosque','cora','cora','Captura tres Pokémon en el Bosque Verde y vuelve con Cora.','El Bosque Verde cambia con cada estación. Registra tres capturas allí; después puedes quedarte con ellos o liberarlos en el mismo bosque.','Cora anota especie, hora y claro de cada captura. Tres registros no son un censo, pero ya muestran que el bosque no es igual de día que de noche.',kind='field',goal=('QUEST_COUNT','RF_QUEST_EVENT_CATCH_MAP','MAP_VIRIDIAN_FOREST',3)),
+q('Mirar sin tocar','cora','olmo','Observa un Pikachu y cuéntaselo a Olmo, en el Bosque Verde.','Algunos Pokémon se esconden si los persigues. Olmo cuida el Bosque Verde y quiere saber si aún vive allí Pikachu. Basta con verlo; no hace falta atraparlo.','Olmo marca el claro donde lo viste. Saber que sigue allí vale más que llevárselo: el bosque necesita a quienes lo habitan.',kind='field',goal=('QUEST_DEX_SEEN','SPECIES_PIKACHU')),
+q('Ocho encuentros en calma','olmo','olmo','Gana ocho combates contra Pokémon salvajes y vuelve con Olmo.','Olmo estudia cómo reaccionan los Pokémon cuando alguien entrena con respeto. Gana ocho combates contra salvajes en cualquier ruta; no tienes que capturar a ninguno.','Olmo compara tus notas con las suyas. Los Pokémon de las rutas no son enemigos: son vecinos que también ponen a prueba a quien pasa.',kind='field',goal=('QUEST_COUNT','RF_QUEST_EVENT_WILD_WIN','0',8)),
+q('Lo que vive en el agua','olmo','vito','Captura cuatro Pokémon de tipo Agua y visita a Vito en Ruta 24.','El censo no puede quedarse en la hierba. Vito estudia ríos y estanques al norte de Ciudad Celeste. Registra cuatro capturas de tipo Agua y llévale las notas.','Vito agrupa tus registros por corriente y profundidad. El agua de Kanto une rutas que en el mapa parecen lejanas.',kind='field',goal=('QUEST_COUNT','RF_QUEST_EVENT_CATCH_TYPE','TYPE_WATER',4),flag='FLAG_BADGE02_GET'),
+q('Crecer a su ritmo','vito','vito','Haz que evolucionen dos Pokémon y vuelve con Vito.','Vito quiere saber cuándo cambia un Pokémon que crece junto a una persona. Acompaña a dos Pokémon hasta su evolución; no hay prisa ni un método mejor que otro.','Vito anota cuánto tiempo pasó cada uno contigo. Evolucionar no es una meta impuesta: es una etapa que el censo también recuerda.',kind='field',goal=('QUEST_COUNT','RF_QUEST_EVENT_EVOLVE','0',2),flag='FLAG_BADGE03_GET'),
+q('Un huevo para el censo','vito','nerea','Haz eclosionar un huevo y habla con Nerea en Isla Cuatro.','Ya como Campeón, visita la guardería de Isla Cuatro. Nerea registra los primeros días de los Pokémon recién nacidos. Haz eclosionar un huevo y cuéntale cómo fue.','Nerea añade una página nueva al censo: la de quienes aún no conocen ninguna ruta. Tu compañero sigue contigo.',kind='field',goal=('QUEST_COUNT','RF_QUEST_EVENT_HATCH','0',1),flag='FLAG_IS_CHAMPION'),
+q('El censo de la hierba alta','nerea','ada','Entrega el censo a Ada en el laboratorio de Oak.','Nerea completa la última columna. Lleva la libreta a Ada: Oak la comparará con sus registros antiguos.','Ada y Oak descubren especies que se mudaron y otras que regresaron. El censo llevará tu nombre junto al de Cora, Olmo, Vito y Nerea. Cora visitará el laboratorio para mantenerlo al día.',reward='ITEM_RARE_CANDY',quantity=3,bonus=dict(item='ITEM_LUCKY_EGG',itemCount=1,money=5000)),
+]),
+('LA ESCUELA DEL CAMINO','Un veterano enseña a dos aprendices que perder también forma parte del camino.',[
+q('Una alumna sin prisa','tano','pia','Busca a Pía en Ruta 3.','Tano entrenó durante años y ahora enseña en Plateada. Su alumna Pía practica en Ruta 3, pero se rinde tras cada derrota. Ve a conocerla.','Pía admite que teme decepcionar a Tano. Le cuentas que tu primera derrota también te enseñó algo, y decide seguir intentándolo.',flag='FLAG_BADGE01_GET'),
+q('Cinco combates limpios','pia','pia','Gana cinco combates contra entrenadores y vuelve con Pía.','Pía quiere ver cómo afrontas un combate tras otro. Gana cinco combates contra entrenadores en cualquier lugar; ella anotará qué decisiones tomaste.','Pía repasa sus notas. No ganaste por tener los Pokémon más fuertes, sino por cambiar de plan a tiempo.',kind='field',goal=('QUEST_COUNT','RF_QUEST_EVENT_TRAINER_WIN','0',5)),
+q('Un rival con apuntes','pia','quim','Vence a Quim en su práctica de Ciudad Celeste.','Quim, el otro alumno de Tano, estudia cada combate en su cuaderno. Te espera en Ciudad Celeste para una práctica voluntaria.','Quim cierra el cuaderno con una sonrisa. Ha descubierto que un plan escrito también tiene que escuchar a sus Pokémon.',kind='battle',proof=6,flag='FLAG_BADGE02_GET'),
+q('Exigencia o paciencia','quim','tano','Cuenta a Tano lo que aprendieron sus alumnos.','Pía y Quim quieren saber cómo seguirá su entrenamiento. Tano te pedirá tu opinión en Plateada.','Tano asiente. Les dará tiempo para equivocarse y entender por qué. Pía respira aliviada.',kind='choice',choice='escuela_exigencia',question='Tano te pregunta: ¿debería exigirles más a sus alumnos?',alt_ending='Tano acepta. Les pedirá más cada día, sin quitarles el derecho a descansar. Quim ya prepara un horario nuevo.'),
+q('Cuatro medallas, una charla','tano','tano','Consigue cuatro medallas y vuelve con Tano.','Tano quiere hablar contigo cuando reúnas cuatro medallas. Dice que entonces sabrás algo que a él le costó años aprender.','Tano te cuenta que ganó muchas medallas, pero recuerda mejor a quienes le ayudaron a levantarse. Quiere que sus alumnos lo sepan antes que él.',kind='field',goal=('QUEST_BADGES','4'),choice='escuela_exigencia',alt_offer='Tano endureció las prácticas como sugeriste. Quiere hablar contigo cuando reúnas cuatro medallas para saber si exigir ha servido de algo.'),
+q('Lo que Pía aprendió','tano','pia','Visita a Pía en Ruta 3.','Tano quiere saber cómo está Pía después de estas semanas. Visítala en Ruta 3.','Pía ya no se rinde tras una derrota: anota qué falló y vuelve a intentarlo con calma.',flag='FLAG_BADGE04_GET',choice='escuela_exigencia',alt_ending='Pía entrena cada mañana con el horario de Tano. Está cansada, pero ha aprendido a pedir un descanso cuando lo necesita.'),
+q('Cincuenta combates después','pia','quim','Gana cincuenta combates contra entrenadores y busca a Quim.','Quim calcula que un entrenador de verdad ha disputado al menos cincuenta combates. Cuando alcances esa cifra, búscalo en Ciudad Celeste.','Quim repasa tus combates y deja de contar victorias. Ahora le interesa cuántas veces cambiaste de estrategia.',kind='field',goal=('QUEST_ACHIEVEMENT','ACH_B02'),flag='FLAG_BADGE05_GET'),
+q('La escuela del camino','quim','tano','Reúnete con Tano y sus alumnos en Plateada.','Pía y Quim quieren presentar a Tano lo que han aprendido. Acompáñalos a Plateada para cerrar esta etapa.','Tano abre su escuela a quien quiera aprender a perder sin rendirse. Pía y Quim enseñarán a los siguientes alumnos.',reward='ITEM_BOTTLE_CAP',quantity=2,choice='escuela_exigencia',alt_ending='Tano reconoce que exigir funcionó porque Pía y Quim pudieron decir cuándo parar. La escuela tendrá horarios estrictos y descansos obligatorios.',bonus=dict(money=3000)),
+]),
 ]
 
 # An investigation is one mission with several individually persistent observations.
@@ -185,6 +241,7 @@ TRAINERS = [
 ('MAEL',45,'Male','Cooltrainer M Frlg',['Luxray','Bronzong','Gastrodon']),
 ('SARA',62,'Female','Cooltrainer F Frlg',['Mienshao','Chandelure','Braviary','Jellicent']),
 ('GAEL',60,'Male','Hiker Frlg',['Donphan','Crobat','Arcanine','Slowbro']),
+('QUIM',21,'Male','Youngster Frlg',['Bellsprout','Psyduck','Nidorino']),
 ]
 
 CONTRACTS = [

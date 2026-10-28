@@ -14,6 +14,12 @@
 #include "script.h"
 #include "save.h"
 #include "achievements.h"
+#include "battle_setup.h"
+#include "daycare.h"
+#include "event_scripts.h"
+#include "evolution_scene.h"
+#include "money.h"
+#include "wild_encounter.h"
 #include "constants/species.h"
 #include "constants/moves.h"
 #include "constants/items.h"
@@ -22,7 +28,7 @@
 struct RFStoryFixtureActor {u16 map,x,y,lx,ly;u8 local;const u8 *script;};
 #include "data/rf_story_fixture_actors.h"
 EWRAM_DATA u16 gRFStoryFixtureParams[8] = {0};
-EWRAM_DATA u32 gRFStoryFixtureResult[20] = {0};
+EWRAM_DATA u32 gRFStoryFixtureResult[24] = {0};
 
 static void Mark(u32 id,u32 state)
 {
@@ -143,6 +149,11 @@ void RFStoryFixture_Read(void)
     gRFStoryFixtureResult[17]=(u16)gSaveBlock1Ptr->pos.x|((u32)(u16)gSaveBlock1Ptr->pos.y<<16);
     gRFStoryFixtureResult[18]=gSaveBlock1Ptr->location.mapGroup<<8|gSaveBlock1Ptr->location.mapNum;
     gRFStoryFixtureResult[19]=actor<ARRAY_COUNT(sFixtureActors) && RFStory_IsObjectHidden(sFixtureActors[actor].script);
+    // Field objectives and composite rewards.
+    gRFStoryFixtureResult[20]=GetMoney(&gSaveBlock1Ptr->money);
+    gRFStoryFixtureResult[21]=CountTotalItemQuantityInBag(ITEM_LUCKY_EGG);
+    gRFStoryFixtureResult[22]=gSaveBlock3Ptr->rfQuestChoices;
+    gRFStoryFixtureResult[23]=RFQuests_GetProgress(id);
     SetMainCallback2(CB2_Overworld);
 }
 
@@ -204,5 +215,54 @@ void RFStoryFixture_SaveRoundTrip(void)
             && gSaveBlock3Ptr->rfStoryClues==0x15555;
     }
     else gRFStoryFixtureResult[15]=0;
+    SetMainCallback2(CB2_Overworld);
+}
+
+// Real gameplay paths for field objectives. params[4]/[5] carry species, levels or counts.
+void RFStoryFixture_WildBattle(void)
+{
+    CreateWildMon(gRFStoryFixtureParams[4], gRFStoryFixtureParams[5]);
+    SetMainCallback1(CB1_Overworld);SetMainCallback2(CB2_Overworld);
+    BattleSetup_StartWildBattle();
+}
+
+// Moves an accepted counted quest close to its target so one real event can finish it.
+void RFStoryFixture_SetProgress(void)
+{
+    u32 id=gRFStoryFixtureParams[0], i;
+    for(i=0;i<RF_QUEST_COUNTER_SLOTS;i++)
+        if((gSaveBlock3Ptr->rfQuestCounters[i]&0x3FF)==id+1)
+            gSaveBlock3Ptr->rfQuestCounters[i]=(id+1)|(gRFStoryFixtureParams[4]<<10);
+    SetMainCallback2(CB2_Overworld);
+}
+
+void RFStoryFixture_Evolve(void)
+{
+    struct Pokemon *mon=&gParties[B_TRAINER_PLAYER][1];
+    CreateRandomMonWithIVs(mon,gRFStoryFixtureParams[4],10,31);
+    CalculatePlayerPartyCount();
+    gCB2_AfterEvolution=CB2_ReturnToField;
+    SetMainCallback1(NULL);
+    BeginEvolutionScene(mon,gRFStoryFixtureParams[5],FALSE,1);
+}
+
+void RFStoryFixture_Hatch(void)
+{
+    CreateEgg(&gParties[B_TRAINER_PLAYER][1],gRFStoryFixtureParams[4],FALSE);
+    CalculatePlayerPartyCount();
+    gSpecialVar_0x8004=1; // EggHatch reads the party slot from here, as ShouldEggHatch leaves it
+    ScriptContext_SetupScript(EventScript_EggHatch);
+    SetMainCallback1(CB1_Overworld);SetMainCallback2(CB2_Overworld);
+}
+
+void RFStoryFixture_ZeroMoney(void)
+{
+    SetMoney(&gSaveBlock1Ptr->money,0);
+    SetMainCallback2(CB2_Overworld);
+}
+
+void RFStoryFixture_SetChoice(void)
+{
+    RFQuests_SetChoice(gRFStoryFixtureParams[4]);
     SetMainCallback2(CB2_Overworld);
 }

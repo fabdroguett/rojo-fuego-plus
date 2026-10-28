@@ -16,7 +16,10 @@
 
 #define STORY_MAGIC 0x53545231
 
-enum { RF_STORY_TALK, RF_STORY_DELIVERY, RF_STORY_CLUES, RF_STORY_BATTLE, RF_STORY_RACE, RF_STORY_PUZZLE };
+// FIELD: the quest engine completes the objective in the field; the target receives the report.
+// CHOICE: the target asks a yes/no question whose answer is kept as a story decision.
+enum { RF_STORY_TALK, RF_STORY_DELIVERY, RF_STORY_CLUES, RF_STORY_BATTLE, RF_STORY_RACE, RF_STORY_PUZZLE,
+       RF_STORY_FIELD, RF_STORY_CHOICE };
 struct RFStoryActor
 {
     u16 id, map;
@@ -47,6 +50,9 @@ struct RFStoryScene
     const struct RFStoryQuestion *questions; // RF_STORY_PUZZLE only
     u8 questionCount;
     const struct RFStoryRace *race; // RF_STORY_RACE only
+    u8 choice; // story decision bit, or RF_STORY_NO_CHOICE
+    const u8 *question; // RF_STORY_CHOICE only
+    const u8 *altOffer, *altEnding; // used once `choice` is set; NULL keeps the default text
 };
 struct RFStoryContract
 {
@@ -163,9 +169,43 @@ bool32 RFStory_MatchesFilter(u32 quest, u32 filter)
     return TRUE;
 }
 
+static bool32 ChoiceTaken(const struct RFStoryScene *scene)
+{
+    return scene->choice != RF_STORY_NO_CHOICE && RFQuests_GetChoice(scene->choice);
+}
+
+static const u8 *SceneOffer(const struct RFStoryScene *scene)
+{
+    return ChoiceTaken(scene) && scene->altOffer != NULL ? scene->altOffer : scene->offer;
+}
+
+static const u8 *SceneEnding(const struct RFStoryScene *scene)
+{
+    return ChoiceTaken(scene) && scene->altEnding != NULL ? scene->altEnding : scene->ending;
+}
+
+// Appends "Progreso: n/target" for an active counted objective.
+static void AppendProgress(u32 quest, u8 *dest)
+{
+    const struct RFQuest *q = &RFQuests_GetCatalog()[quest];
+    if (q->condition != QUEST_COUNT || RFQuests_GetState(quest) != RF_QUEST_ACTIVE)
+        return;
+    StringAppend(dest, COMPOUND_STRING("\nProgreso: "));
+    ConvertIntToDecimalStringN(dest + StringLength(dest), RFQuests_GetProgress(quest), STR_CONV_MODE_LEFT_ALIGN, 2);
+    StringAppend(dest, COMPOUND_STRING("/"));
+    ConvertIntToDecimalStringN(dest + StringLength(dest), q->target, STR_CONV_MODE_LEFT_ALIGN, 2);
+}
+
+void RFStory_CopyHint(u32 quest, u8 *dest)
+{
+    StringCopy(dest, RFStory_Hint(quest));
+    if (quest < RF_QUEST_COUNT)
+        AppendProgress(quest, dest);
+}
+
 const u8 *RFStory_Resolution(u32 quest)
 {
-    return IsScene(quest) ? sScenes[quest - RF_STORY_FIRST].ending
+    return IsScene(quest) ? SceneEnding(&sScenes[quest - RF_STORY_FIRST])
         : COMPOUND_STRING("El informe está archivado.\nTu trabajo conserva sus resultados\ny no vuelve a entregar premios.");
 }
 
@@ -382,7 +422,8 @@ void Script_RFStoryPrepare(void)
         if (!RFQuests_HasRequirements(id)
          || (scene->kind == RF_STORY_CLUES && (gSaveBlock3Ptr->rfStoryClues & scene->clues) != scene->clues)
          || (scene->kind == RF_STORY_DELIVERY && !CheckBagHasItem(RFQuests_GetCatalog()[id].argument, RFQuests_GetCatalog()[id].alternative))
-         || (scene->kind == RF_STORY_RACE && !RaceRunning(id)))
+         || (scene->kind == RF_STORY_RACE && !RaceRunning(id))
+         || scene->kind == RF_STORY_FIELD) // READY field reports were handled above
         {
             if (pendingTarget == RF_QUEST_NONE || gSaveBlock3Ptr->rfQuestTracked == id + 1)
                 pendingTarget = id;
@@ -399,7 +440,7 @@ void Script_RFStoryPrepare(void)
         case RF_STORY_CLUES:
             if ((gSaveBlock3Ptr->rfStoryClues & scene->clues) != scene->clues)
             {
-                StringCopy(gStringVar4, scene->offer);
+                StringCopy(gStringVar4, SceneOffer(scene));
                 StringAppend(gStringVar4, COMPOUND_STRING("\pSiguiente apunte pendiente:\n"));
                 StringAppend(gStringVar4, RFStory_Hint(id));
                 return;
@@ -413,6 +454,10 @@ void Script_RFStoryPrepare(void)
             sPuzzleStep = 0;
             PuzzleQuestion(id);
             gSpecialVar_Result = 3;
+            return;
+        case RF_STORY_CHOICE:
+            StringCopy(gStringVar4, scene->question);
+            gSpecialVar_Result = 5;
             return;
         case RF_STORY_RACE:
             if (!RaceRunning(id))
@@ -436,7 +481,7 @@ void Script_RFStoryPrepare(void)
         if (state == RF_QUEST_AVAILABLE)
         {
             gSpecialVar_0x8005 = id;
-            StringCopy(gStringVar4, scene->offer);
+            StringCopy(gStringVar4, SceneOffer(scene));
             StringAppend(gStringVar4, COMPOUND_STRING("\p¿Aceptas el encargo?"));
             gSpecialVar_Result = 1;
             return;
@@ -459,9 +504,9 @@ void Script_RFStoryPrepare(void)
         for (i = 0; i < RF_STORY_COUNT; i++)
             if ((sScenes[i].giver == actor || sScenes[i].target == actor)
              && RFQuests_GetState(RF_STORY_FIRST + i) == RF_QUEST_CLAIMED)
-                StringCopy(gStringVar4, sScenes[i].ending);
+                StringCopy(gStringVar4, SceneEnding(&sScenes[i]));
     if (pendingTarget != RF_QUEST_NONE)
-        StringCopy(gStringVar4, RFStory_Hint(pendingTarget));
+        RFStory_CopyHint(pendingTarget, gStringVar4);
     for (i = 0; i < ARRAY_COUNT(sContracts); i++)
     {
         const struct RFStoryContract *c = &sContracts[i];
@@ -496,7 +541,10 @@ void Script_RFStoryAfterText(void)
 void Script_RFStoryAccept(void)
 {
     u32 id = gSpecialVar_0x8005;
-    if (!IsScene(id) || !AtActor(sScenes[id - RF_STORY_FIRST].giver) || !RFQuests_Accept(id))
+    if (IsScene(id) && AtActor(sScenes[id - RF_STORY_FIRST].giver) && RFQuests_GetState(id) == RF_QUEST_AVAILABLE
+     && RFQuests_GetCatalog()[id].condition == QUEST_COUNT && RFQuests_CounterSlotsFull())
+        StringCopy(gStringVar4, COMPOUND_STRING("Ya sigues cuatro encargos con\nrecuento. Termina uno y vuelve.\pEl encargo te espera aquí."));
+    else if (!IsScene(id) || !AtActor(sScenes[id - RF_STORY_FIRST].giver) || !RFQuests_Accept(id))
         StringCopy(gStringVar4, COMPOUND_STRING("El encargo ya cambió de estado.\nConsulta el diario."));
     else
     {
@@ -558,6 +606,22 @@ void Script_RFStoryPuzzle(void)
     }
     PuzzleQuestion(id);
     gSpecialVar_Result = 3;
+}
+
+// RF_STORY_CHOICE: YES (VAR_RESULT 1) sets the decision; either answer completes the scene,
+// and its ending (shown now and in the journal) follows the decision.
+void Script_RFStoryChoice(void)
+{
+    u32 id = gSpecialVar_0x8005;
+    const struct RFStoryScene *scene;
+    if (!IsScene(id))
+        return;
+    scene = &sScenes[id - RF_STORY_FIRST];
+    if (scene->kind != RF_STORY_CHOICE || !AtActor(scene->target) || RFQuests_GetState(id) != RF_QUEST_ACTIVE)
+        return;
+    if (gSpecialVar_Result == TRUE)
+        RFQuests_SetChoice(scene->choice);
+    FinishScene(id);
 }
 
 void Script_RFStoryBattleWon(void)

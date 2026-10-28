@@ -66,9 +66,25 @@ El validador comprueba referencias, grupos, cantidades y ciclos entre prerrequis
 - `Script_RF_QuestTrackedHint`: deja en `gStringVar1` el nombre y en `gStringVar4` la pista de la
   misión seguida (`VAR_RESULT` = FALSE si no hay ninguna). Pensado para Bill o el PC.
 
+## Campañas (`tools/rojo_fuego/story_content.py` → `story_campaigns.py`)
+
+- Tipos de escena: `talk`, `delivery`, `clues`, `battle`, `race`, `puzzle`, `field` y `choice`.
+- `field`: el objetivo lo completa el motor en el terreno (`goal=('QUEST_COUNT', evento, filtro,
+  objetivo)`, `('QUEST_DEX_SEEN', especie)`, `('QUEST_BADGES', n)`, `('QUEST_ACHIEVEMENT', id)`);
+  el destinatario solo recibe el informe. El diario y el NPC muestran «Progreso: n/objetivo».
+- `choice`: el destinatario hace una pregunta sí/no (`question`); SÍ activa la decisión (`choice`,
+  bit fijo en `CHOICES`). Cualquier escena con la misma decisión usa `alt_offer`/`alt_ending`.
+- `bonus=dict(...)` añade un premio compuesto; `actor2(..., visible_after=(campaña, fila))` hace
+  aparecer un actor al reclamar esa escena (filas generadas en `rf_quest_links.h`).
+- Los actores nuevos se declaran con `actor2`: se colocan después de los anteriores, de modo que
+  los IDs, etiquetas y local IDs ya enviados no cambian.
+- Colocación: solo en casillas alcanzables a pie desde warps o desde bordes transitables a ambos
+  lados de la conexión; si un mapa solo se alcanza surfeando se usa ese respaldo y el catálogo lo
+  marca (`surf`). `MapGrid` lee los atributos de 32 bits de los tilesets de FireRed.
+
 ## Pendiente de usar en contenido (Fase C)
 
-Las condiciones, contadores y tablas nuevas tienen pruebas C sobre el catálogo real; en mGBA se
-comprobaron el guardado de la extensión y los dos avisos. Aún no hay misiones que usen el resto:
-al crear la primera misión contada (captura, evolución, eclosión) o con tablas, añadir su
-recorrido mGBA.
+Lote C1 (IDs 414–429) validó en mGBA, con mecánicas reales: observación, victoria contra salvaje,
+evolución, eclosión, combate de campaña, decisión, oferta alternativa, premio compuesto (dinero y
+objeto) y actor que aparece tras reclamar. Sin recorrido real todavía: captura en combate (la bolsa
+de combate no se automatiza; el adaptador tiene prueba C), requisitos por grupo y casillas.

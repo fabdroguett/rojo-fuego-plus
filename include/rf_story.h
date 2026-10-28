@@ -17,6 +17,7 @@ bool32 RFStory_MatchesFilter(u32 quest, u32 filter);
 bool32 RFStory_ReadEnding(u32 quest, u32 page, u8 *dest, u32 capacity);
 const u8 *RFStory_Hint(u32 quest);
 const u8 *RFStory_GiverHint(u32 quest); // NULL unless the quest is an authored scene
+void RFStory_CopyHint(u32 quest, u8 *dest); // hint plus progress of a counted objective
 const u8 *RFStory_Resolution(u32 quest);
 bool32 RFStory_RecordClue(u32 actor);
 u32 RFStory_ClueCount(u32 quest);
@@ -29,6 +30,7 @@ void Script_RFStoryAccept(void);
 void Script_RFStoryConfirm(void);
 void Script_RFStoryPuzzle(void);
 void Script_RFStoryBattleWon(void);
+void Script_RFStoryChoice(void);
 void Script_RFStoryAfterText(void);
 
 #endif

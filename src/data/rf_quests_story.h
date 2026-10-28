@@ -447,3 +447,115 @@
         .argument = RF_STORY_EVENT, .alternative = 413, .rewardItem = ITEM_RARE_CANDY, .rewardCount = 3, .chapter = 16,
 
     },
+    [RF_QUEST_STORY_064] = {
+        .name = COMPOUND_STRING("Una libreta en blanco"),
+        .description = COMPOUND_STRING("Habla con Cora en Ruta 2."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE01_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 414, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 17,
+
+    },
+    [RF_QUEST_STORY_065] = {
+        .name = COMPOUND_STRING("Tres huellas del bosque"),
+        .description = COMPOUND_STRING("Captura tres Pokémon en el\nBosque Verde y vuelve con Cora."),
+        .prerequisite = RF_QUEST_STORY_064, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_VIRIDIAN_FOREST, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 17,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_066] = {
+        .name = COMPOUND_STRING("Mirar sin tocar"),
+        .description = COMPOUND_STRING("Observa un Pikachu y cuéntaselo\na Olmo, en el Bosque Verde."),
+        .prerequisite = RF_QUEST_STORY_065, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_PIKACHU, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 17,
+
+    },
+    [RF_QUEST_STORY_067] = {
+        .name = COMPOUND_STRING("Ocho encuentros en calma"),
+        .description = COMPOUND_STRING("Gana ocho combates contra\nPokémon salvajes y vuelve con\nOlmo."),
+        .prerequisite = RF_QUEST_STORY_066, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_WILD_WIN, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 17,
+        .target = 8,
+    },
+    [RF_QUEST_STORY_068] = {
+        .name = COMPOUND_STRING("Lo que vive en el agua"),
+        .description = COMPOUND_STRING("Captura cuatro Pokémon de tipo\nAgua y visita a Vito en Ruta 24."),
+        .prerequisite = RF_QUEST_STORY_067, .requiredFlag = FLAG_BADGE02_GET, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_WATER, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 17,
+        .target = 4,
+    },
+    [RF_QUEST_STORY_069] = {
+        .name = COMPOUND_STRING("Crecer a su ritmo"),
+        .description = COMPOUND_STRING("Haz que evolucionen dos Pokémon\ny vuelve con Vito."),
+        .prerequisite = RF_QUEST_STORY_068, .requiredFlag = FLAG_BADGE03_GET, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_EVOLVE, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 17,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_070] = {
+        .name = COMPOUND_STRING("Un huevo para el censo"),
+        .description = COMPOUND_STRING("Haz eclosionar un huevo y habla\ncon Nerea en Isla Cuatro."),
+        .prerequisite = RF_QUEST_STORY_069, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_HATCH, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 17,
+        .target = 1,
+    },
+    [RF_QUEST_STORY_071] = {
+        .name = COMPOUND_STRING("El censo de la hierba alta"),
+        .description = COMPOUND_STRING("Entrega el censo a Ada en el\nlaboratorio de Oak."),
+        .prerequisite = RF_QUEST_STORY_070, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 421, .rewardItem = ITEM_RARE_CANDY, .rewardCount = 3, .chapter = 17,
+
+    },
+    [RF_QUEST_STORY_072] = {
+        .name = COMPOUND_STRING("Una alumna sin prisa"),
+        .description = COMPOUND_STRING("Busca a Pía en Ruta 3."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE01_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 422, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 18,
+
+    },
+    [RF_QUEST_STORY_073] = {
+        .name = COMPOUND_STRING("Cinco combates limpios"),
+        .description = COMPOUND_STRING("Gana cinco combates contra\nentrenadores y vuelve con Pía."),
+        .prerequisite = RF_QUEST_STORY_072, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_TRAINER_WIN, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 18,
+        .target = 5,
+    },
+    [RF_QUEST_STORY_074] = {
+        .name = COMPOUND_STRING("Un rival con apuntes"),
+        .description = COMPOUND_STRING("Vence a Quim en su práctica de\nCiudad Celeste."),
+        .prerequisite = RF_QUEST_STORY_073, .requiredFlag = FLAG_BADGE02_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 424, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 18,
+
+    },
+    [RF_QUEST_STORY_075] = {
+        .name = COMPOUND_STRING("Exigencia o paciencia"),
+        .description = COMPOUND_STRING("Cuenta a Tano lo que aprendieron\nsus alumnos."),
+        .prerequisite = RF_QUEST_STORY_074, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 425, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 18,
+
+    },
+    [RF_QUEST_STORY_076] = {
+        .name = COMPOUND_STRING("Cuatro medallas, una charla"),
+        .description = COMPOUND_STRING("Consigue cuatro medallas y\nvuelve con Tano."),
+        .prerequisite = RF_QUEST_STORY_075, .requiredFlag = 0, .condition = QUEST_BADGES,
+        .argument = 4, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 18,
+
+    },
+    [RF_QUEST_STORY_077] = {
+        .name = COMPOUND_STRING("Lo que Pía aprendió"),
+        .description = COMPOUND_STRING("Visita a Pía en Ruta 3."),
+        .prerequisite = RF_QUEST_STORY_076, .requiredFlag = FLAG_BADGE04_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 427, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 18,
+
+    },
+    [RF_QUEST_STORY_078] = {
+        .name = COMPOUND_STRING("Cincuenta combates después"),
+        .description = COMPOUND_STRING("Gana cincuenta combates contra\nentrenadores y busca a Quim."),
+        .prerequisite = RF_QUEST_STORY_077, .requiredFlag = FLAG_BADGE05_GET, .condition = QUEST_ACHIEVEMENT,
+        .argument = ACH_B02, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 18,
+
+    },
+    [RF_QUEST_STORY_079] = {
+        .name = COMPOUND_STRING("La escuela del camino"),
+        .description = COMPOUND_STRING("Reúnete con Tano y sus alumnos\nen Plateada."),
+        .prerequisite = RF_QUEST_STORY_078, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 429, .rewardItem = ITEM_BOTTLE_CAP, .rewardCount = 2, .chapter = 18,
+
+    },

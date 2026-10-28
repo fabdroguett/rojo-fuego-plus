@@ -14354,4 +14354,24 @@ Slowbro
 Level: 60
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
+=== TRAINER_RF_STORY_6 ===
+Name: QUIM
+Class: Pkmn Trainer 1
+Pic: Youngster Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Bellsprout
+Level: 21
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Psyduck
+Level: 21
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Nidorino
+Level: 21
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
 /* END RF STORY */

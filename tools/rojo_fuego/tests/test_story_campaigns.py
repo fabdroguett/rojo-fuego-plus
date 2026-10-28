@@ -16,8 +16,8 @@ from story_content import CAMPAIGNS, CLUES, CONTRACTS
 class StoryCampaignTests(unittest.TestCase):
     def test_catalog_scripts_and_persistent_ids(self):
         rows=[q for _,_,campaign in CAMPAIGNS for q in campaign]
-        self.assertEqual(len(rows),64)
-        self.assertEqual(len(set(q['name'] for q in rows)),64)
+        self.assertEqual(len(rows),8*len(CAMPAIGNS))
+        self.assertEqual(len(set(q['name'] for q in rows)),len(rows))
         self.assertEqual(sum(len(points) for points in CLUES.values()),17)
         data=json.loads((ROOT/'build_artifacts/story-campaigns/catalog.json').read_text(encoding='utf-8')) if (ROOT/'build_artifacts/story-campaigns/catalog.json').exists() else None
         # The source integration itself remains testable when ignored build artifacts are absent.
@@ -31,7 +31,8 @@ class StoryCampaignTests(unittest.TestCase):
                     actors[o['script']]=path
         script=(ROOT/'data/scripts/rojo_fuego_story.inc').read_text(encoding='utf-8')
         for label in actors: self.assertIn(label+'::',script)
-        self.assertEqual(len(actors),55)
+        actor_count=int(re.search(r'#define RF_STORY_ACTOR_COUNT (\d+)',(ROOT/'include/constants/rf_story.h').read_text())[1])
+        self.assertEqual(len(actors),actor_count)
         self.assertIn('goto_if_ne VAR_RESULT, 4, RFStory_ShowText',script)
         for battle in re.findall(r'RFStory_Battle_\d+::(.*?)(?=\nRFStory_|\Z)',script,re.S):
             self.assertLess(battle.index('MSGBOX_YESNO'),battle.index('trainerbattle_single'))
@@ -58,6 +59,10 @@ class StoryCampaignTests(unittest.TestCase):
         maps=sorted(set(re.findall(r'\bMAP_[A-Z0-9_]+',source))-{'MAP_GROUP','MAP_NUM','MAP_OFFSET'})
         flags=sorted(set(re.findall(r'\bFLAG_[A-Z0-9_]+',source))-{'FLAG_GET_CAUGHT'})
         trainers=sorted(set(re.findall(r'\bTRAINER_[A-Z0-9_]+',source))-{'TRAINER_BATTLE_PARAM'})
+        types=sorted(set(re.findall(r'\bTYPE_[A-Z]+\b',source))-{'TYPE_NONE'})
+        real_ach=dict(re.findall(r'^#define (ACH_\w+) (\d+)',(ROOT/'include/constants/rf_achievements.h').read_text(encoding='utf-8'),re.M))
+        achs=sorted(set(re.findall(r'\bACH_[A-Z0-9_]+',source))-{'ACH_RF_STORY_FIRST','ACH_RF_STORY_ALL','ACH_BYTES'})
+        actor_count=int(re.search(r'#define RF_STORY_ACTOR_COUNT (\d+)',(ROOT/'include/constants/rf_story.h').read_text())[1])
         prefix=r'''
 #include <assert.h>
 #include <stdint.h>
@@ -94,6 +99,8 @@ typedef uint32_t u32; typedef int32_t s32; typedef int32_t bool32; typedef uint8
         for filename in ('rf_quests.h','rf_story.h'):
             prefix+=re.sub(r'^#include .*$', '',(ROOT/'include'/filename).read_text(encoding='utf-8'),flags=re.M)+'\n'
         prefix+='enum Species {SPECIES_NONE, '+','.join(species)+'};\n'
+        prefix+='enum Type {TYPE_NONE, '+','.join(types)+'};\n'
+        prefix+=''.join(f'#define {n} {real_ach[n]}\n' for n in achs)
         prefix+='enum Item {ITEM_NONE, '+','.join(items)+'};\n'
         prefix+='\n'.join(f'#define {n} {1000+i}' for i,n in enumerate(maps))+'\n'
         prefix+='\n'.join(f'#define {n} {1+i}' for i,n in enumerate(flags))+'\n'
@@ -151,8 +158,13 @@ static u8 *ConvertIntToDecimalStringN(u8 *out,u32 value,u32 mode,u32 length) {
     for(u32 i=0;n[i];i++)*out++=n[i];*out=EOS;return out;
 }
 '''
-        prefix+='\n'.join(f'const u8 RFStory_Actor_{i}[]={{0}};' for i in range(55))+'\n'
+        prefix+='\n'.join(f'const u8 RFStory_Actor_{i}[]={{0}};' for i in range(actor_count))+'\n'
         harness=r'''
+static bool32 Contains(const u8 *s,const char *needle) {
+    u32 n=StringLength(s),m=strlen(needle);
+    for(u32 i=0;i+m<=n;i++) if(!memcmp(s+i,needle,m)) return TRUE;
+    return FALSE;
+}
 static void Reset(void) {
     memset(&save,0,sizeof save);memset(&world,0,sizeof world);
     memset(flags,1,sizeof flags);memset(caught,0,sizeof caught);
@@ -192,11 +204,31 @@ int main(void) {
     Proof(351);Script_RFStoryPrepare();assert(RFQuests_GetState(351)==RF_QUEST_CLAIMED);
     // Every authored campaign reaches its finale through the production scene handlers.
     Reset();
-    for(u32 id=350;id<414;id++) {
-        const struct RFStoryScene *s=&sScenes[id-350];
+    for(u32 id=RF_STORY_FIRST;id<RF_STORY_FIRST+RF_STORY_COUNT;id++) {
+        const struct RFStoryScene *s=&sScenes[id-RF_STORY_FIRST];
         assert(RFQuests_Accept(id));Proof(id);
+        if(s->kind==RF_STORY_FIELD) {
+            const struct RFQuest *q=&sRFQuests[id];
+            if(RFQuests_GetState(id)==RF_QUEST_ACTIVE) {
+                // Reporting early only repeats the objective (with progress when counted).
+                At(s->target);Script_RFStoryPrepare();
+                assert(RFQuests_GetState(id)==RF_QUEST_ACTIVE && gSpecialVar_Result==0);
+                assert(q->condition!=QUEST_COUNT || Contains(gStringVar4,"Progreso: 0/"));
+            }
+            if(q->condition==QUEST_COUNT) {
+                assert(q->target>=1);
+                for(u32 n=0;n<q->target;n++) {
+                    assert(RFQuests_GetState(id)==RF_QUEST_ACTIVE && RFQuests_GetProgress(id)==n);
+                    RFQuests_NotifyEvent(q->argument,q->alternative);
+                }
+            }
+            if(q->condition==QUEST_DEX_SEEN) caught[q->argument]=1;
+            if(q->condition==QUEST_ACHIEVEMENT) save.achievementsUnlocked[q->argument/8]|=1u<<(q->argument%8);
+            RFQuests_Refresh();
+            assert(RFQuests_GetState(id)==RF_QUEST_READY);
+        }
         if(s->kind==RF_STORY_CLUES) {
-            for(u32 a=0;a<55;a++) if(sActors[a].clueQuest==id && sActors[a].clueBit<32) {
+            for(u32 a=0;a<RF_STORY_ACTOR_COUNT;a++) if(sActors[a].clueQuest==id && sActors[a].clueBit<32) {
                 At(a);assert(RFStory_RecordClue(a));
                 struct Save3 persisted=save;save=persisted;RFStory_EnsureSave();
                 assert(save.rfStoryClues&(1u<<sActors[a].clueBit));
@@ -210,6 +242,12 @@ int main(void) {
         }
         if(s->kind==RF_STORY_DELIVERY) bag[sRFQuests[id].argument]=sRFQuests[id].alternative;
         At(s->target);Script_RFStoryPrepare();
+        if(s->kind==RF_STORY_FIELD) {assert(gSpecialVar_Result==2);Script_RFStoryConfirm();}
+        if(s->kind==RF_STORY_CHOICE) {
+            assert(gSpecialVar_Result==5 && s->question!=NULL && s->choice!=RF_STORY_NO_CHOICE);
+            gSpecialVar_Result=TRUE;Script_RFStoryChoice(); // this run takes the YES branch
+        }
+        else assert(s->question==NULL);
         if(s->kind==RF_STORY_DELIVERY) {
             bag[sRFQuests[id].argument]=sRFQuests[id].alternative;
             u32 before=removed[sRFQuests[id].argument];Script_RFStoryConfirm();
@@ -247,14 +285,42 @@ int main(void) {
         assert(RFStory_Difficulty(id)>=1 && RFStory_Difficulty(id)<=3);
     }
     assert(!RFStory_MatchesFilter(999,0));
-    assert(RFStory_GiverHint(0)==NULL && RFStory_GiverHint(349)==NULL && RFStory_GiverHint(414)==NULL);
+    assert((save.achievementsUnlocked[39]&0xC0)==0xC0);
+    // The YES decision switches later texts of the same campaign to their alternatives.
+    assert(RFQuests_GetChoice(RF_STORY_CHOICE_ESCUELA_EXIGENCIA));
+    for(u32 i=0;i<RF_STORY_COUNT;i++) if(sScenes[i].altEnding)
+        assert(RFStory_Resolution(RF_STORY_FIRST+i)==sScenes[i].altEnding);
+    // The NO branch completes the same scene, keeps the decision unset and the default ending.
+    {
+        u32 c=0;
+        while(sScenes[c].kind!=RF_STORY_CHOICE) c++;
+        Reset();SetQuestState(RF_STORY_FIRST+c-1,RF_QUEST_CLAIMED);assert(RFQuests_Accept(RF_STORY_FIRST+c));
+        At(sScenes[c].target);Script_RFStoryPrepare();assert(gSpecialVar_Result==5);
+        gSpecialVar_Result=FALSE;Script_RFStoryChoice();
+        assert(RFQuests_GetState(RF_STORY_FIRST+c)==RF_QUEST_CLAIMED);
+        assert(!RFQuests_GetChoice(sScenes[c].choice));
+        assert(RFStory_Resolution(RF_STORY_FIRST+c)==sScenes[c].ending);
+    }
+    // With the four counter slots taken, a counted scene stays on offer with a clear message.
+    {
+        u32 c=0;
+        while(!(sScenes[c].kind==RF_STORY_FIELD && sRFQuests[RF_STORY_FIRST+c].condition==QUEST_COUNT)) c++;
+        Reset();
+        for(u32 i=0;i<RF_QUEST_COUNTER_SLOTS;i++) save.rfQuestCounters[i]=i+1;
+        assert(RFQuests_CounterSlotsFull());
+        if(sRFQuests[RF_STORY_FIRST+c].prerequisite!=RF_QUEST_NONE)
+            SetQuestState(sRFQuests[RF_STORY_FIRST+c].prerequisite,RF_QUEST_CLAIMED);
+        At(sScenes[c].giver);Script_RFStoryPrepare();assert(gSpecialVar_Result==1);
+        Script_RFStoryAccept();
+        assert(RFQuests_GetState(RF_STORY_FIRST+c)==RF_QUEST_AVAILABLE && Contains(gStringVar4,"cuatro"));
+    }
+    assert(RFStory_GiverHint(0)==NULL && RFStory_GiverHint(349)==NULL && RFStory_GiverHint(RF_STORY_FIRST+RF_STORY_COUNT)==NULL);
     // Puzzle scenes no longer share one hard-coded question set.
     {
         const struct RFStoryScene *p[2];u32 n=0;
         for(u32 i=0;i<RF_STORY_COUNT;i++) if(sScenes[i].kind==RF_STORY_PUZZLE) p[n++]=&sScenes[i];
         assert(n==2 && p[0]->questions!=p[1]->questions && p[0]->questionCount!=p[1]->questionCount);
     }
-    assert((save.achievementsUnlocked[39]&0xC0)==0xC0);
     // A guide shared by independent campaigns cannot lock a report behind another plot.
     Reset();SetQuestState(402,RF_QUEST_CLAIMED);assert(RFQuests_Accept(403));
     SetQuestState(409,RF_QUEST_CLAIMED);assert(RFQuests_Accept(410));

@@ -143,6 +143,20 @@ def behaviors():
     return re.findall(r"^\s*(MB_\w+)", body, re.M)
 
 
+# FireRed tilesets keep FireRed behavior numbers (metatile_behaviors_frlg.h); fieldmap.c reads
+# them from 32-bit attributes. Names are mapped onto the Emerald names used by WALKABLE.
+FRLG_RENAMES = {"MB_RUNNING_DISALLOWED": "MB_NO_RUNNING"}
+
+
+def frlg_behaviors():
+    text = (ROOT / "include/constants/metatile_behaviors_frlg.h").read_text(encoding="utf-8")
+    names = {}
+    for name, value in re.findall(r"^#define MB_FRLG_(\w+)\s+(0x[0-9A-Fa-f]+|\d+)", text, re.M):
+        emerald = "MB_" + name
+        names[int(value, 0)] = FRLG_RENAMES.get(emerald, emerald)
+    return names
+
+
 def tileset_attribute_files():
     headers = (ROOT / "src/data/tilesets/headers.h").read_text(encoding="utf-8")
     metatiles = (ROOT / "src/data/tilesets/metatiles.h").read_text(encoding="utf-8")
@@ -165,15 +179,21 @@ class MapGrid:
         self.blocks = [raw[i] | raw[i + 1] << 8 for i in range(0, len(raw), 2)]
         prim = attr_files[layout["primary_tileset"]].read_bytes()
         sec = attr_files[layout["secondary_tileset"]].read_bytes()
-        self.prim = [prim[i] | prim[i + 1] << 8 for i in range(0, len(prim), 2)]
-        self.sec = [sec[i] | sec[i + 1] << 8 for i in range(0, len(sec), 2)]
+        # FireRed layouts use 32-bit metatile attributes with the behavior in bits 0-8.
+        self.frlg = layout.get("layout_version") == "frlg"
+        size = 4 if self.frlg else 2
+        self.prim = [int.from_bytes(prim[i:i + size], "little") for i in range(0, len(prim) - size + 1, size)]
+        self.sec = [int.from_bytes(sec[i:i + size], "little") for i in range(0, len(sec) - size + 1, size)]
         self.mb_names = mb_names
+        self.frlg_names = frlg_behaviors() if self.frlg else None
 
     def behavior(self, x, y):
         mid = self.blocks[y * self.w + x] & 0x3FF
         attrs = self.prim if mid < 640 else self.sec
         index = mid if mid < 640 else mid - 640
         value = attrs[index] if index < len(attrs) else 0
+        if self.frlg:
+            return self.frlg_names.get(value & 0x1FF, "?")
         number = value & 0xFF
         return self.mb_names[number] if number < len(self.mb_names) else "?"
 
