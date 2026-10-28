@@ -12,7 +12,10 @@
 #include "constants/opponents_frlg.h"
 
 #define QUEST_SAVE_MAGIC 0x51535431
-#define QUEST_EXT_MAGIC 0x51535832
+// The low byte of the extension magic is the content version (0x32 shipped with Phase B).
+#define QUEST_EXT_MAGIC_BASE 0x51535800
+#define QUEST_EXT_FIRST_VERSION 0x32
+#define QUEST_EXT_MAGIC (QUEST_EXT_MAGIC_BASE | RF_QUEST_CONTENT_VERSION)
 #define COUNTER_ID_BITS 10
 #define COUNTER_ID_MASK ((1 << COUNTER_ID_BITS) - 1)
 #define FREE_COUNTER ((u32)-1) // a free slot stores 0, which FindCounter matches as ID + 1
@@ -21,6 +24,11 @@
 #include "data/rf_quest_links.h"
 
 STATIC_ASSERT(RF_QUEST_COUNT <= RF_QUEST_MAX, RFQuestSaveCapacity);
+STATIC_ASSERT(RF_QUEST_CONTENT_VERSION >= QUEST_EXT_FIRST_VERSION && RF_QUEST_CONTENT_VERSION <= 0xFF, RFQuestContentVersion);
+
+static void SetQuestState(u32 id, enum RFQuestState state);
+static void ReleaseCounter(u32 id);
+static void MigrateQuestContent(u32 fromVersion);
 STATIC_ASSERT(RF_QUEST_MAX < COUNTER_ID_MASK, RFQuestCounterIdFits);
 STATIC_ASSERT(RF_QUEST_COUNTER_MAX == (0xFFFF >> COUNTER_ID_BITS), RFQuestCounterValueFits);
 STATIC_ASSERT(ARRAY_COUNT(sRFQuests) == RF_QUEST_COUNT, RFQuestCatalogSize);
@@ -37,10 +45,42 @@ static void EnsureQuestSave(void)
     // The extension has its own magic: older saves keep every shipped state untouched.
     if (gSaveBlock3Ptr->rfQuestExtMagic != QUEST_EXT_MAGIC)
     {
-        memset(gSaveBlock3Ptr->rfQuestStatesExt, 0, sizeof(gSaveBlock3Ptr->rfQuestStatesExt));
-        memset(gSaveBlock3Ptr->rfQuestCounters, 0, sizeof(gSaveBlock3Ptr->rfQuestCounters));
-        gSaveBlock3Ptr->rfQuestChoices = 0;
-        gSaveBlock3Ptr->rfQuestExtMagic = QUEST_EXT_MAGIC;
+        u32 version = QUEST_EXT_FIRST_VERSION;
+        if ((gSaveBlock3Ptr->rfQuestExtMagic & ~0xFFu) == QUEST_EXT_MAGIC_BASE)
+        {
+            version = gSaveBlock3Ptr->rfQuestExtMagic & 0xFF;
+        }
+        else
+        {
+            memset(gSaveBlock3Ptr->rfQuestStatesExt, 0, sizeof(gSaveBlock3Ptr->rfQuestStatesExt));
+            memset(gSaveBlock3Ptr->rfQuestCounters, 0, sizeof(gSaveBlock3Ptr->rfQuestCounters));
+            gSaveBlock3Ptr->rfQuestChoices = 0;
+        }
+        if (version < RF_QUEST_CONTENT_VERSION)
+        {
+            gSaveBlock3Ptr->rfQuestExtMagic = QUEST_EXT_MAGIC;
+            MigrateQuestContent(version);
+        }
+    }
+}
+
+// Reconverted IDs now hold different quests: their old states, counters and tracking go.
+static void MigrateQuestContent(u32 fromVersion)
+{
+    u32 i, id;
+
+    for (i = 0; i < ARRAY_COUNT(sRFQuestMigrations); i++)
+    {
+        const struct RFQuestMigration *migration = &sRFQuestMigrations[i];
+        if (migration->first == RF_QUEST_NONE || migration->version <= fromVersion)
+            continue;
+        for (id = migration->first; id <= migration->last && id < RF_QUEST_MAX; id++)
+        {
+            SetQuestState(id, RF_QUEST_AVAILABLE);
+            ReleaseCounter(id);
+            if (gSaveBlock3Ptr->rfQuestTracked == id + 1)
+                gSaveBlock3Ptr->rfQuestTracked = 0;
+        }
     }
 }
 
@@ -311,8 +351,8 @@ void RFQuests_OnMapLoad(void)
     if (!IS_FRLG || !FlagGet(FLAG_SYS_POKEDEX_GET))
         return;
     tracked = gSaveBlock3Ptr->rfQuestTracked;
-    if (tracked == 0 || tracked > RF_QUEST_COUNT || tracked - 1 < RF_STORY_FIRST
-     || tracked - 1 >= RF_STORY_FIRST + RF_STORY_COUNT || RFQuests_GetState(tracked - 1) != RF_QUEST_ACTIVE)
+    if (tracked == 0 || tracked > RF_QUEST_COUNT || !RFStory_IsScene(tracked - 1)
+     || RFQuests_GetState(tracked - 1) != RF_QUEST_ACTIVE)
         return;
     map = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
     if (RFStory_TargetMap(tracked - 1) == map)
@@ -485,7 +525,7 @@ bool32 RFQuests_Claim(u32 id)
     if (gSaveBlock3Ptr->rfQuestTracked == id + 1)
     {
         gSaveBlock3Ptr->rfQuestTracked = 0;
-        if (id >= RF_STORY_FIRST)
+        if (RFStory_IsScene(id))
         {
             u32 next;
             for (next = id + 1; next < RF_QUEST_COUNT; next++)

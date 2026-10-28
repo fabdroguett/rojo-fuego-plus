@@ -8,11 +8,12 @@ import json
 from pathlib import Path
 import re
 import textwrap
-from story_content import ACTORS, ACTORS_V2, CAMPAIGNS, CHOICES, CLUES, TRAINERS, CONTRACTS, PLACES
+from story_content import ACTORS, ACTORS_V2, CAMPAIGNS, CAMPAIGN_SLOTS, CHOICES, CLUES, CLUE_BASE, CONTENT_VERSIONS, TRAINERS, CONTRACTS, PLACES
 from legends import MapGrid, SURFABLE, behaviors, connection_seeds, tileset_attribute_files
 
 ROOT=Path(__file__).resolve().parents[2]
 FIRST=350
+BASE_CONTENT_VERSION=0x32 # quest extension magic as shipped with Phase B
 PREFIX='RFStory_Actor_'
 
 
@@ -116,28 +117,45 @@ def main():
     quests=[]
     chapter_names=[]
     for chapter,(title,_,rows) in enumerate(CAMPAIGNS):
-        assert len(rows)==8
+        assert 1<=len(rows)<=8,title
         chapter_names.append(title)
-        for row in rows: quests.append(dict(row,chapter=9+chapter,id=FIRST+len(quests)))
-    assert len(quests)==8*len(CAMPAIGNS) and FIRST+len(quests)<=650
-    campaign_start={title:FIRST+8*i for i,(title,_,_) in enumerate(CAMPAIGNS)}
+        slots=list(CAMPAIGN_SLOTS.get(title,[]))
+        assert not slots or len(slots)==len(rows),title
+        for n,row in enumerate(rows):
+            # Sequential IDs from 350 unless the campaign reuses reconverted generic slots.
+            qid=slots[n] if slots else FIRST+sum(1 for q in quests if q['campaign'] not in CAMPAIGN_SLOTS)
+            quests.append(dict(row,chapter=9+chapter,id=qid,campaign=title,scene=len(quests)))
+    ids=[q['id'] for q in quests]
+    assert len(quests)==sum(len(rows) for _,_,rows in CAMPAIGNS) and len(set(ids))==len(ids) and max(ids)<650
+    assert all(i<FIRST for t in CAMPAIGN_SLOTS for i in CAMPAIGN_SLOTS[t]),'slots are reconverted IDs'
+    quest_count=max(max(ids),FIRST-1)+1
+    campaign_start={}
+    for q in quests:
+        campaign_start.setdefault(q['campaign'],q['scene']) # first scene index
     actors={k:dict(v) for k,v in ACTORS.items()}
     clue_bits={}; bit=0
     # Shipped evidence bits are explicit; future campaigns must not shift this layout.
-    clue_base={2:0,13:3,21:6,60:9,50:14}
-    for offset,points in CLUES.items():
-        assert quests[offset]['kind']=='clues',(offset,quests[offset]['name'])
-        mask=0; bit=clue_base[offset]
-        for index,(name,place,text) in enumerate(points):
-            actors[f'clue_{offset}_{index}']=dict(name=name,place=place,greeting=text,gfx='OBJ_EVENT_GFX_ITEM_BALL',quest=FIRST+offset,bit=bit)
-            mask|=1<<bit; bit+=1
-        clue_bits[FIRST+offset]=mask
-    assert bit<=32
-    actors['home_cubone']=dict(name='Cubone del refugio',place='LavenderTown_VolunteerPokemonHouse',greeting='El pequeño del refugio se acerca por voluntad propia. Inés mantiene la puerta abierta para sus paseos.',gfx='OBJ_EVENT_GFX_SPECIES(CUBONE)',after=FIRST+23)
-    # Later actors come last so the IDs, labels and local IDs of shipped actors never shift.
+    clue_base={2:0,13:3,21:6,60:9,50:14,81:17,**CLUE_BASE}
+    def add_clues(offsets):
+        nonlocal bit
+        for offset in offsets:
+            points=CLUES[offset]
+            assert quests[offset]['kind']=='clues',(offset,quests[offset]['name'])
+            mask=0; bit=clue_base[offset]
+            for index,(name,place,text) in enumerate(points):
+                actors[f'clue_{offset}_{index}']=dict(name=name,place=place,greeting=text,gfx='OBJ_EVENT_GFX_ITEM_BALL',quest=quests[offset]['id'],bit=bit)
+                mask|=1<<bit; bit+=1
+            clue_bits[quests[offset]['id']]=mask
+            assert bit<=32
+    # Clue markers of the first eight campaigns keep their shipped place in the actor list.
+    add_clues([o for o in CLUES if o<64])
+    actors['home_cubone']=dict(name='Cubone del refugio',place='LavenderTown_VolunteerPokemonHouse',greeting='El pequeño del refugio se acerca por voluntad propia. Inés mantiene la puerta abierta para sus paseos.',gfx='OBJ_EVENT_GFX_SPECIES(CUBONE)',after=quests[23]['id'])
+    # Later actors and clue markers come last so shipped IDs, labels and local IDs never shift.
     for key,a in ACTORS_V2.items():
         assert key not in actors,key
         actors[key]=dict(a)
+    add_clues(sorted(o for o in CLUES if o>=64))
+    bit=max(clue_base[o]+len(CLUES[o]) for o in CLUES)
     for a in actors.values():
         if a['gfx']=='OBJ_EVENT_GFX_HIKER': a['gfx']='OBJ_EVENT_GFX_HIKER_FRLG'
     for key in ('alma','edda','ada'): actors[key]['gfx']='OBJ_EVENT_GFX_WOMAN_1_FRLG'
@@ -199,7 +217,9 @@ def main():
     const=['#ifndef GUARD_CONSTANTS_RF_STORY_H','#define GUARD_CONSTANTS_RF_STORY_H',f'#define RF_STORY_FIRST {FIRST}',f'#define RF_STORY_COUNT {len(quests)}',f'#define RF_STORY_ACTOR_COUNT {len(actors)}','#define RF_STORY_CHAPTER_FIRST 9','#define RF_STORY_EVENT 4','#define RF_STORY_NO_CHOICE 0xFF']
     const += [f'#define RF_STORY_CHOICE_{key.upper()} {bit}' for key,bit in CHOICES.items()]
     const += [f'#define RF_STORY_ACTOR_{key.upper()} {i}' for key,i in actor_ids.items()]
-    const += [f'#define RF_QUEST_STORY_{i:03d} {FIRST+i}' for i in range(len(quests))]
+    const += [f'#define RF_QUEST_STORY_{q["scene"]:03d} {q["id"]}' for q in quests]
+    content_version=max([BASE_CONTENT_VERSION,*CONTENT_VERSIONS.values()])
+    const += [f'#define RF_QUEST_CONTENT_VERSION 0x{content_version:02X}']
     const+=['#endif']
     write('include/constants/rf_story.h','\n'.join(const))
     entries=['// Generated by story_campaigns.py; append-only stable quest slots.']
@@ -220,7 +240,7 @@ def main():
                 definitions.append(f'    {{COMPOUND_STRING({quoted(text)}), {int(answer)}}},')
             definitions.append('};')
         if q['seconds']:
-            giver,target=ACTORS[q['giver']],ACTORS[q['target']]
+            giver,target=actors[q['giver']],actors[q['target']]
             start=f"La práctica empieza ahora. Tienes {q['seconds']} segundos. Habla con {target['name']} en {PLACES[target['place']]}. Puedes volver para reintentarlo."
             late=f"Llegaste fuera de tiempo. El encargo sigue en el diario. Vuelve con {giver['name']}, en {PLACES[giver['place']]}, para empezar otra vez."
             restart=f"Vuelve al puesto de salida. La práctica dura {q['seconds']} segundos. Si guardaste y saliste del juego, puedes empezar de nuevo."
@@ -242,7 +262,7 @@ def main():
         elif isinstance(q['proof'],tuple):
             c,a,b=q['proof']
             extra=f'        .objectiveCount = 2, .secondaryCondition = {c}, .secondaryArgument = {a}, .secondaryAlternative = {b},\n'
-        previous='RF_QUEST_NONE' if i%8==0 else f'RF_QUEST_STORY_{i-1:03d}'
+        previous='RF_QUEST_NONE' if campaign_start[q['campaign']]==i else f'RF_QUEST_STORY_{i-1:03d}'
         desc=quoted(q['objective'])
         assert len(textwrap.wrap(q['objective'],32))<=3,(i,q['objective'])
         entries += [f'    [RF_QUEST_STORY_{i:03d}] = {{',f'        .name = COMPOUND_STRING({quoted(q["name"])}),',f'        .description = COMPOUND_STRING({desc}),',f'        .prerequisite = {previous}, .requiredFlag = {q["flag"]}, .condition = {condition},',f'        .argument = {argument}, .alternative = {alternative}, .rewardItem = {q["reward"]}, .rewardCount = {q["quantity"]}, .chapter = {q["chapter"]},',extra.rstrip(),'    },']
@@ -255,15 +275,20 @@ def main():
             assert len(textwrap.wrap(q['question'],32))<=2,(q['name'],q['question'])
         choice=f"RF_STORY_CHOICE_{q['choice'].upper()}" if q['choice'] else 'RF_STORY_NO_CHOICE'
         definitions.append('    {%d, %d, %s, %s, 0x%08X, %s, %s, %s, %d, %s, %s, %s, %s, %s},'%(actor_ids[q['giver']],actor_ids[q['target']],kinds[q['kind']],trainer,clue_bits.get(q['id'],0),text(q['offer']),text(q['ending']),puzzle[0],puzzle[1],race,choice,text(q['question'],False),text(q['alt_offer']),text(q['alt_ending'])))
+    # Scene <-> quest lookups: scenes may occupy reconverted slots below 350.
+    definitions+=['};','static const u16 sSceneQuest[] = {']
+    definitions+=[f'    {q["id"]},' for q in quests]
+    definitions+=['};','static const u16 sQuestScene[RF_QUEST_COUNT] = {']
+    definitions+=[f'    [{q["id"]}] = {q["scene"]+1},' for q in quests]
     definitions+=['};','static const struct RFStoryContract sContracts[] = {']
     for key,title,item,count,reward,qty,unlock in CONTRACTS:
-        definitions.append(f'    {{{actor_ids[key]}, {FIRST+unlock}, {item}, {count}, {reward}, {qty}, COMPOUND_STRING({quoted(title)})}},')
+        definitions.append(f'    {{{actor_ids[key]}, {quests[unlock]["id"]}, {item}, {count}, {reward}, {qty}, COMPOUND_STRING({quoted(title)})}},')
     definitions+=['};']
     write('src/data/rf_quests_story.h','\n'.join(entries))
     write('src/data/rf_story.h','\n'.join(definitions))
     header=ROOT/'include/constants/rf_quests.h'
     text=header.read_text(encoding='utf-8')
-    text=re.sub(r'#define RF_QUEST_COUNT \d+',f'#define RF_QUEST_COUNT {FIRST+len(quests)}',text)
+    text=re.sub(r'#define RF_QUEST_COUNT \d+',f'#define RF_QUEST_COUNT {quest_count}',text)
     text=re.sub(r'#define RF_QUEST_CHAPTER_COUNT \d+',f'#define RF_QUEST_CHAPTER_COUNT {9+len(CAMPAIGNS)}',text)
     write(header.relative_to(ROOT),text)
     write('src/data/rf_story_chapters.h','\n'.join(['// Generated by story_campaigns.py: journal chapters of the authored campaigns.']
@@ -274,9 +299,24 @@ def main():
     for q in quests:
         if q['bonus']:
             fields=', '.join(f'.{k} = {v}' for k,v in q['bonus'].items())
-            bonuses.append(f'{{.quest = RF_QUEST_STORY_{q["id"]-FIRST:03d}, {fields}}},')
-    objects=[f'{{.script = {PREFIX}{actor_ids[k]}, .quest = RF_QUEST_STORY_{qid-FIRST:03d}, .minState = 3, .maxState = 3}},'
-             for k,qid in visible.items()]
+            bonuses.append(f'{{.quest = RF_QUEST_STORY_{q["scene"]:03d}, {fields}}},')
+    objects=[f'{{.script = {PREFIX}{actor_ids[k]}, .quest = RF_QUEST_STORY_{scene:03d}, .minState = 3, .maxState = 3}},'
+             for k,scene in visible.items()]
+    # One migration row per contiguous run of reconverted IDs.
+    migrations=[]
+    for t in CAMPAIGN_SLOTS:
+        ids_sorted=sorted(CAMPAIGN_SLOTS[t]);start=prev=ids_sorted[0]
+        for i in ids_sorted[1:]+[None]:
+            if i is not None and i==prev+1: prev=i;continue
+            migrations.append(f'{{0x{CONTENT_VERSIONS[t]:02X}, {start}, {prev}}},')
+            if i is not None: start=prev=i
+    requirements=[]
+    for q in quests:
+        for group,members in enumerate(q['requires']):
+            for title,row in members:
+                requirements.append(f'{{RF_QUEST_STORY_{q["scene"]:03d}, RF_QUEST_STORY_{campaign_start[title]+row:03d}, {group}}},')
+    links=replace_block(links,'STORY REQUIREMENTS',requirements)
+    links=replace_block(links,'STORY MIGRATIONS',migrations)
     links=replace_block(links,'STORY EXTERNS',[f'extern const u8 {PREFIX}{actor_ids[k]}[];' for k in visible])
     links=replace_block(links,'STORY BONUSES',bonuses)
     links=replace_block(links,'STORY OBJECTS',objects)
@@ -323,7 +363,8 @@ def main():
         fixture.append('    {%s,%d,%d,%d,%d,%d,%s},'%(a['map'],a['x'],a['y'],a['landing'][0],a['landing'][1],a['local_id'],PREFIX+str(actor_ids[key])))
     fixture+=['};']
     write('tools/rojo_fuego/test/story_fixture_actors.h','\n'.join(fixture))
-    print(f'Generated {len(quests)} authored quests, {len(actors)} actors, {bit} clues, {len(TRAINERS)} trainer teams; IDs {FIRST}–{FIRST+len(quests)-1}.')
+    print(f'Generated {len(quests)} authored quests, {len(actors)} actors, {bit} clues, {len(TRAINERS)} trainer teams; '
+          f'{quest_count} quests in the catalogue, reconverted slots: {sorted(i for t in CAMPAIGN_SLOTS for i in CAMPAIGN_SLOTS[t])}.')
 
 
 if __name__=='__main__': main()

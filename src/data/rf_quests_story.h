@@ -559,3 +559,1956 @@
         .argument = RF_STORY_EVENT, .alternative = 429, .rewardItem = ITEM_BOTTLE_CAP, .rewardCount = 2, .chapter = 18,
 
     },
+    [RF_QUEST_STORY_080] = {
+        .name = COMPOUND_STRING("Antes de entrar"),
+        .description = COMPOUND_STRING("Entrega dos Cuerdas Huida a\nBrisa, en el Centro de Ruta 10."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE03_GET, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ESCAPE_ROPE, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 19,
+
+    },
+    [RF_QUEST_STORY_081] = {
+        .name = COMPOUND_STRING("Huellas en el polvo"),
+        .description = COMPOUND_STRING("Revisa las tres señales del\ntúnel y vuelve con Brisa."),
+        .prerequisite = RF_QUEST_STORY_080, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 335, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 19,
+
+    },
+    [RF_QUEST_STORY_082] = {
+        .name = COMPOUND_STRING("Una voz en el túnel"),
+        .description = COMPOUND_STRING("Encuentra a Nico en el sótano\ndel Túnel Roca."),
+        .prerequisite = RF_QUEST_STORY_081, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 336, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 19,
+
+    },
+    [RF_QUEST_STORY_083] = {
+        .name = COMPOUND_STRING("Fuerzas para seguir"),
+        .description = COMPOUND_STRING("Entrega dos Superpociones a Nico\npara su equipo."),
+        .prerequisite = RF_QUEST_STORY_082, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_SUPER_POTION, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 19,
+
+    },
+    [RF_QUEST_STORY_084] = {
+        .name = COMPOUND_STRING("Noticias para Lavanda"),
+        .description = COMPOUND_STRING("Avisa a Olga, en Pueblo Lavanda,\nde que Nico está a salvo."),
+        .prerequisite = RF_QUEST_STORY_083, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 338, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 19,
+
+    },
+    [RF_QUEST_STORY_085] = {
+        .name = COMPOUND_STRING("Un compañero asustado"),
+        .description = COMPOUND_STRING("Observa un Machop en el Túnel\nRoca y vuelve con Olga."),
+        .prerequisite = RF_QUEST_STORY_084, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_MACHOP, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 19,
+
+    },
+    [RF_QUEST_STORY_086] = {
+        .name = COMPOUND_STRING("Perder el miedo"),
+        .description = COMPOUND_STRING("Acompaña a Nico en un combate de\npráctica en el túnel."),
+        .prerequisite = RF_QUEST_STORY_085, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 340, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 19,
+
+    },
+    [RF_QUEST_STORY_087] = {
+        .name = COMPOUND_STRING("Voces en la oscuridad"),
+        .description = COMPOUND_STRING("Cierra el informe del rescate\ncon Brisa."),
+        .prerequisite = RF_QUEST_STORY_086, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 341, .rewardItem = ITEM_REVIVE, .rewardCount = 3, .chapter = 19,
+
+    },
+    [RF_QUEST_STORY_088] = {
+        .name = COMPOUND_STRING("Un bosque con visitas"),
+        .description = COMPOUND_STRING("Habla con Abel en el Bosque\nBaya."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 342, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 20,
+
+    },
+    [RF_QUEST_STORY_089] = {
+        .name = COMPOUND_STRING("Quién vive entre bayas"),
+        .description = COMPOUND_STRING("Captura tres Pokémon en el\nBosque Baya y vuelve con Abel."),
+        .prerequisite = RF_QUEST_STORY_088, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_THREE_ISLAND_BERRY_FOREST, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 20,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_090] = {
+        .name = COMPOUND_STRING("Bayas para el refugio"),
+        .description = COMPOUND_STRING("Entrega cinco Bayas Aranja a\nAbel."),
+        .prerequisite = RF_QUEST_STORY_089, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ORAN_BERRY, .alternative = 5, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 20,
+
+    },
+    [RF_QUEST_STORY_091] = {
+        .name = COMPOUND_STRING("El orden de las cosechas"),
+        .description = COMPOUND_STRING("Resuelve las preguntas de Mora\nen el Puente Unión."),
+        .prerequisite = RF_QUEST_STORY_090, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 345, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 20,
+
+    },
+    [RF_QUEST_STORY_092] = {
+        .name = COMPOUND_STRING("El color del bosque"),
+        .description = COMPOUND_STRING("Captura cuatro Pokémon de tipo\nPlanta y visita a Mora."),
+        .prerequisite = RF_QUEST_STORY_091, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_GRASS, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 20,
+        .target = 4,
+    },
+    [RF_QUEST_STORY_093] = {
+        .name = COMPOUND_STRING("Un mapa compartido"),
+        .description = COMPOUND_STRING("Lleva las notas de Mora a Lis,\nen Isla Tres."),
+        .prerequisite = RF_QUEST_STORY_092, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 347, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 20,
+
+    },
+    [RF_QUEST_STORY_094] = {
+        .name = COMPOUND_STRING("Abrir o proteger"),
+        .description = COMPOUND_STRING("Da tu opinión a Lis sobre los\nvisitantes."),
+        .prerequisite = RF_QUEST_STORY_093, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 348, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 20,
+
+    },
+    [RF_QUEST_STORY_095] = {
+        .name = COMPOUND_STRING("La ruta de las bayas"),
+        .description = COMPOUND_STRING("Cuenta a Abel la decisión de la\nfamilia."),
+        .prerequisite = RF_QUEST_STORY_094, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 349, .rewardItem = ITEM_BOTTLE_CAP, .rewardCount = 2, .chapter = 20,
+
+    },
+    [RF_QUEST_STORY_096] = {
+        .name = COMPOUND_STRING("Una saca demasiado llena"),
+        .description = COMPOUND_STRING("Lleva la primera carta a Meli,\nen Ciudad Verde."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE01_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 71, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 21,
+
+    },
+    [RF_QUEST_STORY_097] = {
+        .name = COMPOUND_STRING("Una respuesta por escrito"),
+        .description = COMPOUND_STRING("Devuelve la respuesta de Meli a\nTobi."),
+        .prerequisite = RF_QUEST_STORY_096, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 72, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 21,
+
+    },
+    [RF_QUEST_STORY_098] = {
+        .name = COMPOUND_STRING("El paseo de Teodoro"),
+        .description = COMPOUND_STRING("Busca a Teodoro en la Ruta 1."),
+        .prerequisite = RF_QUEST_STORY_097, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 73, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 21,
+
+    },
+    [RF_QUEST_STORY_099] = {
+        .name = COMPOUND_STRING("Tres sustos en la hierba"),
+        .description = COMPOUND_STRING("Gana tres combates contra\nsalvajes y vuelve con Teodoro."),
+        .prerequisite = RF_QUEST_STORY_098, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_WILD_WIN, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 21,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_100] = {
+        .name = COMPOUND_STRING("El paquete de Teodoro"),
+        .description = COMPOUND_STRING("Entrega dos Pociones a Tobi para\nsu botiquín."),
+        .prerequisite = RF_QUEST_STORY_099, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_POTION, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 21,
+
+    },
+    [RF_QUEST_STORY_101] = {
+        .name = COMPOUND_STRING("Un combate entre carteros"),
+        .description = COMPOUND_STRING("Acepta el combate de práctica de\nTobi."),
+        .prerequisite = RF_QUEST_STORY_100, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 76, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 21,
+
+    },
+    [RF_QUEST_STORY_102] = {
+        .name = COMPOUND_STRING("Correo hasta Verde"),
+        .description = COMPOUND_STRING("Avisa a Meli de que el correo\nvuelve a ser diario."),
+        .prerequisite = RF_QUEST_STORY_101, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 77, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 21,
+
+    },
+    [RF_QUEST_STORY_103] = {
+        .name = COMPOUND_STRING("Las cartas siguen llegando"),
+        .description = COMPOUND_STRING("Cierra la ruta del correo con\nTobi en Paleta."),
+        .prerequisite = RF_QUEST_STORY_102, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 78, .rewardItem = ITEM_SUPER_POTION, .rewardCount = 3, .chapter = 21,
+
+    },
+    [RF_QUEST_STORY_104] = {
+        .name = COMPOUND_STRING("Un museo a la intemperie"),
+        .description = COMPOUND_STRING("Habla con Nita en Ciudad\nPlateada."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE01_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 79, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 22,
+
+    },
+    [RF_QUEST_STORY_105] = {
+        .name = COMPOUND_STRING("Rocas que se mueven"),
+        .description = COMPOUND_STRING("Observa un Geodude y vuelve con\nNita."),
+        .prerequisite = RF_QUEST_STORY_104, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_GEODUDE, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 22,
+
+    },
+    [RF_QUEST_STORY_106] = {
+        .name = COMPOUND_STRING("El buscador de formas"),
+        .description = COMPOUND_STRING("Busca a Lázaro en la Ruta 3."),
+        .prerequisite = RF_QUEST_STORY_105, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 81, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 22,
+
+    },
+    [RF_QUEST_STORY_107] = {
+        .name = COMPOUND_STRING("Preguntas de Lázaro"),
+        .description = COMPOUND_STRING("Responde las preguntas de\nLázaro."),
+        .prerequisite = RF_QUEST_STORY_106, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 82, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 22,
+
+    },
+    [RF_QUEST_STORY_108] = {
+        .name = COMPOUND_STRING("Cartelas portátiles"),
+        .description = COMPOUND_STRING("Entrega dos Repelentes a Gema\npara la visita."),
+        .prerequisite = RF_QUEST_STORY_107, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_REPEL, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 22,
+
+    },
+    [RF_QUEST_STORY_109] = {
+        .name = COMPOUND_STRING("La primera visita"),
+        .description = COMPOUND_STRING("Avisa a Nita de que la visita\nestá lista."),
+        .prerequisite = RF_QUEST_STORY_108, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 84, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 22,
+
+    },
+    [RF_QUEST_STORY_110] = {
+        .name = COMPOUND_STRING("Lo que dijeron los niños"),
+        .description = COMPOUND_STRING("Cuenta a Lázaro cómo fue la\nvisita."),
+        .prerequisite = RF_QUEST_STORY_109, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 85, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 22,
+
+    },
+    [RF_QUEST_STORY_111] = {
+        .name = COMPOUND_STRING("El museo sin vitrinas"),
+        .description = COMPOUND_STRING("Cierra el proyecto con Gema en\nel museo."),
+        .prerequisite = RF_QUEST_STORY_110, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 86, .rewardItem = ITEM_RARE_CANDY, .rewardCount = 1, .chapter = 22,
+
+    },
+    [RF_QUEST_STORY_112] = {
+        .name = COMPOUND_STRING("Pasos en la oscuridad"),
+        .description = COMPOUND_STRING("Habla con Celia en Monte Moon."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE01_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 87, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 23,
+
+    },
+    [RF_QUEST_STORY_113] = {
+        .name = COMPOUND_STRING("Un baile en silencio"),
+        .description = COMPOUND_STRING("Observa un Clefairy y vuelve con\nCelia."),
+        .prerequisite = RF_QUEST_STORY_112, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_CLEFAIRY, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 23,
+
+    },
+    [RF_QUEST_STORY_114] = {
+        .name = COMPOUND_STRING("El coleccionista"),
+        .description = COMPOUND_STRING("Busca a Rufo en la Ruta 4."),
+        .prerequisite = RF_QUEST_STORY_113, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 89, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 23,
+
+    },
+    [RF_QUEST_STORY_115] = {
+        .name = COMPOUND_STRING("Pruebas de buena fe"),
+        .description = COMPOUND_STRING("Acepta el combate de Rufo."),
+        .prerequisite = RF_QUEST_STORY_114, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 90, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 23,
+
+    },
+    [RF_QUEST_STORY_116] = {
+        .name = COMPOUND_STRING("Una piedra para decidir"),
+        .description = COMPOUND_STRING("Lleva una Piedra Lunar a Celia."),
+        .prerequisite = RF_QUEST_STORY_115, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_MOON_STONE, .alternative = 1, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 23,
+
+    },
+    [RF_QUEST_STORY_117] = {
+        .name = COMPOUND_STRING("El museo o el monte"),
+        .description = COMPOUND_STRING("Ayuda a Celia a decidir el\ndestino de las piedras."),
+        .prerequisite = RF_QUEST_STORY_116, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 92, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 23,
+
+    },
+    [RF_QUEST_STORY_118] = {
+        .name = COMPOUND_STRING("Avisar a Rufo"),
+        .description = COMPOUND_STRING("Cuenta a Rufo la decisión."),
+        .prerequisite = RF_QUEST_STORY_117, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 93, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 23,
+
+    },
+    [RF_QUEST_STORY_119] = {
+        .name = COMPOUND_STRING("Ecos del Monte Moon"),
+        .description = COMPOUND_STRING("Cierra la investigación con\nCelia."),
+        .prerequisite = RF_QUEST_STORY_118, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 94, .rewardItem = ITEM_MOON_STONE, .rewardCount = 1, .chapter = 23,
+
+    },
+    [RF_QUEST_STORY_120] = {
+        .name = COMPOUND_STRING("Preparativos"),
+        .description = COMPOUND_STRING("Habla con Arturo en la Ruta 24."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE02_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 95, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 24,
+
+    },
+    [RF_QUEST_STORY_121] = {
+        .name = COMPOUND_STRING("Contar a los vecinos"),
+        .description = COMPOUND_STRING("Captura dos Pokémon en la Ruta\n24 y vuelve con Arturo."),
+        .prerequisite = RF_QUEST_STORY_120, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_ROUTE24, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 24,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_122] = {
+        .name = COMPOUND_STRING("Limonada para la feria"),
+        .description = COMPOUND_STRING("Busca a Dana en la Ruta 25."),
+        .prerequisite = RF_QUEST_STORY_121, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 97, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 24,
+
+    },
+    [RF_QUEST_STORY_123] = {
+        .name = COMPOUND_STRING("La receta de Dana"),
+        .description = COMPOUND_STRING("Entrega una Limonada a Dana."),
+        .prerequisite = RF_QUEST_STORY_122, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_LEMONADE, .alternative = 1, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 24,
+
+    },
+    [RF_QUEST_STORY_124] = {
+        .name = COMPOUND_STRING("La carrera de prueba"),
+        .description = COMPOUND_STRING("Corre desde Pilar hasta Arturo\nen 40 segundos."),
+        .prerequisite = RF_QUEST_STORY_123, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 99, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 24,
+
+    },
+    [RF_QUEST_STORY_125] = {
+        .name = COMPOUND_STRING("Un desafío amistoso"),
+        .description = COMPOUND_STRING("Acepta el combate amistoso de\nArturo."),
+        .prerequisite = RF_QUEST_STORY_124, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 100, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 24,
+
+    },
+    [RF_QUEST_STORY_126] = {
+        .name = COMPOUND_STRING("Abrir la feria"),
+        .description = COMPOUND_STRING("Avisa a Pilar de que todo está\nlisto."),
+        .prerequisite = RF_QUEST_STORY_125, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 101, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 24,
+
+    },
+    [RF_QUEST_STORY_127] = {
+        .name = COMPOUND_STRING("La feria de Celeste"),
+        .description = COMPOUND_STRING("Celebra el final de la feria con\nDana."),
+        .prerequisite = RF_QUEST_STORY_126, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 102, .rewardItem = ITEM_SUPER_POTION, .rewardCount = 2, .chapter = 24,
+
+    },
+    [RF_QUEST_STORY_128] = {
+        .name = COMPOUND_STRING("Historias del muelle"),
+        .description = COMPOUND_STRING("Entrevista a Ramón en el muelle\nde Carmín."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE02_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 103, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 25,
+
+    },
+    [RF_QUEST_STORY_129] = {
+        .name = COMPOUND_STRING("Un día en el muelle"),
+        .description = COMPOUND_STRING("Entrega dos Superpociones a\nRamón para los Pokémon del\npuerto."),
+        .prerequisite = RF_QUEST_STORY_128, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_SUPER_POTION, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 25,
+
+    },
+    [RF_QUEST_STORY_130] = {
+        .name = COMPOUND_STRING("La farola de la Ruta 11"),
+        .description = COMPOUND_STRING("Busca a Kiko en la Ruta 11."),
+        .prerequisite = RF_QUEST_STORY_129, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 105, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 25,
+
+    },
+    [RF_QUEST_STORY_131] = {
+        .name = COMPOUND_STRING("Vecinos de la ruta"),
+        .description = COMPOUND_STRING("Captura dos Pokémon en la Ruta\n11 y vuelve con Kiko."),
+        .prerequisite = RF_QUEST_STORY_130, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_ROUTE11, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 25,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_132] = {
+        .name = COMPOUND_STRING("El reto de Kiko"),
+        .description = COMPOUND_STRING("Acepta el combate de Kiko."),
+        .prerequisite = RF_QUEST_STORY_131, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 107, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 25,
+
+    },
+    [RF_QUEST_STORY_133] = {
+        .name = COMPOUND_STRING("Notas para Irma"),
+        .description = COMPOUND_STRING("Lleva las notas al Club de Fans."),
+        .prerequisite = RF_QUEST_STORY_132, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 108, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 25,
+
+    },
+    [RF_QUEST_STORY_134] = {
+        .name = COMPOUND_STRING("La última pregunta"),
+        .description = COMPOUND_STRING("Haz a Ramón la última pregunta\ndel boletín."),
+        .prerequisite = RF_QUEST_STORY_133, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 109, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 25,
+
+    },
+    [RF_QUEST_STORY_135] = {
+        .name = COMPOUND_STRING("Mareas de Carmín"),
+        .description = COMPOUND_STRING("Entrega la respuesta de Ramón a\nIrma."),
+        .prerequisite = RF_QUEST_STORY_134, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 110, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 5, .chapter = 25,
+
+    },
+    [RF_QUEST_STORY_136] = {
+        .name = COMPOUND_STRING("Tierra removida"),
+        .description = COMPOUND_STRING("Habla con Ari en la Ruta 2."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE02_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 111, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 26,
+
+    },
+    [RF_QUEST_STORY_137] = {
+        .name = COMPOUND_STRING("Quién cava de noche"),
+        .description = COMPOUND_STRING("Observa un Diglett y vuelve con\nAri."),
+        .prerequisite = RF_QUEST_STORY_136, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_DIGLETT, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 26,
+
+    },
+    [RF_QUEST_STORY_138] = {
+        .name = COMPOUND_STRING("El topógrafo"),
+        .description = COMPOUND_STRING("Busca a Lope en la Cueva\nDiglett."),
+        .prerequisite = RF_QUEST_STORY_137, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 113, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 26,
+
+    },
+    [RF_QUEST_STORY_139] = {
+        .name = COMPOUND_STRING("Mapas que cambian"),
+        .description = COMPOUND_STRING("Responde las preguntas de Lope."),
+        .prerequisite = RF_QUEST_STORY_138, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 114, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 26,
+
+    },
+    [RF_QUEST_STORY_140] = {
+        .name = COMPOUND_STRING("Bayas para compartir"),
+        .description = COMPOUND_STRING("Entrega tres Bayas Aranja a Ari."),
+        .prerequisite = RF_QUEST_STORY_139, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ORAN_BERRY, .alternative = 3, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 26,
+
+    },
+    [RF_QUEST_STORY_141] = {
+        .name = COMPOUND_STRING("Un huerto compartido"),
+        .description = COMPOUND_STRING("Cuenta a Lope el nuevo plan de\nAri."),
+        .prerequisite = RF_QUEST_STORY_140, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 116, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 26,
+
+    },
+    [RF_QUEST_STORY_142] = {
+        .name = COMPOUND_STRING("Medir sin molestar"),
+        .description = COMPOUND_STRING("Gana tres combates contra\nsalvajes cerca de la cueva y\nvuelve."),
+        .prerequisite = RF_QUEST_STORY_141, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_WILD_WIN, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 26,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_143] = {
+        .name = COMPOUND_STRING("El túnel de Diglett"),
+        .description = COMPOUND_STRING("Entrega el mapa a Ari."),
+        .prerequisite = RF_QUEST_STORY_142, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 118, .rewardItem = ITEM_RARE_CANDY, .rewardCount = 1, .chapter = 26,
+
+    },
+    [RF_QUEST_STORY_144] = {
+        .name = COMPOUND_STRING("Una ruta a oscuras"),
+        .description = COMPOUND_STRING("Habla con Volta en el Centro de\nla Ruta 10."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE03_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 119, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 27,
+
+    },
+    [RF_QUEST_STORY_145] = {
+        .name = COMPOUND_STRING("Chispas en la Ruta 9"),
+        .description = COMPOUND_STRING("Busca a Chispa en la Ruta 9."),
+        .prerequisite = RF_QUEST_STORY_144, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 120, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 27,
+
+    },
+    [RF_QUEST_STORY_146] = {
+        .name = COMPOUND_STRING("Un reto con chispa"),
+        .description = COMPOUND_STRING("Acepta el combate de Chispa."),
+        .prerequisite = RF_QUEST_STORY_145, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 121, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 27,
+
+    },
+    [RF_QUEST_STORY_147] = {
+        .name = COMPOUND_STRING("Corriente viva"),
+        .description = COMPOUND_STRING("Captura tres Pokémon de tipo\nEléctrico y vuelve con Chispa."),
+        .prerequisite = RF_QUEST_STORY_146, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_ELECTRIC, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 27,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_148] = {
+        .name = COMPOUND_STRING("Silencio para la Central"),
+        .description = COMPOUND_STRING("Lleva el informe de Chispa a\nVolta."),
+        .prerequisite = RF_QUEST_STORY_147, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 123, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 27,
+
+    },
+    [RF_QUEST_STORY_149] = {
+        .name = COMPOUND_STRING("Piezas de repuesto"),
+        .description = COMPOUND_STRING("Entrega dos Antiparalizadores a\nVolta."),
+        .prerequisite = RF_QUEST_STORY_148, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_PARALYZE_HEAL, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 27,
+
+    },
+    [RF_QUEST_STORY_150] = {
+        .name = COMPOUND_STRING("La luz vuelve"),
+        .description = COMPOUND_STRING("Cuenta a Chispa que la Central\nestá tranquila."),
+        .prerequisite = RF_QUEST_STORY_149, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 125, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 27,
+
+    },
+    [RF_QUEST_STORY_151] = {
+        .name = COMPOUND_STRING("La Central apagada"),
+        .description = COMPOUND_STRING("Cierra el proyecto con Volta."),
+        .prerequisite = RF_QUEST_STORY_150, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 126, .rewardItem = ITEM_ULTRA_BALL, .rewardCount = 3, .chapter = 27,
+
+    },
+    [RF_QUEST_STORY_152] = {
+        .name = COMPOUND_STRING("Una melodía para Lavanda"),
+        .description = COMPOUND_STRING("Habla con Basilio en la Torre\nPokémon."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE03_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 127, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 28,
+
+    },
+    [RF_QUEST_STORY_153] = {
+        .name = COMPOUND_STRING("Escuchar a Vela"),
+        .description = COMPOUND_STRING("Habla con Vela en Pueblo\nLavanda."),
+        .prerequisite = RF_QUEST_STORY_152, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 128, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 28,
+
+    },
+    [RF_QUEST_STORY_154] = {
+        .name = COMPOUND_STRING("Ver sin miedo"),
+        .description = COMPOUND_STRING("Observa un Gastly y vuelve con\nVela."),
+        .prerequisite = RF_QUEST_STORY_153, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_GASTLY, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 28,
+
+    },
+    [RF_QUEST_STORY_155] = {
+        .name = COMPOUND_STRING("Una flor para la entrada"),
+        .description = COMPOUND_STRING("Entrega una Muñeca Poké a\nBasilio."),
+        .prerequisite = RF_QUEST_STORY_154, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_POKE_DOLL, .alternative = 1, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 28,
+
+    },
+    [RF_QUEST_STORY_156] = {
+        .name = COMPOUND_STRING("Preguntar al pueblo"),
+        .description = COMPOUND_STRING("Lleva la opinión de Basilio y\nVela a Lira."),
+        .prerequisite = RF_QUEST_STORY_155, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 131, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 28,
+
+    },
+    [RF_QUEST_STORY_157] = {
+        .name = COMPOUND_STRING("Música o silencio"),
+        .description = COMPOUND_STRING("Ayuda a Lira a decidir."),
+        .prerequisite = RF_QUEST_STORY_156, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 132, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 28,
+
+    },
+    [RF_QUEST_STORY_158] = {
+        .name = COMPOUND_STRING("La primera canción"),
+        .description = COMPOUND_STRING("Invita a Vela a escuchar a Lira."),
+        .prerequisite = RF_QUEST_STORY_157, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 133, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 28,
+
+    },
+    [RF_QUEST_STORY_159] = {
+        .name = COMPOUND_STRING("Música en Lavanda"),
+        .description = COMPOUND_STRING("Agradece a Lira de parte de\nVela."),
+        .prerequisite = RF_QUEST_STORY_158, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 134, .rewardItem = ITEM_REVIVE, .rewardCount = 2, .chapter = 28,
+
+    },
+    [RF_QUEST_STORY_160] = {
+        .name = COMPOUND_STRING("Parterres vacíos"),
+        .description = COMPOUND_STRING("Habla con Flora en Ciudad\nAzulona."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE04_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 135, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 29,
+
+    },
+    [RF_QUEST_STORY_161] = {
+        .name = COMPOUND_STRING("Quién visita las flores"),
+        .description = COMPOUND_STRING("Captura tres Pokémon de tipo\nPlanta y vuelve con Flora."),
+        .prerequisite = RF_QUEST_STORY_160, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_GRASS, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 29,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_162] = {
+        .name = COMPOUND_STRING("El vendedor de semillas"),
+        .description = COMPOUND_STRING("Busca a Genaro en la Ruta 7."),
+        .prerequisite = RF_QUEST_STORY_161, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 137, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 29,
+
+    },
+    [RF_QUEST_STORY_163] = {
+        .name = COMPOUND_STRING("Agua para los brotes"),
+        .description = COMPOUND_STRING("Entrega dos Aguas Frescas a\nGenaro."),
+        .prerequisite = RF_QUEST_STORY_162, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_FRESH_WATER, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 29,
+
+    },
+    [RF_QUEST_STORY_164] = {
+        .name = COMPOUND_STRING("Pétalos caídos"),
+        .description = COMPOUND_STRING("Habla con Aroa en el Centro\nPokémon de Azulona."),
+        .prerequisite = RF_QUEST_STORY_163, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 139, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 29,
+
+    },
+    [RF_QUEST_STORY_165] = {
+        .name = COMPOUND_STRING("Preguntas de perfumista"),
+        .description = COMPOUND_STRING("Responde las preguntas de Aroa."),
+        .prerequisite = RF_QUEST_STORY_164, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 140, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 29,
+
+    },
+    [RF_QUEST_STORY_166] = {
+        .name = COMPOUND_STRING("Plantar juntos"),
+        .description = COMPOUND_STRING("Lleva las semillas y la receta a\nFlora."),
+        .prerequisite = RF_QUEST_STORY_165, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 141, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 29,
+
+    },
+    [RF_QUEST_STORY_167] = {
+        .name = COMPOUND_STRING("Jardines de Azulona"),
+        .description = COMPOUND_STRING("Cuenta a Genaro que los Pokémon\nhan vuelto."),
+        .prerequisite = RF_QUEST_STORY_166, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 142, .rewardItem = ITEM_LEAF_STONE, .rewardCount = 1, .chapter = 29,
+
+    },
+    [RF_QUEST_STORY_168] = {
+        .name = COMPOUND_STRING("El empleado del casino"),
+        .description = COMPOUND_STRING("Habla con Dimas en el Casino de\nAzulona."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE04_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 143, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 30,
+
+    },
+    [RF_QUEST_STORY_169] = {
+        .name = COMPOUND_STRING("Un premio con nombre"),
+        .description = COMPOUND_STRING("Busca a Rocío en la Ruta 8."),
+        .prerequisite = RF_QUEST_STORY_168, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 144, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 30,
+
+    },
+    [RF_QUEST_STORY_170] = {
+        .name = COMPOUND_STRING("Ver sin comprar"),
+        .description = COMPOUND_STRING("Observa un Porygon y vuelve con\nRocío."),
+        .prerequisite = RF_QUEST_STORY_169, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_PORYGON, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 30,
+
+    },
+    [RF_QUEST_STORY_171] = {
+        .name = COMPOUND_STRING("El reto de Dimas"),
+        .description = COMPOUND_STRING("Acepta el combate de Dimas."),
+        .prerequisite = RF_QUEST_STORY_170, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 146, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 30,
+
+    },
+    [RF_QUEST_STORY_172] = {
+        .name = COMPOUND_STRING("Un archivo olvidado"),
+        .description = COMPOUND_STRING("Entrega tres Pokéballs a Dimas\npara su colección de registros."),
+        .prerequisite = RF_QUEST_STORY_171, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_POKE_BALL, .alternative = 3, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 30,
+
+    },
+    [RF_QUEST_STORY_173] = {
+        .name = COMPOUND_STRING("Cerrar el mostrador"),
+        .description = COMPOUND_STRING("Ayuda a Dimas a decidir sobre el\nmostrador de premios."),
+        .prerequisite = RF_QUEST_STORY_172, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 148, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 30,
+
+    },
+    [RF_QUEST_STORY_174] = {
+        .name = COMPOUND_STRING("Contárselo a Rocío"),
+        .description = COMPOUND_STRING("Cuenta a Rocío lo que se ha\ndecidido."),
+        .prerequisite = RF_QUEST_STORY_173, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 149, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 30,
+
+    },
+    [RF_QUEST_STORY_175] = {
+        .name = COMPOUND_STRING("Fichas sin dueño"),
+        .description = COMPOUND_STRING("Lleva la ficha de Porygon a\nDimas para cerrarla."),
+        .prerequisite = RF_QUEST_STORY_174, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 150, .rewardItem = ITEM_UP_GRADE, .rewardCount = 1, .chapter = 30,
+
+    },
+    [RF_QUEST_STORY_176] = {
+        .name = COMPOUND_STRING("El aprendiz que barre"),
+        .description = COMPOUND_STRING("Habla con Kai en el Dojo de\nAzafrán."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE05_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 151, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 31,
+
+    },
+    [RF_QUEST_STORY_177] = {
+        .name = COMPOUND_STRING("La entrenadora de fuera"),
+        .description = COMPOUND_STRING("Busca a Mei en el Centro Pokémon\nde Azafrán."),
+        .prerequisite = RF_QUEST_STORY_176, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 152, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 31,
+
+    },
+    [RF_QUEST_STORY_178] = {
+        .name = COMPOUND_STRING("Probar la técnica"),
+        .description = COMPOUND_STRING("Acepta el combate de Mei."),
+        .prerequisite = RF_QUEST_STORY_177, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 153, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 31,
+
+    },
+    [RF_QUEST_STORY_179] = {
+        .name = COMPOUND_STRING("Lucha en la hierba"),
+        .description = COMPOUND_STRING("Captura dos Pokémon de tipo\nLucha y vuelve con Mei."),
+        .prerequisite = RF_QUEST_STORY_178, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_FIGHTING, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 31,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_180] = {
+        .name = COMPOUND_STRING("El turno de Kai"),
+        .description = COMPOUND_STRING("Acepta el combate de Kai."),
+        .prerequisite = RF_QUEST_STORY_179, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 155, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 31,
+
+    },
+    [RF_QUEST_STORY_181] = {
+        .name = COMPOUND_STRING("Abrir las puertas"),
+        .description = COMPOUND_STRING("Ayuda a Kai a proponer algo al\nmaestro."),
+        .prerequisite = RF_QUEST_STORY_180, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 156, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 31,
+
+    },
+    [RF_QUEST_STORY_182] = {
+        .name = COMPOUND_STRING("Avisar a Mei"),
+        .description = COMPOUND_STRING("Cuenta a Mei la noticia."),
+        .prerequisite = RF_QUEST_STORY_181, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 157, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 31,
+
+    },
+    [RF_QUEST_STORY_183] = {
+        .name = COMPOUND_STRING("Puertas del Dojo"),
+        .description = COMPOUND_STRING("Lleva el cinturón de Mei a Kai."),
+        .prerequisite = RF_QUEST_STORY_182, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 158, .rewardItem = ITEM_BLACK_BELT, .rewardCount = 1, .chapter = 31,
+
+    },
+    [RF_QUEST_STORY_184] = {
+        .name = COMPOUND_STRING("Un pescador sin vecino"),
+        .description = COMPOUND_STRING("Habla con Pesca en la Ruta 12."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE05_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 159, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 32,
+
+    },
+    [RF_QUEST_STORY_185] = {
+        .name = COMPOUND_STRING("Pescar y soltar"),
+        .description = COMPOUND_STRING("Captura dos Pokémon en la Ruta\n12 y vuelve con Pesca."),
+        .prerequisite = RF_QUEST_STORY_184, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_ROUTE12, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 32,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_186] = {
+        .name = COMPOUND_STRING("Vallas mal puestas"),
+        .description = COMPOUND_STRING("Busca a Nuria en la Ruta 13."),
+        .prerequisite = RF_QUEST_STORY_185, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 161, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 32,
+
+    },
+    [RF_QUEST_STORY_187] = {
+        .name = COMPOUND_STRING("El hueco correcto"),
+        .description = COMPOUND_STRING("Responde las preguntas de Nuria."),
+        .prerequisite = RF_QUEST_STORY_186, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 162, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 32,
+
+    },
+    [RF_QUEST_STORY_188] = {
+        .name = COMPOUND_STRING("El mensajero alado"),
+        .description = COMPOUND_STRING("Busca a Guille en la Ruta 14."),
+        .prerequisite = RF_QUEST_STORY_187, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 163, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 32,
+
+    },
+    [RF_QUEST_STORY_189] = {
+        .name = COMPOUND_STRING("Alimento para el viaje"),
+        .description = COMPOUND_STRING("Entrega tres Bayas Aranja a\nGuille."),
+        .prerequisite = RF_QUEST_STORY_188, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ORAN_BERRY, .alternative = 3, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 32,
+
+    },
+    [RF_QUEST_STORY_190] = {
+        .name = COMPOUND_STRING("Correo por el aire"),
+        .description = COMPOUND_STRING("Lleva a Pesca la respuesta de\nlos vecinos."),
+        .prerequisite = RF_QUEST_STORY_189, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 165, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 32,
+
+    },
+    [RF_QUEST_STORY_191] = {
+        .name = COMPOUND_STRING("El puente de los pescadores"),
+        .description = COMPOUND_STRING("Cuenta a Nuria que los carteles\nya están puestos."),
+        .prerequisite = RF_QUEST_STORY_190, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 166, .rewardItem = ITEM_SUPER_ROD, .rewardCount = 1, .chapter = 32,
+
+    },
+    [RF_QUEST_STORY_192] = {
+        .name = COMPOUND_STRING("Papeles del Safari"),
+        .description = COMPOUND_STRING("Habla con Ofelia en la Casa del\nGuarda."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE05_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 167, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 33,
+
+    },
+    [RF_QUEST_STORY_193] = {
+        .name = COMPOUND_STRING("Fotos desde la valla"),
+        .description = COMPOUND_STRING("Busca a Telmo en Ciudad Fucsia."),
+        .prerequisite = RF_QUEST_STORY_192, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 168, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 33,
+
+    },
+    [RF_QUEST_STORY_194] = {
+        .name = COMPOUND_STRING("Observar a Chansey"),
+        .description = COMPOUND_STRING("Observa un Chansey y vuelve con\nTelmo."),
+        .prerequisite = RF_QUEST_STORY_193, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_CHANSEY, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 33,
+
+    },
+    [RF_QUEST_STORY_195] = {
+        .name = COMPOUND_STRING("La enfermera del Safari"),
+        .description = COMPOUND_STRING("Busca a Marisa en la Ruta 15."),
+        .prerequisite = RF_QUEST_STORY_194, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 170, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 33,
+
+    },
+    [RF_QUEST_STORY_196] = {
+        .name = COMPOUND_STRING("Botiquín para Marisa"),
+        .description = COMPOUND_STRING("Entrega dos Superpociones a\nMarisa."),
+        .prerequisite = RF_QUEST_STORY_195, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_SUPER_POTION, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 33,
+
+    },
+    [RF_QUEST_STORY_197] = {
+        .name = COMPOUND_STRING("Redes o paciencia"),
+        .description = COMPOUND_STRING("Ayuda a Ofelia a decidir su\npropuesta."),
+        .prerequisite = RF_QUEST_STORY_196, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 172, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 33,
+
+    },
+    [RF_QUEST_STORY_198] = {
+        .name = COMPOUND_STRING("Avisar a Marisa"),
+        .description = COMPOUND_STRING("Cuenta a Marisa la decisión del\nGuarda."),
+        .prerequisite = RF_QUEST_STORY_197, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 173, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 33,
+
+    },
+    [RF_QUEST_STORY_199] = {
+        .name = COMPOUND_STRING("La Zona Safari"),
+        .description = COMPOUND_STRING("Entrega a Ofelia el primer\ninforme de Marisa."),
+        .prerequisite = RF_QUEST_STORY_198, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 174, .rewardItem = ITEM_ULTRA_BALL, .rewardCount = 3, .chapter = 33,
+
+    },
+    [RF_QUEST_STORY_200] = {
+        .name = COMPOUND_STRING("Ruedas en la pista"),
+        .description = COMPOUND_STRING("Habla con Lucía en la Ruta 18."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE05_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 175, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 34,
+
+    },
+    [RF_QUEST_STORY_201] = {
+        .name = COMPOUND_STRING("El ciclista de la Ruta 16"),
+        .description = COMPOUND_STRING("Busca a Ciro en la Ruta 16."),
+        .prerequisite = RF_QUEST_STORY_200, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 176, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 34,
+
+    },
+    [RF_QUEST_STORY_202] = {
+        .name = COMPOUND_STRING("Reto en la pista"),
+        .description = COMPOUND_STRING("Acepta el combate de Ciro."),
+        .prerequisite = RF_QUEST_STORY_201, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 177, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 34,
+
+    },
+    [RF_QUEST_STORY_203] = {
+        .name = COMPOUND_STRING("Vecinos del asfalto"),
+        .description = COMPOUND_STRING("Captura dos Pokémon de tipo\nVeneno y vuelve con Ciro."),
+        .prerequisite = RF_QUEST_STORY_202, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_POISON, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 34,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_204] = {
+        .name = COMPOUND_STRING("Botiquín de carrera"),
+        .description = COMPOUND_STRING("Entrega dos Antídotos a Lucía."),
+        .prerequisite = RF_QUEST_STORY_203, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ANTIDOTE, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 34,
+
+    },
+    [RF_QUEST_STORY_205] = {
+        .name = COMPOUND_STRING("Vuelta de reconocimiento"),
+        .description = COMPOUND_STRING("Ve desde Ciro hasta Lucía en 60\nsegundos."),
+        .prerequisite = RF_QUEST_STORY_204, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 180, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 34,
+
+    },
+    [RF_QUEST_STORY_206] = {
+        .name = COMPOUND_STRING("Dar la salida"),
+        .description = COMPOUND_STRING("Lleva la bandera de salida a\nCiro."),
+        .prerequisite = RF_QUEST_STORY_205, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 181, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 34,
+
+    },
+    [RF_QUEST_STORY_207] = {
+        .name = COMPOUND_STRING("La carrera de la Ruta 17"),
+        .description = COMPOUND_STRING("Celebra el final de la carrera\ncon Lucía."),
+        .prerequisite = RF_QUEST_STORY_206, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 182, .rewardItem = ITEM_FULL_HEAL, .rewardCount = 3, .chapter = 34,
+
+    },
+    [RF_QUEST_STORY_208] = {
+        .name = COMPOUND_STRING("La escuela de natación"),
+        .description = COMPOUND_STRING("Habla con Marina en la Ruta 19."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE05_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 183, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 35,
+
+    },
+    [RF_QUEST_STORY_209] = {
+        .name = COMPOUND_STRING("Nadar con cabeza"),
+        .description = COMPOUND_STRING("Acepta el combate de Marina."),
+        .prerequisite = RF_QUEST_STORY_208, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 184, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 35,
+
+    },
+    [RF_QUEST_STORY_210] = {
+        .name = COMPOUND_STRING("El vigía"),
+        .description = COMPOUND_STRING("Busca a Bruno en la Ruta 20."),
+        .prerequisite = RF_QUEST_STORY_209, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 185, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 35,
+
+    },
+    [RF_QUEST_STORY_211] = {
+        .name = COMPOUND_STRING("Quién nada aquí"),
+        .description = COMPOUND_STRING("Captura tres Pokémon de tipo\nAgua y vuelve con Bruno."),
+        .prerequisite = RF_QUEST_STORY_210, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_WATER, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 35,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_212] = {
+        .name = COMPOUND_STRING("Las Islas Espuma"),
+        .description = COMPOUND_STRING("Observa un Seel y vuelve con\nBruno."),
+        .prerequisite = RF_QUEST_STORY_211, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_SEEL, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 35,
+
+    },
+    [RF_QUEST_STORY_213] = {
+        .name = COMPOUND_STRING("Preguntas del vigía"),
+        .description = COMPOUND_STRING("Responde las preguntas de Bruno."),
+        .prerequisite = RF_QUEST_STORY_212, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 188, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 35,
+
+    },
+    [RF_QUEST_STORY_214] = {
+        .name = COMPOUND_STRING("El mapa de corrientes"),
+        .description = COMPOUND_STRING("Lleva el mapa a Marina."),
+        .prerequisite = RF_QUEST_STORY_213, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 189, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 35,
+
+    },
+    [RF_QUEST_STORY_215] = {
+        .name = COMPOUND_STRING("Corrientes de la Ruta 20"),
+        .description = COMPOUND_STRING("Avisa a Bruno de que las alumnas\ncruzan seguras."),
+        .prerequisite = RF_QUEST_STORY_214, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 190, .rewardItem = ITEM_MYSTIC_WATER, .rewardCount = 1, .chapter = 35,
+
+    },
+    [RF_QUEST_STORY_216] = {
+        .name = COMPOUND_STRING("Volver a Canela"),
+        .description = COMPOUND_STRING("Habla con Adela en Isla Canela."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE07_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 191, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 36,
+
+    },
+    [RF_QUEST_STORY_217] = {
+        .name = COMPOUND_STRING("El vulcanólogo"),
+        .description = COMPOUND_STRING("Busca a Ernesto en el Centro\nPokémon de Canela."),
+        .prerequisite = RF_QUEST_STORY_216, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 192, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 36,
+
+    },
+    [RF_QUEST_STORY_218] = {
+        .name = COMPOUND_STRING("Fuego vivo"),
+        .description = COMPOUND_STRING("Captura tres Pokémon de tipo\nFuego y vuelve con Ernesto."),
+        .prerequisite = RF_QUEST_STORY_217, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_FIRE, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 36,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_219] = {
+        .name = COMPOUND_STRING("La memoria de Adela"),
+        .description = COMPOUND_STRING("Acepta el combate de Adela."),
+        .prerequisite = RF_QUEST_STORY_218, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 194, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 36,
+
+    },
+    [RF_QUEST_STORY_220] = {
+        .name = COMPOUND_STRING("Provisiones para la obra"),
+        .description = COMPOUND_STRING("Entrega dos Antiquemar a\nErnesto."),
+        .prerequisite = RF_QUEST_STORY_219, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_BURN_HEAL, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 36,
+
+    },
+    [RF_QUEST_STORY_221] = {
+        .name = COMPOUND_STRING("Reconstruir o recordar"),
+        .description = COMPOUND_STRING("Ayuda a Adela a decidir el\nfuturo de Canela."),
+        .prerequisite = RF_QUEST_STORY_220, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 196, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 36,
+
+    },
+    [RF_QUEST_STORY_222] = {
+        .name = COMPOUND_STRING("El plan de Ernesto"),
+        .description = COMPOUND_STRING("Cuenta a Ernesto la decisión de\nAdela."),
+        .prerequisite = RF_QUEST_STORY_221, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 197, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 36,
+
+    },
+    [RF_QUEST_STORY_223] = {
+        .name = COMPOUND_STRING("Cenizas de Canela"),
+        .description = COMPOUND_STRING("Entrega a Adela el informe de\nErnesto."),
+        .prerequisite = RF_QUEST_STORY_222, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 198, .rewardItem = ITEM_FIRE_STONE, .rewardCount = 1, .chapter = 36,
+
+    },
+    [RF_QUEST_STORY_224] = {
+        .name = COMPOUND_STRING("Cintas en los árboles"),
+        .description = COMPOUND_STRING("Habla con Silvia en el Bosque\nVerde."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE01_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 199, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 37,
+
+    },
+    [RF_QUEST_STORY_225] = {
+        .name = COMPOUND_STRING("Quién come cintas"),
+        .description = COMPOUND_STRING("Observa un Caterpie y vuelve con\nSilvia."),
+        .prerequisite = RF_QUEST_STORY_224, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_CATERPIE, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 37,
+
+    },
+    [RF_QUEST_STORY_226] = {
+        .name = COMPOUND_STRING("El niño que se perdió"),
+        .description = COMPOUND_STRING("Habla con Julio en el Centro\nPokémon de Verde."),
+        .prerequisite = RF_QUEST_STORY_225, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 201, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 37,
+
+    },
+    [RF_QUEST_STORY_227] = {
+        .name = COMPOUND_STRING("Marcas que no se comen"),
+        .description = COMPOUND_STRING("Entrega dos Repelentes a Silvia."),
+        .prerequisite = RF_QUEST_STORY_226, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_REPEL, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 37,
+
+    },
+    [RF_QUEST_STORY_228] = {
+        .name = COMPOUND_STRING("Contar los insectos"),
+        .description = COMPOUND_STRING("Captura dos Pokémon en el Bosque\nVerde y vuelve con Silvia."),
+        .prerequisite = RF_QUEST_STORY_227, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_VIRIDIAN_FOREST, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 37,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_229] = {
+        .name = COMPOUND_STRING("Senderos o bosque"),
+        .description = COMPOUND_STRING("Ayuda a Silvia a decidir cómo\nmarcar el bosque."),
+        .prerequisite = RF_QUEST_STORY_228, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 204, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 37,
+
+    },
+    [RF_QUEST_STORY_230] = {
+        .name = COMPOUND_STRING("Probar el camino"),
+        .description = COMPOUND_STRING("Cuenta a Julio cómo ha quedado\nel bosque."),
+        .prerequisite = RF_QUEST_STORY_229, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 205, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 37,
+
+    },
+    [RF_QUEST_STORY_231] = {
+        .name = COMPOUND_STRING("Senderos del Bosque Verde"),
+        .description = COMPOUND_STRING("Lleva a Silvia la noticia de\nJulio."),
+        .prerequisite = RF_QUEST_STORY_230, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 206, .rewardItem = ITEM_SILVER_POWDER, .rewardCount = 1, .chapter = 37,
+
+    },
+    [RF_QUEST_STORY_232] = {
+        .name = COMPOUND_STRING("Medallas y nervios"),
+        .description = COMPOUND_STRING("Habla con Elena en la Ruta 23."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE07_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 207, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 38,
+
+    },
+    [RF_QUEST_STORY_233] = {
+        .name = COMPOUND_STRING("El que siempre vuelve"),
+        .description = COMPOUND_STRING("Busca a Hugo en la Ruta 22."),
+        .prerequisite = RF_QUEST_STORY_232, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 208, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 38,
+
+    },
+    [RF_QUEST_STORY_234] = {
+        .name = COMPOUND_STRING("Un combate honesto"),
+        .description = COMPOUND_STRING("Acepta el combate de Hugo."),
+        .prerequisite = RF_QUEST_STORY_233, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 209, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 38,
+
+    },
+    [RF_QUEST_STORY_235] = {
+        .name = COMPOUND_STRING("Lo que llevaría"),
+        .description = COMPOUND_STRING("Entrega dos Revivir a Elena para\nel puesto de control."),
+        .prerequisite = RF_QUEST_STORY_234, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_REVIVE, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 38,
+
+    },
+    [RF_QUEST_STORY_236] = {
+        .name = COMPOUND_STRING("Consejos de aspirante"),
+        .description = COMPOUND_STRING("Responde las preguntas de Elena."),
+        .prerequisite = RF_QUEST_STORY_235, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 211, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 38,
+
+    },
+    [RF_QUEST_STORY_237] = {
+        .name = COMPOUND_STRING("Guía o compañía"),
+        .description = COMPOUND_STRING("Ayuda a Elena a decidir el\nformato de la guía."),
+        .prerequisite = RF_QUEST_STORY_236, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 212, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 38,
+
+    },
+    [RF_QUEST_STORY_238] = {
+        .name = COMPOUND_STRING("La respuesta de Hugo"),
+        .description = COMPOUND_STRING("Cuenta a Hugo la propuesta de\nElena."),
+        .prerequisite = RF_QUEST_STORY_237, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 213, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 38,
+
+    },
+    [RF_QUEST_STORY_239] = {
+        .name = COMPOUND_STRING("El camino a la Liga"),
+        .description = COMPOUND_STRING("Lleva a Elena el primer informe\nde Hugo."),
+        .prerequisite = RF_QUEST_STORY_238, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 214, .rewardItem = ITEM_MAX_REVIVE, .rewardCount = 1, .chapter = 38,
+
+    },
+    [RF_QUEST_STORY_240] = {
+        .name = COMPOUND_STRING("Zumbidos nocturnos"),
+        .description = COMPOUND_STRING("Habla con Olivia en la Ruta 10."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE04_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 215, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 39,
+
+    },
+    [RF_QUEST_STORY_241] = {
+        .name = COMPOUND_STRING("El técnico"),
+        .description = COMPOUND_STRING("Busca a Pau en la Central\nEnergía."),
+        .prerequisite = RF_QUEST_STORY_240, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 216, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 39,
+
+    },
+    [RF_QUEST_STORY_242] = {
+        .name = COMPOUND_STRING("Pruebas de campo"),
+        .description = COMPOUND_STRING("Observa un Magnemite y vuelve\ncon Pau."),
+        .prerequisite = RF_QUEST_STORY_241, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_MAGNEMITE, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 39,
+
+    },
+    [RF_QUEST_STORY_243] = {
+        .name = COMPOUND_STRING("El reto del técnico"),
+        .description = COMPOUND_STRING("Acepta el combate de Pau."),
+        .prerequisite = RF_QUEST_STORY_242, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 218, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 39,
+
+    },
+    [RF_QUEST_STORY_244] = {
+        .name = COMPOUND_STRING("Una avería"),
+        .description = COMPOUND_STRING("Entrega dos Antiparalizadores a\nPau."),
+        .prerequisite = RF_QUEST_STORY_243, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_PARALYZE_HEAL, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 39,
+
+    },
+    [RF_QUEST_STORY_245] = {
+        .name = COMPOUND_STRING("Despejar la sala"),
+        .description = COMPOUND_STRING("Gana tres combates contra\nsalvajes y vuelve con Pau."),
+        .prerequisite = RF_QUEST_STORY_244, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_WILD_WIN, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 39,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_246] = {
+        .name = COMPOUND_STRING("Explicar el zumbido"),
+        .description = COMPOUND_STRING("Cuenta a Olivia lo que hay en la\nCentral."),
+        .prerequisite = RF_QUEST_STORY_245, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 221, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 39,
+
+    },
+    [RF_QUEST_STORY_247] = {
+        .name = COMPOUND_STRING("Zumbidos en la Central"),
+        .description = COMPOUND_STRING("Lleva a Pau la invitación de\nOlivia."),
+        .prerequisite = RF_QUEST_STORY_246, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 222, .rewardItem = ITEM_MAGNET, .rewardCount = 1, .chapter = 39,
+
+    },
+    [RF_QUEST_STORY_248] = {
+        .name = COMPOUND_STRING("El guía del muelle"),
+        .description = COMPOUND_STRING("Habla con Celso en Isla Uno."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 223, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 40,
+
+    },
+    [RF_QUEST_STORY_249] = {
+        .name = COMPOUND_STRING("El registro de llegadas"),
+        .description = COMPOUND_STRING("Habla con Iker en el Centro\nPokémon de Isla Uno."),
+        .prerequisite = RF_QUEST_STORY_248, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 224, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 40,
+
+    },
+    [RF_QUEST_STORY_250] = {
+        .name = COMPOUND_STRING("Aguas termales"),
+        .description = COMPOUND_STRING("Busca a Greta en el Camino\nCandente."),
+        .prerequisite = RF_QUEST_STORY_249, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 225, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 40,
+
+    },
+    [RF_QUEST_STORY_251] = {
+        .name = COMPOUND_STRING("Vecinos de las termas"),
+        .description = COMPOUND_STRING("Captura dos Pokémon en el Camino\nCandente y vuelve con Greta."),
+        .prerequisite = RF_QUEST_STORY_250, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_ONE_ISLAND_KINDLE_ROAD, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 40,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_252] = {
+        .name = COMPOUND_STRING("Toallas para todos"),
+        .description = COMPOUND_STRING("Entrega dos Aguas Frescas a\nGreta."),
+        .prerequisite = RF_QUEST_STORY_251, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_FRESH_WATER, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 40,
+
+    },
+    [RF_QUEST_STORY_253] = {
+        .name = COMPOUND_STRING("Recorrido de prueba"),
+        .description = COMPOUND_STRING("Ve desde Celso hasta Greta en 90\nsegundos."),
+        .prerequisite = RF_QUEST_STORY_252, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 228, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 40,
+
+    },
+    [RF_QUEST_STORY_254] = {
+        .name = COMPOUND_STRING("Las paradas"),
+        .description = COMPOUND_STRING("Lleva a Celso la lista de\nparadas."),
+        .prerequisite = RF_QUEST_STORY_253, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 229, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 40,
+
+    },
+    [RF_QUEST_STORY_255] = {
+        .name = COMPOUND_STRING("Bienvenida a Isla Uno"),
+        .description = COMPOUND_STRING("Cuenta a Iker que el recorrido\nestá listo."),
+        .prerequisite = RF_QUEST_STORY_254, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 230, .rewardItem = ITEM_LAVA_COOKIE, .rewardCount = 3, .chapter = 40,
+
+    },
+    [RF_QUEST_STORY_256] = {
+        .name = COMPOUND_STRING("La tienda de Isla Dos"),
+        .description = COMPOUND_STRING("Habla con Lola en Isla Dos."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 231, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 41,
+
+    },
+    [RF_QUEST_STORY_257] = {
+        .name = COMPOUND_STRING("La vecina del cabo"),
+        .description = COMPOUND_STRING("Busca a Teodora en el Cabo\nExtremo."),
+        .prerequisite = RF_QUEST_STORY_256, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 232, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 41,
+
+    },
+    [RF_QUEST_STORY_258] = {
+        .name = COMPOUND_STRING("Tres iniciales"),
+        .description = COMPOUND_STRING("Acepta el combate de Teodora."),
+        .prerequisite = RF_QUEST_STORY_257, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 233, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 41,
+
+    },
+    [RF_QUEST_STORY_259] = {
+        .name = COMPOUND_STRING("Botiquín del cabo"),
+        .description = COMPOUND_STRING("Entrega dos Restaurar Todo a\nLola."),
+        .prerequisite = RF_QUEST_STORY_258, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_FULL_RESTORE, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 41,
+
+    },
+    [RF_QUEST_STORY_260] = {
+        .name = COMPOUND_STRING("Preguntas de Lola"),
+        .description = COMPOUND_STRING("Responde las preguntas de Lola."),
+        .prerequisite = RF_QUEST_STORY_259, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 235, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 41,
+
+    },
+    [RF_QUEST_STORY_261] = {
+        .name = COMPOUND_STRING("Abrir el camino"),
+        .description = COMPOUND_STRING("Ayuda a Teodora a decidir sobre\nel camino."),
+        .prerequisite = RF_QUEST_STORY_260, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 236, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 41,
+
+    },
+    [RF_QUEST_STORY_262] = {
+        .name = COMPOUND_STRING("Avisar en la tienda"),
+        .description = COMPOUND_STRING("Cuenta a Lola la decisión de\nTeodora."),
+        .prerequisite = RF_QUEST_STORY_261, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 237, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 41,
+
+    },
+    [RF_QUEST_STORY_263] = {
+        .name = COMPOUND_STRING("El Cabo Extremo"),
+        .description = COMPOUND_STRING("Lleva a Teodora un regalo de\nLola."),
+        .prerequisite = RF_QUEST_STORY_262, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 238, .rewardItem = ITEM_PP_UP, .rewardCount = 1, .chapter = 41,
+
+    },
+    [RF_QUEST_STORY_264] = {
+        .name = COMPOUND_STRING("Lo que sabía el abuelo"),
+        .description = COMPOUND_STRING("Habla con Sol en Pueblo Paleta."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE07_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 239, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 42,
+
+    },
+    [RF_QUEST_STORY_265] = {
+        .name = COMPOUND_STRING("El remero"),
+        .description = COMPOUND_STRING("Busca a Antón en la Ruta 21."),
+        .prerequisite = RF_QUEST_STORY_264, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 240, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 42,
+
+    },
+    [RF_QUEST_STORY_266] = {
+        .name = COMPOUND_STRING("Palabras del mar"),
+        .description = COMPOUND_STRING("Responde las preguntas de Antón."),
+        .prerequisite = RF_QUEST_STORY_265, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 241, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 42,
+
+    },
+    [RF_QUEST_STORY_267] = {
+        .name = COMPOUND_STRING("Lo que nada aquí"),
+        .description = COMPOUND_STRING("Captura dos Pokémon de tipo Agua\ny vuelve con Antón."),
+        .prerequisite = RF_QUEST_STORY_266, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_WATER, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 42,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_268] = {
+        .name = COMPOUND_STRING("El cuaderno anotado"),
+        .description = COMPOUND_STRING("Lleva el cuaderno anotado a Sol."),
+        .prerequisite = RF_QUEST_STORY_267, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 243, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 42,
+
+    },
+    [RF_QUEST_STORY_269] = {
+        .name = COMPOUND_STRING("Un remo para Sol"),
+        .description = COMPOUND_STRING("Entrega una Caña Buena a Antón."),
+        .prerequisite = RF_QUEST_STORY_268, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_GOOD_ROD, .alternative = 1, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 42,
+
+    },
+    [RF_QUEST_STORY_270] = {
+        .name = COMPOUND_STRING("Primera salida"),
+        .description = COMPOUND_STRING("Avisa a Sol de que Antón la\nespera."),
+        .prerequisite = RF_QUEST_STORY_269, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 245, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 42,
+
+    },
+    [RF_QUEST_STORY_271] = {
+        .name = COMPOUND_STRING("El remero de la Ruta 21"),
+        .description = COMPOUND_STRING("Lleva a Antón el agradecimiento\nde Sol."),
+        .prerequisite = RF_QUEST_STORY_270, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 246, .rewardItem = ITEM_NET_BALL, .rewardCount = 5, .chapter = 42,
+
+    },
+    [RF_QUEST_STORY_272] = {
+        .name = COMPOUND_STRING("El proveedor"),
+        .description = COMPOUND_STRING("Habla con Lucio en la Ruta 20."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE05_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 247, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 43,
+
+    },
+    [RF_QUEST_STORY_273] = {
+        .name = COMPOUND_STRING("La investigadora del hielo"),
+        .description = COMPOUND_STRING("Lleva la caja a Noelia en las\nIslas Espuma."),
+        .prerequisite = RF_QUEST_STORY_272, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 248, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 43,
+
+    },
+    [RF_QUEST_STORY_274] = {
+        .name = COMPOUND_STRING("Quién vive en el hielo"),
+        .description = COMPOUND_STRING("Observa un Seel y vuelve con\nNoelia."),
+        .prerequisite = RF_QUEST_STORY_273, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_SEEL, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 43,
+
+    },
+    [RF_QUEST_STORY_275] = {
+        .name = COMPOUND_STRING("Hielo y agua"),
+        .description = COMPOUND_STRING("Captura dos Pokémon de tipo\nHielo y vuelve con Noelia."),
+        .prerequisite = RF_QUEST_STORY_274, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_ICE, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 43,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_276] = {
+        .name = COMPOUND_STRING("Abrigo para la investigadora"),
+        .description = COMPOUND_STRING("Entrega dos Antihielo a Noelia."),
+        .prerequisite = RF_QUEST_STORY_275, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ICE_HEAL, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 43,
+
+    },
+    [RF_QUEST_STORY_277] = {
+        .name = COMPOUND_STRING("Las mediciones"),
+        .description = COMPOUND_STRING("Responde las preguntas de\nNoelia."),
+        .prerequisite = RF_QUEST_STORY_276, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 252, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 43,
+
+    },
+    [RF_QUEST_STORY_278] = {
+        .name = COMPOUND_STRING("Notas para el continente"),
+        .description = COMPOUND_STRING("Lleva las notas de Noelia a\nLucio."),
+        .prerequisite = RF_QUEST_STORY_277, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 253, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 43,
+
+    },
+    [RF_QUEST_STORY_279] = {
+        .name = COMPOUND_STRING("El hielo de Espuma"),
+        .description = COMPOUND_STRING("Lleva a Noelia la respuesta de\nCarmín."),
+        .prerequisite = RF_QUEST_STORY_278, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 254, .rewardItem = ITEM_NEVER_MELT_ICE, .rewardCount = 1, .chapter = 43,
+
+    },
+    [RF_QUEST_STORY_280] = {
+        .name = COMPOUND_STRING("Un pasado que pesa"),
+        .description = COMPOUND_STRING("Habla con Otto en el Centro\nPokémon de la Ruta 4."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE02_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 255, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 44,
+
+    },
+    [RF_QUEST_STORY_281] = {
+        .name = COMPOUND_STRING("Ver un Magikarp"),
+        .description = COMPOUND_STRING("Observa un Magikarp y vuelve con\nOtto."),
+        .prerequisite = RF_QUEST_STORY_280, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_MAGIKARP, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 44,
+
+    },
+    [RF_QUEST_STORY_282] = {
+        .name = COMPOUND_STRING("Una compradora"),
+        .description = COMPOUND_STRING("Busca a Candela en el Centro\nPokémon de Carmín."),
+        .prerequisite = RF_QUEST_STORY_281, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 257, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 44,
+
+    },
+    [RF_QUEST_STORY_283] = {
+        .name = COMPOUND_STRING("Lo que creció"),
+        .description = COMPOUND_STRING("Acepta el combate de Candela."),
+        .prerequisite = RF_QUEST_STORY_282, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 258, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 44,
+
+    },
+    [RF_QUEST_STORY_284] = {
+        .name = COMPOUND_STRING("Paciencia"),
+        .description = COMPOUND_STRING("Lleva el consejo de Candela a\nOtto."),
+        .prerequisite = RF_QUEST_STORY_283, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 259, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 44,
+
+    },
+    [RF_QUEST_STORY_285] = {
+        .name = COMPOUND_STRING("Devolver al agua"),
+        .description = COMPOUND_STRING("Captura dos Pokémon de tipo Agua\ny vuelve con Otto."),
+        .prerequisite = RF_QUEST_STORY_284, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_WATER, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 44,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_286] = {
+        .name = COMPOUND_STRING("Cebo para el estanque"),
+        .description = COMPOUND_STRING("Entrega tres Bayas Aranja a\nCandela."),
+        .prerequisite = RF_QUEST_STORY_285, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ORAN_BERRY, .alternative = 3, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 44,
+
+    },
+    [RF_QUEST_STORY_287] = {
+        .name = COMPOUND_STRING("El vendedor de Magikarp"),
+        .description = COMPOUND_STRING("Lleva a Otto la invitación de\nCandela."),
+        .prerequisite = RF_QUEST_STORY_286, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 262, .rewardItem = ITEM_RARE_CANDY, .rewardCount = 2, .chapter = 44,
+
+    },
+    [RF_QUEST_STORY_288] = {
+        .name = COMPOUND_STRING("Cuarenta años de huevos"),
+        .description = COMPOUND_STRING("Habla con Tere en la Guardería\nde Isla Cuatro."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 263, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 45,
+
+    },
+    [RF_QUEST_STORY_289] = {
+        .name = COMPOUND_STRING("El aprendiz con dudas"),
+        .description = COMPOUND_STRING("Busca a Renzo en Isla Cuatro."),
+        .prerequisite = RF_QUEST_STORY_288, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 264, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 45,
+
+    },
+    [RF_QUEST_STORY_290] = {
+        .name = COMPOUND_STRING("Ver nacer"),
+        .description = COMPOUND_STRING("Haz eclosionar un huevo y vuelve\ncon Renzo."),
+        .prerequisite = RF_QUEST_STORY_289, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_HATCH, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 45,
+        .target = 1,
+    },
+    [RF_QUEST_STORY_291] = {
+        .name = COMPOUND_STRING("Preguntas de Tere"),
+        .description = COMPOUND_STRING("Responde las preguntas de Tere."),
+        .prerequisite = RF_QUEST_STORY_290, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 266, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 45,
+
+    },
+    [RF_QUEST_STORY_292] = {
+        .name = COMPOUND_STRING("Un nido cómodo"),
+        .description = COMPOUND_STRING("Entrega dos Pociones a Tere para\nla Guardería."),
+        .prerequisite = RF_QUEST_STORY_291, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_POTION, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 45,
+
+    },
+    [RF_QUEST_STORY_293] = {
+        .name = COMPOUND_STRING("Abrir la Guardería"),
+        .description = COMPOUND_STRING("Ayuda a Tere a decidir sobre la\nGuardería."),
+        .prerequisite = RF_QUEST_STORY_292, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 268, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 45,
+
+    },
+    [RF_QUEST_STORY_294] = {
+        .name = COMPOUND_STRING("La noticia"),
+        .description = COMPOUND_STRING("Cuenta a Renzo la decisión de\nTere."),
+        .prerequisite = RF_QUEST_STORY_293, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 269, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 45,
+
+    },
+    [RF_QUEST_STORY_295] = {
+        .name = COMPOUND_STRING("Huevos en Isla Cuatro"),
+        .description = COMPOUND_STRING("Lleva a Tere el primer informe\nde Renzo."),
+        .prerequisite = RF_QUEST_STORY_294, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 270, .rewardItem = ITEM_EVERSTONE, .rewardCount = 1, .chapter = 45,
+
+    },
+    [RF_QUEST_STORY_296] = {
+        .name = COMPOUND_STRING("Esculpir lo efímero"),
+        .description = COMPOUND_STRING("Habla con Blanca en Isla Cuatro."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 271, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 46,
+
+    },
+    [RF_QUEST_STORY_297] = {
+        .name = COMPOUND_STRING("El guía de la cueva"),
+        .description = COMPOUND_STRING("Busca a Gil en la Cueva Cascada\nHielo."),
+        .prerequisite = RF_QUEST_STORY_296, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 272, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 46,
+
+    },
+    [RF_QUEST_STORY_298] = {
+        .name = COMPOUND_STRING("Reto en el hielo"),
+        .description = COMPOUND_STRING("Acepta el combate de Gil."),
+        .prerequisite = RF_QUEST_STORY_297, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 273, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 46,
+
+    },
+    [RF_QUEST_STORY_299] = {
+        .name = COMPOUND_STRING("Vecinos helados"),
+        .description = COMPOUND_STRING("Captura dos Pokémon de tipo\nHielo y vuelve con Gil."),
+        .prerequisite = RF_QUEST_STORY_298, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_ICE, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 46,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_300] = {
+        .name = COMPOUND_STRING("Hielo para Blanca"),
+        .description = COMPOUND_STRING("Lleva el hielo recogido a\nBlanca."),
+        .prerequisite = RF_QUEST_STORY_299, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 275, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 46,
+
+    },
+    [RF_QUEST_STORY_301] = {
+        .name = COMPOUND_STRING("Herramientas cálidas"),
+        .description = COMPOUND_STRING("Entrega dos Antihielo a Blanca."),
+        .prerequisite = RF_QUEST_STORY_300, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ICE_HEAL, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 46,
+
+    },
+    [RF_QUEST_STORY_302] = {
+        .name = COMPOUND_STRING("El festival"),
+        .description = COMPOUND_STRING("Invita a Gil al festival."),
+        .prerequisite = RF_QUEST_STORY_301, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 277, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 46,
+
+    },
+    [RF_QUEST_STORY_303] = {
+        .name = COMPOUND_STRING("Esculturas de hielo"),
+        .description = COMPOUND_STRING("Cuenta a Blanca cómo fue el\nfestival."),
+        .prerequisite = RF_QUEST_STORY_302, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 278, .rewardItem = ITEM_NEVER_MELT_ICE, .rewardCount = 1, .chapter = 46,
+
+    },
+    [RF_QUEST_STORY_304] = {
+        .name = COMPOUND_STRING("Miltank fugados"),
+        .description = COMPOUND_STRING("Habla con Leandro en Isla Cinco."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 279, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 47,
+
+    },
+    [RF_QUEST_STORY_305] = {
+        .name = COMPOUND_STRING("La cuidadora de la Pradera"),
+        .description = COMPOUND_STRING("Busca a Amapola en la Pradera."),
+        .prerequisite = RF_QUEST_STORY_304, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 280, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 47,
+
+    },
+    [RF_QUEST_STORY_306] = {
+        .name = COMPOUND_STRING("Quién pasta aquí"),
+        .description = COMPOUND_STRING("Captura dos Pokémon en la\nPradera y vuelve con Amapola."),
+        .prerequisite = RF_QUEST_STORY_305, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_FIVE_ISLAND_MEADOW, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 47,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_307] = {
+        .name = COMPOUND_STRING("Campanas para los Miltank"),
+        .description = COMPOUND_STRING("Entrega una Campana Alivio a\nLeandro."),
+        .prerequisite = RF_QUEST_STORY_306, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_SOOTHE_BELL, .alternative = 1, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 47,
+
+    },
+    [RF_QUEST_STORY_308] = {
+        .name = COMPOUND_STRING("Observar a un Miltank"),
+        .description = COMPOUND_STRING("Observa un Miltank y vuelve con\nLeandro."),
+        .prerequisite = RF_QUEST_STORY_307, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_MILTANK, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 47,
+
+    },
+    [RF_QUEST_STORY_309] = {
+        .name = COMPOUND_STRING("Cercas o campanas"),
+        .description = COMPOUND_STRING("Ayuda a Amapola a decidir."),
+        .prerequisite = RF_QUEST_STORY_308, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 284, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 47,
+
+    },
+    [RF_QUEST_STORY_310] = {
+        .name = COMPOUND_STRING("Contárselo a Leandro"),
+        .description = COMPOUND_STRING("Cuenta a Leandro la decisión."),
+        .prerequisite = RF_QUEST_STORY_309, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 285, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 47,
+
+    },
+    [RF_QUEST_STORY_311] = {
+        .name = COMPOUND_STRING("La Pradera de Isla Cinco"),
+        .description = COMPOUND_STRING("Lleva a Amapola leche de los\nMiltank."),
+        .prerequisite = RF_QUEST_STORY_310, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 286, .rewardItem = ITEM_MOOMOO_MILK, .rewardCount = 3, .chapter = 47,
+
+    },
+    [RF_QUEST_STORY_312] = {
+        .name = COMPOUND_STRING("Un huésped exigente"),
+        .description = COMPOUND_STRING("Habla con Irene en el Resort\nLujoso."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 287, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 48,
+
+    },
+    [RF_QUEST_STORY_313] = {
+        .name = COMPOUND_STRING("El recadero"),
+        .description = COMPOUND_STRING("Busca a Max en Isla Cinco."),
+        .prerequisite = RF_QUEST_STORY_312, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 288, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 48,
+
+    },
+    [RF_QUEST_STORY_314] = {
+        .name = COMPOUND_STRING("El reto del recadero"),
+        .description = COMPOUND_STRING("Acepta el combate de Max."),
+        .prerequisite = RF_QUEST_STORY_313, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 289, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 48,
+
+    },
+    [RF_QUEST_STORY_315] = {
+        .name = COMPOUND_STRING("Ver de todo"),
+        .description = COMPOUND_STRING("Captura tres Pokémon de tipo\nNormal y vuelve con Max."),
+        .prerequisite = RF_QUEST_STORY_314, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_NORMAL, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 48,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_316] = {
+        .name = COMPOUND_STRING("Un regalo para el huésped"),
+        .description = COMPOUND_STRING("Entrega una Perla a Irene."),
+        .prerequisite = RF_QUEST_STORY_315, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_PEARL, .alternative = 1, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 48,
+
+    },
+    [RF_QUEST_STORY_317] = {
+        .name = COMPOUND_STRING("Preguntas del huésped"),
+        .description = COMPOUND_STRING("Responde las preguntas del\nhuésped."),
+        .prerequisite = RF_QUEST_STORY_316, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 292, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 48,
+
+    },
+    [RF_QUEST_STORY_318] = {
+        .name = COMPOUND_STRING("Despedir al huésped"),
+        .description = COMPOUND_STRING("Avisa a Max de que el encargo\nestá cumplido."),
+        .prerequisite = RF_QUEST_STORY_317, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 293, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 48,
+
+    },
+    [RF_QUEST_STORY_319] = {
+        .name = COMPOUND_STRING("Recados del Resort"),
+        .description = COMPOUND_STRING("Lleva a Irene la propina de Max."),
+        .prerequisite = RF_QUEST_STORY_318, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 294, .rewardItem = ITEM_NUGGET, .rewardCount = 1, .chapter = 48,
+
+    },
+    [RF_QUEST_STORY_320] = {
+        .name = COMPOUND_STRING("El mar devuelve"),
+        .description = COMPOUND_STRING("Habla con Nadia en Isla Seis."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 295, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 49,
+
+    },
+    [RF_QUEST_STORY_321] = {
+        .name = COMPOUND_STRING("El voluntario de siempre"),
+        .description = COMPOUND_STRING("Busca a Paco en el Camino\nAcuático."),
+        .prerequisite = RF_QUEST_STORY_320, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 296, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 49,
+
+    },
+    [RF_QUEST_STORY_322] = {
+        .name = COMPOUND_STRING("Vecinos de la costa"),
+        .description = COMPOUND_STRING("Captura dos Pokémon en el Camino\nAcuático y vuelve con Paco."),
+        .prerequisite = RF_QUEST_STORY_321, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_SIX_ISLAND_WATER_PATH, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 49,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_323] = {
+        .name = COMPOUND_STRING("Guantes para todos"),
+        .description = COMPOUND_STRING("Entrega dos Antídotos a Nadia."),
+        .prerequisite = RF_QUEST_STORY_322, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ANTIDOTE, .alternative = 2, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 49,
+
+    },
+    [RF_QUEST_STORY_324] = {
+        .name = COMPOUND_STRING("Limpieza en marcha"),
+        .description = COMPOUND_STRING("Gana tres combates contra\nsalvajes y vuelve con Paco."),
+        .prerequisite = RF_QUEST_STORY_323, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_WILD_WIN, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 49,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_325] = {
+        .name = COMPOUND_STRING("Preguntas de Paco"),
+        .description = COMPOUND_STRING("Responde las preguntas de Paco."),
+        .prerequisite = RF_QUEST_STORY_324, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 300, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 49,
+
+    },
+    [RF_QUEST_STORY_326] = {
+        .name = COMPOUND_STRING("El informe"),
+        .description = COMPOUND_STRING("Lleva el informe de Paco a\nNadia."),
+        .prerequisite = RF_QUEST_STORY_325, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 301, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 49,
+
+    },
+    [RF_QUEST_STORY_327] = {
+        .name = COMPOUND_STRING("Limpieza del Camino Acuático"),
+        .description = COMPOUND_STRING("Lleva a Paco el agradecimiento\nde la isla."),
+        .prerequisite = RF_QUEST_STORY_326, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 302, .rewardItem = ITEM_DIVE_BALL, .rewardCount = 5, .chapter = 49,
+
+    },
+    [RF_QUEST_STORY_328] = {
+        .name = COMPOUND_STRING("Algo bajo el valle"),
+        .description = COMPOUND_STRING("Habla con Dora en el Valle\nRuinas."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 303, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 50,
+
+    },
+    [RF_QUEST_STORY_329] = {
+        .name = COMPOUND_STRING("La voz de la isla"),
+        .description = COMPOUND_STRING("Busca a Mateo en Isla Seis."),
+        .prerequisite = RF_QUEST_STORY_328, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 304, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 50,
+
+    },
+    [RF_QUEST_STORY_330] = {
+        .name = COMPOUND_STRING("Ver un Unown"),
+        .description = COMPOUND_STRING("Observa un Unown y vuelve con\nMateo."),
+        .prerequisite = RF_QUEST_STORY_329, .requiredFlag = 0, .condition = QUEST_DEX_SEEN,
+        .argument = SPECIES_UNOWN, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 50,
+
+    },
+    [RF_QUEST_STORY_331] = {
+        .name = COMPOUND_STRING("Fósiles de la arqueóloga"),
+        .description = COMPOUND_STRING("Acepta el combate de Dora."),
+        .prerequisite = RF_QUEST_STORY_330, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 306, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 50,
+
+    },
+    [RF_QUEST_STORY_332] = {
+        .name = COMPOUND_STRING("Un regalo para el valle"),
+        .description = COMPOUND_STRING("Entrega una Esquirla Estrella a\nMateo."),
+        .prerequisite = RF_QUEST_STORY_331, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_STAR_PIECE, .alternative = 1, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 50,
+
+    },
+    [RF_QUEST_STORY_333] = {
+        .name = COMPOUND_STRING("Excavar o esperar"),
+        .description = COMPOUND_STRING("Ayuda a Dora a decidir."),
+        .prerequisite = RF_QUEST_STORY_332, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 308, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 50,
+
+    },
+    [RF_QUEST_STORY_334] = {
+        .name = COMPOUND_STRING("Avisar a Mateo"),
+        .description = COMPOUND_STRING("Cuenta a Mateo la decisión."),
+        .prerequisite = RF_QUEST_STORY_333, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 309, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 50,
+
+    },
+    [RF_QUEST_STORY_335] = {
+        .name = COMPOUND_STRING("El Valle Ruinas"),
+        .description = COMPOUND_STRING("Lleva a Dora el dibujo de la\nabuela de Mateo."),
+        .prerequisite = RF_QUEST_STORY_334, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 310, .rewardItem = ITEM_RARE_CANDY, .rewardCount = 2, .chapter = 50,
+
+    },
+    [RF_QUEST_STORY_336] = {
+        .name = COMPOUND_STRING("Una torre para expertos"),
+        .description = COMPOUND_STRING("Habla con Vega en la Torre\nEntrenador."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 311, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 51,
+
+    },
+    [RF_QUEST_STORY_337] = {
+        .name = COMPOUND_STRING("El novato tímido"),
+        .description = COMPOUND_STRING("Busca a Pipo en Isla Siete."),
+        .prerequisite = RF_QUEST_STORY_336, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 312, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 51,
+
+    },
+    [RF_QUEST_STORY_338] = {
+        .name = COMPOUND_STRING("Una derrota que enseña"),
+        .description = COMPOUND_STRING("Acepta el combate de Vega."),
+        .prerequisite = RF_QUEST_STORY_337, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 313, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 51,
+
+    },
+    [RF_QUEST_STORY_339] = {
+        .name = COMPOUND_STRING("Entrenar sin público"),
+        .description = COMPOUND_STRING("Gana tres combates contra\nsalvajes y vuelve con Pipo."),
+        .prerequisite = RF_QUEST_STORY_338, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_WILD_WIN, .alternative = 0, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 51,
+        .target = 3,
+    },
+    [RF_QUEST_STORY_340] = {
+        .name = COMPOUND_STRING("Botiquín de novato"),
+        .description = COMPOUND_STRING("Entrega tres Superpociones a\nPipo."),
+        .prerequisite = RF_QUEST_STORY_339, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_SUPER_POTION, .alternative = 3, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 51,
+
+    },
+    [RF_QUEST_STORY_341] = {
+        .name = COMPOUND_STRING("Retos para novatos"),
+        .description = COMPOUND_STRING("Ayuda a Vega a decidir."),
+        .prerequisite = RF_QUEST_STORY_340, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 316, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 51,
+
+    },
+    [RF_QUEST_STORY_342] = {
+        .name = COMPOUND_STRING("La primera subida"),
+        .description = COMPOUND_STRING("Cuenta a Pipo la decisión de\nVega."),
+        .prerequisite = RF_QUEST_STORY_341, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 317, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 51,
+
+    },
+    [RF_QUEST_STORY_343] = {
+        .name = COMPOUND_STRING("La Torre para todos"),
+        .description = COMPOUND_STRING("Lleva a Vega el resultado de\nPipo."),
+        .prerequisite = RF_QUEST_STORY_342, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 318, .rewardItem = ITEM_PP_MAX, .rewardCount = 1, .chapter = 51,
+
+    },
+    [RF_QUEST_STORY_344] = {
+        .name = COMPOUND_STRING("Siempre vuelve tarde"),
+        .description = COMPOUND_STRING("Habla con Tina en Isla Siete."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_IS_CHAMPION, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 319, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 52,
+
+    },
+    [RF_QUEST_STORY_345] = {
+        .name = COMPOUND_STRING("El escalador"),
+        .description = COMPOUND_STRING("Busca a Roque en la entrada del\nCañón Sevault."),
+        .prerequisite = RF_QUEST_STORY_344, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 320, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 52,
+
+    },
+    [RF_QUEST_STORY_346] = {
+        .name = COMPOUND_STRING("Escalar con cabeza"),
+        .description = COMPOUND_STRING("Acepta el combate de Roque."),
+        .prerequisite = RF_QUEST_STORY_345, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 321, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 52,
+
+    },
+    [RF_QUEST_STORY_347] = {
+        .name = COMPOUND_STRING("Roca viva"),
+        .description = COMPOUND_STRING("Captura dos Pokémon de tipo Roca\ny vuelve con Roque."),
+        .prerequisite = RF_QUEST_STORY_346, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_TYPE, .alternative = TYPE_ROCK, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 52,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_348] = {
+        .name = COMPOUND_STRING("Una cuerda para volver"),
+        .description = COMPOUND_STRING("Entrega una Cuerda Huida a Tina."),
+        .prerequisite = RF_QUEST_STORY_347, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_ESCAPE_ROPE, .alternative = 1, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 52,
+
+    },
+    [RF_QUEST_STORY_349] = {
+        .name = COMPOUND_STRING("La hora de volver"),
+        .description = COMPOUND_STRING("Ve desde Tina hasta Roque en 60\nsegundos."),
+        .prerequisite = RF_QUEST_STORY_348, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 324, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 52,
+
+    },
+    [RF_QUEST_STORY_350] = {
+        .name = COMPOUND_STRING("Una promesa"),
+        .description = COMPOUND_STRING("Lleva a Tina la promesa de\nRoque."),
+        .prerequisite = RF_QUEST_STORY_349, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 325, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 52,
+
+    },
+    [RF_QUEST_STORY_351] = {
+        .name = COMPOUND_STRING("El escalador del cañón"),
+        .description = COMPOUND_STRING("Lleva a Roque la cena de Tina."),
+        .prerequisite = RF_QUEST_STORY_350, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 326, .rewardItem = ITEM_HARD_STONE, .rewardCount = 1, .chapter = 52,
+
+    },
+    [RF_QUEST_STORY_352] = {
+        .name = COMPOUND_STRING("Alguien que acaba de llegar"),
+        .description = COMPOUND_STRING("Habla con Lin en el Centro\nPokémon de Azafrán."),
+        .prerequisite = RF_QUEST_NONE, .requiredFlag = FLAG_BADGE06_GET, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 327, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 53,
+
+    },
+    [RF_QUEST_STORY_353] = {
+        .name = COMPOUND_STRING("El chico de la Ruta 5"),
+        .description = COMPOUND_STRING("Busca a Omar en la Ruta 5."),
+        .prerequisite = RF_QUEST_STORY_352, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 328, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 53,
+
+    },
+    [RF_QUEST_STORY_354] = {
+        .name = COMPOUND_STRING("Pokémon de aquí"),
+        .description = COMPOUND_STRING("Captura dos Pokémon en la Ruta 5\ny vuelve con Omar."),
+        .prerequisite = RF_QUEST_STORY_353, .requiredFlag = 0, .condition = QUEST_COUNT,
+        .argument = RF_QUEST_EVENT_CATCH_MAP, .alternative = MAP_ROUTE5, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 53,
+        .target = 2,
+    },
+    [RF_QUEST_STORY_355] = {
+        .name = COMPOUND_STRING("Un mapa para Omar"),
+        .description = COMPOUND_STRING("Lleva las preguntas de Omar a\nLin."),
+        .prerequisite = RF_QUEST_STORY_354, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 330, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 53,
+
+    },
+    [RF_QUEST_STORY_356] = {
+        .name = COMPOUND_STRING("Primeras provisiones"),
+        .description = COMPOUND_STRING("Entrega tres Pociones a Omar."),
+        .prerequisite = RF_QUEST_STORY_355, .requiredFlag = 0, .condition = QUEST_DELIVER_ITEM,
+        .argument = ITEM_POTION, .alternative = 3, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 53,
+
+    },
+    [RF_QUEST_STORY_357] = {
+        .name = COMPOUND_STRING("Las calles de Azafrán"),
+        .description = COMPOUND_STRING("Responde las preguntas de Omar."),
+        .prerequisite = RF_QUEST_STORY_356, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 332, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 2, .chapter = 53,
+
+    },
+    [RF_QUEST_STORY_358] = {
+        .name = COMPOUND_STRING("Recién llegados a Azafrán"),
+        .description = COMPOUND_STRING("Lleva a Lin el agradecimiento de\nOmar."),
+        .prerequisite = RF_QUEST_STORY_357, .requiredFlag = 0, .condition = QUEST_EVENT,
+        .argument = RF_STORY_EVENT, .alternative = 333, .rewardItem = ITEM_LUXURY_BALL, .rewardCount = 3, .chapter = 53,
+
+    },

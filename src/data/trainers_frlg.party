@@ -14374,4 +14374,420 @@ Nidorino
 Level: 21
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
+=== TRAINER_RF_STORY_7 ===
+Name: NICO
+Class: Pkmn Trainer 1
+Pic: Hiker Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Geodude
+Level: 26
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Machop
+Level: 26
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Onix
+Level: 26
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_8 ===
+Name: TOBI
+Class: Pkmn Trainer 1
+Pic: Youngster Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Pidgey
+Level: 9
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Rattata
+Level: 9
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_9 ===
+Name: RUFO
+Class: Pkmn Trainer 1
+Pic: Hiker Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Geodude
+Level: 14
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Zubat
+Level: 14
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Sandshrew
+Level: 14
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_10 ===
+Name: ARTURO
+Class: Pkmn Trainer 1
+Pic: Camper Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Oddish
+Level: 18
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Psyduck
+Level: 18
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Mankey
+Level: 18
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_11 ===
+Name: KIKO
+Class: Pkmn Trainer 1
+Pic: Youngster Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Drowzee
+Level: 20
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Ekans
+Level: 20
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Spearow
+Level: 20
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_12 ===
+Name: CHISPA
+Class: Pkmn Trainer 1
+Pic: Camper Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Voltorb
+Level: 24
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Magnemite
+Level: 24
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Pikachu
+Level: 24
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_13 ===
+Name: DIMAS
+Class: Pkmn Trainer 1
+Pic: Hiker Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Raticate
+Level: 30
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Arbok
+Level: 30
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Golbat
+Level: 30
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_14 ===
+Name: KAI
+Class: Pkmn Trainer 1
+Pic: Black Belt Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Machoke
+Level: 32
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Hitmonchan
+Level: 32
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Primeape
+Level: 32
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_15 ===
+Name: MEI
+Class: Pkmn Trainer 1
+Pic: Lass Frlg
+Gender: Female
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Hitmonlee
+Level: 33
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Poliwrath
+Level: 33
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Mankey
+Level: 33
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_16 ===
+Name: CIRO
+Class: Pkmn Trainer 1
+Pic: Biker Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Koffing
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Grimer
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Muk
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_17 ===
+Name: MARINA
+Class: Pkmn Trainer 1
+Pic: Swimmer F Frlg
+Gender: Female
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Staryu
+Level: 36
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Seaking
+Level: 36
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Tentacruel
+Level: 36
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_18 ===
+Name: ADELA
+Class: Pkmn Trainer 1
+Pic: Lass Frlg
+Gender: Female
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Ponyta
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Magmar
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Rapidash
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_19 ===
+Name: HUGO
+Class: Pkmn Trainer 1
+Pic: Camper Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Nidoking
+Level: 42
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Fearow
+Level: 42
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Primeape
+Level: 42
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_20 ===
+Name: PAU
+Class: Pkmn Trainer 1
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Electrode
+Level: 38
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Magneton
+Level: 38
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Electabuzz
+Level: 38
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_21 ===
+Name: TEODORA
+Class: Pkmn Trainer 1
+Pic: Lass Frlg
+Gender: Female
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Venusaur
+Level: 50
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Charizard
+Level: 50
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Blastoise
+Level: 50
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_22 ===
+Name: CANDELA
+Class: Pkmn Trainer 1
+Pic: Lass Frlg
+Gender: Female
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Gyarados
+Level: 30
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Goldeen
+Level: 30
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Psyduck
+Level: 30
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_23 ===
+Name: GIL
+Class: Pkmn Trainer 1
+Pic: Hiker Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Lapras
+Level: 52
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Dewgong
+Level: 52
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Cloyster
+Level: 52
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_24 ===
+Name: MAX
+Class: Pkmn Trainer 1
+Pic: Youngster Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Persian
+Level: 48
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Ninetales
+Level: 48
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Dodrio
+Level: 48
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_25 ===
+Name: DORA
+Class: Pkmn Trainer 1
+Pic: Lass Frlg
+Gender: Female
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Kabutops
+Level: 54
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Omastar
+Level: 54
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Aerodactyl
+Level: 54
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_26 ===
+Name: VEGA
+Class: Pkmn Trainer 1
+Pic: Lass Frlg
+Gender: Female
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Alakazam
+Level: 58
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Gengar
+Level: 58
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Starmie
+Level: 58
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_27 ===
+Name: ROQUE
+Class: Pkmn Trainer 1
+Pic: Hiker Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Golem
+Level: 56
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Onix
+Level: 56
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Rhydon
+Level: 56
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
 /* END RF STORY */

@@ -12,6 +12,39 @@ Una casilla pendiente puede requerir implementación, completar una integración
 validar código existente. No cuenta como terminada solo porque compile. Las funciones
 repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 
+## Misiones: Fase C, lote 3 (28-10-2026)
+
+Reconversión completa: las 263 genéricas restantes (71–333) son ahora 33 campañas narrativas
+(32 de ocho escenas y una de siete). El catálogo sigue en 430 misiones, pero ya no hay registros
+genéricos: 359 escenas en 45 campañas, más las 71 misiones originales (0–70).
+- Kanto: correo de Paleta, museo al aire libre, Monte Moon (decisión), feria de Celeste, puerto de
+  Carmín, Cueva Diglett, Central de la Ruta 10, música en Lavanda (decisión), jardines de Azulona,
+  casino (decisión), Dojo (decisión), litoral de las rutas 12–14, Safari (decisión), Pista Ciclista,
+  corrientes de la Ruta 20, Canela (decisión), Bosque Verde (decisión), Calle Victoria (decisión),
+  Central Energía, Islas Espuma, Ruta 21, el vendedor de Magikarp y recién llegados a Azafrán.
+- Islas Sete (posjuego): bienvenida a Isla Uno, Cabo Extremo (decisión), Guardería (decisión),
+  esculturas de hielo, Pradera (decisión), recados del Resort, limpieza del Camino Acuático, Valle
+  Ruinas (decisión) y Torre Entrenador (decisión).
+- 75 actores y 15 equipos nuevos; decisiones en los bits 2–14. Migración 0x34 de 71–333 al cargar
+  partidas 0x33 o anteriores (las de 0x33 conservan 334–349).
+- Los registros de Pokédex genéricos desaparecen como misiones sueltas: la Pokédex y los legendarios
+  siguen con sus propias misiones (0–70 y `rf_quests_legends.h`).
+
+**Siguiente:** misiones 430–649 con contenido nuevo (la extensión de guardado ya las admite).
+
+## Misiones: Fase C, lote 2 (28-10-2026)
+
+Primera reconversión de misiones genéricas (opción a): los IDs 334–349, antes usos de objeto y
+objetivos dobles, son ahora dos campañas. Siguen 430 misiones; las genéricas bajan de 279 a 263.
+- **VOCES EN LA OSCURIDAD** (334–341, rescate): entregas, pistas en el Túnel Roca, Nico atrapado en
+  el sótano, observar a su Machop, combate de práctica y Nico de vuelta en Pueblo Lavanda.
+- **LA RUTA DE LAS BAYAS** (342–349, exploración de Isla Tres): capturas en el Bosque Baya, entrega de
+  bayas, puzle de cosechas, capturas de tipo Planta y una decisión sobre abrir el bosque a visitantes.
+- Migración versionada sin bytes nuevos (versión de contenido 0x33 en el magic de la extensión).
+
+**Siguiente:** seguir reconvirtiendo por lotes (las 263 genéricas restantes) hacia la distribución
+del plan; cada lote añade su versión de contenido y sus casos mGBA.
+
 ## Misiones: Fase C, lote 1 (28-10-2026)
 
 **430 misiones** (IDs 0–429). Dos campañas nuevas de 8 escenas que usan el motor de la Fase B:

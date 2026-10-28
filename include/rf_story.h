@@ -11,6 +11,7 @@ enum RFQuestFilter
 };
 
 bool32 RFStory_IsObjectHidden(const u8 *script);
+bool32 RFStory_IsScene(u32 quest);
 u32 RFStory_TargetMap(u32 quest);
 u32 RFStory_Difficulty(u32 quest);
 bool32 RFStory_MatchesFilter(u32 quest, u32 filter);

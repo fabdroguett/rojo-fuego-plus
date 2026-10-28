@@ -93,16 +93,27 @@ void RFStory_OnClaim(u32 quest)
         return;
     RFStory_EnsureSave();
     for (i = 0; i < 8; i++)
-        finished += RFQuests_GetState(RF_STORY_FIRST + i * 8 + 7) == RF_QUEST_CLAIMED;
+        finished += RFQuests_GetState(sSceneQuest[i * 8 + 7]) == RF_QUEST_CLAIMED; // the first eight campaigns
     if (finished)
         Achievement_Unlock(ACH_RF_STORY_FIRST);
     if (finished == 8)
         Achievement_Unlock(ACH_RF_STORY_ALL);
 }
 
+// Scenes may sit on any quest ID (reconverted slots included): sQuestScene holds index + 1.
 static bool32 IsScene(u32 id)
 {
-    return id >= RF_STORY_FIRST && id < RF_STORY_FIRST + RF_STORY_COUNT;
+    return id < RF_QUEST_COUNT && sQuestScene[id] != 0;
+}
+
+bool32 RFStory_IsScene(u32 quest)
+{
+    return IsScene(quest);
+}
+
+static const struct RFStoryScene *Scene(u32 quest)
+{
+    return &sScenes[sQuestScene[quest] - 1];
 }
 
 static bool32 AtActor(u32 actor)
@@ -118,7 +129,7 @@ u32 RFStory_TargetMap(u32 quest)
     if (quest >= RF_QUEST_COUNT)
         return 0;
     if (IsScene(quest))
-        return sActors[sScenes[quest - RF_STORY_FIRST].target].map;
+        return sActors[Scene(quest)->target].map;
     q = &RFQuests_GetCatalog()[quest];
     return q->condition == QUEST_VISIT ? q->argument : MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB;
 }
@@ -205,7 +216,7 @@ void RFStory_CopyHint(u32 quest, u8 *dest)
 
 const u8 *RFStory_Resolution(u32 quest)
 {
-    return IsScene(quest) ? SceneEnding(&sScenes[quest - RF_STORY_FIRST])
+    return IsScene(quest) ? SceneEnding(Scene(quest))
         : COMPOUND_STRING("El informe está archivado.\nTu trabajo conserva sus resultados\ny no vuelve a entregar premios.");
 }
 
@@ -232,12 +243,12 @@ bool32 RFStory_ReadEnding(u32 quest, u32 page, u8 *dest, u32 capacity)
 
 const u8 *RFStory_GiverHint(u32 quest)
 {
-    return IsScene(quest) ? sActors[sScenes[quest - RF_STORY_FIRST].giver].hint : NULL;
+    return IsScene(quest) ? sActors[Scene(quest)->giver].hint : NULL;
 }
 
 static bool32 RaceRunning(u32 id)
 {
-    const struct RFStoryRace *race = sScenes[id - RF_STORY_FIRST].race;
+    const struct RFStoryRace *race = Scene(id)->race;
     return race != NULL && sRaceQuest == id + 1
         && gMain.vblankCounter1 - sRaceStart <= (u32)race->seconds * 60;
 }
@@ -253,8 +264,8 @@ const u8 *RFStory_Hint(u32 quest)
         if (sActors[i].clueQuest == quest && sActors[i].clueBit < 32
          && !(gSaveBlock3Ptr->rfStoryClues & (1u << sActors[i].clueBit)))
             return sActors[i].hint;
-    if (sScenes[quest - RF_STORY_FIRST].kind == RF_STORY_CLUES)
-        return sActors[sScenes[quest - RF_STORY_FIRST].target].hint;
+    if (Scene(quest)->kind == RF_STORY_CLUES)
+        return sActors[Scene(quest)->target].hint;
     return RFQuests_GetCatalog()[quest].description;
 }
 
@@ -299,7 +310,7 @@ u32 RFStory_ClueCount(u32 quest)
     if (!IsScene(quest))
         return 0;
     RFStory_EnsureSave();
-    bits = gSaveBlock3Ptr->rfStoryClues & sScenes[quest - RF_STORY_FIRST].clues;
+    bits = gSaveBlock3Ptr->rfStoryClues & Scene(quest)->clues;
     while (bits)
     {
         count += bits & 1;
@@ -357,7 +368,7 @@ static void FinishScene(u32 id)
 
 static void PuzzleQuestion(u32 id)
 {
-    StringCopy(gStringVar4, sScenes[id - RF_STORY_FIRST].questions[sPuzzleStep].text);
+    StringCopy(gStringVar4, Scene(id)->questions[sPuzzleStep].text);
 }
 
 void Script_RFStoryPrepare(void)
@@ -390,7 +401,7 @@ void Script_RFStoryPrepare(void)
     if (sRaceQuest && IsScene(sRaceQuest - 1))
     {
         u32 id = sRaceQuest - 1;
-        if (sScenes[id - RF_STORY_FIRST].target == actor
+        if (Scene(id)->target == actor
          && RFQuests_GetState(id) == RF_QUEST_ACTIVE)
         {
             bool32 inTime = RaceRunning(id);
@@ -399,14 +410,14 @@ void Script_RFStoryPrepare(void)
             if (inTime)
                 FinishScene(id);
             else
-                StringCopy(gStringVar4, sScenes[id - RF_STORY_FIRST].race->late);
+                StringCopy(gStringVar4, Scene(id)->race->late);
             return;
         }
     }
     for (i = 0; i < RF_STORY_COUNT; i++)
     {
         const struct RFStoryScene *scene = &sScenes[i];
-        u32 id = i + RF_STORY_FIRST;
+        u32 id = sSceneQuest[i];
         state = RFQuests_GetState(id);
         if (state == RF_QUEST_READY && (scene->target == actor || scene->giver == actor))
         {
@@ -474,7 +485,7 @@ void Script_RFStoryPrepare(void)
     for (i = 0; i < RF_STORY_COUNT; i++)
     {
         const struct RFStoryScene *scene = &sScenes[i];
-        u32 id = RF_STORY_FIRST + i;
+        u32 id = sSceneQuest[i];
         if (scene->giver != actor || !RFQuests_IsUnlocked(id))
             continue;
         state = RFQuests_GetState(id);
@@ -503,7 +514,7 @@ void Script_RFStoryPrepare(void)
     if (!hasActiveGuidance && pendingTarget == RF_QUEST_NONE)
         for (i = 0; i < RF_STORY_COUNT; i++)
             if ((sScenes[i].giver == actor || sScenes[i].target == actor)
-             && RFQuests_GetState(RF_STORY_FIRST + i) == RF_QUEST_CLAIMED)
+             && RFQuests_GetState(sSceneQuest[i]) == RF_QUEST_CLAIMED)
                 StringCopy(gStringVar4, SceneEnding(&sScenes[i]));
     if (pendingTarget != RF_QUEST_NONE)
         RFStory_CopyHint(pendingTarget, gStringVar4);
@@ -528,8 +539,8 @@ void Script_RFStoryAfterText(void)
 {
     u32 id = gSpecialVar_0x8005;
     if (gSpecialVar_0x8007 == 2 && IsScene(id)
-     && sScenes[id - RF_STORY_FIRST].kind == RF_STORY_RACE
-     && AtActor(sScenes[id - RF_STORY_FIRST].giver)
+     && Scene(id)->kind == RF_STORY_RACE
+     && AtActor(Scene(id)->giver)
      && RFQuests_GetState(id) == RF_QUEST_ACTIVE)
     {
         sRaceQuest = id + 1;
@@ -541,10 +552,10 @@ void Script_RFStoryAfterText(void)
 void Script_RFStoryAccept(void)
 {
     u32 id = gSpecialVar_0x8005;
-    if (IsScene(id) && AtActor(sScenes[id - RF_STORY_FIRST].giver) && RFQuests_GetState(id) == RF_QUEST_AVAILABLE
+    if (IsScene(id) && AtActor(Scene(id)->giver) && RFQuests_GetState(id) == RF_QUEST_AVAILABLE
      && RFQuests_GetCatalog()[id].condition == QUEST_COUNT && RFQuests_CounterSlotsFull())
         StringCopy(gStringVar4, COMPOUND_STRING("Ya sigues cuatro encargos con\nrecuento. Termina uno y vuelve.\pEl encargo te espera aquí."));
-    else if (!IsScene(id) || !AtActor(sScenes[id - RF_STORY_FIRST].giver) || !RFQuests_Accept(id))
+    else if (!IsScene(id) || !AtActor(Scene(id)->giver) || !RFQuests_Accept(id))
         StringCopy(gStringVar4, COMPOUND_STRING("El encargo ya cambió de estado.\nConsulta el diario."));
     else
     {
@@ -572,13 +583,13 @@ void Script_RFStoryConfirm(void)
     }
     if (!IsScene(id))
         return;
-    if (RFQuests_GetState(id) == RF_QUEST_ACTIVE && AtActor(sScenes[id - RF_STORY_FIRST].target)
-     && sScenes[id - RF_STORY_FIRST].kind == RF_STORY_DELIVERY && !RFQuests_DeliverItem(id))
+    if (RFQuests_GetState(id) == RF_QUEST_ACTIVE && AtActor(Scene(id)->target)
+     && Scene(id)->kind == RF_STORY_DELIVERY && !RFQuests_DeliverItem(id))
     {
         StringCopy(gStringVar4, COMPOUND_STRING("No tienes lo solicitado.\nNo se ha retirado ningún objeto."));
         return;
     }
-    if (AtActor(sScenes[id - RF_STORY_FIRST].target) || AtActor(sScenes[id - RF_STORY_FIRST].giver))
+    if (AtActor(Scene(id)->target) || AtActor(Scene(id)->giver))
         FinishScene(id);
 }
 
@@ -590,7 +601,7 @@ void Script_RFStoryPuzzle(void)
     gSpecialVar_Result = 0;
     if (!IsScene(id))
         return;
-    scene = &sScenes[id - RF_STORY_FIRST];
+    scene = Scene(id);
     if (scene->kind != RF_STORY_PUZZLE || !AtActor(scene->target) || sPuzzleStep >= scene->questionCount)
         return;
     if (answer != scene->questions[sPuzzleStep].answer)
@@ -616,7 +627,7 @@ void Script_RFStoryChoice(void)
     const struct RFStoryScene *scene;
     if (!IsScene(id))
         return;
-    scene = &sScenes[id - RF_STORY_FIRST];
+    scene = Scene(id);
     if (scene->kind != RF_STORY_CHOICE || !AtActor(scene->target) || RFQuests_GetState(id) != RF_QUEST_ACTIVE)
         return;
     if (gSpecialVar_Result == TRUE)
@@ -628,18 +639,18 @@ void Script_RFStoryBattleWon(void)
 {
     u32 id = gSpecialVar_0x8005;
     // The battle-end adapter records victory before the overworld clears battle flags.
-    if (IsScene(id) && AtActor(sScenes[id - RF_STORY_FIRST].target)
-     && sScenes[id - RF_STORY_FIRST].kind == RF_STORY_BATTLE
+    if (IsScene(id) && AtActor(Scene(id)->target)
+     && Scene(id)->kind == RF_STORY_BATTLE
      && RFQuests_GetState(id) == RF_QUEST_READY)
     {
         FinishScene(id);
         return;
     }
-    if (!IsScene(id) || !AtActor(sScenes[id - RF_STORY_FIRST].target)
-     || sScenes[id - RF_STORY_FIRST].kind != RF_STORY_BATTLE || gBattleOutcome != B_OUTCOME_WON
+    if (!IsScene(id) || !AtActor(Scene(id)->target)
+     || Scene(id)->kind != RF_STORY_BATTLE || gBattleOutcome != B_OUTCOME_WON
      || !(gBattleTypeFlags & BATTLE_TYPE_TRAINER)
      || (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED | BATTLE_TYPE_FRONTIER))
-     || TRAINER_BATTLE_PARAM.opponentA != sScenes[id - RF_STORY_FIRST].trainer)
+     || TRAINER_BATTLE_PARAM.opponentA != Scene(id)->trainer)
     {
         StringCopy(gStringVar4, COMPOUND_STRING("Podemos volver a practicar.\nTu encargo sigue en el diario."));
         return;
@@ -656,6 +667,6 @@ u32 RFStory_NotifyTrainerWin(u32 trainer)
     for (i = 0; i < RF_STORY_COUNT; i++)
         if (sScenes[i].kind == RF_STORY_BATTLE && sScenes[i].trainer == trainer
          && AtActor(sScenes[i].target))
-            completed += RFQuests_NotifyEvent(RF_STORY_EVENT, RF_STORY_FIRST + i);
+            completed += RFQuests_NotifyEvent(RF_STORY_EVENT, sSceneQuest[i]);
     return completed;
 }

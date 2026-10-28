@@ -16,9 +16,9 @@ from story_content import CAMPAIGNS, CLUES, CONTRACTS
 class StoryCampaignTests(unittest.TestCase):
     def test_catalog_scripts_and_persistent_ids(self):
         rows=[q for _,_,campaign in CAMPAIGNS for q in campaign]
-        self.assertEqual(len(rows),8*len(CAMPAIGNS))
+        self.assertEqual(len(rows),sum(len(r) for _,_,r in CAMPAIGNS))
         self.assertEqual(len(set(q['name'] for q in rows)),len(rows))
-        self.assertEqual(sum(len(points) for points in CLUES.values()),17)
+        self.assertEqual(sum(len(points) for points in CLUES.values()),20)
         data=json.loads((ROOT/'build_artifacts/story-campaigns/catalog.json').read_text(encoding='utf-8')) if (ROOT/'build_artifacts/story-campaigns/catalog.json').exists() else None
         # The source integration itself remains testable when ignored build artifacts are absent.
         actors={}
@@ -204,8 +204,10 @@ int main(void) {
     Proof(351);Script_RFStoryPrepare();assert(RFQuests_GetState(351)==RF_QUEST_CLAIMED);
     // Every authored campaign reaches its finale through the production scene handlers.
     Reset();
-    for(u32 id=RF_STORY_FIRST;id<RF_STORY_FIRST+RF_STORY_COUNT;id++) {
-        const struct RFStoryScene *s=&sScenes[id-RF_STORY_FIRST];
+    for(u32 sceneIndex=0;sceneIndex<RF_STORY_COUNT;sceneIndex++) {
+        const u32 id=sSceneQuest[sceneIndex]; // scenes may sit on reconverted IDs below 350
+        const struct RFStoryScene *s=&sScenes[sceneIndex];
+        assert(RFStory_IsScene(id) && sQuestScene[id]==sceneIndex+1);
         assert(RFQuests_Accept(id));Proof(id);
         if(s->kind==RF_STORY_FIELD) {
             const struct RFQuest *q=&sRFQuests[id];
@@ -289,37 +291,39 @@ int main(void) {
     // The YES decision switches later texts of the same campaign to their alternatives.
     assert(RFQuests_GetChoice(RF_STORY_CHOICE_ESCUELA_EXIGENCIA));
     for(u32 i=0;i<RF_STORY_COUNT;i++) if(sScenes[i].altEnding)
-        assert(RFStory_Resolution(RF_STORY_FIRST+i)==sScenes[i].altEnding);
+        assert(RFStory_Resolution(sSceneQuest[i])==sScenes[i].altEnding);
     // The NO branch completes the same scene, keeps the decision unset and the default ending.
     {
         u32 c=0;
         while(sScenes[c].kind!=RF_STORY_CHOICE) c++;
-        Reset();SetQuestState(RF_STORY_FIRST+c-1,RF_QUEST_CLAIMED);assert(RFQuests_Accept(RF_STORY_FIRST+c));
+        Reset();SetQuestState(sSceneQuest[c-1],RF_QUEST_CLAIMED);assert(RFQuests_Accept(sSceneQuest[c]));
         At(sScenes[c].target);Script_RFStoryPrepare();assert(gSpecialVar_Result==5);
         gSpecialVar_Result=FALSE;Script_RFStoryChoice();
-        assert(RFQuests_GetState(RF_STORY_FIRST+c)==RF_QUEST_CLAIMED);
+        assert(RFQuests_GetState(sSceneQuest[c])==RF_QUEST_CLAIMED);
         assert(!RFQuests_GetChoice(sScenes[c].choice));
-        assert(RFStory_Resolution(RF_STORY_FIRST+c)==sScenes[c].ending);
+        assert(RFStory_Resolution(sSceneQuest[c])==sScenes[c].ending);
     }
     // With the four counter slots taken, a counted scene stays on offer with a clear message.
     {
         u32 c=0;
-        while(!(sScenes[c].kind==RF_STORY_FIELD && sRFQuests[RF_STORY_FIRST+c].condition==QUEST_COUNT)) c++;
+        while(!(sScenes[c].kind==RF_STORY_FIELD && sRFQuests[sSceneQuest[c]].condition==QUEST_COUNT)) c++;
         Reset();
         for(u32 i=0;i<RF_QUEST_COUNTER_SLOTS;i++) save.rfQuestCounters[i]=i+1;
         assert(RFQuests_CounterSlotsFull());
-        if(sRFQuests[RF_STORY_FIRST+c].prerequisite!=RF_QUEST_NONE)
-            SetQuestState(sRFQuests[RF_STORY_FIRST+c].prerequisite,RF_QUEST_CLAIMED);
+        if(sRFQuests[sSceneQuest[c]].prerequisite!=RF_QUEST_NONE)
+            SetQuestState(sRFQuests[sSceneQuest[c]].prerequisite,RF_QUEST_CLAIMED);
         At(sScenes[c].giver);Script_RFStoryPrepare();assert(gSpecialVar_Result==1);
         Script_RFStoryAccept();
-        assert(RFQuests_GetState(RF_STORY_FIRST+c)==RF_QUEST_AVAILABLE && Contains(gStringVar4,"cuatro"));
+        assert(RFQuests_GetState(sSceneQuest[c])==RF_QUEST_AVAILABLE && Contains(gStringVar4,"cuatro"));
     }
-    assert(RFStory_GiverHint(0)==NULL && RFStory_GiverHint(349)==NULL && RFStory_GiverHint(RF_STORY_FIRST+RF_STORY_COUNT)==NULL);
+    assert(RFStory_GiverHint(0)==NULL && RFStory_GiverHint(70)==NULL && RFStory_GiverHint(RF_QUEST_COUNT)==NULL);
+    assert(RFStory_GiverHint(71)!=NULL && RFStory_GiverHint(334)!=NULL); // reconverted slots hold authored scenes
     // Puzzle scenes no longer share one hard-coded question set.
     {
-        const struct RFStoryScene *p[2];u32 n=0;
-        for(u32 i=0;i<RF_STORY_COUNT;i++) if(sScenes[i].kind==RF_STORY_PUZZLE) p[n++]=&sScenes[i];
-        assert(n==2 && p[0]->questions!=p[1]->questions && p[0]->questionCount!=p[1]->questionCount);
+        const struct RFStoryScene *p[64];u32 n=0;
+        for(u32 i=0;i<RF_STORY_COUNT;i++) if(sScenes[i].kind==RF_STORY_PUZZLE) {assert(n<64);p[n++]=&sScenes[i];}
+        assert(n>=2);
+        for(u32 a=0;a<n;a++) for(u32 b=a+1;b<n;b++) assert(p[a]->questions!=p[b]->questions);
     }
     // A guide shared by independent campaigns cannot lock a report behind another plot.
     Reset();SetQuestState(402,RF_QUEST_CLAIMED);assert(RFQuests_Accept(403));

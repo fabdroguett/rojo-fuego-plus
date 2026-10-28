@@ -8,7 +8,14 @@ ACTORS = {}
 # markers and Cubone, so existing actor IDs, script labels and local IDs never shift.
 ACTORS_V2 = {}
 # Story decisions: stable bit numbers in SaveBlock3 (rfQuestChoices). Never renumber.
-CHOICES = {'escuela_exigencia': 0}
+CHOICES = {'escuela_exigencia': 0, 'bayas_abiertas': 1}
+# Campaigns placed on reconverted generic slots instead of new IDs. Their former quests stop
+# existing; saves from before CONTENT_VERSIONS[title] see those IDs reset to available.
+CAMPAIGN_SLOTS = {
+    'VOCES EN LA OSCURIDAD': range(334, 342),
+    'LA RUTA DE LAS BAYAS': range(342, 350),
+}
+CONTENT_VERSIONS = {'VOCES EN LA OSCURIDAD': 0x33, 'LA RUTA DE LAS BAYAS': 0x33}
 PLACES = {
  'PewterCity_Museum_1F':'Museo de Plateada, planta 1', 'Route4':'Ruta 4',
  'MtMoon_B2F':'Monte Moon, sótano 2', 'OneIsland_PokemonCenter_1F':'Centro Pokémon de Isla Uno',
@@ -30,6 +37,8 @@ PLACES = {
  'PokemonTower_5F':'Torre Pokémon, planta 5', 'PokemonTower_6F':'Torre Pokémon, planta 6',
  'PokemonTower_7F':'Torre Pokémon, planta 7',
  'Route2':'Ruta 2', 'Route24':'Ruta 24', 'FourIsland':'Isla Cuatro', 'PewterCity':'Ciudad Plateada',
+ 'Route10':'Ruta 10', 'Route10_PokemonCenter_1F':'Centro Pokémon de Ruta 10', 'ThreeIsland':'Isla Tres',
+ 'ThreeIsland_BondBridge':'Puente Unión, Isla Tres',
 }
 
 
@@ -93,9 +102,19 @@ actor2('tano','Tano','PewterCity','Gané muchas medallas. Ahora intento que mis 
 actor2('pia','Pía','Route3','Cada derrota me pesa. Tano dice que es porque todavía no las anoto bien.', 'OBJ_EVENT_GFX_WOMAN_1_FRLG')
 actor2('quim','Quim','CeruleanCity','Todo combate cabe en mi cuaderno. Bueno, casi todo.')
 
+# Batch C2 (28-10-2026): a rescue in Rock Tunnel and the Berry Forest of Three Island.
+actor2('brisa','Brisa','Route10_PokemonCenter_1F','Coordino los rescates del Túnel Roca. La primera regla es no entrar con prisas.', 'OBJ_EVENT_GFX_WOMAN_1_FRLG')
+actor2('nico','Nico','RockTunnel_B1F','Me torcí el tobillo y preferí esperar. Mis Pokémon no se han separado de mí.', 'OBJ_EVENT_GFX_HIKER')
+actor2('olga','Olga','LavenderTown','Mi hijo Nico explora cuevas. Yo explico a todo el mundo que sabe lo que hace.', 'OBJ_EVENT_GFX_WOMAN_1_FRLG')
+actor2('nico_casa','Nico','LavenderTown','Ya puedo apoyar el pie. Volveré al túnel con un mapa y sin prisas.', 'OBJ_EVENT_GFX_HIKER', visible_after=('VOCES EN LA OSCURIDAD', 7))
+actor2('lis','Lis','ThreeIsland','Mi familia cuida el Bosque Baya. Cada vez llegan más visitantes y no sé si eso es bueno.', 'OBJ_EVENT_GFX_WOMAN_1_FRLG')
+actor2('abel','Abel','ThreeIsland_BerryForest','Paso aquí casi todo el día. Los Pokémon se esconden cuando hay demasiado ruido.')
+actor2('mora','Mora','ThreeIsland_BondBridge','Llevo setenta años recogiendo bayas. Todavía aprendo cuándo no hacerlo.', 'OBJ_EVENT_GFX_WOMAN_1_FRLG')
+
 
 def q(name, giver, target, objective, offer, ending, *, kind='talk', proof=None, flag='0', reward='ITEM_GREAT_BALL', quantity=2,
-      questions=(), seconds=0, goal=None, choice=None, question=None, alt_offer=None, alt_ending=None, bonus=None):
+      questions=(), seconds=0, goal=None, choice=None, question=None, alt_offer=None, alt_ending=None, bonus=None,
+      requires=()):
     """questions: (yes/no question, expected answer) for puzzles; seconds: race time limit.
 
     goal: field objective checked by the quest engine, reported to the target afterwards:
@@ -104,6 +123,7 @@ def q(name, giver, target, objective, offer, ending, *, kind='talk', proof=None,
     choice: key of CHOICES. A 'choice' scene asks `question` and sets the bit on YES; any scene
       with a choice shows alt_offer/alt_ending once the bit is set.
     bonus: composite reward fields for rf_quest_links.h (item, itemCount, money, flag, achievement).
+    requires: groups of (campaign title, row) that must be claimed; one per group is enough.
     """
     assert (kind=='puzzle')==bool(questions) and (kind=='race')==bool(seconds),name
     assert (kind=='field')==bool(goal) and (kind=='choice')==bool(question),name
@@ -111,7 +131,8 @@ def q(name, giver, target, objective, offer, ending, *, kind='talk', proof=None,
     assert (alt_offer is None and alt_ending is None) or choice,name
     return dict(name=name,giver=giver,target=target,objective=objective,offer=offer,ending=ending,
                 kind=kind,proof=proof,flag=flag,reward=reward,quantity=quantity,questions=list(questions),seconds=seconds,
-                goal=goal,choice=choice,question=question,alt_offer=alt_offer,alt_ending=alt_ending,bonus=bonus)
+                goal=goal,choice=choice,question=question,alt_offer=alt_offer,alt_ending=alt_ending,bonus=bonus,
+                requires=[list(group) for group in requires])
 
 
 CAMPAIGNS = [
@@ -223,10 +244,35 @@ q('Lo que Pía aprendió','tano','pia','Visita a Pía en Ruta 3.','Tano quiere s
 q('Cincuenta combates después','pia','quim','Gana cincuenta combates contra entrenadores y busca a Quim.','Quim calcula que un entrenador de verdad ha disputado al menos cincuenta combates. Cuando alcances esa cifra, búscalo en Ciudad Celeste.','Quim repasa tus combates y deja de contar victorias. Ahora le interesa cuántas veces cambiaste de estrategia.',kind='field',goal=('QUEST_ACHIEVEMENT','ACH_B02'),flag='FLAG_BADGE05_GET'),
 q('La escuela del camino','quim','tano','Reúnete con Tano y sus alumnos en Plateada.','Pía y Quim quieren presentar a Tano lo que han aprendido. Acompáñalos a Plateada para cerrar esta etapa.','Tano abre su escuela a quien quiera aprender a perder sin rendirse. Pía y Quim enseñarán a los siguientes alumnos.',reward='ITEM_BOTTLE_CAP',quantity=2,choice='escuela_exigencia',alt_ending='Tano reconoce que exigir funcionó porque Pía y Quim pudieron decir cuándo parar. La escuela tendrá horarios estrictos y descansos obligatorios.',bonus=dict(money=3000)),
 ]),
+
+('VOCES EN LA OSCURIDAD','Una red de rescate aprende a entrar en el Túnel Roca sin dejar a nadie atrás.',[
+q('Antes de entrar','brisa','brisa','Entrega dos Cuerdas Huida a Brisa, en el Centro de Ruta 10.','Brisa coordina los rescates del Túnel Roca. Antes de entrar, cada voluntario deja dos Cuerdas Huida en la reserva común. Nadie debería quedarse sin salida.','Brisa guarda las cuerdas junto a la entrada. Si alguien se pierde, la reserva ya está preparada.',kind='delivery',proof=('ITEM_ESCAPE_ROPE',2),flag='FLAG_BADGE03_GET'),
+q('Huellas en el polvo','brisa','brisa','Revisa las tres señales del túnel y vuelve con Brisa.','Un excursionista no regresó anoche. Brisa marcó tres puntos por los que pudo pasar: dos en el Túnel Roca y uno en Ruta 10. Revísalos y vuelve.','Las tres señales coinciden: el excursionista bajó al sótano del túnel. Brisa traza una ruta segura para llegar hasta él.',kind='clues'),
+q('Una voz en el túnel','brisa','nico','Encuentra a Nico en el sótano del Túnel Roca.','Con las señales, Brisa cree saber dónde está Nico. Baja al sótano del Túnel Roca y comprueba que está bien. No intentes sacarlo sin hablar antes con él.','Nico está cansado pero a salvo. Se torció un tobillo y prefirió esperar en lugar de arriesgarse a caer otra vez.'),
+q('Fuerzas para seguir','nico','nico','Entrega dos Superpociones a Nico para su equipo.','El equipo de Nico está agotado después de protegerlo toda la noche. Dos Superpociones les permitirán acompañarlo hasta la salida.','Los Pokémon de Nico recuperan fuerzas. Ahora él puede caminar despacio con ellos a su lado.',kind='delivery',proof=('ITEM_SUPER_POTION',2)),
+q('Noticias para Lavanda','nico','olga','Avisa a Olga, en Pueblo Lavanda, de que Nico está a salvo.','Nico pide que avises a su madre, Olga, en Pueblo Lavanda. Él saldrá con Brisa en cuanto pueda apoyar el tobillo.','Olga respira por primera vez en toda la noche. Te pide que no le cuentes a Nico cuánto se preocupó.'),
+q('Un compañero asustado','olga','olga','Observa un Machop en el Túnel Roca y vuelve con Olga.','El Machop de Nico huyó al oír un derrumbe. Olga cree que sigue en el túnel. Basta con verlo para saber que está bien; no intentes atraparlo.','Olga se tranquiliza. Nico podrá buscar a su compañero cuando se recupere, con calma y sin asustarlo.',kind='field',goal=('QUEST_DEX_SEEN','SPECIES_MACHOP')),
+q('Perder el miedo','olga','nico','Acompaña a Nico en un combate de práctica en el túnel.','Nico quiere volver a entrenar, pero le tiembla la voz. Propone un combate de práctica en el sótano del túnel, donde ocurrió todo.','Nico sonríe al terminar. El túnel vuelve a ser un lugar que puede recorrer, no solo un mal recuerdo.',kind='battle',proof=7),
+q('Voces en la oscuridad','nico','brisa','Cierra el informe del rescate con Brisa.','Nico sale del túnel con Brisa. Lleva al Centro el informe del rescate: lo que funcionó y lo que hay que mejorar.','Brisa añade una señal fija en cada cruce del túnel. Nico volverá a Pueblo Lavanda para descansar con su madre.',reward='ITEM_REVIVE',quantity=3,bonus=dict(money=2500)),
+]),
+('LA RUTA DE LAS BAYAS','En Isla Tres, una familia decide cómo abrir su bosque a los visitantes sin dañarlo.',[
+q('Un bosque con visitas','lis','abel','Habla con Abel en el Bosque Baya.','Lis cuida el Bosque Baya con su familia. Cada vez llegan más visitantes y quiere saber qué piensa Abel, que pasa allí casi todo el día.','Abel cuenta que los Pokémon del bosque se esconden cuando hay mucho ruido. Antes de decidir nada, quiere saber quién vive allí.',flag='FLAG_IS_CHAMPION'),
+q('Quién vive entre bayas','abel','abel','Captura tres Pokémon en el Bosque Baya y vuelve con Abel.','Abel quiere saber qué especies frecuentan el bosque. Registra tres capturas allí; puedes liberarlos después en el mismo claro.','Abel anota cada especie junto al arbusto donde apareció. El bosque está más habitado de lo que parecía.',kind='field',goal=('QUEST_COUNT','RF_QUEST_EVENT_CATCH_MAP','MAP_THREE_ISLAND_BERRY_FOREST',3)),
+q('Bayas para el refugio','abel','abel','Entrega cinco Bayas Aranja a Abel.','En invierno, el refugio del bosque reparte bayas a los Pokémon jóvenes. Abel te pide cinco Bayas Aranja para la reserva.','Abel guarda las bayas en el refugio. Nadie tendrá que arrancar frutos verdes cuando llegue el frío.',kind='delivery',proof=('ITEM_ORAN_BERRY',5)),
+q('El orden de las cosechas','abel','mora','Resuelve las preguntas de Mora en el Puente Unión.','Mora, la abuela de Lis, enseña a los visitantes cuándo se recoge cada baya. Te espera en el Puente Unión con un pequeño juego de preguntas.','Mora asiente satisfecha. Quien sabe esperar a la cosecha no daña el arbusto que la produce.',kind='puzzle',questions=(
+    ('Mora pregunta: ¿se recogen las bayas antes de madurar?',False),
+    ('Mora sigue: ¿conviene dejar bayas para los Pokémon?',True),
+    ('Mora termina: ¿se arranca el arbusto para llevarlo?',False))),
+q('El color del bosque','mora','mora','Captura cuatro Pokémon de tipo Planta y visita a Mora.','Mora sostiene que un bosque sano se nota en sus Pokémon de tipo Planta. Registra cuatro capturas de ese tipo, donde quieras, y cuéntale qué viste.','Mora compara tus notas con las de su juventud. Algunas especies volvieron; otras todavía faltan.',kind='field',goal=('QUEST_COUNT','RF_QUEST_EVENT_CATCH_TYPE','TYPE_GRASS',4)),
+q('Un mapa compartido','mora','lis','Lleva las notas de Mora a Lis, en Isla Tres.','Con las notas de Abel y las suyas, Mora ha dibujado un mapa del bosque. Llévaselo a Lis: la familia debe decidir junta.','Lis extiende el mapa sobre la mesa. Los claros con más Pokémon quedan marcados en rojo.'),
+q('Abrir o proteger','lis','lis','Da tu opinión a Lis sobre los visitantes.','Lis duda entre abrir senderos por todo el bosque o cerrar los claros más sensibles. Quiere escuchar a alguien de fuera antes de decidir.','Lis decide cerrar los claros marcados en rojo. Los visitantes recorrerán solo los senderos del borde.',kind='choice',choice='bayas_abiertas',question='Lis pregunta: ¿abrimos senderos guiados por todo el bosque?',alt_ending='Lis decide abrir senderos guiados por todo el bosque, con turnos y guías de la familia. Los claros sensibles se visitarán en silencio.'),
+q('La ruta de las bayas','lis','abel','Cuenta a Abel la decisión de la familia.','Abel espera en el Bosque Baya para saber qué decidió la familia. Ve a contárselo; él preparará las señales.','Abel coloca señales en el borde del bosque. Los claros quedan para los Pokémon y para quien sepa observar desde lejos.',reward='ITEM_BOTTLE_CAP',quantity=2,choice='bayas_abiertas',alt_ending='Abel prepara turnos de visita guiada. El bosque recibe visitantes, pero nunca más de los que sus Pokémon pueden tolerar.',bonus=dict(money=4000)),
+]),
 ]
 
 # An investigation is one mission with several individually persistent observations.
 CLUES = {
+81: [('Señal de la entrada','RockTunnel_1F','Unas botas marcaron el polvo hacia el interior del túnel.'),('Señal del sótano','RockTunnel_B1F','Una linterna apagada señala la escalera que baja.'),('Señal de la salida','Route10','Nadie ha salido por aquí desde ayer: el camino sigue intacto.')],
 2: [('Atril de Moon','MtMoon_B2F','Las marcas fueron hechas después de que la roca se enfriara.'),('Atril de Roca','RockTunnel_B1F','El trazo sigue una grieta natural; no representa una frontera.'),('Atril de Canela','CinnabarIsland_PokemonLab_ExperimentRoom','El registro del laboratorio conserva la procedencia de la muestra.')],
 13: [('Nodo de Silph','SilphCo_1F','La copia de Silph tiene permisos de lectura, no acceso a los equipos.'),('Nodo de Bill','Route25_SeaCottage','Bill conserva una copia aislada y una fecha de revisión.'),('Nodo de Canela','CinnabarIsland_PokemonLab_ExperimentRoom','El laboratorio solo comparte observaciones autorizadas.')],
 21: [('Memorial del cuidado','PokemonTower_5F','Aquí se recuerda a quienes cuidaron de otros sin pedir recompensa.'),('Memorial de la espera','PokemonTower_6F','La inscripción deja espacio para nombres que aún se están buscando.'),('Memorial del regreso','PokemonTower_7F','Las ofrendas permanecen aquí; el refugio recibirá solo una copia del texto.')],
@@ -242,6 +288,7 @@ TRAINERS = [
 ('SARA',62,'Female','Cooltrainer F Frlg',['Mienshao','Chandelure','Braviary','Jellicent']),
 ('GAEL',60,'Male','Hiker Frlg',['Donphan','Crobat','Arcanine','Slowbro']),
 ('QUIM',21,'Male','Youngster Frlg',['Bellsprout','Psyduck','Nidorino']),
+('NICO',26,'Male','Hiker Frlg',['Geodude','Machop','Onix']),
 ]
 
 CONTRACTS = [
@@ -249,3 +296,21 @@ CONTRACTS = [
 ('mara','Réplica para el archivo','ITEM_PEARL',1,'ITEM_NET_BALL',2,55),
 ('gael','Reserva de expedición','ITEM_SUPER_REPEL',1,'ITEM_GREAT_BALL',2,63),
 ]
+
+# Batch C3 (28-10-2026): every remaining generic slot (71-333) becomes an authored campaign.
+# Modules append in this order; slots are handed out from the pool in that order, so campaigns
+# may only be appended at the end (never reordered or removed once shipped).
+RECONVERTED_C3 = []
+CLUE_BASE = {}  # scene index -> first clue bit, for campaigns after batch C2
+import story_content_c3a  # noqa: E402,F401
+import story_content_c3b  # noqa: E402,F401
+import story_content_c3c  # noqa: E402,F401
+import story_content_c3d  # noqa: E402,F401
+_pool = [i for i in range(71, 334) if not any(i in slots for slots in CAMPAIGN_SLOTS.values())]
+for _title in RECONVERTED_C3:
+    _rows = next(rows for title, _, rows in CAMPAIGNS if title == _title)
+    CAMPAIGN_SLOTS[_title] = _pool[:len(_rows)]
+    CONTENT_VERSIONS[_title] = 0x34
+    _pool = _pool[len(_rows):]
+assert not _pool, f'generic slots left over: {_pool}'
+

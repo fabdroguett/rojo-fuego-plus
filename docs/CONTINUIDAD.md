@@ -1,5 +1,26 @@
 # Continuidad de ejecución
 
+## Misiones: Fase C, lote 3 (28-10-2026)
+
+- 33 campañas en `tools/rojo_fuego/story_content_c3a.py`–`c3d.py`, importadas al final de
+  `story_content.py`; `RECONVERTED_C3` reparte en orden las casillas 71–333 (`CONTENT_VERSIONS` 0x34).
+  `extra_quests.py` ya no genera ninguna misión; `rf_quests_extra.h` queda vacío.
+- Generador: campañas de 1–8 escenas, `requires=` → `STORY REQUIREMENTS`, migraciones en tramos
+  contiguos, `CLUE_BASE` para pistas futuras (quedan 12 bits). Decisiones usadas: bits 0–14.
+- Pruebas: el escenario de contadores sustituye diez escenas por misiones sintéticas dentro de la
+  prueba; la de guardado usa ahora la misión 70 (la 333 es reconvertida). Casos mGBA `c3-*`.
+- Irene (Resort Lujoso) y Antón (Ruta 21) se alcanzan surfeando; son escenas con Surf disponible.
+
+## Misiones: Fase C, lote 2 (28-10-2026)
+
+- Motor de campañas sin IDs contiguos: `sSceneQuest`/`sQuestScene` generadas; `RFStory_IsScene`.
+- `CAMPAIGN_SLOTS`: 334–341 «Voces en la oscuridad», 342–349 «La ruta de las bayas». Actores nuevos
+  Brisa (Centro de Ruta 10), Nico, Olga, Nico en casa, Lis, Abel, Mora; entrenador `TRAINER_RF_STORY_7`
+  (Nico); decisión bit 1 `bayas_abiertas`; pistas 17–19 en Túnel Roca y Ruta 10. Ningún actor anterior
+  cambia de casilla ni de ID.
+- Migración: magic de la extensión `0x515358vv`; versión 0x33 resetea 334–349 al cargar partidas 0x32
+  o anteriores. Prueba C y prueba mGBA con guardado/carga real (`migration`).
+
 ## Legendarios recolocados (28-10-2026)
 
 - `legends.py`: los atributos de tiles FRLG son de 32 bits pero su comportamiento ya está en la

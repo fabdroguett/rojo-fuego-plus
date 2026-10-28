@@ -867,6 +867,1214 @@ RFStory_Actor_62::
 	release
 	end
 
+RFStory_Actor_63::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 63
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_64::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 64
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 340, RFStory_Battle_86
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_65::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 65
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_66::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 66
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_67::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 67
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_68::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 68
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_69::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 69
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_70::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 70
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 76, RFStory_Battle_101
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_71::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 71
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_72::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 72
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_73::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 73
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_74::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 74
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_75::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 75
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_76::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 76
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_77::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 77
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 90, RFStory_Battle_115
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_78::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 78
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_79::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 79
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 100, RFStory_Battle_125
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_80::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 80
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_81::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 81
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_82::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 82
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_83::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 83
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 107, RFStory_Battle_132
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_84::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 84
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_85::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 85
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_86::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 86
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_87::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 87
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 121, RFStory_Battle_146
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_88::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 88
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_89::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 89
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_90::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 90
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_91::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 91
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_92::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 92
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_93::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 93
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_94::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 94
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 146, RFStory_Battle_171
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_95::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 95
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_96::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 96
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 155, RFStory_Battle_180
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_97::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 97
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 153, RFStory_Battle_178
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_98::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 98
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_99::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 99
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_100::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 100
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_101::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 101
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_102::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 102
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_103::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 103
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_104::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 104
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 177, RFStory_Battle_202
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_105::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 105
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_106::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 106
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 184, RFStory_Battle_209
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_107::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 107
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_108::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 108
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 194, RFStory_Battle_219
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_109::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 109
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_110::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 110
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_111::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 111
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_112::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 112
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 209, RFStory_Battle_234
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_113::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 113
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_114::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 114
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 218, RFStory_Battle_243
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_115::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 115
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_116::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 116
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_117::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 117
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_118::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 118
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_119::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 119
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_120::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 120
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 233, RFStory_Battle_258
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_121::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 121
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_122::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 122
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_123::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 123
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_124::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 124
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_125::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 125
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_126::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 126
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 258, RFStory_Battle_283
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_127::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 127
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_128::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 128
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_129::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 129
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 273, RFStory_Battle_298
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_130::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 130
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_131::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 131
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_132::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 132
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_133::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 133
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_134::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 134
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 289, RFStory_Battle_314
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_135::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 135
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_136::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 136
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_137::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 137
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 306, RFStory_Battle_331
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_138::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 138
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_139::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 139
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 313, RFStory_Battle_338
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_140::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 140
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_141::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 141
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	goto_if_eq VAR_0x8005, 321, RFStory_Battle_346
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_142::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 142
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_143::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 143
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_144::
+	lock
+	faceplayer
+	setvar VAR_0x8004, 144
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_145::
+	lock
+	setvar VAR_0x8004, 145
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_146::
+	lock
+	setvar VAR_0x8004, 146
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
+RFStory_Actor_147::
+	lock
+	setvar VAR_0x8004, 147
+	callnative Script_RFStoryPrepare
+	goto_if_eq VAR_RESULT, 1, RFStory_Offer
+	goto_if_eq VAR_RESULT, 2, RFStory_Confirm
+	goto_if_eq VAR_RESULT, 3, RFStory_Puzzle
+	goto_if_eq VAR_RESULT, 5, RFStory_Choice
+	goto_if_ne VAR_RESULT, 4, RFStory_ShowText
+	msgbox gStringVar4
+	release
+	end
+
 RFStory_ShowText::
 	msgbox gStringVar4
 	callnative Script_RFStoryAfterText
@@ -966,6 +2174,195 @@ RFStory_Battle_74::
 	goto_if_eq VAR_RESULT, NO, RFStory_Bye
 	trainerbattle_single TRAINER_RF_STORY_6, RFStory_BattleIntro, RFStory_BattleLost
 	setvar VAR_0x8005, 424
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_86::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_7, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 340
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_101::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_8, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 76
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_115::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_9, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 90
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_125::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_10, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 100
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_132::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_11, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 107
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_146::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_12, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 121
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_171::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_13, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 146
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_178::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_15, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 153
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_180::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_14, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 155
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_202::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_16, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 177
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_209::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_17, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 184
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_219::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_18, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 194
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_234::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_19, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 209
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_243::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_20, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 218
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_258::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_21, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 233
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_283::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_22, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 258
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_298::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_23, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 273
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_314::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_24, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 289
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_331::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_25, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 306
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_338::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_26, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 313
+	callnative Script_RFStoryBattleWon
+	msgbox gStringVar4
+	release
+	end
+RFStory_Battle_346::
+	msgbox gStringVar4, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RFStory_Bye
+	trainerbattle_single TRAINER_RF_STORY_27, RFStory_BattleIntro, RFStory_BattleLost
+	setvar VAR_0x8005, 321
 	callnative Script_RFStoryBattleWon
 	msgbox gStringVar4
 	release

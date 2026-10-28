@@ -45,6 +45,12 @@ def wild(species,level):
     return param(4,SPECIES[species])+param(5,level)+call('WildBattle',60)+'mash A 1800\nmash B 600\nrun 120\n'
 # Batch C1: CENSO DE LA HIERBA ALTA is 414-421, LA ESCUELA DEL CAMINO is 422-429.
 C1_CENSUS,C1_SCHOOL=414,422
+# Batch C2 reuses reconverted generic slots: VOCES EN LA OSCURIDAD 334-341, LA RUTA DE LAS BAYAS 342-349.
+C2_RESCUE,C2_BERRIES=334,342
+ITEMS={n:int(v) for n,v in re.findall(r'^\s*(ITEM_[A-Z0-9_]+)\s*=\s*(\d+)',(ROOT/'include/constants/items.h').read_text(encoding='utf-8'),re.M)}
+def give(item,count): return param(4,ITEMS[item])+param(5,count)+call('AddItem')
+# Batch C3 hands its slots out in order; look a scene up by campaign title and row.
+def c3(title,row): return next(q['id'] for q in data['quests'] if q['campaign']==title and q['scene']-min(x['scene'] for x in data['quests'] if x['campaign']==title)==row)
 
 cases={
     'offer-cancel':(prepare(350,'alma',0)+warp('alma')+key('A')+shot('offer')+'mash B 1200\nrun 60\n'+shot('offer-cancel')+inspect(),{0:0,12:1,13:0}),
@@ -85,6 +91,23 @@ cases={
     # The school: Quim's battle, the decision (YES) and a later offer that follows it.
     'c1-quim':(prepare(C1_SCHOOL+2,'quim')+warp('quim')+key('A',480)+shot('c1-quim-offer')+key('A',300)+'mash A 3600\nmash B 900\nrun 120\n'+look(0),{0:3}),
     'c1-choice':(prepare(C1_SCHOOL+3,'tano')+warp('tano')+key('A',480)+shot('c1-choice-question')+key('A',300)+shot('c1-choice-ending')+'mash B 900\nrun 60\n'+look(0,22),{0:3,22:1}),
+    # C2 on reconverted IDs: delivery, a talk deep in Rock Tunnel (preview screen: wait longer),
+    # Mora's puzzle (no, yes, no), the forest decision and the rescue finale with Nico back home.
+    'c2-delivery':(prepare(C2_RESCUE,'brisa')+give('ITEM_ESCAPE_ROPE',2)+warp('brisa')+key('A',480)+shot('c2-delivery-offer')+key('A',300)+shot('c2-delivery-confirm')+key('A',300)+'mash B 900\nrun 60\n'+shot('c2-delivery')+look(0),{0:3}),
+    'c2-tunnel':(prepare(C2_RESCUE+2,'nico')+warp('nico')+'run 360\n'+key('A',480)+shot('c2-tunnel')+'mash A 900\nrun 60\n'+look(0,12),{0:3,12:1}),
+    'c2-puzzle':(prepare(C2_BERRIES+3,'mora')+warp('mora')+key('A',300)+shot('c2-puzzle')+key('B',300)+key('A',300)+key('B',300)+'mash B 900\nrun 60\n'+look(0),{0:3}),
+    'c2-choice':(prepare(C2_BERRIES+6,'lis')+warp('lis')+key('A',480)+key('A',300)+shot('c2-choice')+'mash B 900\nrun 60\n'+look(0,22),{0:3,22:2}),
+    'c2-final':(prepare(C2_RESCUE+7,'brisa')+call('ZeroMoney')+warp('brisa')+key('A',480)+'mash B 900\nrun 60\n'+warp('nico_casa')+shot('c2-nico-home')+look(0,12,20),{0:3,12:1,20:2500}),
+    # C3 (every remaining generic slot): one scene of each kind, on IDs below 334.
+    'c3-delivery':(prepare(c3('EL CARTERO DE PALETA',4),'tobi')+give('ITEM_POTION',2)+warp('tobi')+key('A',480)+shot('c3-delivery-offer')+key('A',300)+key('A',300)+'mash B 900\nrun 60\n'+shot('c3-delivery')+look(0),{0:3}),
+    'c3-battle':(prepare(c3('EL CARTERO DE PALETA',5),'tobi')+warp('tobi')+key('A',480)+shot('c3-battle-offer')+key('A',300)+'mash A 3600\nmash B 900\nrun 120\n'+look(0),{0:3}),
+    'c3-puzzle':(prepare(c3('EL MUSEO SIN VITRINAS',3),'lazaro')+warp('lazaro')+key('A',300)+shot('c3-puzzle')+key('B',300)+key('A',300)+key('B',300)+'mash B 900\nrun 60\n'+look(0),{0:3}),
+    'c3-race':(prepare(c3('LA FERIA DE CELESTE',4),'pilar')+warp('pilar')+key('A',240)+shot('c3-race-start')+'mash B 360\nrun 60\n'+warp('arturo')+key('A',240)+'mash A 900\nrun 60\n'+look(0),{0:3}),
+    'c3-choice':(prepare(c3('FICHAS SIN DUEÑO',5),'dimas')+warp('dimas')+key('A',480)+key('A',300)+shot('c3-choice')+'mash B 900\nrun 60\n'+look(0,22),{0:3,22:1<<4}),
+    # The seven-scene campaign closes on slot 333 with its composite money reward.
+    'c3-final':(prepare(c3('RECIÉN LLEGADOS A AZAFRÁN',6),'lin')+call('ZeroMoney')+warp('lin')+key('A',480)+'mash B 900\nrun 60\n'+shot('c3-final')+look(0,20),{0:3,20:2500}),
+    # A content-version 0x32 save through flash: the reconverted slot is available again.
+    'migration':(call('MigrateProbe',600)+look(15),{15:1}),
     'c1-alt-offer':(prepare(C1_SCHOOL+4,'tano',0)+param(4,0)+call('SetChoice')+warp('tano')+key('A',480)+shot('c1-alt-offer')+'mash B 900\nrun 60\n'+look(0,22),{0:0,22:1}),
     # Flash round-trip of story fields and the quest extension (decisions, counters, IDs 500+),
     # then an older save whose extension magic is garbage. SaveBlock3 is 1620 of 1624 bytes.
@@ -101,9 +124,11 @@ cases['clues']=(prepare(352,'edda')+clues+warp('edda')+key('A',240)+'mash A 1200
 survey='';expected_survey={}
 for a in data['actors']:
     keyname=a['key'];q=350;mode=0
-    if keyname.startswith('clue_'): q=350+int(keyname.split('_')[1]);mode=1
+    # Clue markers belong to a scene index; its quest ID comes from the catalogue (slots may be reconverted).
+    if keyname.startswith('clue_'): q=data['quests'][int(keyname.split('_')[1])]['id'];mode=1
     if keyname=='home_cubone': q=373;mode=2
     if keyname=='cora_lab': q=C1_CENSUS+7;mode=2 # visible once the census is handed in
+    if keyname=='nico_casa': q=C2_RESCUE+7;mode=2 # visible once the rescue report is closed
     survey+=prepare(q,keyname,mode)+warp(keyname)+shot('actor-'+keyname)+f'w32 {result+12*4:08x} 0\n'+call('Read',1)+read(12)
     # Second read for maps that finish loading later (preview screens, long interiors).
     survey+='run 360\n'+f'w32 {result+12*4:08x} 0\n'+call('Read',1)+read(12)
@@ -138,8 +163,12 @@ def legend_survey():
             steps+=shot('legend-'+o['script'][-3:])+f'w32 {result+24*4:08x} 0\n'+call('ReadObject',1)+read(24)
             # Second read: maps with a preview screen (Rock Tunnel) finish loading later.
             steps+='run 360\n'+f'w32 {result+24*4:08x} 0\n'+call('ReadObject',1)+read(24)
+            # Third read: an achievement toast can hold the frame in which a read was scheduled.
+            steps+='run 600\n'+f'w32 {result+24*4:08x} 0\n'+call('ReadObject',1)+read(24)
+            LEGEND_NAMES.append(f"{path.parent.name}:{o['script']}@{o['x']},{o['y']}")
             count+=1
     return steps,count
+LEGEND_NAMES=[]
 legend_steps,LEGEND_COUNT=legend_survey()
 cases['legends']=(legend_steps,{})
 
@@ -168,9 +197,10 @@ for name in args.case or list(cases):
             # Two reads per legend: right after loading (maps with a preview screen load later) and
             # 360 frames on (a wandering wild spawn may have started a battle by then).
             reads=[int(v,16) for ad,v in matches if int(ad,16)==result+24*4]
-            found=[int(a==1 or b==1) for a,b in zip(reads[0::2],reads[1::2])]
+            found=[int(1 in reads[i:i+3]) for i in range(0,len(reads),3)]
             passed=len(found)==LEGEND_COUNT and all(v==1 for v in found)
             checks={'legendsFound':sum(v==1 for v in found),'legendsExpected':LEGEND_COUNT}
+            if not passed: print('missing legends:',[n for n,v in zip(LEGEND_NAMES,found) if v!=1],flush=True)
         if name=='actors':
             reads=[int(v,16) for ad,v in matches if int(ad,16)==result+12*4]
             observed_actors=[int(a==1 or b==1) for a,b in zip(reads[0::2],reads[1::2])]

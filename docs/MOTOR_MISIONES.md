@@ -83,6 +83,22 @@ El validador comprueba referencias, grupos, cantidades y ciclos entre prerrequis
   marca (`surf`). `MapGrid` lee los atributos de 32 bits de los tilesets de FireRed; su
   comportamiento (bits 0–8) ya usa la numeración de Emerald (`metatile_behaviors.h`).
 
+## Reconversión de misiones genéricas
+
+- `CAMPAIGN_SLOTS` (story_content.py) asigna a una campaña 8 IDs de misiones genéricas (< 350).
+  `extra_quests.py` deja de generarlos y `story_campaigns.py` coloca allí las escenas; el motor busca
+  la escena de cada misión con `sQuestScene`/`sSceneQuest`, así que los IDs no tienen que ser seguidos.
+- `CONTENT_VERSIONS` fija la versión de contenido de cada reconversión. El byte bajo del magic de la
+  extensión guarda la versión de la partida: al cargar una anterior, `MigrateQuestContent` devuelve
+  esos IDs a disponible y libera sus contadores y su seguimiento; el resto no cambia.
+- Nuevos marcadores de pista de campañas posteriores van al final de la lista de actores
+  (`clue_base` explícito, `CLUE_BASE` en story_content.py), como los actores de `actor2`.
+- Lote C3: ya no quedan genéricas. `story_content_c3a.py`–`c3d.py` añaden 33 campañas (`RECONVERTED_C3`);
+  sus casillas salen en orden de la reserva 71–333, así que solo se pueden añadir campañas al final,
+  nunca reordenar ni quitar. Las campañas pueden tener de 1 a 8 escenas (la última tiene 7) y una
+  escena puede declarar `requires=` (grupos de campaña y fila) que genera `STORY REQUIREMENTS`.
+  La migración agrupa cada campaña en tramos contiguos de IDs (versión de contenido 0x34).
+
 ## Pendiente de usar en contenido (Fase C)
 
 Lote C1 (IDs 414–429) validó en mGBA, con mecánicas reales: observación, victoria contra salvaje,

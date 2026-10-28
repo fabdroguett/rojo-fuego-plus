@@ -68,6 +68,12 @@ struct RFQuestBonus
     u32 money;
 };
 
+struct RFQuestMigration
+{
+    u8 version; // content version that changed the meaning of these IDs
+    u16 first, last;
+};
+
 // World changes derived from quest states: no save space, reapplied on every map load.
 struct RFQuestObject
 {

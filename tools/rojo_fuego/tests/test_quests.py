@@ -205,6 +205,11 @@ int main(void)
     u8 shipped[RF_QUEST_STATE_BYTES];
     memcpy(shipped, save.rfQuestStates, sizeof(shipped));
     (void)RFQuests_GetState(0);
+    // Only the reconverted IDs change; every other shipped state survives.
+    for (u32 i = 0; i < ARRAY_COUNT(sRFQuestMigrations); i++)
+        if (sRFQuestMigrations[i].first != RF_QUEST_NONE)
+            for (u32 id = sRFQuestMigrations[i].first; id <= sRFQuestMigrations[i].last; id++)
+                shipped[id / 4] &= ~(3 << ((id % 4) * 2));
     assert(memcmp(shipped, save.rfQuestStates, sizeof(shipped)) == 0);
     for (u32 i = 0; i < sizeof(save.unrelated); i++) assert(save.unrelated[i] == 0xA5);
     assert(save.rfQuestExtMagic == QUEST_EXT_MAGIC && save.rfQuestChoices == 0);
@@ -332,6 +337,37 @@ int main(void)
     RFQuests_OnMapLoad(); assert(notices == noticesBefore + 1);
     save.rfQuestTracked = 0;
 
+    // Content migration: a version 0x32 save forgets what reconverted slots meant before.
+    assert(sRFQuestMigrations[1].first == 334 && RF_QUEST_CONTENT_VERSION > 0x32);
+    memset(&save, 0, sizeof(save));
+    save.rfQuestSaveMagic = QUEST_SAVE_MAGIC;
+    save.rfQuestExtMagic = QUEST_EXT_MAGIC_BASE | 0x32;
+    save.rfQuestChoices = 1u << 4;
+    SetQuestState(340, RF_QUEST_CLAIMED);
+    SetQuestState(70, RF_QUEST_CLAIMED);
+    SetQuestState(350, RF_QUEST_ACTIVE);
+    save.rfQuestTracked = 341;
+    save.rfQuestCounters[1] = 341 | (5 << 10);
+    save.rfQuestCounters[2] = 351 | (2 << 10);
+    assert(RFQuests_GetState(340) == RF_QUEST_AVAILABLE);
+    assert(RFQuests_GetState(70) == RF_QUEST_CLAIMED && RFQuests_GetState(350) == RF_QUEST_ACTIVE);
+    assert(save.rfQuestTracked == 0 && save.rfQuestCounters[1] == 0 && save.rfQuestCounters[2] == (351 | (2 << 10)));
+    assert(save.rfQuestChoices == (1u << 4) && save.rfQuestExtMagic == QUEST_EXT_MAGIC);
+    // An up-to-date save is never migrated again.
+    SetQuestState(340, RF_QUEST_CLAIMED);
+    save.rfQuestTracked = 341;
+    assert(RFQuests_GetState(340) == RF_QUEST_CLAIMED && save.rfQuestTracked == 341);
+    // A 0x33 save already knows 334-349: only the batch C3 slots (71-333) are reset.
+    save.rfQuestExtMagic = QUEST_EXT_MAGIC_BASE | 0x33;
+    SetQuestState(200, RF_QUEST_CLAIMED);
+    save.rfQuestTracked = 0;
+    assert(RFQuests_GetState(200) == RF_QUEST_AVAILABLE && RFQuests_GetState(340) == RF_QUEST_CLAIMED);
+    assert(RFQuests_GetState(70) == RF_QUEST_CLAIMED && save.rfQuestExtMagic == QUEST_EXT_MAGIC);
+    save.rfQuestTracked = 341;
+    save.rfQuestTracked = 0;
+    memset(save.rfQuestCounters, 0, sizeof(save.rfQuestCounters));
+    save.rfQuestChoices = 0;
+
     // Story decisions are permanent bits; out-of-range choices are ignored.
     assert(!RFQuests_GetChoice(3));
     RFQuests_SetChoice(3);
@@ -454,6 +490,7 @@ void FlagSet(u16 flag);
 void MapGridSetMetatileIdAt(s32 x, s32 y, u16 metatile);
 void Achievements_QueueQuestNotice(u32 quest, bool32 here);
 u32 RFStory_TargetMap(u32 quest);
+bool32 RFStory_IsScene(u32 quest);
 #endif
 '''.replace("DECLARATIONS", declarations)
         harness = r'''
@@ -486,6 +523,7 @@ const u8 RFTestScript_Guide[] = {0}, RFTestScript_Gone[] = {0}, RFTestScript_Oth
 static u32 notices, lastNotice = UINT32_MAX, lastNoticeHere, storyTargetMap;
 void Achievements_QueueQuestNotice(u32 quest, bool32 here) {notices++; lastNotice = quest; lastNoticeHere = here;}
 u32 RFStory_TargetMap(u32 quest) {(void)quest; return storyTargetMap;}
+bool32 RFStory_IsScene(u32 quest) {return quest >= 71 && quest < RF_QUEST_COUNT;}
 bool32 FlagGet(u16 flag) {return flag == FLAG_SYS_POKEDEX_GET ? dex : champion;}
 u32 GetMonData(struct Pokemon *mon, u32 field) {return field == MON_DATA_SPECIES ? mon->species : mon->egg;}
 u8 GetSetPokedexFlag(enum NationalDexOrder species, u8 caseID) {(void)species; (void)caseID; return dex;}
@@ -526,23 +564,34 @@ MAIN_BODY
         self._run_engine(PROGRESSION_MAIN)
 
     def test_counters_choices_and_extended_states(self):
+        # Every generic slot is now an authored scene; this scenario swaps ten scenes for synthetic
+        # quests (inside the test only) so counters, polled conditions and links stay covered.
+        targets = {143: "QUEST_COUNT, .argument = RF_QUEST_EVENT_TRAINER_WIN, .alternative = 0, .target = 3",
+                   144: "QUEST_COUNT, .argument = RF_QUEST_EVENT_TRAINER_WIN, .alternative = 77, .target = 2",
+                   145: "QUEST_COUNT, .argument = RF_QUEST_EVENT_TRAINER_WIN, .alternative = 0, .target = 2",
+                   149: "QUEST_COUNT, .argument = RF_QUEST_EVENT_TRAINER_WIN, .alternative = 0, .target = 2",
+                   150: "QUEST_COUNT, .argument = RF_QUEST_EVENT_TRAINER_WIN, .alternative = 0, .target = 2",
+                   242: "QUEST_COUNT, .argument = RF_QUEST_EVENT_TRAINER_WIN, .alternative = 0, .target = 2",
+                   243: "QUEST_DEX_SEEN, .argument = SPECIES_PIKACHU",
+                   244: "QUEST_BADGES, .argument = 8",
+                   248: "QUEST_ACHIEVEMENT, .argument = 5",
+                   249: "QUEST_DEX_CAUGHT, .argument = SPECIES_PIKACHU"}
+        labels = dict(re.findall(r"#define (RF_QUEST_STORY_\d+) (\d+)",
+                                 (ROOT / "include/constants/rf_story.h").read_text(encoding="utf-8")))
         def counted(text):
-            # Six legendary registrations (prerequisite: the Champion report only) become counted
-            # trainer objectives for this scenario only.
-            for index, target, trainer in ((143, 3, 0), (144, 2, 77), (145, 2, 0), (149, 2, 0), (150, 2, 0), (242, 2, 0)):
-                text, n = re.subn(
-                    rf"(\[RF_QUEST_EXTRA_{index:03d}\] = \{{.*?)\.condition = QUEST_DEX_CAUGHT,\s*\.argument = SPECIES_\w+,",
-                    rf"\1.condition = QUEST_COUNT, .argument = RF_QUEST_EVENT_TRAINER_WIN, "
-                    rf".alternative = {trainer}, .target = {target},", text, count=1, flags=re.S)
-                self.assertEqual(n, 1)
-            # Three more become the polled conditions added with the gameplay events.
-            for index, condition in ((243, "QUEST_DEX_SEEN, .argument = SPECIES_PIKACHU"),
-                                     (244, "QUEST_BADGES, .argument = 8"),
-                                     (248, "QUEST_ACHIEVEMENT, .argument = 5")):
-                text, n = re.subn(
-                    rf"(\[RF_QUEST_EXTRA_{index:03d}\] = \{{.*?)\.condition = QUEST_DEX_CAUGHT,\s*\.argument = SPECIES_\w+,",
-                    rf"\1.condition = {condition},", text, count=1, flags=re.S)
-                self.assertEqual(n, 1)
+            entries = []
+            for quest, condition in targets.items():
+                reward = "ITEM_POKE_BALL, .rewardCount = 2" if quest == 244 else "ITEM_GREAT_BALL, .rewardCount = 1"
+                entries.append(f"#define RF_QUEST_EXTRA_{quest} {quest}\n"
+                               f"    [RF_QUEST_EXTRA_{quest}] = {{.name = COMPOUND_STRING(\"Prueba\"), "
+                               f".description = COMPOUND_STRING(\"Prueba.\"), .prerequisite = RF_QUEST_REMATCH_REPORT, "
+                               f".requiredFlag = 0, .condition = {condition}, .rewardItem = {reward}}},")
+            return text + "\n".join(entries) + "\n"
+        def scenes(text):
+            for label, quest in labels.items():
+                if int(quest) in targets:
+                    text, n = re.subn(rf"\n    \[{label}\] = \{{.*?\n    \}},", "", text, count=1, flags=re.S)
+                    self.assertEqual(n, 1, label)
             return text
         def links(text):
             # 249 needs (243 or 244) and 248; 243 and 244 grant composite rewards.
@@ -564,36 +613,19 @@ MAIN_BODY
                                 " .x = 4, .y = 9, .metatile = 0x281},\n"
                                 "    {.map = MAP_PEWTER_CITY_MUSEUM_1F, .quest = RF_QUEST_EXTRA_249, .minState = 2,"
                                 " .x = 5, .y = 9, .metatile = 0x282 | MAPGRID_IMPASSABLE},")
-        self._run_engine(COUNTER_MAIN, {"rf_quests_extra.h": counted, "rf_quest_links.h": links})
+        self._run_engine(COUNTER_MAIN, {"rf_quests_extra.h": counted, "rf_quests_story.h": scenes,
+                                        "rf_quest_links.h": links})
 
-    def test_field_registrations_use_short_chains_and_game_names(self):
+    def test_every_generic_slot_is_reconverted(self):
         import sys
         sys.path.insert(0, str(ROOT / "tools/rojo_fuego"))
-        from extra_quests import species_details
-        details = species_details()
+        from story_content import CAMPAIGN_SLOTS, CONTENT_VERSIONS
+        # Batch C3 reconverted every generic registration (71-349) into authored campaigns.
         source = (ROOT / "src/data/rf_quests_extra.h").read_text(encoding="utf-8")
-        entries = re.findall(r'\[(RF_QUEST_EXTRA_\d+)\] = \{\s*\.name = COMPOUND_STRING\("([^"]*)"\),.*?'
-                             r'\.prerequisite = (\w+), \.condition = (\w+),\s*\.argument = (\w+)', source, re.S)
-        self.assertEqual(len(entries), 279)
-        prerequisite = {quest: previous for quest, _, previous, _, _ in entries}
-        legendary = {quest for quest, _, _, condition, argument in entries
-                     if condition == "QUEST_DEX_CAUGHT" and details[argument][1]}
-        self.assertIn("Registro: Nidoran♀", {name for _, name, _, _, _ in entries})
-        self.assertIn("Registro: Mr. Mime", {name for _, name, _, _, _ in entries})
-        for quest, name, previous, condition, argument in entries:
-            self.assertNotIn("_", name, quest)
-            if condition == "QUEST_DEX_CAUGHT":
-                self.assertEqual(name, "Registro: " + details[argument][0])
-            # A legendary registration never blocks another one, and is never blocked.
-            self.assertNotIn(previous, legendary, quest)
-            if quest in legendary:
-                self.assertEqual(previous, "RF_QUEST_REMATCH_REPORT", quest)
-            depth, current = 0, quest
-            while current.startswith("RF_QUEST_EXTRA_"):
-                current, depth = prerequisite[current], depth + 1
-            self.assertEqual(current, "RF_QUEST_REMATCH_REPORT")
-            self.assertLessEqual(depth, 40, quest)
-        self.assertEqual(len(legendary), 10)
+        self.assertNotIn("[RF_QUEST_EXTRA_", source)
+        slots = [i for ids in CAMPAIGN_SLOTS.values() for i in ids]
+        self.assertEqual(sorted(slots), list(range(71, 350)))
+        self.assertEqual(set(CONTENT_VERSIONS), set(CAMPAIGN_SLOTS))
 
 
 if __name__ == "__main__":

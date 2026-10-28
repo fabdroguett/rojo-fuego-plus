@@ -142,7 +142,7 @@ void RFStoryFixture_Read(void)
     gRFStoryFixtureResult[12]=actor<ARRAY_COUNT(sFixtureActors)
         && !TryGetObjectEventIdByLocalIdAndMap(sFixtureActors[actor].local,MAP_NUM(sFixtureActors[actor].map),MAP_GROUP(sFixtureActors[actor].map),&objectId);
     gRFStoryFixtureResult[13]=ArePlayerFieldControlsLocked();
-    gRFStoryFixtureResult[14]=RFQuests_GetState(349);
+    gRFStoryFixtureResult[14]=RFQuests_GetState(70); // 70: a shipped quest that no content version reconverts
     // Diagnostics for actors that fail to appear: active objects, player tile, engine hiding.
     gRFStoryFixtureResult[16]=0;
     for(objectId=0;objectId<OBJECT_EVENTS_COUNT;objectId++) gRFStoryFixtureResult[16]+=gObjectEvents[objectId].active;
@@ -176,7 +176,7 @@ void RFStoryFixture_CompleteStories(void)
 void RFStoryFixture_SaveRoundTrip(void)
 {
     RFStory_EnsureSave();
-    Mark(0,RF_QUEST_CLAIMED);Mark(349,RF_QUEST_ACTIVE);
+    Mark(0,RF_QUEST_CLAIMED);Mark(70,RF_QUEST_ACTIVE);
     gSaveBlock3Ptr->rfStoryClues=0x15555;
     gSaveBlock3Ptr->rfStoryContractDay=77;
     gSaveBlock3Ptr->rfStoryContractReady=2;
@@ -191,7 +191,7 @@ void RFStoryFixture_SaveRoundTrip(void)
         u8 shipped[RF_QUEST_STATE_BYTES];
         gSaveBlock3Ptr->rfStoryClues=0;
         gSaveBlock3Ptr->rfStoryContractReady=0;
-        Mark(0,0);Mark(349,0);
+        Mark(0,0);Mark(70,0);
         gSaveBlock3Ptr->rfQuestChoices=0;gSaveBlock3Ptr->rfQuestCounters[2]=0;
         gSaveBlock3Ptr->rfQuestStatesExt[0]=0;gSaveBlock3Ptr->rfQuestStatesExt[RF_QUEST_EXT_STATE_BYTES-1]=0;
         gRFStoryFixtureResult[15]=LoadGameSave(SAVE_NORMAL)==SAVE_STATUS_OK
@@ -199,7 +199,7 @@ void RFStoryFixture_SaveRoundTrip(void)
             && gSaveBlock3Ptr->rfStoryContractDay==77
             && gSaveBlock3Ptr->rfStoryContractReady==2
             && gSaveBlock3Ptr->rfStoryContractClaimed==1
-            && RFQuests_GetState(0)==RF_QUEST_CLAIMED && RFQuests_GetState(349)==RF_QUEST_ACTIVE
+            && RFQuests_GetState(0)==RF_QUEST_CLAIMED && RFQuests_GetState(70)==RF_QUEST_ACTIVE
             && gSaveBlock3Ptr->rfQuestChoices==((1u<<5)|(1u<<31))
             && gSaveBlock3Ptr->rfQuestCounters[2]==0xA9C3
             && gSaveBlock3Ptr->rfQuestStatesExt[0]==0x1B
@@ -208,7 +208,7 @@ void RFStoryFixture_SaveRoundTrip(void)
         memcpy(shipped,gSaveBlock3Ptr->rfQuestStates,sizeof(shipped));
         gSaveBlock3Ptr->rfQuestExtMagic=0xA5A5A5A5;
         gRFStoryFixtureResult[15]=gRFStoryFixtureResult[15]
-            && RFQuests_GetState(0)==RF_QUEST_CLAIMED && RFQuests_GetState(349)==RF_QUEST_ACTIVE
+            && RFQuests_GetState(0)==RF_QUEST_CLAIMED && RFQuests_GetState(70)==RF_QUEST_ACTIVE
             && memcmp(shipped,gSaveBlock3Ptr->rfQuestStates,sizeof(shipped))==0
             && gSaveBlock3Ptr->rfQuestChoices==0 && gSaveBlock3Ptr->rfQuestCounters[2]==0
             && gSaveBlock3Ptr->rfQuestStatesExt[0]==0
@@ -297,5 +297,26 @@ void RFStoryFixture_SpawnProbe(void)
     gRFStoryFixtureResult[26]=TrySpawnObjectEvent(gRFStoryFixtureParams[7],map&0xFF,map>>8);
     for(i=0;i<MAX_SPRITES;i++) used+=gSprites[i].inUse;
     gRFStoryFixtureResult[27]=used;
+    SetMainCallback2(CB2_Overworld);
+}
+
+// params[4] = item, params[5] = quantity.
+void RFStoryFixture_AddItem(void)
+{
+    AddBagItem(gRFStoryFixtureParams[4],gRFStoryFixtureParams[5]);
+    SetMainCallback2(CB2_Overworld);
+}
+
+// A save from content version 0x32 with a reconverted slot claimed and tracked goes through
+// flash and back: [15] = the slot is available again, untouched slots keep their state.
+void RFStoryFixture_MigrateProbe(void)
+{
+    gSaveBlock3Ptr->rfQuestExtMagic=0x51535832;
+    Mark(340,RF_QUEST_CLAIMED);Mark(200,RF_QUEST_CLAIMED);Mark(70,RF_QUEST_CLAIMED);
+    gSaveBlock3Ptr->rfQuestTracked=341;
+    gRFStoryFixtureResult[15]=TrySavingData(SAVE_NORMAL)==SAVE_STATUS_OK
+        && LoadGameSave(SAVE_NORMAL)==SAVE_STATUS_OK
+        && RFQuests_GetState(340)==RF_QUEST_AVAILABLE && RFQuests_GetState(200)==RF_QUEST_AVAILABLE && RFQuests_GetState(70)==RF_QUEST_CLAIMED
+        && gSaveBlock3Ptr->rfQuestTracked==0 && (gSaveBlock3Ptr->rfQuestExtMagic&0xFF)==RF_QUEST_CONTENT_VERSION;
     SetMainCallback2(CB2_Overworld);
 }

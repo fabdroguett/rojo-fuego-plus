@@ -88,10 +88,12 @@
 #define RF_QUEST_LEGEND_26 69
 #define RF_QUEST_LEGEND_27 70
 // END legends
+// Former range of the generic registrations; since content version 0x34 every ID in it holds an
+// authored story scene (see sQuestScene in src/data/rf_story.h).
 #define RF_QUEST_EXTRA_FIRST 71
 #define RF_QUEST_EXTRA_COUNT 279
 #define RF_QUEST_COUNT 430
-#define RF_QUEST_CHAPTER_COUNT 19
+#define RF_QUEST_CHAPTER_COUNT 54
 
 // Event IDs are also used by map scripts; never reorder shipped values.
 #define RF_QUEST_EVENT_OAK_REPORT 1
