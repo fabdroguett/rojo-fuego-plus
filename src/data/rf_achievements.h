@@ -4494,4 +4494,32 @@ const struct Achievement gAchievements[ACH_COUNT] =
         .rewardQuantity = 0,
         .rewardTitle = COMPOUND_STRING("Maestro de logros"),
     },
+    [ACH_RF_STORY_FIRST] =
+    {
+        .name = COMPOUND_STRING("Primera crónica"),
+        .description = COMPOUND_STRING("Concluye una campaña de Kanto."),
+        .category = ACH_CAT_H,
+        .tier = ACH_TIER_SILVER,
+        .hidden = FALSE,
+        .condType = ACH_COND_EVENT,
+        .condArg = 0,
+        .condValue = 0,
+        .rewardItem = ITEM_NONE,
+        .rewardQuantity = 0,
+        .rewardTitle = COMPOUND_STRING("Cronista"),
+    },
+    [ACH_RF_STORY_ALL] =
+    {
+        .name = COMPOUND_STRING("Memorias compartidas"),
+        .description = COMPOUND_STRING("Concluye las ocho campañas\nnarrativas."),
+        .category = ACH_CAT_H,
+        .tier = ACH_TIER_GOLD,
+        .hidden = FALSE,
+        .condType = ACH_COND_EVENT,
+        .condArg = 0,
+        .condValue = 0,
+        .rewardItem = ITEM_NONE,
+        .rewardQuantity = 0,
+        .rewardTitle = COMPOUND_STRING("Memoria de Kanto"),
+    },
 };

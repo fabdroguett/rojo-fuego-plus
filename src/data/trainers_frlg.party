@@ -14224,3 +14224,134 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Garchomp @ Expert Belt
 Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+/* BEGIN RF STORY */
+=== TRAINER_RF_STORY_0 ===
+Name: LIO
+Class: Pkmn Trainer 1
+Pic: Hiker Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Raticate
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Koffing
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Machoke
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_1 ===
+Name: HANA
+Class: Pkmn Trainer 1
+Pic: Lass Frlg
+Gender: Female
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Flaaffy
+Level: 27
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Skiploom
+Level: 27
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Quagsire
+Level: 27
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_2 ===
+Name: KEN
+Class: Pkmn Trainer 1
+Pic: Cooltrainer M Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Pelipper
+Level: 36
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Breloom
+Level: 36
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Lairon
+Level: 36
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_3 ===
+Name: MAEL
+Class: Pkmn Trainer 1
+Pic: Cooltrainer M Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Luxray
+Level: 45
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Bronzong
+Level: 45
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Gastrodon
+Level: 45
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_4 ===
+Name: SARA
+Class: Pkmn Trainer 1
+Pic: Cooltrainer F Frlg
+Gender: Female
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Mienshao
+Level: 62
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Chandelure
+Level: 62
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Braviary
+Level: 62
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Jellicent
+Level: 62
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+=== TRAINER_RF_STORY_5 ===
+Name: GAEL
+Class: Pkmn Trainer 1
+Pic: Hiker Frlg
+Gender: Male
+Music: Serious
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Donphan
+Level: 60
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Crobat
+Level: 60
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Arcanine
+Level: 60
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Slowbro
+Level: 60
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+/* END RF STORY */

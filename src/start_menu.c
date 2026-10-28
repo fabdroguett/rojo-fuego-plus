@@ -50,6 +50,7 @@
 #include "rf_quests.h"
 #include "wild_encounter.h"
 #include "rf_ui_theme.h"
+#include "rf_kanto_ui.h"
 #include "money.h"
 #include "constants/battle_frontier.h"
 #include "constants/rgb.h"
@@ -246,7 +247,7 @@ static const u8 *RemasteredActionName(u32 action)
 {
     switch (action)
     {
-    case MENU_ACTION_POKEDEX: return COMPOUND_STRING("POKEDEX");
+    case MENU_ACTION_POKEDEX: return COMPOUND_STRING("POKÉDEX");
     case MENU_ACTION_POKEMON: return COMPOUND_STRING("EQUIPO");
     case MENU_ACTION_BAG: return COMPOUND_STRING("MOCHILA");
     case MENU_ACTION_PLAYER: return COMPOUND_STRING("PERFIL");
@@ -294,41 +295,44 @@ static u8 RFStartMoveCursor(u8 cursor, u8 count, u16 keys)
 
 static void DrawRemasteredMenu(void)
 {
-    static const u8 ink[] = {0, 2, 3};
     u8 window = GetStartMenuWindowId();
     u32 i;
     if (window == WINDOW_NONE)
         return;
-    RFUI_LoadPalette(15, KeySystem_IsOn(KEY_DARK_MODE));
+    RFUI_LoadMainMenuPalette(15, KeySystem_IsOn(KEY_DARK_MODE));
     FillWindowPixelBuffer(window, PIXEL_FILL(4));
     RFUI_DrawPanel(window, 0, 0, 224, 144, 1, 6);
-    AddTextPrinterParameterized3(window, FONT_SMALL, 6, 3, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("MENÚ PRINCIPAL"));
+    RFKanto_Print(window, COMPOUND_STRING("MENÚ PRINCIPAL"), 7, 5, 130, 2);
     StringCopy(gStringVar4, COMPOUND_STRING("¥"));
     ConvertIntToDecimalStringN(gStringVar4 + StringLength(gStringVar4), GetMoney(&gSaveBlock1Ptr->money), STR_CONV_MODE_LEFT_ALIGN, 6);
-    AddTextPrinterParameterized3(window, FONT_SMALL, GetStringRightAlignXOffset(FONT_SMALL, gStringVar4, 216), 3, ink, TEXT_SKIP_DRAW, gStringVar4);
+    RFKanto_Print(window, gStringVar4, 216 - RFKanto_TextWidth(gStringVar4), 5, 60, 2);
+    RFUI_FillRect(window, 6, 6, 17, 212, 1);
     for (i = 0; i < sNumStartMenuActions; i++)
     {
         u32 x = 5 + (i % 3) * 72;
         u32 y = 22 + (i / 3) * 30;
         u32 action = sCurrentStartMenuActions[i];
-        static const u8 selectedInk[] = {0, 4, 9};
         bool32 selected = i == sStartMenuCursorPos;
-        bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
         const u8 *label = RemasteredActionName(action);
-        RFUI_DrawPanel(window, x, y, 70, 27, selected ? (dark ? 9 : 8) : 1, selected ? 9 : 6);
-        // Mint icons at rest; the focused tile inverts to ink on its gold/amber fill.
+        RFUI_DrawPanel(window, x, y, 70, 27, selected ? 8 : 1, selected ? 9 : 6);
+        RFKanto_DrawIcon(window, action < ARRAY_COUNT(sRFActionIcons) ? sRFActionIcons[action] : RF_ICON_COUNT, x + 2, y + 5);
+        RFKanto_Print(window, label, x + 19, y + 9, 49, selected ? 15 : 2);
         if (selected)
-            RFUI_DrawIcon(window, action < ARRAY_COUNT(sRFActionIcons) ? sRFActionIcons[action] : RF_ICON_COUNT, x + 4, y + 5, dark ? 4 : 9, RFUI_NO_SHADOW);
-        else
-            RFUI_DrawIcon(window, action < ARRAY_COUNT(sRFActionIcons) ? sRFActionIcons[action] : RF_ICON_COUNT, x + 4, y + 5, 7, 3);
-        AddTextPrinterParameterized3(window, GetStringWidth(FONT_SMALL, label, 0) > 44 ? FONT_SMALL_NARROWER : FONT_SMALL,
-            x + 23, y + 7, selected && dark ? selectedInk : ink, TEXT_SKIP_DRAW, label);
+            RFKanto_DrawCursor(window, x - 4, y + 8);
     }
     RFUI_DrawPanel(window, 5, 113, 214, 16, 4, 6);
-    AddTextPrinterParameterized3(window, FONT_SMALL, 9, 115, ink, TEXT_SKIP_DRAW,
-        sDexNavNoticeShown ? COMPOUND_STRING("No hay encuentros en esta zona.") : RemasteredActionHelp(sCurrentStartMenuActions[sStartMenuCursorPos]));
-    AddTextPrinterParameterized3(window, FONT_SMALL, 8, 130, ink, TEXT_SKIP_DRAW,
-        FlagGet(FLAG_SYS_POKEDEX_GET) ? COMPOUND_STRING("{A_BUTTON} Entrar   {B_BUTTON} Atrás   {R_BUTTON} Misiones") : COMPOUND_STRING("{A_BUTTON} Entrar   {B_BUTTON} Atrás"));
+    RFKanto_Print(window, sDexNavNoticeShown ? COMPOUND_STRING("No hay encuentros en esta zona.") : RemasteredActionHelp(sCurrentStartMenuActions[sStartMenuCursorPos]), 9, 117, 206, 2);
+    RFKanto_DrawControl(window, RF_KANTO_DPAD, 7, 133);
+    RFKanto_Print(window, COMPOUND_STRING("Mover"), 17, 133, 32, 2);
+    RFKanto_DrawControl(window, RF_KANTO_A, 52, 133);
+    RFKanto_Print(window, COMPOUND_STRING("Entrar"), 62, 133, 36, 2);
+    RFKanto_DrawControl(window, RF_KANTO_B, 101, 133);
+    RFKanto_Print(window, COMPOUND_STRING("Atrás"), 111, 133, 32, 2);
+    if (FlagGet(FLAG_SYS_POKEDEX_GET))
+    {
+        RFKanto_DrawControl(window, RF_KANTO_R, 153, 133);
+        RFKanto_Print(window, COMPOUND_STRING("Misiones"), 163, 133, 54, 2);
+    }
     PutWindowTilemap(window);
     CopyWindowToVram(window, COPYWIN_FULL);
 }

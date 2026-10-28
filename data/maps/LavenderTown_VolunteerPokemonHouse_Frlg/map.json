@@ -99,6 +99,36 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LavenderTown_VolunteerPokemonHouse_EventScript_LittleGirl",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_RF_STORY_13",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1_FRLG",
+      "x": 7,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RFStory_Actor_13",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_RF_STORY_54",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CUBONE)",
+      "x": 1,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RFStory_Actor_54",
+      "flag": "0"
     }
   ],
   "warp_events": [

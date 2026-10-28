@@ -3,6 +3,7 @@
 #include "battle_setup.h"
 #include "event_data.h"
 #include "rf_quests.h"
+#include "rf_story.h"
 
 void RFQuests_OnBattleEnd(void)
 {
@@ -11,7 +12,10 @@ void RFQuests_OnBattleEnd(void)
      && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED
                           | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL
                           | BATTLE_TYPE_SECRET_BASE)))
+    {
         RFQuests_NotifyEvent(RF_QUEST_EVENT_TRAINER_WIN, TRAINER_BATTLE_PARAM.opponentA);
+        RFStory_NotifyTrainerWin(TRAINER_BATTLE_PARAM.opponentA);
+    }
 }
 
 void Script_RF_QuestNotify(void)

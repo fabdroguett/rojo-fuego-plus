@@ -6,6 +6,8 @@
 #include "item_menu.h"
 #include "item_icon.h"
 #include "item_menu_icons.h"
+#include "list_menu.h"
+#include "rf_bag_art.h"
 #include "malloc.h"
 #include "menu_helpers.h"
 #include "menu.h"
@@ -22,6 +24,69 @@ enum {
 };
 #define TAG_BERRY_CHECK_CIRCLE_GFX 10000
 #define TAG_BERRY_PIC_PAL 30020
+#define TAG_BAG_ROW_FIRST 120
+
+static EWRAM_DATA u8 sBagListIconSprites[RF_BAG_VISIBLE_ROWS] = {0};
+static EWRAM_DATA u16 sBagListIconItems[RF_BAG_VISIBLE_ROWS] = {0};
+
+void InitBagListIcons(void)
+{
+    memset(sBagListIconSprites, MAX_SPRITES, sizeof(sBagListIconSprites));
+    memset(sBagListIconItems, 0, sizeof(sBagListIconItems));
+}
+
+void HideBagListIcons(void)
+{
+    u32 i;
+    for (i = 0; i < RF_BAG_VISIBLE_ROWS; i++)
+        if (sBagListIconSprites[i] < MAX_SPRITES)
+            gSprites[sBagListIconSprites[i]].invisible = TRUE;
+}
+
+void UpdateBagListIcons(const struct ListMenu *list)
+{
+    u32 row;
+    for (row = 0; row < RF_BAG_VISIBLE_ROWS; row++)
+    {
+        u32 index = list->scrollOffset + row;
+        u16 item = ITEM_NONE;
+        u8 id = sBagListIconSprites[row];
+        u16 tag = TAG_BAG_ROW_FIRST + row;
+        if (row < list->template.maxShowed && index < list->template.totalItems)
+        {
+            s32 slot = list->template.items[index].id;
+            item = slot == LIST_CANCEL ? ITEM_LIST_END : GetBagItemId(gBagPosition.pocket, slot);
+        }
+        if (item != sBagListIconItems[row])
+        {
+            if (id < MAX_SPRITES)
+            {
+                FreeSpriteOamMatrix(&gSprites[id]);
+                FreeSpriteTilesByTag(tag);
+                FreeSpritePaletteByTag(tag);
+                DestroySprite(&gSprites[id]);
+            }
+            id = MAX_SPRITES;
+            if (item == ITEM_LIST_END)
+                id = RFBagArt_CreateReturnRow(132, 60 + row * RF_BAG_ROW_HEIGHT);
+            else if (item != ITEM_NONE)
+            {
+                id = AddItemIconSprite(tag, tag, item);
+                if (id < MAX_SPRITES)
+                {
+                    // The catalog art is already authored at 24x24 in a 32x32 canvas.
+                    // Render it 1:1: half-scale OBJ affine sampling discarded its detail.
+                    gSprites[id].x = 132;
+                    gSprites[id].y = 60 + row * RF_BAG_ROW_HEIGHT;
+                }
+            }
+            sBagListIconSprites[row] = id;
+            sBagListIconItems[row] = item;
+        }
+        if (id < MAX_SPRITES)
+            gSprites[id].invisible = item == ITEM_NONE;
+    }
+}
 
 // this file's functions
 static void SpriteCB_BagVisualSwitchingPockets(struct Sprite *sprite);
@@ -372,6 +437,9 @@ void AddBagVisualSprite(u8 bagPocketId)
 {
     u8 *spriteId = &gBagMenu->spriteIds[ITEMMENUSPRITE_BAG];
     *spriteId = CreateSprite(&sBagSpriteTemplate, 188, 66, 0);
+    // The new bag composition presents the selected item instead of a large bag.
+    if (*spriteId != MAX_SPRITES)
+        gSprites[*spriteId].invisible = TRUE;
     SetBagVisualPocketId(bagPocketId, FALSE);
 }
 
@@ -469,6 +537,15 @@ static void SpriteCB_SwitchPocketRotatingBallContinue(struct Sprite *sprite)
 void AddBagItemIconSprite(enum Item itemId, u8 id)
 {
     u8 *spriteId = &gBagMenu->spriteIds[id + ITEMMENUSPRITE_ITEM];
+    RFBagArt_ShowReturn(itemId == ITEM_LIST_END);
+    if (itemId == ITEM_LIST_END)
+    {
+        u32 i;
+        for (i = 0; i < 2; i++)
+            if (gBagMenu->spriteIds[ITEMMENUSPRITE_ITEM + i] < MAX_SPRITES)
+                gSprites[gBagMenu->spriteIds[ITEMMENUSPRITE_ITEM + i]].invisible = TRUE;
+        return;
+    }
     if (*spriteId == SPRITE_NONE)
     {
         u8 iconSpriteId;
@@ -480,8 +557,8 @@ void AddBagItemIconSprite(enum Item itemId, u8 id)
         if (iconSpriteId != MAX_SPRITES)
         {
             *spriteId = iconSpriteId;
-            gSprites[iconSpriteId].x2 = 152;
-            gSprites[iconSpriteId].y2 = 88;
+            gSprites[iconSpriteId].x2 = 40;
+            gSprites[iconSpriteId].y2 = 73;
         }
     }
 }
@@ -518,7 +595,7 @@ void SetItemMenuSwapLineInvisibility(bool8 invisible)
 
 void UpdateItemMenuSwapLinePos(u8 y)
 {
-    UpdateSwapLineSpritesPos(&gBagMenu->spriteIds[ITEMMENUSPRITE_SWAP_LINE], ITEMMENU_SWAP_LINE_LENGTH | SWAP_LINE_HAS_MARGIN, 16, (y + 2) * 16);
+    UpdateSwapLineSpritesPos(&gBagMenu->spriteIds[ITEMMENUSPRITE_SWAP_LINE], ITEMMENU_SWAP_LINE_LENGTH | SWAP_LINE_HAS_MARGIN, 120, 48 + y * RF_BAG_ROW_HEIGHT);
 }
 
 static void ArrangeBerryGfx(void *src, void *dest)

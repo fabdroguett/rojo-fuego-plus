@@ -1,5 +1,24 @@
 # Recursos visuales de menús — investigación y propuestas
 
+## Sustitución con PNG del usuario (26-10-2026)
+
+Los sprites de categorías y navegación ahora proceden de
+`graphics/rojo_fuego/bag_user/source/`, copiados de la carpeta proporcionada por el
+usuario. Mapeo y formatos en el README de esa carpeta; manifiesto con SHA-256 y
+paletas RGB555. `import_bag_user_sprites.py` genera los datos 4bpp y conserva los
+originales. El cofre representa TES.; la bolsa dorada queda como variante. Se usan
+2304 bytes de tiles y tres paletas OBJ compartidas, sin añadir categorías.
+
+## Referencia de mochila implementada (26-10-2026)
+
+La referencia adjunta por el usuario se adapta a 240×160 con siete categorías reales,
+iconos nativos de 8×8 y lista de seis filas. Los iconos son dibujos originales en una
+paleta de 16 índices, generados como tiles C por `tools/rojo_fuego/make_bag_category_icons.py`.
+El arte de los objetos se reutiliza desde el catálogo del juego, con sprites a media
+escala y caché por ID visible. No se incrusta el mockup ni se requiere un PNG ampliado
+para ejecutar la interfaz. Paletas y texto se integran en `rf_ui_theme.c`; capturas
+reales, informes y scripts quedan en `build_artifacts/ui/bag-reference/`.
+
 Ampliación del 23-10-2026: [28 fuentes de recursos de Internet](ASSETS_INTERNET.md), con
 iconos, controles, paneles, fuentes y menús comunitarios; usos, licencias y adaptación GBA.
 
@@ -64,3 +83,12 @@ cuadros; se verificaron con filtros, bolsillos y temas claro/oscuro en mGBA. El 
 ya integrado se revisó en lista, búsqueda, hábitat, estadísticas, evoluciones, formas, grito
 y tamaño. Pendiente de ARTE-2: redibujar las seis poses con la silueta del concepto, en
 formato de 4 bits y manteniendo la animación existente.
+# Arte nativo revisado, 27-10-2026
+
+La fuente de los nuevos iconos es `tools/rojo_fuego/make_kanto_ui_art.py`.
+PNG nativos/indexados, tiles 4bpp y paletas BGR555 en
+`graphics/rojo_fuego/kanto_ui/`. La tipografía Kanto Compact Pro se integra
+localmente, sin reemplazar fuentes globales. Los originales del usuario se
+conservan. Los wrappers anteriores regeneran el mismo maestro nativo;
+el muestreo histórico de Mochila queda disponible solo como diagnóstico.
+Véase `docs/ui/main-menu-redesign.md` y su registro de validación.

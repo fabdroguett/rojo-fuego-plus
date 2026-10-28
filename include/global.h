@@ -306,6 +306,12 @@ struct SaveBlock3
     u8 rfTravelerPendingPrize; // tier + 1; retained until the whole reward fits
     u32 rfLegendSaveMagic;
     u8 rfLegendCaught[RF_LEGEND_BYTES]; // Rojo Fuego+ legendary sagas (rf_legends.c): one bit per legend
+    // Story extension: append only; independent magic for old, nonzero save padding.
+    u32 rfStorySaveMagic;
+    u32 rfStoryClues;
+    u16 rfStoryContractDay;
+    u8 rfStoryContractReady;
+    u8 rfStoryContractClaimed;
 }; /* max size 1624 bytes */
 
 STATIC_ASSERT(sizeof(struct SaveBlock3) <= 1624, SaveBlock3FitsFireRedSaveSectors);

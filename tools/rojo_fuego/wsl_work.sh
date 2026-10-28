@@ -49,7 +49,7 @@ case "$action" in
             exit 1
         fi
         make SHELL='bash -o pipefail' BUILD=firered -j"$jobs" -O pokefirered.gba
-        if arm-none-eabi-nm pokefirered.elf | grep -E 'RFProgress|RFUiFixture|RFTrainingFixture|gRFSaveLayout'; then
+        if arm-none-eabi-nm pokefirered.elf | grep -E 'RFProgress|RFUiFixture|RFBagFixture|RFTrainingFixture|gRFSaveLayout'; then
             echo 'Fixture symbols in production ELF.' >&2
             exit 1
         fi

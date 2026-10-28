@@ -1,0 +1,1666 @@
+[
+  {
+    "character": "A",
+    "rows": [
+      0,
+      14,
+      17,
+      17,
+      31,
+      17,
+      17,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 187,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "B",
+    "rows": [
+      0,
+      30,
+      17,
+      17,
+      30,
+      17,
+      17,
+      30
+    ],
+    "advance": 6,
+    "engineCode": 188,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "C",
+    "rows": [
+      0,
+      15,
+      16,
+      16,
+      16,
+      16,
+      16,
+      15
+    ],
+    "advance": 6,
+    "engineCode": 189,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "D",
+    "rows": [
+      0,
+      30,
+      17,
+      17,
+      17,
+      17,
+      17,
+      30
+    ],
+    "advance": 6,
+    "engineCode": 190,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "E",
+    "rows": [
+      0,
+      31,
+      16,
+      16,
+      30,
+      16,
+      16,
+      31
+    ],
+    "advance": 6,
+    "engineCode": 191,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "F",
+    "rows": [
+      0,
+      31,
+      16,
+      16,
+      30,
+      16,
+      16,
+      16
+    ],
+    "advance": 6,
+    "engineCode": 192,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "G",
+    "rows": [
+      0,
+      15,
+      16,
+      16,
+      23,
+      17,
+      17,
+      15
+    ],
+    "advance": 6,
+    "engineCode": 193,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "H",
+    "rows": [
+      0,
+      17,
+      17,
+      17,
+      31,
+      17,
+      17,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 194,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "I",
+    "rows": [
+      0,
+      28,
+      8,
+      8,
+      8,
+      8,
+      8,
+      28
+    ],
+    "advance": 4,
+    "engineCode": 195,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "J",
+    "rows": [
+      0,
+      7,
+      2,
+      2,
+      2,
+      18,
+      18,
+      12
+    ],
+    "advance": 6,
+    "engineCode": 196,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "K",
+    "rows": [
+      0,
+      17,
+      18,
+      20,
+      24,
+      20,
+      18,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 197,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "L",
+    "rows": [
+      0,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      31
+    ],
+    "advance": 6,
+    "engineCode": 198,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "M",
+    "rows": [
+      0,
+      17,
+      27,
+      21,
+      21,
+      17,
+      17,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 199,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "N",
+    "rows": [
+      0,
+      17,
+      25,
+      25,
+      21,
+      19,
+      19,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 200,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "O",
+    "rows": [
+      0,
+      14,
+      17,
+      17,
+      17,
+      17,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 201,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "P",
+    "rows": [
+      0,
+      30,
+      17,
+      17,
+      30,
+      16,
+      16,
+      16
+    ],
+    "advance": 6,
+    "engineCode": 202,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "Q",
+    "rows": [
+      0,
+      14,
+      17,
+      17,
+      17,
+      21,
+      18,
+      13
+    ],
+    "advance": 6,
+    "engineCode": 203,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "R",
+    "rows": [
+      0,
+      30,
+      17,
+      17,
+      30,
+      20,
+      18,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 204,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "S",
+    "rows": [
+      0,
+      15,
+      16,
+      16,
+      14,
+      1,
+      1,
+      30
+    ],
+    "advance": 6,
+    "engineCode": 205,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "T",
+    "rows": [
+      0,
+      31,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "advance": 6,
+    "engineCode": 206,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "U",
+    "rows": [
+      0,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 207,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "V",
+    "rows": [
+      0,
+      17,
+      17,
+      17,
+      17,
+      17,
+      10,
+      4
+    ],
+    "advance": 6,
+    "engineCode": 208,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "W",
+    "rows": [
+      0,
+      17,
+      17,
+      17,
+      21,
+      21,
+      21,
+      10
+    ],
+    "advance": 6,
+    "engineCode": 209,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "X",
+    "rows": [
+      0,
+      17,
+      17,
+      10,
+      4,
+      10,
+      17,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 210,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "Y",
+    "rows": [
+      0,
+      17,
+      17,
+      10,
+      4,
+      4,
+      4,
+      4
+    ],
+    "advance": 6,
+    "engineCode": 211,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "Z",
+    "rows": [
+      0,
+      31,
+      1,
+      2,
+      4,
+      8,
+      16,
+      31
+    ],
+    "advance": 6,
+    "engineCode": 212,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "a",
+    "rows": [
+      0,
+      0,
+      0,
+      14,
+      1,
+      15,
+      17,
+      15
+    ],
+    "advance": 6,
+    "engineCode": 213,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "b",
+    "rows": [
+      0,
+      16,
+      16,
+      22,
+      25,
+      17,
+      17,
+      30
+    ],
+    "advance": 6,
+    "engineCode": 214,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "c",
+    "rows": [
+      0,
+      0,
+      0,
+      14,
+      16,
+      16,
+      16,
+      14
+    ],
+    "advance": 5,
+    "engineCode": 215,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "d",
+    "rows": [
+      0,
+      1,
+      1,
+      13,
+      19,
+      17,
+      17,
+      15
+    ],
+    "advance": 6,
+    "engineCode": 216,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "e",
+    "rows": [
+      0,
+      0,
+      0,
+      14,
+      17,
+      31,
+      16,
+      15
+    ],
+    "advance": 6,
+    "engineCode": 217,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "f",
+    "rows": [
+      0,
+      6,
+      8,
+      28,
+      8,
+      8,
+      8,
+      8
+    ],
+    "advance": 5,
+    "engineCode": 218,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "g",
+    "rows": [
+      0,
+      0,
+      15,
+      17,
+      17,
+      15,
+      1,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 219,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "h",
+    "rows": [
+      0,
+      16,
+      16,
+      22,
+      25,
+      17,
+      17,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 220,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "i",
+    "rows": [
+      0,
+      16,
+      0,
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "advance": 2,
+    "engineCode": 221,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "j",
+    "rows": [
+      0,
+      4,
+      0,
+      4,
+      4,
+      4,
+      20,
+      8
+    ],
+    "advance": 4,
+    "engineCode": 222,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "k",
+    "rows": [
+      0,
+      16,
+      16,
+      18,
+      20,
+      24,
+      20,
+      18
+    ],
+    "advance": 5,
+    "engineCode": 223,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "l",
+    "rows": [
+      0,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      8
+    ],
+    "advance": 3,
+    "engineCode": 224,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "m",
+    "rows": [
+      0,
+      0,
+      0,
+      26,
+      21,
+      21,
+      21,
+      21
+    ],
+    "advance": 6,
+    "engineCode": 225,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "n",
+    "rows": [
+      0,
+      0,
+      0,
+      22,
+      25,
+      17,
+      17,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 226,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "o",
+    "rows": [
+      0,
+      0,
+      0,
+      14,
+      17,
+      17,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 227,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "p",
+    "rows": [
+      0,
+      0,
+      30,
+      17,
+      17,
+      30,
+      16,
+      16
+    ],
+    "advance": 6,
+    "engineCode": 228,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "q",
+    "rows": [
+      0,
+      0,
+      15,
+      17,
+      17,
+      15,
+      1,
+      1
+    ],
+    "advance": 6,
+    "engineCode": 229,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "r",
+    "rows": [
+      0,
+      0,
+      0,
+      22,
+      24,
+      16,
+      16,
+      16
+    ],
+    "advance": 5,
+    "engineCode": 230,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "s",
+    "rows": [
+      0,
+      0,
+      0,
+      14,
+      16,
+      12,
+      2,
+      28
+    ],
+    "advance": 5,
+    "engineCode": 231,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "t",
+    "rows": [
+      0,
+      8,
+      8,
+      30,
+      8,
+      8,
+      8,
+      6
+    ],
+    "advance": 5,
+    "engineCode": 232,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "u",
+    "rows": [
+      0,
+      0,
+      0,
+      17,
+      17,
+      17,
+      19,
+      13
+    ],
+    "advance": 6,
+    "engineCode": 233,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "v",
+    "rows": [
+      0,
+      0,
+      0,
+      17,
+      17,
+      17,
+      10,
+      4
+    ],
+    "advance": 6,
+    "engineCode": 234,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "w",
+    "rows": [
+      0,
+      0,
+      0,
+      17,
+      17,
+      21,
+      21,
+      10
+    ],
+    "advance": 6,
+    "engineCode": 235,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "x",
+    "rows": [
+      0,
+      0,
+      0,
+      17,
+      10,
+      4,
+      10,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 236,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "y",
+    "rows": [
+      0,
+      0,
+      17,
+      17,
+      17,
+      15,
+      1,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 237,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "z",
+    "rows": [
+      0,
+      0,
+      0,
+      30,
+      2,
+      4,
+      8,
+      30
+    ],
+    "advance": 5,
+    "engineCode": 238,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "0",
+    "rows": [
+      0,
+      14,
+      17,
+      19,
+      21,
+      25,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 161,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "1",
+    "rows": [
+      0,
+      8,
+      24,
+      8,
+      8,
+      8,
+      8,
+      28
+    ],
+    "advance": 4,
+    "engineCode": 162,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "2",
+    "rows": [
+      0,
+      14,
+      17,
+      1,
+      2,
+      4,
+      8,
+      31
+    ],
+    "advance": 6,
+    "engineCode": 163,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "3",
+    "rows": [
+      0,
+      30,
+      1,
+      1,
+      14,
+      1,
+      1,
+      30
+    ],
+    "advance": 6,
+    "engineCode": 164,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "4",
+    "rows": [
+      0,
+      2,
+      6,
+      10,
+      18,
+      31,
+      2,
+      2
+    ],
+    "advance": 6,
+    "engineCode": 165,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "5",
+    "rows": [
+      0,
+      31,
+      16,
+      16,
+      30,
+      1,
+      1,
+      30
+    ],
+    "advance": 6,
+    "engineCode": 166,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "6",
+    "rows": [
+      0,
+      6,
+      8,
+      16,
+      30,
+      17,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 167,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "7",
+    "rows": [
+      0,
+      31,
+      1,
+      2,
+      4,
+      8,
+      8,
+      8
+    ],
+    "advance": 6,
+    "engineCode": 168,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "8",
+    "rows": [
+      0,
+      14,
+      17,
+      17,
+      14,
+      17,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 169,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "9",
+    "rows": [
+      0,
+      14,
+      17,
+      17,
+      15,
+      1,
+      2,
+      12
+    ],
+    "advance": 6,
+    "engineCode": 170,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": ".",
+    "rows": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      16,
+      16
+    ],
+    "advance": 2,
+    "engineCode": 173,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": ",",
+    "rows": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      16
+    ],
+    "advance": 3,
+    "engineCode": 184,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": ":",
+    "rows": [
+      0,
+      0,
+      16,
+      16,
+      0,
+      16,
+      16,
+      0
+    ],
+    "advance": 2,
+    "engineCode": 240,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": ";",
+    "rows": [
+      0,
+      0,
+      8,
+      8,
+      0,
+      8,
+      8,
+      16
+    ],
+    "advance": 3,
+    "engineCode": 54,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "!",
+    "rows": [
+      0,
+      16,
+      16,
+      16,
+      16,
+      16,
+      0,
+      16
+    ],
+    "advance": 2,
+    "engineCode": 171,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "?",
+    "rows": [
+      0,
+      14,
+      17,
+      1,
+      2,
+      4,
+      0,
+      4
+    ],
+    "advance": 6,
+    "engineCode": 172,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "¿",
+    "rows": [
+      0,
+      4,
+      0,
+      4,
+      8,
+      16,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 81,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "¡",
+    "rows": [
+      0,
+      16,
+      0,
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "advance": 2,
+    "engineCode": 82,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "(",
+    "rows": [
+      0,
+      8,
+      16,
+      16,
+      16,
+      16,
+      16,
+      8
+    ],
+    "advance": 3,
+    "engineCode": 92,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": ")",
+    "rows": [
+      0,
+      16,
+      8,
+      8,
+      8,
+      8,
+      8,
+      16
+    ],
+    "advance": 3,
+    "engineCode": 93,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "[",
+    "rows": [
+      0,
+      24,
+      16,
+      16,
+      16,
+      16,
+      16,
+      24
+    ],
+    "advance": 3,
+    "engineCode": null,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "]",
+    "rows": [
+      0,
+      24,
+      8,
+      8,
+      8,
+      8,
+      8,
+      24
+    ],
+    "advance": 3,
+    "engineCode": null,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "/",
+    "rows": [
+      0,
+      1,
+      1,
+      2,
+      4,
+      8,
+      16,
+      16
+    ],
+    "advance": 6,
+    "engineCode": 186,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "-",
+    "rows": [
+      0,
+      0,
+      0,
+      0,
+      28,
+      0,
+      0,
+      0
+    ],
+    "advance": 4,
+    "engineCode": 174,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "+",
+    "rows": [
+      0,
+      0,
+      8,
+      8,
+      28,
+      8,
+      8,
+      0
+    ],
+    "advance": 4,
+    "engineCode": 46,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "*",
+    "rows": [
+      0,
+      0,
+      21,
+      14,
+      31,
+      14,
+      21,
+      0
+    ],
+    "advance": 6,
+    "engineCode": null,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "%",
+    "rows": [
+      0,
+      25,
+      26,
+      2,
+      4,
+      8,
+      11,
+      19
+    ],
+    "advance": 6,
+    "engineCode": 91,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "=",
+    "rows": [
+      0,
+      0,
+      0,
+      28,
+      0,
+      28,
+      0,
+      0
+    ],
+    "advance": 4,
+    "engineCode": 53,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "<",
+    "rows": [
+      0,
+      4,
+      8,
+      16,
+      16,
+      16,
+      8,
+      4
+    ],
+    "advance": 4,
+    "engineCode": 133,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": ">",
+    "rows": [
+      0,
+      16,
+      8,
+      4,
+      4,
+      4,
+      8,
+      16
+    ],
+    "advance": 4,
+    "engineCode": 134,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "$",
+    "rows": [
+      0,
+      4,
+      15,
+      20,
+      14,
+      5,
+      30,
+      4
+    ],
+    "advance": 6,
+    "engineCode": 255,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "#",
+    "rows": [
+      0,
+      10,
+      10,
+      31,
+      10,
+      31,
+      10,
+      10
+    ],
+    "advance": 6,
+    "engineCode": null,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "@",
+    "rows": [
+      0,
+      14,
+      17,
+      23,
+      21,
+      23,
+      16,
+      15
+    ],
+    "advance": 6,
+    "engineCode": null,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "&",
+    "rows": [
+      0,
+      12,
+      18,
+      20,
+      8,
+      21,
+      18,
+      13
+    ],
+    "advance": 6,
+    "engineCode": 45,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "¥",
+    "rows": [
+      0,
+      17,
+      10,
+      4,
+      31,
+      4,
+      31,
+      4
+    ],
+    "advance": 6,
+    "engineCode": 183,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "×",
+    "rows": [
+      0,
+      0,
+      0,
+      17,
+      10,
+      4,
+      10,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 185,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "'",
+    "rows": [
+      0,
+      16,
+      16,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "advance": 2,
+    "engineCode": null,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "Á",
+    "rows": [
+      2,
+      4,
+      14,
+      17,
+      31,
+      17,
+      17,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 2,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "É",
+    "rows": [
+      2,
+      4,
+      31,
+      16,
+      30,
+      16,
+      16,
+      31
+    ],
+    "advance": 6,
+    "engineCode": 6,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "Í",
+    "rows": [
+      4,
+      8,
+      28,
+      8,
+      8,
+      8,
+      8,
+      28
+    ],
+    "advance": 4,
+    "engineCode": 90,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "Ó",
+    "rows": [
+      2,
+      4,
+      14,
+      17,
+      17,
+      17,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 14,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "Ú",
+    "rows": [
+      2,
+      4,
+      17,
+      17,
+      17,
+      17,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 18,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "á",
+    "rows": [
+      2,
+      4,
+      0,
+      14,
+      1,
+      15,
+      17,
+      15
+    ],
+    "advance": 6,
+    "engineCode": 23,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "é",
+    "rows": [
+      2,
+      4,
+      0,
+      14,
+      17,
+      31,
+      16,
+      15
+    ],
+    "advance": 6,
+    "engineCode": 27,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "í",
+    "rows": [
+      8,
+      16,
+      0,
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "advance": 3,
+    "engineCode": 111,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "ó",
+    "rows": [
+      2,
+      4,
+      0,
+      14,
+      17,
+      17,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 35,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "ú",
+    "rows": [
+      2,
+      4,
+      0,
+      17,
+      17,
+      17,
+      19,
+      13
+    ],
+    "advance": 6,
+    "engineCode": 39,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "Ü",
+    "rows": [
+      10,
+      0,
+      17,
+      17,
+      17,
+      17,
+      17,
+      14
+    ],
+    "advance": 6,
+    "engineCode": 243,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "ü",
+    "rows": [
+      10,
+      0,
+      0,
+      17,
+      17,
+      17,
+      19,
+      13
+    ],
+    "advance": 6,
+    "engineCode": 246,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "Ñ",
+    "rows": [
+      10,
+      20,
+      17,
+      25,
+      21,
+      19,
+      19,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 20,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": "ñ",
+    "rows": [
+      10,
+      20,
+      0,
+      22,
+      25,
+      17,
+      17,
+      17
+    ],
+    "advance": 6,
+    "engineCode": 41,
+    "review": "native hand-drawn; accent/sign distinct"
+  },
+  {
+    "character": " ",
+    "rows": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "advance": 3,
+    "engineCode": 0,
+    "review": "native hand-drawn; accent/sign distinct"
+  }
+]

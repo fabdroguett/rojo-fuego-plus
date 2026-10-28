@@ -2,7 +2,7 @@
 #ifndef GUARD_CONSTANTS_RF_ACHIEVEMENTS_H
 #define GUARD_CONSTANTS_RF_ACHIEVEMENTS_H
 
-#define ACH_COUNT 318
+#define ACH_COUNT 320
 #define ACH_BYTES ((ACH_COUNT + 7) / 8)
 
 #define ACH_H01 0
@@ -323,6 +323,8 @@
 #define ACH_M06 315
 #define ACH_M07 316
 #define ACH_M08 317
+#define ACH_RF_STORY_FIRST 318
+#define ACH_RF_STORY_ALL 319
 
 enum AchievementCounter
 {

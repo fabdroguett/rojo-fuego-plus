@@ -5,6 +5,7 @@
 #include "pokedex.h"
 #include "rf_legends.h"
 #include "rf_quests.h"
+#include "rf_story.h"
 #include "constants/opponents_frlg.h"
 
 #define QUEST_SAVE_MAGIC 0x51535431
@@ -107,6 +108,16 @@ static bool32 QuestObjectiveMet(const struct RFQuest *quest)
         || QuestConditionMet(quest->secondaryCondition, quest->secondaryArgument, quest->secondaryAlternative);
 }
 
+bool32 RFQuests_HasRequirements(u32 id)
+{
+    const struct RFQuest *quest;
+    if (id >= RF_QUEST_COUNT)
+        return FALSE;
+    quest = &sRFQuests[id];
+    return quest->objectiveCount < 2
+        || QuestConditionMet(quest->secondaryCondition, quest->secondaryArgument, quest->secondaryAlternative);
+}
+
 static void CheckQuestObjectives(void)
 {
     u32 i;
@@ -157,6 +168,8 @@ u32 RFQuests_NotifyEvent(u32 event, u32 argument)
         const struct RFQuest *quest = &sRFQuests[i];
         if (quest->condition == QUEST_EVENT && quest->argument == event
          && (quest->alternative == 0 || quest->alternative == argument)
+         && (quest->objectiveCount < 2
+          || QuestConditionMet(quest->secondaryCondition, quest->secondaryArgument, quest->secondaryAlternative))
          && RFQuests_GetState(i) == RF_QUEST_ACTIVE)
         {
             SetQuestState(i, RF_QUEST_READY);
@@ -241,7 +254,22 @@ bool32 RFQuests_Claim(u32 id)
     if (!AddBagItem(quest->rewardItem, quest->rewardCount))
         return FALSE;
     SetQuestState(id, RF_QUEST_CLAIMED);
+    RFStory_OnClaim(id);
     if (gSaveBlock3Ptr->rfQuestTracked == id + 1)
+    {
         gSaveBlock3Ptr->rfQuestTracked = 0;
+        if (id >= RF_STORY_FIRST)
+        {
+            u32 next;
+            for (next = id + 1; next < RF_QUEST_COUNT; next++)
+                if (sRFQuests[next].prerequisite == id && RFQuests_IsUnlocked(next)
+                 && RFQuests_GetState(next) == RF_QUEST_AVAILABLE)
+                {
+                    // Track the next lead; accepting it remains the player's decision.
+                    gSaveBlock3Ptr->rfQuestTracked = next + 1;
+                    break;
+                }
+        }
+    }
     return TRUE;
 }

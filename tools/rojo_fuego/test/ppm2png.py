@@ -19,5 +19,6 @@ def convert(src, dst, scale=2):
     png += chunk(b'IDAT', zlib.compress(raw, 6)) + chunk(b'IEND', b'')
     open(dst, 'wb').write(png)
 
-for src in sys.argv[1:]:
-    convert(src, src.rsplit('.', 1)[0] + '.png')
+if __name__ == '__main__':
+    for src in sys.argv[1:]:
+        convert(src, src.rsplit('.', 1)[0] + '.png')

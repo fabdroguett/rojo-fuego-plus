@@ -109,7 +109,20 @@ def main():
                 f"        .secondaryArgument = {partner[0]}, .secondaryAlternative = SPECIES_NONE,\n"
             )
         else:
-            description = f"Captura a {name} y registra su\nficha en la Pokédex de campo."
+            # Keep the shipped species objective and prerequisite; enrich its purpose,
+            # rather than replacing a slot whose progress is already in players' saves.
+            notes = [
+                f"Ada pide registrar a {name}.\nLa ficha completa el archivo de Oak.\nCuenta la captura o la evolución.",
+                f"Silva estudia a {name}.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios.",
+                f"Mar pide registrar a {name}.\nSu ficha ayudará a comparar\nrutas y zonas de descanso.",
+                f"Edda estudia a {name}.\nRegistra su ficha para separar\nhechos de suposiciones.",
+                f"Vera pide registrar a {name}.\nNo se retira tu Pokémon:\nsolo se consulta la Pokédex.",
+                f"Zaira estudia a {name}.\nRegistra su ficha para preparar\nrefugios adecuados a su especie.",
+                f"Ada contrasta a {name}.\nRegístralo por captura o evolución\npara completar el censo de Oak.",
+                f"Silva revisa a {name}.\nSu ficha documenta la presencia\nde la especie sin alterar su hogar.",
+                f"Mar revisa a {name}.\nRegístralo en la Pokédex; no hace\nfalta llevarlo en tu equipo.",
+            ]
+            description = notes[offset % len(notes)]
         if any(len(line) > 40 for line in description.splitlines()):
             raise SystemExit(f"description too long: {name}")
         reward = ("ITEM_POKE_BALL", 2) if offset % 3 else ("ITEM_GREAT_BALL", 1)
@@ -117,7 +130,7 @@ def main():
         description_c = description.replace("\n", "\\n")
         entries += [
             f"    [{constant}] = {{",
-            f'        .name = COMPOUND_STRING("Registro: {name}"),',
+            f'        .name = COMPOUND_STRING("{("Registro: " if condition == "QUEST_DEX_CAUGHT" else "") + name}"),',
             f'        .description = COMPOUND_STRING("{description_c}"),',
             f"        .prerequisite = {previous}, .condition = {condition},",
             f"        .argument = {argument}, .rewardItem = {reward[0]}, .rewardCount = {reward[1]}, .chapter = {chapter},",

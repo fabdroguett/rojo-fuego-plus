@@ -25,6 +25,11 @@
 #define RF_UI_DAY_INDICATOR RGB(17, 11, 2)
 #define RF_UI_BATTLE_SELECTED_PAL 11 // BG bank for the mint battle menu cell (free in battle)
 void RFUI_LoadPalette(u32 bank, bool32 dark);
+void RFUI_LoadBagPalette(u32 bank, bool32 dark);
+void RFUI_LoadMainMenuPalette(u32 bank, bool32 dark);
+#define RF_UI_BAG_DAY_PAPER RGB(31, 29, 24)
+#define RF_UI_BAG_MINT RGB(14, 27, 21)
+#define RF_UI_BAG_INK RGB(2, 7, 8)
 void RFUI_LoadWindowPalette(const u16 *palette, u32 offset);
 void RFUI_ThemeHealthboxPalette(u32 paletteNum);
 void RFUI_BeginFieldOverlay(void);
@@ -35,5 +40,6 @@ void RFUI_DrawPanel(u8 window, u32 x, u32 y, u32 width, u32 height, u8 fill, u8 
 #define RFUI_NO_SHADOW 0xFF
 void RFUI_DrawIcon(u8 window, enum RFMenuIcon icon, u32 x, u32 y, u8 ink, u8 shadow);
 void RFUI_PrintFitted(u8 window, const u8 *text, u32 x, u32 y, u32 width, const u8 *colors);
+bool32 RFUI_PrintParagraph(u8 window, const u8 *text, u32 x, u32 y, u32 width, u32 lines, const u8 *colors);
 
 #endif

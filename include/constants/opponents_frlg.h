@@ -649,7 +649,15 @@
 //       only space for 25 additional trainers before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT_FRLG can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_FRLG                      639
+// BEGIN RF STORY
+#define TRAINER_RF_STORY_0 639
+#define TRAINER_RF_STORY_1 640
+#define TRAINER_RF_STORY_2 641
+#define TRAINER_RF_STORY_3 642
+#define TRAINER_RF_STORY_4 643
+#define TRAINER_RF_STORY_5 644
+// END RF STORY
+#define TRAINERS_COUNT_FRLG                      645
 #define MAX_TRAINERS_COUNT_FRLG                  768
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_FRLG_H

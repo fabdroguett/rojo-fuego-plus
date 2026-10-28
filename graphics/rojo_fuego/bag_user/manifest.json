@@ -1,0 +1,25 @@
+{
+  "generator": "tools/rojo_fuego/make_kanto_ui_art.py",
+  "nativeArtwork": "graphics/rojo_fuego/kanto_ui",
+  "historicalImport": "legacy-import-manifest.json",
+  "frames": [
+    "mochila",
+    "medicine",
+    "equipo",
+    "evolution",
+    "claves",
+    "treasure",
+    "other",
+    "bundle",
+    "left",
+    "right",
+    "return",
+    "cursor",
+    "up",
+    "down"
+  ],
+  "smallSheetBytes": 1792,
+  "returnSheetBytes": 512,
+  "paletteBytes": 32,
+  "resampling": false
+}

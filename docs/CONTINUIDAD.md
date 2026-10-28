@@ -1,5 +1,85 @@
 # Continuidad de ejecución
 
+## Arte nativo y menú 3×3 (27-10-2026)
+
+Menú principal integrado con nueve iconos redibujados a 16×16 y fuente local
+Kanto Compact Pro (104 glifos, acentos españoles, avance proporcional).
+Mochila sustituye el muestreo de ilustraciones grandes por maestros nativos;
+comparte una paleta OBJ y muestra cuatro filas de 24 píxeles para conservar
+los sprites del catálogo a tamaño real. Inventario, guardados, funciones y
+condiciones de acceso se mantienen. Los originales y la importación histórica
+se preservan. Generador: `tools/rojo_fuego/make_kanto_ui_art.py`.
+Informe: `docs/ui/main-menu-redesign.md`; evidencia:
+`build_artifacts/ui/kanto-art/`. Pasaron 21 pruebas C/Python, 350 misiones,
+18 recorridos de Mochila y 23 escenarios de menú con aserciones, además de
+seis escenarios de capturas revisadas. Todas las acciones se probaron en ambos
+temas. Estrés: 1 matriz, 8 paletas, 28 sprites, 17408 B OBJ.
+
+
+## Sprites aportados por el usuario (26-10-2026)
+
+Se reemplazan los dibujos de la mochila anterior por los PNG de
+`Downloads/mochila_sprites_separados`: siete categorías, mochila de encabezado,
+cursor, flechas de bolsillo, scroll y retorno. Los originales se conservan en
+`graphics/rojo_fuego/bag_user/source/`; el manifiesto guarda hashes y conversión.
+Atlas 4bpp de 16×16 y retorno 32×32, con tres paletas compartidas para mantener
+el morado, verde, oro y grises. `src/rf_bag_art.c` administra estos sprites.
+No cambian las siete categorías, la capacidad de 80 espacios ni los controles.
+Evidencia de esta sustitución en `build_artifacts/ui/bag-user-sprites/`.
+Validación: 19 pruebas, 18 recorridos mGBA y 106 capturas. ROM de producción en
+`build_artifacts/releases/20261026-233217/pokefirered.gba`, SHA-256
+`c24eaf41d306c78c5b1f8ba403debce8c8a326b0c6a8fb94003249a1450c3563`.
+Arranque al mapa comprobado, sin fixtures. Recursos observados: 30 sprites,
+12 paletas OBJ, 7 matrices y 18 KiB de tiles OBJ.
+
+## Mochila basada en referencia pixel art (26-10-2026)
+
+La nueva petición adopta la referencia adjunta: cabecera de 40 px con siete iconos
+originales de 8×8, selección menta, cursor dorado, papel crema en claro y superficies
+turquesa en oscuro. Lista de seis filas con iconos reales a media escala, cantidades
+alineadas y barra de desplazamiento. Se conservan los IDs y las reglas de las siete
+categorías; la capacidad sigue en 80 espacios. La vista previa muestra nombre y cantidad.
+
+`RFUI_LoadBagPalette` integra los dos temas; `RFUI_PrintParagraph` ajusta descripciones
+por palabras, con fallback español para texto ausente y elipsis cuando no cabe completo.
+`src/data/rf_bag_text.h` localiza textos habituales para esta pantalla sin alterar el
+catálogo global; los textos aún no traducidos mantienen su original. El orden por nombre
+sigue el catálogo original. No se modificaron formatos de guardado ni efectos de objetos.
+
+Verificador reproducible: `tools/rojo_fuego/test/verify_bag_reference.py`, con fixtures
+temporales de medicina en campo/combate, cancelación, registro, ordenamiento, casos de
+texto y presupuesto de recursos. Evidencia en `build_artifacts/ui/bag-reference/`;
+comandos y resultados finales en `docs/development/TESTING.md`. En esta máquina solo está
+instalada `Ubuntu` 26.04.1 LTS (WSL 1), por lo que se usa el snapshot `/home/fabian/rf-ui-20261026`.
+Entrega final: `build_artifacts/releases/20261026-220850/pokefirered.gba`, SHA-256
+`3e7d5d10a390e407c7839c507d8240507ddfde6263b6b17c19ece6e4244482bf`.
+19 pruebas, 18 recorridos mGBA y 106 capturas; arranque de producción al mapa correcto.
+
+## Mochila recompuesta desde cero (26-10-2026)
+
+Pedido más reciente: cambiarla y hacerla desde cero. Nueva composición con lista a la
+derecha y vista del objeto, nombre y descripción a la izquierda. Se oculta el gran
+sprite de mochila, se añaden acentos coral y se recolocan flechas, línea de intercambio
+y datos de MT/MO. Sus cuatro filas compactas ya no invaden el pie. Las acciones
+principales están en español. Mantiene siete categorías, siete filas visibles,
+capacidad de 80 espacios y el mismo guardado. Evidencia en `build_artifacts/bag-redesign/`.
+Las pasadas anteriores se conservan debajo como historial.
+
+## Mejora de legibilidad de mochila (26-10-2026)
+
+Segunda pasada: las siete pestañas ocupan todo el ancho; el nombre completo del filtro
+se muestra en el encabezado. Una banda de fondo y un indicador lateral siguen la fila
+seleccionada; se tradujo la salida a «Cerrar mochila». 48 capturas adicionales de ambos
+temas/sprites incluyen movimiento del foco, última fila y regreso al mapa; evidencia en
+`build_artifacts/ui-improvements-v2/`. Se conservan categorías, capacidad y guardados.
+
+Por petición de interfaz y gráficos: encabezado con icono nativo, nombre completo del
+filtro activo, marca superior de selección y tinta oscura sobre la pestaña dorada en
+tema claro. El pie muestra también la cruceta para cambiar de bolsillo. Conserva las
+siete categorías y la capacidad de 80 espacios. Capturas mGBA de ambos sprites y temas
+en `build_artifacts/ui-improvements/`; 18 pruebas y las 350 misiones validadas.
+Esta entrega mejora la presentación existente; ARTE-2 sigue pendiente de redibujo.
+
 Actualización: 26-10-2026. Continuar el trabajo abierto de [PLAN_COMPLETO.md](PLAN_COMPLETO.md);
 Ubuntu 24.04 en WSL es el entorno de compilación activo y Docker permanece apagado.
 

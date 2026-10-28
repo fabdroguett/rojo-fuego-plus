@@ -34,6 +34,7 @@ static u32 RFQuests_NotifyEvent(u32 event, u32 argument) {
     eventCalls++; lastEvent = event; lastArgument = argument; return 7;
 }
 static const struct RFQuest *RFQuests_GetCatalog(void) {return quests;}
+static u32 RFStory_NotifyTrainerWin(u32 trainer) {(void)trainer; return 0;}
 static u32 RFQuests_GetState(u32 id) {(void)id; return state;}
 static u32 RFQuests_IsUnlocked(u32 id) {(void)id; return unlocked;}
 static u32 RFQuests_DeliverItem(u32 id) {assert(id == 36); deliveryCalls++; return delivered;}

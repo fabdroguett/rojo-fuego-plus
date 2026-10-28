@@ -29,6 +29,46 @@ void RFUI_LoadPalette(u32 bank, bool32 dark)
         LoadPalette(dark ? night : day, BG_PLTT_ID(bank), PLTT_SIZE_4BPP);
 }
 
+// Main-menu illustrations reserve stable shades; UI roles use the existing day/night tokens.
+void RFUI_LoadMainMenuPalette(u32 bank, bool32 dark)
+{
+    u16 colors[16] = {
+        RF_UI_DAY_GROUND, RF_UI_BAG_DAY_PAPER, RF_UI_DAY_TEXT, RF_UI_DAY_SHADOW,
+        RF_UI_DAY_GROUND, RF_UI_DAY_MUTED, RF_UI_NIGHT_EDGE, RF_UI_BAG_MINT,
+        RF_UI_BAG_MINT, RF_UI_GOLD, RGB(28, 9, 8), RGB(7, 14, 22),
+        RGB(14, 23, 28), RGB(22, 15, 5), RGB(31, 30, 25), RF_UI_BAG_INK,
+    };
+    if (dark)
+    {
+        colors[0] = colors[4] = RF_UI_NIGHT_GROUND;
+        colors[1] = RF_UI_NIGHT_PANEL;
+        colors[2] = RF_UI_NIGHT_TEXT;
+        colors[3] = RF_UI_NIGHT_SHADOW;
+        colors[5] = RF_UI_NIGHT_MUTED;
+    }
+    if (bank < 16)
+        LoadPalette(colors, BG_PLTT_ID(bank), PLTT_SIZE_4BPP);
+}
+
+// Bag-specific roles keep its indexed illustrations and mint selection identical in both themes.
+void RFUI_LoadBagPalette(u32 bank, bool32 dark)
+{
+    static const u16 night[16] = {
+        RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_TEXT, RF_UI_NIGHT_SHADOW,
+        RF_UI_NIGHT_GROUND, RF_UI_NIGHT_MUTED, RF_UI_NIGHT_EDGE, RF_UI_BAG_MINT,
+        RF_UI_BAG_MINT, RGB(31, 25, 6), RGB(20, 10, 28), RGB(29, 10, 8),
+        RGB(12, 22, 8), RGB(8, 17, 26), RF_UI_BAG_DAY_PAPER, RF_UI_BAG_INK,
+    };
+    static const u16 day[16] = {
+        RGB(1, 9, 10), RF_UI_BAG_DAY_PAPER, RF_UI_BAG_INK, RGB(27, 25, 20),
+        RGB(1, 9, 10), RF_UI_DAY_MUTED, RGB(10, 18, 16), RF_UI_BAG_MINT,
+        RF_UI_BAG_MINT, RGB(31, 25, 6), RGB(20, 10, 28), RGB(29, 10, 8),
+        RGB(12, 22, 8), RGB(8, 17, 26), RF_UI_BAG_DAY_PAPER, RF_UI_BAG_INK,
+    };
+    if (bank < 16)
+        LoadPalette(dark ? night : day, BG_PLTT_ID(bank), PLTT_SIZE_4BPP);
+}
+
 // Full-screen field menus (quests, Key System): the map layers are hidden and the backdrop takes
 // the theme's ground, so the gaps between framed panels read as the page, not as map slivers.
 static EWRAM_DATA u16 sSavedBackdrop = 0;
@@ -167,6 +207,69 @@ void RFUI_PrintFitted(u8 window, const u8 *text, u32 x, u32 y, u32 width, const 
         text = buffer;
     }
     AddTextPrinterParameterized3(window, font, x, y, colors, TEXT_SKIP_DRAW, text);
+}
+
+// Bounded, word-wrapped native text. Returns FALSE when an ellipsis replaces overflow.
+bool32 RFUI_PrintParagraph(u8 window, const u8 *text, u32 x, u32 y, u32 width, u32 lines, const u8 *colors)
+{
+    u8 flat[244], line[96];
+    u32 i, position = 0, row;
+    bool32 complete;
+    const u32 font = FONT_SMALL_NARROWER;
+    const u32 inputLimit = sizeof(flat) - 5;
+    if (text == NULL || text[0] == EOS)
+        text = COMPOUND_STRING("Sin descripción disponible.");
+    complete = StringLength(text) < inputLimit;
+    // Native format commands can skip four bytes; keep EOS padding if cut mid-command.
+    memset(flat, EOS, sizeof(flat));
+    StringCopyN(flat, text, inputLimit);
+    StripExtCtrlCodes(flat);
+    for (i = 0; flat[i] != EOS; i++)
+        if (flat[i] == CHAR_NEWLINE || flat[i] == CHAR_PROMPT_SCROLL || flat[i] == CHAR_PROMPT_CLEAR)
+            flat[i] = CHAR_SPACE;
+    for (row = 0; row < lines; row++)
+    {
+        u32 start, length = 0, lastSpace = 0;
+        while (flat[position] == CHAR_SPACE)
+            position++;
+        if (flat[position] == EOS)
+            break;
+        start = position;
+        line[0] = EOS;
+        while (flat[position] != EOS && length < sizeof(line) - 4)
+        {
+            line[length] = flat[position];
+            line[length + 1] = EOS;
+            if (GetStringWidth(font, line, 0) > width)
+                break;
+            if (flat[position] == CHAR_SPACE)
+                lastSpace = length + 1;
+            length++;
+            position++;
+        }
+        if (flat[position] != EOS && lastSpace)
+        {
+            position = start + lastSpace;
+            length = lastSpace - 1;
+        }
+        if (!length && flat[position] != EOS)
+        {
+            position++;
+            complete = FALSE;
+        }
+        line[length] = EOS;
+        if ((row + 1 == lines && flat[position] != EOS) || (!complete && flat[position] == EOS))
+        {
+            u32 dots = GetStringWidth(font, COMPOUND_STRING("..."), 0);
+            while (length && GetStringWidth(font, line, 0) + dots > width)
+                line[--length] = EOS;
+            if (dots <= width)
+                StringAppend(line, COMPOUND_STRING("..."));
+            complete = FALSE;
+        }
+        AddTextPrinterParameterized3(window, font, x, y + row * 9, colors, TEXT_SKIP_DRAW, line);
+    }
+    return complete && flat[position] == EOS;
 }
 
 // Battle healthbox frame (ball_status_bar.pal): 1 ink, 2 paper, 3 shading and ink shadow,

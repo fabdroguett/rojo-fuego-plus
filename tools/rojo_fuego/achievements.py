@@ -374,6 +374,10 @@ add("M06", "M", "G", "Todo el bronce", "Desbloquea todos los logros de bronce.",
 add("M07", "M", "G", "Sin secretos", "Desbloquea todos los logros ocultos.", hidden_all(), title("Detective"))
 add("M08", "M", "P", "Maestro de logros", "Desbloquea todos los demás logros.", pct(99), title("Maestro de logros"))
 
+# Append only. 318/319 use the two spare bits; ACH_BYTES remains 40.
+add("RF_STORY_FIRST", "H", "S", "Primera crónica", "Concluye una campaña de Kanto.", event(), title("Cronista"))
+add("RF_STORY_ALL", "H", "G", "Memorias compartidas", "Concluye las ocho campañas narrativas.", event(), title("Memoria de Kanto"))
+
 SPECIALS = sorted({a["cond"][1] for a in ach if a["cond"][0] == "ACH_COND_SPECIAL"})
 
 

@@ -302,4 +302,5 @@ static const struct RFQuest sRFQuests[] =
     },
 #include "rf_quests_legends.h"
 #include "rf_quests_extra.h"
+#include "rf_quests_story.h"
 };

@@ -9,6 +9,7 @@
 #include "menu.h"
 #include "pokemon.h"
 #include "rf_quests.h"
+#include "rf_story.h"
 #include "script.h"
 #include "sound.h"
 #include "string_util.h"
@@ -41,14 +42,29 @@ static const u8 *const sChapterNames[] =
     COMPOUND_STRING("LEYENDAS DE KANTO"),
     COMPOUND_STRING("LEYENDAS DEL MUNDO"),
     COMPOUND_STRING("ULTRAENTES Y PARADOJAS"),
+    COMPOUND_STRING("MEMORIA DE KANTO"),
+    COMPOUND_STRING("LA RED Y SUS VOCES"),
+    COMPOUND_STRING("UNA PUERTA ABIERTA"),
+    COMPOUND_STRING("CUADERNOS DE CAMPO"),
+    COMPOUND_STRING("NADIE SE QUEDA ATRÁS"),
+    COMPOUND_STRING("CAMINOS QUE SE CRUZAN"),
+    COMPOUND_STRING("LO QUE DEVUELVE EL MAR"),
+    COMPOUND_STRING("EL CAMINO DE VUELTA"),
 };
 STATIC_ASSERT(ARRAY_COUNT(sChapterNames) == QUEST_CHAPTERS, RFQuestChapterNames);
 static const u8 *const sStatusNames[] =
 {
-    COMPOUND_STRING("{A_BUTTON} Aceptar    {START_BUTTON} Premio"),
-    COMPOUND_STRING("En curso     {START_BUTTON} Premio"),
-    COMPOUND_STRING("{A_BUTTON} Reclamar   {START_BUTTON} Premio"),
-    COMPOUND_STRING("Completada   {B_BUTTON} Salir"),
+    COMPOUND_STRING("{A_BUTTON} Aceptar"),
+    COMPOUND_STRING("En curso"),
+    COMPOUND_STRING("{A_BUTTON} Reclamar"),
+    COMPOUND_STRING("{A_BUTTON} Desenlace"),
+};
+static const u8 *const sFilterNames[] = {
+    COMPOUND_STRING("{DPAD_LEFTRIGHT} Descubiertas"), COMPOUND_STRING("{DPAD_LEFTRIGHT} Disponibles"),
+    COMPOUND_STRING("{DPAD_LEFTRIGHT} En curso"), COMPOUND_STRING("{DPAD_LEFTRIGHT} Listas"),
+    COMPOUND_STRING("{DPAD_LEFTRIGHT} Completadas"), COMPOUND_STRING("{DPAD_LEFTRIGHT} Aquí"),
+    COMPOUND_STRING("{DPAD_LEFTRIGHT} Fácil"), COMPOUND_STRING("{DPAD_LEFTRIGHT} Media"),
+    COMPOUND_STRING("{DPAD_LEFTRIGHT} Alta"),
 };
 static EWRAM_DATA struct ListMenuItem sQuestList[RF_QUEST_COUNT] = {0};
 static EWRAM_DATA u8 sQuestWindowIds[3] = {0};
@@ -57,26 +73,32 @@ static EWRAM_DATA u16 sQuestSelected = 0;
 static EWRAM_DATA u16 sQuestListCount = 0;
 static EWRAM_DATA u8 sQuestListTask = 0;
 static EWRAM_DATA bool8 sQuestMenuOpen = FALSE;
+static EWRAM_DATA u8 sQuestFilter = 0;
+static EWRAM_DATA u8 sEndingPage = 0;
 
 static void DrawQuestDetails(const u8 *message)
 {
     u8 window = sQuestWindowIds[2];
     bool32 unlocked = RFQuests_IsUnlocked(sQuestSelected);
     enum RFQuestState state = RFQuests_GetState(sQuestSelected);
-    const u8 *status = unlocked ? sStatusNames[state] : COMPOUND_STRING("Completa la misión anterior.");
+    const u8 *status = sQuestSelected < RF_QUEST_COUNT ? sStatusNames[state] : COMPOUND_STRING("Sin encargos");
+    const u8 *body = COMPOUND_STRING("Sin encargos para este filtro.\nIzq./Der.: cambia de filtro.\nL/R: cambia de capítulo.");
+    if (sQuestSelected < RF_QUEST_COUNT && (unlocked || state != RF_QUEST_AVAILABLE))
+        body = RFStory_Hint(sQuestSelected);
+    if (sEndingPage)
+        status = COMPOUND_STRING("{A_BUTTON} Seguir {B_BUTTON} Diario");
 
     FillWindowPixelBuffer(window, PIXEL_FILL(1));
-    AddTextPrinterParameterized(window, FONT_SMALL, status, 0, 0, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized(window, FONT_SMALL,
-        message != NULL ? message : unlocked ? sRFQuests[sQuestSelected].description
-                                              : COMPOUND_STRING("Sigue investigando para descubrir\nesta misión. L/R cambia de capítulo."),
-        0, 12, TEXT_SKIP_DRAW, NULL);
+    RFUI_PrintFitted(window, status, 0, 0, 96, (const u8[]){1,2,3});
+    if (!sEndingPage)
+        RFUI_PrintFitted(window, sFilterNames[sQuestFilter], 100, 0, 124, (const u8[]){1,2,3});
+    RFUI_PrintParagraph(window, message != NULL ? message : body, 0, 12, 224, 3, (const u8[]){1,2,3});
     CopyWindowToVram(window, COPYWIN_GFX);
 }
 
 static void QuestMoveCursor(s32 id, bool8 onInit, struct ListMenu *list)
 {
-    sQuestSelected = id;
+    sQuestSelected = id < 0 ? RF_QUEST_NONE : id;
     if (!onInit)
         PlaySE(SE_SELECT);
     DrawQuestDetails(NULL);
@@ -86,6 +108,8 @@ static void QuestPrintState(u8 window, u32 id, u8 y)
 {
     const u8 *mark = COMPOUND_STRING(" ");
     enum RFQuestState state = RFQuests_GetState(id);
+    if (id >= RF_QUEST_COUNT)
+        return;
 
     if (state == RF_QUEST_CLAIMED)
         mark = COMPOUND_STRING("OK");
@@ -99,16 +123,17 @@ static void QuestPrintState(u8 window, u32 id, u8 y)
 static void DrawChapterHeader(void)
 {
     u32 i, completed = 0;
+    u32 total = sQuestListCount == 1 && sQuestList[0].id < 0 ? 0 : sQuestListCount;
     u8 window = sQuestWindowIds[0];
     for (i = 0; i < sQuestListCount; i++)
         if (RFQuests_GetState(sQuestList[i].id) == RF_QUEST_CLAIMED)
             completed++;
     ConvertIntToDecimalStringN(gStringVar1, completed, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringAppend(gStringVar1, COMPOUND_STRING("/"));
-    ConvertIntToDecimalStringN(gStringVar1 + StringLength(gStringVar1), sQuestListCount, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar1 + StringLength(gStringVar1), total, STR_CONV_MODE_LEFT_ALIGN, 3);
     FillWindowPixelBuffer(window, PIXEL_FILL(1));
     RFUI_DrawIcon(window, RF_ICON_QUESTS, 0, 0, 2, 3);
-    AddTextPrinterParameterized(window, FONT_SMALL, sChapterNames[sQuestChapter], 20, 0, TEXT_SKIP_DRAW, NULL);
+    RFUI_PrintFitted(window, sChapterNames[sQuestChapter], 20, 0, 132, (const u8[]){1,2,3});
     AddTextPrinterParameterized(window, FONT_SMALL, gStringVar1, 155, 0, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized(window, FONT_SMALL, COMPOUND_STRING("{L_BUTTON}{R_BUTTON}"), 190, 0, TEXT_SKIP_DRAW, NULL);
     FillWindowPixelRect(window, PIXEL_FILL(3), 20, 13, 204, 2);
@@ -126,13 +151,19 @@ static void BuildQuestList(void)
     sQuestListCount = 0;
     for (i = 0; i < RF_QUEST_COUNT; i++)
     {
-        if (sRFQuests[i].chapter == sQuestChapter)
+        if (sRFQuests[i].chapter == sQuestChapter && RFStory_MatchesFilter(i, sQuestFilter))
         {
             sQuestList[sQuestListCount].name = RFQuests_IsUnlocked(i) ? sRFQuests[i].name : COMPOUND_STRING("???");
-            if (gSaveBlock3Ptr->rfQuestTracked == i + 1)
+            if (gSaveBlock3Ptr->rfQuestTracked == i + 1 || sQuestSelected == i)
                 trackedRow = sQuestListCount;
             sQuestList[sQuestListCount++].id = i;
         }
+    }
+    if (sQuestListCount == 0)
+    {
+        sQuestList[0].name = COMPOUND_STRING("Sin encargos para este filtro");
+        sQuestList[0].id = LIST_NOTHING_CHOSEN;
+        sQuestListCount = 1;
     }
     DrawChapterHeader();
     FillWindowPixelBuffer(sQuestWindowIds[1], PIXEL_FILL(1));
@@ -157,6 +188,37 @@ static void BuildQuestList(void)
 static void Task_QuestMenu(u8 taskId)
 {
     s32 input;
+
+    if (sEndingPage)
+    {
+        if (JOY_NEW(B_BUTTON))
+        {
+            sEndingPage = 0;
+            DrawQuestDetails(NULL);
+        }
+        else if (JOY_NEW(A_BUTTON))
+        {
+            if (RFStory_ReadEnding(sQuestSelected, sEndingPage, gStringVar4, 96))
+            {
+                sEndingPage++;
+                DrawQuestDetails(gStringVar4);
+            }
+            else
+            {
+                sEndingPage = 0;
+                DrawQuestDetails(NULL);
+            }
+        }
+        return;
+    }
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        DestroyListMenuTask(sQuestListTask, NULL, NULL);
+        sQuestFilter = (sQuestFilter + (JOY_NEW(DPAD_RIGHT) ? 1 : RF_QUEST_FILTER_COUNT - 1)) % RF_QUEST_FILTER_COUNT;
+        PlaySE(SE_SELECT);
+        BuildQuestList();
+        return;
+    }
 
     if (JOY_NEW(L_BUTTON | R_BUTTON))
     {
@@ -209,11 +271,20 @@ static void Task_QuestMenu(u8 taskId)
         enum RFQuestState state = RFQuests_GetState(input);
 
         PlaySE(SE_SELECT);
-        if (!RFQuests_IsUnlocked(input))
+        if (!RFQuests_IsUnlocked(input) && state != RF_QUEST_CLAIMED)
             return;
         if (state == RF_QUEST_AVAILABLE)
         {
             RFQuests_Accept(input);
+        }
+        else if (state == RF_QUEST_CLAIMED)
+        {
+            if (RFStory_ReadEnding(input, 0, gStringVar4, 96))
+            {
+                sEndingPage = 1;
+                DrawQuestDetails(gStringVar4);
+            }
+            return;
         }
         else if (state == RF_QUEST_READY)
         {
@@ -224,17 +295,8 @@ static void Task_QuestMenu(u8 taskId)
                 DrawQuestDetails(COMPOUND_STRING("No hay espacio en la mochila.\nHaz sitio y reclama el premio aquí."));
                 return;
             }
-            // Claiming a prerequisite can reveal another row without reopening the menu.
-            {
-                u32 i;
-                for (i = 0; i < sQuestListCount; i++)
-                {
-                    u32 id = sQuestList[i].id;
-                    sQuestList[i].name = RFQuests_IsUnlocked(id) ? sRFQuests[id].name : COMPOUND_STRING("???");
-                }
-            }
-            RedrawListMenu(sQuestListTask);
-            DrawChapterHeader();
+            DestroyListMenuTask(sQuestListTask, NULL, NULL);
+            BuildQuestList();
             StringCopy(gStringVar4, COMPOUND_STRING("Premio: "));
             CopyItemName(quest->rewardItem, gStringVar4 + StringLength(gStringVar4));
             StringAppend(gStringVar4, COMPOUND_STRING(" x"));
@@ -243,7 +305,8 @@ static void Task_QuestMenu(u8 taskId)
             PlaySE(SE_EXP_MAX);
             return;
         }
-        RedrawListMenu(sQuestListTask);
+        DestroyListMenuTask(sQuestListTask, NULL, NULL);
+        BuildQuestList();
         DrawQuestDetails(NULL);
     }
 }
@@ -267,6 +330,9 @@ void RFQuests_OpenMenu(void)
     }
     Achievements_HideNotification();
     RFQuests_Refresh();
+    RFStory_EnsureSave();
+    sQuestFilter = 0;
+    sEndingPage = 0;
     sQuestChapter = 0;
     if (gSaveBlock3Ptr->rfQuestTracked != 0 && gSaveBlock3Ptr->rfQuestTracked <= RF_QUEST_COUNT)
         sQuestChapter = sRFQuests[gSaveBlock3Ptr->rfQuestTracked - 1].chapter;

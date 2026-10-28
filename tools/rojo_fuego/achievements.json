@@ -2860,5 +2860,23 @@
   "name": "Maestro de logros",
   "desc": "Desbloquea todos los demás logros.",
   "reward": "Título “Maestro de logros”"
+ },
+ {
+  "id": "RF_STORY_FIRST",
+  "cat": "H",
+  "tier": "S",
+  "hidden": false,
+  "name": "Primera crónica",
+  "desc": "Concluye una campaña de Kanto.",
+  "reward": "Título “Cronista”"
+ },
+ {
+  "id": "RF_STORY_ALL",
+  "cat": "H",
+  "tier": "G",
+  "hidden": false,
+  "name": "Memorias compartidas",
+  "desc": "Concluye las ocho campañas narrativas.",
+  "reward": "Título “Memoria de Kanto”"
  }
 ]

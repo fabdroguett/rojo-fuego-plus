@@ -5,6 +5,9 @@
 #include "main.h"
 #include "menu_helpers.h"
 
+#define RF_BAG_VISIBLE_ROWS 4
+#define RF_BAG_ROW_HEIGHT 24
+
 enum {
     ITEMMENULOCATION_FIELD,
     ITEMMENULOCATION_BATTLE,

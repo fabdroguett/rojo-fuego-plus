@@ -81,8 +81,8 @@
 // END legends
 #define RF_QUEST_EXTRA_FIRST 71
 #define RF_QUEST_EXTRA_COUNT 279
-#define RF_QUEST_COUNT 350
-#define RF_QUEST_CHAPTER_COUNT 9
+#define RF_QUEST_COUNT 414
+#define RF_QUEST_CHAPTER_COUNT 17
 
 // Event IDs are also used by map scripts; never reorder shipped values.
 #define RF_QUEST_EVENT_OAK_REPORT 1

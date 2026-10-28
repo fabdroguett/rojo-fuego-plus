@@ -89,7 +89,7 @@ struct ListMenu
     u8 unk_1C;
     u8 unk_1D;
     u8 taskId;
-    u8 unk_1F;
+    u8 rowHeight; // Optional stride in a formerly unused byte; task/save layouts unchanged.
 };
 
 struct ListMenuWindowRect
@@ -132,6 +132,7 @@ extern struct ListMenuTemplate gMultiuseListMenuTemplate;
 
 s32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const struct ListMenuTemplate *listMenuTemplate, u8 drawMode, u16 tileNum, u16 palOffset);
 u8 ListMenuInit(struct ListMenuTemplate *listMenuTemplate, u16 scrollOffset, u16 selectedRow);
+u8 ListMenuInitWithRowHeight(struct ListMenuTemplate *listMenuTemplate, u16 scrollOffset, u16 selectedRow, u8 rowHeight);
 s32 ListMenu_ProcessInput(u8 listTaskId);
 void DestroyListMenuTask(u8 listTaskId, u16 *scrollOffset, u16 *selectedRow);
 void RedrawListMenu(u8 listTaskId);

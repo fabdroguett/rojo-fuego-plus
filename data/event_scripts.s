@@ -1033,6 +1033,7 @@ gStdScripts_End::
 	.include "data/scripts/rojo_fuego_legends.inc"
 	.include "data/scripts/rojo_fuego_ztrials.inc"
 	.include "data/scripts/rojo_fuego_npcs.inc"
+	.include "data/scripts/rojo_fuego_story.inc"
 #endif
 	.include "data/scripts/silphco_doors.inc"
 	.include "data/scripts/move_tutors_frlg.inc"

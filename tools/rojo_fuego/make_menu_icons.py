@@ -108,4 +108,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if "--legacy-reference" in sys.argv:
+        main()
+    else:
+        from make_kanto_ui_art import main as build_native
+        build_native()

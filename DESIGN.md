@@ -88,6 +88,37 @@ DexNav chrome uses rectangular, pixel-aligned fills and a single-pixel divider. 
 
 ## Components
 
+### Bag — item preview composition
+
+The reference-based bag uses a 40px header with seven imported 16 × 16 category sprites
+and a six-row list on the right (window x=112, y=48, width=120). The selected item is
+centered at (40,73) in the left preview, beside its quantity. The full item name sits
+below it, above a description window at (0,104). The large bag sprite stays hidden.
+
+The user-provided PNGs in `graphics/rojo_fuego/bag_user/source/` replace the original
+code-drawn category icons, header backpack, cursor, pocket arrows, scroll arrows and
+return arrows. They share three OBJ palettes; a 32 × 32 variant supplies the return
+preview. `rf_bag_art.c` owns their scene lifetime and visibility. The original item
+artwork in inventory rows remains sourced from the game catalog.
+
+`RFUI_LoadBagPalette` owns the bag's deep turquoise, cream day paper, mint selection
+and gold cursor accent. BG bank 11 supplies chrome; bank 9 supplies
+the header, and bank 10 gives the selected row dark ink on mint. List initialization
+reapplies that row palette after the engine's default tilemap update. Item sprites
+keep their original palettes. The scroll thumb follows the actual list offset.
+
+Up to six cached item sprites reuse the source artwork at half scale. They reload
+only when the visible item IDs change, not on each cursor move. Descriptions use
+bounded word wrapping, four 9px rows, and a visible ellipsis on overflow. Empty
+descriptions have a Spanish fallback. Bag-only Spanish text covers common supplies;
+untranslated catalog entries retain their original names and descriptions. Sorting
+still uses the source catalog, preserving its original ordering semantics.
+
+The footer states the actual controls: up/down for rows, left/right for pockets,
+L/R for filters in the item pocket, A to choose and B to return. Disabled contexts
+use a shorter hint. TM details stay above y=146. Captures remain native 240 × 160,
+exported at integer 2× scale in `build_artifacts/ui/bag-reference/`.
+
 ### DexNav encounter groups
 
 Three labelled regions retain water, land and hidden encounter slots, existing Pokémon icons and collection counts. Active group emphasis follows cursor selection. An empty group prints `Sin encuentros`; unseen detail labels (`Sin avistar`, `Aun no visto`) remain distinct from absent encounters (`Sin datos`, `Sin encuentro`). The selector is hidden for an absent raw species. Icon centers use y=40 for water, y=77/101 for land and y=137 for hidden encounters; the authored 32 × 32 corner selector has visible local bounds 5..26, keeping its corners clear of group headers.

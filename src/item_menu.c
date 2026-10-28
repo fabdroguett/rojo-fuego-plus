@@ -1,5 +1,7 @@
 #include "global.h"
 #include "rf_ui_theme.h"
+#include "rf_kanto_ui.h"
+#include "rf_bag_art.h"
 #include "rf_wild_loot.h"
 #include "rf_exp_reserve.h"
 #include "item_menu.h"
@@ -55,6 +57,7 @@
 #include "constants/items.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "config/item.h"
 
 #define TAG_POCKET_SCROLL_ARROW 110
 #define TAG_BAG_SCROLL_ARROW    111
@@ -70,7 +73,7 @@
                                 BAG_POKEBALLS_COUNT))))) + 1)
 
 // Up to 8 item slots can be visible at a time
-#define MAX_ITEMS_SHOWN 7
+#define MAX_ITEMS_SHOWN RF_BAG_VISIBLE_ROWS
 
 enum {
     SWITCH_POCKET_NONE,
@@ -145,6 +148,8 @@ static void CopyPocketNameToWindow(u32);
 static void DrawPocketIndicatorSquare(u8, bool8);
 static void BagMenu_DrawItemCategories(void);
 static void BagMenu_DrawFooter(void);
+static u8 BagMenu_InitItemList(u16 scroll, u16 row);
+static void BagMenu_ApplySelectionPalette(u32 row);
 static void BagMenu_SwitchItemCategory(u8, s8);
 static void CreatePocketScrollArrowPair(void);
 static void CreatePocketSwitchArrowPair(void);
@@ -288,9 +293,9 @@ static const struct ListMenuTemplate sItemListMenu =
     .maxShowed = 0,
     .windowId = WIN_ITEM_LIST,
     .header_X = 0,
-    .item_X = 8,
+    .item_X = 34,
     .cursor_X = 0,
-    .upText_Y = 1,
+    .upText_Y = 4,
     .cursorPal = 1,
     .fillValue = 0,
     .cursorShadowPal = 3,
@@ -298,29 +303,29 @@ static const struct ListMenuTemplate sItemListMenu =
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
     .fontId = FONT_NARROW,
-    .cursorKind = CURSOR_BLACK_ARROW
+    .cursorKind = CURSOR_INVISIBLE
 };
 
-static const u8 sText_NothingToSort[] = _("There's nothing to sort!");
+static const u8 sText_NothingToSort[] = _("No hay nada que ordenar.");
 static const struct MenuAction sItemMenuActions[] = {
-    [ACTION_USE]               = {gMenuText_Use,                {ItemMenu_UseOutOfBattle}},
-    [ACTION_TOSS]              = {gMenuText_Toss,               {ItemMenu_Toss}},
-    [ACTION_REGISTER]          = {gMenuText_Register,           {ItemMenu_Register}},
-    [ACTION_GIVE]              = {gMenuText_Give,               {ItemMenu_Give}},
-    [ACTION_CANCEL]            = {gText_Cancel2,                {ItemMenu_Cancel}},
-    [ACTION_BATTLE_USE]        = {gMenuText_Use,                {ItemMenu_UseInBattle}},
-    [ACTION_CHECK]             = {COMPOUND_STRING("CHECK"),     {ItemMenu_UseOutOfBattle}},
-    [ACTION_WALK]              = {COMPOUND_STRING("WALK"),      {ItemMenu_UseOutOfBattle}},
-    [ACTION_DESELECT]          = {COMPOUND_STRING("DESELECT"),  {ItemMenu_Register}},
-    [ACTION_CHECK_TAG]         = {COMPOUND_STRING("CHECK TAG"), {ItemMenu_CheckTag}},
-    [ACTION_CONFIRM]           = {gMenuText_Confirm,            {Task_FadeAndCloseBagMenu}},
-    [ACTION_SHOW]              = {COMPOUND_STRING("SHOW"),      {ItemMenu_Show}},
-    [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,              {ItemMenu_GiveFavorLady}},
-    [ACTION_CONFIRM_QUIZ_LADY] = {gMenuText_Confirm,            {ItemMenu_ConfirmQuizLady}},
-    [ACTION_BY_NAME]           = {COMPOUND_STRING("Name"),      {ItemMenu_SortByName}},
-    [ACTION_BY_TYPE]           = {COMPOUND_STRING("Type"),      {ItemMenu_SortByType}},
-    [ACTION_BY_AMOUNT]         = {COMPOUND_STRING("Amount"),    {ItemMenu_SortByAmount}},
-    [ACTION_BY_INDEX]          = {COMPOUND_STRING("Index"),     {ItemMenu_SortByIndex}},
+    [ACTION_USE]               = {COMPOUND_STRING("USAR"),      {ItemMenu_UseOutOfBattle}},
+    [ACTION_TOSS]              = {COMPOUND_STRING("TIRAR"),     {ItemMenu_Toss}},
+    [ACTION_REGISTER]          = {COMPOUND_STRING("REGISTRAR"), {ItemMenu_Register}},
+    [ACTION_GIVE]              = {COMPOUND_STRING("DAR"),       {ItemMenu_Give}},
+    [ACTION_CANCEL]            = {COMPOUND_STRING("ATRÁS"),     {ItemMenu_Cancel}},
+    [ACTION_BATTLE_USE]        = {COMPOUND_STRING("USAR"),      {ItemMenu_UseInBattle}},
+    [ACTION_CHECK]             = {COMPOUND_STRING("VER"),       {ItemMenu_UseOutOfBattle}},
+    [ACTION_WALK]              = {COMPOUND_STRING("BAJAR"),     {ItemMenu_UseOutOfBattle}},
+    [ACTION_DESELECT]          = {COMPOUND_STRING("QUITAR"),    {ItemMenu_Register}},
+    [ACTION_CHECK_TAG]         = {COMPOUND_STRING("FICHA"),     {ItemMenu_CheckTag}},
+    [ACTION_CONFIRM]           = {COMPOUND_STRING("ELEGIR"),    {Task_FadeAndCloseBagMenu}},
+    [ACTION_SHOW]              = {COMPOUND_STRING("MOSTRAR"),   {ItemMenu_Show}},
+    [ACTION_GIVE_FAVOR_LADY]   = {COMPOUND_STRING("DAR"),       {ItemMenu_GiveFavorLady}},
+    [ACTION_CONFIRM_QUIZ_LADY] = {COMPOUND_STRING("ELEGIR"),    {ItemMenu_ConfirmQuizLady}},
+    [ACTION_BY_NAME]           = {COMPOUND_STRING("Nombre"),    {ItemMenu_SortByName}},
+    [ACTION_BY_TYPE]           = {COMPOUND_STRING("Tipo"),      {ItemMenu_SortByType}},
+    [ACTION_BY_AMOUNT]         = {COMPOUND_STRING("Cantidad"),  {ItemMenu_SortByAmount}},
+    [ACTION_BY_INDEX]          = {COMPOUND_STRING("Número"),    {ItemMenu_SortByIndex}},
     [ACTION_DUMMY]             = {gText_EmptyString2, {NULL}}
 };
 
@@ -403,20 +408,6 @@ static const struct YesNoFuncTable sYesNoTossFunctions = {ConfirmToss, CancelTos
 
 static const struct YesNoFuncTable sYesNoSellItemFunctions = {ConfirmSell, CancelSell};
 
-static const struct ScrollArrowsTemplate sBagScrollArrowsTemplate = {
-    .firstArrowType = SCROLL_ARROW_LEFT,
-    .firstX = 144,
-    .firstY = 6,
-    .secondArrowType = SCROLL_ARROW_RIGHT,
-    .secondX = 224,
-    .secondY = 6,
-    .fullyUpThreshold = -1,
-    .fullyDownThreshold = -1,
-    .tileTag = TAG_BAG_SCROLL_ARROW,
-    .palTag = TAG_BAG_SCROLL_ARROW,
-    .palNum = 0,
-};
-
 static const u8 sRegisteredSelect_Gfx[] = INCGFX_U8("graphics/bag/select_button.png", ".4bpp");
 
 enum {
@@ -440,16 +431,16 @@ static const struct WindowTemplate sDefaultBagWindows[] =
 {
     [WIN_ITEM_LIST] = {
         .bg = 0,
-        .tilemapLeft = 1,
-        .tilemapTop = 4,
+        .tilemapLeft = 14,
+        .tilemapTop = 6,
         .width = 15,
-        .height = 14,
+        .height = 12,
         .paletteNum = 1,
         .baseBlock = 0x27,
     },
     [WIN_DESCRIPTION] = {
         .bg = 0,
-        .tilemapLeft = 17,
+        .tilemapLeft = 0,
         .tilemapTop = 13,
         .width = 13,
         .height = 5,
@@ -464,12 +455,12 @@ static const struct WindowTemplate sDefaultBagWindows[] =
         .tilemapTop = 0,
         .width = 8,
         .height = 2,
-        .paletteNum = 1,
+        .paletteNum = 9,
         .baseBlock = 0x1A1,
     },
     [WIN_TMHM_INFO_ICONS] = {
         .bg = 0,
-        .tilemapLeft = 18,
+        .tilemapLeft = 1,
         .tilemapTop = 13,
         .width = 5,
         .height = 6,
@@ -478,7 +469,7 @@ static const struct WindowTemplate sDefaultBagWindows[] =
     },
     [WIN_TMHM_INFO] = {
         .bg = 0,
-        .tilemapLeft = 24,
+        .tilemapLeft = 7,
         .tilemapTop = 13,
         .width = 4,
         .height = 6,
@@ -615,12 +606,79 @@ static const u8 *const sRFBagItemCategoryNames[RF_BAG_CATEGORY_COUNT] =
 {
     [RF_BAG_CATEGORY_ALL] = COMPOUND_STRING("TODO"),
     [RF_BAG_CATEGORY_MEDICINE] = COMPOUND_STRING("CURA"),
-    [RF_BAG_CATEGORY_BATTLE] = COMPOUND_STRING("BAT."),
+    [RF_BAG_CATEGORY_BATTLE] = COMPOUND_STRING("COMB"),
     [RF_BAG_CATEGORY_EVOLUTION] = COMPOUND_STRING("EVOL"),
-    [RF_BAG_CATEGORY_HELD] = COMPOUND_STRING("EQU."),
+    [RF_BAG_CATEGORY_HELD] = COMPOUND_STRING("EQUIPO"),
     [RF_BAG_CATEGORY_TREASURE] = COMPOUND_STRING("TES."),
-    [RF_BAG_CATEGORY_OTHER] = COMPOUND_STRING("OTR."),
+    [RF_BAG_CATEGORY_OTHER] = COMPOUND_STRING("OTROS"),
 };
+
+// The compact tabs are shortcuts; spell out the active filter in the header.
+static const u8 *const sRFBagItemCategoryLabels[RF_BAG_CATEGORY_COUNT] =
+{
+    [RF_BAG_CATEGORY_ALL] = COMPOUND_STRING("Todos"),
+    [RF_BAG_CATEGORY_MEDICINE] = COMPOUND_STRING("Curación"),
+    [RF_BAG_CATEGORY_BATTLE] = COMPOUND_STRING("Combate"),
+    [RF_BAG_CATEGORY_EVOLUTION] = COMPOUND_STRING("Evolución"),
+    [RF_BAG_CATEGORY_HELD] = COMPOUND_STRING("Equipables"),
+    [RF_BAG_CATEGORY_TREASURE] = COMPOUND_STRING("Tesoros"),
+    [RF_BAG_CATEGORY_OTHER] = COMPOUND_STRING("Otros"),
+};
+
+#include "data/rf_bag_text.h"
+
+static u8 *BagMenu_CopyName(u8 *dest, enum Item item)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sRFBagText); i++)
+        if (sRFBagText[i].item == item)
+            return StringCopy(dest, sRFBagText[i].name);
+    return CopyItemName(item, dest);
+}
+
+static void BagMenu_FitListName(u8 *text, u8 *end, u32 width)
+{
+    u32 font = GetFontIdToFit(text, FONT_NARROW, 0, width);
+    if (GetStringWidth(font, text, 0) > width)
+    {
+        u32 dots = GetStringWidth(font, COMPOUND_STRING("..."), 0);
+        do
+            *--end = EOS;
+        while (end > text && GetStringWidth(font, text, 0) + dots > width);
+        end = StringAppend(text, COMPOUND_STRING("..."));
+    }
+    PrependFontIdToFit(text, end, FONT_NARROW, width);
+}
+
+static const u8 *BagMenu_GetDescription(enum Item item)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sRFBagText); i++)
+        if (sRFBagText[i].item == item)
+            return sRFBagText[i].description;
+    return GetItemDescription(item);
+}
+
+static void BagMenu_ApplySelectionPalette(u32 row)
+{
+    u32 x, y;
+    u16 *tilemap = GetBgTilemapBuffer(0);
+    PutWindowTilemap(WIN_ITEM_LIST);
+    for (y = 6 + row * (RF_BAG_ROW_HEIGHT / 8); y < 6 + (row + 1) * (RF_BAG_ROW_HEIGHT / 8); y++)
+        for (x = 14; x < 29; x++)
+            tilemap[y * 32 + x] = (tilemap[y * 32 + x] & 0x0FFF) | (10 << 12);
+    ScheduleBgCopyTilemapToVram(0);
+}
+
+static u8 BagMenu_InitItemList(u16 scroll, u16 row)
+{
+    u8 id = ListMenuInitWithRowHeight(&gMultiuseListMenuTemplate, scroll, row, RF_BAG_ROW_HEIGHT);
+    // ListMenuInit reapplies the default tilemap after its callback.
+    BagMenu_ApplySelectionPalette(row);
+    BagMenu_PrintCursorAtPos(ListMenuGetYCoordForPrintingArrowCursor(id), COLORID_NORMAL);
+    CopyWindowToVram(WIN_ITEM_LIST, COPYWIN_GFX);
+    return id;
+}
 
 void ResetBagScrollPositions(void)
 {
@@ -839,7 +897,7 @@ static bool8 SetupBagMenu(void)
         break;
     case 14:
         taskId = CreateBagInputHandlerTask(gBagPosition.location);
-        gTasks[taskId].tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, gBagPosition.scrollPosition[gBagPosition.pocket], gBagPosition.cursorPosition[gBagPosition.pocket]);
+        gTasks[taskId].tListTaskId = BagMenu_InitItemList(gBagPosition.scrollPosition[gBagPosition.pocket], gBagPosition.cursorPosition[gBagPosition.pocket]);
         gTasks[taskId].tNeverRead = 0;
         gTasks[taskId].tItemCount = 0;
         gMain.state++;
@@ -880,6 +938,7 @@ static bool8 SetupBagMenu(void)
 
 static void BagMenu_InitBGs(void)
 {
+    InitBagListIcons();
     ResetVramOamAndBgCntRegs();
     memset(gBagMenu->tilemapBuffer, 0, sizeof(gBagMenu->tilemapBuffer));
     ResetBgsAndClearDma3BusyFlags(0);
@@ -912,14 +971,31 @@ static const struct { u8 index; u16 color; } sBagDarkModeColors[] =
     {16 + 3,  RF_UI_NIGHT_SHADOW}, // text shadow
 };
 
-static void LoadBagDarkModeColors(void)
+static void LoadBagThemeColors(void)
 {
     u32 i;
+    static const u8 indices[] = {1, 9, 10, 7, 8, 12, 13, 28, 29, 26, 18, 17, 19};
+    const u16 day[] = {
+        RF_UI_BAG_DAY_PAPER, RF_UI_BAG_DAY_PAPER, RF_UI_DAY_EDGE,
+        RF_UI_BAG_DAY_PAPER, RF_UI_DAY_EDGE, RF_UI_BAG_DAY_PAPER, RF_UI_DAY_GROUND,
+        RF_UI_BAG_DAY_PAPER, RF_UI_DAY_GROUND, RF_UI_BAG_DAY_PAPER, RF_UI_BAG_DAY_PAPER,
+        RF_UI_BAG_INK, RGB(27, 25, 20),
+    };
+    static const u16 gold = RGB(31, 25, 6);
+    static const u16 cursorEdge = RF_UI_BAG_INK;
 
     if (!KeySystem_IsOn(KEY_DARK_MODE))
-        return;
-    for (i = 0; i < ARRAY_COUNT(sBagDarkModeColors); i++)
-        LoadPalette(&sBagDarkModeColors[i].color, BG_PLTT_ID(0) + sBagDarkModeColors[i].index, PLTT_SIZEOF(1));
+    {
+        for (i = 0; i < ARRAY_COUNT(indices); i++)
+            LoadPalette(&day[i], indices[i], PLTT_SIZEOF(1));
+    }
+    else
+    {
+        for (i = 0; i < ARRAY_COUNT(sBagDarkModeColors); i++)
+            LoadPalette(&sBagDarkModeColors[i].color, sBagDarkModeColors[i].index, PLTT_SIZEOF(1));
+    }
+    LoadPalette(&gold, BG_PLTT_ID(1) + 6, PLTT_SIZEOF(1));
+    LoadPalette(&cursorEdge, BG_PLTT_ID(1) + 7, PLTT_SIZEOF(1));
 }
 
 static bool8 LoadBagMenu_Graphics(void)
@@ -943,7 +1019,7 @@ static bool8 LoadBagMenu_Graphics(void)
             LoadPalette(gBagScreenFemale_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
         else
             LoadPalette(gBagScreenMale_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
-        LoadBagDarkModeColors();
+        LoadBagThemeColors();
         gBagMenu->graphicsLoadState++;
         break;
     case 3:
@@ -955,6 +1031,7 @@ static bool8 LoadBagMenu_Graphics(void)
         break;
     case 4:
         LoadSpritePalette(&gBagPaletteTable);
+        RFBagArt_Init();
         gBagMenu->graphicsLoadState++;
         break;
     default:
@@ -1058,7 +1135,7 @@ static void LoadBagItemListBuffers(u8 pocketId)
 
     if (!gBagMenu->hideCloseBagText && listIndex < MAX_POCKET_ITEMS)
     {
-        StringCopy(sListBuffer2->name[listIndex], gText_CloseBag);
+        StringCopy(sListBuffer2->name[listIndex], COMPOUND_STRING("Cerrar mochila"));
         subBuffer = sListBuffer1->subBuffers;
         subBuffer[listIndex].name = sListBuffer2->name[listIndex];
         subBuffer[listIndex].id = LIST_CANCEL;
@@ -1077,7 +1154,7 @@ static void GetItemNameFromPocket(u8 *dest, enum Item itemId)
     {
     case POCKET_TM_HM:
         end = StringCopy(gStringVar2, GetMoveName(ItemIdToBattleMoveId(itemId)));
-        PrependFontIdToFit(gStringVar2, end, FONT_NARROW, NUM_TECHNICAL_MACHINES >= 100 ? 60 : 65);
+        BagMenu_FitListName(gStringVar2, end, 40);
         if (GetItemTMHMIndex(itemId) > NUM_TECHNICAL_MACHINES)
         {
             // Get HM number
@@ -1093,19 +1170,74 @@ static void GetItemNameFromPocket(u8 *dest, enum Item itemId)
         break;
     case POCKET_BERRIES:
         ConvertIntToDecimalStringN(gStringVar1, ItemIdToBerryType(itemId), STR_CONV_MODE_LEADING_ZEROS, 2);
-        end = CopyItemName(itemId, gStringVar2);
-        PrependFontIdToFit(gStringVar2, end, FONT_NARROW, 61);
+        end = BagMenu_CopyName(gStringVar2, itemId);
+        BagMenu_FitListName(gStringVar2, end, 44);
         StringExpandPlaceholders(dest, gText_NumberItem_TMBerry);
         break;
     default:
-        end = CopyItemName(itemId, dest);
-        PrependFontIdToFit(dest, end, FONT_NARROW, 88);
+        end = BagMenu_CopyName(dest, itemId);
+        BagMenu_FitListName(dest, end, 62);
         break;
     }
 }
 
 static void BagMenu_MoveCursorCallback(s32 itemIndex, bool8 onInit, struct ListMenu *list)
 {
+    UpdateBagListIcons(list);
+    RFBagArt_SetScroll(list->scrollOffset, list->template.maxShowed, list->template.totalItems);
+    if (sRFBagChromeWindow != WINDOW_NONE)
+    {
+        u8 name[ITEM_NAME_LENGTH + 1];
+        u8 quantity[16];
+        u32 i;
+        u32 rowHeight = RF_BAG_ROW_HEIGHT;
+        u32 y = 48 + list->selectedRow * rowHeight;
+
+        RFUI_FillRect(sRFBagChromeWindow, 1, 110, 47, 130, 98);
+        for (i = 1; i < min(MAX_ITEMS_SHOWN, list->template.totalItems); i++)
+            RFUI_FillRect(sRFBagChromeWindow, 6, 144, 48 + i * rowHeight, 90, 1);
+        RFUI_FillRect(sRFBagChromeWindow, 8, 110, y, 124, rowHeight);
+        RFUI_FillRect(sRFBagChromeWindow, 9, 110, y, 2, rowHeight);
+        RFUI_FillRect(sRFBagChromeWindow, 1, 235, 42, 5, 104);
+        if (list->template.totalItems == 1 && list->template.items[0].id == LIST_CANCEL)
+        {
+            static const u8 *const empty = COMPOUND_STRING("Sin objetos");
+            RFUI_PrintFitted(sRFBagChromeWindow, empty,
+                112 + GetStringCenterAlignXOffset(FONT_SMALL, empty, 120), 82, 120, (const u8[]){0, 5, 3});
+        }
+        if (list->template.totalItems > list->template.maxShowed)
+        {
+            u32 height = max(10, 86 * list->template.maxShowed / list->template.totalItems);
+            u32 top = 52 + (86 - height) * list->scrollOffset
+                / (list->template.totalItems - list->template.maxShowed);
+            RFUI_FillRect(sRFBagChromeWindow, 6, 237, 52, 1, 86);
+            RFUI_FillRect(sRFBagChromeWindow, 7, 236, top, 3, height);
+        }
+        BagMenu_ApplySelectionPalette(list->selectedRow);
+        BagMenu_PrintCursorAtPos(list->template.upText_Y + list->selectedRow * rowHeight, COLORID_NORMAL);
+        CopyWindowToVram(WIN_ITEM_LIST, COPYWIN_GFX);
+        RFUI_FillRect(sRFBagChromeWindow, 1, 3, 90, 100, 13);
+        RFUI_FillRect(sRFBagChromeWindow, 1, 70, 68, 32, 18);
+        if (gBagMenu->toSwapPos != NOT_SWAPPING)
+            BagMenu_CopyName(name, GetBagItemId(gBagPosition.pocket, gBagMenu->toSwapPos));
+        else if (itemIndex == LIST_CANCEL)
+            StringCopy(name, COMPOUND_STRING("Cerrar mochila"));
+        else
+            BagMenu_CopyName(name, GetBagItemId(gBagPosition.pocket, itemIndex));
+        RFUI_PrintFitted(sRFBagChromeWindow, name, 5, 90, 96, (const u8[]){0, 2, 3});
+        if (itemIndex != LIST_CANCEL)
+        {
+            u32 slot = gBagMenu->toSwapPos == NOT_SWAPPING ? itemIndex : gBagMenu->toSwapPos;
+            struct ItemSlot selected = GetBagItemIdAndQuantity(gBagPosition.pocket, slot);
+            if (gBagPosition.pocket != POCKET_KEY_ITEMS && !GetItemImportance(selected.itemId))
+            {
+                u8 *end = StringCopy(quantity, COMPOUND_STRING("× "));
+                ConvertIntToDecimalStringN(end, selected.quantity, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
+                RFUI_PrintFitted(sRFBagChromeWindow, quantity, 72, 70, 29, (const u8[]){0, 2, 3});
+            }
+        }
+        CopyWindowToVram(sRFBagChromeWindow, COPYWIN_GFX);
+    }
     if (onInit != TRUE)
     {
         PlaySE(SE_SELECT);
@@ -1167,17 +1299,17 @@ static void PrintItemDescription(int itemIndex)
     const u8 *str;
     if (itemIndex != LIST_CANCEL)
     {
-        str = GetItemDescription(GetBagItemId(gBagPosition.pocket, itemIndex));
+        str = BagMenu_GetDescription(GetBagItemId(gBagPosition.pocket, itemIndex));
     }
     else
     {
         // Print 'Cancel' description
-        StringCopy(gStringVar1, gBagMenu_ReturnToStrings[gBagPosition.location]);
-        StringExpandPlaceholders(gStringVar4, gText_ReturnToVar1);
-        str = gStringVar4;
+        str = gBagPosition.location == ITEMMENULOCATION_BATTLE
+            ? COMPOUND_STRING("Vuelve al combate.") : COMPOUND_STRING("Vuelve a la\npantalla anterior.");
     }
     FillWindowPixelBuffer(WIN_DESCRIPTION, PIXEL_FILL(0));
-    BagMenu_Print(WIN_DESCRIPTION, FONT_SMALL, str, 3, 1, 0, 0, 0, COLORID_NORMAL);
+    RFUI_PrintParagraph(WIN_DESCRIPTION, str, 3, 2, 98, 4, sFontColorTable[COLORID_NORMAL]);
+    CopyWindowToVram(WIN_DESCRIPTION, COPYWIN_GFX);
 }
 
 static void BagMenu_PrintCursor(u8 listTaskId, u8 colorIndex)
@@ -1187,25 +1319,13 @@ static void BagMenu_PrintCursor(u8 listTaskId, u8 colorIndex)
 
 static void BagMenu_PrintCursorAtPos(u8 y, u8 colorIndex)
 {
-    if (colorIndex == COLORID_NONE)
-        FillWindowPixelRect(WIN_ITEM_LIST, PIXEL_FILL(0), 0, y, GetMenuCursorDimensionByFont(FONT_NORMAL, 0), GetMenuCursorDimensionByFont(FONT_NORMAL, 1));
-    else
-        BagMenu_Print(WIN_ITEM_LIST, FONT_NORMAL, gText_SelectorArrow2, 0, y, 0, 0, 0, colorIndex);
-
+    RFBagArt_SetCursor(y, colorIndex != COLORID_NONE);
 }
 
 static void CreatePocketScrollArrowPair(void)
 {
-    if (gBagMenu->pocketScrollArrowsTask == TASK_NONE)
-        gBagMenu->pocketScrollArrowsTask = AddScrollIndicatorArrowPairParameterized(
-            SCROLL_ARROW_UP,
-            64,
-            30,
-            146,
-            gBagMenu->numItemStacks[gBagPosition.pocket] - gBagMenu->numShownItems[gBagPosition.pocket],
-            TAG_POCKET_SCROLL_ARROW,
-            TAG_POCKET_SCROLL_ARROW,
-            &gBagPosition.scrollPosition[gBagPosition.pocket]);
+    // The chrome draws the scrollbar from ListMenu's actual scroll offset.
+    // Legacy 16px arrows would overlap the icon tabs and the control footer.
 }
 
 void BagDestroyPocketScrollArrowPair(void)
@@ -1220,12 +1340,12 @@ void BagDestroyPocketScrollArrowPair(void)
 
 static void CreatePocketSwitchArrowPair(void)
 {
-    if (gBagMenu->pocketSwitchDisabled != TRUE && gBagMenu->pocketSwitchArrowsTask == TASK_NONE)
-        gBagMenu->pocketSwitchArrowsTask = AddScrollIndicatorArrowPair(&sBagScrollArrowsTemplate, &gBagPosition.pocketSwitchArrowPos);
+    RFBagArt_ShowPocketArrows(gBagMenu->pocketSwitchDisabled != TRUE);
 }
 
 static void DestroyPocketSwitchArrowPair(void)
 {
+    RFBagArt_ShowPocketArrows(FALSE);
     if (gBagMenu->pocketSwitchArrowsTask != TASK_NONE)
     {
         RemoveScrollIndicatorArrowPair(gBagMenu->pocketSwitchArrowsTask);
@@ -1374,7 +1494,7 @@ void CloseItemMessage(u8 taskId)
     UpdatePocketItemList(gBagPosition.pocket);
     UpdatePocketListPosition(gBagPosition.pocket);
     LoadBagItemListBuffers(gBagPosition.pocket);
-    tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+    tListTaskId = BagMenu_InitItemList(*scrollPos, *cursorPos);
     ScheduleBgCopyTilemapToVram(0);
     ReturnToItemList(taskId);
 }
@@ -1447,7 +1567,7 @@ static void Task_BagMenu_HandleInput(u8 taskId)
                 }
                 if ((gBagMenu->numItemStacks[gBagPosition.pocket] - 1) <= 1) //can't sort with 0 or 1 item in bag
                 {
-                    static const u8 sText_NothingToSort[] = _("There's nothing to sort!");
+                    static const u8 sText_NothingToSort[] = _("No hay nada que ordenar.");
                     PlaySE(SE_FAILURE);
                     DisplayItemMessage(taskId, 1, sText_NothingToSort, HandleErrorMessage);
                     break;
@@ -1574,6 +1694,8 @@ static void SwitchBagPocket(u8 taskId, s16 deltaBagPocketId, bool16 skipEraseLis
     tPocketSwitchDir = deltaBagPocketId;
     if (!skipEraseList)
     {
+        HideBagListIcons();
+        RFBagArt_HideTransient();
         ClearWindowTilemap(WIN_ITEM_LIST);
         ClearWindowTilemap(WIN_DESCRIPTION);
         DestroyListMenuTask(tListTaskId, &gBagPosition.scrollPosition[gBagPosition.pocket], &gBagPosition.cursorPosition[gBagPosition.pocket]);
@@ -1641,7 +1763,7 @@ static void Task_SwitchBagPocket(u8 taskId)
     case 1:
         ChangeBagPocketId(&gBagPosition.pocket, tPocketSwitchDir);
         LoadBagItemListBuffers(gBagPosition.pocket);
-        tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, gBagPosition.scrollPosition[gBagPosition.pocket], gBagPosition.cursorPosition[gBagPosition.pocket]);
+        tListTaskId = BagMenu_InitItemList(gBagPosition.scrollPosition[gBagPosition.pocket], gBagPosition.cursorPosition[gBagPosition.pocket]);
         BagMenu_DrawItemCategories();
         PutWindowTilemap(WIN_DESCRIPTION);
         PutWindowTilemap(WIN_POCKET_NAME);
@@ -1680,20 +1802,28 @@ static void DrawPocketIndicatorSquare(u8 x, bool8 isCurrentPocket)
 static void BagMenu_DrawItemCategories(void)
 {
     u32 i;
-    static const u8 CATEGORY_X = 69;
-    static const u8 CATEGORY_SPACING = 24;
-    static const u8 *const FILTER_HINT = COMPOUND_STRING("FILTROS: SOLO OBJETOS");
+    static const u8 CATEGORY_X = 3;
+    static const u8 CATEGORY_SPACING = 34;
+    static const u8 *const FILTER_HINT = COMPOUND_STRING("Sin filtros en este bolsillo");
     static const u8 mutedInk[] = {0, 5, 3};
-    static const u8 selectedInk[] = {0, 4, 3};
-    bool32 dark = KeySystem_IsOn(KEY_DARK_MODE);
+    static const u8 selectedInk[] = {0, 15, 8};
 
     if (sRFBagChromeWindow == WINDOW_NONE)
         return;
 
-    FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(1), CATEGORY_X, 15, 169, 13);
+    FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(4), 24, 1, 108, 14);
+    RFKanto_Print(sRFBagChromeWindow, COMPOUND_STRING("MOCHILA"), 24, 3, 106, 14);
+    FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(1), 0, 16, 240, 26);
+    RFBagArt_ShowCategories(gBagPosition.pocket == POCKET_ITEMS && gBagPosition.location != ITEMMENULOCATION_WALLY);
+    RFUI_FillRect(sRFBagChromeWindow, 6, 0, 40, 240, 1);
+    RFUI_FillRect(sRFBagChromeWindow, 1, 3, 41, 100, 13);
+    RFUI_PrintFitted(sRFBagChromeWindow,
+        gBagPosition.pocket == POCKET_ITEMS && gBagPosition.itemCategory != RF_BAG_CATEGORY_ALL
+            ? sRFBagItemCategoryLabels[gBagPosition.itemCategory] : COMPOUND_STRING("VISTA PREVIA"),
+        6, 41, 96, (const u8[]){0, 5, 3});
     if (gBagPosition.pocket != POCKET_ITEMS || gBagPosition.location == ITEMMENULOCATION_WALLY)
     {
-        RFUI_PrintFitted(sRFBagChromeWindow, FILTER_HINT, CATEGORY_X, 17, 166, mutedInk);
+        RFUI_PrintFitted(sRFBagChromeWindow, FILTER_HINT, 6, 24, 226, mutedInk);
         CopyWindowToVram(sRFBagChromeWindow, COPYWIN_GFX);
         BagMenu_DrawFooter();
         return;
@@ -1703,34 +1833,42 @@ static void BagMenu_DrawItemCategories(void)
         u8 x = CATEGORY_X + i * CATEGORY_SPACING;
         bool8 selected = gBagPosition.itemCategory == i;
         if (selected)
-            FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(dark ? 9 : 8), x, 15, 22, 13);
-        RFUI_PrintFitted(sRFBagChromeWindow, sRFBagItemCategoryNames[i], x, 17, 22,
-            selected ? selectedInk : mutedInk);
+        {
+            RFUI_DrawPanel(sRFBagChromeWindow, x, 16, 31, 24, 8, 7);
+        }
+        AddTextPrinterParameterized3(sRFBagChromeWindow, FONT_SMALL_NARROWER,
+            x + 1 + GetStringCenterAlignXOffset(FONT_SMALL_NARROWER, sRFBagItemCategoryNames[i], 29),
+            28, selected ? selectedInk : mutedInk, TEXT_SKIP_DRAW, sRFBagItemCategoryNames[i]);
     }
+    RFUI_FillRect(sRFBagChromeWindow, 6, 0, 40, 240, 1);
     CopyWindowToVram(sRFBagChromeWindow, COPYWIN_GFX);
     BagMenu_DrawFooter();
 }
 
 static void BagMenu_DrawFooter(void)
 {
-    static const u8 *const itemPocketHint = COMPOUND_STRING("{L_BUTTON}/{R_BUTTON} Filtrar  {A_BUTTON} Elegir  {B_BUTTON} Atrás");
-    static const u8 *const otherPocketHint = COMPOUND_STRING("{L_BUTTON}/{R_BUTTON} Bolsillo  {A_BUTTON} Elegir  {B_BUTTON} Atrás");
-    static const u8 *const wallyHint = COMPOUND_STRING("{A_BUTTON} Elegir  {B_BUTTON} Atrás");
-    const u8 *hint;
+    bool32 canSwitch;
 
     if (sRFBagChromeWindow == WINDOW_NONE)
         return;
 
-    if (gBagPosition.location == ITEMMENULOCATION_WALLY)
-        hint = wallyHint;
-    else if (gBagPosition.pocket == POCKET_ITEMS)
-        hint = itemPocketHint;
-    else
-        hint = otherPocketHint;
-
-    FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(1), 0, 146, 240, 14);
+    canSwitch = gBagPosition.location != ITEMMENULOCATION_WALLY
+        && !gBagMenu->pocketSwitchDisabled && !MenuHelpers_IsLinkActive();
+    FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(4), 0, 146, 240, 14);
     FillWindowPixelRect(sRFBagChromeWindow, PIXEL_FILL(6), 0, 146, 240, 1);
-    RFUI_PrintFitted(sRFBagChromeWindow, hint, 4, 148, 232, (const u8[]){0, 2, 3});
+    RFKanto_DrawControl(sRFBagChromeWindow, RF_KANTO_DPAD, 4, 150);
+    RFKanto_Print(sRFBagChromeWindow, canSwitch ? COMPOUND_STRING("Lista/Bols.") : COMPOUND_STRING("Navegar"), 14, 150, 50, 14);
+    if (canSwitch)
+    {
+        RFKanto_DrawControl(sRFBagChromeWindow, RF_KANTO_L, 64, 150);
+        RFKanto_Print(sRFBagChromeWindow, COMPOUND_STRING("/"), 72, 150, 6, 14);
+        RFKanto_DrawControl(sRFBagChromeWindow, RF_KANTO_R, 78, 150);
+        RFKanto_Print(sRFBagChromeWindow, gBagPosition.pocket == POCKET_ITEMS ? COMPOUND_STRING("Filtro") : COMPOUND_STRING("Bols."), 88, 150, 34, 14);
+    }
+    RFKanto_DrawControl(sRFBagChromeWindow, RF_KANTO_A, 126, 150);
+    RFKanto_Print(sRFBagChromeWindow, COMPOUND_STRING("Elegir"), 136, 150, 38, 14);
+    RFKanto_DrawControl(sRFBagChromeWindow, RF_KANTO_B, 184, 150);
+    RFKanto_Print(sRFBagChromeWindow, COMPOUND_STRING("Atrás"), 194, 150, 40, 14);
     CopyWindowToVram(sRFBagChromeWindow, COPYWIN_GFX);
 }
 
@@ -1754,7 +1892,7 @@ static void BagMenu_SwitchItemCategory(u8 taskId, s8 direction)
     UpdatePocketItemList(POCKET_ITEMS);
     UpdatePocketListPosition(POCKET_ITEMS);
     LoadBagItemListBuffers(POCKET_ITEMS);
-    tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+    tListTaskId = BagMenu_InitItemList(*scrollPos, *cursorPos);
     BagMenu_DrawItemCategories();
     CreatePocketScrollArrowPair();
     CreatePocketSwitchArrowPair();
@@ -1852,7 +1990,7 @@ static void DoItemSwap(u8 taskId)
         if (tListPosition < realPos)
             gBagPosition.cursorPosition[gBagPosition.pocket]--;
         LoadBagItemListBuffers(gBagPosition.pocket);
-        tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+        tListTaskId = BagMenu_InitItemList(*scrollPos, *cursorPos);
         SetItemMenuSwapLineInvisibility(TRUE);
         CreatePocketSwitchArrowPair();
         gTasks[taskId].func = Task_BagMenu_HandleInput;
@@ -1870,7 +2008,7 @@ static void CancelItemSwap(u8 taskId)
     if (tListPosition < *scrollPos + *cursorPos)
         gBagPosition.cursorPosition[gBagPosition.pocket]--;
     LoadBagItemListBuffers(gBagPosition.pocket);
-    tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+    tListTaskId = BagMenu_InitItemList(*scrollPos, *cursorPos);
     SetItemMenuSwapLineInvisibility(TRUE);
     CreatePocketSwitchArrowPair();
     gTasks[taskId].func = Task_BagMenu_HandleInput;
@@ -2001,9 +2139,9 @@ static void OpenContextMenu(u8 taskId)
     }
     else
     {
-        u8 *end = CopyItemName(gSpecialVar_ItemId, gStringVar1);
+        u8 *end = BagMenu_CopyName(gStringVar1, gSpecialVar_ItemId);
         WrapFontIdToFit(gStringVar1, end, FONT_NORMAL, WindowWidthPx(WIN_DESCRIPTION) - 10 - 6);
-        StringExpandPlaceholders(gStringVar4, gText_Var1IsSelected);
+        StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("Objeto elegido:\n{STR_VAR_1}"));
         FillWindowPixelBuffer(WIN_DESCRIPTION, PIXEL_FILL(0));
         BagMenu_Print(WIN_DESCRIPTION, FONT_NORMAL, gStringVar4, 3, 1, 0, 0, 0, COLORID_NORMAL);
     }
@@ -2252,7 +2390,7 @@ static void Task_TossItemFromBag(u8 taskId)
         UpdatePocketItemList(gBagPosition.pocket);
         UpdatePocketListPosition(gBagPosition.pocket);
         LoadBagItemListBuffers(gBagPosition.pocket);
-        tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+        tListTaskId = BagMenu_InitItemList(*scrollPos, *cursorPos);
         ScheduleBgCopyTilemapToVram(0);
         ReturnToItemList(taskId);
     }
@@ -2274,7 +2412,7 @@ static void Task_RemoveItemFromBag(u8 taskId)
         UpdatePocketItemList(gBagPosition.pocket);
         UpdatePocketListPosition(gBagPosition.pocket);
         LoadBagItemListBuffers(gBagPosition.pocket);
-        tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+        tListTaskId = BagMenu_InitItemList(*scrollPos, *cursorPos);
         ScheduleBgCopyTilemapToVram(0);
         ReturnToItemList(taskId);
     }
@@ -2289,7 +2427,7 @@ static void ItemMenu_Register(u8 taskId)
     ToggleRegisteredItem(gSpecialVar_ItemId);
     DestroyListMenuTask(tListTaskId, scrollPos, cursorPos);
     LoadBagItemListBuffers(gBagPosition.pocket);
-    tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+    tListTaskId = BagMenu_InitItemList(*scrollPos, *cursorPos);
     ScheduleBgCopyTilemapToVram(0);
     ItemMenu_Cancel(taskId);
 }
@@ -2566,7 +2704,7 @@ static void SellItem(u8 taskId)
     UpdatePocketItemList(gBagPosition.pocket);
     UpdatePocketListPosition(gBagPosition.pocket);
     LoadBagItemListBuffers(gBagPosition.pocket);
-    tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+    tListTaskId = BagMenu_InitItemList(*scrollPos, *cursorPos);
     BagMenu_PrintCursor(tListTaskId, COLORID_GRAY_CURSOR);
     PrintMoneyAmountInMoneyBox(gBagMenu->windowIds[ITEMWIN_MONEY], GetMoney(&gSaveBlock1Ptr->money), 0);
     gTasks[taskId].func = WaitAfterItemSell;
@@ -2863,7 +3001,7 @@ static void LoadBagMenuTextWindows(void)
         .bg = 2, .tilemapLeft = 0, .tilemapTop = 0,
         .width = 30, .height = 20, .paletteNum = 11, .baseBlock = 64,
     };
-    static const u8 ink[] = {0, 2, 3};
+    u16 selectedPalette[16], headerPalette[16];
     u8 i;
 
     InitWindows(sDefaultBagWindows);
@@ -2875,13 +3013,26 @@ static void LoadBagMenuTextWindows(void)
     sRFBagChromeWindow = AddWindow(&chrome);
     if (sRFBagChromeWindow != WINDOW_NONE)
     {
-        RFUI_LoadPalette(11, KeySystem_IsOn(KEY_DARK_MODE));
+        RFUI_LoadBagPalette(11, KeySystem_IsOn(KEY_DARK_MODE));
+        CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(1)], selectedPalette, sizeof(selectedPalette));
+        CpuCopy16(selectedPalette, headerPalette, sizeof(headerPalette));
+        selectedPalette[1] = RF_UI_BAG_INK;
+        selectedPalette[3] = RF_UI_BAG_MINT;
+        LoadPalette(selectedPalette, BG_PLTT_ID(10), sizeof(selectedPalette));
+        headerPalette[1] = RF_UI_BAG_DAY_PAPER;
+        headerPalette[2] = RF_UI_NIGHT_GROUND;
+        LoadPalette(headerPalette, BG_PLTT_ID(9), sizeof(headerPalette));
         FillWindowPixelBuffer(sRFBagChromeWindow, PIXEL_FILL(4));
-        RFUI_DrawPanel(sRFBagChromeWindow, 0, 0, 240, 28, 1, 6);
-        RFUI_DrawPanel(sRFBagChromeWindow, 0, 29, 132, 118, 1, 6);
-        RFUI_DrawPanel(sRFBagChromeWindow, 134, 29, 106, 73, 1, 6);
-        RFUI_DrawPanel(sRFBagChromeWindow, 134, 103, 106, 44, 1, 6);
-        AddTextPrinterParameterized3(sRFBagChromeWindow, FONT_NORMAL, 8, 5, ink, TEXT_SKIP_DRAW, COMPOUND_STRING("MOCHILA"));
+        RFUI_FillRect(sRFBagChromeWindow, 4, 0, 0, 240, 16);
+        RFUI_FillRect(sRFBagChromeWindow, 1, 0, 16, 240, 24);
+        RFUI_FillRect(sRFBagChromeWindow, 1, 0, 42, 106, 60);
+        RFUI_FillRect(sRFBagChromeWindow, 1, 0, 104, 106, 42);
+        RFUI_FillRect(sRFBagChromeWindow, 1, 109, 42, 131, 104);
+        RFUI_FillRect(sRFBagChromeWindow, 6, 107, 42, 1, 104);
+        RFUI_FillRect(sRFBagChromeWindow, 6, 0, 40, 240, 1);
+        RFUI_FillRect(sRFBagChromeWindow, 6, 0, 102, 106, 1);
+        RFUI_PrintFitted(sRFBagChromeWindow, COMPOUND_STRING("VISTA PREVIA"), 6, 41, 96, (const u8[]){0, 5, 3});
+        RFUI_DrawRing(sRFBagChromeWindow, 15, 55, 50, 34, 6);
         BagMenu_DrawItemCategories();
         PutWindowTilemap(sRFBagChromeWindow);
         CopyWindowToVram(sRFBagChromeWindow, COPYWIN_FULL);
@@ -2973,10 +3124,10 @@ static void RemoveMoneyWindow(void)
 static void PrepareTMHMMoveWindow(void)
 {
     FillWindowPixelBuffer(WIN_TMHM_INFO_ICONS, PIXEL_FILL(0));
-    BlitMenuInfoIcon(WIN_TMHM_INFO_ICONS, MENU_INFO_ICON_TYPE, 0, 0);
-    BlitMenuInfoIcon(WIN_TMHM_INFO_ICONS, MENU_INFO_ICON_POWER, 0, 12);
-    BlitMenuInfoIcon(WIN_TMHM_INFO_ICONS, MENU_INFO_ICON_ACCURACY, 0, 24);
-    BlitMenuInfoIcon(WIN_TMHM_INFO_ICONS, MENU_INFO_ICON_PP, 0, 36);
+    BagMenu_Print(WIN_TMHM_INFO_ICONS, FONT_SMALL, COMPOUND_STRING("TIPO"), 0, 0, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
+    BagMenu_Print(WIN_TMHM_INFO_ICONS, FONT_SMALL, COMPOUND_STRING("POT."), 0, 10, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
+    BagMenu_Print(WIN_TMHM_INFO_ICONS, FONT_SMALL, COMPOUND_STRING("PREC."), 0, 20, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
+    BagMenu_Print(WIN_TMHM_INFO_ICONS, FONT_SMALL, COMPOUND_STRING("PP"), 0, 30, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
     CopyWindowToVram(WIN_TMHM_INFO_ICONS, COPYWIN_GFX);
 }
 
@@ -2990,7 +3141,7 @@ static void PrintTMHMMoveData(enum Item itemId)
     if (itemId == ITEM_NONE)
     {
         for (i = 0; i < 4; i++)
-            BagMenu_Print(WIN_TMHM_INFO, FONT_NORMAL, gText_ThreeDashes, 7, i * 12, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
+            BagMenu_Print(WIN_TMHM_INFO, FONT_SMALL, gText_ThreeDashes, 7, i * 10, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
         CopyWindowToVram(WIN_TMHM_INFO, COPYWIN_GFX);
     }
     else
@@ -3009,7 +3160,7 @@ static void PrintTMHMMoveData(enum Item itemId)
             ConvertIntToDecimalStringN(gStringVar1, power, STR_CONV_MODE_RIGHT_ALIGN, 3);
             text = gStringVar1;
         }
-        BagMenu_Print(WIN_TMHM_INFO, FONT_NORMAL, text, 7, 12, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
+        BagMenu_Print(WIN_TMHM_INFO, FONT_SMALL, text, 7, 10, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
 
         u32 accuracy = GetMoveAccuracy(move);
         // Print TMHM accuracy
@@ -3022,24 +3173,24 @@ static void PrintTMHMMoveData(enum Item itemId)
             ConvertIntToDecimalStringN(gStringVar1, accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
             text = gStringVar1;
         }
-        BagMenu_Print(WIN_TMHM_INFO, FONT_NORMAL, text, 7, 24, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
+        BagMenu_Print(WIN_TMHM_INFO, FONT_SMALL, text, 7, 20, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
 
         // Print TMHM pp
         ConvertIntToDecimalStringN(gStringVar1, GetMovePP(move), STR_CONV_MODE_RIGHT_ALIGN, 3);
-        BagMenu_Print(WIN_TMHM_INFO, FONT_NORMAL, gStringVar1, 7, 36, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
+        BagMenu_Print(WIN_TMHM_INFO, FONT_SMALL, gStringVar1, 7, 30, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
 
         CopyWindowToVram(WIN_TMHM_INFO, COPYWIN_GFX);
     }
 }
 
-static const u8 sText_SortItemsHow[] = _("Sort items how?");
-static const u8 sText_ItemsSorted[] = _("Items sorted by {STR_VAR_1}!");
+static const u8 sText_SortItemsHow[] = _("¿Cómo ordenar?");
+static const u8 sText_ItemsSorted[] = _("Ordenados por {STR_VAR_1}.");
 static const u8 *const sSortTypeStrings[] =
 {
-    [SORT_ALPHABETICALLY] = COMPOUND_STRING("name"),
-    [SORT_BY_TYPE] = COMPOUND_STRING("type"),
-    [SORT_BY_AMOUNT] = COMPOUND_STRING("amount"),
-    [SORT_BY_INDEX] = COMPOUND_STRING("index")
+    [SORT_ALPHABETICALLY] = COMPOUND_STRING("nombre"),
+    [SORT_BY_TYPE] = COMPOUND_STRING("tipo"),
+    [SORT_BY_AMOUNT] = COMPOUND_STRING("cantidad"),
+    [SORT_BY_INDEX] = COMPOUND_STRING("número")
 };
 
 static const u8 sBagMenuSortItems[] =
@@ -3161,7 +3312,7 @@ static void SortBagItems(u8 taskId)
     DestroyListMenuTask(data[0], scrollPos, cursorPos);
     UpdatePocketListPosition(gBagPosition.pocket);
     LoadBagItemListBuffers(gBagPosition.pocket);
-    data[0] = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
+    data[0] = BagMenu_InitItemList(*scrollPos, *cursorPos);
     ScheduleBgCopyTilemapToVram(0);
 
     StringCopy(gStringVar1, sSortTypeStrings[tSortType]);

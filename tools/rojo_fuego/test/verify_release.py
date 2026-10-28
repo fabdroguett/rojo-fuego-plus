@@ -15,7 +15,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 nm = environment("exec", "rojo-fuego-check", "arm-none-eabi-nm", "/work/pokefirered.elf",
             capture_output=True, text=True).stdout
-assert not re.search(r"RFProgress|RFUiFixture|RFTrainingFixture|gRFSaveLayout", nm), "Fixture in production ELF"
+assert not re.search(r"RFProgress|RFUiFixture|RFBagFixture|RFMainMenuFixture|RFTrainingFixture|gRFSaveLayout", nm), "Fixture in production ELF"
 symbols = {p[2]: int(p[0], 16) for line in nm.splitlines() if len(p := line.split()) == 3}
 rom = OUT / "pokefirered.gba"
 environment("cp", "rojo-fuego-check:/work/pokefirered.gba", str(rom))

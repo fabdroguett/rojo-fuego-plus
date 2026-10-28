@@ -1,0 +1,550 @@
+{
+  "palettesRGB555": [
+    [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        31,
+        10,
+        0
+      ],
+      [
+        23,
+        10,
+        1
+      ],
+      [
+        31,
+        28,
+        16
+      ],
+      [
+        31,
+        29,
+        22
+      ],
+      [
+        31,
+        26,
+        7
+      ],
+      [
+        13,
+        0,
+        0
+      ],
+      [
+        13,
+        6,
+        3
+      ],
+      [
+        0,
+        4,
+        4
+      ],
+      [
+        0,
+        5,
+        6
+      ],
+      [
+        31,
+        17,
+        0
+      ],
+      [
+        31,
+        22,
+        1
+      ],
+      [
+        31,
+        15,
+        6
+      ],
+      [
+        31,
+        24,
+        4
+      ],
+      [
+        27,
+        16,
+        1
+      ],
+      [
+        26,
+        18,
+        6
+      ]
+    ],
+    [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        6
+      ],
+      [
+        1,
+        5,
+        6
+      ],
+      [
+        29,
+        8,
+        5
+      ],
+      [
+        18,
+        22,
+        11
+      ],
+      [
+        23,
+        24,
+        21
+      ],
+      [
+        21,
+        13,
+        28
+      ],
+      [
+        18,
+        22,
+        29
+      ],
+      [
+        2,
+        6,
+        8
+      ],
+      [
+        8,
+        14,
+        8
+      ],
+      [
+        11,
+        11,
+        26
+      ],
+      [
+        11,
+        18,
+        28
+      ],
+      [
+        27,
+        28,
+        28
+      ],
+      [
+        31,
+        30,
+        29
+      ],
+      [
+        22,
+        16,
+        8
+      ],
+      [
+        16,
+        14,
+        21
+      ]
+    ],
+    [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        31,
+        31,
+        31
+      ],
+      [
+        7,
+        9,
+        12
+      ],
+      [
+        16,
+        26,
+        23
+      ],
+      [
+        31,
+        30,
+        27
+      ],
+      [
+        31,
+        30,
+        26
+      ],
+      [
+        0,
+        6,
+        6
+      ],
+      [
+        3,
+        5,
+        9
+      ],
+      [
+        2,
+        7,
+        8
+      ],
+      [
+        6,
+        8,
+        12
+      ],
+      [
+        9,
+        10,
+        14
+      ],
+      [
+        14,
+        24,
+        22
+      ],
+      [
+        22,
+        22,
+        24
+      ],
+      [
+        30,
+        30,
+        27
+      ],
+      [
+        19,
+        19,
+        22
+      ],
+      [
+        21,
+        21,
+        23
+      ]
+    ]
+  ],
+  "groups": [
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    0,
+    2,
+    2
+  ],
+  "sprites": [
+    {
+      "frame": "BACKPACK",
+      "file": "backpack_mochila.png",
+      "sha256": "cb0def533908f0727ef897169d62c4b2c0854dc2ab5cfbf4850ea4dfdaa5c20b",
+      "sourceSize": [
+        430,
+        441
+      ],
+      "crop": [
+        3,
+        17,
+        414,
+        433
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        14,
+        14
+      ]
+    },
+    {
+      "frame": "MEDICINE",
+      "file": "icon_bottle_purple.png",
+      "sha256": "7aa826a62b7a6bdaffd36deaba6a4bd01611c42b4518871fa3e2bf7b212896c8",
+      "sourceSize": [
+        168,
+        202
+      ],
+      "crop": [
+        4,
+        7,
+        160,
+        194
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        12,
+        14
+      ]
+    },
+    {
+      "frame": "BATTLE",
+      "file": "icon_pokeball_red.png",
+      "sha256": "1a422e44a5e512ab00bccc59f6b5e519feb5766ac30a6617636d913780140aa5",
+      "sourceSize": [
+        163,
+        163
+      ],
+      "crop": [
+        5,
+        5,
+        155,
+        156
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        14,
+        14
+      ]
+    },
+    {
+      "frame": "EVOLUTION",
+      "file": "icon_green_stone.png",
+      "sha256": "a7b6e8721ac082edadb70abb0518bce0a211ade63c2a4649c58a4e484953234e",
+      "sourceSize": [
+        189,
+        191
+      ],
+      "crop": [
+        7,
+        20,
+        173,
+        183
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        14,
+        14
+      ]
+    },
+    {
+      "frame": "HELD",
+      "file": "icon_key_gold.png",
+      "sha256": "8126fa8e2f8dd577cebb860f46e198307c130c3bb6d897f2ebfddfe30f26b327",
+      "sourceSize": [
+        178,
+        196
+      ],
+      "crop": [
+        14,
+        24,
+        174,
+        186
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        14,
+        14
+      ]
+    },
+    {
+      "frame": "TREASURE",
+      "file": "icon_chest_redgold.png",
+      "sha256": "3ef3a8199a530c8343c79c59a26a90af1d359908fb8f774d919c7b280cd1308a",
+      "sourceSize": [
+        179,
+        166
+      ],
+      "crop": [
+        4,
+        7,
+        174,
+        158
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        14,
+        12
+      ]
+    },
+    {
+      "frame": "OTHER",
+      "file": "icon_blue_disc.png",
+      "sha256": "06e52b2aee41349f6c1937231f554cbe2d22f07271c6eec7b2ba524d3b5d40f3",
+      "sourceSize": [
+        178,
+        177
+      ],
+      "crop": [
+        12,
+        6,
+        168,
+        164
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        14,
+        14
+      ]
+    },
+    {
+      "frame": "TREASURE_ALTERNATE",
+      "file": "icon_gold_bundle.png",
+      "sha256": "38087f14254afe00ff6ee451905a1cf2af5af9297db973471a4657863e0f8aa7",
+      "sourceSize": [
+        182,
+        206
+      ],
+      "crop": [
+        6,
+        14,
+        174,
+        188
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        14,
+        14
+      ]
+    },
+    {
+      "frame": "TAB_LEFT",
+      "file": "arrow_tab_left_orange.png",
+      "sha256": "cb5f776a265ef876fb08e7b87fd247449870fa634a6370f0517327eca8decfb1",
+      "sourceSize": [
+        115,
+        169
+      ],
+      "crop": [
+        5,
+        4,
+        109,
+        166
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        8,
+        12
+      ]
+    },
+    {
+      "frame": "TAB_RIGHT",
+      "file": "arrow_tab_right_orange.png",
+      "sha256": "1cd5dc88a7527025850f1eeb62a32e053adafa829153ff9a82be3bfb184b8f41",
+      "sourceSize": [
+        116,
+        169
+      ],
+      "crop": [
+        9,
+        4,
+        113,
+        166
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        8,
+        12
+      ]
+    },
+    {
+      "frame": "RETURN",
+      "file": "icon_return_arrow.png",
+      "sha256": "ce70f4f97a8f1a45b1468ab77b152bb609ca4168dc3088d7e5c3f8f22fa48a03",
+      "sourceSize": [
+        207,
+        192
+      ],
+      "crop": [
+        4,
+        4,
+        199,
+        184
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        12,
+        11
+      ]
+    },
+    {
+      "frame": "CURSOR",
+      "file": "cursor_pointer_yellow.png",
+      "sha256": "35830727526c8fc1d23638ae8541897d8dadcd867fa442041cf59ac0b8bea8fe",
+      "sourceSize": [
+        113,
+        142
+      ],
+      "crop": [
+        8,
+        0,
+        110,
+        139
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        10,
+        14
+      ]
+    },
+    {
+      "frame": "SCROLL_UP",
+      "file": "scroll_up_teal.png",
+      "sha256": "e91b8a056858b1556400ee34ada6d688f933b7e1c3bc873a77e52a0ecc8dad98",
+      "sourceSize": [
+        136,
+        95
+      ],
+      "crop": [
+        6,
+        5,
+        128,
+        88
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        6,
+        4
+      ]
+    },
+    {
+      "frame": "SCROLL_DOWN",
+      "file": "scroll_down_teal.png",
+      "sha256": "b434b1190c36a79074f03e951eda707c12987e9cd827cb0d96e93b384e89e4f0",
+      "sourceSize": [
+        129,
+        104
+      ],
+      "crop": [
+        4,
+        4,
+        120,
+        87
+      ],
+      "canvas": 16,
+      "fittedSize": [
+        6,
+        4
+      ]
+    }
+  ],
+  "smallSheetBytes": 1792,
+  "returnSheetBytes": 512
+}

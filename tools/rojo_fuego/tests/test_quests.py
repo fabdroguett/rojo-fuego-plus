@@ -20,7 +20,8 @@ class QuestEngineTests(unittest.TestCase):
         engine = ROOT / "src/rf_quests.c"
         source = (engine.read_text(encoding="utf-8") + (ROOT / "src/data/rf_quests.h").read_text(encoding="utf-8")
                   + (ROOT / "src/data/rf_quests_legends.h").read_text(encoding="utf-8")
-                  + (ROOT / "src/data/rf_quests_extra.h").read_text(encoding="utf-8"))
+                  + (ROOT / "src/data/rf_quests_extra.h").read_text(encoding="utf-8")
+                  + (ROOT / "src/data/rf_quests_story.h").read_text(encoding="utf-8"))
         species = sorted(set(re.findall(r"\bSPECIES_[A-Z0-9_]+", source)) - {"SPECIES_NONE"})
         items = sorted(set(re.findall(r"\bITEM_[A-Z0-9_]+", source)) - {"ITEM_NONE"})
         maps = sorted(set(re.findall(r"\bMAP_[A-Z0-9_]+", source)) - {"MAP_GROUP", "MAP_NUM"})
@@ -65,6 +66,8 @@ typedef int16_t bool16;
 #define FLAG_BADGE07_GET 9
 #define FLAG_BADGE08_GET 10
 #define FLAG_SYS_GAME_CLEAR 11
+#define FLAG_RESCUED_MR_FUJI 12
+#define FLAG_RESCUED_LOSTELLE 13
 #include "constants/rf_quests.h"
 DECLARATIONS
 enum NationalDexOrder {NATIONAL_DEX_ORDER_TEST};
@@ -101,6 +104,7 @@ struct SaveBlock1 *gSaveBlock1Ptr = &world;
 struct Pokemon gParties[1][PARTY_SIZE];
 static bool32 dex, champion, room, sagaCaught;
 bool32 RFLegends_IsSagaCaught(u32 saga) {(void)saga; return sagaCaught;}
+void RFStory_OnClaim(u32 quest) {(void)quest;}
 static u16 bag[256];
 bool32 FlagGet(u16 flag) {return flag == FLAG_SYS_POKEDEX_GET ? dex : champion;}
 u32 GetMonData(struct Pokemon *mon, u32 field) {return field == MON_DATA_SPECIES ? mon->species : mon->egg;}
