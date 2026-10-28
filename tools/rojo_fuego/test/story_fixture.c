@@ -170,18 +170,38 @@ void RFStoryFixture_SaveRoundTrip(void)
     gSaveBlock3Ptr->rfStoryContractDay=77;
     gSaveBlock3Ptr->rfStoryContractReady=2;
     gSaveBlock3Ptr->rfStoryContractClaimed=1;
+    // Quest extension: decisions, a counter slot and the state bytes of IDs 500-649.
+    RFQuests_SetChoice(5);RFQuests_SetChoice(31);
+    gSaveBlock3Ptr->rfQuestCounters[2]=0xA9C3;
+    gSaveBlock3Ptr->rfQuestStatesExt[0]=0x1B;gSaveBlock3Ptr->rfQuestStatesExt[RF_QUEST_EXT_STATE_BYTES-1]=0x0E;
     gRFStoryFixtureResult[15]=TrySavingData(SAVE_NORMAL);
     if(gRFStoryFixtureResult[15]==SAVE_STATUS_OK)
     {
+        u8 shipped[RF_QUEST_STATE_BYTES];
         gSaveBlock3Ptr->rfStoryClues=0;
         gSaveBlock3Ptr->rfStoryContractReady=0;
         Mark(0,0);Mark(349,0);
+        gSaveBlock3Ptr->rfQuestChoices=0;gSaveBlock3Ptr->rfQuestCounters[2]=0;
+        gSaveBlock3Ptr->rfQuestStatesExt[0]=0;gSaveBlock3Ptr->rfQuestStatesExt[RF_QUEST_EXT_STATE_BYTES-1]=0;
         gRFStoryFixtureResult[15]=LoadGameSave(SAVE_NORMAL)==SAVE_STATUS_OK
             && gSaveBlock3Ptr->rfStoryClues==0x15555
             && gSaveBlock3Ptr->rfStoryContractDay==77
             && gSaveBlock3Ptr->rfStoryContractReady==2
             && gSaveBlock3Ptr->rfStoryContractClaimed==1
-            && RFQuests_GetState(0)==RF_QUEST_CLAIMED && RFQuests_GetState(349)==RF_QUEST_ACTIVE;
+            && RFQuests_GetState(0)==RF_QUEST_CLAIMED && RFQuests_GetState(349)==RF_QUEST_ACTIVE
+            && gSaveBlock3Ptr->rfQuestChoices==((1u<<5)|(1u<<31))
+            && gSaveBlock3Ptr->rfQuestCounters[2]==0xA9C3
+            && gSaveBlock3Ptr->rfQuestStatesExt[0]==0x1B
+            && gSaveBlock3Ptr->rfQuestStatesExt[RF_QUEST_EXT_STATE_BYTES-1]==0x0E;
+        // A save written before the extension: its magic is garbage. Only the extension resets.
+        memcpy(shipped,gSaveBlock3Ptr->rfQuestStates,sizeof(shipped));
+        gSaveBlock3Ptr->rfQuestExtMagic=0xA5A5A5A5;
+        gRFStoryFixtureResult[15]=gRFStoryFixtureResult[15]
+            && RFQuests_GetState(0)==RF_QUEST_CLAIMED && RFQuests_GetState(349)==RF_QUEST_ACTIVE
+            && memcmp(shipped,gSaveBlock3Ptr->rfQuestStates,sizeof(shipped))==0
+            && gSaveBlock3Ptr->rfQuestChoices==0 && gSaveBlock3Ptr->rfQuestCounters[2]==0
+            && gSaveBlock3Ptr->rfQuestStatesExt[0]==0
+            && gSaveBlock3Ptr->rfStoryClues==0x15555;
     }
     else gRFStoryFixtureResult[15]=0;
     SetMainCallback2(CB2_Overworld);

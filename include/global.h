@@ -312,6 +312,12 @@ struct SaveBlock3
     u16 rfStoryContractDay;
     u8 rfStoryContractReady;
     u8 rfStoryContractClaimed;
+    // Quest extension (rf_quests.c): append only, independent magic. Fields are ordered so
+    // no padding is needed; together they use 54 of the 60 bytes that were free.
+    u32 rfQuestExtMagic;
+    u32 rfQuestChoices; // one bit per story decision
+    u16 rfQuestCounters[RF_QUEST_COUNTER_SLOTS];
+    u8 rfQuestStatesExt[RF_QUEST_EXT_STATE_BYTES]; // two bits per mission, IDs 500-649
 }; /* max size 1624 bytes */
 
 STATIC_ASSERT(sizeof(struct SaveBlock3) <= 1624, SaveBlock3FitsFireRedSaveSectors);

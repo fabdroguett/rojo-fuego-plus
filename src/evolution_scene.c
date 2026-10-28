@@ -21,6 +21,7 @@
 #include "pokemon.h"
 #include "pokemon_summary_screen.h"
 #include "scanline_effect.h"
+#include "rf_quests.h"
 #include "sound.h"
 #include "sprite.h"
 #include "string_util.h"
@@ -791,6 +792,7 @@ static void Task_EvolutionScene(u8 taskId)
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_SEEN);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_CAUGHT);
             IncrementGameStat(GAME_STAT_EVOLVED_POKEMON);
+            RFQuests_NotifyEvent(RF_QUEST_EVENT_EVOLVE, GET_BASE_SPECIES_ID(gTasks[taskId].tPostEvoSpecies)); // Rojo Fuego+
         }
         break;
     case EVOSTATE_TRY_LEARN_MOVE:
@@ -1218,6 +1220,7 @@ static void Task_TradeEvolutionScene(u8 taskId)
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_SEEN);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_CAUGHT);
             IncrementGameStat(GAME_STAT_EVOLVED_POKEMON);
+            RFQuests_NotifyEvent(RF_QUEST_EVENT_EVOLVE, GET_BASE_SPECIES_ID(gTasks[taskId].tPostEvoSpecies)); // Rojo Fuego+
         }
         break;
     case T_EVOSTATE_TRY_LEARN_MOVE:

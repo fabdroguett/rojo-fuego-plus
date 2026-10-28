@@ -1,5 +1,21 @@
 # Continuidad de ejecución
 
+## Misiones: Fase B (28-10-2026)
+
+Rama `fase-a-misiones`: Fase A en `7240f629` y Fase B en el commit que añade este apartado. Motor descrito en
+[MOTOR_MISIONES.md](MOTOR_MISIONES.md).
+- Medición real con el compilador ARM: SaveBlock1 15840/15872, SaveBlock2 3884/3968 (no se amplía:
+  su tamaño entra en el intercambio por cable, `src/data/trade.h`), SaveBlock3 1564/1624 → ahora
+  1620/1624 con la extensión de misiones, PokemonStorage 34144/35712.
+- `src/achievements.c`: cola compartida con avisos de misión (prioridad, reintento si un cartel
+  interrumpe el aviso al instante, descarte de avisos obsoletos).
+- Pruebas: C con catálogo real mutado en copia temporal (contadores, filtros, huecos llenos,
+  decisiones, IDs 500+, condiciones, requisitos por grupo, premios compuestos atómicos, objetos y
+  casillas, avisos). mGBA: guardado de la extensión y partida antigua; avisos LISTA y AQUÍ.
+
+Siguiente: Fase C (contenido), empezando por un lote que use contadores y tablas para validar
+en mGBA los caminos que aún no tienen misión real.
+
 ## Misiones: Fase A (28-10-2026)
 
 Catálogo real de 414 misiones (64 escenas de campaña en 350–413); meta acordada de 650 distintas.

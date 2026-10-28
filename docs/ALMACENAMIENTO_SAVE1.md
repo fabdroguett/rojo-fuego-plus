@@ -55,6 +55,12 @@ de persistencia. No prometer más plazas contando con que las cajas estén parci
   cambios de clave de cifrado, fusiones y cajas llenas.
 - [ ] Determinar capacidad final y cerrar compatibilidad antes de habilitar nuevas cajas.
 
+Actualización 28-10-2026 (medición con el compilador ARM): SaveBlock1 15840/15872,
+SaveBlock2 3884/3968, SaveBlock3 1620/1624 y PokemonStorage 34144/35712. La extensión de misiones
+(magic, decisiones, 4 contadores y estados 500–649; 56 bytes) se añadió al final de SaveBlock3.
+SaveBlock2 no se amplía porque su tamaño forma parte de los datos de intercambio por cable.
+Quedan 4 bytes en SaveBlock3 y 32 en SaveBlock1 para futuras extensiones.
+
 Los nuevos eventos de misiones no agregan campos persistentes: usan los dos bits ya reservados
 para cada misión. Noa agrega ocho bytes al final de SaveBlock3, con magic de inicialización
 independiente; no se cambian offsets de campos anteriores.

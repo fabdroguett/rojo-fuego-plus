@@ -61,7 +61,14 @@ cases={
     # Nora (Kindle Road, y=133) must appear at her landing tile and answer; without Ponyta
     # registered the quest stays active. Also reads object count, position, map and hiding.
     'nora':(prepare(379,'nora')+warp('nora')+shot('nora')+key('A',240)+shot('nora-talk')+'mash B 600\nrun 60\n'+call('Read',1)+''.join(read(i) for i in (0,12,16,17,18,19)),{0:1,12:1,17:0x850000,19:0}),
-    'save':(call('SaveRoundTrip',600)+shot('save-restored')+inspect(),{2:0x15555,3:2,4:1,5:77,14:1,15:1}),
+    # Visiting the museum completes quest 0 in the field: "¡MISIÓN LISTA!" once the player is free.
+    # FaceActor closes any toast, so these warp without it and capture every 60 frames.
+    'ready-notice':(prepare(0,'alma')+param(1,actors['alma']['actor'])+call('WarpActor',1)+''.join('run 60\n'+shot(f'ready-notice-{i}') for i in range(8))+inspect(),{0:2}),
+    # Entering the map of the tracked scene (351, Edda in Mt. Moon B2F) shows "OBJETIVO AQUÍ".
+    'here-notice':(prepare(351,'edda')+param(1,actors['edda']['actor'])+call('WarpActor',1)+''.join('run 60\n'+shot(f'here-notice-{i}') for i in range(8))+inspect(),{0:1}),
+    # Flash round-trip of story fields and the quest extension (decisions, counters, IDs 500+),
+    # then an older save whose extension magic is garbage. SaveBlock3 is 1620 of 1624 bytes.
+    'save':(call('SaveRoundTrip',600)+shot('save-restored')+inspect(),{2:0x15555,3:2,4:1,5:77,8:1620,14:1,15:1}),
 }
 
 clues=''

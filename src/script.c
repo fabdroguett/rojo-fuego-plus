@@ -4,6 +4,7 @@
 #include "field_screen_effect.h"
 #include "mystery_gift.h"
 #include "random.h"
+#include "rf_quests.h"
 #include "task.h"
 #include "trainer_see.h"
 #include "util.h"
@@ -430,6 +431,7 @@ const u8 *MapHeaderCheckScriptTable(u8 tag)
 void RunOnLoadMapScript(void)
 {
     MapHeaderRunScriptType(MAP_SCRIPT_ON_LOAD);
+    RFQuests_OnMapLoad(); // Rojo Fuego+
 }
 
 void RunOnTransitionMapScript(void)

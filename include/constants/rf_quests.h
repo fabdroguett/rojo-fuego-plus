@@ -4,6 +4,15 @@
 // Stable save slots. Never reorder IDs or reuse a shipped slot.
 #define RF_QUEST_CAPACITY 500
 #define RF_QUEST_STATE_BYTES ((RF_QUEST_CAPACITY + 3) / 4)
+// Extension appended to SaveBlock3: IDs 500-649 keep their own state bytes.
+#define RF_QUEST_EXT_CAPACITY 150
+#define RF_QUEST_EXT_STATE_BYTES ((RF_QUEST_EXT_CAPACITY + 3) / 4)
+#define RF_QUEST_MAX (RF_QUEST_CAPACITY + RF_QUEST_EXT_CAPACITY)
+// Counted objectives ("defeat 5 trainers") share a few slots: quest ID + 1 in the low
+// 10 bits, progress in the high 6 bits. Only active counted quests hold a slot.
+#define RF_QUEST_COUNTER_SLOTS 4
+#define RF_QUEST_COUNTER_MAX 63
+#define RF_QUEST_CHOICE_COUNT 32
 #define RF_QUEST_NONE 0xFFFF
 
 #define RF_QUEST_MUSEUM 0
@@ -88,5 +97,13 @@
 #define RF_QUEST_EVENT_OAK_REPORT 1
 #define RF_QUEST_EVENT_NOA_WIN 2
 #define RF_QUEST_EVENT_TRAINER_WIN 3
+// 4 is RF_STORY_EVENT (constants/rf_story.h). Gameplay events for counted objectives; the
+// argument is matched against a quest's filter (`alternative`, 0 = any).
+#define RF_QUEST_EVENT_CATCH 5      // caught species (base form)
+#define RF_QUEST_EVENT_CATCH_MAP 6  // map of the catch (MAP_* value); filter required
+#define RF_QUEST_EVENT_CATCH_TYPE 7 // each type of the caught species; filter required
+#define RF_QUEST_EVENT_EVOLVE 8     // species after evolving (base form)
+#define RF_QUEST_EVENT_HATCH 9      // hatched species (base form)
+#define RF_QUEST_EVENT_WILD_WIN 10  // defeated wild species (base form)
 
 #endif

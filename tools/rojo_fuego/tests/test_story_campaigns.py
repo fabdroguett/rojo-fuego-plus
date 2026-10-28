@@ -47,7 +47,7 @@ class StoryCampaignTests(unittest.TestCase):
                 p=path.parent/m[1]
                 return expand(p) if p.exists() and p.suffix=='.h' else m[0]
             return re.sub(r'^#include "([^\"]+)"',sub,s,flags=re.M)
-        quest=(ROOT/'src/rf_quests.c').read_text(encoding='utf-8').replace('#include "data/rf_quests.h"',expand(ROOT/'src/data/rf_quests.h'))
+        quest=(ROOT/'src/rf_quests.c').read_text(encoding='utf-8').replace('#include "data/rf_quests.h"',expand(ROOT/'src/data/rf_quests.h')).replace('#include "data/rf_quest_links.h"',(ROOT/'src/data/rf_quest_links.h').read_text(encoding='utf-8'))
         story=(ROOT/'src/rf_story.c').read_text(encoding='utf-8').replace('#include "data/rf_story.h"',(ROOT/'src/data/rf_story.h').read_text(encoding='utf-8'))
         source=re.sub(r'^#include .*$', '',quest+'\n'+story,flags=re.M)
         # The ROM preprocessor emits game-encoded strings. Reproduce its control bytes
@@ -55,7 +55,7 @@ class StoryCampaignTests(unittest.TestCase):
         source=source.replace('\\p','\\373').replace('\\n','\\376')
         species=sorted(set(re.findall(r'\bSPECIES_[A-Z0-9_]+',source))-{'SPECIES_NONE'})
         items=sorted(set(re.findall(r'\bITEM_[A-Z0-9_]+',source))-{'ITEM_NONE'})
-        maps=sorted(set(re.findall(r'\bMAP_[A-Z0-9_]+',source))-{'MAP_GROUP','MAP_NUM'})
+        maps=sorted(set(re.findall(r'\bMAP_[A-Z0-9_]+',source))-{'MAP_GROUP','MAP_NUM','MAP_OFFSET'})
         flags=sorted(set(re.findall(r'\bFLAG_[A-Z0-9_]+',source))-{'FLAG_GET_CAUGHT'})
         trainers=sorted(set(re.findall(r'\bTRAINER_[A-Z0-9_]+',source))-{'TRAINER_BATTLE_PARAM'})
         prefix=r'''
@@ -105,10 +105,11 @@ struct Pokemon {u16 species; bool8 egg;};
 struct Save3 {
     u8 old[64],achievementsUnlocked[40],achievementsClaimed[40]; u32 rfQuestSaveMagic; u8 rfQuestStates[RF_QUEST_STATE_BYTES]; u16 rfQuestTracked;
     u32 rfStorySaveMagic,rfStoryClues; u16 rfStoryContractDay; u8 rfStoryContractReady,rfStoryContractClaimed;
+    u32 rfQuestExtMagic,rfQuestChoices; u16 rfQuestCounters[RF_QUEST_COUNTER_SLOTS]; u8 rfQuestStatesExt[RF_QUEST_EXT_STATE_BYTES];
 };
 static struct Save3 save;
 static struct Save3 *gSaveBlock3Ptr=&save;
-static struct {struct {u8 mapGroup,mapNum;} location;} world;
+static struct {struct {u8 mapGroup,mapNum;} location; u32 money;} world;
 static typeof(world) *gSaveBlock1Ptr=&world;
 static struct Pokemon gParties[1][6];
 static struct {u32 vblankCounter1;} gMain;
@@ -125,6 +126,9 @@ static u16 bag[2048],removed[2048];
 #define ACH_RF_STORY_FIRST 318
 #define ACH_RF_STORY_ALL 319
 static void Achievement_Unlock(u32 id) {assert(id==318||id==319);save.achievementsUnlocked[id/8]|=1u<<(id%8);}
+static bool32 Achievement_IsUnlocked(u32 id) {return (save.achievementsUnlocked[id/8]>>(id%8))&1;}
+static u32 notices;
+static void Achievements_QueueQuestNotice(u32 quest,bool32 here) {assert(quest<RF_QUEST_COUNT);(void)here;notices++;}
 static bool32 FlagGet(u16 f) {assert(f<1024);return flags[f];}
 static u32 GetMonData(struct Pokemon *m,u32 f) {return f==MON_DATA_IS_EGG?m->egg:m->species;}
 static u32 SpeciesToNationalPokedexNum(u32 s) {return s;}
@@ -132,6 +136,11 @@ static u8 GetSetPokedexFlag(u32 s,u8 action) {(void)action;assert(s<2048);return
 static bool32 RFLegends_IsSagaCaught(u32 saga) {(void)saga;return legendProof;}
 static bool32 CheckBagHasItem(u32 item,u32 count) {assert(item<2048);return bag[item]>=count;}
 static bool32 AddBagItem(u32 item,u32 count) {assert(item<2048);if(!room)return FALSE;bag[item]+=count;return TRUE;}
+static bool32 CheckBagHasSpace(u32 item,u32 count) {(void)item;(void)count;return room;}
+static void AddMoney(u32 *money,u32 amount) {*money+=amount;}
+#define MAP_OFFSET 7
+static void MapGridSetMetatileIdAt(s32 x,s32 y,u16 metatile) {(void)x;(void)y;(void)metatile;assert(0);}
+static void FlagSet(u16 f) {assert(f<1024);flags[f]=1;}
 static bool32 RemoveBagItem(u32 item,u32 count) {if(!CheckBagHasItem(item,count))return FALSE;bag[item]-=count;removed[item]+=count;return TRUE;}
 static u8 *StringCopy(u8 *out,const u8 *s) {while(*s!=EOS)*out++=*s++;*out=EOS;return out;}
 static u32 StringLength(const u8 *s) {u32 n=0;while(s[n]!=EOS){assert(n<999);n++;}return n;}

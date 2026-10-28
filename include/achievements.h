@@ -63,6 +63,7 @@ void Achievement_AddToCounter(enum AchievementCounter counter, u32 amount);
 void Achievement_SetCounterMax(enum AchievementCounter counter, u32 value);
 u32 Achievement_GetCounter(enum AchievementCounter counter);
 void Achievements_HideNotification(void);
+void Achievements_QueueQuestNotice(u32 quest, bool32 here);
 void Achievements_OpenMenu(void);
 void Achievements_OpenScreen(void (*exitCallback)(void));
 void CB2_OpenAchievementsScreenFromBag(void);

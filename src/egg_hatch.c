@@ -37,6 +37,7 @@
 #include "battle.h" // to get rid of later
 #include "constants/rgb.h"
 #include "party_menu.h"
+#include "rf_quests.h"
 
 #define GFXTAG_EGG       12345
 #define GFXTAG_EGG_SHARD 23456
@@ -324,6 +325,7 @@ static void AddHatchedMonToParty(u8 id)
     nationalDexNum = SpeciesToNationalPokedexNum(species);
     GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
     GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
+    RFQuests_NotifyEvent(RF_QUEST_EVENT_HATCH, GET_BASE_SPECIES_ID(species)); // Rojo Fuego+
 
     GetMonNickname(mon, gStringVar1);
 

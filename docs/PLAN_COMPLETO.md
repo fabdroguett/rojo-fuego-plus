@@ -12,6 +12,22 @@ Una casilla pendiente puede requerir implementación, completar una integración
 validar código existente. No cuenta como terminada solo porque compile. Las funciones
 repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 
+## Misiones: Fase B implementada (28-10-2026)
+
+Motor ampliado sin contenido nuevo todavía; referencia para autores en [MOTOR_MISIONES.md](MOTOR_MISIONES.md).
+- **B1 guardado:** extensión de `SaveBlock3` (magic propio): estados de los IDs 500–649, 4 contadores
+  y 32 decisiones. `SaveBlock3` queda en 1620/1624 bytes; las partidas anteriores conservan su progreso.
+- **B2 condiciones y eventos:** `QUEST_COUNT` con eventos de captura (especie, mapa, tipo), evolución,
+  eclosión y victoria contra salvaje; condiciones `QUEST_DEX_SEEN`, `QUEST_BADGES`, `QUEST_ACHIEVEMENT`.
+- **B3 vínculos:** requisitos por grupos (Y entre grupos, O dentro) y premios compuestos (objeto
+  extra, dinero, flag, logro) en tablas de ROM.
+- **B4 mundo:** objetos visibles según el estado y casillas que cambian al cargar el mapa.
+- **B5 avisos:** «¡MISIÓN LISTA!», «OBJETIVO AQUÍ» para la escena seguida y pista para guías.
+  También se corrigió que el cartel del mapa se comiera cualquier aviso recién mostrado.
+
+**Siguiente:** Fase C, lotes de 15–25 misiones reconvirtiendo los 279 genéricos (opción a) y
+usando el motor nuevo; cada primera misión de un tipo nuevo lleva su recorrido mGBA.
+
 ## Misiones: Fase A cerrada (28-10-2026)
 
 Catálogo real: **414 misiones** (IDs 0–413, capacidad de guardado 500): 43 encargos originales,

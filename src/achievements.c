@@ -1,5 +1,6 @@
 #include "global.h"
 #include "achievements.h"
+#include "rf_quests.h"
 #include "battle.h"
 #include "battle_setup.h"
 #include "bg.h"
@@ -53,6 +54,12 @@
 #define CHECK_IDS_PER_FRAME     ((ACH_COUNT + CHECK_INTERVAL_FRAMES - 1) / CHECK_INTERVAL_FRAMES)
 #define NOTIFICATION_FRAMES     180
 #define NOTIFICATION_QUEUE_SIZE 8
+// Quest notices share the achievement queue: the high bits tell them apart from achievement IDs.
+#define NOTICE_QUEST_READY      0x8000
+#define NOTICE_QUEST_HERE       0x4000
+#define NOTICE_QUEST_ID_MASK    0x3FFF
+// A toast interrupted this soon (e.g. by the map name popup right after a warp) is shown again.
+#define NOTIFICATION_RETRY_FRAMES 30
 #define COUNTER_MAX             0xFFFF
 
 static const u8 sTierPoints[ACH_TIER_COUNT] = {10, 25, 50, 100};
@@ -80,6 +87,7 @@ static EWRAM_DATA u8 sNotificationCount = 0;
 static EWRAM_DATA u8 sNotificationWindowId = 0;
 static EWRAM_DATA u16 sNotificationTimer = 0;
 static EWRAM_DATA bool8 sNotificationShown = FALSE;
+static EWRAM_DATA u16 sNotificationCurrent = 0; // queue entry on screen
 
 static void SyncMirror(void)
 {
@@ -512,6 +520,24 @@ void Achievements_HideNotification(void)
     sNotificationTimer = 0;
 }
 
+// Quest notices go before achievements (in their own order): a burst of achievements must not
+// hide progress the player acts on. A full queue drops its newest toast; unlocks are unaffected.
+void Achievements_QueueQuestNotice(u32 quest, bool32 here)
+{
+    u32 i, pos = 0;
+
+    while (pos < sNotificationCount && (sNotificationQueue[pos] & (NOTICE_QUEST_READY | NOTICE_QUEST_HERE)))
+        pos++;
+    if (pos == NOTIFICATION_QUEUE_SIZE)
+        return; // only quest notices pending: the player will see the journal
+    if (sNotificationCount == NOTIFICATION_QUEUE_SIZE)
+        sNotificationCount--;
+    for (i = sNotificationCount; i > pos; i--)
+        sNotificationQueue[i] = sNotificationQueue[i - 1];
+    sNotificationQueue[pos] = (quest & NOTICE_QUEST_ID_MASK) | (here ? NOTICE_QUEST_HERE : NOTICE_QUEST_READY);
+    sNotificationCount++;
+}
+
 static void ShowNextNotification(void)
 {
     u32 id = sNotificationQueue[0];
@@ -520,15 +546,30 @@ static void ShowNextNotification(void)
     for (i = 1; i < sNotificationCount; i++)
         sNotificationQueue[i - 1] = sNotificationQueue[i];
     sNotificationCount--;
+    sNotificationCurrent = id;
+
+    if (id & (NOTICE_QUEST_READY | NOTICE_QUEST_HERE))
+    {
+        u32 quest = id & NOTICE_QUEST_ID_MASK;
+        // Drop notices that no longer apply, e.g. a scene that already handed over its reward.
+        if (RFQuests_GetState(quest) != ((id & NOTICE_QUEST_READY) ? RF_QUEST_READY : RF_QUEST_ACTIVE))
+            return;
+        StringCopy(gStringVar4, (id & NOTICE_QUEST_READY) ? COMPOUND_STRING("¡MISIÓN LISTA! ")
+                                                          : COMPOUND_STRING("OBJETIVO AQUÍ: "));
+        StringAppend(gStringVar4, RFQuests_GetCatalog()[quest].name);
+    }
+    else
+    {
+        StringCopy(gStringVar4, COMPOUND_STRING("¡LOGRO! "));
+        StringAppend(gStringVar4, gAchievements[id].name);
+        StringAppend(gStringVar4, COMPOUND_STRING(" · "));
+        StringAppend(gStringVar4, sTierNames[gAchievements[id].tier]);
+    }
 
     LoadMessageBoxAndBorderGfx();
     sNotificationWindowId = AddWindow(&sNotificationWindowTemplate);
     // The frame call clears the window, so it goes before the text
     DrawStdWindowFrame(sNotificationWindowId, FALSE);
-    StringCopy(gStringVar4, COMPOUND_STRING("¡LOGRO! "));
-    StringAppend(gStringVar4, gAchievements[id].name);
-    StringAppend(gStringVar4, COMPOUND_STRING(" · "));
-    StringAppend(gStringVar4, sTierNames[gAchievements[id].tier]);
     AddTextPrinterParameterized(sNotificationWindowId, FONT_NORMAL, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(sNotificationWindowId, COPYWIN_FULL);
     PlaySE(SE_EXP_MAX);
@@ -551,8 +592,24 @@ void Achievements_OverworldUpdate(void)
     if (sNotificationShown)
     {
         // Menus and scripts share this part of the screen, so get out of their way
-        if (!playerIsFree || --sNotificationTimer == 0)
+        if (!playerIsFree)
+        {
+            if (sNotificationTimer > NOTIFICATION_FRAMES - NOTIFICATION_RETRY_FRAMES)
+            {
+                u32 i;
+                if (sNotificationCount == NOTIFICATION_QUEUE_SIZE)
+                    sNotificationCount--;
+                for (i = sNotificationCount; i > 0; i--)
+                    sNotificationQueue[i] = sNotificationQueue[i - 1];
+                sNotificationQueue[0] = sNotificationCurrent;
+                sNotificationCount++;
+            }
             Achievements_HideNotification();
+        }
+        else if (--sNotificationTimer == 0)
+        {
+            Achievements_HideNotification();
+        }
     }
     else if (sNotificationCount != 0 && playerIsFree)
     {
