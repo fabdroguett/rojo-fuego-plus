@@ -48,6 +48,9 @@
 #include "data/rf_achievements.h"
 
 #define CHECK_INTERVAL_FRAMES   120
+// The overworld spreads one full check over the interval instead of running it in one go:
+// a single CheckAll took ~10 frames, stalling the map and dropping short button presses.
+#define CHECK_IDS_PER_FRAME     ((ACH_COUNT + CHECK_INTERVAL_FRAMES - 1) / CHECK_INTERVAL_FRAMES)
 #define NOTIFICATION_FRAMES     180
 #define NOTIFICATION_QUEUE_SIZE 8
 #define COUNTER_MAX             0xFFFF
@@ -71,7 +74,7 @@ EWRAM_DATA u8 gRfAchievementMirror[ACH_BYTES + 1] = {0};
 // Set by the DexNav when its battle starts; read and cleared when the battle ends
 EWRAM_DATA bool8 gRfDexNavBattle = FALSE;
 
-static EWRAM_DATA u16 sCheckTimer = 0;
+static EWRAM_DATA u16 sCheckId = 0;
 static EWRAM_DATA u16 sNotificationQueue[NOTIFICATION_QUEUE_SIZE] = {0};
 static EWRAM_DATA u8 sNotificationCount = 0;
 static EWRAM_DATA u8 sNotificationWindowId = 0;
@@ -433,6 +436,24 @@ static bool32 IsConditionMet(u32 id, struct CheckCache *cache)
     }
 }
 
+// Checks the next few achievements; a sweep keeps one cache, like a single CheckAll did.
+// Meta achievements unlocked by this sweep are picked up by the next one.
+static void CheckNextAchievements(void)
+{
+    static EWRAM_DATA struct CheckCache sweepCache = {0};
+    u32 n;
+
+    if (sCheckId == 0)
+        memset(&sweepCache, 0, sizeof(sweepCache));
+    for (n = 0; n < CHECK_IDS_PER_FRAME && sCheckId < ACH_COUNT; n++, sCheckId++)
+    {
+        if (!Achievement_IsUnlocked(sCheckId) && IsConditionMet(sCheckId, &sweepCache))
+            Achievement_Unlock(sCheckId);
+    }
+    if (sCheckId >= ACH_COUNT)
+        sCheckId = 0;
+}
+
 void Achievements_CheckAll(void)
 {
     struct CheckCache cache = {0};
@@ -525,11 +546,7 @@ void Achievements_OverworldUpdate(void)
     if (gRfAchievementMirror[ACH_BYTES] != MIRROR_SYNCED)
         SyncMirror();
 
-    if (++sCheckTimer >= CHECK_INTERVAL_FRAMES)
-    {
-        sCheckTimer = 0;
-        Achievements_CheckAll();
-    }
+    CheckNextAchievements();
 
     if (sNotificationShown)
     {

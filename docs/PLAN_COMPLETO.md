@@ -12,6 +12,27 @@ Una casilla pendiente puede requerir implementación, completar una integración
 validar código existente. No cuenta como terminada solo porque compile. Las funciones
 repetidas entre hacks se implementan una vez y se comparten entre sistemas.
 
+## Misiones: Fase A cerrada (28-10-2026)
+
+Catálogo real: **414 misiones** (IDs 0–413, capacidad de guardado 500): 43 encargos originales,
+28 sagas, 279 encargos extendidos y 64 escenas de ocho campañas narrativas (350–413,
+`tools/rojo_fuego/story_campaigns.py`). Meta acordada: **650 misiones distintas**, sin contar
+registros genéricos como contenido narrativo; requiere una extensión de guardado al final de
+SaveBlock3 (los IDs 0–499 no se mueven).
+
+Fase A (correcciones sin cambiar el formato de guardado), implementada y validada:
+- Los 279 extendidos ya no forman una cadena de 279 pasos: 27 cadenas de hasta 10 (profundidad
+  máxima 35) y 10 registros legendarios independientes, que no bloquean ni son bloqueados.
+- Títulos con el nombre real de la especie (`Nidoran♀`, `Mr. Mime`, `Ho-Oh`).
+- El diario no acepta escenas de campaña a distancia: muestra quién las ofrece.
+- Puzles y carrera definidos por datos; Silva tiene cuatro preguntas propias.
+- Verificador de campañas en mGBA completo (34/34, con guardar/cargar y los 55 actores); de paso se
+  corrigió el tirón periódico del mapa causado por la revisión de logros.
+
+**Siguiente:** medir SaveBlock3 y diseñar la extensión a 650 → Fase B del motor (condiciones,
+contadores, prerrequisitos múltiples, premios compuestos, cambios de mundo, avisos) → lotes de
+contenido reconvirtiendo los 279 genéricos (opción a acordada).
+
 ## Punto de reanudación (26-10-2026)
 
 Continuar ARTE-2: conservar las categorías y la paleta de mochila y redibujar su sprite
@@ -36,7 +57,7 @@ Punto jugable anterior: [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md), código 
 
 | Área | Avance comprobado | Pendiente para cerrar |
 |---|---|---|
-| Misiones | 350 implementadas; IDs 0–349; captura, recogida, uso exitoso de objetos y requisitos dobles funcionan | Revisar cadenas y el contenido del plan; añadir objetivos funcionales cuando cada encargo lo requiera |
+| Misiones | 414 implementadas; IDs 0–413 (64 escenas de campaña); captura, recogida, uso exitoso, pistas, puzles, carrera y requisitos dobles funcionan | Revisar cadenas y el contenido del plan; añadir objetivos funcionales cuando cada encargo lo requiera |
 | Noa | Victoria, premio, limpieza de reglas y conservación de premio pendiente comprobados con pruebas nativas y mGBA | Diagnosticar el caso original con desobediencia; ampliar pruebas de guardado y calendario |
 | Preparación | Editor EV/IV con confirmación/cancelación, recordador de preevoluciones, clave de bayas y ocho tutores por medalla | Servicios de Centros, herramientas, formas/fusiones y zonas de entrenamiento |
 | Almacenamiento | SAVE-1 medido y documentado; 14 cajas / 420 plazas | SAVE-2 y SAVE-3: banco, migración y recuperación antes de habilitar más cajas |
@@ -46,7 +67,7 @@ Punto jugable anterior: [ENTREGA_2026_10_23.md](ENTREGA_2026_10_23.md), código 
 | Mochila | 80 espacios, siete filtros y paleta nueva en sprites masculino/femenino; filtros y menús pasan en mGBA | Reemplazar el arte de las seis poses sin perder animación ni legibilidad |
 
 No se calcula el porcentaje global contando casillas: las tareas tienen tamaños distintos.
-350/350 expresa únicamente el catálogo de misiones, no la finalización del proyecto completo.
+414 expresa únicamente el catálogo de misiones, no la finalización del proyecto completo.
 
 ### Selector de iniciales completado y siguiente prioridad: arte
 
@@ -224,6 +245,10 @@ revanchas y 325 logros. No se contabilizan como nuevas implementaciones pendient
   los usos exitosos se registran al consumir/aplicar el objeto, sin guardar progreso adicional.
 - [ ] Completar diario por capítulos, filtros de zona/dificultad/disponibilidad, progreso,
   coleccionables individuales y ocultación del contenido aún no descubierto.
+- [x] Ocho campañas narrativas (IDs 350–413): Memoria de Kanto, La red y sus voces, Una puerta
+  abierta, Cuadernos de campo, Nadie se queda atrás, Caminos que se cruzan, Lo que devuelve el mar
+  y El camino de vuelta; 3 encargos diarios. Cubren en parte artefactos, Silph/Bill/Oak, visitantes,
+  Cubone, rescates y tesoro; 44 de 64 escenas son solo conversación (a ampliar en Fase B/C).
 - [ ] Crear campaña de artefactos entre museo de Plateada y Sete: pistas, fragmentos,
   investigaciones, expediciones y desenlace; no contar cada fragmento como misión completa.
 - [ ] Añadir historias de Silph, Bill, Oak y visitantes de otras regiones con combates opcionales.

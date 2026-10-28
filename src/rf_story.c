@@ -15,7 +15,6 @@
 #include "constants/maps.h"
 
 #define STORY_MAGIC 0x53545231
-#define STORY_RACE_FRAMES (45 * 60)
 
 enum { RF_STORY_TALK, RF_STORY_DELIVERY, RF_STORY_CLUES, RF_STORY_BATTLE, RF_STORY_RACE, RF_STORY_PUZZLE };
 struct RFStoryActor
@@ -28,6 +27,16 @@ struct RFStoryActor
     const u8 *greeting;
     const u8 *hint;
 };
+struct RFStoryQuestion
+{
+    const u8 *text;
+    u8 answer; // expected YES (1) or NO (0)
+};
+struct RFStoryRace
+{
+    u16 seconds;
+    const u8 *start, *late, *restart;
+};
 struct RFStoryScene
 {
     u8 giver, target, kind;
@@ -35,6 +44,9 @@ struct RFStoryScene
     u32 clues;
     const u8 *offer;
     const u8 *ending;
+    const struct RFStoryQuestion *questions; // RF_STORY_PUZZLE only
+    u8 questionCount;
+    const struct RFStoryRace *race; // RF_STORY_RACE only
 };
 struct RFStoryContract
 {
@@ -178,6 +190,18 @@ bool32 RFStory_ReadEnding(u32 quest, u32 page, u8 *dest, u32 capacity)
     return TRUE;
 }
 
+const u8 *RFStory_GiverHint(u32 quest)
+{
+    return IsScene(quest) ? sActors[sScenes[quest - RF_STORY_FIRST].giver].hint : NULL;
+}
+
+static bool32 RaceRunning(u32 id)
+{
+    const struct RFStoryRace *race = sScenes[id - RF_STORY_FIRST].race;
+    return race != NULL && sRaceQuest == id + 1
+        && gMain.vblankCounter1 - sRaceStart <= (u32)race->seconds * 60;
+}
+
 const u8 *RFStory_Hint(u32 quest)
 {
     u32 i;
@@ -291,14 +315,9 @@ static void FinishScene(u32 id)
         StringCopy(gStringVar4, COMPOUND_STRING("Aún falta lo indicado en el diario.\nPuedes volver cuando lo tengas.\pNo entregas ni pierdes a ninguno\nde tus Pokémon."));
 }
 
-static void PuzzleQuestion(void)
+static void PuzzleQuestion(u32 id)
 {
-    static const u8 *const questions[] = {
-        COMPOUND_STRING("Recuerda: roca, agua y vida.\n¿La roca va antes que el agua?"),
-        COMPOUND_STRING("Recuerda: roca, agua y vida.\n¿La vida va antes que la roca?"),
-        COMPOUND_STRING("Recuerda: roca, agua y vida.\n¿La vida ocupa el último lugar?"),
-    };
-    StringCopy(gStringVar4, questions[sPuzzleStep]);
+    StringCopy(gStringVar4, sScenes[id - RF_STORY_FIRST].questions[sPuzzleStep].text);
 }
 
 void Script_RFStoryPrepare(void)
@@ -334,12 +353,13 @@ void Script_RFStoryPrepare(void)
         if (sScenes[id - RF_STORY_FIRST].target == actor
          && RFQuests_GetState(id) == RF_QUEST_ACTIVE)
         {
+            bool32 inTime = RaceRunning(id);
             sRaceQuest = 0;
             gSpecialVar_0x8005 = id;
-            if (gMain.vblankCounter1 - sRaceStart <= STORY_RACE_FRAMES)
+            if (inTime)
                 FinishScene(id);
             else
-                StringCopy(gStringVar4, COMPOUND_STRING("Llegaste fuera de tiempo.\nEl encargo sigue en el diario.\pVuelve a Riel, en Ruta 22,\npara empezar otra vez."));
+                StringCopy(gStringVar4, sScenes[id - RF_STORY_FIRST].race->late);
             return;
         }
     }
@@ -362,7 +382,7 @@ void Script_RFStoryPrepare(void)
         if (!RFQuests_HasRequirements(id)
          || (scene->kind == RF_STORY_CLUES && (gSaveBlock3Ptr->rfStoryClues & scene->clues) != scene->clues)
          || (scene->kind == RF_STORY_DELIVERY && !CheckBagHasItem(RFQuests_GetCatalog()[id].argument, RFQuests_GetCatalog()[id].alternative))
-         || (scene->kind == RF_STORY_RACE && (sRaceQuest != id + 1 || gMain.vblankCounter1 - sRaceStart > STORY_RACE_FRAMES)))
+         || (scene->kind == RF_STORY_RACE && !RaceRunning(id)))
         {
             if (pendingTarget == RF_QUEST_NONE || gSaveBlock3Ptr->rfQuestTracked == id + 1)
                 pendingTarget = id;
@@ -391,13 +411,13 @@ void Script_RFStoryPrepare(void)
             return;
         case RF_STORY_PUZZLE:
             sPuzzleStep = 0;
-            PuzzleQuestion();
+            PuzzleQuestion(id);
             gSpecialVar_Result = 3;
             return;
         case RF_STORY_RACE:
-            if (sRaceQuest != id + 1 || gMain.vblankCounter1 - sRaceStart > STORY_RACE_FRAMES)
+            if (!RaceRunning(id))
             {
-                StringCopy(gStringVar4, COMPOUND_STRING("Vuelve al puesto de salida.\nLa práctica dura 45 segundos.\pSi guardaste y saliste del juego,\npuedes empezar de nuevo."));
+                StringCopy(gStringVar4, scene->race->restart);
                 return;
             }
             sRaceQuest = 0;
@@ -425,7 +445,7 @@ void Script_RFStoryPrepare(void)
         {
             gSpecialVar_0x8005 = id;
             gSpecialVar_0x8007 = 2; // Start after the instructions are dismissed, not while reading.
-            StringCopy(gStringVar4, COMPOUND_STRING("La práctica empieza ahora.\nTienes 45 segundos.\pHabla con Lina en Ciudad Verde.\nPuedes volver para reintentarlo."));
+            StringCopy(gStringVar4, scene->race->start);
             return;
         }
         if (state == RF_QUEST_ACTIVE)
@@ -516,25 +536,27 @@ void Script_RFStoryConfirm(void)
 
 void Script_RFStoryPuzzle(void)
 {
-    static const u8 answers[] = {1, 0, 1};
     u32 id = gSpecialVar_0x8005;
     u32 answer = gSpecialVar_Result;
+    const struct RFStoryScene *scene;
     gSpecialVar_Result = 0;
-    if (!IsScene(id) || sScenes[id - RF_STORY_FIRST].kind != RF_STORY_PUZZLE
-     || !AtActor(sScenes[id - RF_STORY_FIRST].target) || sPuzzleStep >= ARRAY_COUNT(answers))
+    if (!IsScene(id))
         return;
-    if (answer != answers[sPuzzleStep])
+    scene = &sScenes[id - RF_STORY_FIRST];
+    if (scene->kind != RF_STORY_PUZZLE || !AtActor(scene->target) || sPuzzleStep >= scene->questionCount)
+        return;
+    if (answer != scene->questions[sPuzzleStep].answer)
     {
         sPuzzleStep = 0;
         StringCopy(gStringVar4, COMPOUND_STRING("Ese orden no coincide con la pista.\nPuedes empezar de nuevo.\pEl encargo y tus otros progresos\nse conservan."));
         return;
     }
-    if (++sPuzzleStep == ARRAY_COUNT(answers))
+    if (++sPuzzleStep == scene->questionCount)
     {
         FinishScene(id);
         return;
     }
-    PuzzleQuestion();
+    PuzzleQuestion(id);
     gSpecialVar_Result = 3;
 }
 

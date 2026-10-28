@@ -307,6 +307,35 @@ int main(void)
                             str(work / "test.c"), "-o", str(binary)], check=True, capture_output=True, text=True)
             subprocess.run([str(binary)], check=True, capture_output=True, text=True)
 
+    def test_field_registrations_use_short_chains_and_game_names(self):
+        import sys
+        sys.path.insert(0, str(ROOT / "tools/rojo_fuego"))
+        from extra_quests import species_details
+        details = species_details()
+        source = (ROOT / "src/data/rf_quests_extra.h").read_text(encoding="utf-8")
+        entries = re.findall(r'\[(RF_QUEST_EXTRA_\d+)\] = \{\s*\.name = COMPOUND_STRING\("([^"]*)"\),.*?'
+                             r'\.prerequisite = (\w+), \.condition = (\w+),\s*\.argument = (\w+)', source, re.S)
+        self.assertEqual(len(entries), 279)
+        prerequisite = {quest: previous for quest, _, previous, _, _ in entries}
+        legendary = {quest for quest, _, _, condition, argument in entries
+                     if condition == "QUEST_DEX_CAUGHT" and details[argument][1]}
+        self.assertIn("Registro: Nidoran♀", {name for _, name, _, _, _ in entries})
+        self.assertIn("Registro: Mr. Mime", {name for _, name, _, _, _ in entries})
+        for quest, name, previous, condition, argument in entries:
+            self.assertNotIn("_", name, quest)
+            if condition == "QUEST_DEX_CAUGHT":
+                self.assertEqual(name, "Registro: " + details[argument][0])
+            # A legendary registration never blocks another one, and is never blocked.
+            self.assertNotIn(previous, legendary, quest)
+            if quest in legendary:
+                self.assertEqual(previous, "RF_QUEST_REMATCH_REPORT", quest)
+            depth, current = 0, quest
+            while current.startswith("RF_QUEST_EXTRA_"):
+                current, depth = prerequisite[current], depth + 1
+            self.assertEqual(current, "RF_QUEST_REMATCH_REPORT")
+            self.assertLessEqual(depth, 40, quest)
+        self.assertEqual(len(legendary), 10)
+
 
 if __name__ == "__main__":
     unittest.main()

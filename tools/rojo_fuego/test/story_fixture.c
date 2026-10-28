@@ -22,7 +22,7 @@
 struct RFStoryFixtureActor {u16 map,x,y,lx,ly;u8 local;const u8 *script;};
 #include "data/rf_story_fixture_actors.h"
 EWRAM_DATA u16 gRFStoryFixtureParams[8] = {0};
-EWRAM_DATA u32 gRFStoryFixtureResult[16] = {0};
+EWRAM_DATA u32 gRFStoryFixtureResult[20] = {0};
 
 static void Mark(u32 id,u32 state)
 {
@@ -78,7 +78,12 @@ void RFStoryFixture_WarpActor(void)
     {
         const struct RFStoryFixtureActor *a=&sFixtureActors[actor];
         SetWarpDestination(MAP_GROUP(a->map),MAP_NUM(a->map),-1,a->lx,a->ly);
-        SetMainCallback1(NULL);WarpIntoMap();SetMainCallback2(CB2_LoadMap);
+        SetMainCallback1(NULL);WarpIntoMap();
+        // SetWarpDestination takes s8 coordinates: rows past 127 (Kindle Road y=133) wrap
+        // negative and the game falls back to the map centre. Apply the full 16-bit tile.
+        gSaveBlock1Ptr->location.x=gSaveBlock1Ptr->pos.x=a->lx;
+        gSaveBlock1Ptr->location.y=gSaveBlock1Ptr->pos.y=a->ly;
+        SetMainCallback2(CB2_LoadMap);
     }
     else SetMainCallback2(CB2_Overworld);
 }
@@ -93,7 +98,9 @@ void RFStoryFixture_FaceActor(void)
         ObjectEventTurn(&gObjectEvents[gPlayerAvatar.objectEventId],direction);
     }
     Achievements_HideNotification();
-    SetMainCallback1(NULL);SetMainCallback2(CB2_Overworld);
+    // Keep field input alive: outdoor maps finish loading before this call, so clearing
+    // callback1 here would leave the player unable to talk to the actor.
+    SetMainCallback1(CB1_Overworld);SetMainCallback2(CB2_Overworld);
 }
 
 void RFStoryFixture_ScriptActor(void)
@@ -130,6 +137,12 @@ void RFStoryFixture_Read(void)
         && !TryGetObjectEventIdByLocalIdAndMap(sFixtureActors[actor].local,MAP_NUM(sFixtureActors[actor].map),MAP_GROUP(sFixtureActors[actor].map),&objectId);
     gRFStoryFixtureResult[13]=ArePlayerFieldControlsLocked();
     gRFStoryFixtureResult[14]=RFQuests_GetState(349);
+    // Diagnostics for actors that fail to appear: active objects, player tile, engine hiding.
+    gRFStoryFixtureResult[16]=0;
+    for(objectId=0;objectId<OBJECT_EVENTS_COUNT;objectId++) gRFStoryFixtureResult[16]+=gObjectEvents[objectId].active;
+    gRFStoryFixtureResult[17]=(u16)gSaveBlock1Ptr->pos.x|((u32)(u16)gSaveBlock1Ptr->pos.y<<16);
+    gRFStoryFixtureResult[18]=gSaveBlock1Ptr->location.mapGroup<<8|gSaveBlock1Ptr->location.mapNum;
+    gRFStoryFixtureResult[19]=actor<ARRAY_COUNT(sFixtureActors) && RFStory_IsObjectHidden(sFixtureActors[actor].script);
     SetMainCallback2(CB2_Overworld);
 }
 

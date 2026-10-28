@@ -32,7 +32,11 @@ def key(k,wait=180): return f'hold {k} 6\nrun {wait}\n'
 def prepare(quest,keyname,mode=1):
     return param(0,quest)+param(1,actors[keyname]['actor'])+param(2,mode)+call('PrepareQuest')
 def warp(keyname):
-    return param(1,actors[keyname]['actor'])+call('WarpActor',240)+call('FaceActor',30)
+    # A short press toward the actor turns the player in place, as a real player would;
+    # FaceActor alone is undone when an outdoor map finishes loading after it.
+    a=actors[keyname];lx,ly=a['landing']
+    toward='>' if lx<a['x'] else '<' if lx>a['x'] else 'D' if ly<a['y'] else 'U'
+    return param(1,a['actor'])+call('WarpActor',240)+call('FaceActor',30)+f'hold {toward} 3\nrun 30\n'
 def inspect(): return call('Read',1)+''.join(read(i) for i in (0,1,2,3,4,5,7,8,9,10,11,12,13,14,15))
 
 cases={
@@ -41,10 +45,22 @@ cases={
     'delivery':(prepare(369,'zaira')+warp('zaira')+key('A')+shot('delivery')+'mash A 1200\nrun 60\n'+shot('delivery-complete')+inspect(),{0:3,12:1}),
     'puzzle-wrong':(prepare(356,'monan')+warp('monan')+key('A',300)+shot('puzzle')+key('B',300)+'mash B 360\nrun 60\n'+shot('puzzle-wrong')+inspect(),{0:1,12:1}),
     'puzzle':(prepare(356,'monan')+warp('monan')+key('A',300)+key('A',300)+key('B',300)+key('A',300)+'mash B 900\nrun 60\n'+shot('puzzle-complete')+inspect(),{0:3,12:1}),
-    'battle':(prepare(360,'lio')+warp('lio')+key('A',240)+shot('battle-offer')+key('A',300)+shot('battle')+'mash A 2400\nmash B 600\nrun 120\n'+shot('battle-complete')+inspect(),{0:3}),
+    # Silva has her own four questions (yes, no, no, yes), separate from the Monan lectern.
+    'puzzle-silva':(prepare(408,'silva')+warp('silva')+key('A',300)+shot('puzzle-silva')+key('A',300)+key('B',300)+key('B',300)+key('A',300)+'mash B 900\nrun 60\n'+shot('puzzle-silva-complete')+inspect(),{0:3,12:1}),
+    # The race texts and its limit come from scene data; arriving in time completes it.
+    'race':(prepare(407,'riel')+warp('riel')+key('A',240)+shot('race-start')+'mash B 360\nrun 60\n'+warp('lina')+key('A',240)+shot('race-arrival')+'mash A 900\nrun 60\n'+inspect(),{0:3,12:1}),
+    'race-late':(prepare(407,'riel')+warp('riel')+key('A',240)+'mash B 360\nrun 2800\n'+warp('lina')+key('A',240)+shot('race-late')+'mash B 600\nrun 60\n'+inspect(),{0:1,12:1}),
+    # The journal names the giver of an authored scene and refuses to accept it remotely.
+    'journal-locked':(prepare(350,'alma',0)+call('Journal',120)+shot('journal-locked')+key('A',60)+shot('journal-locked-refused')+key('B',120)+inspect(),{0:0,13:0}),
+    # The two-line offer is still printing after 240 frames; an A then only completes the
+    # text, so wait for the YES/NO menu. The whole battle and its report need ~3600 frames.
+    'battle':(prepare(360,'lio')+warp('lio')+key('A',480)+shot('battle-offer')+key('A',300)+shot('battle')+'mash A 3600\nmash B 900\nrun 120\n'+shot('battle-complete')+inspect(),{0:3}),
     'home-cubone':(prepare(373,'home_cubone',2)+warp('home_cubone')+shot('home-cubone')+key('A',240)+shot('home-cubone-dialog')+'mash B 600\nrun 60\n'+inspect(),{0:3,12:1}),
     'journal':(prepare(350,'alma')+call('Journal',120)+shot('journal')+key('>',60)+shot('journal-available')+key('>',60)+shot('journal-active')+key('>',60)+shot('journal-empty')+key('A',30)+key('B',120)+shot('journal-closed')+inspect(),{0:1,13:0}),
     'ending':(prepare(357,'alma',2)+call('CompleteStories')+call('Journal',120)+shot('journal-completed')+key('A',60)+shot('ending-page1')+key('A',60)+shot('ending-page2')+key('B',60)+key('B',120)+inspect(),{0:3,11:192,13:0}),
+    # Nora (Kindle Road, y=133) must appear at her landing tile and answer; without Ponyta
+    # registered the quest stays active. Also reads object count, position, map and hiding.
+    'nora':(prepare(379,'nora')+warp('nora')+shot('nora')+key('A',240)+shot('nora-talk')+'mash B 600\nrun 60\n'+call('Read',1)+''.join(read(i) for i in (0,12,16,17,18,19)),{0:1,12:1,17:0x850000,19:0}),
     'save':(call('SaveRoundTrip',600)+shot('save-restored')+inspect(),{2:0x15555,3:2,4:1,5:77,14:1,15:1}),
 }
 
@@ -89,7 +105,7 @@ for name in args.case or list(cases):
             passed=len(observed_actors)==55 and all(v==1 for v in observed_actors)
             checks={'actorsFound':sum(v==1 for v in observed_actors),'actorsExpected':55}
         entry=dict(case=name,theme=theme,passed=passed,checks=checks)
-        entry['observed']={i:observed.get(result+i*4) for i in range(16) if result+i*4 in observed}
+        entry['observed']={i:observed.get(result+i*4) for i in range(20) if result+i*4 in observed}
         report.append(entry)
         (OUT/'report.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
         print(name,theme,'PASS' if passed else 'FAIL',checks,flush=True)

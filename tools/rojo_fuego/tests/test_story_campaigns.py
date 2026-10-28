@@ -207,11 +207,19 @@ int main(void) {
             assert(removed[sRFQuests[id].argument]==before+sRFQuests[id].alternative);
         }
         if(s->kind==RF_STORY_PUZZLE) {
-            assert(gSpecialVar_Result==3);
-            for(u32 step=0;step<3;step++) {
-                gSpecialVar_Result=step!=1;Script_RFStoryPuzzle();
+            assert(gSpecialVar_Result==3 && s->questions!=NULL && s->questionCount>0 && s->race==NULL);
+            // A wrong answer restarts only the puzzle; the quest stays active.
+            gSpecialVar_Result=!s->questions[0].answer;Script_RFStoryPuzzle();
+            assert(RFQuests_GetState(id)==RF_QUEST_ACTIVE && sPuzzleStep==0);
+            At(s->target);Script_RFStoryPrepare();assert(gSpecialVar_Result==3);
+            for(u32 step=0;step<s->questionCount;step++) {
+                assert(RFQuests_GetState(id)==RF_QUEST_ACTIVE);
+                gSpecialVar_Result=s->questions[step].answer;Script_RFStoryPuzzle();
             }
         }
+        else assert(s->questions==NULL && s->questionCount==0);
+        assert((s->kind==RF_STORY_RACE)==(s->race!=NULL));
+        assert(RFStory_GiverHint(id)==sActors[s->giver].hint);
         if(s->kind==RF_STORY_BATTLE) {
             assert(gSpecialVar_Result==4);
             gBattleOutcome=2;gBattleTypeFlags=BATTLE_TYPE_TRAINER;TRAINER_BATTLE_PARAM.opponentA=s->trainer;
@@ -230,6 +238,13 @@ int main(void) {
         assert(RFStory_Difficulty(id)>=1 && RFStory_Difficulty(id)<=3);
     }
     assert(!RFStory_MatchesFilter(999,0));
+    assert(RFStory_GiverHint(0)==NULL && RFStory_GiverHint(349)==NULL && RFStory_GiverHint(414)==NULL);
+    // Puzzle scenes no longer share one hard-coded question set.
+    {
+        const struct RFStoryScene *p[2];u32 n=0;
+        for(u32 i=0;i<RF_STORY_COUNT;i++) if(sScenes[i].kind==RF_STORY_PUZZLE) p[n++]=&sScenes[i];
+        assert(n==2 && p[0]->questions!=p[1]->questions && p[0]->questionCount!=p[1]->questionCount);
+    }
     assert((save.achievementsUnlocked[39]&0xC0)==0xC0);
     // A guide shared by independent campaigns cannot lock a report behind another plot.
     Reset();SetQuestState(402,RF_QUEST_CLAIMED);assert(RFQuests_Accept(403));
@@ -247,7 +262,13 @@ int main(void) {
     At(sScenes[57].giver);Script_RFStoryPrepare();Script_RFStoryAfterText();
     SetQuestState(389,RF_QUEST_READY);At(sScenes[57].target);Script_RFStoryPrepare();
     assert(RFQuests_GetState(407)==RF_QUEST_CLAIMED && RFQuests_GetState(389)==RF_QUEST_READY);
-    At(sScenes[57].giver);Script_RFStoryPrepare();Script_RFStoryAfterText();gMain.vblankCounter1+=2701;
+    // Arriving in the last allowed frame still wins.
+    Reset();SetQuestState(406,RF_QUEST_CLAIMED);assert(RFQuests_Accept(407));
+    At(sScenes[57].giver);Script_RFStoryPrepare();Script_RFStoryAfterText();
+    gMain.vblankCounter1+=sScenes[57].race->seconds*60;At(sScenes[57].target);Script_RFStoryPrepare();
+    assert(RFQuests_GetState(407)==RF_QUEST_CLAIMED);
+    Reset();SetQuestState(406,RF_QUEST_CLAIMED);assert(RFQuests_Accept(407));
+    At(sScenes[57].giver);Script_RFStoryPrepare();Script_RFStoryAfterText();gMain.vblankCounter1+=sScenes[57].race->seconds*60+1;
     At(sScenes[57].target);Script_RFStoryPrepare();assert(RFQuests_GetState(407)==RF_QUEST_ACTIVE);
     // Contracts are separate from one-time mission count, persist pending deliveries,
     // renew forwards only, and never take the supplied item a second time.

@@ -1,5 +1,33 @@
 # Continuidad de ejecución
 
+## Misiones: Fase A (28-10-2026)
+
+Catálogo real de 414 misiones (64 escenas de campaña en 350–413); meta acordada de 650 distintas.
+- `extra_quests.py`: los registros 71–349 forman 27 cadenas de hasta 10 (la cabeza de cada cadena
+  abre la siguiente); los 10 legendarios dependen solo de `RF_QUEST_REMATCH_REPORT`. Los títulos
+  usan `speciesName` de la expansión. Los estados guardados no cambian de casilla.
+- `rf_quest_menu.c`: una escena de campaña disponible muestra «Pídelo en persona» y quién la ofrece;
+  A ya no la acepta a distancia (`RFStory_GiverHint`).
+- `rf_story.c`: puzles (`RFStoryQuestion`) y carrera (`RFStoryRace`, segundos y textos) llegan desde
+  `story_content.py`. Silva usa cuatro preguntas propias; Monan conserva las suyas. Corregido al
+  integrar: el tiempo de llegada se evalúa antes de limpiar la carrera.
+- Pruebas: 25/25 C/Python, validador de 414, ELF enlazado y verificador mGBA de campañas con casos
+  nuevos `puzzle-silva`, `race`, `race-late` y `journal-locked` (ver TESTING.md). Corregido solo en
+  pruebas: `RFStoryFixture_FaceActor` dejaba `callback1` en NULL (sin entrada en mapas exteriores)
+  y su giro se perdía al terminar la carga; ahora conserva `CB1_Overworld` y el verificador pulsa
+  la cruceta hacia el actor antes de A. Fallaban `talk` y los casos al aire libre.
+- `/work` de Ubuntu-24.04 quedó sin fixture (ROM de producción reconstruida, sin símbolos de prueba).
+- Nora (Camino Candente) no era un fallo del juego: el fixture usaba `SetWarpDestination`
+  (coordenadas `s8`) y su fila 133 se desbordaba, dejando al jugador en el centro del mapa.
+  `RFStoryFixture_WarpActor` aplica ahora la casilla completa; nuevo caso `nora` y 55/55 actores.
+- Cierre: el harness usa un archivo de guardado privado (el `VFileMemChunk` vacío hacía fallar
+  mGBA al guardar) y el caso `save` pasa. La «A perdida» era real: `Achievements_CheckAll`
+  congelaba el mapa ~10 fotogramas cada 2 s; ahora el barrido se reparte (3 logros/fotograma) y el
+  máximo bloqueo medido es 2 fotogramas. Verificador de campañas: 34/34 sin parches de tiempo.
+  ROM local `build_artifacts/releases/20261028-103145/` (SHA-256 `2a92ce30…a327`), arranque al mapa.
+
+**Fase A cerrada.** Siguiente: medir SaveBlock3 y diseñar la extensión para 650; después Fase B.
+
 ## Arte nativo y menú 3×3 (27-10-2026)
 
 Menú principal integrado con nueve iconos redibujados a 16×16 y fuente local
@@ -275,7 +303,7 @@ símbolos/estados al cambiar el enlace. Ver también `test/UI_VALIDATION.md`.
   la primera batalla, apodo, guardado/carga y Android. No afirmar que ya se probaron.
 - Assets: ARTE-1 y 3 validados; ARTE-2 parcial (paleta integrada, silueta por redibujar);
   ARTE-4 tiene revisión visual pero falta integrar variantes; ARTE-5 se repite tras esos cambios.
-- Misiones: 350/350; el catálogo extendido combina Pokédex, recogida, uso exitoso y requisitos
+- Misiones: 414 (meta 650); el catálogo extendido combina Pokédex, recogida, uso exitoso y requisitos
   dobles. La distribución narrativa completa sigue pendiente. Cajas: 14/420 plazas; SAVE-2/3
   pendientes.
 - Noa: el caso original de desobediencia continúa sin diagnóstico confirmado.

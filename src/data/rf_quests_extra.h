@@ -62,7 +62,7 @@
     [RF_QUEST_EXTRA_010] = {
         .name = COMPOUND_STRING("Registro: Metapod"),
         .description = COMPOUND_STRING("Silva estudia a Metapod.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios."),
-        .prerequisite = RF_QUEST_EXTRA_009, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_000, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_METAPOD, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_011] = {
@@ -122,7 +122,7 @@
     [RF_QUEST_EXTRA_020] = {
         .name = COMPOUND_STRING("Registro: Spearow"),
         .description = COMPOUND_STRING("Mar pide registrar a Spearow.\nSu ficha ayudará a comparar\nrutas y zonas de descanso."),
-        .prerequisite = RF_QUEST_EXTRA_019, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_010, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_SPEAROW, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_021] = {
@@ -168,8 +168,8 @@
         .argument = SPECIES_SANDSLASH, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 3,
     },
     [RF_QUEST_EXTRA_028] = {
-        .name = COMPOUND_STRING("Registro: Nidoran F"),
-        .description = COMPOUND_STRING("Silva estudia a Nidoran F.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios."),
+        .name = COMPOUND_STRING("Registro: Nidoran♀"),
+        .description = COMPOUND_STRING("Silva estudia a Nidoran♀.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios."),
         .prerequisite = RF_QUEST_EXTRA_027, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_NIDORAN_F, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
@@ -182,12 +182,12 @@
     [RF_QUEST_EXTRA_030] = {
         .name = COMPOUND_STRING("Registro: Nidoqueen"),
         .description = COMPOUND_STRING("Edda estudia a Nidoqueen.\nRegistra su ficha para separar\nhechos de suposiciones."),
-        .prerequisite = RF_QUEST_EXTRA_029, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_020, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_NIDOQUEEN, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 3,
     },
     [RF_QUEST_EXTRA_031] = {
-        .name = COMPOUND_STRING("Registro: Nidoran M"),
-        .description = COMPOUND_STRING("Vera pide registrar a Nidoran M.\nNo se retira tu Pokémon:\nsolo se consulta la Pokédex."),
+        .name = COMPOUND_STRING("Registro: Nidoran♂"),
+        .description = COMPOUND_STRING("Vera pide registrar a Nidoran♂.\nNo se retira tu Pokémon:\nsolo se consulta la Pokédex."),
         .prerequisite = RF_QUEST_EXTRA_030, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_NIDORAN_M, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
@@ -242,7 +242,7 @@
     [RF_QUEST_EXTRA_040] = {
         .name = COMPOUND_STRING("Registro: Zubat"),
         .description = COMPOUND_STRING("Vera pide registrar a Zubat.\nNo se retira tu Pokémon:\nsolo se consulta la Pokédex."),
-        .prerequisite = RF_QUEST_EXTRA_039, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_030, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_ZUBAT, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_041] = {
@@ -302,7 +302,7 @@
     [RF_QUEST_EXTRA_050] = {
         .name = COMPOUND_STRING("Registro: Dugtrio"),
         .description = COMPOUND_STRING("Zaira estudia a Dugtrio.\nRegistra su ficha para preparar\nrefugios adecuados a su especie."),
-        .prerequisite = RF_QUEST_EXTRA_049, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_040, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_DUGTRIO, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 4,
     },
     [RF_QUEST_EXTRA_051] = {
@@ -362,7 +362,7 @@
     [RF_QUEST_EXTRA_060] = {
         .name = COMPOUND_STRING("Registro: Poliwhirl"),
         .description = COMPOUND_STRING("Ada contrasta a Poliwhirl.\nRegístralo por captura o evolución\npara completar el censo de Oak."),
-        .prerequisite = RF_QUEST_EXTRA_059, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_050, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_POLIWHIRL, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 4,
     },
     [RF_QUEST_EXTRA_061] = {
@@ -422,7 +422,7 @@
     [RF_QUEST_EXTRA_070] = {
         .name = COMPOUND_STRING("Registro: Victreebel"),
         .description = COMPOUND_STRING("Silva revisa a Victreebel.\nSu ficha documenta la presencia\nde la especie sin alterar su hogar."),
-        .prerequisite = RF_QUEST_EXTRA_069, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_060, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_VICTREEBEL, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 4,
     },
     [RF_QUEST_EXTRA_071] = {
@@ -482,7 +482,7 @@
     [RF_QUEST_EXTRA_080] = {
         .name = COMPOUND_STRING("Registro: Magnemite"),
         .description = COMPOUND_STRING("Mar revisa a Magnemite.\nRegístralo en la Pokédex; no hace\nfalta llevarlo en tu equipo."),
-        .prerequisite = RF_QUEST_EXTRA_079, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_070, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_MAGNEMITE, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 4,
     },
     [RF_QUEST_EXTRA_081] = {
@@ -492,8 +492,8 @@
         .argument = SPECIES_MAGNETON, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 4,
     },
     [RF_QUEST_EXTRA_082] = {
-        .name = COMPOUND_STRING("Registro: Farfetchd"),
-        .description = COMPOUND_STRING("Silva estudia a Farfetchd.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios."),
+        .name = COMPOUND_STRING("Registro: Farfetch'd"),
+        .description = COMPOUND_STRING("Silva estudia a Farfetch'd.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios."),
         .prerequisite = RF_QUEST_EXTRA_081, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_FARFETCHD, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 4,
     },
@@ -542,7 +542,7 @@
     [RF_QUEST_EXTRA_090] = {
         .name = COMPOUND_STRING("Registro: Cloyster"),
         .description = COMPOUND_STRING("Ada pide registrar a Cloyster.\nLa ficha completa el archivo de Oak.\nCuenta la captura o la evolución."),
-        .prerequisite = RF_QUEST_EXTRA_089, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_080, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_CLOYSTER, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 4,
     },
     [RF_QUEST_EXTRA_091] = {
@@ -602,7 +602,7 @@
     [RF_QUEST_EXTRA_100] = {
         .name = COMPOUND_STRING("Registro: Electrode"),
         .description = COMPOUND_STRING("Silva estudia a Electrode.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios."),
-        .prerequisite = RF_QUEST_EXTRA_099, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_090, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_ELECTRODE, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_101] = {
@@ -662,7 +662,7 @@
     [RF_QUEST_EXTRA_110] = {
         .name = COMPOUND_STRING("Registro: Rhyhorn"),
         .description = COMPOUND_STRING("Mar pide registrar a Rhyhorn.\nSu ficha ayudará a comparar\nrutas y zonas de descanso."),
-        .prerequisite = RF_QUEST_EXTRA_109, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_100, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_RHYHORN, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_111] = {
@@ -722,12 +722,12 @@
     [RF_QUEST_EXTRA_120] = {
         .name = COMPOUND_STRING("Registro: Starmie"),
         .description = COMPOUND_STRING("Edda estudia a Starmie.\nRegistra su ficha para separar\nhechos de suposiciones."),
-        .prerequisite = RF_QUEST_EXTRA_119, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_110, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_STARMIE, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 5,
     },
     [RF_QUEST_EXTRA_121] = {
-        .name = COMPOUND_STRING("Registro: Mr Mime"),
-        .description = COMPOUND_STRING("Vera pide registrar a Mr Mime.\nNo se retira tu Pokémon:\nsolo se consulta la Pokédex."),
+        .name = COMPOUND_STRING("Registro: Mr. Mime"),
+        .description = COMPOUND_STRING("Vera pide registrar a Mr. Mime.\nNo se retira tu Pokémon:\nsolo se consulta la Pokédex."),
         .prerequisite = RF_QUEST_EXTRA_120, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_MR_MIME, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
@@ -782,7 +782,7 @@
     [RF_QUEST_EXTRA_130] = {
         .name = COMPOUND_STRING("Registro: Lapras"),
         .description = COMPOUND_STRING("Vera pide registrar a Lapras.\nNo se retira tu Pokémon:\nsolo se consulta la Pokédex."),
-        .prerequisite = RF_QUEST_EXTRA_129, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_120, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_LAPRAS, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_131] = {
@@ -842,7 +842,7 @@
     [RF_QUEST_EXTRA_140] = {
         .name = COMPOUND_STRING("Registro: Kabutops"),
         .description = COMPOUND_STRING("Zaira estudia a Kabutops.\nRegistra su ficha para preparar\nrefugios adecuados a su especie."),
-        .prerequisite = RF_QUEST_EXTRA_139, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_130, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_KABUTOPS, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_141] = {
@@ -860,25 +860,25 @@
     [RF_QUEST_EXTRA_143] = {
         .name = COMPOUND_STRING("Registro: Articuno"),
         .description = COMPOUND_STRING("Mar revisa a Articuno.\nRegístralo en la Pokédex; no hace\nfalta llevarlo en tu equipo."),
-        .prerequisite = RF_QUEST_EXTRA_142, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_ARTICUNO, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_144] = {
         .name = COMPOUND_STRING("Registro: Zapdos"),
         .description = COMPOUND_STRING("Ada pide registrar a Zapdos.\nLa ficha completa el archivo de Oak.\nCuenta la captura o la evolución."),
-        .prerequisite = RF_QUEST_EXTRA_143, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_ZAPDOS, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 3,
     },
     [RF_QUEST_EXTRA_145] = {
         .name = COMPOUND_STRING("Registro: Moltres"),
         .description = COMPOUND_STRING("Silva estudia a Moltres.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios."),
-        .prerequisite = RF_QUEST_EXTRA_144, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_MOLTRES, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_146] = {
         .name = COMPOUND_STRING("Registro: Dratini"),
         .description = COMPOUND_STRING("Mar pide registrar a Dratini.\nSu ficha ayudará a comparar\nrutas y zonas de descanso."),
-        .prerequisite = RF_QUEST_EXTRA_145, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_142, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_DRATINI, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_147] = {
@@ -896,19 +896,19 @@
     [RF_QUEST_EXTRA_149] = {
         .name = COMPOUND_STRING("Registro: Mewtwo"),
         .description = COMPOUND_STRING("Zaira estudia a Mewtwo.\nRegistra su ficha para preparar\nrefugios adecuados a su especie."),
-        .prerequisite = RF_QUEST_EXTRA_148, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_MEWTWO, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_150] = {
         .name = COMPOUND_STRING("Registro: Mew"),
         .description = COMPOUND_STRING("Ada contrasta a Mew.\nRegístralo por captura o evolución\npara completar el censo de Oak."),
-        .prerequisite = RF_QUEST_EXTRA_149, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_MEW, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 3,
     },
     [RF_QUEST_EXTRA_151] = {
         .name = COMPOUND_STRING("Registro: Chikorita"),
         .description = COMPOUND_STRING("Silva revisa a Chikorita.\nSu ficha documenta la presencia\nde la especie sin alterar su hogar."),
-        .prerequisite = RF_QUEST_EXTRA_150, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_148, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_CHIKORITA, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_152] = {
@@ -932,7 +932,7 @@
     [RF_QUEST_EXTRA_155] = {
         .name = COMPOUND_STRING("Registro: Quilava"),
         .description = COMPOUND_STRING("Mar pide registrar a Quilava.\nSu ficha ayudará a comparar\nrutas y zonas de descanso."),
-        .prerequisite = RF_QUEST_EXTRA_154, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_140, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_QUILAVA, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_156] = {
@@ -992,7 +992,7 @@
     [RF_QUEST_EXTRA_165] = {
         .name = COMPOUND_STRING("Registro: Ledian"),
         .description = COMPOUND_STRING("Edda estudia a Ledian.\nRegistra su ficha para separar\nhechos de suposiciones."),
-        .prerequisite = RF_QUEST_EXTRA_164, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_155, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_LEDIAN, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 3,
     },
     [RF_QUEST_EXTRA_166] = {
@@ -1052,7 +1052,7 @@
     [RF_QUEST_EXTRA_175] = {
         .name = COMPOUND_STRING("Registro: Togetic"),
         .description = COMPOUND_STRING("Vera pide registrar a Togetic.\nNo se retira tu Pokémon:\nsolo se consulta la Pokédex."),
-        .prerequisite = RF_QUEST_EXTRA_174, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_165, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_TOGETIC, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_176] = {
@@ -1112,7 +1112,7 @@
     [RF_QUEST_EXTRA_185] = {
         .name = COMPOUND_STRING("Registro: Politoed"),
         .description = COMPOUND_STRING("Zaira estudia a Politoed.\nRegistra su ficha para preparar\nrefugios adecuados a su especie."),
-        .prerequisite = RF_QUEST_EXTRA_184, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_175, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_POLITOED, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 3,
     },
     [RF_QUEST_EXTRA_186] = {
@@ -1172,7 +1172,7 @@
     [RF_QUEST_EXTRA_195] = {
         .name = COMPOUND_STRING("Registro: Espeon"),
         .description = COMPOUND_STRING("Ada contrasta a Espeon.\nRegístralo por captura o evolución\npara completar el censo de Oak."),
-        .prerequisite = RF_QUEST_EXTRA_194, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_185, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_ESPEON, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 4,
     },
     [RF_QUEST_EXTRA_196] = {
@@ -1232,7 +1232,7 @@
     [RF_QUEST_EXTRA_205] = {
         .name = COMPOUND_STRING("Registro: Dunsparce"),
         .description = COMPOUND_STRING("Silva revisa a Dunsparce.\nSu ficha documenta la presencia\nde la especie sin alterar su hogar."),
-        .prerequisite = RF_QUEST_EXTRA_204, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_195, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_DUNSPARCE, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 4,
     },
     [RF_QUEST_EXTRA_206] = {
@@ -1292,7 +1292,7 @@
     [RF_QUEST_EXTRA_215] = {
         .name = COMPOUND_STRING("Registro: Teddiursa"),
         .description = COMPOUND_STRING("Mar revisa a Teddiursa.\nRegístralo en la Pokédex; no hace\nfalta llevarlo en tu equipo."),
-        .prerequisite = RF_QUEST_EXTRA_214, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_205, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_TEDDIURSA, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 4,
     },
     [RF_QUEST_EXTRA_216] = {
@@ -1352,7 +1352,7 @@
     [RF_QUEST_EXTRA_225] = {
         .name = COMPOUND_STRING("Registro: Mantine"),
         .description = COMPOUND_STRING("Ada pide registrar a Mantine.\nLa ficha completa el archivo de Oak.\nCuenta la captura o la evolución."),
-        .prerequisite = RF_QUEST_EXTRA_224, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_215, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_MANTINE, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 4,
     },
     [RF_QUEST_EXTRA_226] = {
@@ -1412,7 +1412,7 @@
     [RF_QUEST_EXTRA_235] = {
         .name = COMPOUND_STRING("Registro: Tyrogue"),
         .description = COMPOUND_STRING("Silva estudia a Tyrogue.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios."),
-        .prerequisite = RF_QUEST_EXTRA_234, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_225, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_TYROGUE, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_236] = {
@@ -1454,25 +1454,25 @@
     [RF_QUEST_EXTRA_242] = {
         .name = COMPOUND_STRING("Registro: Raikou"),
         .description = COMPOUND_STRING("Mar revisa a Raikou.\nRegístralo en la Pokédex; no hace\nfalta llevarlo en tu equipo."),
-        .prerequisite = RF_QUEST_EXTRA_241, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_RAIKOU, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_243] = {
         .name = COMPOUND_STRING("Registro: Entei"),
         .description = COMPOUND_STRING("Ada pide registrar a Entei.\nLa ficha completa el archivo de Oak.\nCuenta la captura o la evolución."),
-        .prerequisite = RF_QUEST_EXTRA_242, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_ENTEI, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 5,
     },
     [RF_QUEST_EXTRA_244] = {
         .name = COMPOUND_STRING("Registro: Suicune"),
         .description = COMPOUND_STRING("Silva estudia a Suicune.\nRegistra su ficha sin capturar\nmás ejemplares de los necesarios."),
-        .prerequisite = RF_QUEST_EXTRA_243, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_SUICUNE, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_245] = {
         .name = COMPOUND_STRING("Registro: Larvitar"),
         .description = COMPOUND_STRING("Mar pide registrar a Larvitar.\nSu ficha ayudará a comparar\nrutas y zonas de descanso."),
-        .prerequisite = RF_QUEST_EXTRA_244, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_241, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_LARVITAR, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_246] = {
@@ -1490,19 +1490,19 @@
     [RF_QUEST_EXTRA_248] = {
         .name = COMPOUND_STRING("Registro: Lugia"),
         .description = COMPOUND_STRING("Zaira estudia a Lugia.\nRegistra su ficha para preparar\nrefugios adecuados a su especie."),
-        .prerequisite = RF_QUEST_EXTRA_247, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_LUGIA, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_249] = {
-        .name = COMPOUND_STRING("Registro: Ho Oh"),
-        .description = COMPOUND_STRING("Ada contrasta a Ho Oh.\nRegístralo por captura o evolución\npara completar el censo de Oak."),
-        .prerequisite = RF_QUEST_EXTRA_248, .condition = QUEST_DEX_CAUGHT,
+        .name = COMPOUND_STRING("Registro: Ho-Oh"),
+        .description = COMPOUND_STRING("Ada contrasta a Ho-Oh.\nRegístralo por captura o evolución\npara completar el censo de Oak."),
+        .prerequisite = RF_QUEST_REMATCH_REPORT, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_HO_OH, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 5,
     },
     [RF_QUEST_EXTRA_250] = {
         .name = COMPOUND_STRING("Suministro: Poción"),
         .description = COMPOUND_STRING("Guarda Poción en la mochila\npara el laboratorio de Oak."),
-        .prerequisite = RF_QUEST_EXTRA_249, .condition = QUEST_COLLECT_ITEM,
+        .prerequisite = RF_QUEST_EXTRA_235, .condition = QUEST_COLLECT_ITEM,
         .argument = ITEM_POTION, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_251] = {
@@ -1562,7 +1562,7 @@
     [RF_QUEST_EXTRA_260] = {
         .name = COMPOUND_STRING("Práctica: Poké Ball"),
         .description = COMPOUND_STRING("Lanza una Poké Ball en un combate."),
-        .prerequisite = RF_QUEST_EXTRA_259, .condition = QUEST_USE_ITEM,
+        .prerequisite = RF_QUEST_EXTRA_250, .condition = QUEST_USE_ITEM,
         .argument = ITEM_POKE_BALL, .rewardItem = ITEM_POKE_BALL, .rewardCount = 2, .chapter = 5,
     },
     [RF_QUEST_EXTRA_261] = {
@@ -1622,7 +1622,7 @@
     [RF_QUEST_EXTRA_270] = {
         .name = COMPOUND_STRING("Registro: Lombre"),
         .description = COMPOUND_STRING("Registra a Lombre y lleva a\nBulbasaur en tu equipo."),
-        .prerequisite = RF_QUEST_EXTRA_269, .condition = QUEST_DEX_CAUGHT,
+        .prerequisite = RF_QUEST_EXTRA_260, .condition = QUEST_DEX_CAUGHT,
         .argument = SPECIES_LOMBRE, .rewardItem = ITEM_GREAT_BALL, .rewardCount = 1, .chapter = 5,
         .objectiveCount = 2, .secondaryCondition = QUEST_PARTY_EITHER,
         .secondaryArgument = SPECIES_BULBASAUR, .secondaryAlternative = SPECIES_NONE,

@@ -71,9 +71,12 @@ actor('belen','Belén','SixIsland_GreenPath','Una expedición termina cuando tod
 actor('riel','Riel','Route22','Entrenamos orientación entre dos puestos. Si pierdes el ritmo, vuelve a empezar.', 'OBJ_EVENT_GFX_HIKER')
 
 
-def q(name, giver, target, objective, offer, ending, *, kind='talk', proof=None, flag='0', reward='ITEM_GREAT_BALL', quantity=2):
+def q(name, giver, target, objective, offer, ending, *, kind='talk', proof=None, flag='0', reward='ITEM_GREAT_BALL', quantity=2,
+      questions=(), seconds=0):
+    """questions: (yes/no question, expected answer) for puzzles; seconds: race time limit."""
+    assert (kind=='puzzle')==bool(questions) and (kind=='race')==bool(seconds),name
     return dict(name=name,giver=giver,target=target,objective=objective,offer=offer,ending=ending,
-                kind=kind,proof=proof,flag=flag,reward=reward,quantity=quantity)
+                kind=kind,proof=proof,flag=flag,reward=reward,quantity=quantity,questions=list(questions),seconds=seconds)
 
 
 CAMPAIGNS = [
@@ -84,7 +87,10 @@ q('Tres huellas, un informe','edda','edda','Revisa los tres atriles del cuaderno
 q('El ámbar no cuenta todo','edda','alma','Lleva Aerodactyl al museo de Plateada.','El laboratorio puede recuperar un Aerodactyl del Ámbar Viejo. Muéstralo a Alma: estudiar un ser vivo exige cuidado, no solo entusiasmo.','Alma separa hechos y conjeturas en la exposición. Tu Aerodactyl permanece contigo; el museo conserva únicamente sus observaciones.',proof=('QUEST_PARTY_EITHER','SPECIES_AERODACTYL','SPECIES_NONE')),
 q('Un puente hacia Sete','alma','nilo','Entrega el informe a Nilo en Isla Uno.','Las copias se compartirán con el archivo de Celio. Cuando seas Campeón, busca a Nilo en el Centro Pokémon de Isla Uno.','Nilo recibe el informe y permite contrastarlo con los archivos de Sete. No necesita extraer una sola piedra de las ruinas.',flag='FLAG_IS_CHAMPION'),
 q('Un alfabeto, muchas voces','nilo','tala','Muestra Unown a Tala, en Valle Ruinas.','Tala estudia cómo cambian los signos entre islas. Lleva un Unown para comparar sus formas; no lo entregarás ni lo dejarás en las ruinas.','Tala encuentra diferencias entre los signos. Los Unown ayudan a leerlos, pero no convierten una interpretación en verdad absoluta.',proof=('QUEST_PARTY_EITHER','SPECIES_UNOWN','SPECIES_NONE')),
-q('El atril de Monan','tala','monan','Resuelve el orden del atril de Monan.','El atril ordena tres etapas: primero roca, después agua y al final vida. Lee sus preguntas en la Cámara Monan. Puedes volver a intentarlo.','La secuencia abre el índice de la cámara, no una puerta sellada. El índice describe intercambios entre comunidades, sin un reino perdido.',kind='puzzle'),
+q('El atril de Monan','tala','monan','Resuelve el orden del atril de Monan.','El atril ordena tres etapas: primero roca, después agua y al final vida. Lee sus preguntas en la Cámara Monan. Puedes volver a intentarlo.','La secuencia abre el índice de la cámara, no una puerta sellada. El índice describe intercambios entre comunidades, sin un reino perdido.',kind='puzzle',questions=(
+    ('Recuerda: roca, agua y vida. ¿La roca va antes que el agua?',True),
+    ('Recuerda: roca, agua y vida. ¿La vida va antes que la roca?',False),
+    ('Recuerda: roca, agua y vida. ¿La vida ocupa el último lugar?',True))),
 q('Una memoria compartida','tala','alma','Presenta las conclusiones en el museo.','Lleva las conclusiones a Alma. La exposición debe explicar qué sabemos, qué ignoramos y por qué las piezas siguen en sus lugares.','La sala dedica su nueva cartela a las comunidades de Kanto y Sete. El expediente queda abierto a futuras preguntas, pero esta investigación concluye.',reward='ITEM_BOTTLE_CAP',quantity=1),
 ]),
 ('LA RED Y SUS VOCES','Una fuga de datos obliga a Bill y Silph a reconstruir confianza, no solo cables.',[
@@ -149,8 +155,12 @@ q('El tesoro que permanece','mara','alma','Visita la nueva cartela del museo.','
 ]),
 ('EL CAMINO DE VUELTA','Orientación, juego y expediciones cortas preparan un regreso con todos a salvo.',[
 q('Antes de dar el primer paso','lina','riel','Consulta a Riel en Ruta 22.','Riel organiza prácticas de orientación entre Ruta 22 y Ciudad Verde. Habla con él: no necesitarás abandonar a ningún compañero.','Riel explica el trayecto y sus puestos. Si una práctica se interrumpe, se vuelve a empezar sin perder el encargo.',flag='FLAG_BADGE01_GET'),
-q('Un mensaje en el camino','riel','lina','Habla con Riel y llega a Lina en 45 segundos.','Inicia la práctica hablando otra vez con Riel en Ruta 22. Lleva su mensaje a Lina en Ciudad Verde antes de 45 segundos. Puedes reintentarlo.','Lina recibe el mensaje a tiempo. Una llegada segura vale más que el récord; Riel conserva el puesto para nuevas prácticas.',kind='race'),
-q('La memoria del sendero','lina','silva','Resuelve las preguntas de Silva.','Silva propone recordar el orden roca, agua y vida con un juego de preguntas. Un error reinicia el juego, no tu aventura.','Silva entrega la secuencia correcta al grupo. El juego enseña a confirmar señales antes de seguir una ruta.',kind='puzzle'),
+q('Un mensaje en el camino','riel','lina','Habla con Riel y llega a Lina en 45 segundos.','Inicia la práctica hablando otra vez con Riel en Ruta 22. Lleva su mensaje a Lina en Ciudad Verde antes de 45 segundos. Puedes reintentarlo.','Lina recibe el mensaje a tiempo. Una llegada segura vale más que el récord; Riel conserva el puesto para nuevas prácticas.',kind='race',seconds=45),
+q('La memoria del sendero','lina','silva','Resuelve las preguntas de Silva.','Silva propone recordar el orden roca, agua y vida con un juego de preguntas. Un error reinicia el juego, no tu aventura.','Silva entrega la secuencia correcta al grupo. El juego enseña a confirmar señales antes de seguir una ruta.',kind='puzzle',questions=(
+    ('Silva señala el sendero. ¿El agua viene justo tras la roca?',True),
+    ('Silva repasa la pista. ¿La roca cierra la secuencia?',False),
+    ('Silva cambia el orden. ¿El agua va antes que la roca?',False),
+    ('Silva mira el mapa. ¿La vida sigue al agua?',True))),
 q('Preparar la expedición','silva','gael','Entrega dos Superrepelentes a Gael.','Ya como Campeón, Gael prepara una expedición de cinco puestos en Cañón Sétano. Entrega dos Superrepelentes para la reserva común.','Gael guarda las provisiones de la expedición. No se retira tu equipo ni se modifica lo que llevas equipado.',kind='delivery',proof=('ITEM_SUPER_REPEL',2),flag='FLAG_IS_CHAMPION'),
 q('Cinco puestos, una ruta','gael','gael','Recorre los cinco puestos de Cañón Sétano.','Pasa por los cinco puestos señalados de Cañón Sétano y regresa a Gael. El cuaderno conserva cada puesto visitado aunque guardes y salgas.','Gael comprueba los cinco sellos. Todos los puestos conservan una indicación de regreso; la expedición no termina en el lugar más lejano.',kind='clues'),
 q('Un relevo en Camino Verde','gael','belen','Lleva el informe a Belén en Camino Verde.','Belén comparará la expedición con su patrulla de Isla Seis. Llévale el informe para que otros puedan escoger una ruta adecuada.','Belén incorpora caminos de retorno más cortos para quienes los necesiten. La ruta deja de depender de un único guía.'),

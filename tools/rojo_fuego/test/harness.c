@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 static void nolog(struct mLogger *l, int c, enum mLogLevel lv, const char *f, va_list a) { (void)l; (void)c; (void)lv; (void)f; (void)a; }
 static struct mLogger sLogger = { .log = nolog };
@@ -76,7 +77,18 @@ int main(int argc, char **argv)
     buffer = calloc(w * h, sizeof(color_t));
     core->setVideoBuffer(core, buffer, w);
     if (!mCoreLoadFile(core, argv[1])) { fprintf(stderr, "load failed\n"); return 1; }
-    struct VFile *sav = VFileMemChunk(NULL, 0);
+    // A memory chunk crashed mGBA on the first flash save (story `save` case): resizing it
+    // moved the buffer mGBA had mapped. Use a private, erased 128 KiB file like a real .sav;
+    // it is unlinked at once, so no save is left behind and personal saves are never used.
+    char savePath[] = "/tmp/rf-harness-save-XXXXXX";
+    int saveFd = mkstemp(savePath);
+    if (saveFd < 0) { fprintf(stderr, "no save file\n"); return 1; }
+    unsigned char erased[4096];
+    memset(erased, 0xFF, sizeof erased);
+    for (int i = 0; i < 0x20000 / (int)sizeof erased; i++)
+        if (write(saveFd, erased, sizeof erased) != (ssize_t)sizeof erased) { fprintf(stderr, "save write failed\n"); return 1; }
+    struct VFile *sav = VFileFromFD(saveFd);
+    unlink(savePath);
     core->loadSave(core, sav);
     core->reset(core);
 

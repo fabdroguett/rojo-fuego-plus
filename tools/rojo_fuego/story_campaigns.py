@@ -167,7 +167,23 @@ def main():
         hint=quoted(a['name']+'. '+PLACES[a['place']]+'.')
         assert len(textwrap.wrap(a['name']+'. '+PLACES[a['place']]+'.',32))<=3
         definitions.append('    {%d, %s, %s, %d, %d, %d, %s, %s},'%(actor_ids[key],a['map'],PREFIX+str(actor_ids[key]),a.get('quest',65535),a.get('bit',255),a.get('after',65535),f'COMPOUND_STRING({quoted(a["greeting"],pages=True)})',f'COMPOUND_STRING({hint})'))
-    definitions+=['};','static const struct RFStoryScene sScenes[] = {']
+    definitions+=['};']
+    # Puzzle questions and race texts are scene data; the engine holds no scene-specific text.
+    for i,q in enumerate(quests):
+        if q['questions']:
+            definitions.append(f'static const struct RFStoryQuestion sPuzzle_{i}[] = {{')
+            for text,answer in q['questions']:
+                assert len(textwrap.wrap(text,32))<=2,(q['name'],text)
+                definitions.append(f'    {{COMPOUND_STRING({quoted(text)}), {int(answer)}}},')
+            definitions.append('};')
+        if q['seconds']:
+            giver,target=ACTORS[q['giver']],ACTORS[q['target']]
+            start=f"La práctica empieza ahora. Tienes {q['seconds']} segundos. Habla con {target['name']} en {PLACES[target['place']]}. Puedes volver para reintentarlo."
+            late=f"Llegaste fuera de tiempo. El encargo sigue en el diario. Vuelve con {giver['name']}, en {PLACES[giver['place']]}, para empezar otra vez."
+            restart=f"Vuelve al puesto de salida. La práctica dura {q['seconds']} segundos. Si guardaste y saliste del juego, puedes empezar de nuevo."
+            definitions.append('static const struct RFStoryRace sRace_%d = {%d, COMPOUND_STRING(%s), COMPOUND_STRING(%s), COMPOUND_STRING(%s)};'
+                               %(i,q['seconds'],quoted(start,pages=True),quoted(late,pages=True),quoted(restart,pages=True)))
+    definitions+=['static const struct RFStoryScene sScenes[] = {']
     kinds={'talk':'RF_STORY_TALK','delivery':'RF_STORY_DELIVERY','clues':'RF_STORY_CLUES','battle':'RF_STORY_BATTLE','race':'RF_STORY_RACE','puzzle':'RF_STORY_PUZZLE'}
     for i,q in enumerate(quests):
         condition='QUEST_EVENT';argument='RF_STORY_EVENT';alternative=str(q['id'])
@@ -182,7 +198,9 @@ def main():
         assert len(textwrap.wrap(q['objective'],32))<=3,(i,q['objective'])
         entries += [f'    [RF_QUEST_STORY_{i:03d}] = {{',f'        .name = COMPOUND_STRING({quoted(q["name"])}),',f'        .description = COMPOUND_STRING({desc}),',f'        .prerequisite = {previous}, .requiredFlag = {q["flag"]}, .condition = {condition},',f'        .argument = {argument}, .alternative = {alternative}, .rewardItem = {q["reward"]}, .rewardCount = {q["quantity"]}, .chapter = {q["chapter"]},',extra.rstrip(),'    },']
         trainer=f'TRAINER_RF_STORY_{q["proof"]}' if q['kind']=='battle' else '0'
-        definitions.append('    {%d, %d, %s, %s, 0x%08X, %s, %s},'%(actor_ids[q['giver']],actor_ids[q['target']],kinds[q['kind']],trainer,clue_bits.get(q['id'],0),f'COMPOUND_STRING({quoted(q["offer"],pages=True)})',f'COMPOUND_STRING({quoted(q["ending"],pages=True)})'))
+        puzzle=(f'sPuzzle_{i}',len(q['questions'])) if q['questions'] else ('NULL',0)
+        race=f'&sRace_{i}' if q['seconds'] else 'NULL'
+        definitions.append('    {%d, %d, %s, %s, 0x%08X, %s, %s, %s, %d, %s},'%(actor_ids[q['giver']],actor_ids[q['target']],kinds[q['kind']],trainer,clue_bits.get(q['id'],0),f'COMPOUND_STRING({quoted(q["offer"],pages=True)})',f'COMPOUND_STRING({quoted(q["ending"],pages=True)})',puzzle[0],puzzle[1],race))
     definitions+=['};','static const struct RFStoryContract sContracts[] = {']
     for key,title,item,count,reward,qty,unlock in CONTRACTS:
         definitions.append(f'    {{{actor_ids[key]}, {FIRST+unlock}, {item}, {count}, {reward}, {qty}, COMPOUND_STRING({quoted(title)})}},')

@@ -5,7 +5,8 @@ Los estados describen evidencia del repo actual; no significan que toda la hoja 
 | Funcionalidad | GBA/decomp actual | Decomp desacoplada | Versión moderna |
 |---|---|---|---|
 | Base Pokémon FireRed / mapas Kanto-Islas Sete | Implementado | No iniciado | No iniciado |
-| 350 misiones, IDs estables 0–349 | Implementado; cierre funcional/contenido pendiente | No iniciado | No iniciado |
+| 414 misiones, IDs estables 0–413 (meta 650) | Implementado; Fase A validada, contenido narrativo pendiente | No iniciado | No iniciado |
+| Ocho campañas narrativas (350–413) | Implementado; mGBA de escenas, puzles, carrera y diario | No iniciado | No iniciado |
 | Objetivos captura, recogida, uso y dobles requisitos | Implementado; validación según suite | No iniciado | No iniciado |
 | Campañas completas requeridas por plan/ideas | En desarrollo | No iniciado | No iniciado |
 | Servicios EV/IV, recordador, bayas, tutores | Implementado; ampliaciones del plan pendientes | No iniciado | No iniciado |

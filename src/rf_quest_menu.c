@@ -85,6 +85,14 @@ static void DrawQuestDetails(const u8 *message)
     const u8 *body = COMPOUND_STRING("Sin encargos para este filtro.\nIzq./Der.: cambia de filtro.\nL/R: cambia de capítulo.");
     if (sQuestSelected < RF_QUEST_COUNT && (unlocked || state != RF_QUEST_AVAILABLE))
         body = RFStory_Hint(sQuestSelected);
+    if (message == NULL && unlocked && state == RF_QUEST_AVAILABLE && RFStory_GiverHint(sQuestSelected) != NULL)
+    {
+        // Authored scenes are offered in person, so the journal names who gives them.
+        status = COMPOUND_STRING("Pídelo en persona");
+        StringCopy(gStringVar4, COMPOUND_STRING("Te lo ofrece:\n"));
+        StringAppend(gStringVar4, RFStory_GiverHint(sQuestSelected));
+        body = gStringVar4;
+    }
     if (sEndingPage)
         status = COMPOUND_STRING("{A_BUTTON} Seguir {B_BUTTON} Diario");
 
@@ -275,6 +283,13 @@ static void Task_QuestMenu(u8 taskId)
             return;
         if (state == RF_QUEST_AVAILABLE)
         {
+            // The journal can only point to an authored scene; its giver explains it first.
+            if (RFStory_GiverHint(input) != NULL)
+            {
+                PlaySE(SE_FAILURE);
+                DrawQuestDetails(NULL);
+                return;
+            }
             RFQuests_Accept(input);
         }
         else if (state == RF_QUEST_CLAIMED)
