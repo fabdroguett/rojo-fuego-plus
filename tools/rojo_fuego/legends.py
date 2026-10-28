@@ -134,27 +134,16 @@ GOOD_BEHAVIORS = {"MB_NORMAL", "MB_TALL_GRASS", "MB_SHORT_GRASS", "MB_CAVE", "MB
                   "MB_MOUNTAIN_TOP", "MB_FOOTPRINTS", "MB_INDOOR_ENCOUNTER", "MB_PUDDLE", "MB_FLOWER"}
 LEDGES = {"MB_JUMP_EAST", "MB_JUMP_WEST", "MB_JUMP_NORTH", "MB_JUMP_SOUTH"}
 WALKABLE = GOOD_BEHAVIORS | LEDGES | {"MB_LONG_GRASS", "MB_DEEP_SAND", "MB_THIN_ICE", "MB_CRACKED_ICE",
-                                      "MB_ICE", "MB_SECRET_BASE_WALL", "MB_NO_RUNNING", "MB_STAIRS_OUTSIDE_ABANDONED_SHIP"}
+                                      "MB_ICE", "MB_SECRET_BASE_WALL", "MB_NO_RUNNING", "MB_STAIRS_OUTSIDE_ABANDONED_SHIP",
+                                      "MB_ROCK_STAIRS", "MB_BRIDGE_OVER_OCEAN", "MB_BRIDGE_OVER_POND_LOW",
+                                      "MB_BRIDGE_OVER_POND_MED", "MB_BRIDGE_OVER_POND_HIGH",
+                                      "MB_CYCLING_ROAD_PULL_DOWN", "MB_CYCLING_ROAD_PULL_DOWN_GRASS"}
 
 
 def behaviors():
     text = (ROOT / "include/constants/metatile_behaviors.h").read_text(encoding="utf-8")
     body = text[text.index("enum {"):text.index("};")]
     return re.findall(r"^\s*(MB_\w+)", body, re.M)
-
-
-# FireRed tilesets keep FireRed behavior numbers (metatile_behaviors_frlg.h); fieldmap.c reads
-# them from 32-bit attributes. Names are mapped onto the Emerald names used by WALKABLE.
-FRLG_RENAMES = {"MB_RUNNING_DISALLOWED": "MB_NO_RUNNING"}
-
-
-def frlg_behaviors():
-    text = (ROOT / "include/constants/metatile_behaviors_frlg.h").read_text(encoding="utf-8")
-    names = {}
-    for name, value in re.findall(r"^#define MB_FRLG_(\w+)\s+(0x[0-9A-Fa-f]+|\d+)", text, re.M):
-        emerald = "MB_" + name
-        names[int(value, 0)] = FRLG_RENAMES.get(emerald, emerald)
-    return names
 
 
 def tileset_attribute_files():
@@ -169,6 +158,54 @@ def tileset_attribute_files():
     return result
 
 
+SURFABLE = {"MB_POND_WATER", "MB_DEEP_WATER", "MB_OCEAN_WATER", "MB_FAST_WATER", "MB_SEMI_DEEP_WATER",
+            "MB_CYCLING_ROAD_WATER"}
+
+
+def crossable(grid, x, y, surf):
+    if grid.walkable(x,y): return True
+    return surf and 0<=x<grid.w and 0<=y<grid.h and grid.collision(x,y)==0 and grid.behavior(x,y) in SURFABLE
+
+
+def connection_seeds(grid, open_grid, surf=False):
+    """Border tiles a player can actually walk in from: walkable on both sides of the connection.
+
+    Treating a whole border as an entrance made land behind water or cliffs look reachable
+    (e.g. the plateau of Cerulean Cave next to the Route 24 connection).
+    """
+    seeds=set()
+    for c in grid.data.get('connections') or []:
+        other=open_grid(c['map'])
+        if other is None:
+            continue
+        d,offset=c['direction'],c['offset']
+        if d in ('up','down'):
+            y,oy=(0,other.h-1) if d=='up' else (grid.h-1,0)
+            seeds.update((x,y) for x in range(grid.w) if crossable(grid,x,y,surf) and crossable(other,x-offset,oy,surf))
+        elif d in ('left','right'):
+            x,ox=(0,other.w-1) if d=='left' else (grid.w-1,0)
+            seeds.update((x,y) for y in range(grid.h) if crossable(grid,x,y,surf) and crossable(other,ox,y-offset,surf))
+    return seeds
+
+
+def map_folders():
+    return {json.loads(path.read_text(encoding="utf-8"))["id"]: path.parent.name for path in MAPS.glob("*/map.json")}
+
+
+def grid_opener(layouts, attr_files, mb_names):
+    """open_grid(MAP_ID) for connection checks; None for maps without data."""
+    folders, grids = map_folders(), {}
+
+    def open_grid(map_id):
+        folder = folders.get(map_id)
+        if folder is None:
+            return None
+        if folder not in grids:
+            grids[folder] = MapGrid(folder, layouts, attr_files, mb_names)
+        return grids[folder]
+    return open_grid
+
+
 class MapGrid:
     def __init__(self, folder, layouts, attr_files, mb_names):
         self.folder = folder
@@ -179,22 +216,20 @@ class MapGrid:
         self.blocks = [raw[i] | raw[i + 1] << 8 for i in range(0, len(raw), 2)]
         prim = attr_files[layout["primary_tileset"]].read_bytes()
         sec = attr_files[layout["secondary_tileset"]].read_bytes()
-        # FireRed layouts use 32-bit metatile attributes with the behavior in bits 0-8.
+        # FireRed layouts use 32-bit metatile attributes with the behavior in bits 0-8; the
+        # behavior values already follow the Emerald numbering (e.g. 0x4F rock stairs).
         self.frlg = layout.get("layout_version") == "frlg"
         size = 4 if self.frlg else 2
         self.prim = [int.from_bytes(prim[i:i + size], "little") for i in range(0, len(prim) - size + 1, size)]
         self.sec = [int.from_bytes(sec[i:i + size], "little") for i in range(0, len(sec) - size + 1, size)]
         self.mb_names = mb_names
-        self.frlg_names = frlg_behaviors() if self.frlg else None
 
     def behavior(self, x, y):
         mid = self.blocks[y * self.w + x] & 0x3FF
         attrs = self.prim if mid < 640 else self.sec
         index = mid if mid < 640 else mid - 640
         value = attrs[index] if index < len(attrs) else 0
-        if self.frlg:
-            return self.frlg_names.get(value & 0x1FF, "?")
-        number = value & 0xFF
+        number = value & (0x1FF if self.frlg else 0xFF)
         return self.mb_names[number] if number < len(self.mb_names) else "?"
 
     def collision(self, x, y):
@@ -206,69 +241,94 @@ class MapGrid:
     def walkable(self, x, y):
         return 0 <= x < self.w and 0 <= y < self.h and self.collision(x, y) == 0 and self.behavior(x, y) in WALKABLE
 
-    def find_spots(self, count, own_scripts):
-        events = self.data
-        blocked = set()
-        for obj in events.get("object_events", []):
-            if obj.get("script", "").startswith(SCRIPT_PREFIX):
-                continue
-            blocked.add((obj["x"], obj["y"]))
-        warps = [(w["x"], w["y"]) for w in events.get("warp_events", [])]
-        others = [(e["x"], e["y"]) for key in ("coord_events", "bg_events") for e in events.get(key, [])]
-        # Entry points: warps and walkable border tiles on connected sides
-        starts = [p for p in warps]
-        for conn in events.get("connections") or []:
-            d = conn["direction"]
-            for i in range(self.w if d in ("up", "down") else self.h):
-                p = {"up": (i, 0), "down": (i, self.h - 1), "left": (0, i), "right": (self.w - 1, i)}.get(d)
-                if p and self.walkable(*p):
-                    starts.append(p)
-        dist = {}
-        queue = deque()
-        for p in starts:
-            dist[p] = 0
-            queue.append(p)
+    def passable(self, x, y, surf):
+        return crossable(self, x, y, surf)
+
+    def reachable(self, blocked, open_grid, surf=False):
+        """Distance from warps and truly passable connection borders, on foot or by Surf."""
+        warps = [(w["x"], w["y"]) for w in self.data.get("warp_events", [])]
+        starts = set(warps) | connection_seeds(self, open_grid, surf)
+        dist = {p: 0 for p in starts if p not in blocked}
+        queue = deque(dist)
         while queue:
             x, y = queue.popleft()
             for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                if (nx, ny) in dist or (nx, ny) in blocked or not self.walkable(nx, ny):
+                if (nx, ny) in dist or (nx, ny) in blocked or not self.passable(nx, ny, surf):
                     continue
                 e1, e2 = self.elevation(x, y), self.elevation(nx, ny)
-                if e1 != e2 and e1 not in (0, 15) and e2 not in (0, 15):
+                shore = surf and (not self.walkable(x, y) or not self.walkable(nx, ny))
+                if e1 != e2 and e1 not in (0, 15) and e2 not in (0, 15) and not shore:
                     continue
                 dist[(nx, ny)] = dist[(x, y)] + 1
                 queue.append((nx, ny))
-        # Prefer fully open spots; narrow caves fall back to tiles with walkable sides
-        # (a legend there still leaves a way around it).
-        neighbourhoods = (
-            [(dx, dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1)],
-            [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)],
-        )
-        candidates = []
-        for around in neighbourhoods:
-            for (x, y), d in dist.items():
-                if self.behavior(x, y) not in GOOD_BEHAVIORS or not 2 <= x < self.w - 2 or not 2 <= y < self.h - 2:
-                    continue
-                if not all(self.walkable(x + dx, y + dy) and (x + dx, y + dy) not in blocked for dx, dy in around):
-                    continue
-                if any(abs(x - a) + abs(y - b) < 4 for a, b in warps + others) or any(abs(x - a) + abs(y - b) < 3 for a, b in blocked):
-                    continue
-                candidates.append((d, x, y))
-            if len(candidates) >= count:
+        return dist
+
+    def place(self, scripts, existing, open_grid):
+        """Positions for legend scripts on this map.
+
+        A legend already on good, reachable ground keeps its tile. The others get open spots: on
+        foot first, then land reached by Surf, and only for sea maps a water tile reached by Surf.
+        Returns {script: (x, y, elevation, mode)} with mode "kept", "foot", "surf" or "water".
+        """
+        events = self.data
+        blocked = {(o["x"], o["y"]) for o in events.get("object_events", [])
+                   if not o.get("script", "").startswith(SCRIPT_PREFIX)}
+        warps = [(w["x"], w["y"]) for w in events.get("warp_events", [])]
+        others = [(e["x"], e["y"]) for key in ("coord_events", "bg_events") for e in events.get(key, [])]
+        foot = self.reachable(blocked, open_grid)
+        result, chosen = {}, []
+        for script in scripts:
+            pos = existing.get(script)
+            if pos and pos in foot and self.behavior(*pos) in GOOD_BEHAVIORS:
+                result[script] = (pos[0], pos[1], self.elevation(*pos), "kept")
+                chosen.append(pos)
+        missing = [script for script in scripts if script not in result]
+        # "tight" serves narrow caves: smaller margins, but a legend may never cut off any tile.
+        for mode in ("foot", "tight", "surf", "water"):
+            if not missing:
                 break
-        if not candidates:
-            raise SystemExit(f"{self.folder}: no open reachable spot")
-        candidates.sort()
-        chosen = []
-        # Spread from the farthest open spots, keeping legends apart
-        for d, x, y in reversed(candidates[len(candidates) // 3:] or candidates):
-            if all(abs(x - a) + abs(y - b) >= 5 for a, b in chosen):
+            surf = mode in ("surf", "water")
+            dist = self.reachable(blocked, open_grid, surf=True) if surf else foot
+            stand = SURFABLE if mode == "water" else GOOD_BEHAVIORS
+            if mode == "tight":
+                neighbourhoods = ([(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)],)
+                margin_events, margin_objects, spacing = 2, 2, 3
+            else:
+                neighbourhoods = (
+                    [(dx, dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1)],
+                    [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)],
+                )
+                margin_events, margin_objects, spacing = 4, 3, 5
+            candidates = []
+            for around in neighbourhoods:
+                for (x, y), d in dist.items():
+                    if self.behavior(x, y) not in stand or not 2 <= x < self.w - 2 or not 2 <= y < self.h - 2:
+                        continue
+                    if mode == "tight":
+                        if sum((x + dx, y + dy) in dist for dx, dy in around[1:]) < 2:
+                            continue
+                    elif not all((x + dx, y + dy) in dist for dx, dy in around):
+                        continue
+                    if any(abs(x - a) + abs(y - b) < margin_events for a, b in warps + others) \
+                            or any(abs(x - a) + abs(y - b) < margin_objects for a, b in blocked):
+                        continue
+                    candidates.append((d, x, y))
+                if len(candidates) >= len(missing):
+                    break
+            candidates.sort()
+            # Spread from the farthest open spots, keeping legends apart
+            for d, x, y in reversed(candidates[len(candidates) // 3:] or candidates):
+                if not missing or not all(abs(x - a) + abs(y - b) >= spacing for a, b in chosen):
+                    continue
+                if mode == "tight":
+                    occupied = blocked | set(chosen) | {(x, y)}
+                    if set(dist) - occupied - set(self.reachable(occupied, open_grid)):
+                        continue
+                result[missing.pop(0)] = (x, y, self.elevation(x, y), mode)
                 chosen.append((x, y))
-            if len(chosen) == count:
-                break
-        if len(chosen) < count:
-            raise SystemExit(f"{self.folder}: only {len(chosen)} spots for {count} legends")
-        return [(x, y, self.elevation(x, y)) for x, y in chosen]
+        if missing:
+            raise SystemExit(f"{self.folder}: no reachable spot for {len(missing)} legends")
+        return result
 
 
 def species_names():
@@ -309,12 +369,16 @@ def main():
         if len(kept) != len(objects) and path.parent.name not in by_map:
             data["object_events"] = kept
             write(path, json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+    open_grid = grid_opener(layouts, attr_files, mb_names)
     for folder, members in sorted(by_map.items()):
         grid = MapGrid(folder, layouts, attr_files, mb_names)
-        spots = grid.find_spots(len(members), True)
         data = grid.data
+        existing = {o["script"]: (o["x"], o["y"]) for o in data.get("object_events", [])
+                    if o.get("script", "").startswith(SCRIPT_PREFIX)}
+        placed = grid.place([f"{SCRIPT_PREFIX}{index:03d}" for index, _, _, _ in members], existing, open_grid)
+        spots = [placed[f"{SCRIPT_PREFIX}{index:03d}"] for index, _, _, _ in members]
         data["object_events"] = [o for o in data.get("object_events", []) if not o.get("script", "").startswith(SCRIPT_PREFIX)]
-        for (index, saga, species, _), (x, y, elevation) in zip(members, spots):
+        for (index, saga, species, _), (x, y, elevation, _) in zip(members, spots):
             data["object_events"].append({
                 "type": "object",
                 "graphics_id": f"OBJ_EVENT_GFX_SPECIES({species[8:]})",
@@ -330,8 +394,9 @@ def main():
         if len(data["object_events"]) > 64:
             raise SystemExit(f"{folder}: too many object events")
         write(MAPS / folder / "map.json", json.dumps(data, indent=2, ensure_ascii=False) + "\n")
-        for (index, _, species, _), (x, y, _) in zip(members, spots):
-            print(f"{index:03d} {species[8:]:<14} {folder} ({x},{y})")
+        for (index, _, species, _), (x, y, _, mode) in zip(members, spots):
+            if mode != "kept":
+                print(f"{index:03d} {species[8:]:<14} {folder} ({x},{y}) {mode}")
 
     # Scripts
     lines = ["@ Rojo Fuego+ legendary sagas. Generated by tools/rojo_fuego/legends.py; do not edit.", ""]

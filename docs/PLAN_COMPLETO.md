@@ -25,7 +25,7 @@ Al validarlas se corrigieron dos fallos del generador de actores que afectaban a
 enviadas: bordes de conexión dados por transitables aunque al otro lado hubiera agua o acantilado,
 y atributos de tiles de FireRed leídos como de 16 bits. 20 actores existentes se recolocaron en tierra
 alcanzable (p. ej. Leila estaba en la meseta de la cueva Celeste y Hana en el agua de Carmín).
-**Pendiente:** 23 legendarios de `legends.py` siguen en agua o sobre un botón de Fuerza (ver CONTINUIDAD).
+Los 23 legendarios mal situados se recolocaron después (117/117 visibles y alcanzables en mGBA; ver CONTINUIDAD).
 
 **Siguiente:** recolocar esos legendarios con la clasificación corregida; lote 2 reconvirtiendo
 registros genéricos (con migración de los IDs que cambien de significado).

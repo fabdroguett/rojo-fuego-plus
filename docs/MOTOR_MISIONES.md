@@ -80,7 +80,8 @@ El validador comprueba referencias, grupos, cantidades y ciclos entre prerrequis
   los IDs, etiquetas y local IDs ya enviados no cambian.
 - Colocación: solo en casillas alcanzables a pie desde warps o desde bordes transitables a ambos
   lados de la conexión; si un mapa solo se alcanza surfeando se usa ese respaldo y el catálogo lo
-  marca (`surf`). `MapGrid` lee los atributos de 32 bits de los tilesets de FireRed.
+  marca (`surf`). `MapGrid` lee los atributos de 32 bits de los tilesets de FireRed; su
+  comportamiento (bits 0–8) ya usa la numeración de Emerald (`metatile_behaviors.h`).
 
 ## Pendiente de usar en contenido (Fase C)
 

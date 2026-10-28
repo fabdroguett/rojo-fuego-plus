@@ -157,9 +157,9 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(JIRACHI)",
-      "x": 3,
-      "y": 28,
-      "elevation": 1,
+      "x": 16,
+      "y": 7,
+      "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,

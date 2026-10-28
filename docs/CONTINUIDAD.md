@@ -1,5 +1,22 @@
 # Continuidad de ejecución
 
+## Legendarios recolocados (28-10-2026)
+
+- `legends.py`: los atributos de tiles FRLG son de 32 bits pero su comportamiento ya está en la
+  numeración de Emerald (0x4F escaleras de roca, 0x20 hielo); la traducción con nombres FRLG era
+  errónea y se retiró. Escaleras, puentes y pendientes de la Ruta Ciclista cuentan como transitables.
+- Colocación: se conserva cada legendario ya situado en suelo alcanzable; el resto se recoloca a pie,
+  en modo ajustado para cuevas estrechas (sin cortar el paso), en tierra alcanzable surfeando o, como
+  último recurso, en agua. Resultado: 109 a pie, 6 surfeando, 2 en agua (Thundurus e Iron Jugulis,
+  Ruta 17). 23 movidos; `docs/LEYENDAS.md` regenerado. 4 actores de campaña se recolocaron con la
+  clasificación corregida (baliza y tres puestos del Cañón Sétano).
+- `src/wild_encounter_ow.c`: falta de paleta o tiles para un salvaje visible ya no muestra la
+  pantalla de aserción (las ROM sin `RELEASE` se detenían con «could not load sprite tiles»); se
+  omite esa aparición.
+- Verificador: nuevo caso `legends` (117 legendarios con su saga activa, dos lecturas por la carga de
+  mapas con presentación); lecturas puestas a cero antes de cada consulta en `actors` y `legends`,
+  porque una consulta que no se ejecutaba repetía el valor anterior y daba falsos PASS.
+
 ## Misiones: Fase C, lote 1 (28-10-2026)
 
 430 misiones; campañas «Censo de la hierba alta» (414–421) y «La escuela del camino» (422–429).

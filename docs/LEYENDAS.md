@@ -36,7 +36,7 @@ LEYENDAS DE KANTO · requisito: 4 medallas · Nv. 42 · premio: 5 × `ITEM_ULTRA
 | Pokémon | Mapa | Casilla |
 |---|---|---|
 | Tapu Koko | Route12 | (16, 64) |
-| Tapu Lele | Route13 | (40, 17) |
+| Tapu Lele | Route13 | (27, 12) |
 | Tapu Bulu | Route14 | (19, 37) |
 | Tapu Fini | Route15 | (18, 7) |
 
@@ -47,8 +47,8 @@ LEYENDAS DE KANTO · requisito: 5 medallas · Nv. 45 · premio: 5 × `ITEM_ULTRA
 | Pokémon | Mapa | Casilla |
 |---|---|---|
 | Tornadus | Route16 | (40, 9) |
-| Thundurus | Route17 | (19, 3) |
-| Landorus | Route18 | (4, 17) |
+| Thundurus | Route17 | (17, 3) |
+| Landorus | Route18 | (26, 8) |
 | Enamorus | Route7 | (12, 3) |
 
 ## Bestias legendarias
@@ -79,7 +79,7 @@ LEYENDAS DE KANTO · requisito: 7 medallas · Nv. 55 · premio: 3 × `ITEM_PP_UP
 | Pokémon | Mapa | Casilla |
 |---|---|---|
 | Regirock | RockTunnel_B1F | (26, 30) |
-| Regice | FourIsland_IcefallCave_B1F | (18, 4) |
+| Regice | FourIsland_IcefallCave_B1F | (9, 8) |
 | Registeel | MtEmber_RubyPath_B1F | (5, 20) |
 | Regieleki | PowerPlant | (46, 27) |
 | Regidrago | MtEmber_Exterior | (13, 44) |
@@ -90,7 +90,7 @@ LEYENDAS DE KANTO · requisito: 7 medallas · Nv. 55 · premio: 3 × `ITEM_PP_UP
 
 | Pokémon | Mapa | Casilla |
 |---|---|---|
-| Latias | OneIsland_TreasureBeach | (18, 21) |
+| Latias | OneIsland_TreasureBeach | (16, 25) |
 | Latios | TwoIsland_CapeBrink | (7, 27) |
 
 ## Sueños y pesadillas
@@ -109,7 +109,7 @@ LEYENDAS DE KANTO · requisito: 8 medallas · Nv. 60 · premio: 2 × `ITEM_PP_MA
 | Pokémon | Mapa | Casilla |
 |---|---|---|
 | Heatran | MtEmber_RubyPath_1F | (20, 9) |
-| Volcanion | OneIsland_KindleRoad | (14, 122) |
+| Volcanion | OneIsland_KindleRoad | (13, 120) |
 
 ## Colosos del clima
 
@@ -117,9 +117,9 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 70 · premio: 1 × `ITEM_MASTER
 
 | Pokémon | Mapa | Casilla |
 |---|---|---|
-| Kyogre | SixIsland_WaterPath | (21, 57) |
+| Kyogre | SixIsland_WaterPath | (16, 67) |
 | Groudon | SevenIsland_SevaultCanyon | (6, 27) |
-| Rayquaza | SixIsland_OutcastIsland | (14, 13) |
+| Rayquaza | SixIsland_OutcastIsland | (11, 25) |
 
 ## Rey de los gólems
 
@@ -146,7 +146,7 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 70 · premio: 1 × `ITEM_MASTER
 | Pokémon | Mapa | Casilla |
 |---|---|---|
 | Reshiram | FiveIsland_LostCave_Entrance | (7, 3) |
-| Zekrom | SixIsland_GreenPath | (35, 15) |
+| Zekrom | SixIsland_GreenPath | (38, 15) |
 | Kyurem | FourIsland_IcefallCave_1F | (8, 16) |
 
 ## Vida, muerte y orden
@@ -156,7 +156,7 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 70 · premio: 3 × `ITEM_PP_MAX
 | Pokémon | Mapa | Casilla |
 |---|---|---|
 | Xerneas | ThreeIsland_BerryForest | (4, 11) |
-| Yveltal | FiveIsland_MemorialPillar | (20, 52) |
+| Yveltal | FiveIsland_MemorialPillar | (7, 39) |
 | Zygarde | SixIsland_PatternBush | (29, 5) |
 
 ## El sol y la luna
@@ -168,7 +168,7 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 65 · premio: 3 × `ITEM_PP_MAX
 | Cosmog | FiveIsland_Meadow | (20, 23) |
 | Type Null | FiveIsland_Meadow | (18, 10) |
 | Solgaleo | SevenIsland_SevaultCanyon_Entrance | (5, 30) |
-| Lunala | SevenIsland_TanobyRuins | (141, 17) |
+| Lunala | SevenIsland_TanobyRuins | (65, 3) |
 | Necrozma | SixIsland_AlteringCave | (6, 4) |
 
 ## Héroes de Galar
@@ -180,7 +180,7 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 70 · premio: 1 × `ITEM_MASTER
 | Zacian | Route23 | (20, 77) |
 | Zamazenta | Route22 | (10, 17) |
 | Eternatus | VictoryRoad_3F | (6, 10) |
-| Kubfu | Route21_North | (20, 24) |
+| Kubfu | Route21_North | (6, 29) |
 
 ## La corona de Galar
 
@@ -188,7 +188,7 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 70 · premio: 3 × `ITEM_PP_MAX
 
 | Pokémon | Mapa | Casilla |
 |---|---|---|
-| Calyrex | FiveIsland_ResortGorgeous | (63, 16) |
+| Calyrex | FiveIsland_ResortGorgeous | (44, 3) |
 | Glastrier | FourIsland_IcefallCave_Entrance | (19, 7) |
 | Spectrier | Route8 | (36, 3) |
 
@@ -221,7 +221,7 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 70 · premio: 1 × `ITEM_MASTER
 |---|---|---|
 | Lugia | SeafoamIslands_B2F | (25, 13) |
 | Ho Oh | MtEmber_Exterior | (10, 41) |
-| Deoxys | SevenIsland_TanobyRuins | (136, 17) |
+| Deoxys | SevenIsland_TanobyRuins | (121, 14) |
 
 ## Singulares de Kanto
 
@@ -231,7 +231,7 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 65 · premio: 3 × `ITEM_PP_MAX
 |---|---|---|
 | Mew | PokemonMansion_B1F | (24, 25) |
 | Celebi | ViridianForest | (39, 6) |
-| Jirachi | FiveIsland_Meadow | (3, 28) |
+| Jirachi | FiveIsland_Meadow | (16, 7) |
 | Zarude | ViridianForest | (34, 6) |
 | Arceus | IndigoPlateau_Exterior | (12, 11) |
 
@@ -241,8 +241,8 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 65 · premio: 3 × `ITEM_PP_MAX
 
 | Pokémon | Mapa | Casilla |
 |---|---|---|
-| Manaphy | FiveIsland_ResortGorgeous | (60, 14) |
-| Phione | OneIsland_TreasureBeach | (17, 17) |
+| Manaphy | FiveIsland_ResortGorgeous | (37, 11) |
+| Phione | OneIsland_TreasureBeach | (12, 24) |
 | Shaymin | ThreeIsland_BerryForest | (4, 16) |
 | Victini | Route11 | (33, 3) |
 
@@ -255,7 +255,7 @@ LEYENDAS DEL MUNDO · requisito: Campeón · Nv. 65 · premio: 3 × `ITEM_PP_MAX
 | Genesect | Route10 | (18, 37) |
 | Meloetta | Route16 | (35, 13) |
 | Diancie | DiglettsCave_B1F | (38, 36) |
-| Hoopa | Route23 | (9, 78) |
+| Hoopa | Route23 | (17, 74) |
 | Magearna | PowerPlant | (45, 7) |
 | Marshadow | PokemonTower_1F | (6, 5) |
 | Zeraora | Route10 | (20, 68) |
@@ -269,7 +269,7 @@ ULTRAENTES Y PARADOJAS · requisito: Campeón · Nv. 65 · premio: 5 × `ITEM_BE
 
 | Pokémon | Mapa | Casilla |
 |---|---|---|
-| Nihilego | Route21_South | (7, 26) |
+| Nihilego | Route21_South | (13, 45) |
 | Buzzwole | SafariZone_East | (41, 17) |
 | Pheromosa | SafariZone_North | (27, 20) |
 | Xurkitree | SafariZone_West | (26, 29) |
@@ -300,9 +300,9 @@ ULTRAENTES Y PARADOJAS · requisito: Campeón · Nv. 70 · premio: 5 × `ITEM_RA
 | Slither Wing | OneIsland_KindleRoad | (16, 118) |
 | Sandy Shocks | SevenIsland_SevaultCanyon | (8, 32) |
 | Roaring Moon | SixIsland_RuinValley | (31, 35) |
-| Walking Wake | SixIsland_GreenPath | (33, 12) |
+| Walking Wake | SixIsland_GreenPath | (40, 16) |
 | Gouging Fire | MtEmber_Exterior | (12, 36) |
-| Raging Bolt | SixIsland_OutcastIsland | (19, 14) |
+| Raging Bolt | SixIsland_OutcastIsland | (11, 22) |
 
 ## Ecos del futuro
 
@@ -311,9 +311,9 @@ ULTRAENTES Y PARADOJAS · requisito: Campeón · Nv. 70 · premio: 5 × `ITEM_RA
 | Pokémon | Mapa | Casilla |
 |---|---|---|
 | Iron Treads | Route3 | (45, 15) |
-| Iron Bundle | FourIsland_IcefallCave_B1F | (18, 12) |
+| Iron Bundle | FourIsland_IcefallCave_B1F | (21, 9) |
 | Iron Hands | PowerPlant | (46, 22) |
-| Iron Jugulis | Route17 | (18, 7) |
+| Iron Jugulis | Route17 | (21, 4) |
 | Iron Moth | Route8 | (34, 6) |
 | Iron Thorns | RockTunnel_1F | (31, 20) |
 | Iron Valiant | Route7 | (17, 3) |

@@ -28,7 +28,7 @@
 struct RFStoryFixtureActor {u16 map,x,y,lx,ly;u8 local;const u8 *script;};
 #include "data/rf_story_fixture_actors.h"
 EWRAM_DATA u16 gRFStoryFixtureParams[8] = {0};
-EWRAM_DATA u32 gRFStoryFixtureResult[24] = {0};
+EWRAM_DATA u32 gRFStoryFixtureResult[28] = {0};
 
 static void Mark(u32 id,u32 state)
 {
@@ -264,5 +264,38 @@ void RFStoryFixture_ZeroMoney(void)
 void RFStoryFixture_SetChoice(void)
 {
     RFQuests_SetChoice(gRFStoryFixtureParams[4]);
+    SetMainCallback2(CB2_Overworld);
+}
+
+// Generic warp for placement checks: params[4] = MAP_* value, params[5]/[6] = tile.
+void RFStoryFixture_WarpTo(void)
+{
+    u16 map=gRFStoryFixtureParams[4];
+    SetWarpDestination(map>>8,map&0xFF,-1,0,0);
+    SetMainCallback1(NULL);WarpIntoMap();
+    gSaveBlock1Ptr->location.x=gSaveBlock1Ptr->pos.x=gRFStoryFixtureParams[5];
+    gSaveBlock1Ptr->location.y=gSaveBlock1Ptr->pos.y=gRFStoryFixtureParams[6];
+    SetMainCallback2(CB2_LoadMap);
+}
+
+// [24] = object with local ID params[7] spawned on map params[4]; [25] = state of quest params[0].
+void RFStoryFixture_ReadObject(void)
+{
+    u8 objectId;
+    u16 map=gRFStoryFixtureParams[4];
+    gRFStoryFixtureResult[24]=!TryGetObjectEventIdByLocalIdAndMap(gRFStoryFixtureParams[7],map&0xFF,map>>8,&objectId);
+    gRFStoryFixtureResult[25]=RFQuests_GetState(gRFStoryFixtureParams[0]);
+    SetMainCallback2(CB2_Overworld);
+}
+
+// Diagnostics for objects that fail to appear: [26] = TrySpawnObjectEvent(params[7]) result
+// (OBJECT_EVENTS_COUNT on failure), [27] = sprites in use.
+void RFStoryFixture_SpawnProbe(void)
+{
+    u32 i,used=0;
+    u16 map=gRFStoryFixtureParams[4];
+    gRFStoryFixtureResult[26]=TrySpawnObjectEvent(gRFStoryFixtureParams[7],map&0xFF,map>>8);
+    for(i=0;i<MAX_SPRITES;i++) used+=gSprites[i].inUse;
+    gRFStoryFixtureResult[27]=used;
     SetMainCallback2(CB2_Overworld);
 }

@@ -9,7 +9,7 @@ from pathlib import Path
 import re
 import textwrap
 from story_content import ACTORS, ACTORS_V2, CAMPAIGNS, CHOICES, CLUES, TRAINERS, CONTRACTS, PLACES
-from legends import MapGrid, behaviors, tileset_attribute_files
+from legends import MapGrid, SURFABLE, behaviors, connection_seeds, tileset_attribute_files
 
 ROOT=Path(__file__).resolve().parents[2]
 FIRST=350
@@ -55,35 +55,6 @@ def scripted_traffic(grid):
                     x+=dx;y+=dy
                     if 0<=x<grid.w and 0<=y<grid.h: traffic.add((x,y))
     return traffic
-
-
-def crossable(grid, x, y, surf):
-    if grid.walkable(x,y): return True
-    return surf and 0<=x<grid.w and 0<=y<grid.h and grid.collision(x,y)==0 and grid.behavior(x,y) in SURFABLE
-
-
-def connection_seeds(grid, open_grid, surf=False):
-    """Border tiles a player can actually walk in from: walkable on both sides of the connection.
-
-    Treating a whole border as an entrance made land behind water or cliffs look reachable
-    (e.g. the plateau of Cerulean Cave next to the Route 24 connection).
-    """
-    seeds=set()
-    for c in grid.data.get('connections') or []:
-        other=open_grid(c['map'])
-        if other is None:
-            continue
-        d,offset=c['direction'],c['offset']
-        if d in ('up','down'):
-            y,oy=(0,other.h-1) if d=='up' else (grid.h-1,0)
-            seeds.update((x,y) for x in range(grid.w) if crossable(grid,x,y,surf) and crossable(other,x-offset,oy,surf))
-        elif d in ('left','right'):
-            x,ox=(0,other.w-1) if d=='left' else (grid.w-1,0)
-            seeds.update((x,y) for y in range(grid.h) if crossable(grid,x,y,surf) and crossable(other,ox,y-offset,surf))
-    return seeds
-
-
-SURFABLE={'MB_POND_WATER','MB_DEEP_WATER','MB_OCEAN_WATER','MB_FAST_WATER','MB_SEMI_DEEP_WATER','MB_CYCLING_ROAD_WATER'}
 
 
 def find_spot(grid, occupied, open_grid, surf=False):

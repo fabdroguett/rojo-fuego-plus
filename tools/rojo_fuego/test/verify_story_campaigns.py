@@ -104,8 +104,44 @@ for a in data['actors']:
     if keyname.startswith('clue_'): q=350+int(keyname.split('_')[1]);mode=1
     if keyname=='home_cubone': q=373;mode=2
     if keyname=='cora_lab': q=C1_CENSUS+7;mode=2 # visible once the census is handed in
-    survey+=prepare(q,keyname,mode)+warp(keyname)+shot('actor-'+keyname)+call('Read',1)+read(12)
+    survey+=prepare(q,keyname,mode)+warp(keyname)+shot('actor-'+keyname)+f'w32 {result+12*4:08x} 0\n'+call('Read',1)+read(12)
+    # Second read for maps that finish loading later (preview screens, long interiors).
+    survey+='run 360\n'+f'w32 {result+12*4:08x} 0\n'+call('Read',1)+read(12)
 cases['actors']=(survey,{})
+
+# Every legendary object appears for its active saga next to a tile the player can stand on
+# (land on foot or by Surf, or water for the few sea legends). Positions come from legends.py.
+def legend_survey():
+    import sys
+    sys.path.insert(0,str(ROOT/'tools/rojo_fuego'))
+    from legends import MapGrid, behaviors, tileset_attribute_files, grid_opener
+    layouts={x['id']:x for x in json.loads((ROOT/'data/layouts/layouts.json').read_text(encoding='utf-8'))['layouts'] if x}
+    attrs,mb=tileset_attribute_files(),behaviors();opener=grid_opener(layouts,attrs,mb)
+    groups=(ROOT/'include/constants/map_groups.h').read_text(encoding='utf-8')
+    map_ids={n:int(num)|(int(group)<<8) for n,num,group in re.findall(r'(MAP_\w+)\s*=\s*\((\d+) \| \((\d+) << 8\)\)',groups)}
+    quests={script:43+int(saga) for saga,script in re.findall(r'RF_QUEST_LEGEND_(\d+), (RF_EventScript_Legend_\d+)',(ROOT/'src/data/rf_legends.h').read_text(encoding='utf-8'))}
+    steps,count='',0
+    for path in sorted((ROOT/'data/maps').glob('*_Frlg/map.json')):
+        m=json.loads(path.read_text(encoding='utf-8'))
+        legends=[(i,o) for i,o in enumerate(m.get('object_events',[])) if o.get('script','').startswith('RF_EventScript_Legend_')]
+        if not legends: continue
+        grid=MapGrid(path.parent.name,layouts,attrs,mb)
+        blocked={(o['x'],o['y']) for o in m['object_events']}
+        reach=grid.reachable(blocked,opener,surf=True)
+        for i,o in legends:
+            around=[(o['x']+dx,o['y']+dy) for dx,dy in ((0,1),(0,-1),(1,0),(-1,0))]
+            land=[t for t in around if t in reach and grid.walkable(*t)]
+            x,y=(land or [t for t in around if t in reach])[0]
+            steps+=param(0,quests[o['script']])+param(2,1)+call('PrepareQuest')
+            steps+=param(4,map_ids[m['id']])+param(5,x)+param(6,y)+param(7,i+1)+call('WarpTo',240)
+            # Clear the result first: a read that never runs (frozen game) must not reuse the last one.
+            steps+=shot('legend-'+o['script'][-3:])+f'w32 {result+24*4:08x} 0\n'+call('ReadObject',1)+read(24)
+            # Second read: maps with a preview screen (Rock Tunnel) finish loading later.
+            steps+='run 360\n'+f'w32 {result+24*4:08x} 0\n'+call('ReadObject',1)+read(24)
+            count+=1
+    return steps,count
+legend_steps,LEGEND_COUNT=legend_survey()
+cases['legends']=(legend_steps,{})
 
 report=[]
 for name in args.case or list(cases):
@@ -128,8 +164,16 @@ for name in args.case or list(cases):
         observed={int(ad,16):int(v,16) for ad,v in matches}
         checks={i:observed.get(result+i*4) for i in expected}
         passed=checks==expected
+        if name=='legends':
+            # Two reads per legend: right after loading (maps with a preview screen load later) and
+            # 360 frames on (a wandering wild spawn may have started a battle by then).
+            reads=[int(v,16) for ad,v in matches if int(ad,16)==result+24*4]
+            found=[int(a==1 or b==1) for a,b in zip(reads[0::2],reads[1::2])]
+            passed=len(found)==LEGEND_COUNT and all(v==1 for v in found)
+            checks={'legendsFound':sum(v==1 for v in found),'legendsExpected':LEGEND_COUNT}
         if name=='actors':
-            observed_actors=[int(v,16) for ad,v in matches if int(ad,16)==result+12*4]
+            reads=[int(v,16) for ad,v in matches if int(ad,16)==result+12*4]
+            observed_actors=[int(a==1 or b==1) for a,b in zip(reads[0::2],reads[1::2])]
             passed=len(observed_actors)==len(data['actors']) and all(v==1 for v in observed_actors)
             checks={'actorsFound':sum(v==1 for v in observed_actors),'actorsExpected':len(data['actors'])}
         entry=dict(case=name,theme=theme,passed=passed,checks=checks)
