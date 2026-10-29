@@ -4505,7 +4505,7 @@ static void Cmd_drawlvlupbox(void)
         SetBgAttribute(1, BG_ATTR_PRIORITY, 0);
         ShowBg(0);
         ShowBg(1);
-        HandleBattleWindow(18, 7, 29, 19, WINDOW_BG1);
+        HandleBattleWindow(18, 0, 29, 12, WINDOW_BG1);
         gBattleScripting.drawlvlupboxState = 4;
         break;
     case 4:
@@ -4539,7 +4539,7 @@ static void Cmd_drawlvlupbox(void)
         {
             // Close level up box
             PlaySE(SE_SELECT);
-            HandleBattleWindow(18, 7, 29, 19, WINDOW_BG1 | WINDOW_CLEAR);
+            HandleBattleWindow(18, 0, 29, 12, WINDOW_BG1 | WINDOW_CLEAR);
             gBattleScripting.drawlvlupboxState++;
         }
         break;
@@ -4571,10 +4571,19 @@ static void Cmd_drawlvlupbox(void)
     }
 }
 
+// Header ember and gain mint for the level-up panel (dynamic text colours 1 and 2 of palette 5).
+static void LoadLevelUpWindowAccents(void)
+{
+    static const u16 accents[] = {RGB(31, 22, 9), RGB(14, 27, 21)};
+    LoadPalette(accents, BG_PLTT_ID(5) + 10, sizeof(accents));
+}
+
 static void DrawLevelUpWindow1(void)
 {
     u16 currStats[NUM_STATS];
 
+    gLevelUpWindowLevel = GetMonData(&gParties[B_TRAINER_PLAYER][gBattleStruct->expGetterMonId], MON_DATA_LEVEL);
+    LoadLevelUpWindowAccents();
     GetMonLevelUpWindowStats(&gParties[B_TRAINER_PLAYER][gBattleStruct->expGetterMonId], currStats);
     DrawLevelUpWindowPg1(B_WIN_LEVEL_UP_BOX, gBattleResources->beforeLvlUp->stats, currStats, TEXT_DYNAMIC_COLOR_5, TEXT_DYNAMIC_COLOR_4, TEXT_DYNAMIC_COLOR_6);
 }
@@ -4583,6 +4592,8 @@ static void DrawLevelUpWindow2(void)
 {
     u16 currStats[NUM_STATS];
 
+    gLevelUpWindowLevel = GetMonData(&gParties[B_TRAINER_PLAYER][gBattleStruct->expGetterMonId], MON_DATA_LEVEL);
+    LoadLevelUpWindowAccents();
     GetMonLevelUpWindowStats(&gParties[B_TRAINER_PLAYER][gBattleStruct->expGetterMonId], currStats);
     DrawLevelUpWindowPg2(B_WIN_LEVEL_UP_BOX, currStats, TEXT_DYNAMIC_COLOR_5, TEXT_DYNAMIC_COLOR_4, TEXT_DYNAMIC_COLOR_6);
 }

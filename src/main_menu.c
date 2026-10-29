@@ -15,6 +15,7 @@
 #include "main.h"
 #include "main_menu.h"
 #include "rf_title_screen.h"
+#include "rf_main_menu.h"
 #include "menu.h"
 #include "list_menu.h"
 #include "mystery_event_menu.h"
@@ -281,14 +282,14 @@ static const u8 gText_ContinueMenuBadges[] = _("MEDALLAS");
 #define MENU_TOP_WIN0 1
 #define MENU_TOP_WIN1 5
 #define MENU_TOP_WIN2 1
-#define MENU_TOP_WIN3 9
-#define MENU_TOP_WIN4 13
+#define MENU_TOP_WIN3 11
+#define MENU_TOP_WIN4 14
 #define MENU_TOP_WIN5 17
-#define MENU_TOP_WIN6 21
+#define MENU_TOP_WIN6 20
 #define MENU_WIDTH 26
 #define MENU_HEIGHT_WIN0 2
 #define MENU_HEIGHT_WIN1 2
-#define MENU_HEIGHT_WIN2 6
+#define MENU_HEIGHT_WIN2 8 // Continue card: party, progress and quests
 #define MENU_HEIGHT_WIN3 2
 #define MENU_HEIGHT_WIN4 2
 #define MENU_HEIGHT_WIN5 2
@@ -347,7 +348,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH,
         .height = MENU_HEIGHT_WIN3,
         .paletteNum = 15,
-        .baseBlock = 0x9D
+        .baseBlock = 0xD1
     },
     // OPTION / MYSTERY GIFT
     {
@@ -357,7 +358,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH,
         .height = MENU_HEIGHT_WIN4,
         .paletteNum = 15,
-        .baseBlock = 0xD1
+        .baseBlock = 0x105
     },
     // OPTION / MYSTERY EVENTS
     {
@@ -367,7 +368,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH,
         .height = MENU_HEIGHT_WIN5,
         .paletteNum = 15,
-        .baseBlock = 0x105
+        .baseBlock = 0x139
     },
     // OPTION
     {
@@ -377,7 +378,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH,
         .height = MENU_HEIGHT_WIN6,
         .paletteNum = 15,
-        .baseBlock = 0x139
+        .baseBlock = 0x16D
     },
     // Error message window
     {
@@ -387,7 +388,17 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH_ERROR,
         .height = MENU_HEIGHT_ERROR,
         .paletteNum = 15,
-        .baseBlock = 0x16D
+        .baseBlock = 0x139 // shares the Mystery rows; shown before the menu
+    },
+    // Help line under the menu (Pokémon Ultimate Kanto)
+    {
+        .bg = 0,
+        .tilemapLeft = MENU_LEFT,
+        .tilemapTop = 18,
+        .width = MENU_WIDTH,
+        .height = 2,
+        .paletteNum = 15,
+        .baseBlock = 0x1A1
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -654,6 +665,7 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
     ShowBg(2);
     ShowBg(3);
     CreateTask(Task_MainMenuCheckSaveFile, 0);
+    RFMainMenu_StartBackdrop();
 
     return 0;
 }
@@ -679,7 +691,7 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
         SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR);
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
-        SetGpuReg(REG_OFFSET_BLDY, 7);
+        SetGpuReg(REG_OFFSET_BLDY, 4); // the ember edge marks the choice; others dim slightly
 
         if (IsWirelessAdapterConnected())
             tWirelessAdapterConnected = TRUE;
@@ -757,7 +769,7 @@ static void Task_MainMenuCheckBattery(u8 taskId)
         SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR);
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
-        SetGpuReg(REG_OFFSET_BLDY, 7);
+        SetGpuReg(REG_OFFSET_BLDY, 4); // the ember edge marks the choice; others dim slightly
 
         if (!(RtcGetErrorStatus() & RTC_ERR_FLAG_MASK))
         {
@@ -795,7 +807,7 @@ static void Task_DisplayMainMenu(u8 taskId)
         SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR);
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
-        SetGpuReg(REG_OFFSET_BLDY, 7);
+        SetGpuReg(REG_OFFSET_BLDY, 4); // the ember edge marks the choice; others dim slightly
 
         // Rojo Fuego Plus: night panels (DESIGN.md tokens) over the title's dusk backdrop.
         palette = RGB(2, 2, 3); // night shadow
@@ -829,22 +841,21 @@ static void Task_DisplayMainMenu(u8 taskId)
         default:
             FillWindowPixelBuffer(0, PIXEL_FILL(0xA));
             FillWindowPixelBuffer(1, PIXEL_FILL(0xA));
-            AddTextPrinterParameterized3(0, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
-            AddTextPrinterParameterized3(1, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
+            AddTextPrinterParameterized3(0, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
+            AddTextPrinterParameterized3(1, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
             PutWindowTilemap(0);
             PutWindowTilemap(1);
             CopyWindowToVram(0, COPYWIN_GFX);
             CopyWindowToVram(1, COPYWIN_GFX);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[0], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[1], MAIN_MENU_BORDER_TILE);
+            RFMainMenu_Decorate(gTasks[taskId].tMenuType);
             break;
         case HAS_SAVED_GAME:
             FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
             FillWindowPixelBuffer(3, PIXEL_FILL(0xA));
             FillWindowPixelBuffer(4, PIXEL_FILL(0xA));
-            AddTextPrinterParameterized3(2, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuContinue);
-            AddTextPrinterParameterized3(3, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
-            AddTextPrinterParameterized3(4, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
+            AddTextPrinterParameterized3(2, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuContinue);
+            AddTextPrinterParameterized3(3, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
+            AddTextPrinterParameterized3(4, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
             MainMenu_FormatSavegameText();
             PutWindowTilemap(2);
             PutWindowTilemap(3);
@@ -852,19 +863,17 @@ static void Task_DisplayMainMenu(u8 taskId)
             CopyWindowToVram(2, COPYWIN_GFX);
             CopyWindowToVram(3, COPYWIN_GFX);
             CopyWindowToVram(4, COPYWIN_GFX);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[2], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[3], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[4], MAIN_MENU_BORDER_TILE);
+            RFMainMenu_Decorate(gTasks[taskId].tMenuType);
             break;
         case HAS_MYSTERY_GIFT:
             FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
             FillWindowPixelBuffer(3, PIXEL_FILL(0xA));
             FillWindowPixelBuffer(4, PIXEL_FILL(0xA));
             FillWindowPixelBuffer(5, PIXEL_FILL(0xA));
-            AddTextPrinterParameterized3(2, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuContinue);
-            AddTextPrinterParameterized3(3, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
-            AddTextPrinterParameterized3(4, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuMysteryGift);
-            AddTextPrinterParameterized3(5, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
+            AddTextPrinterParameterized3(2, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuContinue);
+            AddTextPrinterParameterized3(3, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
+            AddTextPrinterParameterized3(4, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuMysteryGift);
+            AddTextPrinterParameterized3(5, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
             MainMenu_FormatSavegameText();
             PutWindowTilemap(2);
             PutWindowTilemap(3);
@@ -874,10 +883,7 @@ static void Task_DisplayMainMenu(u8 taskId)
             CopyWindowToVram(3, COPYWIN_GFX);
             CopyWindowToVram(4, COPYWIN_GFX);
             CopyWindowToVram(5, COPYWIN_GFX);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[2], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[3], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[4], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[5], MAIN_MENU_BORDER_TILE);
+            RFMainMenu_Decorate(gTasks[taskId].tMenuType);
             break;
         case HAS_MYSTERY_EVENTS:
             FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
@@ -885,11 +891,11 @@ static void Task_DisplayMainMenu(u8 taskId)
             FillWindowPixelBuffer(4, PIXEL_FILL(0xA));
             FillWindowPixelBuffer(5, PIXEL_FILL(0xA));
             FillWindowPixelBuffer(6, PIXEL_FILL(0xA));
-            AddTextPrinterParameterized3(2, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuContinue);
-            AddTextPrinterParameterized3(3, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
-            AddTextPrinterParameterized3(4, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuMysteryGift2);
-            AddTextPrinterParameterized3(5, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuMysteryEvents);
-            AddTextPrinterParameterized3(6, FONT_NORMAL, 4, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
+            AddTextPrinterParameterized3(2, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuContinue);
+            AddTextPrinterParameterized3(3, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
+            AddTextPrinterParameterized3(4, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuMysteryGift2);
+            AddTextPrinterParameterized3(5, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuMysteryEvents);
+            AddTextPrinterParameterized3(6, FONT_NORMAL, 24, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
             MainMenu_FormatSavegameText();
             PutWindowTilemap(2);
             PutWindowTilemap(3);
@@ -901,11 +907,7 @@ static void Task_DisplayMainMenu(u8 taskId)
             CopyWindowToVram(4, COPYWIN_GFX);
             CopyWindowToVram(5, COPYWIN_GFX);
             CopyWindowToVram(6, COPYWIN_GFX);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[2], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[3], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[4], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[5], MAIN_MENU_BORDER_TILE);
-            DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[6], MAIN_MENU_BORDER_TILE);
+            RFMainMenu_Decorate(gTasks[taskId].tMenuType);
             tScrollArrowTaskId = AddScrollIndicatorArrowPair(&sScrollArrowsTemplate_MainMenu, &sCurrItemAndOptionMenuCheck);
             gTasks[tScrollArrowTaskId].func = Task_ScrollIndicatorArrowPairOnMainMenu;
             if (sCurrItemAndOptionMenuCheck == 4)
@@ -1227,6 +1229,7 @@ static void Task_DisplayMainMenuInvalidActionError(u8 taskId)
 
 static void HighlightSelectedMainMenuItem(enum PartyMenuType menuType, u8 selectedMenuItem, s16 isScrolled)
 {
+    RFMainMenu_Select(menuType, selectedMenuItem);
     SetGpuReg(REG_OFFSET_WIN0H, MENU_WIN_HCOORDS);
 
     switch (menuType)

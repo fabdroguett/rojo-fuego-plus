@@ -37,6 +37,8 @@
 #include "script.h"
 #include "sound.h"
 #include "start_menu.h"
+#include "rf_main_menu.h"
+#include "region_map.h"
 #include "strings.h"
 #include "string_util.h"
 #include "task.h"
@@ -369,7 +371,7 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 14,
-    .height = 10,
+    .height = 12, // title + six rows (Pokémon Ultimate Kanto)
     .paletteNum = 15,
     .baseBlock = 8
 };
@@ -1618,63 +1620,65 @@ static void Task_SaveAfterLinkBattle(u8 taskId)
     }
 }
 
+// Pokémon Ultimate Kanto save summary: a title, then label/value rows in the small font. Values are
+// mint, the player's name keeps the gender colour; the night theme lifts both for the dark panel.
+static void PrintSaveRow(const u8 *label, const u8 *value, u32 y, u8 valueColor)
+{
+    const u8 labelColors[] = {TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
+    const u8 valueColors[] = {TEXT_COLOR_WHITE, valueColor, TEXT_COLOR_LIGHT_GRAY};
+    AddTextPrinterParameterized3(sSaveInfoWindowId, FONT_SMALL, 0, y, labelColors, TEXT_SKIP_DRAW, label);
+    AddTextPrinterParameterized3(sSaveInfoWindowId, FONT_SMALL, GetStringRightAlignXOffset(FONT_SMALL, value, 0x70), y,
+                                 valueColors, TEXT_SKIP_DRAW, value);
+}
+
 static void ShowSaveInfoWindow(void)
 {
+    static const u8 sTitleColors[] = {TEXT_COLOR_WHITE, TEXT_COLOR_RED, TEXT_COLOR_LIGHT_GRAY};
     struct WindowTemplate saveInfoWindow = sSaveInfoWindowTemplate;
-    enum Gender gender;
-    u8 color;
-    u32 xOffset;
-    u32 yOffset;
+    u8 value[32];
+    u8 *end;
+    u32 y, i, badges = 0;
+    u8 nameColor = gSaveBlock2Ptr->playerGender == MALE ? TEXT_COLOR_BLUE : TEXT_COLOR_RED;
 
     if (!FlagGet(FLAG_SYS_POKEDEX_GET))
-    {
         saveInfoWindow.height -= 2;
-    }
 
     sSaveInfoWindowId = AddWindow(&saveInfoWindow);
     DrawStdWindowFrame(sSaveInfoWindowId, FALSE);
+    AddTextPrinterParameterized3(sSaveInfoWindowId, FONT_NORMAL, 0, 1, sTitleColors, TEXT_SKIP_DRAW, COMPOUND_STRING("GUARDAR PARTIDA"));
+    y = 17;
 
-    gender = gSaveBlock2Ptr->playerGender;
-    color = TEXT_COLOR_RED;  // Red when female, blue when male.
+    GetMapNameGeneric(value, gMapHeader.regionMapSectionId);
+    PrintSaveRow(COMPOUND_STRING("LUGAR"), value, y, TEXT_COLOR_GREEN);
+    y += 13;
+    PrintSaveRow(gText_SavingPlayer, gSaveBlock2Ptr->playerName, y, nameColor);
+    y += 13;
 
-    if (gender == MALE)
-        color = TEXT_COLOR_BLUE;
-
-    // Print region name
-    yOffset = 1;
-    BufferSaveMenuText(SAVE_MENU_LOCATION, gStringVar4, TEXT_COLOR_GREEN);
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, 0, yOffset, TEXT_SKIP_DRAW, NULL);
-
-    // Print player name
-    yOffset += 16;
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingPlayer, 0, yOffset, TEXT_SKIP_DRAW, NULL);
-    BufferSaveMenuText(SAVE_MENU_NAME, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
-    PrintPlayerNameOnWindow(sSaveInfoWindowId, gStringVar4, xOffset, yOffset);
-
-    // Print badge count
-    yOffset += 16;
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingBadges, 0, yOffset, TEXT_SKIP_DRAW, NULL);
-    BufferSaveMenuText(SAVE_MENU_BADGES, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, yOffset, TEXT_SKIP_DRAW, NULL);
+    for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
+        badges += FlagGet(i) == TRUE;
+    end = ConvertIntToDecimalStringN(value, badges, STR_CONV_MODE_LEFT_ALIGN, 1);
+    StringCopy(end, COMPOUND_STRING(" de 8"));
+    PrintSaveRow(gText_SavingBadges, value, y, TEXT_COLOR_GREEN);
+    y += 13;
 
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
     {
-        // Print Pokédex count
-        yOffset += 16;
-        AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingPokedex, 0, yOffset, TEXT_SKIP_DRAW, NULL);
-        BufferSaveMenuText(SAVE_MENU_CAUGHT, gStringVar4, color);
-        xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
-        AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, yOffset, TEXT_SKIP_DRAW, NULL);
+        ConvertIntToDecimalStringN(value, IsNationalPokedexEnabled() ? GetNationalPokedexCount(FLAG_GET_CAUGHT)
+                                                                      : GetRegionalPokedexCount(FLAG_GET_CAUGHT),
+                                   STR_CONV_MODE_LEFT_ALIGN, 4);
+        PrintSaveRow(gText_SavingPokedex, value, y, TEXT_COLOR_GREEN);
+        y += 13;
     }
 
-    // Print play time
-    yOffset += 16;
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingTime, 0, yOffset, TEXT_SKIP_DRAW, NULL);
-    BufferSaveMenuText(SAVE_MENU_PLAY_TIME, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, yOffset, TEXT_SKIP_DRAW, NULL);
+    end = ConvertIntToDecimalStringN(value, gSaveBlock2Ptr->playTimeHours, STR_CONV_MODE_LEFT_ALIGN, 3);
+    *end++ = CHAR_COLON;
+    ConvertIntToDecimalStringN(end, gSaveBlock2Ptr->playTimeMinutes, STR_CONV_MODE_LEADING_ZEROS, 2);
+    PrintSaveRow(gText_SavingTime, value, y, TEXT_COLOR_GREEN);
+    y += 13;
+
+    end = ConvertIntToDecimalStringN(value, RFMainMenu_CountClaimedQuests(), STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringCopy(end, COMPOUND_STRING(" de 430"));
+    PrintSaveRow(COMPOUND_STRING("MISIONES"), value, y, TEXT_COLOR_GREEN);
 
     CopyWindowToVram(sSaveInfoWindowId, COPYWIN_GFX);
 }

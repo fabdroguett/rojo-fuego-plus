@@ -275,7 +275,7 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
     [B_WIN_LEVEL_UP_BOX] = {
         .bg = 1,
         .tilemapLeft = 19,
-        .tilemapTop = 8,
+        .tilemapTop = 1, // top right, over the fainted foe (Pokémon Ultimate Kanto)
         .width = 10,
         .height = 11,
         .paletteNum = 5,
@@ -514,7 +514,7 @@ static const struct WindowTemplate sKantoTutorialBattleWindowTemplates[] =
     [B_WIN_LEVEL_UP_BOX] = {
         .bg = 1,
         .tilemapLeft = 19,
-        .tilemapTop = 8,
+        .tilemapTop = 1, // top right, over the fainted foe (Pokémon Ultimate Kanto)
         .width = 10,
         .height = 11,
         .paletteNum = 5,
@@ -753,7 +753,7 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
     [B_WIN_LEVEL_UP_BOX] = {
         .bg = 1,
         .tilemapLeft = 19,
-        .tilemapTop = 8,
+        .tilemapTop = 1, // top right, over the fainted foe (Pokémon Ultimate Kanto)
         .width = 10,
         .height = 11,
         .paletteNum = 5,
@@ -1028,7 +1028,7 @@ static const struct BattleUiPaletteColor sDayBattleMenuColors[] =
 static void LoadBattleSelectedCellPalette(void)
 {
     u16 colors[16];
-    u16 ink = RF_UI_NIGHT_GROUND, shadow = RF_UI_NIGHT_EDGE;
+    u16 ink = RF_UI_NIGHT_GROUND, shadow = RGB(23, 13, 5); // deep ember: no purple halo on the selection
 
     CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(5)], colors, sizeof(colors));
     colors[14] = RF_UI_BATTLE_SELECTED;

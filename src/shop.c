@@ -47,7 +47,7 @@
 #define TAG_SCROLL_ARROW   2100
 #define TAG_ITEM_ICON_BASE 9110 // immune to time blending
 
-#define MAX_ITEMS_SHOWN 8
+#define MAX_ITEMS_SHOWN 5 // rows of the list panel
 #define SHOP_MENU_PALETTE_ID (gMapHeader.mapLayout->isFrlg ? 11 : 12)
 
 enum {
@@ -62,6 +62,7 @@ enum {
     WIN_QUANTITY_IN_BAG,
     WIN_QUANTITY_PRICE,
     WIN_MESSAGE,
+    WIN_ITEM_CARD, // name and bag count beside the item icon
 };
 
 enum {
@@ -135,6 +136,7 @@ static void BuyMenuSetListEntry(struct ListMenuItem *, enum Item, u8 *);
 static void BuyMenuAddItemIcon(enum Item, u8);
 static void BuyMenuRemoveItemIcon(enum Item, u8);
 static void BuyMenuPrint(u8 windowId, const u8 *text, u8 x, u8 y, s8 speed, u8 colorSet);
+static void BuyMenuPrintMoney(void);
 static void BuyMenuDrawMapGraphics(void);
 static void BuyMenuCopyMenuBgToBg1TilemapBuffer(void);
 static void BuyMenuCollectObjectEventData(void);
@@ -266,52 +268,54 @@ static const struct BgTemplate sShopBuyMenuBgTemplates[] =
     }
 };
 
+// Pokémon Ultimate Kanto layout (tools/rojo_fuego/make_shop_art.py draws the panels behind):
+// list on the left under "TIENDA", money and the item card on the right, description below.
 static const struct WindowTemplate sShopBuyMenuWindowTemplates[] =
 {
     [WIN_MONEY] = {
         .bg = 0,
-        .tilemapLeft = 1,
+        .tilemapLeft = 22,
         .tilemapTop = 1,
-        .width = 10,
+        .width = 7,
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 0x001E,
     },
     [WIN_ITEM_LIST] = {
         .bg = 0,
-        .tilemapLeft = 14,
+        .tilemapLeft = 1,
         .tilemapTop = 2,
-        .width = 15,
-        .height = 16,
+        .width = 14,
+        .height = 10,
         .paletteNum = 15,
-        .baseBlock = 0x0032,
+        .baseBlock = 0x0034,
     },
     [WIN_ITEM_DESCRIPTION] = {
         .bg = 0,
-        .tilemapLeft = 0,
-        .tilemapTop = 13,
-        .width = 14,
-        .height = 6,
+        .tilemapLeft = 1,
+        .tilemapTop = 14,
+        .width = 28,
+        .height = 5,
         .paletteNum = 15,
-        .baseBlock = 0x0122,
+        .baseBlock = 0x00C0,
     },
     [WIN_QUANTITY_IN_BAG] = {
         .bg = 0,
-        .tilemapLeft = 1,
-        .tilemapTop = 11,
-        .width = 12,
+        .tilemapLeft = 19,
+        .tilemapTop = 8,
+        .width = 9,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 0x0176,
+        .baseBlock = 0x014C,
     },
     [WIN_QUANTITY_PRICE] = {
         .bg = 0,
-        .tilemapLeft = 18,
+        .tilemapLeft = 19,
         .tilemapTop = 11,
-        .width = 10,
+        .width = 9,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 0x018E,
+        .baseBlock = 0x015E,
     },
     [WIN_MESSAGE] = {
         .bg = 0,
@@ -320,7 +324,16 @@ static const struct WindowTemplate sShopBuyMenuWindowTemplates[] =
         .width = 27,
         .height = 4,
         .paletteNum = 15,
-        .baseBlock = 0x01A2,
+        .baseBlock = 0x0170,
+    },
+    [WIN_ITEM_CARD] = {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 4,
+        .width = 8,
+        .height = 4,
+        .paletteNum = 15,
+        .baseBlock = 0x01F0,
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -328,12 +341,12 @@ static const struct WindowTemplate sShopBuyMenuWindowTemplates[] =
 static const struct WindowTemplate sShopBuyMenuYesNoWindowTemplates =
 {
     .bg = 0,
-    .tilemapLeft = 21,
-    .tilemapTop = 9,
+    .tilemapLeft = 23,
+    .tilemapTop = 8,
     .width = 5,
     .height = 4,
     .paletteNum = 15,
-    .baseBlock = 0x020E,
+    .baseBlock = 0x01DC,
 };
 
 static const u8 sShopBuyMenuTextColors[][3] =
@@ -633,7 +646,24 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     }
 
     FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
-    BuyMenuPrint(WIN_ITEM_DESCRIPTION, description, 3, 1, 0, COLORID_NORMAL);
+    AddTextPrinterParameterized4(WIN_ITEM_DESCRIPTION, FONT_SMALL, 3, 1, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], 0, description);
+
+    FillWindowPixelBuffer(WIN_ITEM_CARD, PIXEL_FILL(0));
+    if (item != LIST_CANCEL)
+    {
+        if (sMartInfo.martType == MART_TYPE_NORMAL)
+        {
+            AddTextPrinterParameterized4(WIN_ITEM_CARD, FONT_NARROW, 0, 1, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, GetItemName(item));
+            ConvertIntToDecimalStringN(gStringVar1, CountTotalItemQuantityInBag(item), STR_CONV_MODE_LEFT_ALIGN, 4);
+            StringExpandPlaceholders(gStringVar4, gText_InBagVar1);
+            AddTextPrinterParameterized4(WIN_ITEM_CARD, FONT_SMALL, 0, 18, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, gStringVar4);
+        }
+        else
+        {
+            AddTextPrinterParameterized4(WIN_ITEM_CARD, FONT_NARROW, 0, 1, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, gDecorations[item].name);
+        }
+    }
+    CopyWindowToVram(WIN_ITEM_CARD, COPYWIN_FULL);
 }
 
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
@@ -663,7 +693,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
             StringCopy(gStringVar4, gText_SoldOut);
         else
             StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
-        x = GetStringRightAlignXOffset(FONT_NARROW, gStringVar4, 120);
+        x = GetStringRightAlignXOffset(FONT_NARROW, gStringVar4, 108);
         AddTextPrinterParameterized4(windowId, FONT_NARROW, x, y, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, gStringVar4);
     }
 }
@@ -674,9 +704,9 @@ static void BuyMenuAddScrollIndicatorArrows(void)
     {
         sShopData->scrollIndicatorsTaskId = AddScrollIndicatorArrowPairParameterized(
             SCROLL_ARROW_UP,
-            172,
-            12,
-            148,
+            64, // centred on the list panel (Pokémon Ultimate Kanto layout)
+            18,
+            101,
             sMartInfo.itemCount - (MAX_ITEMS_SHOWN - 1),
             TAG_SCROLL_ARROW,
             TAG_SCROLL_ARROW,
@@ -712,13 +742,13 @@ static void BuyMenuAddItemIcon(enum Item item, u8 iconSlot)
         if (spriteId != MAX_SPRITES)
         {
             *spriteIdPtr = spriteId;
-            gSprites[spriteId].x2 = 24;
-            gSprites[spriteId].y2 = 88;
+            gSprites[spriteId].x2 = 156;
+            gSprites[spriteId].y2 = 44;
         }
     }
     else
     {
-        spriteId = AddDecorationIconObject(item, 20, 84, 1, iconSlot + TAG_ITEM_ICON_BASE, iconSlot + TAG_ITEM_ICON_BASE);
+        spriteId = AddDecorationIconObject(item, 152, 40, 1, iconSlot + TAG_ITEM_ICON_BASE, iconSlot + TAG_ITEM_ICON_BASE);
         if (spriteId != MAX_SPRITES)
             *spriteIdPtr = spriteId;
     }
@@ -763,17 +793,15 @@ static void BuyMenuDecompressBgGraphics(void)
 {
     DecompressAndCopyTileDataToVram(1, gShopMenu_Gfx, 0x3A0, 0x3E3, 0);
     DecompressDataWithHeaderWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
-    LoadPalette(gShopMenu_Pal, BG_PLTT_ID(SHOP_MENU_PALETTE_ID), PLTT_SIZE_4BPP);
-    if (KeySystem_IsOn(KEY_DARK_MODE))
+    LoadPalette(gShopMenu_Pal, BG_PLTT_ID(SHOP_MENU_PALETTE_ID), PLTT_SIZE_4BPP); // night panels
+    if (!KeySystem_IsOn(KEY_DARK_MODE))
     {
-        static const u16 surfaces[] = {
-            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_EDGE,
-            RF_UI_NIGHT_GROUND, RF_UI_NIGHT_MUTED, RF_UI_NIGHT_EDGE, // 6: outer rim, no bright rails
+        // Day theme: cream panels under the standard dark-gray window text.
+        // 1 panel, 2 edge, 3 top highlight, 4 accent, 5 header ink, 6 header shadow
+        static const u16 day[] = {
+            RGB(31, 30, 27), RGB(20, 17, 15), RGB(31, 31, 31), RGB(30, 12, 10), RGB(9, 7, 10), RGB(25, 23, 21),
         };
-        // 9/10: the buy list's alternating row bands, 11: its rim
-        static const u16 list[] = {RGB(3, 11, 12), RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE};
-        LoadPalette(surfaces, BG_PLTT_ID(SHOP_MENU_PALETTE_ID) + 1, sizeof(surfaces));
-        LoadPalette(list, BG_PLTT_ID(SHOP_MENU_PALETTE_ID) + 9, sizeof(list));
+        LoadPalette(day, BG_PLTT_ID(SHOP_MENU_PALETTE_ID) + 1, sizeof(day));
     }
 }
 
@@ -786,11 +814,22 @@ static void BuyMenuInitWindows(void)
     PutWindowTilemap(WIN_MONEY);
     PutWindowTilemap(WIN_ITEM_LIST);
     PutWindowTilemap(WIN_ITEM_DESCRIPTION);
+    PutWindowTilemap(WIN_ITEM_CARD);
 }
 
 static void BuyMenuPrint(u8 windowId, const u8 *text, u8 x, u8 y, s8 speed, u8 colorSet)
 {
     AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, 0, 0, sShopBuyMenuTextColors[colorSet], speed, text);
+}
+
+// Frameless and transparent, right-aligned beside the "DINERO" label of the money panel.
+static void BuyMenuPrintMoney(void)
+{
+    ConvertIntToDecimalStringN(gStringVar1, GetMoney(&gSaveBlock1Ptr->money), STR_CONV_MODE_LEFT_ALIGN, MAX_MONEY_DIGITS);
+    StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
+    FillWindowPixelBuffer(WIN_MONEY, PIXEL_FILL(0));
+    AddTextPrinterParameterized4(WIN_MONEY, FONT_NORMAL, GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 54), 1, 0, 0,
+                                 sShopBuyMenuTextColors[COLORID_ITEM_LIST], 0, gStringVar4);
 }
 
 static void BuyMenuDisplayMessage(u8 taskId, const u8 *text, TaskFunc callback)
@@ -803,8 +842,8 @@ static void BuyMenuDrawGraphics(void)
 {
     BuyMenuDrawMapGraphics();
     BuyMenuCopyMenuBgToBg1TilemapBuffer();
-    AddMoneyLabelObject(19, 11);
-    PrintMoneyAmountInMoneyBoxWithBorder(WIN_MONEY, 1, 13, GetMoney(&gSaveBlock1Ptr->money));
+    // "DINERO" is drawn on the money panel (make_shop_art.py); no label sprite.
+    BuyMenuPrintMoney();
     ScheduleBgCopyTilemapToVram(0);
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
@@ -1192,7 +1231,7 @@ static void BuyMenuSubtractMoney(u8 taskId)
     IncrementGameStat(GAME_STAT_SHOPPED);
     RemoveMoney(&gSaveBlock1Ptr->money, sShopData->totalCost);
     PlaySE(SE_SHOP);
-    PrintMoneyAmountInMoneyBox(WIN_MONEY, GetMoney(&gSaveBlock1Ptr->money), 0);
+    BuyMenuPrintMoney();
 
     if (sMartInfo.martType == MART_TYPE_NORMAL)
         gTasks[taskId].func = Task_ReturnToItemListAfterItemPurchase;
@@ -1279,7 +1318,6 @@ static void Task_ExitBuyMenu(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        RemoveMoneyLabelObject();
         BuyMenuFreeMemory();
         SetMainCallback2(CB2_ReturnToField);
         DestroyTask(taskId);

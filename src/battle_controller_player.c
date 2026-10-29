@@ -1708,7 +1708,8 @@ static void LoadBattleCellPalette(u32 bank, u32 icon, u32 state)
     colors[RF_CELL_OUTSIDE] = gPlttBufferUnfaded[BG_PLTT_ID(0) + RF_CELL_OUTSIDE];
     colors[RF_CELL_EDGE] = state == RF_CELL_HELD ? RF_UI_GOLD
                          : (KeySystem_IsOn(KEY_DARK_MODE) ? RF_UI_NIGHT_EDGE : RF_UI_DAY_EDGE);
-    colors[RF_CELL_CURSOR] = state == RF_CELL_IDLE ? colors[RF_CELL_FILL] : RF_UI_GOLD;
+    colors[RF_CELL_CURSOR] = state == RF_CELL_IDLE ? colors[RF_CELL_FILL]
+                           : (state == RF_CELL_SELECTED ? RF_UI_NIGHT_GROUND : RF_UI_GOLD); // gold vanishes on ember
     if (icon >= RF_BATTLE_ICON_COUNT)
         icon = TYPE_NORMAL;
     CpuCopy16(sRFBattleIconRamps[icon], &colors[1], sizeof(sRFBattleIconRamps[icon]));
@@ -1807,7 +1808,7 @@ void DrawBattleActionMenu(const u8 *const *labels, const u8 *icons)
 static const u8 *const sBattleActionLabels[] =
 {
     COMPOUND_STRING("Luchar"),
-    COMPOUND_STRING("Bolsa"),
+    COMPOUND_STRING("Mochila"), // same name as the field menu
     COMPOUND_STRING("Equipo"),
     COMPOUND_STRING("Huir"),
 };

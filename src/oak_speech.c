@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rf_intro_art.h"
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
@@ -124,8 +125,7 @@ extern const struct OamData gOamData_AffineOff_ObjNormal_16x8;
 static const u16 sOakSpeech_Background_Pals[] = INCGFX_U16("graphics/oak_speech/bg_tiles.png", ".gbapal"); // Shared by the Controls Guide, Pikachu Intro and Oak Speech scenes
 static const u32 sControlsGuide_PikachuIntro_Background_Tiles[] = INCGFX_U32("graphics/oak_speech/bg_tiles.png", ".4bpp.smol");
 static const u32 sPikachuIntro_Background_Tilemap[] = INCGFX_U32("graphics/oak_speech/pikachu_intro/tilemap.bin", ".smolTM");
-static const u32 sOakSpeech_Background_Tiles[] = INCGFX_U32("graphics/oak_speech/oak_speech_bg.png", ".4bpp.smol");
-static const u32 sOakSpeech_Background_Tilemap[] = INCGFX_U32("graphics/oak_speech/oak_speech_bg.bin", ".smolTM");
+// The professor's backdrop is the dusk lab of Pokémon Ultimate Kanto (rf_intro_art.c).
 static const u16 sControlsGuide_Tilemap_Page2[] = INCBIN_U16("graphics/oak_speech/controls_guide_page_2.bin");
 static const u16 sControlsGuide_Tilemap_Page3[] = INCBIN_U16("graphics/oak_speech/controls_guide_page_3.bin");
 static const u16 sOakSpeech_Leaf_Pal[] = INCGFX_U16("graphics/oak_speech/leaf/pal.pal", ".gbapal");
@@ -333,8 +333,8 @@ static const struct WindowTemplate sIntro_WindowTemplates[NUM_INTRO_WINDOWS + 1]
     DUMMY_WIN_TEMPLATE
 };
 
-static const u8 sTextColor_White[] = { 0, 1, 2, 0 };
-static const u8 sTextColor_DarkGray[] = { 0, 2, 3, 0 };
+static const u8 sTextColor_White[] = { 0, 2, 3, 0 }; // night theme: 2 is the ink, 3 its shadow
+static const u8 sTextColor_DarkGray[] = { 0, 2, 3, 0 }; // night theme: 2 is the ink, 3 its shadow
 
 enum
 {
@@ -760,6 +760,7 @@ static void Task_NewGameScene(u8 taskId)
         Menu_LoadStdPalAt(BG_PLTT_ID(13));
         LoadPalette(sOakSpeech_Background_Pals, BG_PLTT_ID(0), sizeof(sOakSpeech_Background_Pals));
         LoadPalette(GetTextWindowPalette(2) + 15, BG_PLTT_ID(0), PLTT_SIZEOF(1));
+        RFIntro_LoadGuidePalette(); // night backdrop and panels for the controls guide and welcome
         break;
     case 5:
         sOakSpeechResources->textSpeed = GetPlayerTextSpeedDelay();
@@ -836,7 +837,7 @@ static void Task_ControlsGuide_LoadPage(u8 taskId)
             CopyToBgTilemapBufferRect(1, sControlsGuide_Tilemap_Page3, 1, 3, 5, 16);
         CopyBgTilemapBufferToVram(1);
     }
-    BeginNormalPaletteFade(PALETTES_OBJECTS | 0xDFFF, -1, 16, 0, GetTextWindowPalette(2)[15]);
+    BeginNormalPaletteFade(PALETTES_OBJECTS | 0xDFFF, -1, 16, 0, RF_INTRO_INK);
     gTasks[taskId].func = Task_ControlsGuide_HandleInput;
 }
 
@@ -851,7 +852,7 @@ static void Task_ControlsGuide_HandleInput(u8 taskId)
                 gTasks[taskId].tDelta = 1;
 
                 if (sOakSpeechResources->currentPage < CONTROLS_GUIDE_PAGE_3)
-                    BeginNormalPaletteFade(PALETTES_OBJECTS | 0xDFFF, -1, 0, 16, GetTextWindowPalette(2)[15]);
+                    BeginNormalPaletteFade(PALETTES_OBJECTS | 0xDFFF, -1, 0, 16, RF_INTRO_INK);
             }
             else // B_BUTTON
             {
@@ -859,7 +860,7 @@ static void Task_ControlsGuide_HandleInput(u8 taskId)
                     return;
 
                 gTasks[taskId].tDelta = -1;
-                BeginNormalPaletteFade(PALETTES_OBJECTS | 0xDFFF, -1, 0, 16, GetTextWindowPalette(2)[15]);
+                BeginNormalPaletteFade(PALETTES_OBJECTS | 0xDFFF, -1, 0, 16, RF_INTRO_INK);
             }
 
             PlaySE(SE_SELECT);
@@ -1103,17 +1104,13 @@ static void Task_PikachuIntro_Clear(u8 taskId)
 static void Task_OakSpeech_Init(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    u32 size = 0;
     if (tTimer != 0)
     {
         tTimer--;
     }
     else
     {
-        sOakSpeechResources->oakSpeechBackgroundTiles = malloc_and_decompress(sOakSpeech_Background_Tiles, &size);
-        LoadBgTiles(1, sOakSpeechResources->oakSpeechBackgroundTiles, size, 0);
-        CopyToBgTilemapBuffer(1, sOakSpeech_Background_Tilemap, 0, 0);
-        CopyBgTilemapBufferToVram(1);
+        RFIntro_LoadLabBackdrop();
         CreateNidoranFSprite(taskId);
         LoadTrainerPic(OAK_PIC, 0);
         CreatePikachuOrPlatformSprites(taskId, SPRITE_TYPE_PLATFORM);
@@ -1121,6 +1118,7 @@ static void Task_OakSpeech_Init(u8 taskId)
         BeginNormalPaletteFade(PALETTES_ALL, 5, 16, 0, RGB_BLACK);
         tTimer = 80;
         ShowBg(2);
+        RFIntro_ResetPictureBg();
         gTasks[taskId].func = Task_OakSpeech_WelcomeToTheWorld;
     }
 }
@@ -1839,13 +1837,12 @@ static void CB2_ReturnFromNamingScreen(void)
 #endif
         break;
     case 4:
-        DecompressAndCopyTileDataToVram(1, sOakSpeech_Background_Tiles, 0, 0, 0);
         break;
     case 5:
         if (FreeTempTileDataBuffersIfPossible())
             return;
         FillBgTilemapBufferRect_Palette0(1, 0, 0, 0, 30, 20);
-        CopyToBgTilemapBuffer(1, sOakSpeech_Background_Tilemap, 0, 0);
+        RFIntro_LoadLabBackdrop();
         FillBgTilemapBufferRect_Palette0(2, 0, 0, 0, 30, 20);
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(2);
@@ -1875,6 +1872,7 @@ static void CB2_ReturnFromNamingScreen(void)
         ShowBg(0);
         ShowBg(1);
         ShowBg(2);
+        RFIntro_ResetPictureBg();
         EnableInterrupts(INTR_FLAG_VBLANK);
         SetVBlankCallback(VBlankCB_NewGameScene);
         gTextFlags.canABSpeedUpPrint = TRUE;

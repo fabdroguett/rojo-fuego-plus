@@ -81,7 +81,7 @@ cases = {
     "mart": ("Mart", "run 120\n" + shot("mart-menu") + "hold A 1\nrun 240\n" + shot("mart-buy")
              + "hold A 1\nrun 60\n" + shot("mart-quantity")),
     "relearner": ("Relearner", "run 300\n" + shot("relearner") + "hold D 1\nrun 30\n" + shot("relearner-row")),
-    "evolution": ("Evolution", "run 300\n" + shot("evolution-start") + "run 900\n" + shot("evolution-mid")
+    "evolution": ("Evolution", "run 300\n" + shot("evolution-start") + "".join("run 150\n" + shot(f"evolution-t{n}") for n in range(6)) + shot("evolution-mid") + "".join("run 200\n" + shot(f"evolution-done{n}") for n in range(4))
                   + "mash A 600\n" + shot("evolution-end")),
     "popup": ("WildIntimidate", "run 300\nhold A 1\nrun 20\nhold A 1\nrun 20\n" + "".join(shot(f"popup-{n}") + "run 25\n" for n in range(1, 9))),
     "battle": ("Wild", "run 500\nhold A 1\nrun 240\n" + shot("battle-actions")
@@ -96,6 +96,12 @@ cases = {
               + "hold A 1\nrun 240\n" + shot("party-switch")
               + f'r8 {symbols["gBattlerPartyIndexes"]:08x}\n'),
 }
+cases["battle-grass"] = ("GrassWarp", "run 400\n" + callback("RFUiFixture_Wild") + "run 500\nhold A 1\nrun 240\n"
+                         + shot("battle-grass-actions") + "hold A 1\nrun 60\n" + shot("battle-grass-moves"))
+for _env in ("Cave", "Sea", "Pond", "Sand", "Mountain"):
+    cases["env-" + _env.lower()] = ("Env" + _env, "run 400\n" + callback("RFUiFixture_Wild") + "run 500\nhold A 1\nrun 240\n" + shot("env-" + _env.lower()))
+cases["levelup"] = ("GrassWarp", "run 400\n" + callback("RFUiFixture_LevelUp") + "run 500\nhold A 1\nrun 240\nhold A 1\nrun 60\nhold A 1\n"
+                     + "".join("run 90\n" + shot(f"levelup-{n}") + "hold A 1\n" for n in range(14)))
 cases["bag-female"] = ("BagFemale", cases["bag"][1].replace("bag", "bag-female"))
 cases["pokedex-search"] = ("Pokedex", "run 240\n" + shot("pokedex-search-main")
                             + "hold S 1\nrun 240\n" + shot("pokedex-search-menu"))

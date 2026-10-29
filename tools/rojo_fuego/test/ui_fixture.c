@@ -125,6 +125,44 @@ void RFUiFixture_Wild(void)
     BattleSetup_StartWildBattle();
 }
 
+// Stands the player in Route 1's tall grass so the next RFUiFixture_Wild uses the grass background.
+void RFUiFixture_GrassWarp(void)
+{
+    SetWarpDestination(MAP_GROUP(MAP_ROUTE1), MAP_NUM(MAP_ROUTE1), -1, 12, 7);
+    SetMainCallback1(NULL);
+    WarpIntoMap();
+    SetMainCallback2(CB2_LoadMap);
+}
+
+// Stand the player on a tile of each battle environment; RFUiFixture_Wild then fights there.
+static void RFUiFixture_WarpTo(u8 group, u8 num, s8 x, s8 y)
+{
+    SetWarpDestination(group, num, -1, x, y);
+    SetMainCallback1(NULL);
+    WarpIntoMap();
+    SetMainCallback2(CB2_LoadMap);
+}
+
+void RFUiFixture_EnvCave(void)  { RFUiFixture_WarpTo(MAP_GROUP(MAP_MT_MOON_1F), MAP_NUM(MAP_MT_MOON_1F), 6, 7); }
+void RFUiFixture_EnvSea(void)   { RFUiFixture_WarpTo(MAP_GROUP(MAP_CERULEAN_CITY), MAP_NUM(MAP_CERULEAN_CITY), 17, 0); }
+void RFUiFixture_EnvPond(void)  { RFUiFixture_WarpTo(MAP_GROUP(MAP_ROUTE22), MAP_NUM(MAP_ROUTE22), 23, 8); }
+void RFUiFixture_EnvSand(void)  { RFUiFixture_WarpTo(MAP_GROUP(MAP_FIVE_ISLAND_MEADOW), MAP_NUM(MAP_FIVE_ISLAND_MEADOW), 2, 11); }
+void RFUiFixture_EnvMountain(void) { RFUiFixture_WarpTo(MAP_GROUP(MAP_BIRTH_ISLAND_EXTERIOR_FRLG), MAP_NUM(MAP_BIRTH_ISLAND_EXTERIOR_FRLG), 14, 8); }
+
+// One Tackle away from level 11: the faint grants the experience and opens the level-up box.
+void RFUiFixture_LevelUp(void)
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    u32 exp, hp = 1;
+    u16 move = MOVE_TACKLE;
+
+    RFUiFixture_Wild();
+    exp = gExperienceTables[gSpeciesInfo[SPECIES_BULBASAUR].growthRate][11] - 1;
+    SetMonData(mon, MON_DATA_EXP, &exp);
+    SetMonData(mon, MON_DATA_MOVE1, &move);
+    SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_HP, &hp);
+}
+
 void RFUiFixture_Tutorial(void)
 {
     RFUiFixture_Wild();

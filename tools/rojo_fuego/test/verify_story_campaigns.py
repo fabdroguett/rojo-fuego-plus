@@ -98,6 +98,8 @@ cases={
     'c2-puzzle':(prepare(C2_BERRIES+3,'mora')+warp('mora')+key('A',300)+shot('c2-puzzle')+key('B',300)+key('A',300)+key('B',300)+'mash B 900\nrun 60\n'+look(0),{0:3}),
     'c2-choice':(prepare(C2_BERRIES+6,'lis')+warp('lis')+key('A',480)+key('A',300)+shot('c2-choice')+'mash B 900\nrun 60\n'+look(0,22),{0:3,22:2}),
     'c2-final':(prepare(C2_RESCUE+7,'brisa')+call('ZeroMoney')+warp('brisa')+key('A',480)+'mash B 900\nrun 60\n'+warp('nico_casa')+shot('c2-nico-home')+look(0,12,20),{0:3,12:1,20:2500}),
+    # Interface: the location popup slides in after a warp to an outdoor map (Pallet Town).
+    'popup':(prepare(c3('EL CARTERO DE PALETA',0),'tobi',0)+param(1,actors['tobi']['actor'])+call('WarpActor',1)+''.join('run 30\n'+shot(f'popup-{i}') for i in range(6))+''.join(f'r32 {a:08x}\n' for a in (0x0600A0E0,0x0600A100,0x0600A200,0x0600A400))+'r16 04000008\nr16 04000012\n',{}),
     # C3 (every remaining generic slot): one scene of each kind, on IDs below 334.
     'c3-delivery':(prepare(c3('EL CARTERO DE PALETA',4),'tobi')+give('ITEM_POTION',2)+warp('tobi')+key('A',480)+shot('c3-delivery-offer')+key('A',300)+key('A',300)+'mash B 900\nrun 60\n'+shot('c3-delivery')+look(0),{0:3}),
     'c3-battle':(prepare(c3('EL CARTERO DE PALETA',5),'tobi')+warp('tobi')+key('A',480)+shot('c3-battle-offer')+key('A',300)+'mash A 3600\nmash B 900\nrun 120\n'+look(0),{0:3}),

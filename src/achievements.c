@@ -1,4 +1,5 @@
 #include "global.h"
+#include "map_name_popup.h"
 #include "achievements.h"
 #include "rf_quests.h"
 #include "battle.h"
@@ -518,6 +519,7 @@ void Achievements_HideNotification(void)
     RemoveWindow(sNotificationWindowId);
     sNotificationShown = FALSE;
     sNotificationTimer = 0;
+    MapNamePopUp_Repaint(); // the clear also wiped a location popup drawn in the same rows
 }
 
 // Quest notices go before achievements (in their own order): a burst of achievements must not

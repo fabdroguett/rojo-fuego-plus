@@ -295,8 +295,8 @@ void RFUI_ThemeHealthboxPalette(u32 paletteNum)
         LoadPalette(&colors[i], OBJ_PLTT_ID(paletteNum) + slots[i], PLTT_SIZEOF(1));
 }
 
-// Standard text windows share indices 1 (paper), 2 (ink), 3 (shadow).
-// Preserve coloured words (4..9); border indices (10..15) share the night surfaces.
+// Standard text windows share indices 1 (paper), 2 (ink), 3 (shadow), 4..9 coloured words and
+// 10..15 the frame; the night theme repaints all of them.
 void RFUI_LoadWindowPalette(const u16 *palette, u32 offset)
 {
     u16 colors[16];
@@ -310,12 +310,37 @@ void RFUI_LoadWindowPalette(const u16 *palette, u32 offset)
         colors[3] = RF_UI_NIGHT_SHADOW;
         // Border-only indices: avoid white rails and fluorescent message-box trim.
         // Keep ink (2) and the script's semantic word colours (4..9) intact.
+        // Message box: 13 is a thin outer edge, the old 4 px band (14) and inner lines melt into the
+        // panel. Frame "MARCO 1" uses 13 edge, 11 panel, 12 top highlight.
         colors[10] = RF_UI_NIGHT_EDGE;
         colors[11] = RF_UI_NIGHT_PANEL;
-        colors[12] = RF_UI_NIGHT_EDGE;
+        colors[12] = RF_UI_NIGHT_PANEL_HI;
         colors[13] = RF_UI_NIGHT_EDGE;
-        colors[14] = RF_UI_NIGHT_EDGE;
+        colors[14] = RF_UI_NIGHT_PANEL;
         colors[15] = RF_UI_NIGHT_SHADOW;
+        // Script colours (red, green, blue and their pair) lifted so they read on the night panel;
+        // either colour of each pair can be the ink, so both stay light enough.
+        colors[4] = RGB(31, 14, 11);
+        colors[5] = RGB(17, 7, 6);
+        colors[6] = RGB(14, 27, 21);
+        colors[7] = RGB(6, 14, 10);
+        colors[8] = RGB(17, 23, 31);
+        colors[9] = RGB(8, 12, 20);
     }
     LoadPalette(colors, offset, sizeof(colors));
+}
+
+// Keeps 40% of each colour and mixes in a dark plum, so bright artwork (box wallpapers) sits in the
+// night theme without losing its pattern.
+void RFUI_DuskTint(u16 *colors, u32 count)
+{
+    u32 i;
+
+    for (i = 0; i < count; i++)
+    {
+        u32 c = colors[i];
+        u32 r = c & 31, g = (c >> 5) & 31, b = (c >> 10) & 31;
+
+        colors[i] = RGB((r * 40 + 6 * 60) / 100, (g * 40 + 4 * 60) / 100, (b * 40 + 8 * 60) / 100);
+    }
 }

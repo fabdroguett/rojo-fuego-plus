@@ -436,37 +436,37 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 0,
-        .width = 11,
+        .width = 22,
         .height = 2,
-        .paletteNum = 6,
-        .baseBlock = 1,
+        .paletteNum = 0,
+        .baseBlock = 824, // RF page tabs
     },
     [PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE] = {
         .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 0,
-        .width = 11,
+        .width = 22,
         .height = 2,
-        .paletteNum = 6,
-        .baseBlock = 23,
+        .paletteNum = 0,
+        .baseBlock = 868, // RF page tabs
     },
     [PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE] = {
         .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 0,
-        .width = 11,
+        .width = 22,
         .height = 2,
-        .paletteNum = 6,
-        .baseBlock = 45,
+        .paletteNum = 0,
+        .baseBlock = 912, // RF page tabs
     },
     [PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE] = {
         .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 0,
-        .width = 11,
+        .width = 22,
         .height = 2,
-        .paletteNum = 6,
-        .baseBlock = 67,
+        .paletteNum = 0,
+        .baseBlock = 956, // RF page tabs
     },
     [PSS_LABEL_WINDOW_PROMPT_UTILITY] = {
         .bg = 0,
@@ -769,7 +769,7 @@ static const TaskFunc sTextPrinterTasks[] =
     [PSS_PAGE_CONTEST_MOVES] = Task_PrintContestMoves
 };
 
-static const u8 sText_Relearn[] = _("{START_BUTTON} RELEARN"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
+static const u8 sText_Relearn[] = _("{START_BUTTON} RECORDAR"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
 
 static const u8 sMemoNatureTextColor[] = _("{COLOR LIGHT_RED}{SHADOW GREEN}");
 static const u8 sMemoMiscTextColor[] = _("{COLOR WHITE}{SHADOW DARK_GRAY}"); // This is also affected by palettes, apparently
@@ -1470,11 +1470,12 @@ static bool8 DecompressGraphics(void)
         if (KeySystem_IsOn(KEY_DARK_MODE))
         {
             static const u16 surfaces[] = {
-                RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
-                RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND, RF_UI_GOLD, // 6: section heading letters
+                // 3/4: header bar and portrait stripes, 14: page background, 12: page fill (no mauve slabs)
+                RF_UI_NIGHT_TEXT, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL_HI,
+                RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND, RF_UI_GOLD, // 6: section heading letters
                 RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL,
-                RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
-                RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND,
+                RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL,
+                RF_UI_NIGHT_GROUND, RF_UI_NIGHT_GROUND, RF_UI_NIGHT_GROUND,
             };
             static const u16 text[] = {
                 RF_UI_NIGHT_TEXT, RF_UI_NIGHT_SHADOW, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_TEXT,
@@ -3284,14 +3285,36 @@ static void PrintAOrBButtonIcon(u8 windowId, bool8 bButton, u32 x)
     BlitBitmapToWindow(windowId, button, x, 0, 16, 16);
 }
 
+// Pokémon Ultimate Kanto: the page title is a tab bar (PERFIL / STATS / MOVIMIENTOS) covering the old page
+// pill; the current page is gold and underlined. Bank 0 colours: 2 panel, 1 text, 5 shadow, 6 gold.
+static void DrawPageTabs(u8 windowId, u8 activeTab)
+{
+    static const u8 *const labels[] = {COMPOUND_STRING("PERFIL"), COMPOUND_STRING("STATS"), COMPOUND_STRING("MOVIMIENTOS")};
+    static const u8 tabX[] = {6, 52, 96};
+    static const u8 normal[] = {TEXT_COLOR_TRANSPARENT, 1, 5};
+    static const u8 active[] = {TEXT_COLOR_TRANSPARENT, 6, 5};
+    u32 i;
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(2));
+    for (i = 0; i < ARRAY_COUNT(labels); i++)
+    {
+        u32 w = GetStringWidth(FONT_NORMAL, labels[i], 0);
+
+        AddTextPrinterParameterized4(windowId, FONT_NORMAL, tabX[i], 0, 0, 0, i == activeTab ? active : normal, TEXT_SKIP_DRAW, labels[i]);
+        if (i == activeTab)
+            FillWindowPixelRect(windowId, PIXEL_FILL(6), tabX[i] - 2, 14, w + 4, 2);
+    }
+    CopyWindowToVram(windowId, COPYWIN_GFX);
+}
+
 static void PrintPageNamesAndStats(void)
 {
     int statsXPos;
 
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE, gText_PkmnInfo, 2, 1, 0, 1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE, gText_PkmnSkills, 2, 1, 0, 1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
+    DrawPageTabs(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE, 0);
+    DrawPageTabs(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE, 1);
+    DrawPageTabs(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, 2);
+    DrawPageTabs(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, 2);
 
     ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
 
@@ -4798,7 +4821,7 @@ static inline void ShowUtilityPrompt(s16 mode)
     const u8* gText_SkillPageIvs = COMPOUND_STRING("IVs");
     const u8* gText_SkillPageEvs = COMPOUND_STRING("EVs");
     const u8* gText_SkillPageStats = COMPOUND_STRING("STATS");
-    const u8* gText_Rename = COMPOUND_STRING("RENAME");
+    const u8* gText_Rename = COMPOUND_STRING("APODO");
 
     if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
     {

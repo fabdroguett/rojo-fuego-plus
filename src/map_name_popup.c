@@ -669,6 +669,18 @@ static void DrawMapNamePopUpFrame(u8 bg, u8 x, u8 y, u8 deltaX, u8 deltaY, u8 un
         FillBgTilemapBufferRect(bg, TILE_BOT_EDGE_START + i, i - 1 + x, y + deltaY, 1, 1, 14);
 }
 
+// Achievement and quest toasts share the top rows of BG0: hiding one clears those rows, so the
+// location popup (GEN_3 style) repaints its frame and window afterwards.
+void MapNamePopUp_Repaint(void)
+{
+    u8 windowId = GetMapNamePopUpWindowId();
+    if (OW_POPUP_GENERATION == GEN_5 || windowId == WINDOW_NONE)
+        return;
+    CallWindowFunction(windowId, DrawMapNamePopUpFrame);
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+}
+
 static void LoadMapNamePopUpWindowBg(void)
 {
     u8 popUpThemeId;

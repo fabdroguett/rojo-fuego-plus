@@ -78,6 +78,18 @@ static const u16 sUnusedPal2[] = INCGFX_U16("graphics/evolution_scene/unused_2.p
 static const u16 sUnusedPal3[]  = INCGFX_U16("graphics/evolution_scene/unused_3.pal", ".gbapal");
 static const u16 sUnusedPal4[] = INCGFX_U16("graphics/evolution_scene/unused_4.pal", ".gbapal");
 static const u16 sBgAnim_Pal[] = INCGFX_U16("graphics/evolution_scene/bg_anim.pal", ".gbapal");
+// Pokémon Ultimate Kanto: dusk meadow behind the evolving Pokémon (tools/rojo_fuego/make_battle_env_art.py).
+static const u32 sRFDusk_Tiles[] = INCGFX_U32("graphics/evolution_scene/rf_dusk.png", ".4bpp.smol");
+static const u32 sRFDusk_Tilemap[] = INCGFX_U32("graphics/evolution_scene/rf_dusk.bin", ".smolTM");
+static const u16 sRFDusk_Pal[] = INCGFX_U16("graphics/evolution_scene/rf_dusk.pal", ".gbapal");
+
+// Replaces the battle background just loaded (same VRAM and palettes 2-4, which the scene fades).
+static void RFEvo_LoadDuskBackground(void)
+{
+    DecompressDataWithHeaderVram(sRFDusk_Tiles, (void *)(BG_CHAR_ADDR(2)));
+    DecompressDataWithHeaderVram(sRFDusk_Tilemap, (void *)(BG_SCREEN_ADDR(26)));
+    LoadPalette(sRFDusk_Pal, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+}
 
 static const u8 sText_ShedinjaJapaneseName[] = _("ヌケニン");
 
@@ -243,6 +255,7 @@ void EvolutionScene(struct Pokemon *mon, enum Species postEvoSpecies, bool32 can
 
     InitBattleBgsVideo();
     LoadBattleTextboxAndBackground();
+    RFEvo_LoadDuskBackground();
     ResetSpriteData();
     ScanlineEffect_Stop();
     ResetTasks();
@@ -349,6 +362,7 @@ static void CB2_EvolutionSceneLoadGraphics(void)
 
     InitBattleBgsVideo();
     LoadBattleTextboxAndBackground();
+    RFEvo_LoadDuskBackground();
     ResetSpriteData();
     FreeAllSpritePalettes();
     gReservedSpritePaletteCount = 4;

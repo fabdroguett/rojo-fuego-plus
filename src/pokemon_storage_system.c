@@ -875,18 +875,18 @@ void UpdateSpeciesSpritePSS(struct BoxPokemon *boxmon);
 
 static const u8 gText_JustOnePkmn[] = _("There is just one POKéMON with you.");
 static const u8 gText_PartyFull[] = _("Your party is full!");
-static const u8 gText_Box[] = _("BOX");
+static const u8 gText_Box[] = _("CAJA");
 
 struct {
     const u8 *text;
     const u8 *desc;
 } static const sMainMenuTexts[OPTIONS_COUNT] =
 {
-    [OPTION_WITHDRAW]   = {COMPOUND_STRING("WITHDRAW POKéMON"), COMPOUND_STRING("Move POKéMON stored in BOXES to\nyour party.")},
-    [OPTION_DEPOSIT]    = {COMPOUND_STRING("DEPOSIT POKéMON"),  COMPOUND_STRING("Store POKéMON in your party in BOXES.")},
-    [OPTION_MOVE_MONS]  = {COMPOUND_STRING("MOVE POKéMON"),     COMPOUND_STRING("Organize the POKéMON in BOXES and\nin your party.")},
-    [OPTION_MOVE_ITEMS] = {COMPOUND_STRING("MOVE ITEMS"),       COMPOUND_STRING("Move items held by any POKéMON\nin a BOX or your party.")},
-    [OPTION_EXIT]       = {COMPOUND_STRING("SEE YA!"),          COMPOUND_STRING("Return to the previous menu.")}
+    [OPTION_WITHDRAW]   = {COMPOUND_STRING("SACAR POKéMON"), COMPOUND_STRING("Pasa POKéMON de las CAJAS\na tu equipo.")},
+    [OPTION_DEPOSIT]    = {COMPOUND_STRING("DEJAR POKéMON"),  COMPOUND_STRING("Guarda POKéMON de tu equipo\nen las CAJAS.")},
+    [OPTION_MOVE_MONS]  = {COMPOUND_STRING("MOVER POKéMON"),     COMPOUND_STRING("Ordena los POKéMON de las CAJAS\ny de tu equipo.")},
+    [OPTION_MOVE_ITEMS] = {COMPOUND_STRING("MOVER OBJETOS"),       COMPOUND_STRING("Mueve los objetos que llevan\nlos POKéMON.")},
+    [OPTION_EXIT]       = {COMPOUND_STRING("SALIR"),          COMPOUND_STRING("Vuelve al menú anterior.")}
 };
 
 static const struct WindowTemplate sWindowTemplate_MainMenu =
@@ -4104,13 +4104,14 @@ static void InitPalettesAndSprites(void)
     if (KeySystem_IsOn(KEY_DARK_MODE))
     {
         static const u16 frame[] = {
-            RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_GROUND,
+            // 2: data panel fill, 11/13: the display's checker, 6/9: rims (Pokémon Ultimate Kanto)
+            RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND,
             RF_UI_NIGHT_PANEL, RGB(30,24,13), RF_UI_NIGHT_EDGE, RF_UI_NIGHT_TEXT,
-            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RGB(30,24,13), RF_UI_NIGHT_EDGE,
-            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_TEXT, RGB(14,27,21),
+            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RGB(30,24,13), RF_UI_NIGHT_GROUND,
+            RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL_HI, RF_UI_NIGHT_TEXT, RGB(14,27,21),
         };
-        static const u16 backdrop[] = {
-            RF_UI_NIGHT_GROUND, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND,
+        static const u16 backdrop[] = { // 1 also fills the info panel under the displayed Pokémon
+            RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND,
             RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_EDGE,
             RF_UI_NIGHT_GROUND, RF_UI_NIGHT_PANEL, RF_UI_NIGHT_GROUND, 0,0,0,0,0,
         };
@@ -5694,6 +5695,13 @@ static void LoadWallpaperGfx(u8 boxId, s8 direction)
             LoadPalette(wallpaper->palettes, BG_PLTT_ID(4) + BG_PLTT_ID(sStorage->wallpaperOffset * 2), 2 * PLTT_SIZE_4BPP);
         else
             CpuCopy16(wallpaper->palettes, &gPlttBufferUnfaded[BG_PLTT_ID(4) + BG_PLTT_ID(sStorage->wallpaperOffset * 2)], 2 * PLTT_SIZE_4BPP);
+        if (KeySystem_IsOn(KEY_DARK_MODE))
+        {
+            u32 offset = BG_PLTT_ID(4) + BG_PLTT_ID(sStorage->wallpaperOffset * 2);
+            RFUI_DuskTint(&gPlttBufferUnfaded[offset], 32);
+            if (sStorage->wallpaperLoadDir != 0)
+                RFUI_DuskTint(&gPlttBufferFaded[offset], 32);
+        }
 
         sStorage->wallpaperTiles = malloc_and_decompress(wallpaper->tiles, &tilesSize);
         LoadBgTiles(2, sStorage->wallpaperTiles, tilesSize, sStorage->wallpaperOffset << 8);

@@ -1490,119 +1490,68 @@ static void ShowAllConditionSparkles(struct Sprite *sprite)
 #undef sMonSpriteId
 #undef sNextSparkleSpriteId
 
-static const u8 *const sLvlUpStatStrings[NUM_STATS] =
+// Pokémon Ultimate Kanto level-up panel (80x88): "¡NIVEL n!" header, then each stat with its new
+// value and, on the first page, the gain in the accent colour.
+u8 gLevelUpWindowLevel; // set by the caller before drawing; 0 prints a generic header
+
+static const u8 sLvlUpStatNamesRF[NUM_STATS][10] =
 {
-    gText_MaxHP,
-    gText_Attack,
-    gText_Defense,
-    gText_SpAtk,
-    gText_SpDef,
-    gText_Speed
+    _("PS"), _("ATAQUE"), _("DEFENSA"), _("AT. ESP."), _("DEF. ESP."), _("VELOCIDAD"),
 };
+static const u8 sText_LvlUpHeaderRF[] = _("¡NIVEL {STR_VAR_1}!");
+static const u8 sText_LvlUpHeaderGenericRF[] = _("¡SUBE DE NIVEL!");
+
+static void DrawLevelUpWindowRF(u16 windowId, u16 *statsBefore, u16 *statsAfter, u8 bgClr, u8 fgClr, u8 shadowClr)
+{
+    static const u8 statOrder[NUM_STATS] = {STAT_HP, STAT_ATK, STAT_DEF, STAT_SPATK, STAT_SPDEF, STAT_SPEED};
+    u8 text[12];
+    u8 color[3] = {bgClr, fgClr, shadowClr};
+    // In battle the panel prints with the dynamic colours; the battle loads ember into 1 and mint into 2.
+    bool32 inBattle = (fgClr == TEXT_DYNAMIC_COLOR_4);
+    u8 header[3] = {bgClr, inBattle ? TEXT_DYNAMIC_COLOR_1 : TEXT_COLOR_RED, shadowClr};
+    u8 accent[3] = {bgClr, inBattle ? TEXT_DYNAMIC_COLOR_2 : TEXT_COLOR_GREEN, shadowClr};
+    u32 i;
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(bgClr));
+    if (gLevelUpWindowLevel != 0)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, gLevelUpWindowLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(gStringVar4, sText_LvlUpHeaderRF);
+    }
+    else
+    {
+        StringCopy(gStringVar4, sText_LvlUpHeaderGenericRF);
+    }
+    AddTextPrinterParameterized3(windowId, FONT_NORMAL, 2, 0, header, TEXT_SKIP_DRAW, gStringVar4);
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        u32 y = 16 + 12 * i;
+        u16 now = statsAfter[statOrder[i]];
+
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, 2, y, color, TEXT_SKIP_DRAW, sLvlUpStatNamesRF[i]);
+        ConvertIntToDecimalStringN(text, now, STR_CONV_MODE_LEFT_ALIGN, 3);
+        AddTextPrinterParameterized3(windowId, FONT_SMALL, GetStringRightAlignXOffset(FONT_SMALL, text, statsBefore ? 62 : 78),
+                                     y, color, TEXT_SKIP_DRAW, text);
+        if (statsBefore != NULL)
+        {
+            s32 diff = now - statsBefore[statOrder[i]];
+
+            text[0] = diff >= 0 ? CHAR_PLUS : CHAR_HYPHEN;
+            ConvertIntToDecimalStringN(&text[1], diff >= 0 ? diff : -diff, STR_CONV_MODE_LEFT_ALIGN, 2);
+            AddTextPrinterParameterized3(windowId, FONT_SMALL, GetStringRightAlignXOffset(FONT_SMALL, text, 79),
+                                         y, accent, TEXT_SKIP_DRAW, text);
+        }
+    }
+}
 
 void DrawLevelUpWindowPg1(u16 windowId, u16 *statsBefore, u16 *statsAfter, u8 bgClr, u8 fgClr, u8 shadowClr)
 {
-    u16 i, x;
-    s16 statsDiff[NUM_STATS];
-    u8 text[12];
-    u8 color[3];
-
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(bgClr));
-
-    statsDiff[0] = statsAfter[STAT_HP]    - statsBefore[STAT_HP];
-    statsDiff[1] = statsAfter[STAT_ATK]   - statsBefore[STAT_ATK];
-    statsDiff[2] = statsAfter[STAT_DEF]   - statsBefore[STAT_DEF];
-    statsDiff[3] = statsAfter[STAT_SPATK] - statsBefore[STAT_SPATK];
-    statsDiff[4] = statsAfter[STAT_SPDEF] - statsBefore[STAT_SPDEF];
-    statsDiff[5] = statsAfter[STAT_SPEED] - statsBefore[STAT_SPEED];
-
-    color[0] = bgClr;
-    color[1] = fgClr;
-    color[2] = shadowClr;
-
-    for (i = 0; i < NUM_STATS; i++)
-    {
-
-        AddTextPrinterParameterized3(windowId,
-                                     FONT_NORMAL,
-                                     0,
-                                     15 * i,
-                                     color,
-                                     TEXT_SKIP_DRAW,
-                                     sLvlUpStatStrings[i]);
-
-        StringCopy(text, (statsDiff[i] >= 0) ? gText_Plus : gText_Dash);
-        AddTextPrinterParameterized3(windowId,
-                                     FONT_NORMAL,
-                                     56,
-                                     15 * i,
-                                     color,
-                                     TEXT_SKIP_DRAW,
-                                     text);
-        if (abs(statsDiff[i]) <= 9)
-            x = 18;
-        else
-            x = 12;
-
-        ConvertIntToDecimalStringN(text, abs(statsDiff[i]), STR_CONV_MODE_LEFT_ALIGN, 2);
-        AddTextPrinterParameterized3(windowId,
-                                     FONT_NORMAL,
-                                     56 + x,
-                                     15 * i,
-                                     color,
-                                     TEXT_SKIP_DRAW,
-                                     text);
-    }
+    DrawLevelUpWindowRF(windowId, statsBefore, statsAfter, bgClr, fgClr, shadowClr);
 }
 
 void DrawLevelUpWindowPg2(u16 windowId, u16 *currStats, u8 bgClr, u8 fgClr, u8 shadowClr)
 {
-    u16 i, numDigits, x;
-    s16 stats[NUM_STATS];
-    u8 text[12];
-    u8 color[3];
-
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(bgClr));
-
-    stats[0] = currStats[STAT_HP];
-    stats[1] = currStats[STAT_ATK];
-    stats[2] = currStats[STAT_DEF];
-    stats[3] = currStats[STAT_SPATK];
-    stats[4] = currStats[STAT_SPDEF];
-    stats[5] = currStats[STAT_SPEED];
-
-    color[0] = bgClr;
-    color[1] = fgClr;
-    color[2] = shadowClr;
-
-    for (i = 0; i < NUM_STATS; i++)
-    {
-        if (stats[i] > 99)
-            numDigits = 3;
-        else if (stats[i] > 9)
-            numDigits = 2;
-        else
-            numDigits = 1;
-
-        ConvertIntToDecimalStringN(text, stats[i], STR_CONV_MODE_LEFT_ALIGN, numDigits);
-        x = 6 * (4 - numDigits);
-
-        AddTextPrinterParameterized3(windowId,
-                                     FONT_NORMAL,
-                                     0,
-                                     15 * i,
-                                     color,
-                                     TEXT_SKIP_DRAW,
-                                     sLvlUpStatStrings[i]);
-
-        AddTextPrinterParameterized3(windowId,
-                                     FONT_NORMAL,
-                                     56 + x,
-                                     15 * i,
-                                     color,
-                                     TEXT_SKIP_DRAW,
-                                     text);
-    }
+    DrawLevelUpWindowRF(windowId, NULL, currStats, bgClr, fgClr, shadowClr);
 }
 
 void GetMonLevelUpWindowStats(struct Pokemon *mon, u16 *currStats)

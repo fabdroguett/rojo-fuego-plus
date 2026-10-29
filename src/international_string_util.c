@@ -82,11 +82,11 @@ int Intl_GetListMenuWidth(const struct ListMenuTemplate *listMenu)
     return finalWidth;
 }
 
+// Spanish order: "Pokémon Semilla" (Pokémon Ultimate Kanto).
 void CopyMonCategoryText(enum Species species, u8 *dest)
 {
-    u8 *str = StringCopy(dest, GetSpeciesCategory(species));
-    *str = CHAR_SPACE;
-    StringCopy(str + 1, gText_Pokemon);
+    static const u8 sText_PokemonPrefix[] = _("Pokémon ");
+    StringCopy(StringCopy(dest, sText_PokemonPrefix), GetSpeciesCategory(species));
 }
 
 u8 *GetStringClearToWidth(u8 *dest, int fontId, const u8 *str, int totalStringWidth)

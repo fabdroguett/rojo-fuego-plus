@@ -132,6 +132,7 @@ u8 LoadMoveRelearnerMovesList(const struct ListMenuItem *items, u16 numChoices);
 void InitMoveRelearnerWindows(bool32 useContestWindow);
 
 // Level up window
+extern u8 gLevelUpWindowLevel; // level shown in the panel header (0 = generic)
 void DrawLevelUpWindowPg1(u16 windowId, u16 *statsBefore, u16 *statsAfter, u8 bgClr, u8 fgClr, u8 shadowClr);
 void DrawLevelUpWindowPg2(u16 windowId, u16 *currStats, u8 bgClr, u8 fgClr, u8 shadowClr);
 void GetMonLevelUpWindowStats(struct Pokemon *mon, u16 *currStats);

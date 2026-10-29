@@ -22,7 +22,7 @@ else:
     names=[]
     for name in ('bag_reference_fixture.c','main_menu_fixture.c'):
         names+=re.findall(r'^void (RF(?:Bag|MainMenu)Fixture_\w+)\(',Path(__file__).with_name(name).read_text(),re.M)
-    names+=['RFUiFixture_Start','RFUiFixture_Bag','RFUiFixture_BagFemale','RFUiFixture_Day','RFUiFixture_CheckOrder','RFUiFixture_Voiceover']
+    names+=['RFUiFixture_Start','RFUiFixture_Bag','RFUiFixture_BagFemale','RFUiFixture_Day','RFUiFixture_CheckOrder','RFUiFixture_Voiceover','RFUiFixture_Mart','RFUiFixture_Wild','RFUiFixture_GrassWarp','RFUiFixture_EnvCave','RFUiFixture_EnvSea','RFUiFixture_EnvPond','RFUiFixture_EnvSand','RFUiFixture_EnvMountain','RFUiFixture_LevelUp','RFUiFixture_Evolution','RFUiFixture_Summary','RFUiFixture_Pokedex','RFUiFixture_PC','RFUiFixture_FieldParty','RFUiFixture_Trainer']
     flags=['LDFLAGS=-Map ../../pokefirered.map --print-memory-usage --gc-sections '+' '.join('-u '+n for n in names)]
 (ROOT/'pokefirered.elf').unlink(missing_ok=True)
 subprocess.run(['make','BUILD=firered','-j2','pokefirered.gba',*flags],cwd=ROOT,check=True)

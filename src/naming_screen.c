@@ -30,6 +30,7 @@
 #include "decompress.h"
 #include "constants/event_objects.h"
 #include "constants/rgb.h"
+#include "rf_naming_screen.h"
 
 enum {
     INPUT_NONE,
@@ -200,7 +201,10 @@ static const u8 *const sTransferredToPCMessages[] =
 };
 
 
-static const u8 sText_RivalsName[] = _("RIVAL's NAME?");
+static const u8 sText_RivalsName[] = _("¿NOMBRE DEL RIVAL?");
+// Pokémon Ultimate Kanto: the name field is a night panel (keyboard palette index 11) with light text.
+#define ENTRY_FIELD_FILL 11
+static const u8 sEntryFieldColors[] = {ENTRY_FIELD_FILL, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 static const u8 sText_AlphabetUpperLower[] = _("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!");
 
 static const struct BgTemplate sBgTemplates[] =
@@ -287,20 +291,20 @@ static const u8 sKeyboardChars[KBPAGE_COUNT][KBROW_COUNT][KBCOL_COUNT] = {
     [KEYBOARD_LETTERS_LOWER] = {
         __("abcdef ."),
         __("ghijkl ,"),
-        __("mnopqrs "),
-        __("tuvwxyz "),
+        __("mnopqrsñ"),
+        __("tuvwxyz-"),
     },
     [KEYBOARD_LETTERS_UPPER] = {
         __("ABCDEF ."),
         __("GHIJKL ,"),
-        __("MNOPQRS "),
-        __("TUVWXYZ "),
+        __("MNOPQRSÑ"),
+        __("TUVWXYZ?"),
     },
     [KEYBOARD_SYMBOLS] = {
-        __("01234   "),
-        __("56789   "),
-        __("!?♂♀/-  "),
-        __("…“”‘'   "),
+        __("012345  "),
+        __("6789¿¡  "),
+        __("ÁÉÍÓÚ♂  "),
+        __("áéíóú♀  "),
     }
 };
 
@@ -398,10 +402,15 @@ static void VBlankCB_NamingScreen(void);
 static void NamingScreen_ShowBgs(void);
 static bool8 IsWideLetter(u8);
 
-static const u8 sText_MoveOkBack[] = _("{DPAD_NONE}MOVE  {A_BUTTON}OK  {B_BUTTON}BACK");
+static const u8 sText_MoveOkBack[] = _("{DPAD_NONE}MOVER  {A_BUTTON}ACEPTAR  {B_BUTTON}ATRÁS");
 
 void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpeciesOrPlayerGender, u16 monGender, u32 monPersonality, MainCallback returnCallback)
 {
+    // Pokémon Ultimate Kanto: names are typed on the new keyboard; Walda's phrase and codes keep this one.
+    if (templateNum != NAMING_SCREEN_WALDA && templateNum != NAMING_SCREEN_CODE
+     && RFNaming_Start(templateNum, destBuffer, monSpeciesOrPlayerGender, monGender, monPersonality, returnCallback))
+        return;
+
     sNamingScreen = Alloc(sizeof(struct NamingScreenData));
     if (!sNamingScreen)
     {
@@ -1481,6 +1490,43 @@ static void NamingScreen_CreateRivalIcon(void)
     gSprites[spriteId].oam.priority = 3;
 }
 
+u8 NamingScreen_CreatePortrait(u8 templateNum, u16 monSpeciesOrPlayerGender, u32 monPersonality, s16 x, s16 y)
+{
+    u8 spriteId = MAX_SPRITES;
+
+    switch (templateNum)
+    {
+    case NAMING_SCREEN_PLAYER:
+        spriteId = CreateObjectGraphicsSprite(GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, (enum Gender)monSpeciesOrPlayerGender),
+                                              SpriteCallbackDummy, x, y, 0);
+        if (spriteId != MAX_SPRITES)
+            StartSpriteAnim(&gSprites[spriteId], ANIM_STD_GO_SOUTH);
+        break;
+    case NAMING_SCREEN_RIVAL:
+    {
+        const struct SpriteSheet sheet = {sRival_Gfx, 0x900, GFXTAG_RIVAL};
+        const struct SpritePalette palette = {sRival_Pal, PALTAG_RIVAL};
+        struct SpriteTemplate template;
+        const struct SubspriteTable *tables;
+
+        CopyObjectGraphicsInfoToSpriteTemplate(OBJ_EVENT_GFX_RED_NORMAL, SpriteCallbackDummy, &template, &tables);
+        template.tileTag = sheet.tag;
+        template.paletteTag = palette.tag;
+        template.anims = sAnims_Rival;
+        LoadSpriteSheet(&sheet);
+        LoadSpritePalette(&palette);
+        spriteId = CreateSprite(&template, x, y, 0);
+        break;
+    }
+    case NAMING_SCREEN_CAUGHT_MON:
+    case NAMING_SCREEN_NICKNAME:
+        LoadMonIconPalettes();
+        spriteId = CreateMonIcon(monSpeciesOrPlayerGender, SpriteCallbackDummy, x, y, 0, monPersonality);
+        break;
+    }
+    return spriteId;
+}
+
 //--------------------------------------------------
 // Keyboard handling
 //--------------------------------------------------
@@ -1770,8 +1816,8 @@ static void HandleDpadMovement(struct Task *task)
 
 static void DrawNormalTextEntryBox(void)
 {
-    FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], PIXEL_FILL(1));
-    AddTextPrinterParameterized(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], FONT_NORMAL, sNamingScreen->template->title, 8, 1, 0, 0);
+    FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], PIXEL_FILL(ENTRY_FIELD_FILL));
+    AddTextPrinterParameterized3(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], FONT_NORMAL, 8, 1, sEntryFieldColors, 0, sNamingScreen->template->title);
     PutWindowTilemap(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX]);
 }
 
@@ -1782,8 +1828,8 @@ static void DrawMonTextEntryBox(void)
     u8 *end = StringCopy(buffer, GetSpeciesName(sNamingScreen->monSpecies));
     WrapFontIdToFit(buffer, end, FONT_NORMAL, 128 - 64);
     StringAppendN(end, sNamingScreen->template->title, 15);
-    FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], PIXEL_FILL(1));
-    AddTextPrinterParameterized(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], FONT_NORMAL, buffer, 8, 1, 0, 0);
+    FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], PIXEL_FILL(ENTRY_FIELD_FILL));
+    AddTextPrinterParameterized3(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], FONT_NORMAL, 8, 1, sEntryFieldColors, 0, buffer);
     PutWindowTilemap(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX]);
 }
 
@@ -1973,7 +2019,7 @@ static void DrawTextEntry(void)
     u8 maxChars = sNamingScreen->template->maxChars;
     u16 x = sNamingScreen->inputCharBaseXPos - 0x40;
 
-    FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY], PIXEL_FILL(1));
+    FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY], PIXEL_FILL(ENTRY_FIELD_FILL));
 
     for (i = 0; i < maxChars; i++)
     {
@@ -1981,7 +2027,7 @@ static void DrawTextEntry(void)
         temp[1] = gText_ExpandedPlaceholder_Empty[0];
         extraWidth = (IsWideLetter(temp[0]) == TRUE) ? 2 : 0;
 
-        AddTextPrinterParameterized(sNamingScreen->windows[WIN_TEXT_ENTRY], FONT_NORMAL, temp, i * 8 + x + extraWidth, 1, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized3(sNamingScreen->windows[WIN_TEXT_ENTRY], FONT_NORMAL, i * 8 + x + extraWidth, 1, sEntryFieldColors, TEXT_SKIP_DRAW, temp);
     }
 
     TryDrawGenderIcon();
@@ -2155,7 +2201,7 @@ static const struct NamingScreenTemplate sPlayerNamingScreenTemplate =
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,
-    .title = COMPOUND_STRING("YOUR NAME?"),
+    .title = COMPOUND_STRING("¿CÓMO TE LLAMAS?"),
 };
 
 static const struct NamingScreenTemplate sPCBoxNamingTemplate =
@@ -2166,7 +2212,7 @@ static const struct NamingScreenTemplate sPCBoxNamingTemplate =
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 19,
-    .title = COMPOUND_STRING("BOX NAME?"),
+    .title = COMPOUND_STRING("¿NOMBRE DE LA CAJA?"),
 };
 
 static const struct NamingScreenTemplate sMonNamingScreenTemplate =
@@ -2177,7 +2223,7 @@ static const struct NamingScreenTemplate sMonNamingScreenTemplate =
     .addGenderIcon = TRUE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,
-    .title = COMPOUND_STRING("{STR_VAR_1}'s nickname?"),
+    .title = COMPOUND_STRING("¿Mote para {STR_VAR_1}?"),
 };
 
 static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
@@ -2188,7 +2234,7 @@ static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 11,
-    .title = COMPOUND_STRING("Tell him the words."),
+    .title = COMPOUND_STRING("Dile las palabras."),
 };
 
 static const struct NamingScreenTemplate sCodeScreenTemplate =
